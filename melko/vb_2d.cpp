@@ -1,4 +1,5 @@
 // vb_2d.cpp trying to add a dimension. Last updated May 22, 2008
+// Comment by R Melko
 
 #include<iostream>
 #include<math.h>
