@@ -15,7 +15,7 @@ void change_operators(int operaters[][2], int a, int neighbours[][4]);
 MTRand drand;
 MTRand_int32 irand;
 
-const int L = 6;       
+const int L = 10;       
 const int L2 = L*L;       // number of sites
 const int half_L = L2/2;
 const int n = L2*6;      // number of bond operators
@@ -26,6 +26,8 @@ int operater[2] = {0};
 int initial_state[half_L][2] ={0};
 
 int neighbours[L2][4];
+const int zone = 4;
+int box[zone*zone] = {0};
 
 main()
 {
@@ -47,12 +49,24 @@ main()
       //    cout << neighbours[iii][3] << ", ";
       //    cout << endl;
     }
-  
+
+  for(int abox=0; abox<zone; abox++)
+    {
+      box[abox]=abox;
+      //  cout << box[abox] << ", ";
+      for(int bbox=1; bbox<zone; bbox++)
+	{
+	  box[abox+bbox]=neighbours[box[abox+bbox-1]][1];
+	  //  cout << box[abox+bbox] << ", " ;
+	}
+      //  cout << endl;
+    }
+
   cout << endl;
 
   shuffle(initial_state);
  
-  print_chain(initial_state);
+  //  print_chain(initial_state);
 
   FILE * bondss;
   bondss = fopen("bonds.txt", "w");
