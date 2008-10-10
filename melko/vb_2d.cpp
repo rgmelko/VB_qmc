@@ -18,7 +18,7 @@ MTRand drand; //drand() gives you a random double precision number
 MTRand_int32 irand; // irand() gives you a random integer
 
 const int L = 6; // 1-D length of the lattice
-const int zone = 3; // the size of "the zone"
+const int zone = 2; // the size of "the zone"
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
 const int n = L2*6; // number of bond operators
@@ -36,6 +36,8 @@ int box[L2] = {0}; // the zone! <-- exclamation point
 
 main() // the main program..
 {
+
+  irand();
 
   cout << "L = " << L << "    " << "zone = " << zone << "     " << iterations << " iterations"<< endl;
   cout.precision(10); // ten digits of precision..  or ten decimal places?
@@ -88,7 +90,7 @@ main() // the main program..
 
   shuffle(initial_state);//"randomize" the initial state (but not really)
  
-    print_chain(initial_state);
+  print_chain(initial_state);
 
   FILE * bondss;                       // open a file to print the number of
   bondss = fopen("bonds.txt", "w");  // nearest neighbour bonds in
@@ -123,7 +125,7 @@ main() // the main program..
   //-------Apply Operators-------(also get the weight)------------------
   for(int k=0; k<n; k++)
     {
-      w_old  += apply_operator(operaters[k][0],operaters[k][1],chain); 
+      w_old += apply_operator(operaters[k][0],operaters[k][1],chain); 
     }
   //-------------------------------------------------------------------
   int q = 0; //the current index for bonds which records the number of nn bonds
@@ -151,7 +153,9 @@ main() // the main program..
 	  w_new += apply_operator(new_operaters[k][0],new_operaters[k][1],chain);
 	}
 
-      if(drand() < pow(2.0,(w_old-w_new)))
+      cout << "prob = " << pow(2,w_old-w_new) << endl;
+
+      if(drand() < pow(2,w_old-w_new))
 	{
 	  if(i >= start)
 	    {
@@ -267,20 +271,46 @@ void shuffle(int chain[][2])
 {
 
   for(int i=0; i<half_L; i++){chain[i][0] = -1;}
+  for(int i=0; i<half_L; i++){chain[i][1] = -1;}
 
   int row=0;
+  int col=0;
+  int rowcol=0;
+  int check = 0;
 
-  for (int site = 0; site < L2; site+=2)
+  for (int site = 0; site < L2;)
     {
-        //     row = irand() %half_L;
+      rowcol =  (irand() + 2) %2;
+      if(rowcol==0)
+	{
+	  row =  (irand()+half_L) %half_L;
+	  while((chain[row][0] != -1)&(rowcol==0))
+	    { 
+	      row = (irand()+half_L) %half_L; 
+	      check += 1;
+	      if(check==half_L*half_L*half_L){rowcol=1;}
+	    }
+	  check = 0;
+	  if(rowcol==0){chain[row][0]=site; site++;}
+	}
+      if(rowcol==1)
+	{
+	  col =  (irand()+half_L) %half_L;
       
-//             while(chain[row][0] != -1)
-//       	{ row = irand() %half_L; }
+	  while((chain[col][1] != -1)&(rowcol==1))
+	    { 
+	      col = (irand()+half_L) %half_L; 
+	      check += 1;
+	      if(check==half_L*half_L*half_L){rowcol=0;}
+	    }
+	  check = 0;
+	  if (rowcol==1){chain[col][1]=site;site++;}
+	}
 
 
-        chain[row][0] = site;
-        chain[row][1] = site+1;
-        row += 1;
+//         chain[row][0] = site;
+//         chain[row][1] = site+1;
+//         row += 1;
     }
 }
 
@@ -336,8 +366,8 @@ int apply_operator(int op0, int op1, int chain[][2])
   //  print_chain(chain, half_L);
 
   return 1;
-}
 
+}
 void change_operators(int operaters[][2], int a, int neighbours[][4])
 {
 
