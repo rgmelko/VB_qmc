@@ -1,4 +1,4 @@
-// vb_2d.cpp trying to add a dimension. Last updated May 22, 2008
+// vb_2d.cpp trying to add a dimension. Last updated Oct 14, 2008
 // Comment by R Melko
 
 #include<iostream>
@@ -17,12 +17,12 @@ changes a number of bond operators... where that number is "a"*/
 MTRand drand; //drand() gives you a random double precision number
 MTRand_int32 irand; // irand() gives you a random integer
 
-const int L = 6; // 1-D length of the lattice
+const int L = 4; // 1-D length of the lattice
 const int zone = 2; // the size of "the zone"
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
 const int n = L2*6; // number of bond operators
-const int start = 310000; /* number of iterations until the programs takes 
+const int start = 31000; /* number of iterations until the programs takes 
 			     measurements  */
 const int iterations = start*2; // total number of iterations
 const int array_sz = iterations;
@@ -100,7 +100,7 @@ main() // the main program..
 						  for each iteration*/
   int acc = 0, rej =0;           //number of changes accepted and rejected
   long int w_old=0, w_new=0;   // the new and old weights
-  long int superweights[array_sz] = {0}; // storing alllllll the weights
+  double superweights = 0; // storing alllllll the weights
   int cross[array_sz] = {0}; //the number of bonds crossing the zone boundary
   double energy = 0;          // the energy
   double entropy = 0;
@@ -153,7 +153,7 @@ main() // the main program..
 	  w_new += apply_operator(new_operaters[k][0],new_operaters[k][1],chain);
 	}
 
-      cout << "prob = " << pow(2,w_old-w_new) << endl;
+      //      cout << "prob = " << pow(2,w_old-w_new) << endl;
 
       if(drand() < pow(2,w_old-w_new))
 	{
@@ -170,7 +170,8 @@ main() // the main program..
 		    {bonds[q]+=1;}
 		  if(box[chain[id][0]]+box[chain[id][1]]==1){cross[q]+=1;}
 		}
-		  superweights[q]=w_new;
+	      superweights+=pow(0.5,w_new);
+	      entropy += cross[q]*pow(0.5,w_new);
 	      q+=1;
 	      acc+=1;
 	      
@@ -190,8 +191,9 @@ main() // the main program..
 	    else
 	      {
 		bonds[q]=bonds[q-1];
-		superweights[q]=superweights[q-1];
+		superweights+=pow(0.5,w_old);
 		cross[q]=cross[q-1]; 
+		entropy += cross[q]*pow(0.5,w_old);
 		q+=1;
 		rej+=1;
 	      }
@@ -200,8 +202,6 @@ main() // the main program..
       
       w_new = 0;
     }
-
-  double superduperweights = 0;
   
 //   cout<< superweights[0] << ","<< superweights[1]<< "," << superweights[2]<<"," << superweights[3] <<"," ;
 //   cout<< superweights[4] << ","<< superweights[5]<< "," << superweights[6]<<"," << superweights[7]<<"," ;
@@ -211,8 +211,6 @@ main() // the main program..
     {
       //   cout << "bonds[" << i9 << "] = " << bonds[i9] << endl;
       energy += bonds[i9];
-      entropy += cross[i9]*pow(0.5,superweights[i9]);
-      superduperweights += pow(0.5,superweights[i9]);
     }
 
   //  cout << endl << energy << " bonds" << endl;
@@ -221,9 +219,8 @@ main() // the main program..
   energy += -1;
   energy *= 0.5;
   //  energy -= L2*(0.25);
-  entropy /= superduperweights;
+  entropy /= superweights;
   entropy *= log(2);
-
  
   cout << "energy = " << energy << endl;
   cout << "entropy = " << entropy << endl;
