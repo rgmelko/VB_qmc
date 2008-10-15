@@ -10,22 +10,21 @@ void shuffle(int [][2]); //randomizes initial bonds (currently not working)
 void print_chain(int chain [][2]); //prints the bonds
 void generate_operator(int operater[2], int neighbours[][4]);//generates 1 bond 
                                                                    //operator
-int apply_operator(int op0, int op1, int chain[][2]);//applies 1 bond operator
+double apply_operator(int op0, int op1, int chain[][2]);//applies 1 bond operator
 void change_operators(int operaters[][2], int a, int neighbours[][4]);/*randomly 
 changes a number of bond operators... where that number is "a"*/
 
-MTRand drand; //drand() gives you a random double precision number
+MTRand drand(37483484); //drand() gives you a random double precision number
 MTRand_int32 irand; // irand() gives you a random integer
 
 const int L = 4; // 1-D length of the lattice
-const int zone = 2; // the size of "the zone"
+const int zone = 3; // the size of "the zone"
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
-const int n = L2*6; // number of bond operators
-const int start = 31000; /* number of iterations until the programs takes 
+const int n = L2*30; // number of bond operators
+const int start = 10000; /* number of iterations until the programs takes 
 			     measurements  */
-const int iterations = start*2; // total number of iterations
-const int array_sz = iterations;
+const int iterations = start*100; // total number of iterations
 int chain [half_L][2] = {0}; // the bonds are stored in here
 int operater[2] = {0}; //it's an operator
 int initial_state[half_L][2] ={0}; /*stores the initial bonds which I'm using
@@ -36,8 +35,7 @@ int box[L2] = {0}; // the zone! <-- exclamation point
 
 main() // the main program..
 {
-
-  irand();
+  irand.seed(48526459);
 
   cout << "L = " << L << "    " << "zone = " << zone << "     " << iterations << " iterations"<< endl;
   cout.precision(10); // ten digits of precision..  or ten decimal places?
@@ -62,46 +60,43 @@ main() // the main program..
 
 
   //****Define the zone-box-type-thing*******************************
-  for(int abox=0; abox<L*zone; abox+=L)
-    {
-      box[abox]=1;
-      // cout << box[abox] << ", ";
-      for(int bbox=1; bbox<zone-1; bbox++)
-	{
-	  box[abox+bbox]=1;
-	  box[neighbours[abox+bbox][2]]=1;
-	  //  cout << box[abox+bbox] << ", " ;
-	}
-      //  cout << endl;
-    }
-
-  /*****Print out the zone box*****************************************
-        for (int zzz = 0; zzz<L2; zzz+=L)   
-           {
-             for(int xxx = 0; xxx<L; xxx++)
-       	       {
-       	          cout << box[xxx+zzz] << ", ";
-       	       }
-             cout << endl;
-           }
-  *************************************************************************/
+      for(int abox=0; abox<L*zone; abox+=L)
+      {
+	for(int bbox=0; bbox<zone; bbox++)
+	  {
+	    box[abox+bbox]=1;
+	    //  cout << box[abox+bbox] << ", " ;
+	  }
+	//  cout << endl;
+      }
+  //****Print out the zone box*****************************************
+      for (int zzz = 0; zzz<L2; zzz+=L)   
+      {
+	for(int xxx = 0; xxx<L; xxx++)
+	  {
+	    cout << box[xxx+zzz] << ", ";
+	  }
+	cout << endl;
+      }
+  //*************************************************************************
 
   //  cout << endl;
 
   shuffle(initial_state);//"randomize" the initial state (but not really)
  
-  print_chain(initial_state);
+  //  print_chain(initial_state);
 
-  FILE * bondss;                       // open a file to print the number of
-  bondss = fopen("bonds.txt", "w");  // nearest neighbour bonds in
+  //  FILE * bondss;                       // open a file to print the number of
+  //  bondss = fopen("bonds.txt", "w");  // nearest neighbour bonds in
 
   int operaters[n][2], new_operaters[n][2];   // old and new operators
-  int bonds[array_sz] = {0};                 /* number of nn bonds 
-						  for each iteration*/
+  //  int bonds[array_sz] = {0};                 // number of nn bonds 
+                                                   // for each iteration  
+  int bond[2] = {0};
   int acc = 0, rej =0;           //number of changes accepted and rejected
-  long int w_old=0, w_new=0;   // the new and old weights
+  double w_old=1, w_new=1;   // the new and old weights
   double superweights = 0; // storing alllllll the weights
-  int cross[array_sz] = {0}; //the number of bonds crossing the zone boundary
+  int cross[2] = {0}; //the number of bonds crossing the zone boundary
   double energy = 0;          // the energy
   double entropy = 0;
 
@@ -125,14 +120,14 @@ main() // the main program..
   //-------Apply Operators-------(also get the weight)------------------
   for(int k=0; k<n; k++)
     {
-      w_old += apply_operator(operaters[k][0],operaters[k][1],chain); 
+      w_old *= apply_operator(operaters[k][0],operaters[k][1],chain); 
     }
   //-------------------------------------------------------------------
   int q = 0; //the current index for bonds which records the number of nn bonds
 
   for (int i=0; i<iterations; i++)
     {  
-      if(i%100000==0){cout<<i<<" steps"<<endl;}
+      if(i%100000==0){cout<< i << " steps" << endl;}
 
       for(int i7=0; i7<n; i7++)
 	{ 
@@ -150,12 +145,10 @@ main() // the main program..
 
       for(int k=0; k<n; k++)
 	{
-	  w_new += apply_operator(new_operaters[k][0],new_operaters[k][1],chain);
+	  w_new *= apply_operator(new_operaters[k][0],new_operaters[k][1],chain);
 	}
 
-      //      cout << "prob = " << pow(2,w_old-w_new) << endl;
-
-      if(drand() < pow(2,w_old-w_new))
+      if(drand() < w_new/w_old)
 	{
 	  if(i >= start)
 	    {
@@ -167,11 +160,12 @@ main() // the main program..
 		     (chain[id][1] == neighbours[chain[id][0]][2])|
 		     (chain[id][1] == neighbours[chain[id][0]][3])
 		     )
-		    {bonds[q]+=1;}
-		  if(box[chain[id][0]]+box[chain[id][1]]==1){cross[q]+=1;}
+		    {bond[1]+=1;}
+		  if(box[chain[id][0]]+box[chain[id][1]]==1){cross[1]+=1;}
 		}
-	      superweights+=pow(0.5,w_new);
-	      entropy += cross[q]*pow(0.5,w_new);
+	      superweights += w_new;
+	      energy += bond[1];
+	      entropy += cross[1]*w_new;
 	      q+=1;
 	      acc+=1;
 	      
@@ -183,6 +177,8 @@ main() // the main program..
 	      operaters[i8][1] = new_operaters[i8][1];
 	    }
 	  w_old = w_new; 
+	  bond[0] = bond[1];
+	  cross[0] = cross[1];
 	}
 
       else{if(i>=start)
@@ -190,28 +186,25 @@ main() // the main program..
 	    if(q==0){} 
 	    else
 	      {
-		bonds[q]=bonds[q-1];
-		superweights+=pow(0.5,w_old);
-		cross[q]=cross[q-1]; 
-		entropy += cross[q]*pow(0.5,w_old);
+		superweights += w_old;
+		energy += bond[0];
+		entropy += cross[0]*w_old;
 		q+=1;
 		rej+=1;
 	      }
 	  }
       }
       
-      w_new = 0;
+      w_new = 1;
+      cross[1] = 0;
+      bond[1] = 0;
     }
-  
-//   cout<< superweights[0] << ","<< superweights[1]<< "," << superweights[2]<<"," << superweights[3] <<"," ;
-//   cout<< superweights[4] << ","<< superweights[5]<< "," << superweights[6]<<"," << superweights[7]<<"," ;
-//   cout<< superweights[8] << ","<< superweights[9]<< "," << superweights[10]<<"," << superweights[11]<< endl;
 
-  for(int i9=0; i9<q; i9++)
-    {
-      //   cout << "bonds[" << i9 << "] = " << bonds[i9] << endl;
-      energy += bonds[i9];
-    }
+//   for(int i9=0; i9<q; i9++)
+//     {
+//       //   cout << "bonds[" << i9 << "] = " << bonds[i9] << endl;
+//       energy += bonds[i9];
+//     }
 
   //  cout << endl << energy << " bonds" << endl;
 
@@ -222,9 +215,11 @@ main() // the main program..
   entropy /= superweights;
   entropy *= log(2);
  
+  cout << endl;
   cout << "energy = " << energy << endl;
   cout << "entropy = " << entropy << endl;
   cout << "entropy/x = " << entropy/zone << endl;
+  cout << "superweights " << superweights << endl;
  	   
   //  cout << q << " energies" << endl;
 
@@ -243,21 +238,21 @@ main() // the main program..
   
   //  print_chain(chain, half_L);
 
-  int z = 0;
-  for(int i=0; i<q; i+=16)
-    {
-      bonds[z] = bonds[i]+bonds[i+1]+bonds[i+2]+bonds[i+3]+bonds[i+4]+bonds[i+5]+bonds[i+6]+bonds[i+7]
-  	+bonds[i+8]+bonds[i+9]+bonds[i+10]+bonds[i+11]+bonds[i+12]+bonds[i+13]+bonds[i+14]+bonds[i+15];
-      z +=1;
-    }
+//   int z = 0;
+//   for(int i=0; i<q; i+=16)
+//     {
+//       bonds[z] = bonds[i]+bonds[i+1]+bonds[i+2]+bonds[i+3]+bonds[i+4]+bonds[i+5]+bonds[i+6]+bonds[i+7]
+//   	+bonds[i+8]+bonds[i+9]+bonds[i+10]+bonds[i+11]+bonds[i+12]+bonds[i+13]+bonds[i+14]+bonds[i+15];
+//       z +=1;
+//     }
   
-  for(int i=0; i<z; i++)
-    {
-      fprintf(bondss, "%i", bonds[i]);
-      fprintf(bondss, ",\n ");
-    }  
+//   for(int i=0; i<z; i++)
+//     {
+//       fprintf(bondss, "%i", bonds[i]);
+//       fprintf(bondss, ",\n ");
+//     }  
 
-  fclose(bondss);
+//   fclose(bondss);
 
   //  cout << endl;
 
@@ -323,13 +318,13 @@ void print_chain(int chain[][2])
 
 void generate_operator(int operater[2], int neighbours[][4])
 {
-  operater[0] = irand() %L2;
-  operater[1] = neighbours[operater[0]][irand()%4];
+  operater[0] = (irand()+L2) %L2;
+  operater[1] = neighbours[operater[0]][(irand()+4)%4];
   
   //cout << '(' << operater[0] << ',' << operater[1] << ") ";       
 }
 
-int apply_operator(int op0, int op1, int chain[][2])
+double apply_operator(int op0, int op1, int chain[][2])
 {
   int index1[2] = {0};
   int index2[2] = {0};
@@ -354,7 +349,7 @@ int apply_operator(int op0, int op1, int chain[][2])
     }
 
   if(index1[0] == index2[0]) {// print_chain(chain);
-  return 0;}
+  return 1;}
 
   //applying operator and changing chain
   chain[index1[0]][index1[1]] = chain[index2[0]][(index2[1]+1)%2];   
@@ -362,7 +357,7 @@ int apply_operator(int op0, int op1, int chain[][2])
 
   //  print_chain(chain, half_L);
 
-  return 1;
+  return 0.5;
 
 }
 void change_operators(int operaters[][2], int a, int neighbours[][4])
