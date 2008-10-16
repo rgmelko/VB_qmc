@@ -1,4 +1,4 @@
-// vb_2d.cpp trying to add a dimension. Last updated Oct 14, 2008
+// vb_2d.cpp  Last updated Oct 15, 2008
 // Comment by R Melko
 
 #include<iostream>
@@ -17,25 +17,25 @@ changes a number of bond operators... where that number is "a"*/
 MTRand drand(37483484); //drand() gives you a random double precision number
 MTRand_int32 irand; // irand() gives you a random integer
 
-const int L = 4; // 1-D length of the lattice
-const int zone = 3; // the size of "the zone"
+const long int superseed = 275493247;
+const int L = 16; // 1-D length of the lattice
+const int zone = 4; // the size of "the zone"
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
-const int n = L2*30; // number of bond operators
-const int start = 10000; /* number of iterations until the programs takes 
+const int n = L2*8; // number of bond operators
+const int start = 20000; /* number of iterations until the programs takes 
 			     measurements  */
-const int iterations = start*100; // total number of iterations
+const int iterations = start*10; // total number of iterations
 int chain [half_L][2] = {0}; // the bonds are stored in here
 int operater[2] = {0}; //it's an operator
-int initial_state[half_L][2] ={0}; /*stores the initial bonds which I'm using
-				     instead of randomizing them*/
+int initial_state[half_L][2] ={0}; //stores the initial bond configuration
 
 int neighbours[L2][4]; //lists the 4 nearest neighbours for each site
 int box[L2] = {0}; // the zone! <-- exclamation point
 
 main() // the main program..
 {
-  irand.seed(48526459);
+  irand.seed(superseed);
 
   cout << "L = " << L << "    " << "zone = " << zone << "     " << iterations << " iterations"<< endl;
   cout.precision(10); // ten digits of precision..  or ten decimal places?
@@ -94,8 +94,7 @@ main() // the main program..
                                                    // for each iteration  
   int bond[2] = {0};
   int acc = 0, rej =0;           //number of changes accepted and rejected
-  double w_old=1, w_new=1;   // the new and old weights
-  double superweights = 0; // storing alllllll the weights
+  double w_old=0, w_new=0;   // the new and old weights
   int cross[2] = {0}; //the number of bonds crossing the zone boundary
   double energy = 0;          // the energy
   double entropy = 0;
@@ -120,14 +119,15 @@ main() // the main program..
   //-------Apply Operators-------(also get the weight)------------------
   for(int k=0; k<n; k++)
     {
-      w_old *= apply_operator(operaters[k][0],operaters[k][1],chain); 
+      w_old += apply_operator(operaters[k][0],operaters[k][1],chain); 
     }
   //-------------------------------------------------------------------
   int q = 0; //the current index for bonds which records the number of nn bonds
+  int q2 = 0;
 
   for (int i=0; i<iterations; i++)
     {  
-      if(i%100000==0){cout<< i << " steps" << endl;}
+      if(i%start==0){cout<< q2 << "% "<< endl ;  q2+=10;}
 
       for(int i7=0; i7<n; i7++)
 	{ 
@@ -145,10 +145,10 @@ main() // the main program..
 
       for(int k=0; k<n; k++)
 	{
-	  w_new *= apply_operator(new_operaters[k][0],new_operaters[k][1],chain);
+	  w_new += apply_operator(new_operaters[k][0],new_operaters[k][1],chain);
 	}
 
-      if(drand() < w_new/w_old)
+      if(drand() < pow(2,(w_old-w_new)))
 	{
 	  if(i >= start)
 	    {
@@ -163,9 +163,8 @@ main() // the main program..
 		    {bond[1]+=1;}
 		  if(box[chain[id][0]]+box[chain[id][1]]==1){cross[1]+=1;}
 		}
-	      superweights += w_new;
 	      energy += bond[1];
-	      entropy += cross[1]*w_new;
+	      entropy += cross[1];
 	      q+=1;
 	      acc+=1;
 	      
@@ -186,16 +185,15 @@ main() // the main program..
 	    if(q==0){} 
 	    else
 	      {
-		superweights += w_old;
-		energy += bond[0];
-		entropy += cross[0]*w_old;
+		energy += bond[0]; //*w_old;
+		entropy += cross[0]; //*w_old;
 		q+=1;
 		rej+=1;
 	      }
 	  }
       }
       
-      w_new = 1;
+      w_new = 0;
       cross[1] = 0;
       bond[1] = 0;
     }
@@ -208,18 +206,18 @@ main() // the main program..
 
   //  cout << endl << energy << " bonds" << endl;
 
-  energy /= -L2*(q);
+
+  energy /= -L2*(q)*1.0;
   energy += -1;
   energy *= 0.5;
-  //  energy -= L2*(0.25);
-  entropy /= superweights;
+
+  entropy /= q;
   entropy *= log(2);
  
   cout << endl;
   cout << "energy = " << energy << endl;
   cout << "entropy = " << entropy << endl;
   cout << "entropy/x = " << entropy/zone << endl;
-  cout << "superweights " << superweights << endl;
  	   
   //  cout << q << " energies" << endl;
 
@@ -349,7 +347,7 @@ double apply_operator(int op0, int op1, int chain[][2])
     }
 
   if(index1[0] == index2[0]) {// print_chain(chain);
-  return 1;}
+  return 0;}
 
   //applying operator and changing chain
   chain[index1[0]][index1[1]] = chain[index2[0]][(index2[1]+1)%2];   
@@ -357,7 +355,7 @@ double apply_operator(int op0, int op1, int chain[][2])
 
   //  print_chain(chain, half_L);
 
-  return 0.5;
+  return 1;
 
 }
 void change_operators(int operaters[][2], int a, int neighbours[][4])
