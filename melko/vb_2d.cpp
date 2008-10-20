@@ -18,12 +18,12 @@ MTRand drand(37483484); //drand() gives you a random double precision number
 MTRand_int32 irand; // irand() gives you a random integer
 
 const long int superseed = 275493247;
-const int L = 16; // 1-D length of the lattice
-const int zone = 4; // the size of "the zone"
+const int L = 12; // 1-D length of the lattice
+const int zone = 7; // the size of "the zone"
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
-const int n = L2*8; // number of bond operators
-const int start = 20000; /* number of iterations until the programs takes 
+const int n = L2*2; // number of bond operators
+const int start = 100000; /* number of iterations until the programs takes 
 			     measurements  */
 const int iterations = start*10; // total number of iterations
 int chain [half_L][2] = {0}; // the bonds are stored in here
@@ -37,7 +37,7 @@ main() // the main program..
 {
   irand.seed(superseed);
 
-  cout << "L = " << L << "    " << "zone = " << zone << "     " << iterations << " iterations"<< endl;
+  cout << "L = " << L << "    " << "zone = " << zone << "     " << iterations << " iterations" << " n = " << n << endl;
   cout.precision(10); // ten digits of precision..  or ten decimal places?
 
   //******Finding Nearest Neighbours********************************
@@ -57,8 +57,6 @@ main() // the main program..
       //    cout << endl;
     }
 
-
-
   //****Define the zone-box-type-thing*******************************
       for(int abox=0; abox<L*zone; abox+=L)
       {
@@ -70,17 +68,18 @@ main() // the main program..
 	//  cout << endl;
       }
   //****Print out the zone box*****************************************
-      for (int zzz = 0; zzz<L2; zzz+=L)   
-      {
-	for(int xxx = 0; xxx<L; xxx++)
-	  {
-	    cout << box[xxx+zzz] << ", ";
-	  }
-	cout << endl;
-      }
+//       for (int zzz = 0; zzz<L2; zzz+=L)   
+//       {
+// 	for(int xxx = 0; xxx<L; xxx++)
+// 	  {
+// 	    cout << box[xxx+zzz] << ", ";
+// 	  }
+// 	cout << endl;
+//       }
   //*************************************************************************
 
   //  cout << endl;
+
 
   shuffle(initial_state);//"randomize" the initial state (but not really)
  
@@ -268,39 +267,40 @@ void shuffle(int chain[][2])
   int rowcol=0;
   int check = 0;
 
-  for (int site = 0; site < L2;)
-    {
-      rowcol =  (irand() + 2) %2;
-      if(rowcol==0)
-	{
-	  row =  (irand()+half_L) %half_L;
-	  while((chain[row][0] != -1)&(rowcol==0))
-	    { 
-	      row = (irand()+half_L) %half_L; 
-	      check += 1;
-	      if(check==half_L*half_L*half_L){rowcol=1;}
-	    }
-	  check = 0;
-	  if(rowcol==0){chain[row][0]=site; site++;}
-	}
-      if(rowcol==1)
-	{
-	  col =  (irand()+half_L) %half_L;
+//   for (int site = 0; site < L2;)
+//     {
+//       rowcol =  (irand() + 2) %2;
+//       if(rowcol==0)
+// 	{
+// 	  row =  (irand()+half_L) %half_L;
+// 	  while((chain[row][0] != -1)&(rowcol==0))
+// 	    { 
+// 	      row = (irand()+half_L) %half_L; 
+// 	      check += 1;
+// 	      if(check==half_L*half_L*half_L){rowcol=1;}
+// 	    }
+// 	  check = 0;
+// 	  if(rowcol==0){chain[row][0]=site; site++;}
+// 	}
+//       if(rowcol==1)
+// 	{
+// 	  col =  (irand()+half_L) %half_L;
       
-	  while((chain[col][1] != -1)&(rowcol==1))
-	    { 
-	      col = (irand()+half_L) %half_L; 
-	      check += 1;
-	      if(check==half_L*half_L*half_L){rowcol=0;}
-	    }
-	  check = 0;
-	  if (rowcol==1){chain[col][1]=site;site++;}
-	}
+// 	  while((chain[col][1] != -1)&(rowcol==1))
+// 	    { 
+// 	      col = (irand()+half_L) %half_L; 
+// 	      check += 1;
+// 	      if(check==half_L*half_L*half_L){rowcol=0;}
+// 	    }
+// 	  check = 0;
+// 	  if (rowcol==1){chain[col][1]=site;site++;}
+// 	}
 
-
-//         chain[row][0] = site;
-//         chain[row][1] = site+1;
-//         row += 1;
+  for(int site=0; site<(L2-1); site+=2)
+    {
+      chain[row][0] = site;
+      chain[row][1] = site+1;
+      row += 1; 
     }
 }
 
