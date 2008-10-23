@@ -1,5 +1,5 @@
-// vb_2d.cpp  Last updated Oct 15, 2008
-// Comment by R Melko
+// vb2j.cpp  Last updated Oct 23, 2008
+// Trying to at J''
 
 #include<iostream>
 #include<math.h>
@@ -8,10 +8,11 @@ using namespace std;
 
 void shuffle(int [][2]); //randomizes initial bonds (currently not working)
 void print_chain(int chain [][2]); //prints the bonds
-void generate_operator(int operater[2], int neighbours[][4]);//generates 1 bond 
-                                                                   //operator
-double apply_operator(int op0, int op1, int chain[][2]);//applies 1 bond operator
-void change_operators(int operaters[][2], int a, int neighbours[][4]);/*randomly 
+void generate_operator(int operater[2], int neighbours[][4], double J);
+//generates 1 bond operator
+double apply_operator(int op0, int op1, int chain[][2], double J);
+//applies 1 bond operator
+void change_operators(int operaters[][2], double Js[], int a, int neighbours[][4]);/*randomly 
 changes a number of bond operators... where that number is "a"*/
 
 MTRand drand(37483484); //drand() gives you a random double precision number
@@ -20,15 +21,21 @@ MTRand_int32 irand; // irand() gives you a random integer
 const long int superseed = 827193545;
 const int L = 6; // 1-D length of the lattice
 const int zone = 3; // the size of "the zone"
+const int jprime = 1.91;
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
-const int n = L2*20; // number of bond operators
-const int start = 10000000; /* number of iterations until the programs takes 
+const int n = L2*4; // number of bond operators
+const int start = 100000; /* number of iterations until the programs takes 
 			     measurements  */
 const int iterations = start*10; // total number of iterations
 int chain [half_L][2] = {0}; // the bonds are stored in here
 int operater[2] = {0}; //it's an operator
 int initial_state[half_L][2] ={0}; //stores the initial bond configuration
+
+double J = 1;
+double Js[n] = {1};
+double w_old0=0, w_new0=0;   // the new and old weights
+double w_old1=0, w_new1=0;   // the new and old weights
 
 int neighbours[L2][4]; //lists the 4 nearest neighbours for each site
 int box[L2] = {0}; // the zone! <-- exclamation point
@@ -43,12 +50,12 @@ main() // the main program..
   //******Finding Nearest Neighbours********************************
   for(int iii=0; iii<L2; iii++)
     {
-      if(iii%L==0){neighbours[iii][0]=iii+L-1;}
+      if(iii%L==0){neighbours[iii][0]=iii+L-1;}   //North
       else neighbours[iii][0]=iii-1;
-      neighbours[iii][1]=(iii+L)%L2;
-      if(iii%L==L-1){neighbours[iii][2]=iii-L+1;}
+      neighbours[iii][1]=(iii+L)%L2;                //East
+      if(iii%L==L-1){neighbours[iii][2]=iii-L+1;} //South
       else neighbours[iii][2]=iii+1;
-      neighbours[iii][3]=(iii-L+L2)%L2;
+      neighbours[iii][3]=(iii-L+L2)%L2;            // West
       
       //    cout << neighbours[iii][0] << ", ";
       //    cout << neighbours[iii][1] << ", ";
@@ -93,7 +100,6 @@ main() // the main program..
                                                    // for each iteration  
   int bond[2] = {0};
   int acc = 0, rej =0;           //number of changes accepted and rejected
-  double w_old=0, w_new=0;   // the new and old weights
   int cross[2] = {0}; //the number of bonds crossing the zone boundary
   double energy = 0;          // the energy
   double entropy = 0;
@@ -101,9 +107,10 @@ main() // the main program..
   //-------Generate Operators----------------------------------------
   for(int i0=0; i0<n; i0++)
     {  
-      generate_operator(operater, neighbours);
+      generate_operator(operater, neighbours, J);
       operaters[i0][0] = operater[0];
       operaters[i0][1] = operater[1];
+      Js[i0] = J;
     }
   //-----------------------------------------------------------------
 
@@ -115,12 +122,23 @@ main() // the main program..
     }
   //------------------------------------------------------------------
 
+  w_old0 = 0;
+  w_old1 = 0;
+  w_new0 = 0;
+  w_new1 = 0;
+
   //-------Apply Operators-------(also get the weight)------------------
   for(int k=0; k<n; k++)
     {
-      w_old += apply_operator(operaters[k][0],operaters[k][1],chain); 
+      apply_operator(operaters[k][0],operaters[k][1],chain,Js[k]); 
     }
   //-------------------------------------------------------------------
+
+  w_old0 = w_new0;
+  w_old1 = w_old1;
+  w_new0 = 0;
+  w_new1 = 0;
+
   int q = 0; //the current index for bonds which records the number of nn bonds
   int q2 = 0;
 
@@ -134,7 +152,7 @@ main() // the main program..
 	  new_operaters[i7][1] = operaters[i7][1];
 	}
 
-      change_operators(new_operaters, n, neighbours);
+      change_operators(new_operaters,Js, n, neighbours);
 
        for(int j=0; j<half_L; j++)
 	{
@@ -142,12 +160,14 @@ main() // the main program..
 	  chain[j][1] = initial_state[j][1];
 	}
 
+
+
       for(int k=0; k<n; k++)
 	{
-	  w_new += apply_operator(new_operaters[k][0],new_operaters[k][1],chain);
+	  apply_operator(new_operaters[k][0],new_operaters[k][1],chain,Js[k]);
 	}
 
-      if(drand() < pow(2,(w_old-w_new)))
+      if(drand() < (pow(2,(w_old0-w_new0))+pow(jprime,(w_old1-w_new1))))
 	{
 	  if(i >= start)
 	    {
@@ -174,7 +194,8 @@ main() // the main program..
 	      operaters[i8][0] = new_operaters[i8][0];
 	      operaters[i8][1] = new_operaters[i8][1];
 	    }
-	  w_old = w_new; 
+	  w_old0 = w_new0;
+	  w_old1 = w_new1;
 	  bond[0] = bond[1];
 	  cross[0] = cross[1];
 	}
@@ -192,7 +213,8 @@ main() // the main program..
 	  }
       }
       
-      w_new = 0;
+      w_new0 = 0;
+      w_new1 = 0;
       cross[1] = 0;
       bond[1] = 0;
     }
@@ -230,7 +252,7 @@ main() // the main program..
 
   for(int k=0; k<n; k++)
     {
-      w_new += apply_operator(operaters[k][0],operaters[k][1],chain);
+      apply_operator(operaters[k][0],operaters[k][1],chain, Js[k]);
     }
   
   //  print_chain(chain, half_L);
@@ -314,15 +336,22 @@ void print_chain(int chain[][2])
   cout << endl;
 }
 
-void generate_operator(int operater[2], int neighbours[][4])
+ void generate_operator(int operater[3], int neighbours[][4], double J)
 {
-  operater[0] = (irand()+L2) %L2;
-  operater[1] = neighbours[operater[0]][(irand()+4)%4];
+  J = 1;
+  int initb = (irand()+L2) %L2;
+  operater[0] = initb;
+  int neighb = (irand()+4)%4;
+  operater[1] = neighbours[operater[0]][neighb];
+  if(
+     ((((initb/L)%2+initb%2)==1)&(neighb==0))
+     |((((initb/L)%2+initb%2)==0)&(neighb==2)))
+    {J=jprime;}
   
   //cout << '(' << operater[0] << ',' << operater[1] << ") ";       
 }
 
-double apply_operator(int op0, int op1, int chain[][2])
+double apply_operator(int op0, int op1,int chain[][2], double J)
 {
   int index1[2] = {0};
   int index2[2] = {0};
@@ -354,11 +383,13 @@ double apply_operator(int op0, int op1, int chain[][2])
   chain[index2[0]][(index2[1]+1)%2] = op1;
 
   //  print_chain(chain, half_L);
+  if(J == 1){w_new0 += J;}
+  w_new1 += J;
 
-  return 1;
+  return 0;
 
 }
-void change_operators(int operaters[][2], int a, int neighbours[][4])
+ void change_operators(int operaters[][2], double Js[],int a, int neighbours[][4])
 {
 
   int first = irand() %a;
@@ -376,14 +407,15 @@ void change_operators(int operaters[][2], int a, int neighbours[][4])
     {
       int news[2] = {0};
 
-      generate_operator(news, neighbours);
+      generate_operator(news, neighbours, J);
 
       while((operaters[changings[m]][0] == news[0]) && (operaters[changings[m]][1] == news[1]))
 	{
-	  generate_operator(news, neighbours);
+	  generate_operator(news, neighbours, J);
 	}
 
       operaters[changings[m]][0] = news[0];
       operaters[changings[m]][1] = news[1];
+      Js[m]=J;
     } 
 }
