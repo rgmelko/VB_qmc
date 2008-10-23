@@ -21,11 +21,11 @@ MTRand_int32 irand; // irand() gives you a random integer
 const long int superseed = 827193545;
 const int L = 6; // 1-D length of the lattice
 const int zone = 3; // the size of "the zone"
-const int jprime = 1.91;
+const double jprime = 1.91;
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
 const int n = L2*4; // number of bond operators
-const int start = 100000; /* number of iterations until the programs takes 
+const int start = 1000000; /* number of iterations until the programs takes 
 			     measurements  */
 const int iterations = start*10; // total number of iterations
 int chain [half_L][2] = {0}; // the bonds are stored in here
@@ -160,14 +160,12 @@ main() // the main program..
 	  chain[j][1] = initial_state[j][1];
 	}
 
-
-
       for(int k=0; k<n; k++)
 	{
 	  apply_operator(new_operaters[k][0],new_operaters[k][1],chain,Js[k]);
 	}
 
-      if(drand() < (pow(2,(w_old0-w_new0))+pow(jprime,(w_old1-w_new1))))
+      if(drand() < (pow(2,(w_old0-w_new0))*pow(jprime*0.5,(w_new1-w_old1))))
 	{
 	  if(i >= start)
 	    {
@@ -240,7 +238,7 @@ main() // the main program..
   cout << "entropy = " << entropy << endl;
   cout << "entropy/x = " << entropy/zone << endl;
  	   
-  //  cout << q << " energies" << endl;
+  cout << q << " energies" << endl;
 
   cout << 100*double(acc)/q << "% accepted"<< endl;
 
@@ -336,9 +334,9 @@ void print_chain(int chain[][2])
   cout << endl;
 }
 
- void generate_operator(int operater[3], int neighbours[][4], double J)
+ void generate_operator(int operater[3], int neighbours[][4], double JJ3)
 {
-  J = 1;
+  JJ3 = 1;
   int initb = (irand()+L2) %L2;
   operater[0] = initb;
   int neighb = (irand()+4)%4;
@@ -346,12 +344,11 @@ void print_chain(int chain[][2])
   if(
      ((((initb/L)%2+initb%2)==1)&(neighb==0))
      |((((initb/L)%2+initb%2)==0)&(neighb==2)))
-    {J=jprime;}
-  
-  //cout << '(' << operater[0] << ',' << operater[1] << ") ";       
+    {JJ3=jprime;}
+      
 }
 
-double apply_operator(int op0, int op1,int chain[][2], double J)
+double apply_operator(int op0, int op1,int chain[][2], double JJ1)
 {
   int index1[2] = {0};
   int index2[2] = {0};
@@ -375,16 +372,15 @@ double apply_operator(int op0, int op1,int chain[][2], double J)
 	}
     }
 
-  if(index1[0] == index2[0]) {// print_chain(chain);
-  return 0;}
+  if(index1[0] == index2[0]) { return 0;}
 
   //applying operator and changing chain
   chain[index1[0]][index1[1]] = chain[index2[0]][(index2[1]+1)%2];   
   chain[index2[0]][(index2[1]+1)%2] = op1;
 
   //  print_chain(chain, half_L);
-  if(J == 1){w_new0 += J;}
-  w_new1 += J;
+  if(JJ1 == 1){w_new0 += 1; return 0;}
+  w_new1 += 1;
 
   return 0;
 
@@ -392,6 +388,7 @@ double apply_operator(int op0, int op1,int chain[][2], double J)
  void change_operators(int operaters[][2], double Js[],int a, int neighbours[][4])
 {
 
+  double JJ2 = 0;
   int first = irand() %a;
   int second = irand() %a;
   int third = irand() %a;
@@ -407,15 +404,15 @@ double apply_operator(int op0, int op1,int chain[][2], double J)
     {
       int news[2] = {0};
 
-      generate_operator(news, neighbours, J);
+      generate_operator(news, neighbours, JJ2);
 
       while((operaters[changings[m]][0] == news[0]) && (operaters[changings[m]][1] == news[1]))
 	{
-	  generate_operator(news, neighbours, J);
+	  generate_operator(news, neighbours, JJ2);
 	}
 
       operaters[changings[m]][0] = news[0];
       operaters[changings[m]][1] = news[1];
-      Js[m]=J;
+      Js[m]=JJ2;
     } 
 }
