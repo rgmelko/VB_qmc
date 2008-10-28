@@ -9,6 +9,7 @@ class PARAMS
 {
   public:
     double JJ_; //the heisenberg exchange
+    double J2_; //the dimerized exchange
     int Sz_; // z-component of total spin
     // FOR LANCZOS
     int Neigen_;    //: # of eigenvalues to converge
@@ -21,6 +22,7 @@ class PARAMS
       pfin.open("param.dat");
     
       pfin >> JJ_;
+      pfin >> J2_;
       pfin >> Sz_;
       pfin >> Neigen_;
       pfin >> valvec_;

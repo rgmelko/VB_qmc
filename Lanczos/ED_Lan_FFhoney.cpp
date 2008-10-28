@@ -31,13 +31,14 @@ int main(){
 //  cout<<sizeof(float)<<endl;
 
   PARAMS prm;
-  double J;  //bonds a
+  double J, J2;
   int Sz;
   
   J=prm.JJ_;
+  J2=prm.J2_;
   Sz=prm.Sz_;
 
-  GENHAM HV(16,J,Sz); 
+  GENHAM HV(16,J,J2,Sz); 
   HV.Bonds_16B(); 
 
 #ifdef DO_LANCZOS    //EVERYTHING IN THIS BLOCK OF CODE FOR LANCZOS

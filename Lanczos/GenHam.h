@@ -29,7 +29,7 @@ class GENHAM{
     
     Array<double,2> Ham;  //full hamiltonian
 
-    GENHAM(const int,const h_float J_, const int Sz); 
+    GENHAM(const int,const h_float J_, const h_float J2_, const int Sz); 
     void printg();
     Array<double,1> apply(const Array<double,1>&);
   
@@ -42,6 +42,7 @@ class GENHAM{
     int Nsite;
 
     h_float JJ; //heisenberg exchange value
+    h_float J2; //heisenberg exchange value
 
     double HdiagPart(const long);
     double HOFFdBond(const int, const long);

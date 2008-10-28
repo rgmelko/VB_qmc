@@ -1,8 +1,8 @@
 #include "GenHam.h"
 
 //----------------------------------------------------------
-GENHAM::GENHAM(const int Ns, const h_float J_, const int Sz)  
-               : JJ(J_)
+GENHAM::GENHAM(const int Ns, const h_float J_, const h_float J2_,const int Sz)  
+               : JJ(J_), J2(J2_)
 //create bases and determine dim of full Hilbert space
 {
   int Dim;
@@ -37,7 +37,7 @@ GENHAM::GENHAM(const int Ns, const h_float J_, const int Sz)
 //----------------------------------------------------------
 void GENHAM::FullHamJQ(){
 
-  int ii, tempI;
+  int ii, tempI, F1;
   vector<long> revBas(Fdim,-1);
 
   for (ii=0; ii<Basis.size(); ii++) { //reverse lookup
@@ -70,8 +70,12 @@ void GENHAM::FullHamJQ(){
         tempod ^= (1<<sj);   //toggle bit 
         revPos = revBas.at(tempod);
         if (revPos != -1){
-          //tempD = (*this).HOFFdBond0(T0,tempi);
-          tempD = -0.5; //FM in plane exchange
+          //** here we see whether to apply J1 or J2 to the off-diagonal part
+          F1 = Bond(T0,3);
+          if (F1 == 0) tempD = JJ*0.5;
+          else tempD = J2*0.5;
+          //***
+          //tempD = 0.5; //FM in plane exchange
           Ham(ii,revPos) = tempD;
         }
       }
@@ -84,8 +88,11 @@ void GENHAM::FullHamJQ(){
         tempod ^= (1<<sj);   //toggle bit 
         revPos = revBas.at(tempod);
         if (revPos != -1){
-          //tempD = (*this).HOFFdBond1(T0,tempi);
-          tempD = -0.5; //FM in plane exchange
+          //** here we see whether to apply J1 or J2 to the off-diagonal part
+          F1 = Bond(T0,4);
+          if (F1 == 0) tempD = JJ*0.5;
+          else tempD = J2*0.5;
+          //tempD = 0.5; //FM in plane exchange
           Ham(ii,revPos) = tempD;
         }
       }
@@ -116,17 +123,17 @@ double GENHAM::HdiagPart(const long bra){
     T1 = Bond(Ti,1); //first bond
     if (T1 != -99) { //if there exists a 2nd bond
       S1b = (bra>>T1)&1;  //unpack bra
-      valH += JJ*(S0b-0.5)*(S1b-0.5);
+      F1 = Bond(Ti,3);
+      if (F1 == 0) valH += JJ*(S0b-0.5)*(S1b-0.5);
+      else valH += J2*(S0b-0.5)*(S1b-0.5);
     } 
 
     T1 = Bond(Ti,2); //second bond
     if (T1 != -99) { //if there exists a 2nd bond
       S1b = (bra>>T1)&1;  //unpack bra
-      F1 = Bond(Ti,3);
-      if (F1 == 0)
-        valH += JJ*(S0b-0.5)*(S1b-0.5);
-      else
-        valH -= JJ*(S0b-0.5)*(S1b-0.5);
+      F1 = Bond(Ti,4);
+      if (F1 == 0) valH += JJ*(S0b-0.5)*(S1b-0.5);
+      else valH += J2*(S0b-0.5)*(S1b-0.5);
     }
 
   }//T0
@@ -137,6 +144,8 @@ double GENHAM::HdiagPart(const long bra){
 
 }//HdiagPart
 
+
+//----------------------------------------------------------
 void GENHAM::SparseHam()
 {
   int ii, jj;
@@ -147,6 +156,7 @@ void GENHAM::SparseHam()
   vector<h_float> tempH;
   unsigned long tempi, tempj, tempod;
   int si, sj,sk,sl;
+  int F1;
   double tempD;
 
   for (ii=0; ii<Basis.size(); ii++){
@@ -174,8 +184,11 @@ void GENHAM::SparseHam()
         tempod ^= (1<<sj);   //toggle bit 
         if (BasPos.at(tempod) != -1 && BasPos.at(tempod) > ii){ //build only upper half of matrix
           tempBas.push_back(BasPos.at(tempod));
-          //tempD = (*this).HOFFdBondX(T0,tempi);
-          tempD = -0.5; //FM in plane exchange
+          //** here we see whether to apply J1 or J2 to the off-diagonal part
+          F1 = Bond(T0,3);
+          if (F1 == 0) tempD = JJ*0.5;
+          else tempD = J2*0.5;
+          //tempD = 0.5; //FM in plane exchange
           tempH.push_back(tempD); 
         }
       }
@@ -188,8 +201,11 @@ void GENHAM::SparseHam()
         tempod ^= (1<<sj);   //toggle bit 
         if (BasPos.at(tempod) != -1 && BasPos.at(tempod) > ii){ //build only upper half of matrix
           tempBas.push_back(BasPos.at(tempod));
-          //tempD = (*this).HOFFdBondX(T0,tempi);
-          tempD = -0.5; //FM in plane exchange
+          //** here we see whether to apply J1 or J2 to the off-diagonal part
+          F1 = Bond(T0,4);
+          if (F1 == 0) tempD = JJ*0.5;
+          else tempD = J2*0.5;
+          //tempD = 0.5; //FM in plane exchange
           tempH.push_back(tempD); 
         }
       }//2nd Bond
