@@ -18,12 +18,12 @@ MTRand drand(37483484); //drand() gives you a random double precision number
 MTRand_int32 irand; // irand() gives you a random integer
 
 const long int superseed = 827193545;
-const int L = 6; // 1-D length of the lattice
+const int L = 4; // 1-D length of the lattice
 const int zone = 3; // the size of "the zone"
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
-const int n = L2*20; // number of bond operators
-const int start = 10000000; /* number of iterations until the programs takes 
+const int n = L2*4; // number of bond operators
+const int start = 100000; /* number of iterations until the programs takes 
 			     measurements  */
 const int iterations = start*10; // total number of iterations
 int chain [half_L][2] = {0}; // the bonds are stored in here

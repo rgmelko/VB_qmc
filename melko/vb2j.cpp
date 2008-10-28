@@ -19,20 +19,20 @@ MTRand drand(37483484); //drand() gives you a random double precision number
 MTRand_int32 irand; // irand() gives you a random integer
 
 const long int superseed = 827193545;
-const int L = 6; // 1-D length of the lattice
+const int L = 4; // 1-D length of the lattice
 const int zone = 3; // the size of "the zone"
-const double jprime = 1.91;
+const double jprime = 2;
+double J = 1;
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
 const int n = L2*4; // number of bond operators
-const int start = 1000000; /* number of iterations until the programs takes 
+const int start = 100000; /* number of iterations until the programs takes 
 			     measurements  */
 const int iterations = start*10; // total number of iterations
 int chain [half_L][2] = {0}; // the bonds are stored in here
 int operater[2] = {0}; //it's an operator
 int initial_state[half_L][2] ={0}; //stores the initial bond configuration
 
-double J = 1;
 double Js[n] = {1};
 double w_old0=0, w_new0=0;   // the new and old weights
 double w_old1=0, w_new1=0;   // the new and old weights
@@ -99,9 +99,11 @@ main() // the main program..
   //  int bonds[array_sz] = {0};                 // number of nn bonds 
                                                    // for each iteration  
   int bond[2] = {0};
+  int bondprime[2] = {0};
   int acc = 0, rej =0;           //number of changes accepted and rejected
   int cross[2] = {0}; //the number of bonds crossing the zone boundary
   double energy = 0;          // the energy
+  double energyprime = 0;
   double entropy = 0;
 
   //-------Generate Operators----------------------------------------
@@ -165,7 +167,32 @@ main() // the main program..
 	  apply_operator(new_operaters[k][0],new_operaters[k][1],chain,Js[k]);
 	}
 
-      if(drand() < (pow(2,(w_old0-w_new0))*pow(jprime*0.5,(w_new1-w_old1))))
+
+//       cout << endl;
+//       print_chain(chain);
+
+
+//       cout<< "prob = ";
+//       cout<<(pow(2,(w_old0-w_new0))*pow(jprime*0.5,(w_new1-w_old1)));
+//       cout<< "   wnew0 = " << w_new0 << "   wnew1 = " << w_new1;
+//       cout<< "   wold0 = " << w_old0 << "   wold1 = " << w_old1;
+
+      //     cout << "1 = " << pow(0.5,(w_new0-w_old0)) << endl << "2 = " << pow(0.5,(w_new1-w_old1)) << endl;
+      //     cout << "3 = " << pow((J/jprime),w_new1-w_old1) << endl;
+
+      cout << (pow(J*0.5,(w_new0-w_old0))+pow(jprime*0.5,(w_new1-w_old1)) - 
+	   pow(J*0.5,(w_new0-w_old0))*pow(jprime*0.5,(w_new1-w_old1)))/
+	sqrt(pow(J,2*(w_new0-w_old0)) + pow(jprime,2*(w_new1-w_old1)) 
+	     + pow(J,2*(w_new0-w_old0))*pow(jprime,2*(w_new1-w_old1)))
+	 << endl;
+
+
+      if(drand() < 
+	 ((pow(J*0.5,(w_new0-w_old0))+pow(jprime*0.5,(w_new1-w_old1)) - 
+	   0*pow(J*0.5,(w_new0-w_old0))*pow(jprime*0.5,(w_new1-w_old1)))/
+	  sqrt(pow(J,2*(w_new0-w_old0)) + pow(jprime,2*(w_new1-w_old1)))
+	  ) 
+	 )
 	{
 	  if(i >= start)
 	    {
@@ -177,10 +204,21 @@ main() // the main program..
 		     (chain[id][1] == neighbours[chain[id][0]][2])|
 		     (chain[id][1] == neighbours[chain[id][0]][3])
 		     )
-		    {bond[1]+=1;}
+		    {
+		      if(
+			 ((chain[id][1] == neighbours[chain[id][0]][0])&
+			  ((chain[id][0]/L)%2 + chain[id][0]%2 == 1))|
+			 ((chain[id][1] == neighbours[chain[id][0]][2])&
+			  ((chain[id][0]/L)%2 + chain[id][0]%2 == 0))
+			 )
+			{bondprime[1]+=1;}
+		      else{bond[1]+=1;}
+		    }
+		
 		  if(box[chain[id][0]]+box[chain[id][1]]==1){cross[1]+=1;}
 		}
 	      energy += bond[1];
+	      energyprime += bondprime[1];
 	      entropy += cross[1];
 	      q+=1;
 	      acc+=1;
@@ -195,6 +233,7 @@ main() // the main program..
 	  w_old0 = w_new0;
 	  w_old1 = w_new1;
 	  bond[0] = bond[1];
+	  bondprime[0] = bondprime[1];
 	  cross[0] = cross[1];
 	}
 
@@ -203,8 +242,9 @@ main() // the main program..
 	    if(q==0){} 
 	    else
 	      {
-		energy += bond[0]; //*w_old;
-		entropy += cross[0]; //*w_old;
+		energy += bond[0];
+		energyprime += bondprime[0];
+		entropy += cross[0];
 		q+=1;
 		rej+=1;
 	      }
@@ -215,6 +255,7 @@ main() // the main program..
       w_new1 = 0;
       cross[1] = 0;
       bond[1] = 0;
+      bondprime[1] = 0;
     }
 
 //   for(int i9=0; i9<q; i9++)
@@ -225,10 +266,16 @@ main() // the main program..
 
   //  cout << endl << energy << " bonds" << endl;
 
+  cout << "bonds " <<  energy << "     bonds' "<< energyprime << endl;
 
-  energy /= -L2*(q)*1.0;
-  energy += -1;
-  energy *= 0.5;
+  energy /= L2*(q);
+  energy += 0.5;
+  energy *= -0.5*J; 
+  energyprime /= L2*(q);
+  energyprime += 0.5;
+  energyprime *= -0.5*jprime; 
+  energy += energyprime;
+
 
   entropy /= q;
   entropy *= log(2);
@@ -336,7 +383,7 @@ void print_chain(int chain[][2])
 
  void generate_operator(int operater[3], int neighbours[][4], double JJ3)
 {
-  JJ3 = 1;
+  JJ3 = J;
   int initb = (irand()+L2) %L2;
   operater[0] = initb;
   int neighb = (irand()+4)%4;
@@ -379,7 +426,7 @@ double apply_operator(int op0, int op1,int chain[][2], double JJ1)
   chain[index2[0]][(index2[1]+1)%2] = op1;
 
   //  print_chain(chain, half_L);
-  if(JJ1 == 1){w_new0 += 1; return 0;}
+  if(JJ1 == J){w_new0 += 1; return 0;}
   w_new1 += 1;
 
   return 0;
@@ -388,7 +435,7 @@ double apply_operator(int op0, int op1,int chain[][2], double JJ1)
  void change_operators(int operaters[][2], double Js[],int a, int neighbours[][4])
 {
 
-  double JJ2 = 0;
+  double JJ2 = J;
   int first = irand() %a;
   int second = irand() %a;
   int third = irand() %a;
