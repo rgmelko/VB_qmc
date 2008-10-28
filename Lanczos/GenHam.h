@@ -33,9 +33,7 @@ class GENHAM{
     void printg();
     Array<double,1> apply(const Array<double,1>&);
   
-
-    void Bonds_8();
-    void Bonds_18p();
+    void Bonds_16B();
 
     void SparseHam();
     void FullHamJQ();
