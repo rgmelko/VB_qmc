@@ -47,7 +47,9 @@ main() // the main program..
 {
   irand.seed(superseed);
 
-  cout << "L = " << L << "    " << "zone = " << zone << "   " << iterations << " iterations" << "    n = " << n << endl;
+  cout << "L = " << L << "    " << "zone = " << zone << "   " << 
+    iterations << " iterations" << "    n = " << n;
+  cout << "     J = " << J << "   J' = " << jprime << endl;
   cout.precision(10); // ten digits of precision..  or ten decimal places?
 
   //******Finding Nearest Neighbours********************************
@@ -108,14 +110,15 @@ main() // the main program..
   double energy = 0;          // the energy
   double energyprime = 0;
   double entropy = 0;
+  double jaybo = 0;
 
   //-------Generate Operators----------------------------------------
   for(int i0=0; i0<n; i0++)
     {  
-      generate_operator(operater, neighbours, J);
+      generate_operator(operater, neighbours, jaybo);
       operaters[i0][0] = operater[0];
       operaters[i0][1] = operater[1];
-      Js[i0] = J;
+      Js[i0] = jaybo;
     }
   //-----------------------------------------------------------------
 
@@ -140,7 +143,7 @@ main() // the main program..
   //-------------------------------------------------------------------
 
   w_old0 = w_new0;
-  w_old1 = w_old1;
+  w_old1 = w_new1;
   w_new0 = 0;
   w_new1 = 0;
 
@@ -188,9 +191,11 @@ main() // the main program..
       //  cout << pow(J,(w_old0-w_new0))*pow(J*0.5,(w_new0-w_old0))*pow(jprime,(w_old1-w_new1))*
       //	pow(jprime*0.5,(w_new1-w_old1)) << endl;
 
+      //     cout << pow(0.5,(w_new0-w_old0)) << "  " <<  pow(0.5,(w_new1-w_old1)) <<  "  " << w_new1 << "  " << w_old1 << endl;
+
       if(drand() < 
-	 ( pow(jay*0.5,(w_new0-w_old0))*
-	    pow(jayprime*0.5,(w_new1-w_old1))
+	 ( pow(0.5,(w_new0-w_old0))*
+	   pow((J/jprime)*0.5,(w_new1-w_old1))
 	    )
 	 )
 	{
@@ -275,7 +280,8 @@ main() // the main program..
   energyprime += 0.5;
   energyprime *= -0.5*jprime; 
   energy += energyprime;
-
+  
+  energy *= L2;
 
   entropy /= q;
   entropy *= log(2);
@@ -427,7 +433,7 @@ double apply_operator(int op0, int op1,int chain[][2], double JJ1)
 
   //  print_chain(chain, half_L);
   if(JJ1 == J){w_new0 += 1; return 0;}
-  w_new1 += 1;
+  w_new1 += 1; 
 
   return 0;
 
