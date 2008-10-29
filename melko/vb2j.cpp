@@ -21,7 +21,7 @@ MTRand_int32 irand; // irand() gives you a random integer
 const long int superseed = 827193545;
 const int L = 4; // 1-D length of the lattice
 const int zone = 3; // the size of "the zone"
-const double jprime = 2;
+const double jprime = 10;
 double J = 1;
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
@@ -39,6 +39,9 @@ double w_old1=0, w_new1=0;   // the new and old weights
 
 int neighbours[L2][4]; //lists the 4 nearest neighbours for each site
 int box[L2] = {0}; // the zone! <-- exclamation point
+
+double jay = 2*J/(J+jprime);
+double jayprime = 2*jprime/(J+jprime);
 
 main() // the main program..
 {
@@ -180,18 +183,15 @@ main() // the main program..
       //     cout << "1 = " << pow(0.5,(w_new0-w_old0)) << endl << "2 = " << pow(0.5,(w_new1-w_old1)) << endl;
       //     cout << "3 = " << pow((J/jprime),w_new1-w_old1) << endl;
 
-      cout << (pow(J*0.5,(w_new0-w_old0))+pow(jprime*0.5,(w_new1-w_old1)) - 
-	   pow(J*0.5,(w_new0-w_old0))*pow(jprime*0.5,(w_new1-w_old1)))/
-	sqrt(pow(J,2*(w_new0-w_old0)) + pow(jprime,2*(w_new1-w_old1)) 
-	     + pow(J,2*(w_new0-w_old0))*pow(jprime,2*(w_new1-w_old1)))
-	 << endl;
 
+
+      //  cout << pow(J,(w_old0-w_new0))*pow(J*0.5,(w_new0-w_old0))*pow(jprime,(w_old1-w_new1))*
+      //	pow(jprime*0.5,(w_new1-w_old1)) << endl;
 
       if(drand() < 
-	 ((pow(J*0.5,(w_new0-w_old0))+pow(jprime*0.5,(w_new1-w_old1)) - 
-	   0*pow(J*0.5,(w_new0-w_old0))*pow(jprime*0.5,(w_new1-w_old1)))/
-	  sqrt(pow(J,2*(w_new0-w_old0)) + pow(jprime,2*(w_new1-w_old1)))
-	  ) 
+	 ( pow(jay*0.5,(w_new0-w_old0))*
+	    pow(jayprime*0.5,(w_new1-w_old1))
+	    )
 	 )
 	{
 	  if(i >= start)
