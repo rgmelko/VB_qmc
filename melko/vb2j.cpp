@@ -21,7 +21,7 @@ MTRand_int32 irand; // irand() gives you a random integer
 const long int superseed = 827193545;
 const int L = 4; // 1-D length of the lattice
 const int zone = 3; // the size of "the zone"
-const double jprime = 10;
+const double jprime = 1;
 double J = 1;
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
