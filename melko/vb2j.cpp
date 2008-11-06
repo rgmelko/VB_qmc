@@ -1,5 +1,5 @@
 // vb2j.cpp  Last updated Oct 23, 2008
-// Trying to at J''
+// Trying to add J''
 
 #include<iostream>
 #include<math.h>
@@ -8,9 +8,9 @@ using namespace std;
 
 void shuffle(int [][2]); //randomizes initial bonds (currently not working)
 void print_chain(int chain [][2]); //prints the bonds
-void generate_operator(int operater[2], int neighbours[][4], double J);
+void generate_operator(int operater[2], int neighbours[][4], double Jaytron);
 //generates 1 bond operator
-double apply_operator(int op0, int op1, int chain[][2], double J);
+double apply_operator(int op0, int op1, int chain[][2], double Jayrock);
 //applies 1 bond operator
 void change_operators(int operaters[][2], double Js[], int a, int neighbours[][4]);/*randomly 
 changes a number of bond operators... where that number is "a"*/
@@ -21,7 +21,7 @@ MTRand_int32 irand; // irand() gives you a random integer
 const long int superseed = 827193545;
 const int L = 4; // 1-D length of the lattice
 const int zone = 3; // the size of "the zone"
-const double jprime = 1;
+const double jprime =20;
 double J = 1;
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
@@ -34,14 +34,15 @@ int operater[2] = {0}; //it's an operator
 int initial_state[half_L][2] ={0}; //stores the initial bond configuration
 
 double Js[n] = {1};
-double w_old0=0, w_new0=0;   // the new and old weights
-double w_old1=0, w_new1=0;   // the new and old weights
+double w_old[2]={0};  // the new and old weights
+double w_new[2]={0};  // the new and old weights
+
+double x_old[2]={0};  // the new and old weights
+double x_new[2]={0};  // the new and old weights
+double probb = 0;
 
 int neighbours[L2][4]; //lists the 4 nearest neighbours for each site
 int box[L2] = {0}; // the zone! <-- exclamation point
-
-double jay = 2*J/(J+jprime);
-double jayprime = 2*jprime/(J+jprime);
 
 main() // the main program..
 {
@@ -123,17 +124,22 @@ main() // the main program..
   //-----------------------------------------------------------------
 
   //--------Initialize Bonds------------------------------------------
-  for(int j=0; j<half_L; j++)
+  for(int jai=0; jai<half_L; jai++)
     {
-      chain[j][0] = initial_state[j][0];
-      chain[j][1] = initial_state[j][1];
+      chain[jai][0] = initial_state[jai][0];
+      chain[jai][1] = initial_state[jai][1];
     }
   //------------------------------------------------------------------
 
-  w_old0 = 0;
-  w_old1 = 0;
-  w_new0 = 0;
-  w_new1 = 0;
+  w_old[0] = 0;
+  w_old[1] = 0;
+  x_old[0] = 0;
+  x_old[1] = 0;
+  w_new[0] = 0;
+  w_new[1] = 0;
+  x_new[0] = 0;
+  x_new[1] = 0;
+  
 
   //-------Apply Operators-------(also get the weight)------------------
   for(int k=0; k<n; k++)
@@ -142,10 +148,14 @@ main() // the main program..
     }
   //-------------------------------------------------------------------
 
-  w_old0 = w_new0;
-  w_old1 = w_new1;
-  w_new0 = 0;
-  w_new1 = 0;
+  w_old[0] = w_new[0];
+  w_old[1] = w_new[1];
+  x_old[0] = x_new[0];
+  x_old[1] = x_new[1];
+  w_new[0] = 0;
+  w_new[1] = 0;
+  x_new[0] = 0;
+  x_new[1] = 0;
 
   int q = 0; //the current index for bonds which records the number of nn bonds
   int q2 = 0;
@@ -162,10 +172,10 @@ main() // the main program..
 
       change_operators(new_operaters,Js, n, neighbours);
 
-       for(int j=0; j<half_L; j++)
+       for(int jay=0; jay<half_L; jay++)
 	{
-	  chain[j][0] = initial_state[j][0];
-	  chain[j][1] = initial_state[j][1];
+	  chain[jay][0] = initial_state[jay][0];
+	  chain[jay][1] = initial_state[jay][1];
 	}
 
       for(int k=0; k<n; k++)
@@ -177,27 +187,20 @@ main() // the main program..
 //       cout << endl;
 //       print_chain(chain);
 
+      probb =  pow(0.5,(w_new[0]+w_new[1]-w_old[0]-w_old[1]))*
+	pow(J,(w_new[0]+x_new[0]-w_old[0]-x_old[0]))*
+	pow(jprime,(w_new[1]+x_new[1]-w_old[1]-x_old[1]));
 
-//       cout<< "prob = ";
-//       cout<<(pow(2,(w_old0-w_new0))*pow(jprime*0.5,(w_new1-w_old1)));
-//       cout<< "   wnew0 = " << w_new0 << "   wnew1 = " << w_new1;
-//       cout<< "   wold0 = " << w_old0 << "   wold1 = " << w_old1;
+  
+   //    cout << probb << endl << 
+// 	"wold0 = " << w_old[0] << "   wnew0 = " << w_new[0] << endl
+// 	   <<"wold1 = " << w_old[1] << "   wnew1 = " << w_new[1] << endl
+// 	   <<"xold0 = " << x_old[0] << "   xnew0 = " << x_new[0] << endl
+// 	   <<"xold1 = " << x_old[1] << "   xnew1 = " << x_new[1] << endl;
+	  
 
-      //     cout << "1 = " << pow(0.5,(w_new0-w_old0)) << endl << "2 = " << pow(0.5,(w_new1-w_old1)) << endl;
-      //     cout << "3 = " << pow((J/jprime),w_new1-w_old1) << endl;
 
-
-
-      //  cout << pow(J,(w_old0-w_new0))*pow(J*0.5,(w_new0-w_old0))*pow(jprime,(w_old1-w_new1))*
-      //	pow(jprime*0.5,(w_new1-w_old1)) << endl;
-
-      //     cout << pow(0.5,(w_new0-w_old0)) << "  " <<  pow(0.5,(w_new1-w_old1)) <<  "  " << w_new1 << "  " << w_old1 << endl;
-
-      if(drand() < 
-	 ( pow(0.5,(w_new0-w_old0))*
-	   pow((J/jprime)*0.5,(w_new1-w_old1))
-	    )
-	 )
+	if(drand() < probb)
 	{
 	  if(i >= start)
 	    {
@@ -235,8 +238,10 @@ main() // the main program..
 	      operaters[i8][0] = new_operaters[i8][0];
 	      operaters[i8][1] = new_operaters[i8][1];
 	    }
-	  w_old0 = w_new0;
-	  w_old1 = w_new1;
+	  w_old[0] = w_new[0];
+	  w_old[1] = w_new[1];
+	  x_old[0] = x_new[0];
+	  x_old[1] = x_new[1];
 	  bond[0] = bond[1];
 	  bondprime[0] = bondprime[1];
 	  cross[0] = cross[1];
@@ -256,20 +261,14 @@ main() // the main program..
 	  }
       }
       
-      w_new0 = 0;
-      w_new1 = 0;
+      w_new[0] = 0;
+      x_new[0] = 0;
+      w_new[1] = 0;
+      x_new[1] = 0;
       cross[1] = 0;
       bond[1] = 0;
       bondprime[1] = 0;
     }
-
-//   for(int i9=0; i9<q; i9++)
-//     {
-//       //   cout << "bonds[" << i9 << "] = " << bonds[i9] << endl;
-//       energy += bonds[i9];
-//     }
-
-  //  cout << endl << energy << " bonds" << endl;
 
   cout << "bonds " <<  energy << "     bonds' "<< energyprime << endl;
 
@@ -294,37 +293,6 @@ main() // the main program..
   cout << q << " energies" << endl;
 
   cout << 100*double(acc)/q << "% accepted"<< endl;
-
-  for(int j=0; j<half_L; j++)
-    {
-      chain[j][0] = initial_state[j][0];
-      chain[j][1] = initial_state[j][1];
-    }
-
-  for(int k=0; k<n; k++)
-    {
-      apply_operator(operaters[k][0],operaters[k][1],chain, Js[k]);
-    }
-  
-  //  print_chain(chain, half_L);
-
-//   int z = 0;
-//   for(int i=0; i<q; i+=16)
-//     {
-//       bonds[z] = bonds[i]+bonds[i+1]+bonds[i+2]+bonds[i+3]+bonds[i+4]+bonds[i+5]+bonds[i+6]+bonds[i+7]
-//   	+bonds[i+8]+bonds[i+9]+bonds[i+10]+bonds[i+11]+bonds[i+12]+bonds[i+13]+bonds[i+14]+bonds[i+15];
-//       z +=1;
-//     }
-  
-//   for(int i=0; i<z; i++)
-//     {
-//       fprintf(bondss, "%i", bonds[i]);
-//       fprintf(bondss, ",\n ");
-//     }  
-
-//   fclose(bondss);
-
-  //  cout << endl;
 
   return 0;
 }
@@ -387,7 +355,7 @@ void print_chain(int chain[][2])
   cout << endl;
 }
 
- void generate_operator(int operater[3], int neighbours[][4], double JJ3)
+void generate_operator(int operater[3], int neighbours[][4], double JJ3)
 {
   JJ3 = J;
   int initb = (irand()+L2) %L2;
@@ -425,20 +393,24 @@ double apply_operator(int op0, int op1,int chain[][2], double JJ1)
 	}
     }
 
-  if(index1[0] == index2[0]) { return 0;}
+  if(index1[0] == index2[0])
+    { if(JJ1 == J){x_new[0] +=1; return 0;}
+      x_new[1] += 1;
+      return 0;
+    }
 
   //applying operator and changing chain
   chain[index1[0]][index1[1]] = chain[index2[0]][(index2[1]+1)%2];   
   chain[index2[0]][(index2[1]+1)%2] = op1;
 
   //  print_chain(chain, half_L);
-  if(JJ1 == J){w_new0 += 1; return 0;}
-  w_new1 += 1; 
+  if(JJ1 == J){w_new[0] += 1; return 0;}
+  w_new[1] += 1; 
 
   return 0;
 
 }
- void change_operators(int operaters[][2], double Js[],int a, int neighbours[][4])
+void change_operators(int operaters[][2], double Js[],int a, int neighbours[][4])
 {
 
   double JJ2 = J;
