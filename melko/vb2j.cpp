@@ -19,9 +19,9 @@ MTRand drand; //drand() gives you a random double precision number
 MTRand_int32 irand; // irand() gives you a random integer
 
 const long int superseed = 827193545; // ********You************************
-const int L = 4; // 1-D length of the lattice *******Can********************
-const int zone = 3; // the size of "the zone" *********Change***************
-const double jprime =20; // ****************************These*Values*******
+const int L = 2; // 1-D length of the lattice *******Can********************
+const int zone = 1; // the size of "the zone" *********Change***************
+const double jprime =2; // ****************************These*Values*******
 double J = 1;
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
