@@ -15,31 +15,30 @@ double apply_operator(int op0, int op1, int chain[][2], double Jayrock);
 void change_operators(int operaters[][2], double Js[], int a, int neighbours[][4]);/*randomly 
 changes a number of bond operators... where that number is "a"*/
 
-MTRand drand(37483484); //drand() gives you a random double precision number
+MTRand drand; //drand() gives you a random double precision number
 MTRand_int32 irand; // irand() gives you a random integer
 
-const long int superseed = 827193545;
-const int L = 4; // 1-D length of the lattice
-const int zone = 3; // the size of "the zone"
-const double jprime =20;
+const long int superseed = 827193545; // ********You************************
+const int L = 4; // 1-D length of the lattice *******Can********************
+const int zone = 3; // the size of "the zone" *********Change***************
+const double jprime =20; // ****************************These*Values*******
 double J = 1;
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
 const int n = L2*4; // number of bond operators
-const int start = 100000; /* number of iterations until the programs takes 
+const int start = 100000; /* number of iterations until the programs takes ***
 			     measurements  */
 const int iterations = start*10; // total number of iterations
 int chain [half_L][2] = {0}; // the bonds are stored in here
 int operater[2] = {0}; //it's an operator
 int initial_state[half_L][2] ={0}; //stores the initial bond configuration
 
-double Js[n] = {1};
+double Js[n] = {1};   // Stores the interaction strength for each operator
 double w_old[2]={0};  // the new and old weights
 double w_new[2]={0};  // the new and old weights
-
 double x_old[2]={0};  // the new and old weights
 double x_new[2]={0};  // the new and old weights
-double probb = 0;
+double probb = 0; // prob of keeping new operators
 
 int neighbours[L2][4]; //lists the 4 nearest neighbours for each site
 int box[L2] = {0}; // the zone! <-- exclamation point
@@ -90,24 +89,17 @@ main() // the main program..
 // 	cout << endl;
 //       }
   //*************************************************************************
-
   //  cout << endl;
-
 
   shuffle(initial_state);//"randomize" the initial state (but not really)
  
   //  print_chain(initial_state);
 
-  //  FILE * bondss;                       // open a file to print the number of
-  //  bondss = fopen("bonds.txt", "w");  // nearest neighbour bonds in
-
-  int operaters[n][2], new_operaters[n][2];   // old and new operators
-  //  int bonds[array_sz] = {0};                 // number of nn bonds 
-                                                   // for each iteration  
-  int bond[2] = {0};
-  int bondprime[2] = {0};
-  int acc = 0, rej =0;           //number of changes accepted and rejected
-  int cross[2] = {0}; //the number of bonds crossing the zone boundary
+  int operaters[n][2], new_operaters[n][2];   // old and new operators     
+  int bond[2] = {0};   //number of NN J bonds
+  int bondprime[2] = {0};  // number of NN J' bonds
+  int acc = 0, rej =0;         //number of changes accepted and rejected
+  int cross[2] = {0};   //the number of bonds crossing the zone boundary
   double energy = 0;          // the energy
   double energyprime = 0;
   double entropy = 0;
@@ -132,8 +124,8 @@ main() // the main program..
   //------------------------------------------------------------------
 
   w_old[0] = 0;
-  w_old[1] = 0;
-  x_old[0] = 0;
+  w_old[1] = 0;  // this is really unnecessary because I already set
+  x_old[0] = 0;  // these to zero and I haven't changed them
   x_old[1] = 0;
   w_new[0] = 0;
   w_new[1] = 0;
@@ -153,12 +145,12 @@ main() // the main program..
   x_old[0] = x_new[0];
   x_old[1] = x_new[1];
   w_new[0] = 0;
-  w_new[1] = 0;
+  w_new[1] = 0;          // now it is necessary
   x_new[0] = 0;
   x_new[1] = 0;
 
-  int q = 0; //the current index for bonds which records the number of nn bonds
-  int q2 = 0;
+  int q = 0; // records the number of steps
+  int q2 = 0; // used to show how far along the program is
 
   for (int i=0; i<iterations; i++)
     {  
@@ -192,13 +184,12 @@ main() // the main program..
 	pow(jprime,(w_new[1]+x_new[1]-w_old[1]-x_old[1]));
 
   
-   //    cout << probb << endl << 
+//    cout << probb << endl << 
 // 	"wold0 = " << w_old[0] << "   wnew0 = " << w_new[0] << endl
 // 	   <<"wold1 = " << w_old[1] << "   wnew1 = " << w_new[1] << endl
 // 	   <<"xold0 = " << x_old[0] << "   xnew0 = " << x_new[0] << endl
 // 	   <<"xold1 = " << x_old[1] << "   xnew1 = " << x_new[1] << endl;
 	  
-
 
 	if(drand() < probb)
 	{
@@ -217,7 +208,7 @@ main() // the main program..
 			 ((chain[id][1] == neighbours[chain[id][0]][0])&
 			  ((chain[id][0]/L)%2 + chain[id][0]%2 == 1))|
 			 ((chain[id][1] == neighbours[chain[id][0]][2])&
-			  ((chain[id][0]/L)%2 + chain[id][0]%2 == 0))
+			  (((chain[id][0]/L)%2 + chain[id][0]%2)%2 == 0))
 			 )
 			{bondprime[1]+=1;}
 		      else{bond[1]+=1;}
@@ -364,7 +355,7 @@ void generate_operator(int operater[3], int neighbours[][4], double JJ3)
   operater[1] = neighbours[operater[0]][neighb];
   if(
      ((((initb/L)%2+initb%2)==1)&(neighb==0))
-     |((((initb/L)%2+initb%2)==0)&(neighb==2)))
+     |((((initb/L)%2+initb%2)%2==0)&(neighb==2)))
     {JJ3=jprime;}
       
 }
