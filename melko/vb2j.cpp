@@ -19,9 +19,9 @@ MTRand drand; //drand() gives you a random double precision number
 MTRand_int32 irand; // irand() gives you a random integer
 
 const long int superseed = 827193545; // ********You************************
-const int L = 2; // 1-D length of the lattice *******Can********************
+const int L = 4; // 1-D length of the lattice *******Can********************
 const int zone = 1; // the size of "the zone" *********Change***************
-const double jprime =2; // ****************************These*Values*******
+const double jprime =5; // ****************************These*Values*******
 double J = 1;
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
@@ -263,13 +263,13 @@ main() // the main program..
 
   cout << "bonds " <<  energy << "     bonds' "<< energyprime << endl;
 
-  energy /= L2*(q);
-  energy += 0.5;
+  energy /= 0.75*L2*(q);
+  energy += 1;
   energy *= -0.5*J; 
-  energyprime /= L2*(q);
-  energyprime += 0.5;
+  energyprime /= 0.25*L2*(q);
+  energyprime += 1;
   energyprime *= -0.5*jprime; 
-  energy += energyprime;
+  energy = (0.75*energy + 0.25*energyprime);
   
   energy *= L2;
 
