@@ -19,16 +19,16 @@ MTRand drand; //drand() gives you a random double precision number
 MTRand_int32 irand; // irand() gives you a random integer
 
 const long int superseed = 827193545; // ********You************************
-const int L = 4; // 1-D length of the lattice *******Can********************
-const int zone = 1; // the size of "the zone" *********Change***************
-const double jprime =2; // ****************************These*Values*******
-double J = 1;
+const int L = 6; // 1-D length of the lattice *******Can********************
+const int zone = 5; // the size of "the zone" *********Change***************
+const double jprime =1; // ****************************These*Values*******
+double J = 0.2;
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
 const int n = L2*4; // number of bond operators
-const int start = 100000; /* number of iterations until the programs takes ***
+const long long int start = 10000000000; /* number of iterations until the programs takes ***
 			     measurements  */
-const int iterations = start*10; // total number of iterations
+const long long int iterations = start*10; // total number of iterations
 int chain [half_L][2] = {0}; // the bonds are stored in here
 int operater[2] = {0}; //it's an operator
 int initial_state[half_L][2] ={0}; //stores the initial bond configuration
@@ -45,6 +45,8 @@ int box[L2] = {0}; // the zone! <-- exclamation point
 
 main() // the main program..
 {
+
+  cout << iterations << endl;
   irand.seed(superseed);
 
   cout << "L = " << L << "    " << "zone = " << zone << "   " << 
@@ -96,10 +98,10 @@ main() // the main program..
   //  print_chain(initial_state);
 
   int operaters[n][2], new_operaters[n][2];   // old and new operators     
-  int bond[2] = {0};   //number of NN J bonds
-  int bondprime[2] = {0};  // number of NN J' bonds
-  int acc = 0, rej =0;         //number of changes accepted and rejected
-  int cross[2] = {0};   //the number of bonds crossing the zone boundary
+  long long int bond[2] = {0};   //number of NN J bonds
+  long long int bondprime[2] = {0};  // number of NN J' bonds
+  long long int acc = 0, rej =0;         //number of changes accepted and rejected
+  long long int cross[2] = {0};   //the number of bonds crossing the zone boundary
   double energy = 0;          // the energy
   double energyprime = 0;
   double entropy = 0;
@@ -151,7 +153,7 @@ main() // the main program..
   int q = 0; // records the number of steps
   int q2 = 0; // used to show how far along the program is
 
-  for (int i=0; i<iterations; i++)
+  for (long long int i=0; i<iterations; i++)
     {  
       if(i%start==0){cout<< q2 << "% "<< endl ;  q2+=10;}
 
@@ -172,6 +174,7 @@ main() // the main program..
       for(int k=0; k<n; k++)
 	{
 	  apply_operator(new_operaters[k][0],new_operaters[k][1],chain,Js[k]);
+	  // cout << Js[k] << "   " <<  new_operaters[k][0] << ", " << new_operaters[k][1] << endl;
 	}
 
 
@@ -183,11 +186,11 @@ main() // the main program..
 	pow(jprime,(w_new[1]+x_new[1]-w_old[1]-x_old[1]));
 
   
-//     cout << probb << endl << 
-//  	"wold0 = " << w_old[0] << "   wnew0 = " << w_new[0] << endl
-//  	   <<"wold1 = " << w_old[1] << "   wnew1 = " << w_new[1] << endl
-//  	   <<"xold0 = " << x_old[0] << "   xnew0 = " << x_new[0] << endl
-//  	   <<"xold1 = " << x_old[1] << "   xnew1 = " << x_new[1] << endl;
+//      cout << probb << endl << 
+//   	"wold0 = " << w_old[0] << "   wnew0 = " << w_new[0] << endl
+//   	   <<"wold1 = " << w_old[1] << "   wnew1 = " << w_new[1] << endl
+//   	   <<"xold0 = " << x_old[0] << "   xnew0 = " << x_new[0] << endl
+//   	   <<"xold1 = " << x_old[1] << "   xnew1 = " << x_new[1] << endl;
 	  
 
 	if(drand() < probb)
@@ -203,14 +206,21 @@ main() // the main program..
 		     (chain[id][1] == neighbours[chain[id][0]][3])
 		     )
 		    {
-		      if(
-			 ((chain[id][1] == neighbours[chain[id][0]][0])&
-			  (((chain[id][0]/L)%2 + chain[id][0]%2)%2 == 1))|
-			 ((chain[id][1] == neighbours[chain[id][0]][2])&
-			  (((chain[id][0]/L)%2 + chain[id][0]%2)%2 == 0))
-			 )
+		      
+		      if(((chain[id][1] == neighbours[chain[id][0]][0])& // COLUMNAR
+			 (chain[id][0]%2 == 1))|
+			((chain[id][1] == neighbours[chain[id][0]][2])&
+			 (chain[id][0]%2 == 0)))
 			{bondprime[1]+=1;}
 		      else{bond[1]+=1;}
+// 		      if(
+// 			 ((chain[id][1] == neighbours[chain[id][0]][0])& // STAGGERED
+// 			  (((chain[id][0]/L)%2 + chain[id][0]%2)%2 == 1))|
+// 			 ((chain[id][1] == neighbours[chain[id][0]][2])&
+// 			  (((chain[id][0]/L)%2 + chain[id][0]%2)%2 == 0))
+// 			 )
+// 			{bondprime[1]+=1;}
+// 		      else{bond[1]+=1;}
 		    }
 		
 		  if(box[chain[id][0]]+box[chain[id][1]]==1){cross[1]+=1;}
@@ -354,10 +364,14 @@ void generate_operator(int operater[3], int neighbours[][4], int Js[], int k)
   operater[0] = initb;
   int neighb = (irand()+4)%4;
   operater[1] = neighbours[operater[0]][neighb];
-  if(
-     ((((initb/L)%2+initb%2)%2==1)&(neighb==0))
-     |((((initb/L)%2+initb%2)%2==0)&(neighb==2)))
-    {Js[k]=1;}
+ 
+  if((initb%2==1)&(neighb==0)|(initb%2==0)&(neighb==1)){Js[k]=1;}  // COLUMNAR
+
+
+//  if(
+//      ((((initb/L)%2+initb%2)%2==1)&(neighb==0))  // STAGGERED
+//      |((((initb/L)%2+initb%2)%2==0)&(neighb==2)))
+//     {Js[k]=1;}
       
 }
 
