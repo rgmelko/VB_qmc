@@ -4,6 +4,8 @@
 #include<iostream>
 #include<math.h>
 #include"mtrand.h" // ramdom number generator
+#include "BigIntegerLibrary.hh"
+
 using namespace std;
 
 void shuffle(int [][2]); //randomizes initial bonds (currently not working)
@@ -98,10 +100,10 @@ main() // the main program..
   //  print_chain(initial_state);
 
   int operaters[n][2], new_operaters[n][2];   // old and new operators     
-  long long int bond[2] = {0};   //number of NN J bonds
-  long long int bondprime[2] = {0};  // number of NN J' bonds
+  int bond[2] = {0};   //number of NN J bonds
+  int bondprime[2] = {0};  // number of NN J' bonds
   long long int acc = 0, rej =0;         //number of changes accepted and rejected
-  long long int cross[2] = {0};   //the number of bonds crossing the zone boundary
+  int cross[2] = {0};   //the number of bonds crossing the zone boundary
   double energy = 0;          // the energy
   double energyprime = 0;
   double entropy = 0;
@@ -294,7 +296,7 @@ main() // the main program..
  	   
   cout << q << " energies" << endl;
 
-  cout << 100*double(acc)/q << "% accepted"<< endl;
+  //  cout << 100*double(acc)/q << "% accepted"<< endl;
 
   return 0;
 }
