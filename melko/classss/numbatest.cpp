@@ -6,14 +6,16 @@ using namespace std;
 
 main()
 {
-  bignum ones(1,111111111);
-  bignum twos(2,222222222);
+  bignum first(8888,888888888);
+  bignum second(4444,444444444);
  
-  bignum threes;
+  bignum answer;
 
-  threes = ones + twos;
-
-  cout << threes.left << threes.right << endl;
+  answer = first + second;
+ 
+  cout << first.left << first.right << " + " <<
+    second.left << second.right << " = " <<
+    answer.left << answer.right << endl;
 
   return 0;
 }
