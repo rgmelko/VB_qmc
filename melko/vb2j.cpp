@@ -3,8 +3,9 @@
 
 #include<iostream>
 #include<math.h>
-#include"mtrand.h" // ramdom number generator
-#include "BigIntegerLibrary.hh"
+#include"mtrand.h" // random number generator
+#include "bignumba.h"
+
 
 using namespace std;
 
@@ -23,14 +24,14 @@ MTRand_int32 irand; // irand() gives you a random integer
 const long int superseed = 827193545; // ********You************************
 const int L = 6; // 1-D length of the lattice *******Can********************
 const int zone = 5; // the size of "the zone" *********Change***************
-const double jprime =1; // ****************************These*Values*******
+const double jprime =1; // ****************************These*Values*********
 double J = 0.2;
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
 const int n = L2*4; // number of bond operators
-const long long int start = 10000000000; /* number of iterations until the programs takes ***
+bignum start(1,000000000); /* number of iterations until the programs takes ***
 			     measurements  */
-const long long int iterations = start*10; // total number of iterations
+bignum iterations(10,000000000); // total number of iterations
 int chain [half_L][2] = {0}; // the bonds are stored in here
 int operater[2] = {0}; //it's an operator
 int initial_state[half_L][2] ={0}; //stores the initial bond configuration
@@ -47,31 +48,29 @@ int box[L2] = {0}; // the zone! <-- exclamation point
 
 main() // the main program..
 {
-
-  cout << iterations << endl;
   irand.seed(superseed);
 
   cout << "L = " << L << "    " << "zone = " << zone << "   " << 
-    iterations << " iterations" << "    n = " << n;
+    iterations.left << iterations.right << " iterations" << "    n = " << n;
   cout << "     J = " << J << "   J' = " << jprime << endl;
   cout.precision(10); // ten digits of precision..  or ten decimal places?
 
   //******Finding Nearest Neighbours********************************
-  for(int iii=0; iii<L2; iii++)
-    {
-      if(iii%L==0){neighbours[iii][0]=iii+L-1;}   //North
-      else neighbours[iii][0]=iii-1;
-      neighbours[iii][1]=(iii+L)%L2;                //East
-      if(iii%L==L-1){neighbours[iii][2]=iii-L+1;} //South
-      else neighbours[iii][2]=iii+1;
-      neighbours[iii][3]=(iii-L+L2)%L2;            // West
-      
-      //    cout << neighbours[iii][0] << ", ";
-      //    cout << neighbours[iii][1] << ", ";
-      //    cout << neighbours[iii][2] << ", ";
-      //    cout << neighbours[iii][3] << ", ";
-      //    cout << endl;
-    }
+      for(int iii=0; iii<L2; iii++)
+      {
+	if(iii%L==0){neighbours[iii][0]=iii+L-1;}   //North
+	else neighbours[iii][0]=iii-1;
+	neighbours[iii][1]=(iii+L)%L2;                //East
+	if(iii%L==L-1){neighbours[iii][2]=iii-L+1;} //South
+	else neighbours[iii][2]=iii+1;
+	neighbours[iii][3]=(iii-L+L2)%L2;            // West
+	
+	//    cout << neighbours[iii][0] << ", ";
+	//    cout << neighbours[iii][1] << ", ";
+	//    cout << neighbours[iii][2] << ", ";
+	//    cout << neighbours[iii][3] << ", ";
+	//    cout << endl;
+      }
 
   //****Define the zone-box-type-thing*******************************
       for(int abox=0; abox<L*zone; abox+=L)
@@ -102,7 +101,7 @@ main() // the main program..
   int operaters[n][2], new_operaters[n][2];   // old and new operators     
   int bond[2] = {0};   //number of NN J bonds
   int bondprime[2] = {0};  // number of NN J' bonds
-  long long int acc = 0, rej =0;         //number of changes accepted and rejected
+  bignum  acc, rej;         //number of changes accepted and rejected
   int cross[2] = {0};   //the number of bonds crossing the zone boundary
   double energy = 0;          // the energy
   double energyprime = 0;
@@ -152,12 +151,14 @@ main() // the main program..
   x_new[0] = 0;
   x_new[1] = 0;
 
-  int q = 0; // records the number of steps
+  bignum q(0,0); // records the number of steps
+  bignum zeroz(0,0);
   int q2 = 0; // used to show how far along the program is
 
-  for (long long int i=0; i<iterations; i++)
+  for (bignum i(0,0); i<iterations; i = i++)
     {  
-      if(i%start==0){cout<< q2 << "% "<< endl ;  q2+=10;}
+      // if(i%start==0){cout<< q2 << "% "<< endl ;  q2+=10;}//can include this because i
+      //don't have a % operator for bignum yet
 
       for(int i7=0; i7<n; i7++)
 	{ 
@@ -227,11 +228,11 @@ main() // the main program..
 		
 		  if(box[chain[id][0]]+box[chain[id][1]]==1){cross[1]+=1;}
 		}
-	      energy += bond[1];
-	      energyprime += bondprime[1];
-	      entropy += cross[1];
-	      q+=1;
-	      acc+=1;
+	      energy += bond[1]*1.0;
+	      energyprime += bondprime[1]*1.0;
+	      entropy += cross[1]*1.0;
+	      q=q+1;
+	      acc=acc+1;
 	      
 	    }
 
@@ -251,14 +252,14 @@ main() // the main program..
 
       else{if(i>=start)
 	  {
-	    if(q==0){} 
+	    if(q==zeroz){} 
 	    else
 	      {
-		energy += bond[0];
-		energyprime += bondprime[0];
-		entropy += cross[0];
-		q+=1;
-		rej+=1;
+		energy += bond[0]*1.0;
+		energyprime += bondprime[0]*1.0;
+		entropy += cross[0]*1.0;
+		q=q+1;
+		rej=rej+1;
 	      }
 	  }
       }
@@ -276,17 +277,17 @@ main() // the main program..
 
 
 
-  energy /= (2*L2*0.75*q);
+  energy /= (2*L2*0.75*q.doublify());
   energy += 1 - 0.5;
   energy *= -0.5*2*L2*0.75*J; 
-  energyprime /= (2*L2*0.25*q);
+  energyprime /= (2*L2*0.25*q.doublify());
   energyprime += 1 - 0.5;
   energyprime *= -0.5*2*L2*0.25*jprime; 
   energy = (energy + energyprime);
   
   //  energy *= L2;
 
-  entropy /= q;
+  entropy /= q.doublify();
   entropy *= log(2);
  
   cout << endl;
@@ -294,9 +295,9 @@ main() // the main program..
   cout << "entropy = " << entropy << endl;
   cout << "entropy/x = " << entropy/zone << endl;
  	   
-  cout << q << " energies" << endl;
+  cout << q.left << q.right << " energies" << endl;
 
-  //  cout << 100*double(acc)/q << "% accepted"<< endl;
+  cout << 100*acc.doublify()/q.doublify() << "% accepted"<< endl;
 
   return 0;
 }
