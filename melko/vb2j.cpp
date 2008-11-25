@@ -22,18 +22,18 @@ MTRand drand; //drand() gives you a random double precision number
 MTRand_int32 irand; // irand() gives you a random integer
 
 
-const int lattice_type = 1; // 0 for columnar, 1 for staggered
+const int lattice_type = 0; // 0 for columnar, 1 for staggered
 const long int superseed = 827193545; // ********You************************
 const int L = 4; // 1-D length of the lattice *******Can********************
 const int zone = 2; // the size of "the zone" *********Change***************
-const double jprime =20; // ****************************These*Values*********
-double J = 1;
+const double jprime =3; // ****************************These*Values*********
+double J = 1 ;
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
 const int n = L2*4; // number of bond operators
-bignum start(0,700000000); /* number of iterations until the programs takes ***
+bignum start(0,10000000); /* number of iterations until the programs takes ***
 			     measurements  */
-bignum iterations(7,000000000); // total number of iterations
+bignum iterations(0,100000000); // total number of iterations
 int chain [half_L][2] = {0}; // the bonds are stored in here
 int operater[2] = {0}; //it's an operator
 int initial_state[half_L][2] ={0}; //stores the initial bond configuration
@@ -447,14 +447,39 @@ void change_operators(int operaters[][2], int Js[],int a, int neighbours[][4])
     {
       int news[2] = {0};
 
-      generate_operator(news, neighbours, Js, changings[m]);
-
-
-      while((operaters[changings[m]][0] == news[0]) && (operaters[changings[m]][1] == news[1]))
+      Js[changings[m]] = 0;
+      int initb = (irand()+L2) %L2;
+      news[0] = initb;
+      int neighb;
+      
+      if(drand()<((jprime/J)/(3+jprime/J)))
 	{
-	  generate_operator(news, neighbours, Js, changings[m]);
+	  
+	  if(lattice_type == 0){
+	    if(initb%2==1){neighb=0;}
+	    else{neighb=2;}
+	  }
+	  
+	  else{
+	    if(((initb/L)%2+initb%2)%2==1){ neighb=0;}
+	    else{neighb=2;}
+	  }
+	  Js[changings[m]]=1;
 	}
-
+      else{
+	if(lattice_type == 0){
+	  if(initb%2==1){neighb=(irand()+3)%3 + 1;}
+	  else{neighb=((irand()+3)%3 + 7)%4;}
+	}
+	  
+	else{
+	  if(((initb/L)%2+initb%2)%2==1){ neighb=(irand()+3)%3 + 1;}
+	  else{neighb=((irand()+3)%3 + 7)%4;}
+	}
+      }  
+      
+      news[1] = neighbours[initb][neighb];
+	
       operaters[changings[m]][0] = news[0];
       operaters[changings[m]][1] = news[1];
     } 
