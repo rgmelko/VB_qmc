@@ -21,17 +21,19 @@ changes a number of bond operators... where that number is "a"*/
 MTRand drand; //drand() gives you a random double precision number
 MTRand_int32 irand; // irand() gives you a random integer
 
+
+const int lattice_type = 1; // 0 for columnar, 1 for staggered
 const long int superseed = 827193545; // ********You************************
-const int L = 6; // 1-D length of the lattice *******Can********************
-const int zone = 5; // the size of "the zone" *********Change***************
-const double jprime =1; // ****************************These*Values*********
-double J = 0.2;
+const int L = 4; // 1-D length of the lattice *******Can********************
+const int zone = 2; // the size of "the zone" *********Change***************
+const double jprime =20; // ****************************These*Values*********
+double J = 1;
 const int L2 = L*L; // total number of sites
 const int half_L = L2/2; // total number of sites divided by 2
 const int n = L2*4; // number of bond operators
-bignum start(1,000000000); /* number of iterations until the programs takes ***
+bignum start(0,700000000); /* number of iterations until the programs takes ***
 			     measurements  */
-bignum iterations(10,000000000); // total number of iterations
+bignum iterations(7,000000000); // total number of iterations
 int chain [half_L][2] = {0}; // the bonds are stored in here
 int operater[2] = {0}; //it's an operator
 int initial_state[half_L][2] ={0}; //stores the initial bond configuration
@@ -49,6 +51,9 @@ int box[L2] = {0}; // the zone! <-- exclamation point
 main() // the main program..
 {
   irand.seed(superseed);
+
+  if(lattice_type == 0){cout << "columnar" << endl;}
+  else{ cout << "staggered" << endl;}
 
   cout << "L = " << L << "    " << "zone = " << zone << "   " << 
     iterations.left << iterations.right << " iterations" << "    n = " << n;
@@ -210,20 +215,24 @@ main() // the main program..
 		     )
 		    {
 		      
-		      if(((chain[id][1] == neighbours[chain[id][0]][0])& // COLUMNAR
-			 (chain[id][0]%2 == 1))|
-			((chain[id][1] == neighbours[chain[id][0]][2])&
-			 (chain[id][0]%2 == 0)))
-			{bondprime[1]+=1;}
-		      else{bond[1]+=1;}
-// 		      if(
-// 			 ((chain[id][1] == neighbours[chain[id][0]][0])& // STAGGERED
-// 			  (((chain[id][0]/L)%2 + chain[id][0]%2)%2 == 1))|
-// 			 ((chain[id][1] == neighbours[chain[id][0]][2])&
-// 			  (((chain[id][0]/L)%2 + chain[id][0]%2)%2 == 0))
-// 			 )
-// 			{bondprime[1]+=1;}
-// 		      else{bond[1]+=1;}
+		      if(lattice_type == 0){
+			if(((chain[id][1] == neighbours[chain[id][0]][0])& // COLUMNAR
+			    (chain[id][0]%2 == 1))|
+			   ((chain[id][1] == neighbours[chain[id][0]][2])&
+			    (chain[id][0]%2 == 0)))
+			  {bondprime[1]+=1;}
+			else{bond[1]+=1;}
+		      }
+		      else{
+			if(
+			   ((chain[id][1] == neighbours[chain[id][0]][0])& // STAGGERED
+			    (((chain[id][0]/L)%2 + chain[id][0]%2)%2 == 1))|
+			   ((chain[id][1] == neighbours[chain[id][0]][2])&
+			    (((chain[id][0]/L)%2 + chain[id][0]%2)%2 == 0))
+			   )
+			  {bondprime[1]+=1;}
+			else{bond[1]+=1;}
+		      }
 		    }
 		
 		  if(box[chain[id][0]]+box[chain[id][1]]==1){cross[1]+=1;}
@@ -366,16 +375,17 @@ void generate_operator(int operater[3], int neighbours[][4], int Js[], int k)
   int initb = (irand()+L2) %L2;
   operater[0] = initb;
   int neighb = (irand()+4)%4;
-  operater[1] = neighbours[operater[0]][neighb];
- 
-  if((initb%2==1)&(neighb==0)|(initb%2==0)&(neighb==1)){Js[k]=1;}  // COLUMNAR
+  operater[1] = neighbours[initb][neighb];
 
-
-//  if(
-//      ((((initb/L)%2+initb%2)%2==1)&(neighb==0))  // STAGGERED
-//      |((((initb/L)%2+initb%2)%2==0)&(neighb==2)))
-//     {Js[k]=1;}
-      
+  if(lattice_type == 0){
+    if(((initb%2==1)&(neighb==0))|((initb%2==0)&(neighb==2))){Js[k]=1;}  // COLUMNAR
+  }
+  else{
+    if(
+       ((((initb/L)%2+initb%2)%2==1)&(neighb==0))  // STAGGERED
+       |((((initb/L)%2+initb%2)%2==0)&(neighb==2)))
+      {Js[k]=1;}
+  }      
 }
 
 double apply_operator(int op0, int op1,int chain[][2], int JJ1)
@@ -424,16 +434,16 @@ void change_operators(int operaters[][2], int Js[],int a, int neighbours[][4])
 
   int first = irand() %a;
   int second = irand() %a;
-  int third = irand() %a;
+  // int third = irand() %a;
   //  int fourth = irand() %a; 
 
   while(first == second){second = irand() %a;}
-  while(first == third) {third = irand() %a;} while(third == second){third = irand() %a;}
+  //  while(first == third) {third = irand() %a;} while(third == second){third = irand() %a;}
   //  while(fourth == first){fourth = irand() %a;} while(fourth == second){fourth = irand() %a;} while(fourth == third){fourth = irand() %a;}
   
-  int changings[3] = {first,second,third};//,fourth};
+  int changings[2] = {first,second};//,third};//,fourth};
 
-  for(int m=0; m<3; m++)
+  for(int m=0; m<2; m++)
     {
       int news[2] = {0};
 
