@@ -369,7 +369,7 @@ void print_chain(int chain[][2])
   cout << endl;
 }
 
-void generate_operator(int operater[3], int neighbours[][4], int Js[], int k)
+void generate_operator(int operater[2], int neighbours[][4], int Js[], int k)
 {
   Js[k] = 0;
   int initb = (irand()+L2) %L2;
