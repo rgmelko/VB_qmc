@@ -38,7 +38,7 @@ int main(){
   J2=prm.J2_;
   Sz=prm.Sz_;
 
-  GENHAM HV(16,J,J2,Sz); 
+  GENHAM HV(prm.L_,J,J2,Sz); 
   HV.Bonds_1D(); 
 
 #ifdef DO_LANCZOS    //EVERYTHING IN THIS BLOCK OF CODE FOR LANCZOS

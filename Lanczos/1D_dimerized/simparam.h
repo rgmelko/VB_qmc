@@ -11,6 +11,7 @@ class PARAMS
     double JJ_; //the heisenberg exchange
     double J2_; //the dimerized exchange
     int Sz_; // z-component of total spin
+    int L_;  //1D system size
     // FOR LANCZOS
     int Neigen_;    //: # of eigenvalues to converge
     int valvec_; //  1 for -values only, 2 for vals AND vectors
@@ -21,6 +22,7 @@ class PARAMS
       ifstream pfin;
       pfin.open("param.dat");
     
+      pfin >> L_;
       pfin >> JJ_;
       pfin >> J2_;
       pfin >> Sz_;
