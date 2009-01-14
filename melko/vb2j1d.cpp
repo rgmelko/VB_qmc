@@ -24,13 +24,13 @@ MTRand_int32 irand; // irand() gives you a random integer
 const int lattice_type = 0; // 0 for columnar, 1 for staggered
 const long int superseed = 583409361; // ********You************************
 const int L = 16; // 1-D length of the lattice *******Can********************
-const int zone = 2; // the size of "the zone" *********Change***************
-const double jprime =1; // ****************************These*Values*********
-double J = 1;
+const int zone = 10; // the size of "the zone" *********Change***************
+const double jprime =0.6667; // ****************************These*Values*********
+double J = 1.33333;
 const int L2 = L*L; // total number of sites
 const int half_L = L/2; // total number of sites divided by 2
 const int n = L*5; // number of bond operators
-const int start = 10000000; /* number of iterations until the programs takes ***
+const int start = 100000; /* number of iterations until the programs takes ***
 			     measurements  */
 const int iterations = 10*start; // total number of iterations
 int chain [half_L][2] = {0}; // the bonds are stored in here
@@ -79,14 +79,9 @@ main() // the main program..
       }
 
   //****Define the zone-box-type-thing*******************************
-      for(int abox=0; abox<L*zone; abox+=L)
+      for(int abox=0; abox<zone; abox+=1)
       {
-	for(int bbox=0; bbox<zone; bbox++)
-	  {
-	    box[abox+bbox]=1;
-	    //  cout << box[abox+bbox] << ", " ;
-	  }
-	//  cout << endl;
+	box[abox]=1;
       }
   //****Print out the zone box*****************************************
 //       for (int zzz = 0; zzz<L2; zzz+=L)   
@@ -195,7 +190,7 @@ main() // the main program..
 	pow(jprime,(w_new[1]+x_new[1]-w_old[1]-x_old[1]));
 
   
-//      cout << probb << endl << 
+      //      cout << " prob = " <<  probb << endl;
 //   	"wold0 = " << w_old[0] << "   wnew0 = " << w_new[0] << endl
 //   	   <<"wold1 = " << w_old[1] << "   wnew1 = " << w_new[1] << endl
 //   	   <<"xold0 = " << x_old[0] << "   xnew0 = " << x_new[0] << endl
@@ -270,7 +265,7 @@ main() // the main program..
       bondprime[1] = 0;
     }
 
-  cout << "bonds " <<  energy << "     bonds' "<< energyprime << endl;
+  cout << "bonds " <<  energy << "     bonds' "<< energyprime << "      q = " << q << endl;
 
 
 
@@ -360,12 +355,13 @@ void print_chain(int chain[][2])
 void generate_operator(int operater[2], int neighbours[][4], int Js[], int k)
 {
   Js[k] = 0;
-  int initb = (irand()+L2) %L2;
+  int initb = (irand()+L) %L;
   operater[0] = initb;
   int neighb = (irand()+4)%4;
   operater[1] = neighbours[initb][neighb];
 
   if(((operater[0]+operater[1]-1)/2)%2 == 1){Js[k]=1;}  
+  //  cout << "(" << operater[0] << "," << operater[1] << ")    " << Js[k] <<  endl;
   
 }
 
@@ -429,7 +425,7 @@ void change_operators(int operaters[][2], int Js[],int a, int neighbours[][4])
       int news[2] = {0};
       
       Js[changings[m]] = 0;
-      int initb = (irand()+L2) %L2;
+      int initb = (irand()+L) %L;
       news[0] = initb;
       int neighb = (irand()+4)%4;
       news[1] = neighbours[initb][neighb];
