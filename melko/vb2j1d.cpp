@@ -1,10 +1,9 @@
-// vb2j.cpp  Last updated Oct 23, 2008
-// Trying to add J''
+// vb2j1d.cpp  Last updated Jan 13, 2009
+// Trying adapt vb2j.cpp back to one dimension
 
 #include<iostream>
 #include<math.h>
 #include"mtrand.h" // random number generator
-#include "bignumba.h"
 
 
 using namespace std;
@@ -24,19 +23,19 @@ MTRand_int32 irand; // irand() gives you a random integer
 
 const int lattice_type = 0; // 0 for columnar, 1 for staggered
 const long int superseed = 583409361; // ********You************************
-const int L = 4; // 1-D length of the lattice *******Can********************
+const int L = 16; // 1-D length of the lattice *******Can********************
 const int zone = 2; // the size of "the zone" *********Change***************
 const double jprime =1; // ****************************These*Values*********
-double J = 5;
+double J = 1;
 const int L2 = L*L; // total number of sites
-const int half_L = L2/2; // total number of sites divided by 2
-const int n = L2*4; // number of bond operators
-bignum start(1,000000000); /* number of iterations until the programs takes ***
+const int half_L = L/2; // total number of sites divided by 2
+const int n = L*5; // number of bond operators
+const int start = 10000000; /* number of iterations until the programs takes ***
 			     measurements  */
-bignum iterations(10,000000000); // total number of iterations
+const int iterations = 10*start; // total number of iterations
 int chain [half_L][2] = {0}; // the bonds are stored in here
 int operater[2] = {0}; //it's an operator
-int initial_state[half_L][2] ={0,6,12,3,4,15,1,13,10,9,8,11,5,7,14,2}; 
+int initial_state[half_L][2] ={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15}; 
 //stores the initial bond configuration
 
 int Js[n] = {0};   // Stores the interaction strength for each operator 0=J,1=J'
@@ -46,8 +45,8 @@ double x_old[2]={0};  // the new and old weights
 double x_new[2]={0};  // the new and old weights
 double probb = 0; // prob of keeping new operators
 
-int neighbours[L2][4]; //lists the 4 nearest neighbours for each site
-int box[L2] = {0}; // the zone! <-- exclamation point
+int neighbours[L][4]; //lists the 4 nearest neighbours for each site
+int box[L] = {0}; // the zone! <-- exclamation point
 
 main() // the main program..
 {
@@ -55,23 +54,22 @@ main() // the main program..
   print_chain(initial_state);
   irand.seed(superseed);
 
-  if(lattice_type == 0){cout << "columnar" << endl;}
-  else{ cout << "staggered" << endl;}
+  cout << "one dimensional spin chain" << endl;
 
   cout << "L = " << L << "    " << "zone = " << zone << "   " << 
-    iterations.left << iterations.right << " iterations" << "    n = " << n;
+    iterations << " iterations" << "    n = " << n;
   cout << "     J = " << J << "   J' = " << jprime << endl;
   cout.precision(10); // ten digits of precision..  or ten decimal places?
 
   //******Finding Nearest Neighbours********************************
-      for(int iii=0; iii<L2; iii++)
+      for(int iii=0; iii<L; iii++)
       {
 	if(iii%L==0){neighbours[iii][0]=iii+L-1;}   //North
 	else neighbours[iii][0]=iii-1;
-	neighbours[iii][1]=(iii+L)%L2;                //East
+	neighbours[iii][1]=neighbours[iii][0];                //East
 	if(iii%L==L-1){neighbours[iii][2]=iii-L+1;} //South
 	else neighbours[iii][2]=iii+1;
-	neighbours[iii][3]=(iii-L+L2)%L2;            // West
+	neighbours[iii][3]=neighbours[iii][2];           // West
 	
 	//    cout << neighbours[iii][0] << ", ";
 	//    cout << neighbours[iii][1] << ", ";
@@ -110,7 +108,7 @@ main() // the main program..
   int operaters[n][2], new_operaters[n][2];   // old and new operators     
   int bond[2] = {0};   //number of NN J bonds
   int bondprime[2] = {0};  // number of NN J' bonds
-  bignum  acc, rej;         //number of changes accepted and rejected
+  int  acc = 0, rej = 0;         //number of changes accepted and rejected
   int cross[2] = {0};   //the number of bonds crossing the zone boundary
   double energy = 0;          // the energy
   double energyprime = 0;
@@ -160,11 +158,10 @@ main() // the main program..
   x_new[0] = 0;
   x_new[1] = 0;
 
-  bignum q(0,0); // records the number of steps
-  bignum zeroz(0,0);
+  int q = 0; // records the number of steps
   int q2 = 0; // used to show how far along the program is
 
-  for (bignum i(0,0); i<iterations; i = i++)
+  for (int i=0; i<iterations; i = i++)
     {  
       // if(i%start==0){cout<< q2 << "% "<< endl ;  q2+=10;}//can include this because i
       //don't have a % operator for bignum yet
@@ -212,31 +209,18 @@ main() // the main program..
 	      for(int id=0; id<half_L; id++)
 		{
 		  if(
-		     (chain[id][1] == neighbours[chain[id][0]][0])|
-		     (chain[id][1] == neighbours[chain[id][0]][1])|
-		     (chain[id][1] == neighbours[chain[id][0]][2])|
+		     (chain[id][1] == neighbours[chain[id][0]][0])|    // if bond operator is diagonal
+		     (chain[id][1] == neighbours[chain[id][0]][1])|    // spin chain is not changed
+		     (chain[id][1] == neighbours[chain[id][0]][2])|    // but bond is counted
 		     (chain[id][1] == neighbours[chain[id][0]][3])
 		     )
 		    {
 		      
-		      if(lattice_type == 0){
-			if(((chain[id][1] == neighbours[chain[id][0]][0])& // COLUMNAR
-			    (chain[id][0]%2 == 1))|
-			   ((chain[id][1] == neighbours[chain[id][0]][2])&
-			    (chain[id][0]%2 == 0)))
-			  {bondprime[1]+=1;}
-			else{bond[1]+=1;}
-		      }
-		      else{
-			if(
-			   ((chain[id][1] == neighbours[chain[id][0]][0])& // STAGGERED
-			    (((chain[id][0]/L)%2 + chain[id][0]%2)%2 == 1))|
-			   ((chain[id][1] == neighbours[chain[id][0]][2])&
-			    (((chain[id][0]/L)%2 + chain[id][0]%2)%2 == 0))
-			   )
-			  {bondprime[1]+=1;}
-			else{bond[1]+=1;}
-		      }
+		      
+		      if( ((chain[id][0]+chain[id][1]-1)/2)%2 == 0 )  // condition for J bond
+			{bond[1]+=1;}                                 // (instead of J')
+		      else{bondprime[1]+=1;}
+		      
 		    }
 		
 		  if(box[chain[id][0]]+box[chain[id][1]]==1){cross[1]+=1;}
@@ -265,7 +249,7 @@ main() // the main program..
 
       else{if(i>=start)
 	  {
-	    if(q==zeroz){} 
+	    if(q==0){} 
 	    else
 	      {
 		energy += bond[0]*1.0;
@@ -290,17 +274,17 @@ main() // the main program..
 
 
 
-  energy /= (2*L2*0.75*q.doublify());
-  energy += 1 - 0.5;
-  energy *= -0.5*2*L2*0.75*J; 
-  energyprime /= (2*L2*0.25*q.doublify());
-  energyprime += 1 - 0.5;
-  energyprime *= -0.5*2*L2*0.25*jprime; 
+  energy /= (L*q*1.0);
+  energy += 0.25;
+  energy *= -L*J*0.5; 
+  energyprime /= (L*q*1.0);
+  energyprime +=  0.25;
+  energyprime *= -L*jprime*0.5; 
   energy = (energy + energyprime);
-  
-  //  energy *= L2;
 
-  entropy /= q.doublify();
+  energy /= L*1.0;
+
+  entropy /= q*1.;
   entropy *= log(2);
  
   cout << endl;
@@ -308,9 +292,9 @@ main() // the main program..
   cout << "entropy = " << entropy << endl;
   cout << "entropy/x = " << entropy/zone << endl;
  	   
-  cout << q.left << q.right << " energies" << endl;
+  cout << q << " energies" << endl;
 
-  cout << 100*acc.doublify()/q.doublify() << "% accepted"<< endl;
+  cout << (100.*acc)/(q*1.) << "% accepted"<< endl;
 
   return 0;
 }
@@ -381,15 +365,8 @@ void generate_operator(int operater[2], int neighbours[][4], int Js[], int k)
   int neighb = (irand()+4)%4;
   operater[1] = neighbours[initb][neighb];
 
-  if(lattice_type == 0){
-    if(((initb%2==1)&(neighb==0))|((initb%2==0)&(neighb==2))){Js[k]=1;}  // COLUMNAR
-  }
-  else{
-    if(
-       ((((initb/L)%2+initb%2)%2==1)&(neighb==0))  // STAGGERED
-       |((((initb/L)%2+initb%2)%2==0)&(neighb==2)))
-      {Js[k]=1;}
-  }      
+  if(((operater[0]+operater[1]-1)/2)%2 == 1){Js[k]=1;}  
+  
 }
 
 double apply_operator(int op0, int op1,int chain[][2], int JJ1)
@@ -450,41 +427,16 @@ void change_operators(int operaters[][2], int Js[],int a, int neighbours[][4])
   for(int m=0; m<2; m++)
     {
       int news[2] = {0};
-
+      
       Js[changings[m]] = 0;
       int initb = (irand()+L2) %L2;
       news[0] = initb;
-      int neighb;
-      
-      if(drand()<((jprime/J)/(3+jprime/J)))
-	{
-	  
-	  if(lattice_type == 0){
-	    if(initb%2==1){neighb=0;}
-	    else{neighb=2;}
-	  }
-	  
-	  else{
-	    if(((initb/L)%2+initb%2)%2==1){ neighb=0;}
-	    else{neighb=2;}
-	  }
-	  Js[changings[m]]=1;
-	}
-      else{
-	if(lattice_type == 0){
-	  if(initb%2==1){neighb=(irand()+3)%3 + 1;}
-	  else{neighb=((irand()+3)%3 + 7)%4;}
-	}
-	  
-	else{
-	  if(((initb/L)%2+initb%2)%2==1){ neighb=(irand()+3)%3 + 1;}
-	  else{neighb=((irand()+3)%3 + 7)%4;}
-	}
-      }  
-      
+      int neighb = (irand()+4)%4;
       news[1] = neighbours[initb][neighb];
-	
+      
       operaters[changings[m]][0] = news[0];
       operaters[changings[m]][1] = news[1];
+      
+      if(((news[0]+news[1]-1)/2)%2 == 1){Js[changings[m]] = 1;}
     } 
 }
