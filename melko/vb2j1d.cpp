@@ -10,11 +10,11 @@ using namespace std;
 
 void shuffle(int [][2]); //randomizes initial bonds (currently not working)
 void print_chain(int chain [][2]); //prints the bonds
-void generate_operator(int operater[2], int neighbours[][4], int Js[], int indexx);
+void generate_operator(int operater[2], int neighbours[][2], int Js[], int indexx);
 //generates 1 bond operator
 double apply_operator(int op0, int op1, int chain[][2], int Jayrock);
 //applies 1 bond operator
-void change_operators(int operaters[][2], int Js[], int a, int neighbours[][4]);/*randomly 
+void change_operators(int operaters[][2], int Js[], int a, int neighbours[][2]);/*randomly 
 changes a number of bond operators... where that number is "a"*/
 
 MTRand drand; //drand() gives you a random double precision number
@@ -24,13 +24,13 @@ MTRand_int32 irand; // irand() gives you a random integer
 const int lattice_type = 0; // 0 for columnar, 1 for staggered
 const long int superseed = 583409361; // ********You************************
 const int L = 16; // 1-D length of the lattice *******Can********************
-const int zone = 10; // the size of "the zone" *********Change***************
-const double jprime =0.6667; // ****************************These*Values*********
-double J = 1.33333;
+const int zone = 1; // the size of "the zone" *********Change***************
+const double jprime =1.0; // ****************************These*Values*********
+double J = 1.0;
 const int L2 = L*L; // total number of sites
 const int half_L = L/2; // total number of sites divided by 2
 const int n = L*5; // number of bond operators
-const int start = 100000; /* number of iterations until the programs takes ***
+const int start = 1000000; /* number of iterations until the programs takes ***
 			     measurements  */
 const int iterations = 10*start; // total number of iterations
 int chain [half_L][2] = {0}; // the bonds are stored in here
@@ -45,14 +45,13 @@ double x_old[2]={0};  // the new and old weights
 double x_new[2]={0};  // the new and old weights
 double probb = 0; // prob of keeping new operators
 
-int neighbours[L][4]; //lists the 4 nearest neighbours for each site
+int neighbours[L][2]; //lists the 2 nearest neighbours for each site
 int box[L] = {0}; // the zone! <-- exclamation point
 
 main() // the main program..
 {
 
-  print_chain(initial_state);
-  irand.seed(superseed);
+  // print_chain(initial_state);
 
   cout << "one dimensional spin chain" << endl;
 
@@ -64,12 +63,10 @@ main() // the main program..
   //******Finding Nearest Neighbours********************************
       for(int iii=0; iii<L; iii++)
       {
-	if(iii%L==0){neighbours[iii][0]=iii+L-1;}   //North
+	if(iii==0){neighbours[iii][0]=9999;}  //L-1;}   //North
 	else neighbours[iii][0]=iii-1;
-	neighbours[iii][1]=neighbours[iii][0];                //East
-	if(iii%L==L-1){neighbours[iii][2]=iii-L+1;} //South
-	else neighbours[iii][2]=iii+1;
-	neighbours[iii][3]=neighbours[iii][2];           // West
+	if(iii==L-1){neighbours[iii][1]=9999;}  //=0;} //South
+	else neighbours[iii][1]=iii+1;
 	
 	//    cout << neighbours[iii][0] << ", ";
 	//    cout << neighbours[iii][1] << ", ";
@@ -269,15 +266,15 @@ main() // the main program..
 
 
 
-  energy /= (L*q*1.0);
-  energy += 0.25;
-  energy *= -L*J*0.5; 
-  energyprime /= (L*q*1.0);
+  energy /= ((L-1)*q*1.0);   //all 'L's changed to L-1 due to OBCs
+  energy += 0.25;             //is that right?
+  energy *= -(L-1)*J*0.5; 
+  energyprime /= ((L-1)*q*1.0);
   energyprime +=  0.25;
-  energyprime *= -L*jprime*0.5; 
+  energyprime *= -(L-1)*jprime*0.5; 
   energy = (energy + energyprime);
 
-  energy /= L*1.0;
+  //energy /= L*1.0;
 
   entropy /= q*1.;
   entropy *= log(2);
@@ -352,17 +349,27 @@ void print_chain(int chain[][2])
   cout << endl;
 }
 
-void generate_operator(int operater[2], int neighbours[][4], int Js[], int k)
+void generate_operator(int operater[2], int neighbours[][2], int Js[], int k)
 {
   Js[k] = 0;
   int initb = (irand()+L) %L;
+  int neighb = (irand()+2)%2;
+
+  //OPEN BCs -------------------------------------------------------------------------------------
+  while((initb == 0 && neighb == 0) || (initb == L-1 && neighb == 1))
+    {
+      initb = (irand()+L) %L;
+      neighb = (irand()+2)%2;
+    }
+  //END OF OPEN BCs --------(except for the part in change_operators)------------------------------*/
+  
   operater[0] = initb;
-  int neighb = (irand()+4)%4;
   operater[1] = neighbours[initb][neighb];
 
-  if(((operater[0]+operater[1]-1)/2)%2 == 1){Js[k]=1;}  
+
+  if((operater[0]+operater[1])%2 == 1){Js[k]=1;}  
   //  cout << "(" << operater[0] << "," << operater[1] << ")    " << Js[k] <<  endl;
-  
+
 }
 
 double apply_operator(int op0, int op1,int chain[][2], int JJ1)
@@ -373,40 +380,43 @@ double apply_operator(int op0, int op1,int chain[][2], int JJ1)
   //find indices of the sites in question
   for (int i4 = 0; i4 < half_L; i4++)
     {
-      for (int j2 = 0; j2 < 2; j2++)
+      for (int jb2 = 0; jb2 < 2; jb2++)
 	{
-	  if(op0 == chain[i4][j2])
+	  if(op0 == chain[i4][jb2])
 	    {
 	      index2[0] = i4;
-	      index2[1] = j2;
+	      index2[1] = jb2;
 	    }
 
-	  if(op1 == chain[i4][j2])
+	  if(op1 == chain[i4][jb2])
 	    {
 	      index1[0] = i4;
-	      index1[1] = j2;
+	      index1[1] = jb2;
 	    }
 	}
     }
 
   if(index1[0] == index2[0])
-    { if(JJ1 == 0){x_new[0] +=1; return 0;}
-      x_new[1] += 1;
-      return 0;
+    { 
+      if(JJ1 == 0){x_new[0] +=1;}
+      else{x_new[1] += 1;}
     }
 
   //applying operator and changing chain
-  chain[index1[0]][index1[1]] = chain[index2[0]][(index2[1]+1)%2];   
-  chain[index2[0]][(index2[1]+1)%2] = op1;
-
-  //  print_chain(chain, half_L);
-  if(JJ1 == 0){w_new[0] += 1; return 0;}
-  w_new[1] += 1; 
-
+  else
+    {
+      chain[index1[0]][index1[1]] = chain[index2[0]][(index2[1]+1)%2];   
+      chain[index2[0]][(index2[1]+1)%2] = op1;
+      
+      //  print_chain(chain, half_L);
+      if(JJ1 == 0){w_new[0] += 1;}
+      else{w_new[1] += 1;}
+    }
+  
   return 0;
 
 }
-void change_operators(int operaters[][2], int Js[],int a, int neighbours[][4])
+void change_operators(int operaters[][2], int Js[],int a, int neighbours[][2])
 {
 
   int first = irand() %a;
@@ -426,13 +436,32 @@ void change_operators(int operaters[][2], int Js[],int a, int neighbours[][4])
       
       Js[changings[m]] = 0;
       int initb = (irand()+L) %L;
+      int neighb = (irand()+2)%2;
+
+      //OPEN BCs -------------------------------------------------------------------------------------
+      while((initb == 0 && neighb == 0) || (initb == L-1 && neighb == 1))
+	{
+	  initb = (irand()+L) %L;
+	  neighb = (irand()+2)%2;
+	}
+      //END OF OPEN BCs -------------------------------------------------------------------------------*/
+      
       news[0] = initb;
-      int neighb = (irand()+4)%4;
       news[1] = neighbours[initb][neighb];
       
       operaters[changings[m]][0] = news[0];
       operaters[changings[m]][1] = news[1];
+
+
+      if( news[1] > L)
+	{
+	  cout<<"ERROR"<<endl;
+	  cout << initb << "," << neighb << endl;
+	  exit(1);
+	}
+    
+    
       
-      if(((news[0]+news[1]-1)/2)%2 == 1){Js[changings[m]] = 1;}
+      if((news[0]+news[1])%2 == 1){Js[changings[m]] = 1;}
     } 
 }
