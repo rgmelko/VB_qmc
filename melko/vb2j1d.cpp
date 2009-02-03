@@ -30,12 +30,12 @@ double J = 1.0;
 const int L2 = L*L; // total number of sites
 const int half_L = L/2; // total number of sites divided by 2
 const int n = L*5; // number of bond operators
-const int start = 1000000; /* number of iterations until the programs takes ***
+const int start = 10000000; /* number of iterations until the programs takes ***
 			     measurements  */
 const int iterations = 10*start; // total number of iterations
 int chain [half_L][2] = {0}; // the bonds are stored in here
 int operater[2] = {0}; //it's an operator
-int initial_state[half_L][2] ={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15}; 
+int initial_state[half_L][2] ={0,2,1,4,3,5,10,7,8,9,6,11,13,15,14,12}; 
 //stores the initial bond configuration
 
 int Js[n] = {0};   // Stores the interaction strength for each operator 0=J,1=J'
@@ -51,6 +51,7 @@ int box[L] = {0}; // the zone! <-- exclamation point
 main() // the main program..
 {
 
+  irand();
   // print_chain(initial_state);
 
   cout << "one dimensional spin chain" << endl;
@@ -70,8 +71,6 @@ main() // the main program..
 	
 	//    cout << neighbours[iii][0] << ", ";
 	//    cout << neighbours[iii][1] << ", ";
-	//    cout << neighbours[iii][2] << ", ";
-	//    cout << neighbours[iii][3] << ", ";
 	//    cout << endl;
       }
 
@@ -96,6 +95,9 @@ main() // the main program..
  
 
   //  print_chain(initial_state);
+
+      for(int supacount = 0; supacount < 100; supacount++)
+      {
 
   int operaters[n][2], new_operaters[n][2];   // old and new operators     
   int bond[2] = {0};   //number of NN J bonds
@@ -202,9 +204,8 @@ main() // the main program..
 		{
 		  if(
 		     (chain[id][1] == neighbours[chain[id][0]][0])|    // if bond operator is diagonal
-		     (chain[id][1] == neighbours[chain[id][0]][1])|    // spin chain is not changed
-		     (chain[id][1] == neighbours[chain[id][0]][2])|    // but bond is counted
-		     (chain[id][1] == neighbours[chain[id][0]][3])
+		     (chain[id][1] == neighbours[chain[id][0]][1])    // spin chain is not changed
+		        // but bond is counted
 		     )
 		    {
 		      
@@ -262,9 +263,7 @@ main() // the main program..
       bondprime[1] = 0;
     }
 
-  cout << "bonds " <<  energy << "     bonds' "<< energyprime << "      q = " << q << endl;
-
-
+  //cout << "bonds " <<  energy << "     bonds' "<< energyprime << "      q = " << q << endl;
 
   energy /= ((L-1)*q*1.0);   //all 'L's changed to L-1 due to OBCs
   energy += 0.25;             //is that right?
@@ -279,14 +278,16 @@ main() // the main program..
   entropy /= q*1.;
   entropy *= log(2);
  
-  cout << endl;
-  cout << "energy = " << energy << endl;
-  cout << "entropy = " << entropy << endl;
-  cout << "entropy/x = " << entropy/zone << endl;
- 	   
-  cout << q << " energies" << endl;
+  //cout << endl;
+  //cout << "energy = " << energy << endl;
+  cout << energy << endl;
+      } //******end of supacount loop*********
 
-  cout << (100.*acc)/(q*1.) << "% accepted"<< endl;
+  //  cout << "entropy = " << entropy << endl;
+  // cout << "entropy/x = " << entropy/zone << endl;
+  // cout << q << " energies" << endl;
+  //cout << (100.*acc)/(q*1.) << "% accepted"<< endl;
+
 
   return 0;
 }
