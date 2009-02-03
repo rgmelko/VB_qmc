@@ -1,4 +1,4 @@
-// vb2j1d.cpp  Last updated Jan 13, 2009
+// vb2j1d.cpp  Last updated Feb 3, 2009
 // Trying adapt vb2j.cpp back to one dimension
 
 #include<iostream>
@@ -23,13 +23,13 @@ MTRand_int32 irand; // irand() gives you a random integer
 
 const int lattice_type = 0; // 0 for columnar, 1 for staggered
 const long int superseed = 583409361; // ********You************************
-const int L = 16; // 1-D length of the lattice *******Can********************
-const int zone = 1; // the size of "the zone" *********Change***************
+const int L = 100; // 1-D length of the lattice *******Can********************
+const int zone = 21; // the size of "the zone" *********Change***************
 const double jprime =1.0; // ****************************These*Values*********
 double J = 1.0;
 const int L2 = L*L; // total number of sites
 const int half_L = L/2; // total number of sites divided by 2
-const int n = L*5; // number of bond operators
+const int n = L*30; // number of bond operators
 const int start = 10000000; /* number of iterations until the programs takes ***
 			     measurements  */
 const int iterations = 10*start; // total number of iterations
@@ -96,7 +96,7 @@ main() // the main program..
 
   //  print_chain(initial_state);
 
-      for(int supacount = 0; supacount < 100; supacount++)
+      for(int supacount = 0; supacount < 10; supacount++)
       {
 
   int operaters[n][2], new_operaters[n][2];   // old and new operators     
@@ -279,12 +279,13 @@ main() // the main program..
   entropy *= log(2);
  
   //cout << endl;
-  //cout << "energy = " << energy << endl;
-  cout << energy << endl;
+  cout << "energy = " << energy << endl;
+  // cout << energy << endl;
+  cout << "entropy = " << entropy << endl;
+  cout << "entropy/x = " << entropy/zone << endl << endl;
       } //******end of supacount loop*********
 
-  //  cout << "entropy = " << entropy << endl;
-  // cout << "entropy/x = " << entropy/zone << endl;
+
   // cout << q << " energies" << endl;
   //cout << (100.*acc)/(q*1.) << "% accepted"<< endl;
 
