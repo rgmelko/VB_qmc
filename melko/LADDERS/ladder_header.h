@@ -40,10 +40,6 @@ LADDER::nnbondlist()
     }
 
   //the rest are more complicated
-  /* 
-    
-
-   */
   while(bondnum < number_of_nnbonds)
     {
       int sitenum = 0;
