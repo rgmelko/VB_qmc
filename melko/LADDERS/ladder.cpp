@@ -4,14 +4,41 @@
 #include<iostream>
 #include<fstream>
 #include<math.h>
+#include"ladder_header.h" //my ladder class
 #include"mtrand.h" // random number generator
 
 using namespace std;
 
 int main()
 {
-  //read in parameters (from file) #legs, length, n, initial state,
-  // r (number of bond ops changed per step)
+  cout << endl;
+  
+  int legs, length; // system dimensions
+  int y; // number of bond operators per site  
+  int n; // total number of bond operators
+  int r; // number of bond operators changed per MC step
+
+  ifstream fin("param.txt"); // read in paramaters from file
+  fin >> legs >> length >> y >> r;
+  fin.close();
+  
+  n = legs*length*y;
+
+  cout << legs << " legs, " << length << " sites long each" << endl;
+  cout << "r = " << r << "     " << "y = " << y << "     "<< "n = " << n << "\n\n";
+
+  LADDER system (legs, length, n, r);
+
+  system.nnbondlist();
+
+
+  // PRINTS OUT THE POSSIBLE NN BONDS ------------------- 
+  //  for(int i=0; i< system.nnbonds0.size(); i++)
+  //    {
+  //      cout << system.nnbonds0[i] << "," << system.nnbonds1[i] << endl;
+  //    }
+
+  // initial state stuff..
 
   //read in bond operators from file.. if file is empty generate n 
   // bond operators
