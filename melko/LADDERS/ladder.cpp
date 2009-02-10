@@ -25,7 +25,7 @@ int main()
   n = legs*length*y;
 
   cout << legs << " legs, " << length << " sites long each" << endl;
-  cout << "r = " << r << "     " << "y = " << y << "     "<< "n = " << n << "\n\n";
+  cout << "r = " << r << "     " << "y = " << y << "     "<< "n = " << n <<"\n\n";
 
   LADDER system (legs, length, n, r);
 
@@ -33,10 +33,10 @@ int main()
 
 
   // PRINTS OUT THE POSSIBLE NN BONDS ------------------- 
-  //  for(int i=0; i< system.nnbonds0.size(); i++)
-  //    {
-  //      cout << system.nnbonds0[i] << "," << system.nnbonds1[i] << endl;
-  //    }
+    for(int i=0; i< system.nnbonds0.size(); i++)
+      {
+        cout << system.nnbonds0[i] << "," << system.nnbonds1[i] << endl;
+      }
 
   // initial state stuff..
 

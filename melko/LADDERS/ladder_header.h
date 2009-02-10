@@ -15,22 +15,20 @@ class LADDER
 
   int legs, length, number_of_bondops;
   int number_of_nnbonds;
-  int offdiag=0;
-  int number_of_bonds;
+  int offdiagA, offdiagB;
+  int number_of_bonds, number_of_sites;
   int change_number;
 
-  vector <int> bonds0;
-  vector <int> bonds1;
-  vector <int> nnbonds0;
-  vector <int> nnbonds1;
+  vector <int> bondsA, bondsB;
+  vector <int> init;
+  vector <int> nnbonds0, nnbonds1;
   vector <int> bondops;
-  vector <bool> nn;
-
+ 
   LADDER(int legs,int length,int number_of_bondops, int change_number);
   
   void nnbondlist();
   void generate_ops();
-  void apply_ops();
+  void apply_ops(vector<int> bonds, int offdi);
   
 };
 #endif
@@ -43,14 +41,28 @@ LADDER::LADDER(int a,int b,int c, int d)
   number_of_bondops = c;
   change_number = d;
   number_of_nnbonds = 2*a*b - a - b;
-  number_of_bonds = a*b/2;
+  number_of_sites = a*b;
+  number_of_bonds = number_of_sites/2;
+  offdiagA = 0;
+  offdiagB = 0;
 
   nnbonds0.resize (number_of_nnbonds);
   nnbonds1.resize (number_of_nnbonds);
-  bonds0.resize (number_of_bonds);
-  bonds1.resize (number_of_bonds);
+  bondsA.resize (number_of_sites);
+  bondsB.resize (number_of_sites);
+  init.resize (number_of_sites);
   bondops.resize (number_of_bondops);
-  nn.resize (number_of_bonds);
+ 
+  for(int i02=0; i02<number_of_sites; i02+=2)
+    {
+      init[i02] = i02+1;
+      init[i02+1] = i02;
+    }
+  
+  //sets the bonds to the initial state
+  bondsA = init;
+  bondsB = init;
+
 }
 
 void LADDER::nnbondlist()
@@ -89,8 +101,29 @@ void LADDER::generate_ops()
     }
 }
 
-void LADDER::apply_ops()
+void LADDER::apply_ops(vector<int> bonds, int offdi)
 {
+  int a(0),b(0),c(0),d(0);
 
+  for(int i04=0; i04<number_of_bondops; i04++)
+    {      
+      a = nnbonds0[bondops[i04]];
+      b = nnbonds1[bondops[i04]];
+      if(bonds[a] == b)
+	{}
+      else
+	{
+	  c = bonds[a];
+	  d = bonds[b];
+	  
+	  bonds[c] = d;
+	  bonds[d] = c;
+	  bonds[a] = b;
+	  bonds[b] = a;
+
+	  offdi++;
+	  //add to offdiag or weight
+	}
+    }
 
 }
