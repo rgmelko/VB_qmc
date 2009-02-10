@@ -23,7 +23,7 @@ MTRand_int32 irand; // irand() gives you a random integer
 
 const int lattice_type = 0; // 0 for columnar, 1 for staggered
 const long int superseed = 583409361; // ********You************************
-const int L = 16; // 1-D length of the lattice *******Can********************
+const int L = 100; // 1-D length of the lattice *******Can********************
 const int zone = 29; // the size of "the zone" *********Change***************
 const double jprime =1.0; // ****************************These*Values*********
 double J = 1.0;
@@ -35,12 +35,12 @@ const int start = 10000; /* number of iterations until the programs takes ***
 const int iterations = 10*start; // total number of iterations
 int chain [half_L][2] = {0}; // the bonds are stored in here
 int operater[2] = {0}; //it's an operator
-int initial_state[half_L][2] ={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};//,16,17,18,19,
-/* 20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,
+int initial_state[half_L][2] ={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,
+ 20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,
    36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,
    52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,
    68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,
-   84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99}; */
+   84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99}; 
 //stores the initial bond configuration
 
 int Js[n] = {0};   // Stores the interaction strength for each operator 0=J,1=J'
@@ -109,9 +109,9 @@ main() // the main program..
   int bondprime[2] = {0};  // number of NN J' bonds
   int  acc = 0, rej = 0;         //number of changes accepted and rejected
   int cross[2] = {0};   //the number of bonds crossing the zone boundary
-  double energy = 0;          // the energy
-  double energyprime = 0;
-  double entropy = 0;
+  long double energy = 0;          // the energy
+  long double energyprime = 0;
+  long double entropy = 0;
   double jaybo = 0;
 
   //-------Generate Operators----------------------------------------

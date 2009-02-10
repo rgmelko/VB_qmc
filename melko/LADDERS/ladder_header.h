@@ -15,6 +15,7 @@ class LADDER
 
   int legs, length, number_of_bondops;
   int number_of_nnbonds;
+  int offdiag=0;
   int number_of_bonds;
   int change_number;
 
@@ -86,9 +87,6 @@ void LADDER::generate_ops()
     {
       bondops[i01] = irand() % number_of_nnbonds;
     }
-
-  cout << i01 << endl;
-
 }
 
 void LADDER::apply_ops()
