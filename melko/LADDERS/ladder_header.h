@@ -2,9 +2,7 @@
 #define ladder_header
 
 #include <vector>
-#include <iostream>
-#include <math.h>
-#include "mtrand.h"
+#include "header.h"
 #include "matrix.h"
 using namespace std;
 
@@ -26,6 +24,7 @@ class LADDER
   long long enercounter; //counter of nn bonds for energy
   double accept;
   double energy;
+  string bondfile;
   
   vector <int> bonds; // the bonds
   vector <int> init; // the inital bond state
@@ -38,7 +37,8 @@ class LADDER
   iMatrix nncheck; //matrix st nncheck(a,b) is 1 if a,b are nn. O otherwise
  
   // Constructor
-  LADDER(int legs,int length,int number_of_bondops, int change_number, int iterations);
+  LADDER(int legs,int length,int number_of_bondops, int change_number, 
+	 int iterations, string bondopfilename);
   
   void nnbondlist();//creates list of nnbonds & nncheck
   void generate_ops();//generates the initial operators
@@ -49,15 +49,18 @@ class LADDER
   void reinitialize();//reinitializes bonds, offdiag etc for the next step
   void first_step();
   void calculate_stuff();
+  void read_bonds();
+  void super_initialize();
 };
 
-LADDER::LADDER(int a,int b,int c, int d, int e)
+LADDER::LADDER(int a,int b,int c, int d, int e, string f)
 {
   legs = a;
   length = b;
   number_of_bondops = c;
   change_number = d;
   iterations = e;
+  bondfile = f;
   number_of_nnbonds = 2*a*b - a - b;
   number_of_sites = a*b;
   number_of_bonds = number_of_sites/2;
@@ -84,7 +87,7 @@ LADDER::LADDER(int a,int b,int c, int d, int e)
 	}
     }
 
-  entrocounter.assign(0,number_of_sites);
+  entrocounter.assign(number_of_sites,0);
   
   for(int i02=0; i02<number_of_sites; i02+=2)
     {
@@ -243,4 +246,26 @@ void LADDER::calculate_stuff()
     }
 }
 
+void LADDER::read_bonds()
+{
+  ifstream fin2(bondfile.c_str());
+  
+  for(int i11=0; i11<number_of_bondops; i11++)
+    {
+      fin2 >> bondopsA[i11];
+    }
+  fin2 >> offdiagA;
+  fin2.close();
+
+  bondopsB = bondopsA;
+}
+
+void LADDER::super_initialize()
+{
+  offdiagA = 0;
+  offdiagB = 0;
+  enercounter = 0;
+  accept = 0;
+  entrocounter.assign(number_of_sites,0);
+ }
 #endif

@@ -1,26 +1,26 @@
 //hopefully i'll be able to measure the vbEE of a ladder with OBC and 
 //an arbitrary number of legs
 
-#include<iostream>
-#include<fstream>
-#include<math.h>
+#include<iomanip>
+#include"header.h"
 #include"ladder_header.h" //my ladder class
-#include"mtrand.h" // random number generator
+
 
 using namespace std;
 
 int main()
 {
-  cout << endl;
-  
+  string entfilename, enerfilename, bondopfile;
   int legs, length; // system dimensions
   int y; // number of bond operators per site  
   int n; // total number of bond operators
   int r; // number of bond operators changed per MC step
   int its;
+  int loops;
  
   ifstream fin("param.txt"); // read in paramaters from file
-  fin >> legs >> length >> y >> r >> its;
+  fin >>enerfilename  >> entfilename >> bondopfile
+      >> legs >> length >> y >> r >> its >> loops;
   fin.close();
   
   n = legs*length*y;
@@ -28,8 +28,8 @@ int main()
   cout << legs << " x " << length << " system" << endl;
   cout << "r = " << r << "     " << "y = " << y << "     "<< "n = " << n;
   cout << "   " << its << " iterations" << endl;
-
-  LADDER system (legs, length, n, r, its);
+  
+  LADDER system (legs, length, n, r, its, bondopfile);
 
   system.nnbondlist();
 
@@ -39,23 +39,53 @@ int main()
      cout << i << "," << system.init[i] << endl;
      }
   */
-  system.first_step();
-  
-  for(int i=0; i<its; i++)
+
+  for(int SUPERLOOP=0; SUPERLOOP<loops; SUPERLOOP++)
     {
-      system.change_ops();
-      system.apply_ops();
-      system.decide();
-      system.measure();
-      system.reinitialize();
+      ifstream fin3(bondopfile.c_str());
+      if (fin3.fail() ) {system.first_step();}
+      else{ system.read_bonds();}
+      
+      for(int i=0; i<its; i++)
+	{
+	  system.change_ops();
+	  system.apply_ops();
+	  system.decide();
+	  system.measure();
+	  system.reinitialize();
+	}
+      
+      system.calculate_stuff();
+      
+      ofstream fout(enerfilename.c_str(),ios::app);
+      fout << setprecision(10) << system.energy << endl;
+      fout.close();
+      
+      ofstream fout2(entfilename.c_str(),ios::app);
+      for(int i=0; i<system.entropies.size(); i++)
+	{
+	  fout2 << setw(12) << setprecision(10) << system.entropies[i] << " ";
+	}
+      fout2 << endl;
+      fout2.close();
+      
+      ofstream fout3(bondopfile.c_str());
+      for(int i=0; i<system.bondopsA.size(); i++)
+	{
+	  fout3 << system.bondopsA[i] << endl;
+	}
+      fout3 << system.offdiagA << endl;
+      fout3.close();
+      
+      cout << endl << system.accept/its*100 << "% accepted" << endl;
+      
+      cout << "energy = " << setprecision(10) <<system.energy << endl;
+      cout << "for zone(2) entropy = " << system.entropies[1] << endl;
+
+      cout << endl;
+      
+      system.super_initialize();
     }
-  
-  system.calculate_stuff();
-
-  cout << endl << system.accept/its*100 << "% accepted" << endl;
-
-  cout << "energy = " << system.energy << endl;
-  cout << "for zone(2) entropy = " << system.entropies[1] << endl;
 
   // PRINTS THE SUPER AWESOME BOND CHECKING MATRIX ------------
   /*
@@ -97,6 +127,6 @@ int main()
   //At the end of some number of steps:
     // Calculate energy & entropy & output them to data file
     // output: # steps, bond operators, weights
-  cout << endl;
+
   return 0;
 }

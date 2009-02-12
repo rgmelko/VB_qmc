@@ -1,9 +1,16 @@
-1
-20
+energy2_100.txt
+entropy2_100.txt
+bondops2_100.txt
+2
+100
 30
 3
 1000000
+50
 
+energy filename
+entropy filename
+bondop filename
 legs
 length
 y (number of bondops per site)
