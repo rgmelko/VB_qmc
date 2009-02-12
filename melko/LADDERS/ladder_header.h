@@ -2,7 +2,10 @@
 #define ladder_header
 
 #include <vector>
+#include <iostream>
+#include <math.h>
 #include "mtrand.h"
+#include "matrix.h"
 using namespace std;
 
 class LADDER 
@@ -13,46 +16,76 @@ class LADDER
   MTRand drand; //drand() gives you a random double precision number
   MTRand_int32 irand; // irand() gives you a random integer
 
-  int legs, length, number_of_bondops;
+  int legs, length, number_of_bondops, iterations;
   int number_of_nnbonds;
-  int offdiagA, offdiagB;
   int number_of_bonds, number_of_sites;
-  int change_number;
+  int change_number; // number of bond ops changed per step
+  
+  int offdiagA, offdiagB;/*number of offdiag bond ops for
+				 system A and B */
+  long long enercounter; //counter of nn bonds for energy
+  double accept;
+  double energy;
+  
+  vector <int> bonds; // the bonds
+  vector <int> init; // the inital bond state
+  vector <int> bondopsA, bondopsB; // bondops for systems A and B
+  vector <long long> entrocounter; /* the entropies where element 0
+				      is for zone size 1, etc. */
+  vector <double> entropies;
 
-  vector <int> bondsA, bondsB;
-  vector <int> init;
-  vector <int> nnbonds0, nnbonds1;
-  vector <int> bondops;
+  iMatrix nnbonds; //list of all nnbonds (used to pick bond ops)
+  iMatrix nncheck; //matrix st nncheck(a,b) is 1 if a,b are nn. O otherwise
  
-  LADDER(int legs,int length,int number_of_bondops, int change_number);
+  // Constructor
+  LADDER(int legs,int length,int number_of_bondops, int change_number, int iterations);
   
-  void nnbondlist();
-  void generate_ops();
-  void apply_ops(vector<int> bonds, int offdi);
-  
+  void nnbondlist();//creates list of nnbonds & nncheck
+  void generate_ops();//generates the initial operators
+  void apply_ops();//applies ops
+  void change_ops();//changes a certain number of operators
+  bool decide();//decides to keep the new ops or go back to the old ones
+  void measure();//measures energy and entropy after a step
+  void reinitialize();//reinitializes bonds, offdiag etc for the next step
+  void first_step();
+  void calculate_stuff();
 };
-#endif
 
-
-LADDER::LADDER(int a,int b,int c, int d)
+LADDER::LADDER(int a,int b,int c, int d, int e)
 {
   legs = a;
   length = b;
   number_of_bondops = c;
   change_number = d;
+  iterations = e;
   number_of_nnbonds = 2*a*b - a - b;
   number_of_sites = a*b;
   number_of_bonds = number_of_sites/2;
   offdiagA = 0;
   offdiagB = 0;
+  enercounter = 0;
+  accept = 0;
 
-  nnbonds0.resize (number_of_nnbonds);
-  nnbonds1.resize (number_of_nnbonds);
-  bondsA.resize (number_of_sites);
-  bondsB.resize (number_of_sites);
+  nnbonds.resize (number_of_nnbonds,2);
+  nncheck.resize (number_of_sites,number_of_sites);
+  bonds.resize (number_of_sites);
   init.resize (number_of_sites);
-  bondops.resize (number_of_bondops);
- 
+  bondopsA.resize (number_of_bondops); 
+  bondopsB.resize (number_of_bondops);
+  entrocounter.resize (number_of_sites);
+  entropies.resize (number_of_sites);
+
+  
+  for(int i09=0; i09<number_of_sites; i09++)
+    {
+      for(int i10=0; i10<number_of_sites; i10++)
+	{
+	  nncheck(i09,i10) = 0;
+	}
+    }
+
+  entrocounter.assign(0,number_of_sites);
+  
   for(int i02=0; i02<number_of_sites; i02+=2)
     {
       init[i02] = i02+1;
@@ -60,9 +93,7 @@ LADDER::LADDER(int a,int b,int c, int d)
     }
   
   //sets the bonds to the initial state
-  bondsA = init;
-  bondsB = init;
-
+  bonds = init;
 }
 
 void LADDER::nnbondlist()
@@ -72,8 +103,11 @@ void LADDER::nnbondlist()
   //the first bonds are of the form (0,1),(1,2),(2,3) etc
   for(bondnum; bondnum < legs*length-1; bondnum++)
     {
-      nnbonds0[bondnum] = bondnum;
-      nnbonds1[bondnum] = nnbonds0[bondnum]+1;
+      nnbonds(bondnum,0) = bondnum;
+      nnbonds(bondnum,1) = bondnum+1;
+
+      nncheck(bondnum, bondnum+1) = 1;
+      nncheck(bondnum+1, bondnum) = 1;
     }
 
   //the rest are more complicated
@@ -84,8 +118,12 @@ void LADDER::nnbondlist()
 	{
 	  for(int i00 = sitenum; i00<(length-1)*legs; i00+=legs)
 	    {
-	      nnbonds0[bondnum]= i00;
-	      nnbonds1[bondnum]= i00+legcounter;
+	      nnbonds(bondnum,0)= i00;
+	      nnbonds(bondnum,1)= i00+legcounter;
+
+	      nncheck(i00, i00+legcounter) = 1;
+	      nncheck(i00+legcounter, i00) = 1;
+
 	      bondnum++;
 	    }
 	  sitenum++;
@@ -97,21 +135,31 @@ void LADDER::generate_ops()
 {
   for(int i01=0; i01<number_of_bondops; i01++)
     {
-      bondops[i01] = irand() % number_of_nnbonds;
+      bondopsA[i01] = irand() % number_of_nnbonds;
+      bondopsB = bondopsA;
     }
 }
 
-void LADDER::apply_ops(vector<int> bonds, int offdi)
+void LADDER::change_ops()
+{
+  for(int i04=0; i04<change_number; i04++)
+    {
+      bondopsB[irand()%number_of_bondops] = irand()%number_of_nnbonds;
+    }
+}
+
+void LADDER::apply_ops()
 {
   int a(0),b(0),c(0),d(0);
 
   for(int i04=0; i04<number_of_bondops; i04++)
     {      
-      a = nnbonds0[bondops[i04]];
-      b = nnbonds1[bondops[i04]];
-      if(bonds[a] == b)
-	{}
-      else
+      a = nnbonds(bondopsB[i04],0);
+      b = nnbonds(bondopsB[i04],1);
+
+      //cout << "---------------- " <<a << "," << b <<  " -----------------"<< endl;
+
+      if(bonds[a] != b)
 	{
 	  c = bonds[a];
 	  d = bonds[b];
@@ -120,10 +168,79 @@ void LADDER::apply_ops(vector<int> bonds, int offdi)
 	  bonds[d] = c;
 	  bonds[a] = b;
 	  bonds[b] = a;
+	  
+	  offdiagB++;
+	}
+      /*
+	for(int i=0; i< bonds.size(); i++)
+	{
+	cout << i << "," << bonds[i] << endl;
+	}
+	cout << endl;
+      */
+    }
+}
 
-	  offdi++;
-	  //add to offdiag or weight
+void LADDER::measure()
+{
+  for(int i05=0; i05<number_of_sites; i05++)
+    {
+      if(i05<bonds[i05])
+	{
+	  enercounter += nncheck(i05,bonds[i05]);
+
+	  for(int i06=i05; i06<bonds[i05]; i06++)
+	    {
+	      entrocounter[i06]++;
+	    }
 	}
     }
-
+   //cout << enercounter << endl;
 }
+
+
+/*given the system (A or B) that was kept last, this function decides whether
+  the the new system is kept, or if we go back to the old system*/
+bool LADDER::decide()
+{
+  double prob = pow(2,offdiagA-offdiagB);
+  if(drand()<prob)
+    {
+      bondopsA = bondopsB;
+      offdiagA = offdiagB;
+      
+      accept++;
+    }
+    
+}
+
+void LADDER::reinitialize()
+{
+  bonds = init;
+  offdiagB = 0;
+  bondopsB = bondopsA;
+  //cout << "STEP COMPLETED!!!!!!!!" << endl;
+}
+
+void LADDER::first_step()
+{
+  generate_ops();
+  apply_ops();
+  offdiagA = offdiagB;
+  bondopsA = bondopsB;
+  measure();
+  reinitialize();
+}
+
+void LADDER::calculate_stuff()
+{
+  // cout << enercounter << endl;
+  energy = (-0.5*number_of_nnbonds)*(enercounter*1.0/(number_of_nnbonds*(iterations+1)) + 0.5);
+
+  for(int i07=0; i07<number_of_sites; i07++)
+    {
+      entropies[i07] = entrocounter[i07]*log(2)/(iterations+1);
+    }
+}
+
+#endif

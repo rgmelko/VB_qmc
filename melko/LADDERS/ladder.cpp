@@ -17,26 +17,58 @@ int main()
   int y; // number of bond operators per site  
   int n; // total number of bond operators
   int r; // number of bond operators changed per MC step
-
+  int its;
+ 
   ifstream fin("param.txt"); // read in paramaters from file
-  fin >> legs >> length >> y >> r;
+  fin >> legs >> length >> y >> r >> its;
   fin.close();
   
   n = legs*length*y;
 
-  cout << legs << " legs, " << length << " sites long each" << endl;
-  cout << "r = " << r << "     " << "y = " << y << "     "<< "n = " << n <<"\n\n";
+  cout << legs << " x " << length << " system" << endl;
+  cout << "r = " << r << "     " << "y = " << y << "     "<< "n = " << n;
+  cout << "   " << its << " iterations" << endl;
 
-  LADDER system (legs, length, n, r);
+  LADDER system (legs, length, n, r, its);
 
   system.nnbondlist();
 
+  /* PRINTS OUT THE POSSIBLE NN BONDS ------------------- 
+     for(int i=0; i< system.bonds.size(); i++)
+     {
+     cout << i << "," << system.init[i] << endl;
+     }
+  */
+  system.first_step();
+  
+  for(int i=0; i<its; i++)
+    {
+      system.change_ops();
+      system.apply_ops();
+      system.decide();
+      system.measure();
+      system.reinitialize();
+    }
+  
+  system.calculate_stuff();
 
-  // PRINTS OUT THE POSSIBLE NN BONDS ------------------- 
-    for(int i=0; i< system.nnbonds0.size(); i++)
-      {
-        cout << system.nnbonds0[i] << "," << system.nnbonds1[i] << endl;
-      }
+  cout << endl << system.accept/its*100 << "% accepted" << endl;
+
+  cout << "energy = " << system.energy << endl;
+  cout << "for zone(2) entropy = " << system.entropies[1] << endl;
+
+  // PRINTS THE SUPER AWESOME BOND CHECKING MATRIX ------------
+  /*
+    for(int i=0; i< system.nncheck.length(); i++)
+    {
+    for(int j=0; j< system.nncheck.width(); j++)
+    {
+    cout << system.nncheck(i,j) << "," ;
+    }
+    cout << endl;
+    }
+  */
+  
 
   // initial state stuff..
 
@@ -65,8 +97,6 @@ int main()
   //At the end of some number of steps:
     // Calculate energy & entropy & output them to data file
     // output: # steps, bond operators, weights
-
-  
-
+  cout << endl;
   return 0;
 }
