@@ -22,8 +22,8 @@ class LADDER
   int offdiagA, offdiagB;/*number of offdiag bond ops for
 				 system A and B */
   long long enercounter; //counter of nn bonds for energy
-  double accept;
-  double energy;
+  long double accept;
+  long double energy;
   string bondfile;
   
   vector <int> bonds; // the bonds
@@ -31,7 +31,7 @@ class LADDER
   vector <int> bondopsA, bondopsB; // bondops for systems A and B
   vector <long long> entrocounter; /* the entropies where element 0
 				      is for zone size 1, etc. */
-  vector <double> entropies;
+  vector <long double> entropies;
 
   iMatrix nnbonds; //list of all nnbonds (used to pick bond ops)
   iMatrix nncheck; //matrix st nncheck(a,b) is 1 if a,b are nn. O otherwise
@@ -238,7 +238,8 @@ void LADDER::first_step()
 void LADDER::calculate_stuff()
 {
   // cout << enercounter << endl;
-  energy = (-0.5*number_of_nnbonds)*(enercounter*1.0/(number_of_nnbonds*(iterations+1)) + 0.5);
+  energy = (-0.5*number_of_nnbonds)*((long double)enercounter/((long double)number_of_nnbonds*
+							       ((long double)iterations+1)) + 0.5);
 
   for(int i07=0; i07<number_of_sites; i07++)
     {

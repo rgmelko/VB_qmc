@@ -1,12 +1,12 @@
-energy2_100.txt
-entropy2_100.txt
-bondops2_100.txt
-2
+energy7_100_long.txt
+entropy7_100_long.txt
+bondops7_100_long.txt
+7
 100
 30
 3
-1000000
-50
+10000000
+100
 
 energy filename
 entropy filename
@@ -16,3 +16,4 @@ length
 y (number of bondops per site)
 r (number of bondops changed per step)
 its (number of iterations)
+number of bins (number of times the prog runs)
