@@ -75,8 +75,8 @@ LADDER::LADDER(int a,int b,int c, int d, int e, string f)
   init.resize (number_of_sites);
   bondopsA.resize (number_of_bondops); 
   bondopsB.resize (number_of_bondops);
-  entrocounter.resize (number_of_sites);
-  entropies.resize (number_of_sites);
+  entrocounter.resize (number_of_sites-1);
+  entropies.resize (number_of_sites-1);
 
   
   for(int i09=0; i09<number_of_sites; i09++)
@@ -87,7 +87,7 @@ LADDER::LADDER(int a,int b,int c, int d, int e, string f)
 	}
     }
 
-  entrocounter.assign(number_of_sites,0);
+  entrocounter.assign(number_of_sites-1,0);
   
   for(int i02=0; i02<number_of_sites; i02+=2)
     {
@@ -241,7 +241,7 @@ void LADDER::calculate_stuff()
   energy = (-0.5*number_of_nnbonds)*((long double)enercounter/((long double)number_of_nnbonds*
 							       ((long double)iterations+1)) + 0.5);
 
-  for(int i07=0; i07<number_of_sites; i07++)
+  for(int i07=0; i07<number_of_sites-1; i07++)
     {
       entropies[i07] = entrocounter[i07]*log(2)/(iterations+1);
     }
@@ -267,6 +267,6 @@ void LADDER::super_initialize()
   offdiagB = 0;
   enercounter = 0;
   accept = 0;
-  entrocounter.assign(number_of_sites,0);
+  entrocounter.assign(number_of_sites-1,0);
  }
 #endif

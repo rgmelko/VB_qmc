@@ -17,7 +17,7 @@ int main()
   int r; // number of bond operators changed per MC step
   int its;
   int loops;
- 
+  
   ifstream fin("param.txt"); // read in paramaters from file
   fin >>enerfilename  >> entfilename >> bondopfile
       >> legs >> length >> y >> r >> its >> loops;
