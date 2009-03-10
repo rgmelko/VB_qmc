@@ -24,7 +24,7 @@ class LADDER
   long long enercounter; //counter of nn bonds for energy
   long double accept;
   long double energy;
-  string bondfile;
+  string initfile, bondfile;
   
   vector <int> bonds; // the bonds
   vector <int> init; // the inital bond state
@@ -38,7 +38,8 @@ class LADDER
  
   // Constructor
   LADDER(int legs,int length,int number_of_bondops, int change_number, 
-	 int iterations, string bondopfilename);
+	 int iterations, string initstatefile, string bondopfilename, 
+	 long long randnumbseed);
   
   void nnbondlist();//creates list of nnbonds & nncheck
   void generate_ops();//generates the initial operators
@@ -51,15 +52,20 @@ class LADDER
   void calculate_stuff();
   void read_bonds();
   void super_initialize();
+  void read_initfile();
 };
 
-LADDER::LADDER(int a,int b,int c, int d, int e, string f)
+LADDER::LADDER(int a,int b,int c, int d, int e, string h, string f, long long g)
 {
+  irand.seed(g);
+  drand.seed(g);
+
   legs = a;
   length = b;
   number_of_bondops = c;
   change_number = d;
   iterations = e;
+  initfile = h;
   bondfile = f;
   number_of_nnbonds = 2*a*b - a - b;
   number_of_sites = a*b;
@@ -78,7 +84,6 @@ LADDER::LADDER(int a,int b,int c, int d, int e, string f)
   entrocounter.resize (number_of_sites-1);
   entropies.resize (number_of_sites-1);
 
-  
   for(int i09=0; i09<number_of_sites; i09++)
     {
       for(int i10=0; i10<number_of_sites; i10++)
@@ -231,7 +236,6 @@ void LADDER::first_step()
   apply_ops();
   offdiagA = offdiagB;
   bondopsA = bondopsB;
-  measure();
   reinitialize();
 }
 
@@ -244,6 +248,7 @@ void LADDER::calculate_stuff()
   for(int i07=0; i07<number_of_sites-1; i07++)
     {
       entropies[i07] = entrocounter[i07]*log(2)/(iterations+1);
+      cout << entrocounter[i07] << " " << iterations+1 << endl;
     }
 }
 
@@ -269,4 +274,14 @@ void LADDER::super_initialize()
   accept = 0;
   entrocounter.assign(number_of_sites-1,0);
  }
+
+void LADDER::read_initfile()
+{
+  ifstream fin5(initfile.c_str());
+  for(int i=0; i<number_of_sites; i++)
+    {
+      fin5 >> init[i];
+    }
+}
+
 #endif

@@ -10,17 +10,19 @@ using namespace std;
 
 int main()
 {
-  string entfilename, enerfilename, bondopfile;
+  string initstatefile, entfilename, enerfilename, bondopfile;
   int legs, length; // system dimensions
   int y; // number of bond operators per site  
   int n; // total number of bond operators
   int r; // number of bond operators changed per MC step
   int its;
   int loops;
-  
+  long long ranseed;
+
   ifstream fin("param.txt"); // read in paramaters from file
-  fin >>enerfilename  >> entfilename >> bondopfile
-      >> legs >> length >> y >> r >> its >> loops;
+  fin >> initstatefile >> enerfilename  >> entfilename 
+      >> bondopfile >> legs >> length >> y >> r >> its
+      >> loops >> ranseed;
   fin.close();
   
   n = legs*length*y;
@@ -29,10 +31,43 @@ int main()
   cout << "r = " << r << "     " << "y = " << y << "     "<< "n = " << n;
   cout << "   " << its << " iterations" << endl;
   
-  LADDER system (legs, length, n, r, its, bondopfile);
+  LADDER initsystem (legs, length, n, r, its, initstatefile, bondopfile, ranseed);
+  initsystem.nnbondlist();
 
+  //If no initial state file is present, generate one
+  ifstream fin4(initstatefile.c_str());
+  if (fin4.fail() ) 
+    {
+      initsystem.generate_ops();
+      initsystem.apply_ops();
+      initsystem.offdiagA = initsystem.offdiagB;
+      initsystem.bondopsA = initsystem.bondopsB;
+      initsystem.reinitialize();
+
+      for(int i=0; i<5*its; i++)
+	{
+	  initsystem.change_ops();
+	  initsystem.apply_ops();
+	  initsystem.decide();
+	  initsystem.reinitialize();
+	}
+      
+      initsystem.change_ops();
+      initsystem.apply_ops();
+      initsystem.decide();
+
+      ofstream fout4(initstatefile.c_str());
+      for(int i=0; i<initsystem.bonds.size(); i++)
+	{
+	  fout4 << initsystem.bonds[i] << endl;
+	}
+      fout4.close(); 
+    }
+
+  LADDER system (legs, length, n, r, its, initstatefile, bondopfile, ranseed);
   system.nnbondlist();
-
+  system.read_initfile();
+  
   /* PRINTS OUT THE POSSIBLE NN BONDS ------------------- 
      for(int i=0; i< system.bonds.size(); i++)
      {

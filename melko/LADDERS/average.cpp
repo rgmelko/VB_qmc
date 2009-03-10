@@ -42,6 +42,13 @@ int main(int argc, char *argv[]){
 
   int index = 0;
   int numRow = 0;
+
+  double dummy;
+  for(int i=0; i<nExclude; i++)
+    {
+      for(int j=0; j<nSpin; j++){cfin>>dummy;}
+    }
+  
   cfin>>nontemp[index];
  
   while( !cfin.eof() ){
