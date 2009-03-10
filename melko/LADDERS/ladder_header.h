@@ -247,8 +247,7 @@ void LADDER::calculate_stuff()
 
   for(int i07=0; i07<number_of_sites-1; i07++)
     {
-      entropies[i07] = entrocounter[i07]*log(2)/(iterations+1);
-      cout << entrocounter[i07] << " " << iterations+1 << endl;
+      entropies[i07] = entrocounter[i07]*log(2)/(iterations);
     }
 }
 
