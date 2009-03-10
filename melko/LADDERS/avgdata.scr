@@ -1,0 +1,29 @@
+#!/bin/sh
+
+cd ~/VB_qmc/melko/LADDERS/RUNS/L100_legs/8leg/;
+mkdir data; cd data;
+cp ~/VB_qmc/melko/LADDERS/average ./;
+
+
+cp ../n10/entropy* ./; ./average entropy* 799 5 > avg_8leg_L100_n10.dat; rm entropy*;
+cp ../n15/entropy* ./; ./average entropy* 799 5 > avg_8leg_L100_n15.dat; rm entropy*;
+cp ../n20/entropy* ./; ./average entropy* 799 5 > avg_8leg_L100_n20.dat; rm entropy*;
+cp ../n25/entropy* ./; ./average entropy* 799 5 > avg_8leg_L100_n25.dat; rm entropy*;
+cp ../n30/entropy* ./; ./average entropy* 799 5 > avg_8leg_L100_n30.dat; rm entropy*;
+cp ../n35/entropy* ./; ./average entropy* 799 5 > avg_8leg_L100_n35.dat; rm entropy*;
+cp ../n40/entropy* ./; ./average entropy* 799 5 > avg_8leg_L100_n40.dat; rm entropy*;
+cp ../n45/entropy* ./; ./average entropy* 799 5 > avg_8leg_L100_n45.dat; rm entropy*;
+cp ../n50/entropy* ./; ./average entropy* 799 5 > avg_8leg_L100_n50.dat; rm entropy*;
+cp ../n55/entropy* ./; ./average entropy* 799 5 > avg_8leg_L100_n55.dat; rm entropy*;
+cp ../n60/entropy* ./; ./average entropy* 799 5 > avg_8leg_L100_n60.dat; rm entropy*;
+cp ../n65/entropy* ./; ./average entropy* 799 5 > avg_8leg_L100_n65.dat; rm entropy*;
+cp ../n70/entropy* ./; ./average entropy* 799 5 > avg_8leg_L100_n70.dat; rm entropy*;
+cp ../n75/entropy* ./; ./average entropy* 799 5 > avg_8leg_L100_n75.dat; rm entropy*;
+cp ../n80/entropy* ./; ./average entropy* 799 5 > avg_8leg_L100_n80.dat; rm entropy*;
+cp ../n85/entropy* ./; ./average entropy* 799 5 > avg_8leg_L100_n85.dat; rm entropy*;
+cp ../n90/entropy* ./; ./average entropy* 799 5 > avg_8leg_L100_n90.dat; rm entropy*;
+
+
+
+
+
