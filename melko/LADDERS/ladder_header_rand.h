@@ -1,5 +1,5 @@
-#ifndef ladder_header
-#define ladder_header
+#ifndef ladder_header_rand
+#define ladder_header_rand
 
 #include <vector>
 #include "header.h"
@@ -28,6 +28,7 @@ class LADDER
   
   vector <int> bonds; // the bonds
   vector <int> init; // the inital bond state
+  vector <int> sitelist;// list of sites to fill init with
   vector <int> bondopsA, bondopsB; // bondops for systems A and B
   vector <long long> entrocounter; /* the entropies where element 0
 				      is for zone size 1, etc. */
@@ -56,6 +57,22 @@ class LADDER
   void mix_it_up();
 };
 
+void LADDER::mix_it_up()
+{
+
+  int numdex;
+  for(int i=0; i<number_of_sites; i++)
+    {
+      numdex = (irand()+sitelist.size())%sitelist.size();
+      init[i] = sitelist[numdex];
+      init[sitelist[numdex]] = i;
+      sitelist.erase (sitelist.begin()+numdex);
+    }
+
+  for(int i=0;i<number_of_sites; i++){cout<<init[i]<<endl;}
+
+}
+
 LADDER::LADDER(int a,int b,int c, int d, int e, string h, string f, long long g)
 {
   irand.seed(g);
@@ -80,6 +97,7 @@ LADDER::LADDER(int a,int b,int c, int d, int e, string h, string f, long long g)
   nncheck.resize (number_of_sites,number_of_sites);
   bonds.resize (number_of_sites);
   init.resize (number_of_sites);
+  sitelist.resize (number_of_sites);
   bondopsA.resize (number_of_bondops); 
   bondopsB.resize (number_of_bondops);
   entrocounter.resize (number_of_sites-1);
@@ -101,7 +119,8 @@ LADDER::LADDER(int a,int b,int c, int d, int e, string h, string f, long long g)
       init[i02+1] = i02;
     }
 
- 
+  for(int i=0; i<number_of_sites; i++){sitelist[i]=i;}
+  
   //sets the bonds to the initial state
   bonds = init;
 }
