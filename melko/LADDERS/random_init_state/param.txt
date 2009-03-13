@@ -1,0 +1,23 @@
+init.txt
+ener.txt
+entr.txt
+bond.txt
+1
+128
+30
+3
+1000
+3
+9964512
+
+initial state filename
+energy filename
+entropy filename
+bondop filename
+legs
+length(100)
+y (number of bondops per site)
+r (number of bondops changed per step)(3)
+its (number of iterations) (10000000)
+number of bins (number of times the prog runs)(100)
+seed
