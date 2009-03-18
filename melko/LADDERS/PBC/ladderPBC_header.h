@@ -53,7 +53,6 @@ class LADDER
   void read_bonds();
   void super_initialize();
   void read_initfile();
-  void mix_it_up();
 };
 
 LADDER::LADDER(int a,int b,int c, int d, int e, string h, string f, long long g)
@@ -68,7 +67,7 @@ LADDER::LADDER(int a,int b,int c, int d, int e, string h, string f, long long g)
   iterations = e;
   initfile = h;
   bondfile = f;
-  number_of_nnbonds = 2*a*b - a - b;
+  number_of_nnbonds = 2*a*b - a - b+1;//changed for PBCS(+1 added)
   number_of_sites = a*b;
   number_of_bonds = number_of_sites/2;
   offdiagA = 0;
@@ -119,6 +118,13 @@ void LADDER::nnbondlist()
       nncheck(bondnum, bondnum+1) = 1;
       nncheck(bondnum+1, bondnum) = 1;
     }
+  //__________adding PBCs for 1D______________
+  nnbonds(bondnum,0) = 0;
+  nnbonds(bondnum,1) = number_of_sites-1;
+  nncheck(0, number_of_sites-1) = 1;
+  nncheck(number_of_sites-1 ,0) = 1;
+  bondnum++;
+  //-----------------------------------------
 
   //the rest are more complicated
   while(bondnum < number_of_nnbonds)
