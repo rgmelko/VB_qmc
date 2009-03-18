@@ -98,13 +98,18 @@ LADDER::LADDER(int a,int b,int c, int d, int e, string h, string f, long long g)
   
   for(int i=0; i<number_of_sites; i++){sitelist[i]=i;}
   
-  int numdex;
-  for(int i=0; i<number_of_sites; i++)
+  int numdexi, numdexj, sitei, sitej;
+  while(!sitelist.size()==0)
     {
-      numdex = (irand()+sitelist.size())%sitelist.size();
-      init[i] = sitelist[numdex];
-      init[sitelist[numdex]] = i;
-      sitelist.erase (sitelist.begin()+numdex);
+      numdexi = (irand()+sitelist.size())%sitelist.size();
+      sitei = sitelist[numdexi];
+      sitelist.erase (sitelist.begin()+numdexi);
+      numdexj = (irand()+sitelist.size())%sitelist.size();
+      sitej = sitelist[numdexj];
+      sitelist.erase (sitelist.begin()+numdexj);
+
+      init[sitei] = sitej;
+      init[sitej] = sitei;
     }
 
   //sets the bonds to the initial state
