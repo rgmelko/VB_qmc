@@ -35,7 +35,7 @@ Of particular importance, the existence of an area law has consequences in the r
 \label{ladder}}}
 \end{figure}
 
-Thus the question of an area law in the groundstates of 2D quantum systems is of utmost important for the development of new simulation techniques.  Paradoxically, it is also a quantity that is difficult to measure in 2D systems, due to the fact that QMC techniques (currently the only scalable method capable of unbiased 2D simulations) do not have direct access to the groundstate wavefunction $\psi$, required to construct the VN EE.  In response to this, several authors has recently introduced the concept of {\it valence bond} (VB) entanglement entropy, defined for an SU(2) symmetric spin system as
+Thus the question of an area law in the groundstates of 2D quantum systems is of utmost important for the development of new simulation techniques.  Paradoxically, it is also a quantity that is difficult to measure in 2D systems, due to the fact that QMC techniques (currently the only scalable method capable of unbiased 2D simulations) do not have direct access to the groundstate wavefunction $\psi$, required to construct the VN EE.  In response to this, several authors \cite{Alet} has recently introduced the concept of {\it valence bond} (VB) entanglement entropy, defined for an SU(2) symmetric spin system as
 \begin{equation}
 S^{\rm VB}_A = \ln(2) \cdot N_A,
 \end{equation}
@@ -45,16 +45,25 @@ In this paper, we compare the VB EE calculated by valence-bond QMC to the VN EE 
 
 The spin 1/2 Heisenberg hamiltonian is given by
 \begin{equation}
-H = J \sum_{\langle i j \rangle} {\mathbf S}_i \cdot {\mathbf S}_j
+H = J \sum_{\langle i j \rangle} {\mathbf S}_i \cdot {\mathbf S}_j \label{ham}
 \end{equation}
 where the sum is over nearest-neighbor sites on a ladder with length $L$ and legs $n$.  Many properties of this model on open-boundary ladders with $n$ legs has been exhaustively studied.  Of importance, it is known that a spin gap exists for even-$n$ ladders in the limit of $L\rightarrow \infty$, whereas odd-$n$ ladders behave somewhat more like quasi-1D  systems with spin $n/2$ and, from Haldane's conjecture, are therefore gapless.  
 
 We employ two complementary numerical techniques in our study of EE on ladder geometries, namely the valence-bond basis QMC and DMRG, both of which give {\it unbiased} approximations to the ground state of the Hamiltonian at zero temperature, and results from both of which can be compared directly to one another.  Of interest to us are the two definitions of entanglement entropy; the VN EE is naturally accessible through the DRMG ``sweeping'' algorithm, which converges the groundstate wavefunction of a finite-size system by calculating the reduced density matrix between a ``system'' and ``environment'' (subregions A and B), the size of each of which are systematically grown or reduced in the usual DMRG sweep.  The reduced density matrix $\rho_A$ is calculated at each sweeping step, therefore the VN EE is immediately available for geometries illustrated in Fig.~\ref{ladder}.  In this paper, we label the regions A by the largest lattice site $x$ contained therein.
 
 The valence-bond basis QMC algorithm that we use is the simple single-projector method, with lattice geometries constructed to match those given by the DMRG algorithm.  
+***ANN: ENTER DESCRIPTION OF VB QMC HERE***
 
+\begin{figure}
+{
+\includegraphics[width=2.7in, angle=270]{fig1.ps}
+\caption{(color online) The valence bond and von Neumann entanglement entropies for a 1D Heisenberg chain with 100 sites.
+\label{1D}}}
+\end{figure}
 
-
+We consider first the case of a one-dimensional Heisenberg chain, limiting ourselves to a discussion of the system with open boundary conditions (OBC), in order to retain the maximal efficiency of the DMRG, which is known to have poorer convergence properties under periodic boundary conditions (PBC).  For the isotropic OBC chain with Hamiltonian Eq.~\eqref{ham} with some interior point subdividing the region A of length $x$ from the remainder of the system, the von Neumann entropy is known from conformal field theory (CFT) to obey $S^{VN}_A = c/6 \ln(x') + S_1$, where $c=1$ is the central charge, and $x'=L/\pi \sin(\pi x / L)$ is the conformal distance \cite{Cardy}.
+In Ref.~\cite{Alet}, VB EE calculated from QMC was compared to this CFT result, and a good fit to a central charge of $c=1$ was found.  In Fig.~XXX we compare this result to the VN EE calculated from the DRMG.  We stress that the QMC and DMRG results are on the same geometry and Hamiltonian, and reproduce the same ground state energies; the remaining figures in the paper can be considered as exact comparisons between the VB and VN EE as calculated with the two methods.
+***DISCUSSION***
 
 \bibliography{VB_biblio}
 
