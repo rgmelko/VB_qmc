@@ -1,0 +1,39 @@
+\begin{thebibliography}{3}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname bibnamefont\endcsname\relax
+  \def\bibnamefont#1{#1}\fi
+\expandafter\ifx\csname bibfnamefont\endcsname\relax
+  \def\bibfnamefont#1{#1}\fi
+\expandafter\ifx\csname citenamefont\endcsname\relax
+  \def\citenamefont#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\providecommand{\bibinfo}[2]{#2}
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{\citenamefont{Alet et~al.}(2007)\citenamefont{Alet, Capponi,
+  Laflorencie, and Mambrini}}]{Alet}
+\bibinfo{author}{\bibfnamefont{F.}~\bibnamefont{Alet}},
+  \bibinfo{author}{\bibfnamefont{S.}~\bibnamefont{Capponi}},
+  \bibinfo{author}{\bibfnamefont{N.}~\bibnamefont{Laflorencie}},
+  \bibnamefont{and} \bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Mambrini}},
+  \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{99}},
+  \bibinfo{pages}{117204} (\bibinfo{year}{2007}).
+
+\bibitem[{\citenamefont{Calabrese and Cardy}(2004)}]{Cardy}
+\bibinfo{author}{\bibfnamefont{P.}~\bibnamefont{Calabrese}} \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Cardy}}, \bibinfo{journal}{J.
+  Stat. Mech.: Theor. Exp.} \textbf{\bibinfo{volume}{P06002}}
+  (\bibinfo{year}{2004}).
+
+\bibitem[{\citenamefont{Laflorencie et~al.}(2006)\citenamefont{Laflorencie,
+  Sorensen, Chang, and Affleck}}]{Ian1}
+\bibinfo{author}{\bibfnamefont{N.}~\bibnamefont{Laflorencie}},
+  \bibinfo{author}{\bibfnamefont{E.~S.} \bibnamefont{Sorensen}},
+  \bibinfo{author}{\bibfnamefont{M.-S.} \bibnamefont{Chang}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{I.}~\bibnamefont{Affleck}},
+  \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{96}},
+  \bibinfo{pages}{100603} (\bibinfo{year}{2006}).
+
+\end{thebibliography}

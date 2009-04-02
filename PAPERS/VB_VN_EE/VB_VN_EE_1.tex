@@ -56,14 +56,13 @@ The valence-bond basis QMC algorithm that we use is the simple single-projector 
 
 \begin{figure}
 {
-\includegraphics[width=3.0in]{fig1.eps}
-\caption{(color online) The valence bond and von Neumann entanglement entropies for a 1D Heisenberg chain with 100 sites.
+\includegraphics[width=3.2in]{fig1_inset.eps}
+\caption{(color online) Main: The valence bond (VB) and von Neumann (VN) entanglement entropies for a 1D Heisenberg chain with 100 sites.  The horizontal axis $x'$ is the conformal distance, as described in the text.  Inset:  coefficient of a linear regression fig of the data to the form $c/6 \ln(x')$, as a function of data points included in the fit, $z$.  Here, $z$ is systematically decreased by removing points from the {\it outside} ends of the open-boundary chain.   The arrow, at $c/6=1/6$, is the analytical result from CFT \cite{Cardy}.
 \label{1D}}}
 \end{figure}
 
 We consider first the case of a one-dimensional Heisenberg chain, limiting ourselves to a discussion of the system with open boundary conditions (OBC), in order to retain the maximal efficiency of the DMRG, which is known to have poorer convergence properties under periodic boundary conditions (PBC).  For the isotropic OBC chain with Hamiltonian Eq.~\eqref{ham} with some interior point subdividing the region A of length $x$ from the remainder of the system, the von Neumann entropy is known from conformal field theory (CFT) to obey $S^{VN}_A = c/6 \ln(x') + S_1$, where $c=1$ is the central charge, and $x'=L/\pi \sin(\pi x / L)$ is the conformal distance \cite{Cardy}.
-In Ref.~\cite{Alet}, VB EE calculated from QMC was compared to this CFT result, and a good fit to a central charge of $c=1$ was found.  In Fig.~XXX we compare this result to the VN EE calculated from the DRMG.  We stress that the QMC and DMRG results are on the same geometry and Hamiltonian, and reproduce the same ground state energies; the remaining figures in the paper can be considered as exact comparisons between the VB and VN EE as calculated with the two methods.
-***DISCUSSION***
+In Ref.~\cite{Alet}, VB EE calculated from QMC was compared to this CFT result, and a good fit to a central charge of $c=1$ was found.  In Fig.~\ref{1D} we compare this result to the VN EE calculated from the DRMG.  We stress that the QMC and DMRG results are on the same geometry and Hamiltonian, and reproduce the same ground state energies; the remaining figures in the paper can be considered as exact comparisons between the VB and VN EE as calculated with the two methods.  In Fig.~\ref{1D} (main), both the VN and VB EE are seen to split into two branches, the lower corresponding to an odd number of lattice sites in the {\it system} $A$, and the upper corresponding to an even number of sites in $A$.  This reflects a well-known ``dimerization'' effect induced by the open system boundaries \cite{Ian1}.  A regression fit of the lower branch to the form $c/6 \ln {x'}$ (inset) shows excellent convergence of the VN EE to the central charge predicted by CFT, $c=1$, once finite-size effects and the proximity of the data to the open boundaries is taken into account.  In contrast, the VB EE fit deviates significantly from the CFT result for larger system sizes, give $c>1$ when all or most data is included in the fit, and $c<1$ as data is systematically excluded from the fit (data closest to the open boundary is removed first).  
 
 \bibliography{VB_biblio}
 
