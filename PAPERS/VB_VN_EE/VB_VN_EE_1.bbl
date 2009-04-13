@@ -1,4 +1,4 @@
-\begin{thebibliography}{3}
+\begin{thebibliography}{4}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname bibnamefont\endcsname\relax
   \def\bibnamefont#1{#1}\fi
@@ -20,6 +20,11 @@
   \bibnamefont{and} \bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Mambrini}},
   \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{99}},
   \bibinfo{pages}{117204} (\bibinfo{year}{2007}).
+
+\bibitem[{\citenamefont{Sandvik}(2005)}]{Sandvik}
+\bibinfo{author}{\bibfnamefont{A.~W.} \bibnamefont{Sandvik}},
+  \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{95}},
+  \bibinfo{pages}{207203} (\bibinfo{year}{2005}).
 
 \bibitem[{\citenamefont{Calabrese and Cardy}(2004)}]{Cardy}
 \bibinfo{author}{\bibfnamefont{P.}~\bibnamefont{Calabrese}} \bibnamefont{and}
