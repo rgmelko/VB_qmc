@@ -1,6 +1,6 @@
 # Grace project file
 #
-@version 50121
+@version 50122
 @page size 792, 612
 @page scroll 5%
 @page inout 5%
@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Thu Apr  2 14:14:11 2009"
+@timestamp def "Fri Apr 24 15:31:01 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -101,7 +101,7 @@
 @g0 fixedpoint format general general
 @g0 fixedpoint prec 6, 6
 @with g0
-@    world 0, 0.155, 50, 0.181
+@    world 0, 0.12, 50, 0.182
 @    stack world 0, 0, 0, 0
 @    znorm 1
 @    view 0.150000, 0.219780, 0.858713, 0.854003
@@ -183,7 +183,7 @@
 @    yaxis  label color 1
 @    yaxis  label place normal
 @    yaxis  tick on
-@    yaxis  tick major 0.005
+@    yaxis  tick major 0.01
 @    yaxis  tick minor ticks 4
 @    yaxis  tick default 6
 @    yaxis  tick place rounded true
@@ -222,8 +222,8 @@
 @    altxaxis  off
 @    altyaxis  off
 @    legend on
-@    legend loctype world
-@    legend 32, 0.167
+@    legend loctype view
+@    legend 0.16, 0.55
 @    legend box color 1
 @    legend box pattern 1
 @    legend box linewidth 1.0
@@ -295,13 +295,13 @@
 @    s0 legend  "VN, L=64"
 @    s1 hidden false
 @    s1 type xy
-@    s1 symbol 2
+@    s1 symbol 1
 @    s1 symbol size 0.750000
-@    s1 symbol color 1
+@    s1 symbol color 4
 @    s1 symbol pattern 1
-@    s1 symbol fill color 4
+@    s1 symbol fill color 0
 @    s1 symbol fill pattern 1
-@    s1 symbol linewidth 1.5
+@    s1 symbol linewidth 2.0
 @    s1 symbol linestyle 1
 @    s1 symbol char 65
 @    s1 symbol char font 0
@@ -309,7 +309,7 @@
 @    s1 line type 1
 @    s1 line linestyle 1
 @    s1 line linewidth 1.0
-@    s1 line color 1
+@    s1 line color 4
 @    s1 line pattern 1
 @    s1 baseline type 0
 @    s1 baseline off
@@ -331,7 +331,7 @@
 @    s1 avalue offset 0.000000 , 0.000000
 @    s1 errorbar on
 @    s1 errorbar place both
-@    s1 errorbar color 1
+@    s1 errorbar color 4
 @    s1 errorbar pattern 1
 @    s1 errorbar size 1.000000
 @    s1 errorbar linewidth 1.0
@@ -344,7 +344,7 @@
 @    s1 legend  "VB, L=64"
 @    s2 hidden false
 @    s2 type xy
-@    s2 symbol 1
+@    s2 symbol 2
 @    s2 symbol size 0.750000
 @    s2 symbol color 1
 @    s2 symbol pattern 1
@@ -395,11 +395,11 @@
 @    s3 type xy
 @    s3 symbol 2
 @    s3 symbol size 0.750000
-@    s3 symbol color 1
+@    s3 symbol color 11
 @    s3 symbol pattern 1
-@    s3 symbol fill color 11
+@    s3 symbol fill color 0
 @    s3 symbol fill pattern 1
-@    s3 symbol linewidth 1.5
+@    s3 symbol linewidth 2.0
 @    s3 symbol linestyle 1
 @    s3 symbol char 65
 @    s3 symbol char font 0
@@ -407,7 +407,7 @@
 @    s3 line type 1
 @    s3 line linestyle 1
 @    s3 line linewidth 1.0
-@    s3 line color 1
+@    s3 line color 11
 @    s3 line pattern 1
 @    s3 baseline type 0
 @    s3 baseline off
@@ -429,7 +429,7 @@
 @    s3 avalue offset 0.000000 , 0.000000
 @    s3 errorbar on
 @    s3 errorbar place both
-@    s3 errorbar color 1
+@    s3 errorbar color 11
 @    s3 errorbar pattern 1
 @    s3 errorbar size 1.000000
 @    s3 errorbar linewidth 1.0
@@ -442,8 +442,8 @@
 @    s3 legend  "VB, L=100"
 @    s4 hidden false
 @    s4 type xy
-@    s4 symbol 1
-@    s4 symbol size 0.750000
+@    s4 symbol 3
+@    s4 symbol size 0.890000
 @    s4 symbol color 1
 @    s4 symbol pattern 1
 @    s4 symbol fill color 15
@@ -491,13 +491,13 @@
 @    s4 legend  "VN, L=128"
 @    s5 hidden false
 @    s5 type xy
-@    s5 symbol 2
-@    s5 symbol size 0.750000
-@    s5 symbol color 1
+@    s5 symbol 3
+@    s5 symbol size 0.890000
+@    s5 symbol color 15
 @    s5 symbol pattern 1
-@    s5 symbol fill color 15
+@    s5 symbol fill color 0
 @    s5 symbol fill pattern 1
-@    s5 symbol linewidth 1.5
+@    s5 symbol linewidth 2.0
 @    s5 symbol linestyle 1
 @    s5 symbol char 65
 @    s5 symbol char font 0
@@ -505,7 +505,7 @@
 @    s5 line type 1
 @    s5 line linestyle 1
 @    s5 line linewidth 1.0
-@    s5 line color 1
+@    s5 line color 15
 @    s5 line pattern 1
 @    s5 baseline type 0
 @    s5 baseline off
@@ -527,7 +527,7 @@
 @    s5 avalue offset 0.000000 , 0.000000
 @    s5 errorbar on
 @    s5 errorbar place both
-@    s5 errorbar color 1
+@    s5 errorbar color 15
 @    s5 errorbar pattern 1
 @    s5 errorbar size 1.000000
 @    s5 errorbar linewidth 1.0
@@ -540,11 +540,11 @@
 @    s5 legend  "VB, L=128"
 @    s6 hidden false
 @    s6 type xy
-@    s6 symbol 1
+@    s6 symbol 4
 @    s6 symbol size 0.750000
 @    s6 symbol color 1
 @    s6 symbol pattern 1
-@    s6 symbol fill color 5
+@    s6 symbol fill color 12
 @    s6 symbol fill pattern 1
 @    s6 symbol linewidth 1.5
 @    s6 symbol linestyle 1
@@ -587,55 +587,55 @@
 @    s6 errorbar riser clip length 0.100000
 @    s6 comment "/Users/rgmelko/Waterloo/DMRG/Mar08/FSS/L200/c6_f.dat"
 @    s6 legend  "VN, L=200"
-@    s7 hidden false
-@    s7 type xy
-@    s7 symbol 1
-@    s7 symbol size 0.410000
-@    s7 symbol color 8
-@    s7 symbol pattern 1
-@    s7 symbol fill color 8
-@    s7 symbol fill pattern 1
-@    s7 symbol linewidth 1.0
-@    s7 symbol linestyle 1
-@    s7 symbol char 65
-@    s7 symbol char font 0
-@    s7 symbol skip 0
-@    s7 line type 1
-@    s7 line linestyle 0
-@    s7 line linewidth 1.0
-@    s7 line color 8
-@    s7 line pattern 1
-@    s7 baseline type 0
-@    s7 baseline off
-@    s7 dropline off
-@    s7 fill type 0
-@    s7 fill rule 0
-@    s7 fill color 1
-@    s7 fill pattern 1
-@    s7 avalue off
-@    s7 avalue type 2
-@    s7 avalue char size 1.000000
-@    s7 avalue font 0
-@    s7 avalue color 1
-@    s7 avalue rot 0
-@    s7 avalue format general
-@    s7 avalue prec 3
-@    s7 avalue prepend ""
-@    s7 avalue append ""
-@    s7 avalue offset 0.000000 , 0.000000
-@    s7 errorbar on
-@    s7 errorbar place both
-@    s7 errorbar color 8
-@    s7 errorbar pattern 1
-@    s7 errorbar size 1.000000
-@    s7 errorbar linewidth 1.0
-@    s7 errorbar linestyle 1
-@    s7 errorbar riser linewidth 1.0
-@    s7 errorbar riser linestyle 1
-@    s7 errorbar riser clip off
-@    s7 errorbar riser clip length 0.100000
-@    s7 comment "/Users/rgmelko/Waterloo/DMRG/Mar08/FSS/null.dat"
-@    s7 legend  ""
+@    s8 hidden false
+@    s8 type xy
+@    s8 symbol 4
+@    s8 symbol size 0.750000
+@    s8 symbol color 12
+@    s8 symbol pattern 1
+@    s8 symbol fill color 0
+@    s8 symbol fill pattern 1
+@    s8 symbol linewidth 2.0
+@    s8 symbol linestyle 1
+@    s8 symbol char 65
+@    s8 symbol char font 0
+@    s8 symbol skip 0
+@    s8 line type 1
+@    s8 line linestyle 1
+@    s8 line linewidth 1.0
+@    s8 line color 12
+@    s8 line pattern 1
+@    s8 baseline type 0
+@    s8 baseline off
+@    s8 dropline off
+@    s8 fill type 0
+@    s8 fill rule 0
+@    s8 fill color 1
+@    s8 fill pattern 1
+@    s8 avalue off
+@    s8 avalue type 2
+@    s8 avalue char size 1.000000
+@    s8 avalue font 0
+@    s8 avalue color 1
+@    s8 avalue rot 0
+@    s8 avalue format general
+@    s8 avalue prec 3
+@    s8 avalue prepend ""
+@    s8 avalue append ""
+@    s8 avalue offset 0.000000 , 0.000000
+@    s8 errorbar on
+@    s8 errorbar place both
+@    s8 errorbar color 12
+@    s8 errorbar pattern 1
+@    s8 errorbar size 1.000000
+@    s8 errorbar linewidth 1.0
+@    s8 errorbar linestyle 1
+@    s8 errorbar riser linewidth 1.0
+@    s8 errorbar riser linestyle 1
+@    s8 errorbar riser clip off
+@    s8 errorbar riser clip length 0.100000
+@    s8 comment "/Users/akallin/VB_qmc/melko/LADDERS/RUNS/hydruns/random_seed_dimerized_init/FSS/cut200.dat"
+@    s8 legend  "VB, L=200"
 @target G0.S0
 @type xy
 16 0.178322
@@ -656,12 +656,18 @@
 &
 @target G0.S1
 @type xy
-16 0.180501
-15 0.174844
-14 0.17146
-13 0.168875
-12 0.167297
-11 0.166501
+16 0.180082
+15 0.174053
+14 0.170335
+13 0.168017
+12 0.166062
+11 0.164505
+10 0.162458
+9 0.161615
+8 0.160333
+7 0.157779
+6 0.156399
+5 0.155756
 &
 @target G0.S2
 @type xy
@@ -687,23 +693,27 @@
 6 0.168914
 5 0.168846
 4 0.1688
-3 0.168735
 &
 @target G0.S3
 @type xy
-25 0.175409
-24 0.17039
-23 0.16753
-22 0.165661
-21 0.163991
-20 0.162331
-19 0.161143
-18 0.16016
-17 0.158951
-16 0.157982
-15 0.157441
-14 0.156965
-13 0.156585
+25 0.174488
+24 0.168979
+23 0.165772
+22 0.163558
+21 0.162169
+20 0.161248
+19 0.160784
+18 0.160811
+17 0.160202
+16 0.159295
+15 0.158904
+14 0.157671
+13 0.157238
+12 0.155245
+11 0.154668
+10 0.155449
+9 0.154343
+8 0.153368
 &
 @target G0.S4
 @type xy
@@ -737,21 +747,27 @@
 5 0.167984
 4 0.167997
 3 0.168049
-2 0.167597
 &
 @target G0.S5
 @type xy
-32 0.171788
-31 0.167169
-30 0.164439
-29 0.163045
-28 0.16206
-27 0.161314
-26 0.160903
-25 0.160376
-24 0.160312
-23 0.160017
-22 0.159868
+32 0.17151
+31 0.16645
+30 0.163451
+29 0.161375
+28 0.159678
+27 0.158442
+26 0.157136
+25 0.155857
+24 0.154486
+23 0.153486
+22 0.152779
+21 0.15184
+20 0.150721
+19 0.149819
+18 0.149412
+17 0.148291
+16 0.146334
+15 0.144758
 &
 @target G0.S6
 @type xy
@@ -801,7 +817,36 @@
 7 0.166599
 6 0.166749
 &
-@target G0.S7
+@target G0.S8
 @type xy
-0 0.16666667
+50 0.164123
+49 0.15908
+48 0.156033
+47 0.153754
+46 0.151702
+45 0.149901
+44 0.148272
+43 0.146683
+42 0.145127
+41 0.143865
+40 0.142473
+39 0.141113
+38 0.140211
+37 0.138983
+36 0.137651
+35 0.136464
+34 0.13571
+33 0.134883
+32 0.134218
+31 0.133336
+30 0.13211
+29 0.13069
+28 0.129583
+27 0.128111
+26 0.127012
+25 0.125428
+24 0.124215
+23 0.123335
+22 0.122684
+21 0.121774
 &
