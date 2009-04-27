@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Fri Apr 24 12:10:21 2009"
+@timestamp def "Fri Apr 24 16:09:38 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -124,10 +124,10 @@
 @    xaxis  bar color 1
 @    xaxis  bar linestyle 1
 @    xaxis  bar linewidth 1.0
-@    xaxis  label "x"
+@    xaxis  label ""
 @    xaxis  label layout para
 @    xaxis  label place auto
-@    xaxis  label char size 1.000000
+@    xaxis  label char size 1.500000
 @    xaxis  label font 0
 @    xaxis  label color 1
 @    xaxis  label place normal
@@ -163,7 +163,7 @@
 @    xaxis  ticklabel start 0.000000
 @    xaxis  ticklabel stop type auto
 @    xaxis  ticklabel stop 0.000000
-@    xaxis  ticklabel char size 1.000000
+@    xaxis  ticklabel char size 1.500000
 @    xaxis  ticklabel font 0
 @    xaxis  ticklabel color 1
 @    xaxis  tick place both
@@ -175,10 +175,10 @@
 @    yaxis  bar color 1
 @    yaxis  bar linestyle 1
 @    yaxis  bar linewidth 1.0
-@    yaxis  label "S(x)/x"
+@    yaxis  label ""
 @    yaxis  label layout para
 @    yaxis  label place auto
-@    yaxis  label char size 1.000000
+@    yaxis  label char size 1.500000
 @    yaxis  label font 0
 @    yaxis  label color 1
 @    yaxis  label place normal
@@ -214,7 +214,7 @@
 @    yaxis  ticklabel start 0.000000
 @    yaxis  ticklabel stop type auto
 @    yaxis  ticklabel stop 0.000000
-@    yaxis  ticklabel char size 1.000000
+@    yaxis  ticklabel char size 1.500000
 @    yaxis  ticklabel font 0
 @    yaxis  ticklabel color 1
 @    yaxis  tick place both
@@ -247,7 +247,7 @@
 @    s2 hidden false
 @    s2 type xy
 @    s2 symbol 1
-@    s2 symbol size 0.730000
+@    s2 symbol size 1.000000
 @    s2 symbol color 1
 @    s2 symbol pattern 1
 @    s2 symbol fill color 11
@@ -296,7 +296,7 @@
 @    s3 hidden false
 @    s3 type xy
 @    s3 symbol 3
-@    s3 symbol size 0.730000
+@    s3 symbol size 1.000000
 @    s3 symbol color 1
 @    s3 symbol pattern 1
 @    s3 symbol fill color 9
