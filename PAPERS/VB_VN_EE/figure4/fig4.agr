@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Fri Apr 24 16:09:38 2009"
+@timestamp def "Mon Apr 27 13:40:17 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -292,7 +292,7 @@
 @    s2 errorbar riser clip off
 @    s2 errorbar riser clip length 0.100000
 @    s2 comment "copy of setdata G0.S0"
-@    s2 legend  "DMRG"
+@    s2 legend  "DMRG, VN EE"
 @    s3 hidden false
 @    s3 type xy
 @    s3 symbol 3
@@ -341,7 +341,7 @@
 @    s3 errorbar riser clip off
 @    s3 errorbar riser clip length 0.100000
 @    s3 comment "copy of setdata G0.S1"
-@    s3 legend  "QMC"
+@    s3 legend  "QMC, VB EE"
 @target G0.S2
 @type xy
 1 0.429556
