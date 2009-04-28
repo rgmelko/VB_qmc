@@ -1,4 +1,4 @@
-\begin{thebibliography}{4}
+\begin{thebibliography}{9}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname bibnamefont\endcsname\relax
   \def\bibnamefont#1{#1}\fi
@@ -12,6 +12,34 @@
 \providecommand{\bibinfo}[2]{#2}
 \providecommand{\eprint}[2][]{\url{#2}}
 
+\bibitem[{\citenamefont{Wolf et~al.}(2008)\citenamefont{Wolf, Verstraete,
+  Hastings, and Cirac}}]{wolf}
+\bibinfo{author}{\bibfnamefont{M.~M.} \bibnamefont{Wolf}},
+  \bibinfo{author}{\bibfnamefont{F.}~\bibnamefont{Verstraete}},
+  \bibinfo{author}{\bibfnamefont{M.~B.} \bibnamefont{Hastings}},
+  \bibnamefont{and} \bibinfo{author}{\bibfnamefont{J.~I.} \bibnamefont{Cirac}},
+  \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{100}},
+  \bibinfo{pages}{070502} (\bibinfo{year}{2008}).
+
+\bibitem[{\citenamefont{Levin and Wen}(2006)}]{LW}
+\bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Levin}} \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{X.-G.} \bibnamefont{Wen}},
+  \bibinfo{journal}{Phys. Rev. Lett} \textbf{\bibinfo{volume}{96}},
+  \bibinfo{eid}{110405} (\bibinfo{year}{2006}).
+
+\bibitem[{\citenamefont{Kitaev and Preskill}(2006)}]{KP}
+\bibinfo{author}{\bibfnamefont{A.}~\bibnamefont{Kitaev}} \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Preskill}},
+  \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{96}},
+  \bibinfo{eid}{110404} (\bibinfo{year}{2006}).
+
+\bibitem[{\citenamefont{Eisert et~al.}(2008)\citenamefont{Eisert, Cramer, and
+  Plenio}}]{ALreview}
+\bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Eisert}},
+  \bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Cramer}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Plenio}}
+  (\bibinfo{year}{2008}), \eprint{arXiv:0808.3773}.
+
 \bibitem[{\citenamefont{Alet et~al.}(2007)\citenamefont{Alet, Capponi,
   Laflorencie, and Mambrini}}]{Alet}
 \bibinfo{author}{\bibfnamefont{F.}~\bibnamefont{Alet}},
@@ -20,6 +48,14 @@
   \bibnamefont{and} \bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Mambrini}},
   \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{99}},
   \bibinfo{pages}{117204} (\bibinfo{year}{2007}).
+
+\bibitem[{\citenamefont{Chhajlany et~al.}(2007)\citenamefont{Chhajlany,
+  Tomczak, and W\'{o}jcik}}]{Chh}
+\bibinfo{author}{\bibfnamefont{R.~W.} \bibnamefont{Chhajlany}},
+  \bibinfo{author}{\bibfnamefont{P.}~\bibnamefont{Tomczak}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{A.}~\bibnamefont{W\'{o}jcik}},
+  \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{99}},
+  \bibinfo{eid}{167204} (\bibinfo{year}{2007}).
 
 \bibitem[{\citenamefont{Sandvik}(2005)}]{Sandvik}
 \bibinfo{author}{\bibfnamefont{A.~W.} \bibnamefont{Sandvik}},
