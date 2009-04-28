@@ -45,7 +45,7 @@ class LADDER
   void generate_ops();//generates the initial operators
   void apply_ops();//applies ops
   void change_ops();//changes a certain number of operators
-  bool decide();//decides to keep the new ops or go back to the old ones
+  void decide();//decides to keep the new ops or go back to the old ones
   void measure();//measures energy and entropy after a step
   void reinitialize();//reinitializes bonds, offdiag etc for the next step
   void first_step();
@@ -211,7 +211,7 @@ void LADDER::measure()
 
 /*given the system (A or B) that was kept last, this function decides whether
   the the new system is kept, or if we go back to the old system*/
-bool LADDER::decide()
+void LADDER::decide()
 {
   double prob = pow(2,offdiagA-offdiagB);
   if(drand()<prob)
