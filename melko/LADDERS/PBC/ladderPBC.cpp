@@ -1,9 +1,9 @@
-//hopefully i'll be able to measure the vbEE of a ladder with OBC and 
-//an arbitrary number of legs
+// measure the vbEE of a ladder with PBC and 
+//for only 1D
 
 #include<iomanip>
 #include"header.h"
-#include"ladder_header_R.h" //my ladder class
+#include"ladderPBC_header.h" //my ladder class
 
 
 using namespace std;
@@ -19,7 +19,7 @@ int main()
     int loops;
     long long ranseed;
 
-    ifstream fin("param_R.txt"); // read in paramaters from file
+    ifstream fin("param_PBC.txt"); // read in paramaters from file
     fin >> enerfilename  >> entfilename >> bondopfile 
     	>> legs >> length >> y >> r >> its >> loops 
 	>> ranseed;

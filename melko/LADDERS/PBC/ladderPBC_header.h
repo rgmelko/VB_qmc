@@ -1,5 +1,5 @@
-#ifndef ladder_header_R
-#define ladder_header_R
+#ifndef ladderPBC_header
+#define ladderPBC_header
 
 #include <vector>
 #include "header.h"
@@ -64,7 +64,7 @@ LADDER::LADDER(int a,int b,int c, int d, int e, string f, long long g)
   change_number = d;
   iterations = e;
   bondfile = f;
-  number_of_nnbonds = 2*a*b - a - b;
+  number_of_nnbonds = 2*a*b - a - b + 1;//added 1 for PBC
   number_of_sites = a*b;
   number_of_bonds = number_of_sites/2;
   offdiagA = 0;
@@ -97,7 +97,7 @@ LADDER::LADDER(int a,int b,int c, int d, int e, string f, long long g)
       init[i02+1] = i02;
     }
 
- 
+  
   //sets the bonds to the initial state
   bonds = init;
 }
@@ -116,6 +116,14 @@ void LADDER::nnbondlist()
       nncheck(bondnum+1, bondnum) = 1;
     }
 
+  //adding PBC for 1D
+  nnbonds(bondnum,0) = 0;
+  nnbonds(bondnum,1) = number_of_sites-1;
+  
+  nncheck(0, number_of_sites-1) = 1;
+  nncheck(number_of_sites-1, 0) = 1;
+
+  bondnum++;
   //the rest are more complicated
   while(bondnum < number_of_nnbonds)
     {
@@ -126,10 +134,10 @@ void LADDER::nnbondlist()
 	    {
 	      nnbonds(bondnum,0)= i00;
 	      nnbonds(bondnum,1)= i00+legcounter;
-
+	      
 	      nncheck(i00, i00+legcounter) = 1;
 	      nncheck(i00+legcounter, i00) = 1;
-
+	      
 	      bondnum++;
 	    }
 	  sitenum++;
@@ -159,7 +167,7 @@ void LADDER::apply_ops()
   int a(0),b(0),c(0),d(0);
 
   for(int i04=0; i04<number_of_bondops; i04++)
-    {      
+    {
       a = nnbonds(bondopsB[i04],0);
       b = nnbonds(bondopsB[i04],1);
 
