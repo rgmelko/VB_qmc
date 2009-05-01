@@ -9,9 +9,17 @@
 
 \date{\today}
 \title{Valence Bond and von Neumann Entanglement Entropy in Heisenberg Ladders}
-%\author{Ann B. Kallin, Ivan Gonzalez, M. B. Hastings, Roger G. Melko}
-%\affiliation{Department of Physics and Astronomy, University of Waterloo, Ontario, N2L 3G1, Canada} 
+\author{Ann B. Kallin}
+\affiliation{Department of Physics and Astronomy, University of Waterloo, Ontario, N2L 3G1, Canada} 
 
+\author{Ivan Gonz\'alez}
+\affiliation{Fundaci\'on Centro Tecnol\'ogico de Supercomputaci\'on de Galicia (CESGA), Santiago de Compostela, Spain}
+
+\author{Matthew B. Hastings}
+\affiliation{Microsoft Research, Station Q, CNSI Building, University of California, Santa Barbara, CA, 93106.}
+
+\author{Roger G. Melko}
+\affiliation{Department of Physics and Astronomy, University of Waterloo, Ontario, N2L 3G1, Canada} 
 
 \begin{abstract}
 
@@ -38,7 +46,7 @@ Of particular importance, the existence of an area law has consequences in the r
 
 Thus the question of an area law in the groundstates of 2D quantum systems is of utmost important for the development of new simulation techniques.  Paradoxically, it is also a quantity that is difficult to measure in 2D systems, due to the fact that QMC techniques (currently the only scalable method capable of unbiased 2D simulations) do not have direct access to the groundstate wavefunction $| \psi \rangle$, required to construct the VN EE.  In response to this, several authors \cite{Alet, Chh} has recently introduced the concept of {\it valence bond} (VB) entanglement entropy, defined for an SU(2) symmetric spin system as
 \begin{equation}
-S^{\rm VB}_A = \ln(2) \cdot N_A,
+S^{\rm VB}_A = \ln(2) \cdot \mathcal{N}_A,
 \end{equation}
 where $N_A$ is the number of EPR spin singlets ${( |\uparrow \downarrow \rangle - | \downarrow \uparrow \rangle)/\sqrt{2}}$ crossing the boundary between regions A and B.  Unlike the VN EE, the VB EE can be accessed very easily in the valence-bond basis projector QMC method recently proposed by Sandvik \cite{Sandvik}.  
 As demonstrated in Refs.~\cite{Alet,Chh}, the VB EE has many properties in common with the VN EE, in particular the relationship $S_A = S_B$, and the fact that $S^{VB}_A=0$ for regions ``un-entangled'' by valence bonds.  Further, a comparison of the scaling of the VB EE for a (critical) 1D spin 1/2 Heisenberg chain shows good agreement with analytical results known from conformal field theory (CFT), which we discuss more below.
@@ -69,7 +77,14 @@ In Ref.~\cite{Alet}, VB EE calculated from QMC was compared to this CFT result, 
 
 {\it Multi-leg ladders.}-- Moving away from the one dimensional chain, one can add ``legs'' to the lattice in a systematic way.
 
-{\it Area law in multi-leg ladders.}--  Despite the importance of adherence to the area law in tensor-network generalization of MPS techniques, it is still not yet known whether the 2D isotropic Heisenberg ground state does obey the area law.  The results from Refs.~\cite{Alet,Chh} for the VB EE in 2D indicate a multiplicative logarithmic corrections to the area law.  We find it necessary to address whether the same logarithmic correction exists in the VN EE.  Fig.~\ref{zigzag} shows the VB EE and VN EE for ladders with N legs.  The lattice geometry is chosen such that subregion A contains $2N^2$ sites and is always rectangular.  It is clear that Fig.~\ref{zigzag} shows a logarithmic correction to the area law for VB EE, in agreement with Refs.~\cite{Alet,Chh}.  However, in the case of the VN EE, the data approaches a constant value and shows no correction to the area law.
+{\it Area law in multi-leg ladders.}--  Given the ground state of a quantum many-body system in 2D, the question of whether the entanglement entropy fulfills and "area" (boundary) law is in general a difficult one to answer.  
+However from a simulation perspective this question is of utmost importance, since tensor-network generalization of MPS techniques, such as PEPS, produce states that satisfy the area law by construction.  Thus in order to simulate, for example, the N\'eel groundstate of the 2D Heisenberg model accurately with such methods depends critically on whether or not the entanglement entropy of the N\'eel state obeys an area law.  Refs.~\cite{Alet,Chh} examined this issue using the VB EE, and found clear multiplicative logarithmic corrections to the area law in the N\'eel state, which was tentatively attributed to gapless Goldstone modes and algebraically decaying correlations.  
+
+We can address this question using our data for the VB and VN EE alluded to in the above section on multi-leg ladders.  That is, we chose a lattice geometry such that subregion A is rectangular, cutting a multi-leg ladder cleanly across a rung, such that the ``area'' separating region A and B is equivalent to the number of legs in the ladder $N$.  We chose this area A to contain contain $2N^2$ sites ...{\bf Matt: do we want to spell out the argument involving the sum over quasi-1D modes?  I think we will have room}.
+
+Fig.~\ref{zigzag} illustrates the simulation results for $N$-leg ladders.  Plotting $S_A/N$ versus $N$ on a log scale, one sees that we reproduce the multiplicative logarithmic correction to the VB area-law, in agreement with Refs.~\cite{Alet,Chh}.  However, the linear slope is not present in the plot of the VN EE data from the DMRG, which convincingly approaches a constant for large $N$.  Clearly, the VN EE suggests that the area law is indeed obeyed in the N\'eel groundstate, leading one to conclude that the multiplicative logarithmic correction is an artifact of the VB EE.
+
+%Despite the importance of adherence to the area law in tensor-network generalization of MPS techniques, it is still not yet known whether the 2D isotropic Heisenberg ground state does obey the area law.  The results from Refs.~\cite{Alet,Chh} for the VB EE in 2D indicate a multiplicative logarithmic corrections to the area law.  We find it necessary to address whether the same logarithmic correction exists in the VN EE.  Fig.~\ref{zigzag} shows the VB EE and VN EE for ladders with N legs.  The lattice geometry is chosen such that subregion A contains $2N^2$ sites and is always rectangular.  It is clear that Fig.~\ref{zigzag} shows a logarithmic correction to the area law for VB EE, in agreement with Refs.~\cite{Alet,Chh}.  However, in the case of the VN EE, the data approaches a constant value and shows no correction to the area law.
 
 \begin{figure}
 {
