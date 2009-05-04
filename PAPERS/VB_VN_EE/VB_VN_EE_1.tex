@@ -46,7 +46,7 @@ Of particular importance, the existence of an area law has consequences in the r
 
 Thus the question of an area law in the groundstates of 2D quantum systems is of the utmost importance for the development of new simulation techniques.  Paradoxically, it is also a quantity that is difficult to measure in 2D systems, due to the fact that QMC techniques (currently the only scalable method capable of unbiased 2D simulations) do not have direct access to the groundstate wavefunction $| \psi \rangle$, required to construct the VN EE.  In response to this, several authors \cite{Alet, Chh} has recently introduced the concept of {\it valence bond} (VB) entanglement entropy, defined for an SU(2) symmetric spin system as
 \begin{equation}
-S^{\rm VB}_A = \ln(2) \cdot \mathcal{N}_A,
+S^{\rm VB}_A = \ln(2) \cdot \mathcal{N}_A, \label{VBEE}
 \end{equation}
 where $ \mathcal{N}_A$ is the number of EPR spin singlets ${( |\uparrow \downarrow \rangle - | \downarrow \uparrow \rangle)/\sqrt{2}}$ crossing the boundary between regions A and B.  Unlike the VN EE, the VB EE can be accessed very easily in the valence-bond basis projector QMC method recently proposed by Sandvik \cite{Sandvik}.  
 As demonstrated in Refs.~\cite{Alet,Chh}, the VB EE has many properties in common with the VN EE, in particular the relationship $S_A = S_B$, and the fact that $S^{VB}_A=0$ for regions ``un-entangled'' by valence bonds.  Further, a comparison of the scaling of the VB EE for a (critical) 1D spin 1/2 Heisenberg chain shows good agreement with analytical results known from conformal field theory (CFT), which we discuss more below.
@@ -96,7 +96,7 @@ Fig.~\ref{zigzag} illustrates the simulation results for $N$-leg ladders.  Plott
 \begin{figure}
 {
 \includegraphics[width=3in]{FIG2.eps}
-\caption{(color online) 
+\caption{(color online) Valence Bond and von Neumann entanglements entropies for a 4-leg ladder system with 100 sites per leg.  In this and similar geometries, $x$ is the site index of the ladder, defined using the usual DMRG sweeping-convention (inset lower left).  
 \label{ladder}}}
 \end{figure}
 
@@ -106,6 +106,15 @@ Fig.~\ref{zigzag} illustrates the simulation results for $N$-leg ladders.  Plott
 \caption{(color online) The VB and VN entanglement entropies (taken such that the region A includes $2N^2$ sites) normalized by N, the number of legs.  All ladders have 100 sites per leg.
 \label{zigzag}}}
 \end{figure}
+
+{\it Discussion.}-- In this paper, we have compared scaling properties of the valence bond (VB) entanglement entropy (EE) defined in Refs.~\cite{Alet,Chh} to the von Neumann (VN) entanglement entropy in the spin 1/2 Heisenberg model on one-dimensional and multi-leg ladder geometries.  Both entropy measurements were evaluated using large-scale numerical simulations; the VN EE with DMRG (which is restricted to 1D or seven-leg and less open boundary ladders), and valence-bond basis QMC, which can access the VB EE on any lattice dimension or geometry.  In 1D, we find that the VB mimics the behavior of the VN EE closely, although using the definition of Eq.~\eqref{VBEE}, is less than the VN EE for periodic 1D Heisenberg chains, and greater than the VN EE for open chains.  In addition, fits to 1D conformal field theory, which are excellent for the VN entropy calculated via DMRG, appear to deviate significantly for the VB EE in the large chain-size limit, approaching some $c<1$ for both boundary conditions examined here.
+
+On multi-leg ladder systems with open boundaries, the VB EE is systematically greater than the VN EE, a discrepancy which grows as the number of legs in increased.  Defining the boundary between the two entangled regions as being bipartitioned by a cut across all legs, we can evaluate an ``area law'' in the ladder geometries.  The VN EE measured by DMRG adheres to the area law in the large-leg limit, whereas the VB EE measured by QMC reproduces a multiplicative log correction found in Refs.~\cite{Alet,Chh} for the N\'eel groundstate of the 2D Heisenberg model.
+
+This work has elucidated the relationship between the VB and VN EE.  Although clearly a good measurement of entanglement readily accessible to numerical simulations in 2D and higher, the VB EE does not provide a bound on the VN EE, unlike other entropic measures such as Renyi entropies.  Other properties of the VN EE, such as its adherence to an area law, are reproduced in the groundstates of some gapped systems \cite{Alet,Chh}, however in the case of the N\'eel groundstate of the 2D Heisenberg model, unphysical multiplicative logarithmic corrections appear in the VB EE, which are not caused by gapless excitations or algebraically decaying correlations, but simply by the valence-bond length distribution ({\bf we need to justify this in the text}).  The presence of this correction must be taken into account in proposals to use the VB EE for such important future tasks such as characterizing topological phases using entanglement entropy, or studying universality at quantum phase transitions.
+
+{\it Acknowledgements.}-- The authors thank I. Affeck, J. Berlinsky, A. Del Maestro and E. Sorensen for useful discussions.  Support for this work was provided by NSERC of Canada.
+
 
 \bibliography{VB_biblio}
 
