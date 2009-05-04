@@ -1,6 +1,6 @@
 # Grace project file
 #
-@version 50122
+@version 50121
 @page size 792, 612
 @page scroll 5%
 @page inout 5%
@@ -21,9 +21,9 @@
 @map font 13 to "ZapfDingbats", "ZapfDingbats"
 @map color 0 to (255, 255, 255), "white"
 @map color 1 to (0, 0, 0), "black"
-@map color 2 to (255, 0, 0), "red"
+@map color 2 to (255, 69, 0), "orangish"
 @map color 3 to (0, 255, 0), "green"
-@map color 4 to (0, 0, 255), "blue"
+@map color 4 to (107, 142, 35), "drab"
 @map color 5 to (255, 255, 0), "yellow"
 @map color 6 to (188, 143, 143), "brown"
 @map color 7 to (220, 220, 220), "grey"
@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Tue Apr 28 17:48:24 2009"
+@timestamp def "Mon May  4 16:54:18 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -223,7 +223,7 @@
 @    altyaxis  off
 @    legend on
 @    legend loctype view
-@    legend 0.85, 0.8
+@    legend 0.8, 0.8
 @    legend box color 1
 @    legend box pattern 1
 @    legend box linewidth 1.0
@@ -231,7 +231,7 @@
 @    legend box fill color 0
 @    legend box fill pattern 1
 @    legend font 0
-@    legend char size 1.000000
+@    legend char size 1.500000
 @    legend color 1
 @    legend length 4
 @    legend vgap 1
@@ -292,7 +292,7 @@
 @    s0 errorbar riser clip off
 @    s0 errorbar riser clip length 0.100000
 @    s0 comment "/Users/rgmelko/Waterloo/VBbasis_QMC/VB_qmc/PAPERS/VB_VN_EE/figure2/entropy.2-leg-ladder.dat"
-@    s0 legend  ""
+@    s0 legend  "VN EE"
 @    s1 hidden false
 @    s1 type xydy
 @    s1 symbol 2
@@ -341,7 +341,7 @@
 @    s1 errorbar riser clip off
 @    s1 errorbar riser clip length 0.100000
 @    s1 comment "Cols 1:2:3"
-@    s1 legend  ""
+@    s1 legend  "VB EE"
 @target G0.S0
 @type xy
 2 0.906669
