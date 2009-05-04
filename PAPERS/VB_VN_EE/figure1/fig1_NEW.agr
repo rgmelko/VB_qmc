@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Mon May  4 14:30:46 2009"
+@timestamp def "Mon May  4 15:06:34 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -1102,7 +1102,7 @@
 @g3 fixedpoint format general general
 @g3 fixedpoint prec 6, 6
 @with g3
-@    world 0.0025, 0.31, 0.017, 0.339
+@    world 0.0025, 0.93, 0.017, 1.019
 @    stack world 0, 0, 0, 0
 @    znorm 1
 @    view 0.150000, 0.150000, 0.640000, 0.468182
@@ -1184,7 +1184,7 @@
 @    yaxis  label color 1
 @    yaxis  label place normal
 @    yaxis  tick on
-@    yaxis  tick major 0.005
+@    yaxis  tick major 0.02
 @    yaxis  tick minor ticks 1
 @    yaxis  tick default 6
 @    yaxis  tick place rounded true
@@ -1917,18 +1917,18 @@
 &
 @target G3.S0
 @type xy
-0.015625 0.321212
-0.010416667 0.318966
-0.01 0.319247
-0.0078125 0.316187
-0.005 0.313227
-0.00390625 0.31253
+0.015625 0.963636
+0.010416667 0.956898
+0.01 0.957741
+0.0078125 0.948561
+0.005 0.939681
+0.00390625 0.93759
 &
 @target G3.S1
 @type xy
-0.015625 0.335876
-0.010416667 0.335322
-0.01 0.335274
-0.0078125 0.335015
-0.005 0.334607
+0.015625 1.007628
+0.010416667 1.005966
+0.01 1.005822
+0.0078125 1.005045
+0.005 1.003821
 &
