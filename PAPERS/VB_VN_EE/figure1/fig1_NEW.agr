@@ -1,6 +1,6 @@
 # Grace project file
 #
-@version 50121
+@version 50122
 @page size 792, 612
 @page scroll 5%
 @page inout 5%
@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Fri May  1 16:15:29 2009"
+@timestamp def "Mon May  4 14:30:46 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -104,7 +104,7 @@
 @    world 0.9, 0.4, 40, 1.1
 @    stack world 0, 0, 0, 0
 @    znorm 1
-@    view 0.150000, 0.480000, 0.640000, 0.950000
+@    view 0.660000, 0.480000, 1.145134, 0.950000
 @    title ""
 @    title font 0
 @    title size 1.500000
@@ -207,7 +207,7 @@
 @    yaxis  ticklabel angle 0
 @    yaxis  ticklabel skip 0
 @    yaxis  ticklabel stagger 0
-@    yaxis  ticklabel place normal
+@    yaxis  ticklabel place opposite
 @    yaxis  ticklabel offset auto
 @    yaxis  ticklabel offset 0.000000 , 0.010000
 @    yaxis  ticklabel start type auto
@@ -356,7 +356,7 @@
 @    world 0.9, 0.6, 40, 2
 @    stack world 0, 0, 0, 0
 @    znorm 1
-@    view 0.660000, 0.480000, 1.145134, 0.950000
+@    view 0.150000, 0.480000, 0.640000, 0.950000
 @    title ""
 @    title font 0
 @    title size 1.500000
@@ -459,7 +459,7 @@
 @    yaxis  ticklabel angle 0
 @    yaxis  ticklabel skip 0
 @    yaxis  ticklabel stagger 0
-@    yaxis  ticklabel place opposite
+@    yaxis  ticklabel place normal
 @    yaxis  ticklabel offset auto
 @    yaxis  ticklabel offset 0.000000 , 0.010000
 @    yaxis  ticklabel start type auto
@@ -608,7 +608,7 @@
 @    world 0, 0.97, 49, 1.079
 @    stack world 0, 0, 0, 0
 @    znorm 1
-@    view 0.150000, 0.150000, 0.640000, 0.468182
+@    view 0.660000, 0.150000, 1.145134, 0.468182
 @    title ""
 @    title font 0
 @    title size 1.500000
@@ -711,7 +711,7 @@
 @    yaxis  ticklabel angle 0
 @    yaxis  ticklabel skip 0
 @    yaxis  ticklabel stagger 0
-@    yaxis  ticklabel place normal
+@    yaxis  ticklabel place opposite
 @    yaxis  ticklabel offset auto
 @    yaxis  ticklabel offset 0.000000 , 0.010000
 @    yaxis  ticklabel start type auto
@@ -1102,10 +1102,10 @@
 @g3 fixedpoint format general general
 @g3 fixedpoint prec 6, 6
 @with g3
-@    world 0, 0, 1, 1
+@    world 0.0025, 0.31, 0.017, 0.339
 @    stack world 0, 0, 0, 0
 @    znorm 1
-@    view 0.660000, 0.150000, 1.145134, 0.468182
+@    view 0.150000, 0.150000, 0.640000, 0.468182
 @    title ""
 @    title font 0
 @    title size 1.500000
@@ -1133,8 +1133,8 @@
 @    xaxis  label color 1
 @    xaxis  label place normal
 @    xaxis  tick on
-@    xaxis  tick major 0.2
-@    xaxis  tick minor ticks 1
+@    xaxis  tick major 0.005
+@    xaxis  tick minor ticks 4
 @    xaxis  tick default 6
 @    xaxis  tick place rounded true
 @    xaxis  tick in
@@ -1184,7 +1184,7 @@
 @    yaxis  label color 1
 @    yaxis  label place normal
 @    yaxis  tick on
-@    yaxis  tick major 0.2
+@    yaxis  tick major 0.005
 @    yaxis  tick minor ticks 1
 @    yaxis  tick default 6
 @    yaxis  tick place rounded true
@@ -1208,7 +1208,7 @@
 @    yaxis  ticklabel angle 0
 @    yaxis  ticklabel skip 0
 @    yaxis  ticklabel stagger 0
-@    yaxis  ticklabel place opposite
+@    yaxis  ticklabel place normal
 @    yaxis  ticklabel offset auto
 @    yaxis  ticklabel offset 0.000000 , 0.010000
 @    yaxis  ticklabel start type auto
@@ -1245,6 +1245,104 @@
 @    frame pattern 1
 @    frame background color 0
 @    frame background pattern 0
+@    s0 hidden false
+@    s0 type xy
+@    s0 symbol 1
+@    s0 symbol size 0.750000
+@    s0 symbol color 1
+@    s0 symbol pattern 1
+@    s0 symbol fill color 4
+@    s0 symbol fill pattern 1
+@    s0 symbol linewidth 1.5
+@    s0 symbol linestyle 1
+@    s0 symbol char 65
+@    s0 symbol char font 0
+@    s0 symbol skip 0
+@    s0 line type 0
+@    s0 line linestyle 1
+@    s0 line linewidth 1.0
+@    s0 line color 1
+@    s0 line pattern 1
+@    s0 baseline type 0
+@    s0 baseline off
+@    s0 dropline off
+@    s0 fill type 0
+@    s0 fill rule 0
+@    s0 fill color 1
+@    s0 fill pattern 1
+@    s0 avalue off
+@    s0 avalue type 2
+@    s0 avalue char size 1.000000
+@    s0 avalue font 0
+@    s0 avalue color 1
+@    s0 avalue rot 0
+@    s0 avalue format general
+@    s0 avalue prec 3
+@    s0 avalue prepend ""
+@    s0 avalue append ""
+@    s0 avalue offset 0.000000 , 0.000000
+@    s0 errorbar on
+@    s0 errorbar place both
+@    s0 errorbar color 1
+@    s0 errorbar pattern 1
+@    s0 errorbar size 1.000000
+@    s0 errorbar linewidth 1.0
+@    s0 errorbar linestyle 1
+@    s0 errorbar riser linewidth 1.0
+@    s0 errorbar riser linestyle 1
+@    s0 errorbar riser clip off
+@    s0 errorbar riser clip length 0.100000
+@    s0 comment "/Users/akallin/VB_qmc/PAPERS/VB_VN_EE/figure1/PBC_slope_data/PBCslope_QMC.dat"
+@    s0 legend  ""
+@    s1 hidden false
+@    s1 type xy
+@    s1 symbol 2
+@    s1 symbol size 0.750000
+@    s1 symbol color 1
+@    s1 symbol pattern 1
+@    s1 symbol fill color 2
+@    s1 symbol fill pattern 1
+@    s1 symbol linewidth 1.5
+@    s1 symbol linestyle 1
+@    s1 symbol char 65
+@    s1 symbol char font 0
+@    s1 symbol skip 0
+@    s1 line type 0
+@    s1 line linestyle 1
+@    s1 line linewidth 1.0
+@    s1 line color 2
+@    s1 line pattern 1
+@    s1 baseline type 0
+@    s1 baseline off
+@    s1 dropline off
+@    s1 fill type 0
+@    s1 fill rule 0
+@    s1 fill color 1
+@    s1 fill pattern 1
+@    s1 avalue off
+@    s1 avalue type 2
+@    s1 avalue char size 1.000000
+@    s1 avalue font 0
+@    s1 avalue color 1
+@    s1 avalue rot 0
+@    s1 avalue format general
+@    s1 avalue prec 3
+@    s1 avalue prepend ""
+@    s1 avalue append ""
+@    s1 avalue offset 0.000000 , 0.000000
+@    s1 errorbar on
+@    s1 errorbar place both
+@    s1 errorbar color 1
+@    s1 errorbar pattern 1
+@    s1 errorbar size 1.000000
+@    s1 errorbar linewidth 1.0
+@    s1 errorbar linestyle 1
+@    s1 errorbar riser linewidth 1.0
+@    s1 errorbar riser linestyle 1
+@    s1 errorbar riser clip off
+@    s1 errorbar riser clip length 0.100000
+@    s1 comment "/Users/akallin/VB_qmc/PAPERS/VB_VN_EE/figure1/PBC_slope_data/PBCslope_DMRG.dat"
+@    s1 legend  ""
 @target G0.S0
 @type xy
 1.9986843 0.429556
@@ -1816,4 +1914,21 @@
 12 1.001124
 11 1.000878
 10 1.000956
+&
+@target G3.S0
+@type xy
+0.015625 0.321212
+0.010416667 0.318966
+0.01 0.319247
+0.0078125 0.316187
+0.005 0.313227
+0.00390625 0.31253
+&
+@target G3.S1
+@type xy
+0.015625 0.335876
+0.010416667 0.335322
+0.01 0.335274
+0.0078125 0.335015
+0.005 0.334607
 &
