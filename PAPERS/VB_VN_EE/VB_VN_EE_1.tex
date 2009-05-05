@@ -164,63 +164,63 @@ average over all the valence bond states obtained by this procedure.
 
 \begin{figure} {
 %\includegraphics[width=3.2in]{fig1_inset.eps}
-\includegraphics[width=3.3in]{4-panelFIG1.eps} \caption{(color online)
-Valence bond (VB) and von Neumann (VN) entanglement entropies (EE) for 1D
-Heisenberg model with (left panels) periodic boundary conditions (PBC),
-and (right panels) open boundary conditions (OBC). Upper panels show the
-entropies as a function of the conformal distance $x'$ for 100-site chains
-(see text). Lower plots show the values for the central charge $c$,
-obtained by fitting the numerical data to the conformal field theory
-result, for several chain lengths. For PBC (left panel), $c$ is plotted as
-a function of inverse system size. For OBC (right panel), boundary effects
-make the fits depend on the number of sites included in the fit, $z$. To
-bypass these effects we plot $c$ as a function $z$ for each $L$. Here, $z$
-is systematically decreased by removing points from the {\it outside} ends
-of the open-boundary chain. $c$ is illustrated for the VN EE (closed
-symbols) and the VB EE (open symbols) for system sizes $L=64$ (circles),
-$L=100$ (squares), $L=128$ (diamonds), and $L=200$ (triangles)
-\label{1D}}} \end{figure}
+\includegraphics[width=3.3in]{4-panelFIG1.eps} \caption{(color online) VB
+and VN entanglement entropies for 1D Heisenberg model with PBC (left
+panels), and OBC (right panels). Upper panels show the entropies as a
+function of the conformal distance $x'$ for 100-site chains (see text).
+Lower plots show the values for the central charge $c$, obtained by
+fitting the numerical data to the CFT result, for several chain lengths.
+For PBC (left panel), $c$ is plotted as a function of inverse system size.
+For OBC (right panel), boundary effects make the fits depend on the number
+of sites included in the fit, $z$. To bypass these effects we plot $c$ as
+a function $z$ for each $L$. Here, $z$ is systematically decreased by
+removing points from the {\it outside} ends of the open-boundary chain.
+$c$ is illustrated for the VN EE (closed symbols) and the VB EE (open
+symbols) for system sizes $L=64$ (circles), $L=100$ (squares), $L=128$
+(diamonds), and $L=200$ (triangles) \label{1D}}} \end{figure}
 
 {\it One-dimensional chain.}-- We consider first the case of 1D Heisenberg
 chains. We employ both open (OBC) and periodic (PBC) boundary conditions
 with both DMRG and QMC, in order to study the VN and VB entanglement
-entropies (PBCs typically have poorer convergence properties than OBCS
+entropies (PBCs typically have poorer convergence properties than OBCs
 within DMRG and more states must be kept in each truncation). 
+%TODO
 % I will delete this sentence between brakets if needed: this is well
 % known and does not bring much to the paper discussion
 DMRG algorithm requires both subregions A and B to be topologically
-connected, so in 1D the bipartition is defined by a site $x$ with sites
-within the interval $[1,x]$ ($[x+1,L]$) belonging to subregion $A$ ($B$),
-$L$ being the lenght of the chain. We stress that the QMC and DMRG results
-are on the same geometry and Hamiltonian, and reproduce the same ground
-state energies; the remaining figures in the paper can be considered as
+connected, so in 1D the bipartition is defined by a site index $x$ with
+sites within the interval $[1,x]$ ($[x+1,L]$) belonging to subregion $A$
+($B$), $L$ being the length of the chain. We stress that the QMC and DMRG
+results are on the same geometry and Hamiltonian, and reproduce the same
+ground state energies; all the figures in this paper can be considered as
 exact comparisons between the VB and VN EE. 
 
 Hamiltonian~(\ref{ham}) in 1D is known to be critical and therefore can be
 mapped to a 2D classical Hamiltonian at its critical point, which in turn
-can be described within conformal field theory (CFT) in the limit
-$L\to\infty$.  To address chains of finite lengths one can use the
-conformal mappings $x\to x'=L/\pi \sin(\pi x / L)$ for PBC, and $x\to
-x'=2L/\pi \sin(\pi x / L)$ for OBC. VN EE calculations within
-CFT~\cite{Cardy, Scholl06} obey $S^{VN}(x)= c/3 \ln(x') + S_1$ in the PBC
-case, and $S^{VN}(x)= c/6 \ln(x') + \ln(g)+S_1/2$ in the OBC case, where
-$c$ is the central charge of the CFT, $S_1$ is a model-dependent constant,
-and $g$ is Ludwig and Affleck's universal boundary
-term~\cite{AffleckAndLudwig}.
+can be described within CFT in the limit $L\to\infty$.  To address
+finite-length chains one can use the conformal mappings $x\to x'=L/\pi
+\sin(\pi x / L)$ for PBC, and $x\to x'=2L/\pi \sin(\pi x / L)$ for OBC. VN
+EE calculations within CFT~\cite{Cardy, Scholl06} obey $S^{VN}(x)= c/3
+\ln(x') + S_1$ in the PBC case, and $S^{VN}(x)= c/6 \ln(x') +
+\ln(g)+S_1/2$ in the OBC case, where $c$ is the central charge of the CFT,
+$S_1$ is a model-dependent constant, and $g$ is Ludwig and Affleck's
+universal boundary term~\cite{AffleckAndLudwig}.
 
 Figure~\ref{1D} illustrates simulation results in both cases, the left
 (right) panels corresponding to PBC (OBC). In Refs.~\cite{Alet, Chh}, VB
-EE calculated from QMC was compared to the CFT result, and a good fit to
-a central charge of $c=1$ was found for both cases.  In Fig.~\ref{1D} we
-compare this result to the VN EE calculated from the DMRG.  
-In the left panels of Fig.~\ref{1D}, both the VN and VB entropies are seen
-to fit well to the CFT result, although the VN EE is greater than the VB
-EE. The regression fit shows very good convergence with the CFT central
-charge prediction for the VN EE , while the VB EE fit yields a lower than
-predicted result. {\it (Should I include this?) It is possible the VB EE
-data is not sufficiently converged which would could give results below
-the CFT predicted value, however data from Refs.~\cite{Alet,Chh} bears
-similar results. }
+EE calculated from QMC was compared to the CFT result, and a good fit to a
+central charge of $c=1$ was found for both cases.  In Fig.~\ref{1D} we
+compare this result to the VN EE calculated from the DMRG.  In the left
+panels of Fig.~\ref{1D}, both the VN and VB entropies are seen to fit well
+to the CFT result, although the VN EE is greater than the VB EE. The
+regression fit shows very good convergence with the CFT central charge
+prediction for the VN EE, while the VB EE fit yields a lower than
+predicted result.  
+%TODO
+%{\it (Should I include this?) It is possible the VB EE
+%data is not sufficiently converged which would could give results below
+%the CFT predicted value, however data from Refs.~\cite{Alet,Chh} bears
+%similar results. }
 
 In the right panels of Fig.~\ref{1D}, both the VN and VB EE are seen to
 split into two branches, the upper (lower) corresponding to an odd (even)
@@ -262,7 +262,7 @@ to contain contain $2N^2$ sites ...{\bf Matt: do we want to spell out the
 argument involving the sum over quasi-1D modes?  I think we will have
 room}.
 
-Fig.~\ref{zigzag} illustrates the simulation results for $N$-leg ladders.
+Figure~\ref{zigzag} illustrates the simulation results for $N$-leg ladders.
 Plotting $S_A/N$ versus $N$ on a log scale, one sees that we reproduce the
 multiplicative logarithmic correction to the VB area-law, in agreement
 with Refs.~\cite{Alet,Chh}.  However, the linear slope is not present in
@@ -285,13 +285,13 @@ multiplicative logarithmic correction is an artifact of the VB EE.
 %approaches a constant value and shows no correction to the area law.
 
 \begin{figure} { \includegraphics[width=3in]{FIG2.eps} \caption{(color
-online) Valence Bond and von Neumann entanglements entropies for a 4-leg
+online) VB and VN entanglement entropies for a 4-leg
 ladder system with 100 sites per leg.  In this and similar geometries, $x$
 is the site index of the ladder, defined using the usual DMRG
 sweeping-convention (inset lower left).  \label{ladder}}} \end{figure}
 
 \begin{figure} { \includegraphics[width=3in]{fig4.eps} \caption{(color
-online) The VB and VN entanglement entropies (taken such that the region A
+online) VB and VN entanglement entropies (taken such that the region A
 includes $2N^2$ sites) normalized by N, the number of legs.  All ladders
 have 100 sites per leg.  \label{zigzag}}} \end{figure}
 
@@ -336,12 +336,11 @@ be taken into account in proposals to use the VB EE for such important
 future tasks such as characterizing topological phases using entanglement
 entropy, or studying universality at quantum phase transitions.
 
-{\it Acknowledgements.}-- The authors thank I. Affeck, J. Berlinsky, A.
-Del Maestro and E. Sorensen for useful discussions.  Support for this work
-was provided by NSERC of Canada.
+{\it Acknowledgements.}-- The authors thank I.~Affeck, J.~Berlinsky,
+A.~Del~Maestro, A.~Feiguin, L.~Hormozi, and E.~Sorensen for useful
+discussions. Support for this work was provided by NSERC of Canada.
 
 
 \bibliography{VB_biblio}
-
 
 \end{document}
