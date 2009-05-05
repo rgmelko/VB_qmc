@@ -31,46 +31,52 @@ Avda.~de~Vigo~s/n, E-15705 Santiago de Compostela, Spain}
 
 %\newpage
 
-{\it Introduction.}-- Entanglement has arisen in condensed matter physics
-as a new paradigm for the study of correlations in a system.  Measurements
-of entanglement between separate subregions, chiefly using entropic
+{\it Introduction.}-- Entanglement has arisen 
+as a new paradigm for the study of correlations in condensed matter systems.  
+Measurements
+of entanglement between subregions, chiefly using entropic
 quantities, have an advantage over traditional two-point correlation
 functions in that they encode the total amount of information shared
-between two subregions without the possibility of missing ``hidden''
-correlations \cite{wolf}.  Such hidden correlations may occur in some
-quantum groundstates,  in particular the important example of spin liquid
-states, where two-point correlation functions decay at large lengthscales.
-However, it is well known that a type of topological order may exist in
-spin liquids, which may be quantified in a ``topological entanglement
-entropy'', a property of the groundstate wavefunction \cite{ KP, LW}.
+between the subregions without the possibility of missing ``hidden''
+correlations \cite{wolf}.  Such correlations may occur in some
+quantum groundstates --  for example spin liquid states -- 
+where two-point correlation functions decay at large lengthscales.
+However, it is known that a type of topological order can exist in
+spin liquids, which is quantified in a ``topological entanglement
+entropy''  \cite{ KP, LW}.
 This and other entropic measures are typically discussed in the context of
-the von Neumann entanglement entropy, which for a system partitioned into
+the von Neumann (VN) entanglement entropy (EE), which for a system partitioned into
 two regions A and B, quantifies the amount of entanglement of A with B as
---This line, and those below, will be ignored-- \begin{equation} S^{\rm
-VN}_A = - {\rm Tr} [ \rho_A \ln \rho_A ]. \label{vNEE} \end{equation}
+\begin{equation} 
+S^{\rm VN}_A = - {\rm Tr} [ \rho_A \ln \rho_A ]. \label{vNEE} 
+\end{equation}
 Here, the reduced density matrix $\rho_A = {\rm Tr}_B | \psi \rangle
 \langle \psi |$ is obtained by tracing out the degrees of freedom
 associated with the region B.
 
-The von Neumann (VN) entanglement entropy (EE) has a well-defined and
-oft-studied set of analytical properties in interacting quantum systems.
-In one dimension (1D), exact analytical results are known from conformal
+The properties of the VN EE are well-studied in the context of quantum information theory.
+In interacting one dimensional (1D) quantum systems, exact analytical results are known from conformal
 field theories (CFT); they show that, away from special critical points,
-the VN EE between A and B scales according to the size of the boundary.
+the VN EE scales as the size of the boundary between A and B.
 This so-called {\it area law} is also believed to hold in many
-groundstates of two dimensional (2D) interacting quantum Hamiltonians,
-although few exact results are available \cite{ALreview}.  Of particular
-importance, the existence of an area law has consequences in the
-rapidly-advancing field of computational quantum-many body theory: it is
-known that if the groundstate of a one-dimensional Hamiltonian satisfies
-an area law, then this state is well approximated by a Matrix Product
-State (MPS).  Tensor-network extension of such MPS states are the basis
+groundstates of two dimensional (2D) interacting quantum systems,
+although few exact results are available \cite{ALreview}.  This has 
+consequence in the
+rapidly-advancing field of computational quantum-many body theory, where
+it is known for example that groundstates of 1D Hamiltonians that satisfy an area law
+can be accurately represented by Matrix Product States (MPS).
+Tensor-network extension of MPS states are the basis
 for a new promising class of numerical algorithms that may push our
-abilities to simulate two-dimensional (2D) quantum systems past that
-allowed by quantum Monte Carlo (QMC) technologies, which are hampered by
-the notorious fermionic sign problem.  However, it is believed that 2D
-states which lend themselves to accurate approximation by such methods
-must also obey an area law.
+abilities to simulate 2D quantum systems past that
+allowed by quantum Monte Carlo (QMC), which is hampered by
+the notorious fermionic sign problem.  However, tensor network states
+are constructed to obey an area law; in order to be represented faithfully
+by them, a given 2D quantum groundstate must have physical entanglement
+properties which also obey the area law \cite{ALreview}
+
+%However, it is believed that 2D
+%states which lend themselves to accurate approximation by such methods
+%must also obey an area law.
 
 %\begin{figure} { \includegraphics[width=2.4in]{ladder.eps}
 %\caption{(color online) A three-leg ladder.  The site labels $x$ indicate
@@ -78,55 +84,59 @@ must also obey an area law.
 %order by which entanglement entropy is measured.  The blue box labels
 %sites in the region A, with $x=7$.  \label{ladder}}} \end{figure}
 
-Thus the question of an area law in the groundstates of 2D quantum systems
-is of the utmost importance for the development of new simulation
-techniques.  Paradoxically, it is also a quantity that is difficult to
-measure in 2D systems, due to the fact that QMC techniques (currently the
-only scalable method capable of unbiased 2D simulations) do not have
+Unfortunately, entanglement is a quantity that is difficult to
+measure in 2D systems.  This is due to the fact that QMC - currently the
+only scalable method capable of unbiased 2D simulations - does not have
 direct access to the groundstate wavefunction $| \psi \rangle$, required
-to construct the VN EE.  In response to this, several authors \cite{Alet,
+in Eq.~\eqref{vNEE}.  In response to this, several authors \cite{Alet,
 Chh} has recently introduced the concept of {\it valence bond} (VB)
-entanglement entropy, defined for an SU(2) symmetric spin system as
-\begin{equation} S^{\rm VB}_A = \ln(2) \cdot \mathcal{N}_A, \label{VBEE}
-\end{equation} where $ \mathcal{N}_A$ is the number of EPR spin singlets
+entanglement entropy, defined for a  spin system as
+\begin{equation} 
+S^{\rm VB}_A = \ln(2) \cdot \mathcal{N}_A, \label{VBEE}
+\end{equation} 
+where $ \mathcal{N}_A$ is the number of spin singlets
 ${( |\uparrow \downarrow \rangle - | \downarrow \uparrow
 \rangle)/\sqrt{2}}$ crossing the boundary between regions A and B.  Unlike
-the VN EE, the VB EE can be accessed very easily in the valence-bond basis
+the VN EE, the VB EE can be accessed easily in the valence-bond basis
 projector QMC method recently proposed by Sandvik \cite{Sandvik}.  As
 demonstrated in Refs.~\cite{Alet,Chh}, the VB EE has many properties in
 common with the VN EE, in particular the relationship $S_A = S_B$, and the
 fact that $S^{VB}_A=0$ for regions ``un-entangled'' by valence bonds.
-Further, a comparison of the scaling of the VB EE for a (critical) 1D spin
-1/2 Heisenberg chain shows good agreement with analytical results known
-from conformal field theory (CFT), which we discuss more below.  What is
-particularly striking about the results presented in Refs.~\cite{Alet,Chh}
-is the extension of their work to the 2D isotropic Heisenberg model, which
-displays a {\it multiplicative} logarithmic correction to the area law.
-This multiplicative log correction was attributed to algebraically
-decaying correlations \cite{Chh} and gapless modes \cite{Alet}.  If this
-property were to be shared by the VN EE, it could have the consequence
-that the 2D Neel groundstate can not be approximated by a tensor-network,
-and is therefore not amenable to simulation techniques based on the MPS
-framework
+Further, a comparison of the scaling of the VB EE for (critical) 1D spin
+1/2 Heisenberg chains shows good agreement with analytical results known
+from CFT.  What is
+particularly striking \cite{Alet,Chh} is that the VB EE in the
+ 2D isotropic Heisenberg model
+displays a {\it multiplicative} logarithmic correction to the area law, a property
+which would have negative consequences for the simulation of the 
+N\'eel groundstate using tensor-network simulations.
+
+%If this
+%property were to be shared by the VN EE, it could have the consequence
+%that the 2D Neel groundstate can not be approximated by a tensor-network,
+%and is therefore not amenable to simulation techniques based on the MPS
+%framework
  
 In this paper, we compare the VB EE calculated by valence-bond QMC to the
 VN EE accessible through large-scale density-matrix renormalization group
-(DMRG) measurements on the Heisenberg model on multi-leg ladder
-geometries.    We show that in 1D, contrary to initial results presented
-in Refs.~\cite{Alet,Chh}, the CFT central charge calculated by scaling the
-VN EE (confirmed with DMRG to converge to $c=1$) does not converge to the
-expected result when calculated by scaling the VB EE.  On multi-leg
-ladders, it becomes clear that the VB EE is always greater than the VN EE,
+(DMRG) simulations on the Heisenberg model on multi-leg ladder
+geometries.    We show that in 1D the CFT central charge calculated with DMRG by scaling the
+VN EE shows excellent agreement to $c=1$, whereas the VB EE appears to converge
+to $c<1$.
+On multi-leg
+ladders, the VB EE is systematically greater than the VN EE,
 a trend which grows rapidly with the number of legs $N$.  Finally, a
 comparison of the area law defined by bisecting the multi-leg ladders
-shows a clear logarithmic correction for the VN EE, $S^{VB}_A /N = N \ln
+shows a clear logarithmic correction for the VB EE, $S^{VB}_A /N = N \ln
 N$ (in agreement with Refs.~\cite{Alet,Chh}), however for data up to
-$N=7$, the VN EE as calculated by DMRG convincingly shows a scaling of
+$N=7$, the VN EE convincingly shows a scaling of
 $S^{VB}_A /N = N$, the expected area law.
 
 {\it Model and Methods.}-- We consider the spin 1/2 Heisenberg
-Hamiltonian, given by \begin{equation} H = J \sum_{\langle i j \rangle}
-{\mathbf S}_i \cdot {\mathbf S}_j \label{ham} \end{equation} where the sum
+Hamiltonian, given by  
+$H =  \sum_{\langle i j \rangle}
+{\mathbf S}_i \cdot {\mathbf S}_j \label{ham}$, 
+where the sum
 is over nearest-neighbor sites.  Geometries studied are 1D chains, and
 multi-leg ladders with length $L$ and number of legs $n$.  
 %Many properties of this model on open-boundary ladders with $n$ legs has
