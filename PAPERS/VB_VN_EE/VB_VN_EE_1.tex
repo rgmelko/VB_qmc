@@ -136,18 +136,17 @@ ladder geometries, namely the valence-bond basis QMC and DMRG, both of
 which give {\it unbiased} approximations to the ground state of the
 Hamiltonian at zero temperature, and results from both of which can be
 compared directly to one another.  The VN EE is naturally accessible
-through the DRMG ``sweeping'' algorithm, which converges the groundstate
-wavefunction of a finite-size system by calculating the reduced density
-matrix between a ``system'' and ``environment'' (subregions A and B), the
-size of each of which are systematically grown or reduced in the usual
-DMRG sweep.  The reduced density matrix $\rho_A$ is calculated at each
-sweeping step, allowing easy calculation of Eq.~\ref{vNEE}.  The density
-matrix is of course truncated in the usual DMRG algorithm, so care must be
-taken to ensure that enough of the eigenvalue spectrum is included to
-converge the VN EE to sufficient accuracy; typically the number of states
-required is larger then that needed to converge the energy alone.
-% In this paper, we label the regions A by the largest lattice site $x$
-% contained therein.
+through the DRMG ``sweeping'' algorithm~\cite{White92, Scholl05}.  At each
+step of the algorithm, the wavefunction of the system is approximated by
+keeping only the states with largest coefficients in the Schmidt's
+decomposition for subregions A and B. To find the basis entering the
+Schmidt's decomposition for subregion A, the reduced density matrix
+$\rho_A$ is calculated and diagonalized, thus allowing easy calculation
+of Eq.~\ref{vNEE}. The truncation of the basis implies that only an upper
+bound for $S^{VN}_{A}$ is calculated, so care must be taken to ensure
+that enough of the eigenvalue spectrum is included to converge the VN EE
+to sufficient accuracy; typically the number of states required is larger
+then that needed to converge the energy alone.
 
 The VB EE can be calculated using the valence-bond basis QMC proposed by
 Sandvik in 2005 \cite{Sandvik}.  The valence-bond basis QMC algorithm that
@@ -164,47 +163,69 @@ average over all the valence bond states obtained by this procedure.
 \begin{figure} {
 %\includegraphics[width=3.2in]{fig1_inset.eps}
 \includegraphics[width=3.3in]{4-panelFIG1.eps} \caption{(color online)
-Upper plots: the valence bond (VB) and von Neumann (VN) entanglement
-entropies for a 100-site 1D Heisenberg chain with (left) periodic boundary
-conditions and (right) open boundary conditions.  Lower plots show the
-central charge $c$; for OBC (right), the central charge is illustrated for
-the VN EE (closed symbols) and the VB EE (open symbols) for system sizes
-L=64 (circles), L=100 (squares), L=128 (diamonds) and L=200 (triangles) as
-a function of the number of data points included in the fit, $z$.  Here,
-$z$ is systematically decreased by removing points from the {\it outside}
-ends of the open-boundary chain.  At left, the central charge as a
-function of inverse system size, for PBC.  \label{1D}}} \end{figure}
+Valence bond (VB) and von Neumann (VN) entanglement entropies (EE) for 1D
+Heisenberg model with (left panels) periodic boundary conditions (PBC),
+and (right panels) open boundary conditions (OBC). Upper panels show the
+entropies as a function of the conformal distance $x'$ for 100-site chains
+(see text). Lower plots show the values for the central charge $c$,
+obtained by fitting the numerical data to the conformal field theory
+result, for several chain lengths. For PBC (left panel), $c$ is plotted as
+a function of inverse system size. For OBC (right panel), boundary effects
+make the fits depend on the number of sites included in the fit, $z$. To
+bypass these effects we plot $c$ as a function $z$ for each $L$. Here, $z$
+is systematically decreased by removing points from the {\it outside} ends
+of the open-boundary chain. $c$ is illustrated for the VN EE (closed
+symbols) and the VB EE (open symbols) for system sizes $L=64$ (circles),
+$L=100$ (squares), $L=128$ (diamonds), and $L=200$ (triangles)
+\label{1D}}} \end{figure}
 
-{\it One-dimensional chain.}-- We consider first the case of a
-one-dimensional Heisenberg chains.  We employ both open (OBC) and periodic
-(PBC) boundary conditions with both DMRG and QMC, in order to study the VN
-and VB entanglement entropies (PBCs typically have poorer convergence
-properties with standard DMRG and more states must be kept in the
-algorithm).  Figure \ref{1D} illustrates simulation results in both cases,
-where the bipartition between regions A and B are defined via the length
-$1 \leq x \leq L$ along the chain.  In the upper panels of Fig.~\ref{1D},
-the two entanglement entropies are plotted to versus conformal distance
-$x'$, defined in the OBC case as $x'=2L/\pi \sin(\pi x / L)$ and in the
-PBC as $x'=L/\pi \sin(\pi x / L)$ ({\bf check}) \cite{Cardy}.  This allows
-one to compare the simulation results to exact result from conformal field
-theory (CFT) in the limit of infinite chains.  Namely, from CFT the VN EE
-is known to obey $S^{VN}_A = c/3 \ln(x') + S_1$ in the PBC case, and
-$S^{VN}_A = c/6 \ln(x') + \ln(g)+S_1/2$ in the OBC case, where $S_1$ is a
-model-dependent constant, $g$ is Ludwig and Affleck's universal boundary
-term, and $c$ is the central charge of the CFT.
+{\it One-dimensional chain.}-- We consider first the case of 1D Heisenberg
+chains. We employ both open (OBC) and periodic (PBC) boundary conditions
+with both DMRG and QMC, in order to study the VN and VB entanglement
+entropies (PBCs typically have poorer convergence properties than OBCS
+within DMRG and more states must be kept in each truncation). 
+% I will delete this sentence between brakets if needed: this is well
+% known and does not bring much to the paper discussion
+DMRG algorithm requires both subregions A and B to be topologically
+connected, so in 1D the bipartition is defined by a site $x$ with sites
+within the interval $[1,x]$ ($[x+1,L]$) belonging to subregion $A$ ($B$),
+$L$ being the lenght of the chain. We stress that the QMC and DMRG results
+are on the same geometry and Hamiltonian, and reproduce the same ground
+state energies; the remaining figures in the paper can be considered as
+exact comparisons between the VB and VN EE. 
 
-In Refs.~\cite{Alet, Chh}, VB EE calculated from QMC was compared to this
-CFT result, and a good fit to a central charge of $c=1$ was found for both
-cases.  In Fig.~\ref{1D} we compare this result to the VN EE calculated
-from the DMRG.  We stress that the QMC and DMRG results are on the same
-geometry and Hamiltonian, and reproduce the same ground state energies;
-the remaining figures in the paper can be considered as exact comparisons
-between the VB and VN EE.  In Fig.~\ref{1D} (b), both the VN and VB EE are
-seen to split into two branches, the lower corresponding to an even number
-of lattice sites in the {\it system} $A$, and the upper corresponding to
-an odd number of sites in $A$.  This reflects a well-known
-``dimerization'' effect induced by the open system boundaries \cite{Ian1}.
-A regression fit of the lower branch to the form $c/6 \ln {x'}$ (inset)
+Hamiltonian~(\ref{ham}) in 1D is known to be critical and therefore can be
+mapped to a 2D classical Hamiltonian at its critical point, which in turn
+can be described within conformal field theory (CFT) in the limit
+$L\to\infty$.  To address chains of finite lengths one can use the
+conformal mappings $x\to x'=L/\pi \sin(\pi x / L)$ for PBC, and $x\to
+x'=2L/\pi \sin(\pi x / L)$ for OBC. VN EE calculations within
+CFT~\cite{Cardy, Scholl06} obey $S^{VN}(x)= c/3 \ln(x') + S_1$ in the PBC
+case, and $S^{VN}(x)= c/6 \ln(x') + \ln(g)+S_1/2$ in the OBC case, where
+$c$ is the central charge of the CFT, $S_1$ is a model-dependent constant,
+and $g$ is Ludwig and Affleck's universal boundary
+term~\cite{AffleckAndLudwig}.
+
+Figure~\ref{1D} illustrates simulation results in both cases, the left
+(right) panels corresponding to PBC (OBC). In Refs.~\cite{Alet, Chh}, VB
+EE calculated from QMC was compared to the CFT result, and a good fit to
+a central charge of $c=1$ was found for both cases.  In Fig.~\ref{1D} we
+compare this result to the VN EE calculated from the DMRG.  
+In the left panels of Fig.~\ref{1D}, both the VN and VB entropies are seen
+to fit well to the CFT result, although the VN EE is greater than the VB
+EE. The regression fit shows very good convergence with the CFT central
+charge prediction for the VN EE , while the VB EE fit yields a lower than
+predicted result. {\it (Should I include this?) It is possible the VB EE
+data is not sufficiently converged which would could give results below
+the CFT predicted value, however data from Refs.~\cite{Alet,Chh} bears
+similar results. }
+
+In the right panels of Fig.~\ref{1D}, both the VN and VB EE are seen to
+split into two branches, the upper (lower) corresponding to an odd (even)
+number of lattice sites in $A$.  This reflects a well-known
+``dimerization'' effect induced by OBC~\cite{Ian1}.  Notice that contrary
+to the PBC case, the VN EE is now \textit{smaller} than the VB EE. A
+regression fit of the lower branch to the form $c/6 \ln {x'}$ (inset)
 shows excellent convergence of the VN EE to the central charge predicted
 by CFT, $c=1$, once finite-size effects and the proximity of the data to
 the open boundaries is taken into account.  In contrast, the VB EE fit
@@ -213,17 +234,8 @@ $c>1$ when all or most data is included in the fit, and $c<1$ as data is
 systematically excluded from the fit (data closest to the open boundary is
 removed first).
 
-In Fig.~\ref{1D} (a), the VN and VB entropies are also seen to diverge,
-however in this case the VN EE is greater than the VB EE.  The regression
-fit once again shows very good convergence with the CFT central charge
-prediction for the VN EE , while the VB EE fit yields a lower than
-predicted result. {\it (Should I include this?) It is possible the VB EE
-data is not sufficiently converged which would could give results below
-the CFT predicted value, however data from Refs.~\cite{Alet,Chh} bears
-similar results. }
-
 {\it Multi-leg ladders.}-- Moving away from the one dimensional chain, one
-can add ``legs'' to the lattice in a systematic way.
+can add ``legs'' to the lattice in a systematic way. 
 
 {\it Area law in multi-leg ladders.}--  Given the ground state of a
 quantum many-body system in 2D, the question of whether the entanglement
