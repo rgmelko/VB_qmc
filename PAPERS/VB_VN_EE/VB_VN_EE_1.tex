@@ -12,7 +12,7 @@
 \author{Ann B. Kallin}
 \affiliation{Department of Physics and Astronomy, University of Waterloo, Ontario, N2L 3G1, Canada} 
 
-\author{Ivan Gonz\'alez}
+\author{Iv\'an Gonz\'alez}
 \affiliation{Fundaci\'on Centro Tecnol\'ogico de Supercomputaci\'on de Galicia (CESGA), Santiago de Compostela, Spain}
 
 \author{Matthew B. Hastings}
@@ -65,7 +65,7 @@ We employ two complementary numerical techniques in our study of EE on ladder ge
 The VN EE is naturally accessible through the DRMG ``sweeping'' algorithm, which converges the groundstate wavefunction of a finite-size system by calculating the reduced density matrix between a ``system'' and ``environment'' (subregions A and B), the size of each of which are systematically grown or reduced in the usual DMRG sweep.  The reduced density matrix $\rho_A$ is calculated at each sweeping step, allowing easy calculation of Eq.~\ref{vNEE}.  The density matrix is of course truncated in the usual DMRG algorithm, so care must be taken to ensure that enough of the eigenvalue spectrum is included to converge the VN EE to sufficient accuracy; typically the number of states required is larger then that needed to converge the energy alone.
 % In this paper, we label the regions A by the largest lattice site $x$ contained therein.
 
-The VB EE can be calculated using the valence-bond basis QMC proposed by by Sandvik in 2005 \cite{Sandvik}.
+The VB EE can be calculated using the valence-bond basis QMC proposed by Sandvik in 2005 \cite{Sandvik}.
 The valence-bond basis QMC algorithm that we use is the simple single-projector method, with lattice geometries constructed to match those given by the DMRG algorithm.  The ground state of the system is projected out by repeated application of a list of bond operators on nearest neighbor sites of the ladder.  A number of bond operators ($r$) are changed each step and the change is accepted with a probability depending on the number of nearest neighbor bonds in the resulting valence bond states.  Measured quantities such as energy or valence bond entanglement entropy are then calculated by a weighted average over all the valence bond states obtained by this procedure.
 
 \begin{figure}
