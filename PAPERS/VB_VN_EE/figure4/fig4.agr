@@ -21,9 +21,9 @@
 @map font 13 to "ZapfDingbats", "ZapfDingbats"
 @map color 0 to (255, 255, 255), "white"
 @map color 1 to (0, 0, 0), "black"
-@map color 2 to (255, 0, 0), "red"
+@map color 2 to (139, 0, 0), "red"
 @map color 3 to (0, 255, 0), "green"
-@map color 4 to (0, 0, 255), "blue"
+@map color 4 to (30, 144, 255), "blue"
 @map color 5 to (255, 255, 0), "yellow"
 @map color 6 to (188, 143, 143), "brown"
 @map color 7 to (220, 220, 220), "grey"
@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Tue Apr 28 16:33:34 2009"
+@timestamp def "Tue May  5 13:17:45 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -246,11 +246,11 @@
 @    frame background pattern 0
 @    s0 hidden false
 @    s0 type xy
-@    s0 symbol 3
+@    s0 symbol 1
 @    s0 symbol size 1.000000
 @    s0 symbol color 1
 @    s0 symbol pattern 1
-@    s0 symbol fill color 9
+@    s0 symbol fill color 4
 @    s0 symbol fill pattern 1
 @    s0 symbol linewidth 2.5
 @    s0 symbol linestyle 1
@@ -292,14 +292,14 @@
 @    s0 errorbar riser clip off
 @    s0 errorbar riser clip length 0.100000
 @    s0 comment "/Users/akallin/VB_qmc/PAPERS/VB_VN_EE/figure4/2Nsq_fig_20_normalized.dat"
-@    s0 legend  "QMC, VB EE"
+@    s0 legend  "VB EE"
 @    s2 hidden false
 @    s2 type xy
-@    s2 symbol 1
+@    s2 symbol 2
 @    s2 symbol size 1.000000
 @    s2 symbol color 1
 @    s2 symbol pattern 1
-@    s2 symbol fill color 11
+@    s2 symbol fill color 2
 @    s2 symbol fill pattern 1
 @    s2 symbol linewidth 2.5
 @    s2 symbol linestyle 1
@@ -341,7 +341,7 @@
 @    s2 errorbar riser clip off
 @    s2 errorbar riser clip length 0.100000
 @    s2 comment "copy of setdata G0.S0"
-@    s2 legend  "DMRG, VN EE"
+@    s2 legend  "VN EE"
 @target G0.S0
 @type xy
 1 0.492507
