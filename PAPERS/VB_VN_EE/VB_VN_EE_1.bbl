@@ -1,4 +1,4 @@
-\begin{thebibliography}{16}
+\begin{thebibliography}{17}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname bibnamefont\endcsname\relax
   \def\bibnamefont#1{#1}\fi
@@ -117,5 +117,13 @@
   \bibinfo{author}{\bibfnamefont{I.}~\bibnamefont{Affleck}},
   \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{96}},
   \bibinfo{pages}{100603} (\bibinfo{year}{2006}).
+
+\bibitem[{\citenamefont{White et~al.}(1994)\citenamefont{White, Noack, and
+  Scalapino}}]{White1994}
+\bibinfo{author}{\bibfnamefont{S.}~\bibnamefont{White}},
+  \bibinfo{author}{\bibfnamefont{R.}~\bibnamefont{Noack}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{D.}~\bibnamefont{Scalapino}},
+  \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{73}},
+  \bibinfo{pages}{886} (\bibinfo{year}{1994}).
 
 \end{thebibliography}
