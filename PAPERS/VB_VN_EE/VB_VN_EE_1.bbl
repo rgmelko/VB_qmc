@@ -1,4 +1,4 @@
-\begin{thebibliography}{17}
+\begin{thebibliography}{18}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname bibnamefont\endcsname\relax
   \def\bibnamefont#1{#1}\fi
@@ -102,6 +102,14 @@
   \bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Cardy}}, \bibinfo{journal}{J.
   Stat. Mech.: Theor. Exp.} \textbf{\bibinfo{volume}{P06002}}
   (\bibinfo{year}{2004}).
+
+\bibitem[{\citenamefont{Huanqiang et~al.}(2006)\citenamefont{Huanqiang,
+  Barthel, and Schollwoeck}}]{Huanq2006}
+\bibinfo{author}{\bibfnamefont{Z.}~\bibnamefont{Huanqiang}},
+  \bibinfo{author}{\bibfnamefont{T.}~\bibnamefont{Barthel}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{U.}~\bibnamefont{Schollwoeck}},
+  \bibinfo{journal}{Phys. Rev. A} \textbf{\bibinfo{volume}{74}},
+  \bibinfo{pages}{050305(R)} (\bibinfo{year}{2006}).
 
 \bibitem[{\citenamefont{Affleck and Ludwig}(1991)}]{AffleckAndLudwig}
 \bibinfo{author}{\bibfnamefont{I.}~\bibnamefont{Affleck}} \bibnamefont{and}

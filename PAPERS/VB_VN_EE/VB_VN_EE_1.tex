@@ -158,17 +158,17 @@ that enough of the eigenvalue spectrum is included to converge the VN EE
 to sufficient accuracy; typically the number of states required is larger
 then that needed to converge the energy alone.
 
-The VB EE \cite{Alet,Chh} can be calculated using the valence-bond basis QMC proposed by
-Sandvik \cite{Sandvik}.  The valence-bond basis QMC algorithm that
-we use is the simple single-projector method, with lattice geometries
-constructed to match those given by the DMRG algorithm.  The ground state
-of the system is projected out by repeated application of a list of bond
-operators on nearest neighbor sites of the ladder.  A number of bond
-operators ($r$) are changed each step and the change is accepted with a
-probability depending on the number of nearest neighbor bonds in the
-resulting valence bond states.  Measured quantities such as energy or
-valence bond entanglement entropy are then calculated by a weighted
-average over all the valence bond states obtained by this procedure.
+The VB EE \cite{Alet,Chh} can be calculated using the valence-bond basis
+QMC proposed by Sandvik \cite{Sandvik}.  The valence-bond basis QMC
+algorithm that we use is the simple single-projector method, with lattice
+geometries constructed to match those given by the DMRG algorithm.  The
+ground state of the system is projected out by repeated application of a
+list of bond operators on nearest neighbor sites of the ladder.  A number
+of bond operators ($r$) are changed each step and the change is accepted
+with a probability depending on the number of nearest neighbor bonds in
+the resulting valence bond states. Measured quantities such as energy or
+VB EE are then calculated by a weighted average over all the valence bond
+states obtained by this procedure.
 
 \begin{figure} {
 %\includegraphics[width=3.2in]{fig1_inset.eps}
@@ -216,7 +216,7 @@ mapped to a 2D classical Hamiltonian at its critical point, which in turn
 can be described within CFT in the limit $L\to\infty$.  To address
 finite-length chains one can use the conformal mappings $x\to x'=L/\pi
 \sin(\pi x / L)$ for PBC, and $x\to x'=2L/\pi \sin(\pi x / L)$ for OBC. VN
-EE calculations within CFT~\cite{Cardy, Scholl06} obey $S^{VN}(x)= c/3
+EE calculations within CFT~\cite{Cardy, Huanq2006} obey $S^{VN}(x)= c/3
 \ln(x') + S_1$ in the PBC case, and $S^{VN}(x)= c/6 \ln(x') +
 \ln(g)+S_1/2$ in the OBC case, where $c$ is the central charge of the CFT,
 $S_1$ is a model-dependent constant, and $g$ is Ludwig and Affleck's
@@ -257,12 +257,13 @@ removed first).
 nearest neighbors is extended to neighbors along rungs as well as along
 legs.  As it was noted before, DMRG imposes contraints to the subregion
 geometry. In multi-leg ladders we choose to move in a 1D path that visits
-first bonds sitting in rungs rather than bonds sitting in legs. One of
-such paths is illustrated in the bottom left inset of Fig.~\ref{ladder}.
-DMRG computational demands increase dramatically with the number of
-legs, so in this paper we restrict ourselves to ladders up to $N=6$ legs
-with OBC. VB QMC lacks of this limitation and we are able to go up to
-$N=24$. 
+first bonds sitting in rungs rather than bonds sitting in legs (see
+Fig.~\ref{ladder}). 
+%One of such paths is illustrated in the bottom left inset of
+%Fig.~\ref{ladder}.
+DMRG computational demands increase dramatically with the number of legs,
+so in this paper we restrict ourselves to ladders up to $N=6$ legs with
+OBC. VB QMC lacks of this limitation and we are able to go up to $N=24$. 
 %TODO Ann: Could you confirm this 24 for QMC ?.
 
 \begin{figure} { \includegraphics[width=3in]{FIG2.eps} \caption{(color
@@ -271,21 +272,51 @@ ladder system with 100 sites per leg.  In this and similar geometries, $x$
 is the site index of the ladder, defined using the usual DMRG
 sweeping-convention (inset lower left).  \label{ladder}}} \end{figure}
 
-Results show a different behavior depending on $N$ being even or odd.
-Even-leg ladders are known to have a spin-gap, which decreases with $N$,
-therefore local operators in sites separated by distances larger than the
-corresponding correlation length are expected to be un-correlated.
-Therefore only sites at distances from the boundary between regions A and
-B smaller than the correlation length are expected to contribute to the
-entanglement, and entanglement entropy is expected to go to a constant for
-the sizes of the subregions are larger than the correlation lenght.
+\begin{figure} { \includegraphics[width=3in]{figure3/3-leg-ladder/figure3_3-legs.eps} \caption{(color
+online) VB and VN entanglement entropies for a 4-leg
+ladder system with 100 sites per leg.  In this and similar geometries, $x$
+is the site index of the ladder, defined using the usual DMRG
+sweeping-convention (inset lower left).  \label{odd-ladder}}} \end{figure}
+
+$S(x)$ shows a different behavior depending on $N$ being even or odd.
+Even-leg ladders are known to have a spin-gap~\cite{White1994}, 
+%which decreases with $N$, and therefore local operators in sites
+%separated by distances larger than the corresponding correlation length
+%are expected to be un-correlated.
+and therefore only sites at distances from the boundary between regions A
+and B smaller than the correlation length $\xi$ are expected to contribute
+to the entanglement, yielding $S(x\gtrsim \xi)=const.$ Figure~\ref{ladder}
+shows the VB and VN entanglement entropies calculated for the 4-leg
+ladder. As expected for large subregion sizes the EE are constant with
+$x$. As happens with the 1D chain, VB EE is larger than VN EE, and as will
+discused below, this difference increases with increasing $N$. It can be
+seen that $S(x)$ develops a periodic structure with
+period $N$. A qualitative explanation based on a RVB picture is the
+following. An even-leg ladder can be covered by singlets
+formed by spins on the same rung of the ladder. 
+%TODO this is shitty and too long.
+Although the energy of
+this VB state is the same as any other it has more possibilities to
+resonate, e.~g. by forming plaquettes.  Long-range bonds connecting sites
+in distant rungs create a ``stagered'' regions which can not resonate and
+therefore give a RBV state with higher energy~\cite{White1994}. 
+Within
+this picture, one expects higher EE values when the boundary between A and
+B cuts a bond sitting in a rung, $x\equiv0 \mod{N}$, than when cuts only
+bonds in legs, $x\equiv0 \mod{N}$. Within the same rung, sites at the ends
+will tend to form singlets with its only neighbor in the rung and EE will be
+larger for $(x\div N) \equiv 1 \mod{2}$, than for $(x\div N) \equiv 0
+\mod{2}$.
+
+Odd-leg ladders are gapless, and therefore all the sites within subregions
+A and B are expected to contribute to the entanglement and similarly to
+the 1D case, $S(x)$ is expected to have a maximum at $x=L/2$. 
 Figure~\ref{ladder} shows the VB and VN entanglement entropies calculated
-for the 4-leg ladder. As expected expect for small subregion sizes both EE
-are constant with $x$. As happens with the 1D chain, VB EE is larger than
-VN EE, and as will discused below, this difference between VN EE and VB EE
-increases with increasing $N$. This supports the qualitative picture based
-on a short-range RVB state discussed in Ref.~\cite{White1994}.
-%TODO Ivan: Continue writing here. 
+for the 5-leg ladder. Again VB EE os larger than VN EE. It can be seen
+that $S(x)$ develops a periodic structure which in this case has period
+$2N$. Following the afore-mentioned qualitative RVB picture, one can see
+that as the odd-leg ladders can not be covered only by singlets sitting in
+rungs, long-range VB are not penalized. 
 
 {\it Area law in multi-leg ladders.}--  
 Given the ground state of a
