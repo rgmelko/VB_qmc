@@ -38,11 +38,9 @@ of entanglement between subregions, chiefly using entropic
 quantities, have an advantage over traditional two-point correlation
 functions in that they encode the total amount of information shared
 between the subregions without the possibility of missing ``hidden''
-correlations \cite{wolf}.  Such correlations may occur in some
-quantum groundstates --  for example spin liquid states -- 
-where two-point correlation functions decay at large lengthscales.
-However, it is known that a type of topological order can exist in
-spin liquids, which is quantified in a ``topological entanglement
+correlations \cite{wolf}.  
+Such correlations may occur in some quantum groundstates,  for example spin liquid states, 
+where two-point correlation functions decay at large lengthscales, however a type of topological order can exist that is quantified in a ``topological entanglement
 entropy''  \cite{ KP, LW}.
 This and other entropic measures are typically discussed in the context of
 the von Neumann (VN) entanglement entropy (EE), which for a system partitioned into
@@ -58,15 +56,15 @@ The properties of the VN EE are well-studied in the context of quantum informati
 In interacting one dimensional (1D) quantum systems, exact analytical results are known from conformal
 field theories (CFT); they show that, away from special critical points,
 the VN EE scales as the size of the boundary between A and B.
-This so-called {\it area law} is also believed to hold in many
+This so-called {\it area law} \cite{Shredder} is also believed to hold in many
 groundstates of two dimensional (2D) interacting quantum systems,
 although few exact results are available \cite{ALreview}.  This has 
 consequence in the
 rapidly-advancing field of computational quantum-many body theory, where
 it is known for example that groundstates of 1D Hamiltonians that satisfy an area law
-can be accurately represented by Matrix Product States (MPS).
+can be accurately represented by Matrix Product States (MPS) \cite{MPS_DMRG}.
 Tensor-network extension of MPS states are the basis
-for a new promising class of numerical algorithms that may push our
+for a new promising class of numerical algorithms \cite{PEPS1,PEPS2} that may push our
 abilities to simulate 2D quantum systems past that
 allowed by quantum Monte Carlo (QMC), which is hampered by
 the notorious fermionic sign problem.  However, tensor network states
@@ -118,19 +116,17 @@ N\'eel groundstate using tensor-network simulations.
 %framework
  
 In this paper, we compare the VB EE calculated by valence-bond QMC to the
-VN EE accessible through large-scale density-matrix renormalization group
-(DMRG) simulations on the Heisenberg model on multi-leg ladder
-geometries.    We show that in 1D the CFT central charge calculated with DMRG by scaling the
+VN EE accessible through density-matrix renormalization group
+(DMRG) simulations of the Heisenberg model on $N$-leg ladders.    For $N=1$, the CFT central charge calculated  by scaling the
 VN EE shows excellent agreement to $c=1$, whereas the VB EE appears to converge
 to $c<1$.
-On multi-leg
-ladders, the VB EE is systematically greater than the VN EE,
-a trend which grows rapidly with the number of legs $N$.  Finally, a
-comparison of the area law defined by bisecting the multi-leg ladders
-shows a clear logarithmic correction for the VB EE, $S^{VB}_A /N = N \ln
+For $N>1$, the VB EE is systematically greater than the VN EE,
+a trend which grows rapidly with $N$. An
+examination of entanglement defined by bisecting multi-leg ladders
+shows a logarithmic correction for the VB EE, $S^{VB}_A /N = N \ln
 N$ (in agreement with Refs.~\cite{Alet,Chh}), however for data up to
 $N=7$, the VN EE convincingly shows a scaling of
-$S^{VB}_A /N = N$, the expected area law.
+$S^{VB}_A /N = N$, thus obeying the area law.
 
 {\it Model and Methods.}-- We consider the spin 1/2 Heisenberg
 Hamiltonian, given by  
@@ -138,7 +134,7 @@ $H =  \sum_{\langle i j \rangle}
 {\mathbf S}_i \cdot {\mathbf S}_j \label{ham}$, 
 where the sum
 is over nearest-neighbor sites.  Geometries studied are 1D chains, and
-multi-leg ladders with length $L$ and number of legs $n$.  
+multi-leg ladders with length $L$ and number of legs $N$.  
 %Many properties of this model on open-boundary ladders with $n$ legs has
 %been exhaustively studied.  Of importance, it is known that a spin gap
 %exists for even-$n$ ladders in the limit of $L\rightarrow \infty$,
@@ -155,14 +151,14 @@ keeping only the states with largest coefficients in the Schmidt's
 decomposition for subregions A and B. To find the basis entering the
 Schmidt's decomposition for subregion A, the reduced density matrix
 $\rho_A$ is calculated and diagonalized, thus allowing easy calculation
-of Eq.~\ref{vNEE}. The truncation of the basis implies that only an upper
+of Eq.~\eqref{vNEE}. The truncation of the basis implies that only an upper
 bound for $S^{VN}_{A}$ is calculated, so care must be taken to ensure
 that enough of the eigenvalue spectrum is included to converge the VN EE
 to sufficient accuracy; typically the number of states required is larger
 then that needed to converge the energy alone.
 
-The VB EE can be calculated using the valence-bond basis QMC proposed by
-Sandvik in 2005 \cite{Sandvik}.  The valence-bond basis QMC algorithm that
+The VB EE \cite{Alet,Chh} can be calculated using the valence-bond basis QMC proposed by
+Sandvik \cite{Sandvik}.  The valence-bond basis QMC algorithm that
 we use is the simple single-projector method, with lattice geometries
 constructed to match those given by the DMRG algorithm.  The ground state
 of the system is projected out by repeated application of a list of bond
@@ -192,21 +188,28 @@ symbols) for system sizes $L=64$ (circles), $L=100$ (squares), $L=128$
 
 {\it One-dimensional chain.}-- We consider first the case of 1D Heisenberg
 chains. We employ both open (OBC) and periodic (PBC) boundary conditions
-with both DMRG and QMC, in order to study the VN and VB entanglement
-entropies (PBCs typically have poorer convergence properties than OBCs
-within DMRG and more states must be kept in each truncation). 
+with our DMRG and QMC simulations,
+% in order to study the VN and VB entanglement entropies
+noting that in the DMRG, PBCs typically have poorer convergence properties than OBCs
+and more states must be kept in each truncation.
+% I MODIFIED THIS A BIT ABOVE: CHECK IT OUT GONZ
+% 
 %TODO
 % I will delete this sentence between brakets if needed: this is well
 % known and does not bring much to the paper discussion
-DMRG algorithm requires each subregion A and B to be topologically
+The DMRG algorithm requires each subregion A and B to be topologically
 connected, so in 1D the bipartition is defined by a site index $x$ with
 sites within the interval $[1,x]$ ($[x+1,L]$) belonging to subregion $A$
-($B$), $L$ being the length of the chain. We stress that the QMC and DMRG
+($B$), $L$ being the length of the chain. 
+%I ADDED THE BELOW ALSO
+From the remainder of this paper, we label the EE $S_A$ by its site index, $S(x)$.
+%
+We stress that the QMC and DMRG
 results are on the same geometry and Hamiltonian, and reproduce the same
 ground state energies; all the figures in this paper can be considered as
 exact comparisons between the VB and VN EE. 
 
-Hamiltonian~(\ref{ham}) in 1D is known to be critical and therefore can be
+The 1D Heisenberg model is known to be critical and therefore can be
 mapped to a 2D classical Hamiltonian at its critical point, which in turn
 can be described within CFT in the limit $L\to\infty$.  To address
 finite-length chains one can use the conformal mappings $x\to x'=L/\pi
@@ -250,7 +253,7 @@ removed first).
 {\it Multi-leg ladders.}-- Moving away from the 1D chain, one can add
 ``legs'' to the lattice in a systematic way. In this case the sum over
 nearest neighbors is extended to neighbors along rungs as well as along
-legs.  As it was noted before, DMRG imposses contraints to the subregion
+legs.  As it was noted before, DMRG imposes contraints to the subregion
 geometry. In multi-leg ladders we choose to move in a 1D path that visits
 first bonds sitting in rungs rather than bonds sitting in legs. One of
 such paths is illustrated in the bottom right inset of Fig.~\ref{ladder}.
@@ -282,22 +285,24 @@ increases with increasing $N$. This supports the qualitative picture based
 on a short-range RVB state discussed in Ref.~\cite{White??}.
 %TODO Ivan: Continue writing here. 
 
-{\it Area law in multi-leg ladders.}--  Given the ground state of a
+{\it Area law in multi-leg ladders.}--  
+Given the ground state of a
 quantum many-body system in 2D, the question of whether the entanglement
 entropy fulfills and "area" (boundary) law is in general a difficult one
-to answer.  However from a simulation perspective this question is of
-utmost importance, since tensor-network generalization of MPS techniques,
-such as PEPS, produce states that satisfy the area law by construction.
-Thus in order to simulate, for example, the N\'eel groundstate of the 2D
-Heisenberg model accurately with such methods depends critically on
-whether or not the entanglement entropy of the N\'eel state obeys an area
-law.  Refs.~\cite{Alet,Chh} examined this issue using the VB EE, and found
-clear multiplicative logarithmic corrections to the area law in the N\'eel
-state, which was tentatively attributed to gapless Goldstone modes and
+to answer.  
+%However from a simulation perspective this question is of
+%utmost importance, since tensor-network generalization of MPS techniques,
+%such as PEPS, produce states that satisfy the area law by construction.
+%Thus in order to simulate, for example, the N\'eel groundstate of the 2D
+%Heisenberg model accurately with such methods depends critically on
+%whether or not the entanglement entropy of the N\'eel state obeys an area
+%law.  
+Using VB EE, Refs.~\cite{Alet,Chh} examined this issue for the 2D Heisenberg model and found
+multiplicative logarithmic corrections to the area law in the N\'eel
+state, which was attributed to gapless Goldstone modes and
 algebraically decaying correlations.  
-
-We can address this question using our data for the VB and VN EE alluded
-to in the above section on multi-leg ladders.  That is, we chose a lattice
+We can address this question further using our data for the VB and VN EE discussed 
+in the above section on multi-leg ladders.  That is, we chose a lattice
 geometry such that subregion A is rectangular, cutting a multi-leg ladder
 cleanly across a rung, such that the ``area'' separating region A and B is
 equivalent to the number of legs in the ladder $N$.  We chose this area A
