@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Tue May  5 13:00:26 2009"
+@timestamp def "Wed May  6 11:34:09 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -104,7 +104,7 @@
 @    world 0.9, 0.4, 40, 1.1
 @    stack world 0, 0, 0, 0
 @    znorm 1
-@    view 0.660000, 0.480000, 1.145134, 0.950000
+@    view 0.660000, 0.475000, 1.145134, 0.945000
 @    title ""
 @    title font 0
 @    title size 1.500000
@@ -356,7 +356,7 @@
 @    world 0.9, 0.6, 40, 2
 @    stack world 0, 0, 0, 0
 @    znorm 1
-@    view 0.150000, 0.480000, 0.640000, 0.950000
+@    view 0.145000, 0.475000, 0.635000, 0.945000
 @    title ""
 @    title font 0
 @    title size 1.500000
@@ -475,7 +475,7 @@
 @    altyaxis  off
 @    legend on
 @    legend loctype view
-@    legend 0.45, 0.6
+@    legend 0.435, 0.58
 @    legend box color 1
 @    legend box pattern 1
 @    legend box linewidth 1.0
@@ -1105,7 +1105,7 @@
 @    world 0, 0.93, 0.017, 1.019
 @    stack world 0, 0, 0, 0
 @    znorm 1
-@    view 0.150000, 0.150000, 0.640000, 0.468182
+@    view 0.145000, 0.150000, 0.635000, 0.468182
 @    title ""
 @    title font 0
 @    title size 1.500000
