@@ -226,31 +226,28 @@ Figure~\ref{1D} illustrates simulation results in both cases, the left
 (right) panels corresponding to PBC (OBC). In Refs.~\cite{Alet, Chh}, VB
 EE calculated from QMC was compared to the CFT result, and a good fit to a
 central charge of $c=1$ was found for both cases.  In Fig.~\ref{1D} we
-compare this result to the VN EE calculated from the DMRG.  In the left
-panels of Fig.~\ref{1D}, both the VN and VB entropies are seen to fit well
-to the CFT result, although the VN EE is greater than the VB EE. The
-regression fit shows very good convergence with the CFT central charge
-prediction for the VN EE, while the VB EE fit yields a lower value than
-predicted result.  
-%TODO
-%{\it (Should I include this?) It is possible the VB EE
-%data is not sufficiently converged which would could give results below
-%the CFT predicted value, however data from Refs.~\cite{Alet,Chh} bears
-%similar results. }
+compare this result to the VN EE calculated from the DMRG.  For PBC both
+the VN and VB entropies are seen to fit well to the CFT result, although
+the VN EE is greater than the VB EE. The regression fit shows very good
+convergence with the CFT central charge prediction for the VN EE, while
+the VB EE fit yields a lower value than predicted.  
+%TODO {\it (Should I include this?) It is possible the VB EE data is not
+%sufficiently converged which would could give results below the CFT
+%predicted value, however data from Refs.~\cite{Alet,Chh} bears similar
+%results. }
 
-In the right panels of Fig.~\ref{1D}, both the VN and VB EE are seen to
-split into two branches, the upper (lower) corresponding to an odd (even)
-number of lattice sites in $A$.  This reflects a well-known
-``dimerization'' effect induced by OBC~\cite{Ian1}.  Notice that contrary
-to the PBC case, the VN EE is now \textit{smaller} than the VB EE. A
-regression fit of the lower branch to the form $c/6 \ln {x'}$ (inset)
-shows excellent convergence of the VN EE to the central charge predicted
-by CFT, $c=1$, once finite-size effects and the proximity of the data to
-the open boundaries are taken into account.  In contrast, the VB EE fit
-deviates significantly from the CFT result for larger system sizes, give
-$c>1$ when all or most data is included in the fit, and $c<1$ as data is
-systematically excluded from the fit (data closest to the open boundary is
-removed first).
+For OBC both the VN and VB EE split into two branches, the upper (lower)
+corresponding to an odd (even) number of lattice sites in $A$.  This
+reflects a well-known ``dimerization'' effect induced by OBC~\cite{Ian1}.
+Notice that contrary to the PBC case, the VN EE is now \textit{smaller}
+than the VB EE. A regression fit of the lower branch to the form $c/6 \ln
+{x'}$ (inset) shows excellent convergence of the VN EE to the central
+charge predicted by CFT, $c=1$, once finite-size effects and the proximity
+of the data to the open boundaries are taken into account.  In contrast,
+the VB EE fit deviates significantly from the CFT result for larger system
+sizes, give $c>1$ when all or most data is included in the fit, and $c<1$
+as data is systematically excluded from the fit (data closest to the open
+boundary is removed first).
 
 {\it Multi-leg ladders.}-- Moving away from the 1D chain, one can add
 ``legs'' to the lattice in a systematic way. In this case the sum over
@@ -374,18 +371,18 @@ have 100 sites per leg.  \label{zigzag}}} \end{figure}
 {\it Discussion.}-- In this paper, we have compared scaling properties of
 the valence bond (VB) entanglement entropy (EE) defined in
 Refs.~\cite{Alet,Chh} to the von Neumann (VN) entanglement entropy in the
-spin 1/2 Heisenberg model on one-dimensional and multi-leg ladder
-geometries.  Both entropy measurements were evaluated using large-scale
-numerical simulations; the VN EE with DMRG, which is restricted to 1D or
-seven-leg and less open boundary ladders; and the VB EE with valence-bond
-basis QMC, which is avaliable for any lattice dimension or
-geometry. In 1D, we find that the VB EE mimics the behavior of the VN EE
-closely, although using the definition of Eq.~\eqref{VBEE}, is less than
-the VN EE for periodic 1D Heisenberg chains, and greater than the VN EE
-for open chains. In addition, fits to 1D conformal field theory, which
-are excellent for the VN EE calculated via DMRG, appear to deviate
-significantly for the VB EE in the large chain-size limit, approaching
-some $c<1$ for both boundary conditions examined here.
+spin 1/2 Heisenberg model on 1D and multi-leg ladder geometries.  Both
+entropy measurements were evaluated using large-scale numerical
+simulations; the VN EE with DMRG, which is restricted to 1D or seven-leg
+and less open boundary ladders; and the VB EE with valence-bond basis QMC,
+which is avaliable for any lattice dimension or geometry. In 1D, we find
+that the VB EE mimics the behavior of the VN EE closely, although using
+the definition of Eq.~\eqref{VBEE}, is less than the VN EE for periodic
+chains, and greater than the VN EE for open chains. In addition, fits to
+1D conformal field theory, which are excellent for the VN EE calculated
+via DMRG, appear to deviate significantly for the VB EE in the large
+chain-size limit, approaching some $c<1$ for both boundary conditions
+examined here.
 
 On multi-leg ladder systems with open boundaries, the VB EE is
 systematically greater than the VN EE, a discrepancy which grows as the
