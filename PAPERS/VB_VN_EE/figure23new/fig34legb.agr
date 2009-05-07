@@ -1,6 +1,6 @@
 # Grace project file
 #
-@version 50121
+@version 50122
 @page size 792, 612
 @page scroll 5%
 @page inout 5%
@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Thu May  7 16:19:47 2009"
+@timestamp def "Thu May  7 16:42:06 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -488,7 +488,7 @@
 @    legend length 4
 @    legend vgap 1
 @    legend hgap 1
-@    legend invert false
+@    legend invert true
 @    frame type 0
 @    frame linestyle 1
 @    frame linewidth 1.0
