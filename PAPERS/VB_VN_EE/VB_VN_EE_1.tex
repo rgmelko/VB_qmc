@@ -26,7 +26,7 @@ Avda.~de~Vigo~s/n, E-15705 Santiago de Compostela, Spain}
 
 \begin{abstract} We present a direct comparison of the recently-proposed
 valence bond entanglement entropy and the von Neumann entanglement entropy on
-spin-1/2 Heisenberg systems using quantum Monte Carlo and density-matrix
+spin 1/2 Heisenberg systems using quantum Monte Carlo and density-matrix
 renormalization group simulations.  For one-dimensional spin chains we
 show that the valence bond entropy can be either less or greater than the
 von Neumann entropy, hence it cannot provide a bound on the latter.  On
@@ -79,7 +79,7 @@ allowed by quantum Monte Carlo (QMC), which is hampered by
 the notorious fermionic sign problem.  However, tensor network states
 are constructed to obey an area law; in order to be represented faithfully
 by them, a given 2D quantum groundstate must have physical entanglement
-properties which also obey the area law \cite{ALreview}
+properties which also obey the area law \cite{ALreview}.
 
 %However, it is believed that 2D
 %states which lend themselves to accurate approximation by such methods
@@ -197,27 +197,17 @@ symbols) for system sizes $L=64$ (circles), $L=100$ (squares), $L=128$
 
 {\it One-dimensional chain.}-- We consider first the case of 1D Heisenberg
 chains. We employ both open (OBC) and periodic (PBC) boundary conditions
-with our DMRG and QMC simulations,
-% in order to study the VN and VB entanglement entropies
-noting that in the DMRG, PBCs typically have poorer convergence properties than OBCs
-and more states must be kept in each truncation.
-% It's better now. We can delete this comment, and clean this up.
-% I MODIFIED THIS A BIT ABOVE: CHECK IT OUT GONZ
-% 
-%TODO
-% I will delete this sentence between brakets if needed: this is well
-% known and does not bring much to the paper discussion
-The DMRG algorithm requires each subregion A and B to be topologically
-connected, so in 1D the bipartition is defined by a site index $x$ with
-sites within the interval $[1,x]$ ($[x+1,L]$) belonging to subregion $A$
-($B$), $L$ being the length of the chain. 
-%I ADDED THE BELOW ALSO
-From the remainder of this paper, we label the EE $S_A$ by its site index, $S(x)$.
-%
-We stress that the QMC and DMRG
-results are on the same geometry and Hamiltonian, and reproduce the same
-ground state energies; all the figures in this paper can be considered as
-exact comparisons between the VB and VN EE. 
+with our DMRG and QMC simulations, noting that in the DMRG, PBCs typically
+have poorer convergence properties than OBCs and more states must be kept
+in each truncation.  The DMRG algorithm requires each subregion A and B to
+be topologically connected, so in 1D the bipartition is defined by a site
+index $x$ with sites within the interval $[1,x]$ ($[x+1,L]$) belonging to
+subregion $A$ ($B$), $L$ being the length of the chain.  From the
+remainder of this paper, we label the EE $S_A$ by its site index, $S(x)$.
+We stress that the QMC and DMRG results are on the same geometry and
+Hamiltonian, and reproduce the same ground state energies; all the figures
+in this paper can be considered as exact comparisons between the VB and VN
+EE. 
 
 The 1D Heisenberg model is known to be critical and therefore can be
 mapped to a 2D classical Hamiltonian at its critical point, which in turn
