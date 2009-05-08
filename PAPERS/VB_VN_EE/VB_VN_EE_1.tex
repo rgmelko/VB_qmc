@@ -138,12 +138,10 @@ $N=7$, the VN EE convincingly shows a scaling of
 $S^{VB}_A /N = N$, thus obeying the area law.
 
 {\it Model and Methods.}-- We consider the spin 1/2 Heisenberg
-Hamiltonian, given by  
-$H =  \sum_{\langle i j \rangle}
-{\mathbf S}_i \cdot {\mathbf S}_j \label{ham}$, 
-where the sum
-is over nearest-neighbor sites.  Geometries studied are 1D chains, and
-multi-leg ladders with length $L$ and number of legs $N$.  
+Hamiltonian, given by  $H =  \sum_{\langle i j \rangle} {\mathbf S}_i
+\cdot {\mathbf S}_j \label{ham}$, where the sum is over nearest-neighbor
+sites.  Geometries studied are 1D chains, and multi-leg ladders with
+length $L$ and number of legs $N$.  
 %Many properties of this model on open-boundary ladders with $n$ legs has
 %been exhaustively studied.  Of importance, it is known that a spin gap
 %exists for even-$n$ ladders in the limit of $L\rightarrow \infty$,
@@ -157,14 +155,14 @@ compared directly to one another.  The VN EE is naturally accessible
 through the DRMG ``sweeping'' algorithm~\cite{White92, Scholl05}.  At each
 step of the algorithm, the wavefunction of the system is approximated by
 keeping only the states with largest coefficients in the Schmidt's
-decomposition for subregions A and B. To find the basis entering the
-Schmidt's decomposition for subregion A, the reduced density matrix
-$\rho_A$ is calculated and diagonalized, thus allowing easy calculation
-of Eq.~\eqref{vNEE}. The truncation of the basis implies that only an upper
-bound for $S^{VN}_{A}$ is calculated, so care must be taken to ensure
-that enough of the eigenvalue spectrum is included to converge the VN EE
-to sufficient accuracy; typically the number of states required is larger
-than that needed to converge the energy alone.
+decomposition for a given bipartition into subregions A and B. To find the
+basis entering the Schmidt's decomposition for subregion A, the reduced
+density matrix $\rho_A$ is calculated and diagonalized, thus allowing easy
+calculation of Eq.~\eqref{vNEE}. The truncation of the basis implies that
+only an upper bound for $S^{VN}_{A}$ is calculated, so care must be taken
+to ensure that enough of the eigenvalue spectrum is included to converge
+the VN EE to sufficient accuracy; typically the number of states required
+is larger than that needed to converge the energy alone.
 
 The VB EE \cite{Alet,Chh} can be calculated using the valence-bond basis
 QMC proposed by Sandvik \cite{Sandvik}.  The valence-bond basis QMC
@@ -253,28 +251,23 @@ nearest neighbors is extended to neighbors along rungs as well as along
 legs.  As it was noted before, DMRG imposes contraints to the subregion
 geometry. In multi-leg ladders we choose to move in a 1D path that visits
 first bonds sitting in rungs rather than bonds sitting in legs (see
-Fig.~\ref{ladder}). 
-%One of such paths is illustrated in the bottom left inset of
-%Fig.~\ref{ladder}.
-DMRG computational demands increase dramatically with the number of legs,
-so in this paper we restrict ourselves to ladders up to $N=6$ legs with
-OBC. VB QMC lacks of this limitation and we are able to go up to $N=24$. 
+Fig.~\ref{ladder}).  DMRG computational demands increase dramatically with
+the number of legs, so in this paper we restrict ourselves to ladders up
+to $N=7$ legs with OBC. VB QMC lacks of this limitation and we are able to
+go up to $N=24$. 
 %TODO Ann: Could you confirm this 24 for QMC ?.
 
-\begin{figure} { 
-\includegraphics[width=3.3in]{FIG23NEW.eps} 
+\begin{figure} { \includegraphics[width=3.3in]{FIG23NEW.eps} 
 %\includegraphics[width=3in]{figure3/3-leg-ladder/fig3_final.eps} 
-\caption{(color
-online) VB and VN entanglement entropies for 4-leg ladder (upper panel)
-and 3-leg ladder (lower panel) systems with OBC and 100 sites per leg.
-(Upper panel) Left inset shows the site indexing used for multi-leg
-ladders. The shadowed area shows the bipartition for $x=9$. Right inset
-shows details of the central region of the ladder and the periodic
-structure on $S(x)$.  For even-leg ladders the period is $N$. (Lower
-panel) Left inset shows $S(x)$ as a function of the conformal distance,
-$x'$.  Right inset shows details of the central region of the ladder and
-the periodic structure on $S(x)$. For odd-leg ladders the period is $2N$.
-\label{ladder}}} \end{figure}
+\caption{(color online) VB and VN entanglement entropies for 3-leg (left)
+and 4-leg (right) ladder systems with OBC and 100 sites per leg.  For
+odd-leg ladders (gapless) $S(x)$ is convex with a maximum at $x=L/2$.
+Left inset shows $S(x)$ as a function of the conformal distance, $x'$, on
+a log scale, satisfying $S(x)\propto\ln(x')$. For even-leg ladders
+(gapped) $S(x\gtrsim\xi)=const.$ Both cases show the branched structure
+discussed in the text. Right inset shows the site indexing used for
+multi-leg ladders. The shadowed area shows the bipartition for $x=9$.
+\label{ladder} }} \end{figure}
 
 %\begin{figure} {
 %\includegraphics[width=3in]{figure3/3-leg-ladder/fig3_final.eps} }
