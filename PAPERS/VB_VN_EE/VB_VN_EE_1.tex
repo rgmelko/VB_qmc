@@ -258,7 +258,6 @@ go up to $N=24$.
 %TODO Ann: Could you confirm this 24 for QMC ?.
 
 \begin{figure} { \includegraphics[width=3.3in]{FIG23NEW.eps} 
-%\includegraphics[width=3in]{figure3/3-leg-ladder/fig3_final.eps} 
 \caption{(color online) VB and VN entanglement entropies for 3-leg (left)
 and 4-leg (right) ladder systems with OBC and 100 sites per leg.  For
 odd-leg ladders (gapless) $S(x)$ is convex with a maximum at $x=L/2$.
@@ -269,48 +268,43 @@ discussed in the text. Right inset shows the site indexing used for
 multi-leg ladders. The shadowed area shows the bipartition for $x=9$.
 \label{ladder} }} \end{figure}
 
-%\begin{figure} {
-%\includegraphics[width=3in]{figure3/3-leg-ladder/fig3_final.eps} }
-% \end{figure}
-
-$S(x)$ shows a different behavior depending on $N$ being even or odd.
-Even-leg ladders are known to have a spin-gap~\cite{White1994}, 
-%which decreases with $N$, and therefore local operators in sites
-%separated by distances larger than the corresponding correlation length
-%are expected to be un-correlated.
-and therefore only sites at distances from the boundary between A and B
-smaller than the correlation length $\xi$ are expected to contribute to
-the entanglement, yielding $S(x\gtrsim \xi)=const.$ Figure~\ref{ladder}
-shows the VB and VN entanglement entropies calculated for the 4-leg
-ladder. As expected for large subregion sizes the EE are constant with
-$x$. As happens with the 1D chain, the VB EE is larger than the VN EE, and
-as will discused below, this difference increases with increasing $N$. It
-can be seen that $S(x)$ develops a periodic structure with period $N$. A
-qualitative explanation based on a RVB picture is the following. An
-even-leg ladder can be covered by singlets formed by spins on the same
-rung of the ladder. 
-%TODO this is shitty and too long.
-Although the energy of this VB state is the same as any other it has more
-possibilities to resonate, e.~g. by forming plaquettes.  Long-range bonds
-connecting sites in distant rungs create a ``stagered'' regions which can
-not resonate and therefore give a RBV state with higher
-energy~\cite{White1994}.  Within this picture, one expects higher EE
-values when the boundary between A and B cuts a bond sitting in a rung,
-$x\equiv0 \mod{N}$, than when cuts only bonds in legs, $x\equiv0 \mod{N}$.
-Within the same rung, sites at the ends will tend to form singlets with
-its only neighbor in the rung and EE will be larger for $(x\div N) \equiv
-1 \mod{2}$, than for $(x\div N) \equiv 0 \mod{2}$.
-
-Odd-leg ladders are gapless, and therefore all the sites within subregions
-A and B are expected to contribute to the entanglement and similarly to
-the 1D case, $S(x)$ is expected to have a maximum at $x=L/2$. 
 Figure~\ref{ladder} shows the VB and VN entanglement entropies calculated
-for the 5-leg ladder. Again VB EE os larger than VN EE. It can be seen
-that $S(x)$ develops a periodic structure which in this case has period
-$2N$. Following the afore-mentioned qualitative RVB picture, one can see
-that as the odd-leg ladders can not be covered only by singlets sitting in
-rungs, long-range VB are not penalized. 
+for the 3-leg and 4-leg ladder. As happens with the 1D chain, the VB EE is
+larger than the VN EE, and as will discused below, this difference
+increases with increasing $N$. $S(x)$ shows a different behavior depending
+on $N$ being even or odd. Even-leg ladders are known to have a
+spin-gap~\cite{White1994}, and therefore only sites at distances from the
+boundary between A and B smaller than the correlation length $\xi$
+contribute to the entanglement, yielding $S(x\gtrsim \xi)=const.$ On the
+contrary odd-leg ladders are gapless, and therefore all the sites within
+subregions A and B contribute to the entanglement, yielding a convex
+$S(x)$ with a maximum at $x=L/2$, which follows the CFT result similarly
+to the 1D case. As can be seen $S(x)$ splits in branches, with a
+(quasi-)periodic structure superimpossed to the main dependence on $x$,
+the period being $N$ ($2N$) for even- (odd-)leg ladders. 
 
+A qualitative explanation based on a RVB picture is the following. An
+even-leg ladder can be fully covered by singlets formed by next-neighbor
+spins on the same rung of the ladder. Singlets in neighboring rungs can
+then resonate to a configuration where singlets are formed by
+next-neighbors sites along the legs, forming ``plaquettes'' (e.~g. sites
+11 to 14, in Fig.~\ref{ladder}). Singlets between distant sites freeze the
+VB configuration in region they cross, preventing
+%TODO or hampering or impeding ? I'll write preventing, but became greedy
+%lately... 
+this resonance and increasing the energy of the system~\cite{White1994}.
+Thus short-range VB are favored in even-leg ladders. On the contrary,
+rungs in odd-leg ladders can not be fully covered by singlets, leaving one
+site ``un-paired'', and singlets between distant sites are not penalized.
+Within this picture, one expects higher EE values when the boundary
+between A and B cuts a rung, $x\equiv0 \mod{N}$, than when cuts only legs,
+$x\equiv0 \mod{N}$.  Within the same rung, sites at the ends will tend to
+form singlets with its only neighbor in the rung and EE will be larger for
+$(x\div N) \equiv 1 \mod{2}$, than for $(x\div N) \equiv 0 \mod{2}$,
+explaining the period with $N$ for the even-leg ladders. The doubling of
+the period for odd-leg ladders is due to the same dimerization effect
+discussed in Ref.~\cite{Ian1}.
+ 
 {\it Area law in multi-leg ladders.}--  
 Given the ground state of a
 quantum many-body system in 2D, the question of whether the entanglement
