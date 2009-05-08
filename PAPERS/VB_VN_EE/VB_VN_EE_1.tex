@@ -101,7 +101,7 @@ entanglement entropy, defined for a  spin system as
 \begin{equation} 
 S^{\rm VB}_A = \ln(2) \cdot \mathcal{N}_A, \label{VBEE}
 \end{equation} 
-where $ \mathcal{N}_A$ is the number of spin singlets
+where $ \mathcal{N}_A$ is the number of singlets
 ${( |\uparrow \downarrow \rangle - | \downarrow \uparrow
 \rangle)/\sqrt{2}}$ crossing the boundary between regions A and B.  Unlike
 the VN EE, the VB EE can be accessed easily in the valence-bond basis
@@ -109,13 +109,12 @@ projector QMC method recently proposed by Sandvik \cite{Sandvik}.  As
 demonstrated in Refs.~\cite{Alet,Chh}, the VB EE has many properties in
 common with the VN EE, in particular the relationship $S_A = S_B$, and the
 fact that $S^{VB}_A=0$ for regions ``un-entangled'' by valence bonds.
-Further, a comparison of the scaling of the VB EE for (critical) 1D spin
+A comparison of the scaling of the VB EE for (critical) 1D spin
 1/2 Heisenberg chains shows good agreement with analytical results known
-from CFT.  What is
-particularly striking \cite{Alet,Chh} is that the VB EE in the
- 2D isotropic Heisenberg model
-displays a {\it multiplicative} logarithmic correction to the area law, a property
-which would have negative consequences for the simulation of the 
+from CFT, however in the
+ 2D isotropic Heisenberg model it
+displays a {\it multiplicative} logarithmic correction to the area law \cite{Alet,Chh}.  If
+true also for the VN EE, this fact would have negative consequences for the simulation of the 
 N\'eel groundstate using tensor-network simulations.
 
 %If this
@@ -147,11 +146,9 @@ length $L$ and number of legs $N$.
 %exists for even-$n$ ladders in the limit of $L\rightarrow \infty$,
 %whereas odd-$n$ ladders behave somewhat more like quasi-1D  systems with
 %spin $n/2$ and, from Haldane's conjecture, are therefore gapless.  
-We employ two complementary numerical techniques in our study of EE on
-ladder geometries, namely the valence-bond basis QMC and DMRG, both of
+We employ two complementary numerical techniques, the valence-bond basis QMC and DMRG, both of
 which give {\it unbiased} approximations to the ground state of the
-Hamiltonian at zero temperature, and results from both of which can be
-compared directly to one another.  The VN EE is naturally accessible
+Hamiltonian at zero temperature.  The VN EE is naturally accessible
 through the DRMG ``sweeping'' algorithm~\cite{White92, Scholl05}.  At each
 step of the algorithm, the wavefunction of the system is approximated by
 keeping only the states with largest coefficients in the Schmidt's
@@ -165,12 +162,12 @@ the VN EE to sufficient accuracy; typically the number of states required
 is larger than that needed to converge the energy alone.
 
 The VB EE \cite{Alet,Chh} can be calculated using the valence-bond basis
-QMC proposed by Sandvik \cite{Sandvik}.  The valence-bond basis QMC
+QMC proposed by Sandvik \cite{Sandvik}.  The 
 algorithm that we use is the simple single-projector method, with lattice
 geometries constructed to match those given by the DMRG algorithm.  The
 ground state of the system is projected out by repeated application of a
 list of bond operators on nearest neighbor sites of the ladder.  A number
-of bond operators ($r$) are changed each step and the change is accepted
+of bond operators are changed each step and the change is accepted
 with a probability depending on the number of nearest neighbor bonds in
 the resulting valence bond states. Measured quantities such as energy or
 VB EE are then calculated by a weighted average over all the valence bond
@@ -183,45 +180,51 @@ and VN entanglement entropies for 1D Heisenberg model with PBC and OBC. Upper pa
 function of the conformal distance $x'$ for 100-site chains (see text).
 Lower plots show the values for the central charge $c$, obtained by
 fitting the numerical data to the CFT result, for several chain lengths.
-For PBC, $c$ is plotted as a function of inverse system size.
-For OBC, boundary effects make the fits depend on the number
-of sites included in the fit, $z$. To bypass these effects we plot $c$ as
-a function $z$ for each $L$. Here, $z$ is systematically decreased by
-removing points from the {\it outside} ends of the open-boundary chain.
+For PBC, $c$ is calculated with the two smallest $x'$ points removed.
+For OBC, the fits depend on the number of sites included in the fit, $z$,
+which we
+%To bypass these effects we plot $c$ as
+%a function $z$ for each $L$. Here, $z$ is 
+systematically decreased by
+removing points from the {\it outside} ends of the chain.
 $c$ is illustrated for the VN EE (closed symbols) and the VB EE (open
 symbols) for system sizes $L=64$ (circles), $L=100$ (squares), $L=128$
 (diamonds), and $L=200$ (triangles) \label{1D}}} \end{figure}
 
-{\it One-dimensional chain.}-- We consider first the case of 1D Heisenberg
-chains. We employ both open (OBC) and periodic (PBC) boundary conditions
+{\it One-dimensional chain.}-- We consider first the case of Heisenberg
+chains ($N=1$). We employ both open (OBC) and periodic (PBC) boundary conditions
 with our DMRG and QMC simulations, noting that in the DMRG, PBCs typically
 have poorer convergence properties than OBCs and more states must be kept
 in each truncation.  The DMRG algorithm requires each subregion A and B to
 be topologically connected, so in 1D the bipartition is defined by a site
 index $x$ with sites within the interval $[1,x]$ ($[x+1,L]$) belonging to
 subregion $A$ ($B$), $L$ being the length of the chain.  From the
-remainder of this paper, we label the EE $S_A$ by its site index, $S(x)$.
+remainder of this paper, we label $S_A$ by its site index, $S(x)$.
 We stress that the QMC and DMRG results are on the same geometry and
 Hamiltonian, and reproduce the same ground state energies; all the figures
 in this paper can be considered as exact comparisons between the VB and VN
 EE. 
 
 The 1D Heisenberg model is known to be critical and therefore can be
-mapped to a 2D classical Hamiltonian at its critical point, which in turn
-can be described within CFT in the limit $L\to\infty$.  To address
+mapped to a 2D classical Hamiltonian at its critical point, which
+can be described by CFT in the limit $L\to\infty$.  To address
 finite-length chains one can use the conformal mappings $x\to x'=L/\pi
-\sin(\pi x / L)$ for PBC, and $x\to x'=2L/\pi \sin(\pi x / L)$ for OBC. VN
+\sin(\pi x / L)$ for PBC, and 
+%$x\to x'=2L/\pi \sin(\pi x / L)$ 
+$x\to 2x'$ for OBC. VN
 EE calculations within CFT~\cite{Cardy, Huanq2006} obey $S^{VN}(x)= c/3
-\ln(x') + S_1$ in the PBC case, and $S^{VN}(x)= c/6 \ln(x') +
+\ln(x') + S_1$ in the PBC case, and $S^{VN}(x)= c/6 \ln(2x') +
 \ln(g)+S_1/2$ in the OBC case, where $c$ is the central charge of the CFT,
 $S_1$ is a model-dependent constant, and $g$ is Ludwig and Affleck's
 universal boundary term~\cite{AffleckAndLudwig}.
 
 Figure~\ref{1D} illustrates simulation results in both cases, the left
-(right) panels corresponding to PBC (OBC). In Refs.~\cite{Alet, Chh}, VB
-EE calculated from QMC was compared to the CFT result, and a good fit to a
-central charge of $c=1$ was found for both cases.  In Fig.~\ref{1D} we
-compare this result to the VN EE calculated from the DMRG.  For PBC both
+(right) panels corresponding to PBC (OBC). 
+%In Refs.~\cite{Alet, Chh}, VB
+%EE calculated from QMC was compared to the CFT result, and a good fit to a
+%central charge of $c=1$ was found for both cases.  In Fig.~\ref{1D} we
+%compare this result to the VN EE calculated from the DMRG.  
+For PBC both
 the VN and VB entropies are seen to fit well to the CFT result, although
 the VN EE is greater than the VB EE. The regression fit shows very good
 convergence with the CFT central charge prediction for the VN EE, while
@@ -252,9 +255,8 @@ geometry. In multi-leg ladders we choose to move in a 1D path that visits
 first bonds sitting in rungs rather than bonds sitting in legs (see
 Fig.~\ref{ladder}).  DMRG computational demands increase dramatically with
 the number of legs, so in this paper we restrict ourselves to ladders up
-to $N=7$ legs with OBC. VB QMC lacks of this limitation and we are able to
-go up to $N=24$. 
-%TODO Ann: Could you confirm this 24 for QMC ?.
+to $N=7$ legs with OBC. QMC lacks of this limitation and one can
+go up to $N=20$ with minimal CPU effort.
 
 \begin{figure} { \includegraphics[width=3.3in]{FIG23NEW.eps} 
 \caption{(color online) VB and VN entanglement entropies for 3-leg (left)
@@ -268,17 +270,18 @@ multi-leg ladders. The shadowed area shows the bipartition for $x=9$.
 \label{ladder} }} \end{figure}
 
 Figure~\ref{ladder} shows the VB and VN entanglement entropies calculated
-for the 3-leg and 4-leg ladder. As happens with the 1D chain, the VB EE is
-larger than the VN EE, and as will discused below, this difference
-increases with increasing $N$. $S(x)$ shows a different behavior depending
+for the 3-leg and 4-leg ladder. As happens with the 1D OBC chain, the VB EE is
+larger than the VN EE.
+%, and as will discused below, this difference increases with increasing $N$. 
+$S(x)$ shows different behavior depending
 on $N$ being even or odd. Even-leg ladders are known to have a
-spin-gap~\cite{White1994}, and therefore only sites within distances from
-the boundary between A and B smaller than the correlation length $\xi$
-contribute to the entanglement, yielding $S(x\gtrsim \xi)=const.$ On the
-contrary odd-leg ladders are gapless, and therefore all the sites within
+spin-gap~\cite{White1994}, and therefore only sites with distances from
+the boundary between A and B {\it smaller} than the correlation length $\xi$
+contribute to the entanglement, yielding $S(x\gtrsim \xi)= {\rm const}.$ 
+In contrast, odd-leg ladders are gapless, and therefore all the sites within
 subregions A and B contribute to the entanglement, yielding a convex
-$S(x)$ with a maximum at $x=L/2$, which follows the CFT result similarly
-to the 1D case. As can be seen $S(x)$ splits in branches, with a
+$S(x)$ with a maximum at $x=L/2$, which follows the CFT result 
+in analogy to the 1D case. As can be seen $S(x)$ splits in branches, with a
 (quasi-)periodic structure superimpossed to the main dependence on $x$,
 the period being $N$ ($2N$) for even- (odd-)leg ladders. 
 
@@ -348,7 +351,7 @@ online) VB and VN entanglement entropies (taken such that the region A
 includes $2N^2$ sites) normalized by N, the number of legs.  All ladders
 have 100 sites per leg.  \label{zigzag}}} \end{figure}
 
-{\it Discussion.}-- In this paper, we have compared scaling properties of
+{\it Discussion.}-- {\bf NEEDS WORK} In this paper, we have compared scaling properties of
 the valence bond (VB) entanglement entropy (EE) defined in
 Refs.~\cite{Alet,Chh} to the von Neumann (VN) entanglement entropy in the
 spin 1/2 Heisenberg model on 1D and multi-leg ladder geometries.  Both
