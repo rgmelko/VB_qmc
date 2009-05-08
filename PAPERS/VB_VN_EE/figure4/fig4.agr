@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Tue May  5 13:17:45 2009"
+@timestamp def "Fri May  8 12:13:48 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -163,7 +163,7 @@
 @    xaxis  ticklabel start 0.000000
 @    xaxis  ticklabel stop type auto
 @    xaxis  ticklabel stop 0.000000
-@    xaxis  ticklabel char size 1.500000
+@    xaxis  ticklabel char size 1.750000
 @    xaxis  ticklabel font 0
 @    xaxis  ticklabel color 1
 @    xaxis  tick place both
@@ -214,7 +214,7 @@
 @    yaxis  ticklabel start 0.000000
 @    yaxis  ticklabel stop type auto
 @    yaxis  ticklabel stop 0.000000
-@    yaxis  ticklabel char size 1.500000
+@    yaxis  ticklabel char size 1.750000
 @    yaxis  ticklabel font 0
 @    yaxis  ticklabel color 1
 @    yaxis  tick place both
@@ -231,7 +231,7 @@
 @    legend box fill color 0
 @    legend box fill pattern 1
 @    legend font 0
-@    legend char size 1.000000
+@    legend char size 1.750000
 @    legend color 1
 @    legend length 4
 @    legend vgap 1
@@ -244,55 +244,55 @@
 @    frame pattern 1
 @    frame background color 0
 @    frame background pattern 0
-@    s0 hidden false
-@    s0 type xy
-@    s0 symbol 1
-@    s0 symbol size 1.000000
-@    s0 symbol color 1
-@    s0 symbol pattern 1
-@    s0 symbol fill color 4
-@    s0 symbol fill pattern 1
-@    s0 symbol linewidth 2.5
-@    s0 symbol linestyle 1
-@    s0 symbol char 65
-@    s0 symbol char font 0
-@    s0 symbol skip 0
-@    s0 line type 1
-@    s0 line linestyle 1
-@    s0 line linewidth 1.0
-@    s0 line color 1
-@    s0 line pattern 1
-@    s0 baseline type 0
-@    s0 baseline off
-@    s0 dropline off
-@    s0 fill type 0
-@    s0 fill rule 0
-@    s0 fill color 1
-@    s0 fill pattern 1
-@    s0 avalue off
-@    s0 avalue type 2
-@    s0 avalue char size 1.000000
-@    s0 avalue font 0
-@    s0 avalue color 1
-@    s0 avalue rot 0
-@    s0 avalue format general
-@    s0 avalue prec 3
-@    s0 avalue prepend ""
-@    s0 avalue append ""
-@    s0 avalue offset 0.000000 , 0.000000
-@    s0 errorbar on
-@    s0 errorbar place both
-@    s0 errorbar color 1
-@    s0 errorbar pattern 1
-@    s0 errorbar size 1.000000
-@    s0 errorbar linewidth 1.0
-@    s0 errorbar linestyle 1
-@    s0 errorbar riser linewidth 1.0
-@    s0 errorbar riser linestyle 1
-@    s0 errorbar riser clip off
-@    s0 errorbar riser clip length 0.100000
-@    s0 comment "/Users/akallin/VB_qmc/PAPERS/VB_VN_EE/figure4/2Nsq_fig_20_normalized.dat"
-@    s0 legend  "VB EE"
+@    s1 hidden false
+@    s1 type xy
+@    s1 symbol 1
+@    s1 symbol size 1.000000
+@    s1 symbol color 1
+@    s1 symbol pattern 1
+@    s1 symbol fill color 4
+@    s1 symbol fill pattern 1
+@    s1 symbol linewidth 2.0
+@    s1 symbol linestyle 1
+@    s1 symbol char 65
+@    s1 symbol char font 0
+@    s1 symbol skip 0
+@    s1 line type 1
+@    s1 line linestyle 1
+@    s1 line linewidth 1.0
+@    s1 line color 1
+@    s1 line pattern 1
+@    s1 baseline type 0
+@    s1 baseline off
+@    s1 dropline off
+@    s1 fill type 0
+@    s1 fill rule 0
+@    s1 fill color 1
+@    s1 fill pattern 1
+@    s1 avalue off
+@    s1 avalue type 2
+@    s1 avalue char size 1.000000
+@    s1 avalue font 0
+@    s1 avalue color 1
+@    s1 avalue rot 0
+@    s1 avalue format general
+@    s1 avalue prec 3
+@    s1 avalue prepend ""
+@    s1 avalue append ""
+@    s1 avalue offset 0.000000 , 0.000000
+@    s1 errorbar on
+@    s1 errorbar place both
+@    s1 errorbar color 1
+@    s1 errorbar pattern 1
+@    s1 errorbar size 1.000000
+@    s1 errorbar linewidth 1.0
+@    s1 errorbar linestyle 1
+@    s1 errorbar riser linewidth 1.0
+@    s1 errorbar riser linestyle 1
+@    s1 errorbar riser clip off
+@    s1 errorbar riser clip length 0.100000
+@    s1 comment "/Users/akallin/VB_qmc/melko/LADDERS/RUNS/hydruns/random_seed_dimerized_init/zigzag/2Nsq_fig.dat"
+@    s1 legend  "VB EE"
 @    s2 hidden false
 @    s2 type xy
 @    s2 symbol 2
@@ -342,28 +342,28 @@
 @    s2 errorbar riser clip length 0.100000
 @    s2 comment "copy of setdata G0.S0"
 @    s2 legend  "VN EE"
-@target G0.S0
+@target G0.S1
 @type xy
 1 0.492507
 2 0.376919
-3 0.500897
-4 0.452927
+3 0.50089667
+4 0.4529275
 5 0.520694
 6 0.506455
-7 0.546224
-8 0.545304
+7 0.54622429
+8 0.54530375
 9 0.56959
 10 0.573161
-11 0.589209
-12 0.594487
-13 0.604206
-14 0.608384
-15 0.616741
-16 0.619621
-17 0.627329
-18 0.628689
-19 0.636989
-20 0.63628
+11 0.58920909
+12 0.5944875
+13 0.60420615
+14 0.60838429
+15 0.61674133
+16 0.61962063
+17 0.62700588
+18 0.63007222
+19 0.63560526
+20 0.63658
 &
 @target G0.S2
 @type xy
