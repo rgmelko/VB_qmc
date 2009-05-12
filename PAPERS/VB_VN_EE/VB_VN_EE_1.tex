@@ -96,7 +96,7 @@ measure in 2D systems.  This is due to the fact that QMC - currently the
 only scalable method capable of unbiased 2D simulations - does not have
 direct access to the groundstate wavefunction $| \psi \rangle$, required
 in Eq.~\eqref{vNEE}.  In response to this, several authors \cite{Alet,
-Chh} has recently introduced the concept of {\it valence bond} (VB)
+Chh} have recently introduced the concept of {\it valence bond} (VB)
 entanglement entropy, defined for a  spin system as
 \begin{equation} 
 S^{\rm VB}_A = \ln(2) \cdot \mathcal{N}_A, \label{VBEE}
@@ -135,6 +135,17 @@ shows a logarithmic correction for the VB EE, $S^{VB}_A /N = N \ln
 N$ (in agreement with Refs.~\cite{Alet,Chh}), however for data up to
 $N=7$, the VN EE convincingly shows a scaling of
 $S^{VB}_A /N = N$, thus obeying the area law.
+
+The fact  that the VB EE can be either greater or less than the VN EE can be understood through simple
+examples.  Consider an 8 site chain, with sites 1 to 4 in region A.  Let
+$|(ij)(kl)...\rangle$ denote a state in which sites $i,j$ are in a singlet, sites $k,l$ are in a singlet, and so on.
+Then, the state $|(12)(34)(56)(78)\rangle+|(14)(23)(58)(67)\rangle$ has vanishing VB EE since
+no bonds connect $A$ to $B$, but non-vanishing VN EE.  
+On the other hand, consider a 4 site chain in
+the state $|(12)(34)\rangle+|(14)(23)\rangle$, and let region $A$ contain sites $1$ and $3$.  Then, the VB EE is maximal,
+equal to $2\log(2)$, while the VN EE is smaller.  The second state we have described is in fact the Neel state with no
+quantum fluctuations: it is the equal amplitude superposition of all configurations of bonds going from one sublattice to the other.
+Thus, it is not surprising that states with Neel order show VB EE larger than VN EE.
 
 {\it Model and Methods.}-- We consider the spin 1/2 Heisenberg
 Hamiltonian, given by  $H =  \sum_{\langle i j \rangle} {\mathbf S}_i
@@ -255,7 +266,7 @@ geometry. In multi-leg ladders we choose to move in a 1D path that visits
 first bonds sitting in rungs rather than bonds sitting in legs (see
 Fig.~\ref{ladder}).  DMRG computational demands increase dramatically with
 the number of legs, so in this paper we restrict ourselves to ladders up
-to $N=7$ legs with OBC. QMC lacks of this limitation and one can
+to $N=7$ legs with OBC. QMC lacks this limitation and one can
 go up to $N=20$ with minimal CPU effort.
 
 \begin{figure} { \includegraphics[width=3.3in]{FIG23NEW.eps} 
@@ -332,6 +343,11 @@ the plot of the VN EE data from the DMRG, which convincingly approaches a
 constant for large $N$.  Clearly, the VN EE suggests that the area law is
 indeed obeyed in the N\'eel groundstate, leading one to conclude that the
 multiplicative logarithmic correction is an artifact of the VB EE.
+In fact, a gapless Goldstone mode will not give a logarithmic
+divergence to the VN EE since a gapless bosonic mode in two dimensions
+obeys an area law\cite{2dboson}; we have done a spin-wave calculation of
+the entropy for this system and found an area law, albeit with
+$S/N\approx 0.2$
 
 %Despite the importance of adherence to the area law in tensor-network
 %generalization of MPS techniques, it is still not yet known whether the
@@ -350,6 +366,29 @@ multiplicative logarithmic correction is an artifact of the VB EE.
 online) VB and VN entanglement entropies (taken such that the region A
 includes $2N^2$ sites) normalized by N, the number of legs.  All ladders
 have 100 sites per leg.  \label{zigzag}}} \end{figure}
+
+{\it Bond Length Distribution---} Sandvik defined the bond length distribution
+$P(x,y)$ as the probability of a bond going from
+site $x$ to site $y$, and found that $P(x,y)\sim |x-y|^{-p}$ with $p\approx 3$.  
+This value of $p$ gives
+the logarithmic divergence in the VB EE, as can be found by directly calculating
+the
+VB EE
+from $\sum_{x\in A,y\in B} P(x,y) \log(2)$.
+
+We can understand the value of $p$ from a scaling argument similar to that used in \cite{network}.
+Consider the number of bonds of length $l$ which leave a region of linear size $l$.  For $p>4$, this
+scales to zero, and hence should give a phase with no long-range order (indeed, such a phase should
+be topologically ordered).  For $p=4$, this number of bonds is $l$-independent, and corresponds to a critical
+system ($p=2$ was observed at critical points in 1d\cite{1dcritical}).
+For $p<2$, the bond length distribution is not normalized, and all bonds are long, so that
+there should be no short-range order.  $p=3$ represents a state with both long-range
+and short-range order; we have a handwaving argument that $p=3$ corresponds to a state
+with Goldstone modes, since the correlation function of two spins is given by the
+probability that they lie on the same loop, and such a probability can be estimated by
+the Green's function of a Levy flight taking steps with a power law distribution with power $3$.
+
+
 
 {\it Discussion.}-- {\bf NEEDS WORK} In this paper, we have compared scaling properties of
 the valence bond (VB) entanglement entropy (EE) defined in
@@ -393,6 +432,7 @@ future tasks such as characterizing topological phases using entanglement
 entropy, or studying universality at quantum phase transitions.
 
 {\it Acknowledgements.}-- The authors thank I.~Affleck, J.~Berlinsky,
+N.~Bonesteel,
 A.~Del~Maestro, A.~Feiguin, L.~Hormozi, and E.~Sorensen for useful
 discussions.  This work was made possible by the computing facilities of
 SHARCNET and CESGA.  Support for this work was provided by NSERC of
