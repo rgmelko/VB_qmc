@@ -119,7 +119,7 @@ N\'eel groundstate using tensor-network simulations.
 
 %If this
 %property were to be shared by the VN EE, it could have the consequence
-%that the 2D Neel groundstate can not be approximated by a tensor-network,
+%that the 2D N\'eel groundstate can not be approximated by a tensor-network,
 %and is therefore not amenable to simulation techniques based on the MPS
 %framework
  
@@ -137,15 +137,16 @@ $N=7$, the VN EE convincingly shows a scaling of
 $S^{VB}_A /N = N$, thus obeying the area law.
 
 The fact  that the VB EE can be either greater or less than the VN EE can be understood through simple
-examples.  Consider an 8 site chain, with sites 1 to 4 in region A.  Let
+examples.  Consider an 8-site chain, with sites 1 to 4 in region A.  Let
 $|(ij)(kl)...\rangle$ denote a state in which sites $i,j$ are in a singlet, sites $k,l$ are in a singlet, and so on.
 Then, the state $|(12)(34)(56)(78)\rangle+|(14)(23)(58)(67)\rangle$ has vanishing VB EE since
 no bonds connect $A$ to $B$, but non-vanishing VN EE.  
-On the other hand, consider a 4 site chain in
+On the other hand, consider a 4-site chain in
 the state $|(12)(34)\rangle+|(14)(23)\rangle$, and let region $A$ contain sites $1$ and $3$.  Then, the VB EE is maximal,
-equal to $2\log(2)$, while the VN EE is smaller.  The second state we have described is in fact the Neel state with no
-quantum fluctuations: it is the equal amplitude superposition of all configurations of bonds going from one sublattice to the other.
-Thus, it is not surprising that states with Neel order show VB EE larger than VN EE.
+equal to $2\log(2)$, while the VN EE is smaller.  The second state we have
+described is in fact the N\'eel state with no
+quantum fluctuations: the equal amplitude superposition of all configurations of bonds going from one sublattice to the other.
+Thus, it is not surprising that states with N\'eel order show VB EE larger than VN EE.
 
 {\it Model and Methods.}-- We consider the spin 1/2 Heisenberg
 Hamiltonian, given by  $H =  \sum_{\langle i j \rangle} {\mathbf S}_i
@@ -160,14 +161,17 @@ length $L$ and number of legs $N$.
 We employ two complementary numerical techniques, the valence-bond basis QMC and DMRG, both of
 which give {\it unbiased} approximations to the ground state of the
 Hamiltonian at zero temperature.  The VN EE is naturally accessible
-through the DRMG ``sweeping'' algorithm~\cite{White92, Scholl05}.  At each
+through the DRMG 
+% I don't think we need this,
+%``sweeping'' 
+algorithm~\cite{White92, Scholl05}.  At each
 step of the algorithm, the wavefunction of the system is approximated by
-keeping only the states with largest coefficients in the Schmidt's
+keeping only the states with largest coefficients in the Schmidt
 decomposition for a given bipartition into subregions A and B. To find the
-basis entering the Schmidt's decomposition for subregion A, the reduced
+basis entering the Schmidt decomposition for subregion A, the reduced
 density matrix $\rho_A$ is calculated and diagonalized, thus allowing easy
 calculation of Eq.~\eqref{vNEE}. The truncation of the basis implies that
-only an upper bound for $S^{VN}_{A}$ is calculated, so care must be taken
+only an lower bound for $S^{VN}_{A}$ is calculated, so care must be taken
 to ensure that enough of the eigenvalue spectrum is included to converge
 the VN EE to sufficient accuracy; typically the number of states required
 is larger than that needed to converge the energy alone.
@@ -204,7 +208,7 @@ symbols) for system sizes $L=64$ (circles), $L=100$ (squares), $L=128$
 
 {\it One-dimensional chain.}-- We consider first the case of Heisenberg
 chains ($N=1$). We employ both open (OBC) and periodic (PBC) boundary conditions
-with our DMRG and QMC simulations, noting that in the DMRG, PBCs typically
+with our DMRG and QMC simulations, noting that in DMRG, PBCs typically
 have poorer convergence properties than OBCs and more states must be kept
 in each truncation.  The DMRG algorithm requires each subregion A and B to
 be topologically connected, so in 1D the bipartition is defined by a site
@@ -269,46 +273,51 @@ the number of legs, so in this paper we restrict ourselves to ladders up
 to $N=7$ legs with OBC. QMC lacks this limitation and one can
 go up to $N=20$ with minimal CPU effort.
 
-\begin{figure} { \includegraphics[width=3.3in]{FIG23NEW.eps} 
+\begin{figure} { \includegraphics[width=3.3in]{FIG23NEW.eps}
 \caption{(color online) VB and VN entanglement entropies for 3-leg (left)
 and 4-leg (right) ladder systems with OBC and 100 sites per leg.  For
-odd-leg ladders (gapless) $S(x)$ is convex with a maximum at $x=L/2$.
-Left inset shows $S(x)$ as a function of the conformal distance, $x'$, on
-a log scale, satisfying $S(x)\propto\ln(x')$. For even-leg ladders
-(gapped) $S(x\gtrsim\xi)=const.$ Both cases show the branched structure
-discussed in the text. Right inset shows the site indexing used for
-multi-leg ladders. The shadowed area shows the bipartition for $x=9$.
-\label{ladder} }} \end{figure}
+odd-leg ladders (gapless) $S(x)\propto\ln(x')$.  Left
+inset shows $S(x)$ as a function of the conformal distance, $x'$, on a log
+scale. For even-leg ladders (gapped) $S(x\gtrsim\xi)=const.$
+%For odd-leg ladders (gapless) $S(x)$ is convex with a maximum at $x=L/2$.
+%Left inset shows $S(x)$ as a function of the conformal distance, $x'$, on
+%a log scale, satisfying $S(x)\propto\ln(x')$. For even-leg ladders
+%(gapped) $S(x\gtrsim\xi)=const.$ Both cases show the branched structure
+%discussed in the text. 
+Right inset shows the site indexing used for multi-leg ladders with the
+bipartition for $x=9$.  \label{ladder} }} \end{figure}
 
 Figure~\ref{ladder} shows the VB and VN entanglement entropies calculated
-for the 3-leg and 4-leg ladder. As happens with the 1D OBC chain, the VB EE is
-larger than the VN EE.
-%, and as will discused below, this difference increases with increasing $N$. 
-$S(x)$ shows different behavior depending
-on $N$ being even or odd. Even-leg ladders are known to have a
+for the 3-leg and 4-leg ladder. As happens with the 1D OBC chain, the VB
+EE is larger than the VN EE.  $S(x)$ shows different behavior depending on
+$N$ being even or odd.  Even-leg ladders are known to have a
 spin-gap~\cite{White1994}, and therefore only sites with distances from
-the boundary between A and B {\it smaller} than the correlation length $\xi$
-contribute to the entanglement, yielding $S(x\gtrsim \xi)= {\rm const}.$ 
-In contrast, odd-leg ladders are gapless, and therefore all the sites within
-subregions A and B contribute to the entanglement, yielding a convex
-$S(x)$ with a maximum at $x=L/2$, which follows the CFT result 
-in analogy to the 1D case. As can be seen $S(x)$ splits in branches, with a
+the boundary between A and B {\it smaller} than the correlation length
+$\xi$ contribute to the entanglement, yielding $S(x\gtrsim \xi)= {\rm
+const}.$ In contrast, odd-leg ladders are gapless, and therefore all the
+sites within regions A and B contribute to the entanglement, yielding a
+convex $S(x)$ with a maximum at $x=L/2$, which follows the CFT result in
+analogy to the 1D case. As can be seen $S(x)$ splits in branches, with a
 (quasi-)periodic structure superimpossed to the main dependence on $x$,
-the period being $N$ ($2N$) for even- (odd-)leg ladders. 
+the period being $N$ ($2N$) for even- (odd-)leg ladders. This reflects the
+periodicity of the underlying 1D path in which we move, and the fact that
+valence bonds within the same rung are energetically
+favored~\cite{White1994}. The doubling of the period for odd-leg ladders
+is due to the same dimerization effect as in Ref.~\cite{Ian1}.
 
-A qualitative explanation based on a RVB picture is the
-following~\cite{White1994}. In ladder geometries, short-range singlets
-between sites in the same rung are favored, as can then resonate to
-``plaquette'' configurations. This causes the branched structure with
-period $N$. Singlets between distant sites freeze the VB configuration in
-region they cross, preventing this resonance and increasing the energy of
-the system.  Even-leg ladders can be fully covered by ``in-rung''
-singlets, and have strongly entangled rungs weakly entangled among them.
-On the contrary, odd-leg ladders can not be fully covered by ``in-rung''
-singlets, leaving one ``un-paired'' site per rung, which can entangle
-distant sites without penalty in energy, similarly to the 1D case. The
-doubling of the period for odd-leg ladders is due to the same dimerization
-effect as in Ref.~\cite{Ian1}.
+%%A qualitative explanation based on a RVB picture is the
+%%following~\cite{White1994}. In ladder geometries, short-range singlets
+%%between sites in the same rung are favored, as can then resonate to
+%%``plaquette'' configurations. This causes the branched structure with
+%%period $N$. Singlets between distant sites freeze the VB configuration in
+%%region they cross, preventing this resonance and increasing the energy of
+%%the system.  Even-leg ladders can be fully covered by ``in-rung''
+%%singlets, and have strongly entangled rungs weakly entangled among them.
+%%On the contrary, odd-leg ladders can not be fully covered by ``in-rung''
+%%singlets, leaving one ``un-paired'' site per rung, which can entangle
+%%distant sites without penalty in energy, similarly to the 1D case. The
+%%doubling of the period for odd-leg ladders is due to the same dimerization
+%%effect as in Ref.~\cite{Ian1}.
  
 {\it Area law in multi-leg ladders.}--  
 Given the ground state of a
@@ -425,8 +434,10 @@ reproduced in the groundstates of some gapped systems \cite{Alet,Chh},
 however in the case of the N\'eel groundstate of the 2D Heisenberg model,
 unphysical multiplicative logarithmic corrections appear in the VB EE,
 which are not caused by gapless excitations or algebraically decaying
-correlations, but simply by the valence-bond length distribution ({\bf we
-need to justify this in the text}).  The presence of this correction must
+correlations, but simply by the valence-bond length distribution.
+% TODO I guess this is done now.
+%({\bf we need to justify this in the text}).  
+The presence of this correction must
 be taken into account in proposals to use the VB EE for such important
 future tasks such as characterizing topological phases using entanglement
 entropy, or studying universality at quantum phase transitions.
@@ -437,6 +448,8 @@ A.~Del~Maestro, A.~Feiguin, L.~Hormozi, and E.~Sorensen for useful
 discussions.  This work was made possible by the computing facilities of
 SHARCNET and CESGA.  Support for this work was provided by NSERC of
 Canada.
+% TODO I may need to add support from KITP
+% I.~G. was supported in part by NSF under Grant No. NSF PHY05-51164. 
 
 \bibliography{VB_biblio}
 

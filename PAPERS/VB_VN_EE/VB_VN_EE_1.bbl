@@ -1,4 +1,4 @@
-\begin{thebibliography}{18}
+\begin{thebibliography}{20}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname bibnamefont\endcsname\relax
   \def\bibnamefont#1{#1}\fi
@@ -133,5 +133,21 @@
   \bibinfo{author}{\bibfnamefont{D.}~\bibnamefont{Scalapino}},
   \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{73}},
   \bibinfo{pages}{886} (\bibinfo{year}{1994}).
+
+\bibitem[{\citenamefont{Cramer et~al.}(2006)\citenamefont{Cramer, Eisert, and
+  Plenio}}]{2dboson}
+\bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Cramer}},
+  \bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Eisert}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Plenio}},
+  \bibinfo{journal}{Phys. Rev. A} \textbf{\bibinfo{volume}{73}},
+  \bibinfo{pages}{012309} (\bibinfo{year}{2006}).
+
+\bibitem[{\citenamefont{Kozma et~al.}(2005)\citenamefont{Kozma, Hastings, and
+  Korniss}}]{network}
+\bibinfo{author}{\bibfnamefont{B.}~\bibnamefont{Kozma}},
+  \bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Hastings}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{G.}~\bibnamefont{Korniss}},
+  \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{95}},
+  \bibinfo{pages}{018701} (\bibinfo{year}{2005}).
 
 \end{thebibliography}
