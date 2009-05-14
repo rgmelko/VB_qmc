@@ -287,7 +287,7 @@ const}.$ In contrast, odd-leg ladders are gapless, and therefore all the
 sites within regions A and B contribute to the entanglement, yielding a
 convex $S(x)$ with a maximum at $x=L/2$, which follows the CFT result in
 analogy to the 1D case. As can be seen $S(x)$ splits in branches, with a
-(quasi-)periodic structure superimpossed to the main dependence on $x$,
+(quasi-)periodic structure superimposed to the main dependence on $x$,
 the period being $N$ ($2N$) for even- (odd-)leg ladders. This reflects the
 periodicity of the underlying 1D path in which we move, and the fact that
 valence bonds within the same rung are energetically
@@ -334,8 +334,10 @@ define the lattice
 geometry such that subregion A is rectangular, cutting a multi-leg ladder
 cleanly across a rung, such that the ``area'' separating region A and B is
 equivalent to the number of legs in the ladder $N$.  We chose this area A
-to contain contain $2N^2$ sites ...{\bf Matt: some
-argument involving the sum over quasi-1D modes? }.
+to contain contain $2N^2$ sites to have an aspect ratio of order unity; in
+contrast, the entanglement entropy of a long
+skinny region would be dominated by the behavior
+of the single gapless mode for odd-leg ladders.
 
 Figure~\ref{zigzag} illustrates the simulation results for $N$-leg ladders.
 Plotting $S_A/N$ versus $N$ on a log scale, one sees that we obtain a
@@ -344,7 +346,9 @@ with results from Refs.~\cite{Alet,Chh}.  However, the linear slope is {\it not}
 the plot of the VN EE data from the DMRG, which convincingly approaches a
 constant for large $N$.  Clearly, for the VN EE the area law is
 indeed obeyed in the N\'eel groundstate, leading one to conclude that the
-multiplicative logarithmic correction occurs in the VB EE only.  In the next section, we explain this 
+multiplicative logarithmic correction occurs in the VB EE only.  We also show data for free fermions, showing the logarithmic correction to the area law
+for the VN EE in this case\cite{2dfermion}.
+In the next section, we explain this 
 in the context of the bond length distribution in the QMC.
 Contrary to the suggestion in Ref.~\cite{Alet}, a gapless Goldstone mode will {\it not} give a logarithmic
 divergence to the VN EE since a gapless bosonic mode in 2D
@@ -423,10 +427,10 @@ model.
 The fact  that the VB EE can be either greater or less than the VN EE can be understood through simple
 examples.  Consider an 8-site chain, with sites 1 to 4 in region A.  Let
 $|(ij)(kl)...\rangle$ denote a state in which sites $i,j$ are in a singlet, sites $k,l$ are in a singlet, and so on.
-Then, the state $|(12)(34)(56)(78)\rangle+|(14)(23)(58)(67)\rangle$ has vanishing VB EE since
+Then, the state $|(12)(34)(56)(78)\rangle+|(14)(32)(58)(76)\rangle$ has vanishing VB EE since
 no bonds connect $A$ to $B$, but non-vanishing VN EE.  
 On the other hand, consider a 4-site chain in
-the state $|(12)(34)\rangle+|(14)(23)\rangle$, and let region $A$ contain sites $1$ and $3$.  Then, the VB EE is maximal,
+the state $|(12)(34)\rangle+|(14)(32)\rangle$, and let region $A$ contain sites $1$ and $3$.  Then, the VB EE is maximal,
 equal to $2\log(2)$, while the VN EE is smaller.  The second state we have
 described is in fact the N\'eel state with no
 quantum fluctuations: the equal amplitude superposition of all configurations of bonds going from one sublattice to the other.
