@@ -13,10 +13,7 @@
 \affiliation{Department of Physics and Astronomy, University of Waterloo, Ontario, N2L 3G1, Canada} 
 
 \author{Iv\'an Gonz\'alez}
-%TODO Decide on this!
-%\affiliation{Fundaci\'on Centro Tecnol\'ogico de Supercomputaci\'on de Galicia (CESGA), Santiago de Compostela, Spain}
-\affiliation{Centro de Supercomputaci\'on de Galicia, %(CESGA), 
-Avda.~de~Vigo~s/n, E-15705 Santiago de Compostela, Spain}
+\affiliation{Centro de Supercomputaci\'on de Galicia, Avda.~de~Vigo~s/n, E-15705 Santiago de Compostela, Spain}
 
 \author{Matthew B. Hastings}
 \affiliation{Microsoft Research, Station Q, CNSI Building, University of California, Santa Barbara, CA, 93106}
@@ -31,7 +28,7 @@ renormalization group simulations.  For one-dimensional chains we
 show that the valence bond entropy can be either less or greater than the
 von Neumann entropy, hence it cannot provide a bound on the latter.  On
 ladder geometries we reproduce a multiplicative logarithmic correction
-previously found in the area law for valence bond entropy in the
+previously found in the area law for the valence bond entropy in the
 two-dimensional limit.  In contrast, in the N\'eel state the von Neumann entropy
 obeys the area law without correction.
 
@@ -168,7 +165,7 @@ is larger than that needed to converge the energy alone.
 The VB EE \cite{Alet,Chh} can be calculated using the valence-bond basis
 QMC proposed by Sandvik \cite{Sandvik}.  The 
 algorithm that we use is the simple single-projector method, with lattice
-geometries constructed to match those given by the DMRG algorithm.  The
+geometries constructed to match those used by the DMRG algorithm.  The
 ground state of the system is projected out by repeated application of a
 list of bond operators on nearest neighbor sites of the ladder.  A number
 of bond operators are changed each step and the change is accepted
@@ -230,7 +227,7 @@ Figure~\ref{1D} illustrates simulation results in both cases, the left
 For PBC both
 the VN and VB entropies are seen to fit well to the CFT result, although
 the VN EE is greater than the VB EE. The regression fit shows very good
-convergence with the CFT central charge, $c=1$ prediction for the VN EE, while
+convergence with the central charge predicted by CFT, $c=1$, for the VN EE, while
 the VB EE fit yields a lower value than predicted.
 {\bf ANN: ADD DISCUSSION OF UNIVERSAL g (?)}.  
 %TODO {\it (Should I include this?) It is possible the VB EE data is not
@@ -258,9 +255,9 @@ legs.  As it was noted before, DMRG imposes contraints to the subregion
 geometry. In multi-leg ladders we choose to move in a 1D path that visits
 first bonds sitting in rungs rather than bonds sitting in legs (see
 Fig.~\ref{ladder}).  DMRG computational demands increase dramatically with
-the number of legs, so in this paper we restrict ourselves to ladders up
-to $N=6$ legs with OBC. QMC lacks this limitation and one can
-go up to $N=20$ with minimal CPU effort.
+the number of legs, so in this paper we restrict ourselves to ladders with
+OBC up to $N=6$ legs. QMC lacks this limitation and one can go up to
+$N=20$ with minimal CPU effort.
 
 \begin{figure} { \includegraphics[width=3.3in]{FIG23NEW.eps}
 \caption{(color online) VB and VN entanglement entropies for 3-leg (left)
@@ -277,10 +274,10 @@ Right inset shows the site indexing used for multi-leg ladders with the
 bipartition for $x=9$.  \label{ladder} }} \end{figure}
 
 Figure~\ref{ladder} shows the VB and VN entanglement entropies calculated
-for the 3-leg and 4-leg ladder. As happens with the 1D OBC chain, the VB
+for the 3-leg and 4-leg ladder. As happens with the OBC 1D chain, the VB
 EE is larger than the VN EE.  $S(x)$ shows different behavior depending on
 $N$ being even or odd.  Even-leg ladders are known to have a
-spin-gap~\cite{White1994}, and therefore only sites with distances from
+spin-gap~\cite{White1994}, and therefore only sites within distances from
 the boundary between A and B {\it smaller} than the correlation length
 $\xi$ contribute to the entanglement, yielding $S(x\gtrsim \xi)= {\rm
 const}.$ In contrast, odd-leg ladders are gapless, and therefore all the
@@ -462,7 +459,7 @@ discussions.  This work was made possible by the computing facilities of
 SHARCNET and CESGA.  Support for this work was provided by NSERC of
 Canada.
 % TODO I may need to add support from KITP
-% I.~G. was supported in part by NSF under Grant No. NSF PHY05-51164. 
+I.~G. was supported in part by NSF under Grant No. NSF PHY05-51164. 
 
 \bibliography{VB_biblio}
 
