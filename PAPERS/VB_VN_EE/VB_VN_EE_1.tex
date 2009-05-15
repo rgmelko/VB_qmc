@@ -58,10 +58,10 @@ Here, the reduced density matrix $\rho_A = {\rm Tr}_B | \psi \rangle
 \langle \psi |$ is obtained by tracing out the degrees of freedom
 associated with the region B.
 
-The properties of the VN EE are well-studied in the field of quantum information theory.
+The properties of $S^{\rm VN}_A$ are well-studied in the field of quantum information theory.
 In interacting one dimensional (1D) quantum systems, exact analytical results are known from conformal
 field theories (CFT); they show that, away from special critical points,
-the VN EE scales as the size of the boundary between A and B.
+$S^{\rm VN}_A$ scales as the size of the boundary between A and B.
 This so-called {\it area law} \cite{Shredder} is also believed to hold in many
 groundstates of two dimensional (2D) interacting quantum systems,
 although few exact results are available \cite{ALreview}.  This has 
@@ -100,17 +100,17 @@ S^{\rm VB}_A = \ln(2) \cdot \mathcal{N}_A, \label{VBEE}
 where $ \mathcal{N}_A$ is the number of singlets
 ${( |\uparrow \downarrow \rangle - | \downarrow \uparrow
 \rangle)/\sqrt{2}}$ crossing the boundary between regions A and B.  Unlike
-the VN EE, the VB EE can be accessed easily in the valence-bond basis
+the $S^{\rm VN}_A$, $S^{\rm VB}_A$ can be accessed easily in the valence-bond basis
 projector QMC method recently proposed by Sandvik \cite{Sandvik}.  As
-demonstrated in Refs.~\cite{Alet,Chh}, the VB EE has many properties in
-common with the VN EE, in particular the relationship $S_A = S_B$, and the
+demonstrated in Refs.~\cite{Alet,Chh}, $S^{\rm VB}_A$ has many properties in
+common with $S^{\rm VN}_A$, in particular the relationship $S_A = S_B$, and the
 fact that $S^{VB}_A=0$ for regions ``un-entangled'' by valence bonds.
-A comparison of the scaling of the VB EE for (critical) 1D spin
+A comparison of the scaling of $S^{\rm VB}_A$ for (critical) 1D spin
 1/2 Heisenberg chains shows good agreement with analytical results known
 from CFT, however in the
  2D isotropic Heisenberg model it
 displays a {\it multiplicative} logarithmic correction to the area law \cite{Alet,Chh}.  If
-true also for the VN EE, this fact would have negative consequences for the simulation of the 
+true also for the $S^{\rm VN}_A$, this fact would have negative consequences for the simulation of the 
 N\'eel groundstate using tensor-network simulations.
 
 %If this
@@ -119,12 +119,12 @@ N\'eel groundstate using tensor-network simulations.
 %and is therefore not amenable to simulation techniques based on the MPS
 %framework
  
-In this paper, we compare the VB EE calculated by valence-bond QMC to the
-VN EE accessible through density-matrix renormalization group
-(DMRG) simulations of the Heisenberg model on $N$-leg ladders.    For $N=1$, the CFT central charge calculated  by scaling the
-VN EE shows excellent agreement to $c=1$, whereas the VB EE converges
+In this paper, we compare $S^{\rm VB}_A$ calculated by valence-bond QMC to 
+$S^{\rm VN}_A$ accessible through density-matrix renormalization group
+(DMRG) simulations of the Heisenberg model on $N$-leg ladders.    For $N=1$, the CFT central charge calculated  by scaling
+$S^{\rm VN}_A$ shows excellent agreement to $c=1$, whereas $S^{\rm VB}_A$ converges
 to $c<1$.
-For $N>1$, the VB EE is systematically greater than the VN EE,
+For $N>1$, $S^{\rm VB}_A$ is systematically greater than $S^{\rm VN}_A$,
 a trend which grows rapidly with $N$. An
 examination of entanglement defined by bisecting multi-leg ladders
 shows a logarithmic correction for the VB EE, $S^{VB}_A /N = N \ln
@@ -146,7 +146,7 @@ length $L$ and number of legs $N$.
 %spin $n/2$ and, from Haldane's conjecture, are therefore gapless.  
 We employ two complementary numerical techniques, the valence-bond basis QMC and DMRG, both of
 which give {\it unbiased} approximations to the ground state of the
-Hamiltonian at zero temperature.  The VN EE is naturally accessible
+Hamiltonian at zero temperature.  $S^{\rm VN}_A$ is naturally accessible
 through the DRMG 
 % I don't think we need this,
 %``sweeping'' 
@@ -159,10 +159,10 @@ density matrix $\rho_A$ is calculated and diagonalized, thus allowing easy
 calculation of Eq.~\eqref{vNEE}. The truncation of the basis implies that
 only a lower bound for $S^{VN}_{A}$ is calculated, so care must be taken
 to ensure that enough of the eigenvalue spectrum is included to converge
-the VN EE to sufficient accuracy; typically the number of states required
+$S^{\rm VN}_A$ to sufficient accuracy; typically the number of states required
 is larger than that needed to converge the energy alone.
 
-The VB EE \cite{Alet,Chh} can be calculated using the valence-bond basis
+$S^{\rm VB}_A$ \cite{Alet,Chh} can be calculated using the valence-bond basis
 QMC proposed by Sandvik \cite{Sandvik}.  The 
 algorithm that we use is the simple single-projector method, with lattice
 geometries constructed to match those used by the DMRG algorithm.  The
@@ -171,7 +171,7 @@ list of bond operators on nearest neighbor sites of the ladder.  A number
 of bond operators are changed each step and the change is accepted
 with a probability depending on the number of nearest neighbor bonds in
 the resulting valence bond states. Measured quantities such as energy or
-VB EE are then calculated by a weighted average over all the valence bond
+$S^{\rm VB}_A$ are then calculated by a weighted average over all the valence bond
 states obtained by this procedure.
 
 \begin{figure} {
@@ -202,8 +202,7 @@ index $x$ with sites within the interval $[1,x]$ ($[x+1,L]$) belonging to
 subregion $A$ ($B$), $L$ being the length of the chain.  From the
 remainder of this paper, we label $S_A$ by its site index, $S(x)$.
 We stress that the QMC and DMRG results are on the same geometry and
-Hamiltonian, and reproduce the same ground state energies; Figure 1 and subsequent figures can be considered as exact comparisons between the VB and VN
-EE. 
+Hamiltonian, and reproduce the same ground state energies; Figure 1 and subsequent figures can be considered as exact comparisons between the $S^{\rm VB}_A$ and $S^{\rm VN}_A$.
 
 The 1D Heisenberg model is known to be critical and therefore can be
 mapped to a 2D classical Hamiltonian at its critical point, which
@@ -225,25 +224,25 @@ Figure~\ref{1D} illustrates simulation results in both cases, the left
 %central charge of $c=1$ was found for both cases.  In Fig.~\ref{1D} we
 %compare this result to the VN EE calculated from the DMRG.  
 For PBC both
-the VN and VB entropies are seen to fit well to the CFT result, although
-the VN EE is greater than the VB EE. The regression fit shows very good
-convergence with the central charge predicted by CFT, $c=1$, for the VN EE, while
-the VB EE fit yields a lower value than predicted.
+$S^{\rm VB}_A$ and $S^{\rm VN}_A$ are seen to fit well to the CFT result, although
+$S^{\rm VN}_A > S^{\rm VB}_A$. The regression fit shows very good
+convergence with the central charge predicted by CFT, $c=1$, for $S^{\rm VN}_A$, while
+$S^{\rm VB}_A$ fit yields a lower value than predicted.
 {\bf ANN: ADD DISCUSSION OF UNIVERSAL g (?)}.  
 %TODO {\it (Should I include this?) It is possible the VB EE data is not
 %sufficiently converged which would could give results below the CFT
 %predicted value, however data from Refs.~\cite{Alet,Chh} bears similar
 %results. }
 
-For OBC both the VN and VB EE split into two branches, the upper (lower)
+For OBC both $S^{\rm VN}_A$ and $S^{\rm VB}_A$ split into two branches, the upper (lower)
 corresponding to an odd (even) number of lattice sites in $A$.  This
 reflects a well-known ``dimerization'' effect induced by OBC~\cite{Ian1}.
-Notice that contrary to the PBC case, the VN EE is now \textit{smaller}
-than the VB EE. A regression fit of the lower branch to the form $c/6 \ln
-({2x'})$ (inset) shows excellent convergence of the VN EE to the central
+Notice that contrary to the PBC case, $S^{\rm VN}_A$ is now \textit{smaller}
+than $S^{\rm VB}_A$. A regression fit of the lower branch to the form $c/6 \ln
+({2x'})$ (inset) shows excellent convergence of $S^{\rm VN}_A$ to the central
 charge predicted by CFT, $c=1$, once finite-size effects and the proximity
 of the data to the open boundaries are taken into account.  In contrast,
-the VB EE fit deviates significantly from the CFT result for larger system
+$S^{\rm VB}_A$ fit deviates significantly from the CFT result for larger system
 sizes, give $c>1$ when all or most data is included in the fit, and $c<1$
 as data is systematically excluded from the fit (data closest to the open
 boundary is removed first).
@@ -273,9 +272,9 @@ scale. For even-leg ladders (gapped) $S(x\gtrsim\xi)=const.$
 Right inset shows the site indexing used for multi-leg ladders with the
 bipartition for $x=9$.  \label{ladder} }} \end{figure}
 
-Figure~\ref{ladder} shows the VB and VN entanglement entropies calculated
-for the 3-leg and 4-leg ladder. As happens with the OBC 1D chain, the VB
-EE is larger than the VN EE.  $S(x)$ shows different behavior depending on
+Figure~\ref{ladder} shows $S^{\rm VN}_A$ and $S^{\rm VB}_A$ calculated
+for the 3-leg and 4-leg ladder. As happens with the OBC 1D chain, $S^{\rm VB}_A > S^{\rm VN}_A$ .  
+The entropies show different behavior depending on
 $N$ being even or odd.  Even-leg ladders are known to have a
 spin-gap~\cite{White1994}, and therefore only sites within distances from
 the boundary between A and B {\it smaller} than the correlation length
@@ -306,25 +305,6 @@ is due to the same dimerization effect as in Ref.~\cite{Ian1}.
 %%effect as in Ref.~\cite{Ian1}.
  
 {\it Area law in multi-leg ladders.}--  
-%Given the ground state of a
-%quantum many-body system in 2D, the question of whether the entanglement
-%entropy fulfills and "area" (boundary) law is in general a difficult one
-%to answer.  
-%However from a simulation perspective this question is of
-%utmost importance, since tensor-network generalization of MPS techniques,
-%such as PEPS, produce states that satisfy the area law by construction.
-%Thus in order to simulate, for example, the N\'eel groundstate of the 2D
-%Heisenberg model accurately with such methods depends critically on
-%whether or not the entanglement entropy of the N\'eel state obeys an area
-%law.  
-%Using VB EE, Refs.~\cite{Alet,Chh} examined this issue for the 2D Heisenberg model and found
-%multiplicative logarithmic corrections to the area law in the N\'eel
-%state, which was attributed to gapless Goldstone modes and
-%algebraically decaying correlations.  
-
-%We can address this question further using our data for the VB and VN EE discussed 
-%in the above section on multi-leg ladders.  
-
 We can use these multi-leg ladder results to address the question of the adherence of the 2D N\'eel state
 to an area law.  To do so, we
 define the lattice
@@ -340,15 +320,15 @@ Figure~\ref{zigzag} illustrates the simulation results for $N$-leg ladders.
 Plotting $S_A/N$ versus $N$ on a log scale, one sees that we obtain a
 multiplicative logarithmic correction to the VB area law, in agreement
 with results from Refs.~\cite{Alet,Chh}.  However, the linear slope is {\it not} present in
-the plot of the VN EE data from the DMRG, which convincingly approaches a
-constant for large $N$.  Clearly, for the VN EE the area law is
+the plot of the $S^{\rm VN}_A$ data from the DMRG, which convincingly approaches a
+constant for large $N$.  Clearly, for $S^{\rm VN}_A$ the area law is
 indeed obeyed in the N\'eel groundstate, leading one to conclude that the
-multiplicative logarithmic correction occurs in the VB EE only.  We also show data for free fermions, showing the logarithmic correction to the area law
-for the VN EE in this case\cite{2dfermion}.
+multiplicative logarithmic correction occurs in $S^{\rm VB}_A$ only.  We also show data for free fermions, showing the logarithmic correction to the area law
+for $S^{\rm VN}_A$ in this case\cite{2dfermion}.
 In the next section, we explain this 
 in the context of the bond length distribution in the QMC.
 Contrary to the suggestion in Ref.~\cite{Alet}, a gapless Goldstone mode will {\it not} give a logarithmic
-divergence to the VN EE since a gapless bosonic mode in 2D
+divergence to $S^{\rm VN}_A$ since a gapless bosonic mode in 2D
 obeys an area law\cite{2dboson}.  We have done a spin-wave calculation of
 the entropy for this system and found an area law, albeit with
 $S/N\approx 0.2$, slightly lower than suggested for $S=1/2$ in Fig.~\ref{zigzag}.
@@ -395,58 +375,58 @@ the Green's function of a Levy flight taking steps with a power law distribution
 
 
 {\it Discussion.}-- In this paper, we have compared scaling properties of
-the valence bond (VB) entanglement entropy (EE) defined in
-Refs.~\cite{Alet,Chh} to the von Neumann (VN) entanglement entropy in the
+the valence bond entanglement entropy ($S^{\rm VB}_A$) defined in
+Refs.~\cite{Alet,Chh} to the von Neumann entanglement entropy ($S^{\rm VN}_A$) in the
 spin 1/2 Heisenberg model on 1D and multi-leg ladder geometries, using QMC and DMRG simulations.
 %Both entropy measurements were evaluated using large-scale numerical
 %simulations; the VN EE with DMRG, which is restricted to 1D or seven-leg
 %and less open boundary ladders; and the VB EE with valence-bond basis QMC,
 %which is avaliable for any lattice dimension or geometry. 
 In 1D, we find
-that the VB EE mimics the behavior of the VN EE closely, although 
+that $S^{\rm VB}_A$ mimics the behavior of $S^{\rm VN}_A$ closely, although 
 %using
 %the definition of Eq.~\eqref{VBEE}, 
-it is less than the VN EE for periodic
-chains, and greater than the VN EE for open chains. In addition, fits to
-1D conformal field theory, which are excellent for the VN EE calculated
-via DMRG, appear to deviate significantly for the VB EE in the large
+it is less than $S^{\rm VN}_A$ for periodic
+chains, and greater than $S^{\rm VN}_A$ for open chains. In addition, fits to
+1D conformal field theory, which are excellent for $S^{\rm VN}_A$ calculated
+via DMRG, appear to deviate significantly for $S^{\rm VB}_A$ in the large
 chain-size limit, approaching some $c<1$ for both boundary conditions.
 
-On multi-leg ladder systems with open boundaries, the VB EE is
-systematically greater than the VN EE, a discrepancy which grows as the
+On multi-leg ladder systems with open boundaries, $S^{\rm VB}_A$ is
+systematically greater than $S^{\rm VN}_A$, a discrepancy which grows as the
 number of legs is increased.  Defining the boundary between the two
 entangled regions as being bipartitioned by a cut across all legs, we can
-evaluate the adherence of the EE to the area law.  The VN EE obeys the area law in the large-leg limit, whereas the VB EE
+evaluate the adherence of the entanglement entropies to the area law.  $S^{\rm VN}_A$ obeys the area law in the large-leg limit, whereas $S^{\rm VB}_A$
  reproduces a multiplicative log correction found in
 Refs.~\cite{Alet,Chh} for the N\'eel groundstate of the 2D
 model.
 
-The fact  that the VB EE can be either greater or less than the VN EE can be understood through simple
+The fact  that $S^{\rm VB}_A$ can be either greater or less than $S^{\rm VN}_A$ can be understood through simple
 examples.  Consider an 8-site chain, with sites 1 to 4 in region A.  Let
 $|(ij)(kl)...\rangle$ denote a state in which sites $i,j$ are in a singlet, sites $k,l$ are in a singlet, and so on.
-Then, the state $|(12)(34)(56)(78)\rangle+|(14)(32)(58)(76)\rangle$ has vanishing VB EE since
-no bonds connect $A$ to $B$, but non-vanishing VN EE.  
+Then, the state $|(12)(34)(56)(78)\rangle+|(14)(32)(58)(76)\rangle$ has vanishing $S^{\rm VB}_A$ since
+no bonds connect $A$ to $B$, but non-vanishing $S^{\rm VN}_A$.  
 On the other hand, consider a 4-site chain in
-the state $|(12)(34)\rangle+|(14)(32)\rangle$, and let region $A$ contain sites $1$ and $3$.  Then, the VB EE is maximal,
-equal to $2\log(2)$, while the VN EE is smaller.  The second state we have
+the state $|(12)(34)\rangle+|(14)(32)\rangle$, and let region $A$ contain sites $1$ and $3$.  Then, the $S^{\rm VB}_A$ is maximal,
+equal to $2\log(2)$, while $S^{\rm VN}_A$ is smaller.  The second state we have
 described is in fact the N\'eel state with no
 quantum fluctuations: the equal amplitude superposition of all configurations of bonds going from one sublattice to the other.
-Thus, it is not surprising that states with N\'eel order show VB EE larger than VN EE.
+Thus, it is not surprising that states with N\'eel order show $S^{\rm VB}_A > S^{\rm VN}_A$.
 
-This work has elucidated the relationship between the VB and VN EE.
+This work has elucidated the relationship between the valence-bond and von Neumann entanglement entropies.
 Although clearly a good measurement of entanglement readily accessible to
-numerical simulations in 2D and higher, the VB EE does not provide a bound
-on the VN EE, unlike other entropic measures such as Renyi entropies.
-Other properties of the VN EE, such as its adherence to an area law, are
+numerical simulations in 2D and higher, $S^{\rm VB}_A$ does not provide a bound
+on $S^{\rm VN}_A$, unlike other entropic measures such as Renyi entropies.
+Other properties of $S^{\rm VN}_A$, such as its adherence to an area law, are
 reproduced in the groundstates of some gapped systems \cite{Alet,Chh},
 however in the case of the N\'eel groundstate of the 2D Heisenberg model,
-unphysical multiplicative logarithmic corrections appear in the VB EE,
+unphysical multiplicative logarithmic corrections appear in $S^{\rm VB}_A$,
 which are not caused by gapless excitations or algebraically decaying
 correlations, but simply by the valence-bond length distribution.
 % TODO I guess this is done now.
 %({\bf we need to justify this in the text}).  
 The presence of this correction must
-be taken into account in proposals to use the VB EE for such important
+be taken into account in proposals to use $S^{\rm VB}_A$ for such important
 future tasks such as characterizing topological phases 
 %using entanglement
 %entropy, 
