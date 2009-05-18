@@ -24,13 +24,14 @@
 \bibitem[{\citenamefont{Kitaev and Preskill}(2006)}]{KP}
 \bibinfo{author}{\bibfnamefont{A.}~\bibnamefont{Kitaev}} \bibnamefont{and}
   \bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Preskill}},
-  \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{96}},
-  \bibinfo{eid}{110404} (\bibinfo{year}{2006}).
-
-\bibitem[{\citenamefont{Levin and Wen}(2006)}]{LW}
+  \bibinfo{journal}{Phys. Rev. Lett.} 
+  \textbf{\bibinfo{volume}{96}},
+  \bibinfo{eid}{110404} (\bibinfo{year}{2006});
+%\bibitem[{\citenamefont{Levin and Wen}(2006)}]{LW}
 \bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Levin}} \bibnamefont{and}
   \bibinfo{author}{\bibfnamefont{X.-G.} \bibnamefont{Wen}},
-  \bibinfo{journal}{Phys. Rev. Lett} \textbf{\bibinfo{volume}{96}},
+%  \bibinfo{journal}{Phys. Rev. Lett} \textbf{\bibinfo{volume}{96}},
+  \bibinfo{journal}{{\it ibid.}} \textbf{\bibinfo{volume}{96}},
   \bibinfo{eid}{110405} (\bibinfo{year}{2006}).
 
 \bibitem[{\citenamefont{Srednicki}(1993)}]{Shredder}
@@ -54,10 +55,9 @@
 \bibitem[{\citenamefont{Verstraete and Cirac}(2004)}]{PEPS1}
 \bibinfo{author}{\bibfnamefont{F.}~\bibnamefont{Verstraete}} \bibnamefont{and}
   \bibinfo{author}{\bibfnamefont{J.~I.} \bibnamefont{Cirac}}
-  (\bibinfo{year}{2004}), \eprint{arXiv:cond-mat/0407066}.
-
-\bibitem[{\citenamefont{Verstraete et~al.}(2006)\citenamefont{Verstraete, Wolf,
-  Perez-Garcia, and Cirac}}]{PEPS2}
+  (\bibinfo{year}{2004}), \eprint{arXiv:cond-mat/0407066};
+%\bibitem[{\citenamefont{Verstraete et~al.}(2006)\citenamefont{Verstraete, Wolf,
+%  Perez-Garcia, and Cirac}}]{PEPS2}
 \bibinfo{author}{\bibfnamefont{F.}~\bibnamefont{Verstraete}},
   \bibinfo{author}{\bibfnamefont{M.~M.} \bibnamefont{Wolf}},
   \bibinfo{author}{\bibfnamefont{D.}~\bibnamefont{Perez-Garcia}},
@@ -90,9 +90,11 @@
 \bibitem[{\citenamefont{White}(1992)}]{White92}
 \bibinfo{author}{\bibfnamefont{S.~R.} \bibnamefont{White}},
   \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{69}},
-  \bibinfo{pages}{2863} (\bibinfo{year}{1992}).
-
-\bibitem[{\citenamefont{Schollw\"ock}(2005)}]{Scholl05}
+  \bibinfo{pages}{2863} (\bibinfo{year}{1992});
+\bibinfo{author}{\bibfnamefont{S.~R.} \bibnamefont{White}},
+  \bibinfo{journal}{Phys. Rev. B} \textbf{\bibinfo{volume}{48}},
+  \bibinfo{pages}{10345} (\bibinfo{year}{1993}).  See also
+%\bibitem[{\citenamefont{Schollw\"ock}(2005)}]{Scholl05}
 \bibinfo{author}{\bibfnamefont{U.}~\bibnamefont{Schollw\"ock}},
   \bibinfo{journal}{Rev. Mod. Phys.} \textbf{\bibinfo{volume}{77}},
   \bibinfo{pages}{259} (\bibinfo{year}{2005}).
@@ -100,11 +102,10 @@
 \bibitem[{\citenamefont{Calabrese and Cardy}(2004)}]{Cardy}
 \bibinfo{author}{\bibfnamefont{P.}~\bibnamefont{Calabrese}} \bibnamefont{and}
   \bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Cardy}}, \bibinfo{journal}{J.
-  Stat. Mech.: Theor. Exp.} \textbf{\bibinfo{volume}{P06002}}
+  Stat. Mech.: Theor. Exp.} {\bibinfo{volume}{P06002}}
   (\bibinfo{year}{2004}).
-
-\bibitem[{\citenamefont{Huanqiang et~al.}(2006)\citenamefont{Huanqiang,
-  Barthel, and Schollwoeck}}]{Huanq2006}
+%\bibitem[{\citenamefont{Huanqiang et~al.}(2006)\citenamefont{Huanqiang,
+%  Barthel, and Schollwoeck}}]{Huanq2006}
 \bibinfo{author}{\bibfnamefont{Z.}~\bibnamefont{Huanqiang}},
   \bibinfo{author}{\bibfnamefont{T.}~\bibnamefont{Barthel}}, \bibnamefont{and}
   \bibinfo{author}{\bibfnamefont{U.}~\bibnamefont{Schollwoeck}},

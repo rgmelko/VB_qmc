@@ -47,7 +47,7 @@ between the subregions without the possibility of missing ``hidden''
 correlations \cite{wolf}.  
 Such correlations may occur in some quantum groundstates,  for example spin liquid states, 
 where two-point correlation functions decay at large lengthscales, however a type of topological order can exist that is quantified in a ``topological entanglement
-entropy''  \cite{ KP, LW}.
+entropy''  \cite{ KP}.
 This and other entropic measures are typically discussed in the context of
 the von Neumann entanglement entropy ($S^{\rm vN}$), which for a system partitioned into
 two regions A and B, quantifies the amount of entanglement of A with B as
@@ -69,7 +69,7 @@ consequence in the
 rapidly-advancing field of computational quantum-many body theory, where
 it is known for example that groundstates of 1D Hamiltonians that satisfy an area law
 can be accurately represented by Matrix Product States (MPS) \cite{MPS_DMRG}.
-Tensor-network extension of MPS states form a promising new class of numerical algorithms \cite{PEPS1,PEPS2} 
+Tensor-network extension of MPS states form a promising new class of numerical algorithms \cite{PEPS1} 
 that may allow simulations of 2D quantum systems not amenable to quantum Monte Carlo (QMC) due to
 the notorious sign problem.  However, tensor network states
 are constructed to obey an area law; in order to be represented faithfully
@@ -150,7 +150,7 @@ Hamiltonian at zero temperature.  $S^{ \rm vN}_A$ is naturally accessible
 through the DRMG 
 % I don't think we need this,
 %``sweeping'' 
-algorithm~\cite{White92, Scholl05}.  At each
+algorithm~\cite{White92}.  At each
 step of the algorithm, the wavefunction of the system is approximated by
 keeping only the states with largest coefficients in the Schmidt
 decomposition for a given bipartition into subregions A and B. To find the
@@ -211,7 +211,7 @@ finite-length chains one can use the conformal mappings $x\to x'=L/\pi
 \sin(\pi x / L)$ for PBC, and 
 %$x\to x'=2L/\pi \sin(\pi x / L)$ 
 $x\to 2x'$ for OBC. VN
-EE calculations within CFT~\cite{Cardy, Huanq2006} obey $S^{\rm vN}(x)= c/3
+EE calculations within CFT~\cite{Cardy} obey $S^{\rm vN}(x)= c/3
 \ln(x') + S_1$ in the PBC case, and $S^{\rm vN}(x)= c/6 \ln(2x') +
 \ln(g)+S_1/2$ in the OBC case, where $c$ is the central charge of the CFT,
 $S_1$ is a model-dependent constant, and $g$ is Ludwig and Affleck's
@@ -438,9 +438,7 @@ N.~Bonesteel,
 A.~Del~Maestro, A.~Feiguin, L.~Hormozi, and E.~Sorensen for useful
 discussions.  This work was made possible by the computing facilities of
 SHARCNET and CESGA.  Support for this work was provided by NSERC of
-Canada.
-% TODO I may need to add support from KITP
-I.~G. was supported in part by NSF under Grant No. NSF PHY05-51164. 
+Canada (A.B.K. and R.G.M.) and the NSF under Grant No. NSF PHY05-51164 (I.G., M.B.H. and R.G.M).
 
 \bibliography{VB_biblio}
 
