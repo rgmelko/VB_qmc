@@ -153,8 +153,9 @@ through the DRMG
 algorithm~\cite{White92}.  At each
 step of the algorithm, the wavefunction of the system is approximated by
 keeping only the states with largest coefficients in the Schmidt
-decomposition for a given bipartition into subregions A and B. To find the
-basis entering the Schmidt decomposition for subregion A, the reduced
+decomposition for a given bipartition into regions A and
+B~$\equiv\complement$A. To find the
+basis entering the Schmidt decomposition for region A, the reduced
 density matrix $\rho_A$ is calculated and diagonalized, thus allowing easy
 calculation of Eq.~\eqref{vNEE}. The truncation of the basis implies that
 only a lower bound for $S^{\rm vN}_A$ is calculated, so care must be taken
@@ -196,10 +197,10 @@ symbols) for system sizes $L=64$ (circles), $L=100$ (squares), $L=128$
 chains ($N=1$). We employ both open (OBC) and periodic (PBC) boundary conditions
 with our DMRG and QMC simulations, noting that in DMRG, PBCs typically
 have poorer convergence properties than OBCs and more states must be kept
-in each truncation.  The DMRG algorithm requires each subregion A and B to
+in each truncation.  The DMRG algorithm requires each region A and B to
 be topologically connected, so in 1D the bipartition is defined by a site
 index $x$ with sites within the interval $[1,x]$ ($[x+1,L]$) belonging to
-subregion $A$ ($B$), $L$ being the length of the chain.  From the
+region $A$ ($B$), $L$ being the length of the chain.  From the
 remainder of this paper, we label $S_A$ by its site index, $S(x)$.
 We stress that the QMC and DMRG results are on the same geometry and
 Hamiltonian, and reproduce the same ground state energies; Figure 1 and subsequent figures can be considered as exact comparisons between the $S^{\rm VB}_A$ and $S^{ \rm vN}_A$.
@@ -210,8 +211,8 @@ can be described by CFT in the limit $L\to\infty$.  To address
 finite-length chains one can use the conformal mappings $x\to x'=L/\pi
 \sin(\pi x / L)$ for PBC, and 
 %$x\to x'=2L/\pi \sin(\pi x / L)$ 
-$x\to 2x'$ for OBC. VN
-EE calculations within CFT~\cite{Cardy} obey $S^{\rm vN}(x)= c/3
+$x\to 2x'$ for OBC. %VN EE 
+Calculations within CFT~\cite{Cardy} obey $S^{\rm vN}(x)= c/3
 \ln(x') + S_1$ in the PBC case, and $S^{\rm vN}(x)= c/6 \ln(2x') +
 \ln(g)+S_1/2$ in the OBC case, where $c$ is the central charge of the CFT,
 $S_1$ is a model-dependent constant, and $g$ is Ludwig and Affleck's
@@ -280,8 +281,10 @@ spin-gap~\cite{White1994}, and therefore only sites within distances from
 the boundary between A and B {\it smaller} than the correlation length
 $\xi$ contribute to the entanglement, yielding $S(x\gtrsim \xi)= {\rm
 const}.$ In contrast, odd-leg ladders are gapless, and therefore all the
-sites within regions A and B contribute to the entanglement, yielding a
-convex $S(x)$ with a maximum at $x=L/2$, which follows the CFT result in
+sites within regions A and B contribute to the entanglement, 
+%yielding a convex $S(x)$ with a maximum at $x=L/2$, 
+yielding $S(x)\propto\ln(x')$, 
+which follows the CFT result in
 analogy to the 1D case. As can be seen $S(x)$ splits in branches, with a
 (quasi-)periodic structure superimposed to the main dependence on $x$,
 the period being $N$ ($2N$) for even- (odd-)leg ladders. This reflects the
@@ -308,7 +311,7 @@ is due to the same dimerization effect as in Ref.~\cite{Ian1}.
 We can use these multi-leg ladder results to address the question of the adherence of the 2D N\'eel state
 to an area law.  To do so, we
 define the lattice
-geometry such that subregion A is rectangular, cutting a multi-leg ladder
+geometry such that region A is rectangular, cutting a multi-leg ladder
 cleanly across a rung, such that the ``area'' separating region A and B is
 equivalent to the number of legs in the ladder $N$.  We chose this area A
 to contain contain $2N^2$ sites to have an aspect ratio of order unity; in
@@ -318,12 +321,13 @@ of the single gapless mode for odd-leg ladders.
 
 Figure~\ref{zigzag} illustrates the simulation results for $N$-leg ladders.
 Plotting $S/N$ versus $N$ on a log scale, one sees that we obtain a
-multiplicative logarithmic correction to the VB area law, in agreement
+multiplicative logarithmic correction to the $S^{\rm VB}$ area law, in agreement
 with results from Refs.~\cite{Alet,Chh}.  However, the linear slope is {\it not} present in
 the plot of the $S^{ \rm vN}$ data from the DMRG, which convincingly approaches a
 constant for large $N$.  Clearly, for $S^{ \rm vN}$ the area law is
 indeed obeyed in the N\'eel groundstate, leading one to conclude that the
-multiplicative logarithmic correction occurs in $S^{\rm VB}$ only.  We also show data for free fermions, showing the logarithmic correction to the area law
+multiplicative logarithmic correction occurs in $S^{\rm VB}$ only.  We
+also present data for free fermions, showing the logarithmic correction to the area law
 for $S^{ \rm vN}_{\rm ff}$ in this case\cite{2dfermion}.
 In the next section, we explain this 
 in the context of the bond length distribution in the QMC.
@@ -331,7 +335,7 @@ Contrary to the suggestion in Ref.~\cite{Alet}, a gapless Goldstone mode will {\
 divergence to $S^{ \rm vN}$ since a gapless bosonic mode in 2D
 obeys an area law\cite{2dboson}.  We have done a spin-wave calculation of
 the entropy for this system and found an area law, albeit with
-$S/N\approx 0.2$, slightly lower than suggested for $S=1/2$ in Fig.~\ref{zigzag}.
+$S/N\approx 0.2$, slightly lower than suggested for spin~$1/2$ in Fig.~\ref{zigzag}.
 
 %Despite the importance of adherence to the area law in tensor-network
 %generalization of MPS techniques, it is still not yet known whether the
@@ -352,14 +356,15 @@ online) Entanglement entropies divided by $N$,  for $N$-leg Heisenberg (filed sy
 All ladders
 have 100 sites per leg.  \label{zigzag}}} \end{figure}
 
-{\it Bond Length Distribution---} Sandvik defined the bond length distribution
-$P(x,y)$ as the probability of a bond going from
-site $x$ to site $y$, and found that $P(x,y)\sim |x-y|^{-p}$ with $p\approx 3$.  
-This value of $p$ gives
-the logarithmic divergence in the VB EE, as can be found by directly calculating
-the
-VB EE
-from $\sum_{x\in A,y\in B} P(x,y) \log(2)$.
+{\it Bond Length Distribution---} Sandvik defined the bond length
+distribution $P(x,y)$ as the probability of a bond going from site $x$ to
+site $y$, and found that $P(x,y)\sim |x-y|^{-p}$ with $p\approx 3$.  
+%This value of $p$ gives the logarithmic divergence in the VB EE, as can
+%be found by directly calculating the VB EE from $\sum_{x\in A,y\in B}
+%P(x,y) \log(2)$.
+This value of $p$ gives the logarithmic divergence in $S^{\rm VB}$, as can be
+found by directly calculating $S^{\rm VB}_{A}=\sum_{x\in A,y\in B} P(x,y)
+\log(2)$.
 
 We can understand the value of $p$ from a scaling argument similar to that used in \cite{network}.
 Consider the number of bonds of length $l$ which leave a region of linear size $l$.  For $p>4$, this
