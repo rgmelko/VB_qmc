@@ -321,7 +321,7 @@ skinny region would be dominated by the behavior
 of the single gapless mode for odd-leg ladders.
 
 Figure~\ref{zigzag} illustrates the simulation results for $N$-leg ladders.
-Plotting $S/N$ versus $N$ on a log scale, one sees that we obtain a
+Plotting $S(x)/N$ versus $N$ on a log scale, we obtain a
 multiplicative logarithmic correction to the $S^{\rm VB}$ area law, in agreement
 with results from Refs.~\cite{Alet,Chh}.  However, the linear slope is {\it not} present in
 the plot of the $S^{ \rm vN}$ data from the DMRG, which convincingly approaches a
@@ -336,7 +336,7 @@ Contrary to the suggestion in Ref.~\cite{Alet}, a gapless Goldstone mode will {\
 divergence to $S^{ \rm vN}$ since a gapless bosonic mode in 2D
 obeys an area law\cite{2dboson}.  We have done a spin-wave calculation of
 the entropy for this system and found an area law, albeit with
-$S/N\approx 0.2$, slightly lower than suggested for spin~$1/2$ in Fig.~\ref{zigzag}.
+$S(x)/N\approx 0.2$, slightly lower than suggested for spin~$1/2$ in Fig.~\ref{zigzag}.
 
 %Despite the importance of adherence to the area law in tensor-network
 %generalization of MPS techniques, it is still not yet known whether the
@@ -408,34 +408,35 @@ evaluate the adherence of the entanglement entropies to the area law.  $S^{ \rm 
 Refs.~\cite{Alet,Chh} for the N\'eel groundstate of the 2D
 model.
 
-The fact  that $S^{\rm VB}$ can be either greater or less than $S^{ \rm vN}$ can be understood through simple
-examples.  Consider an 8-site chain, with sites 1 to 4 in region A.  Let
-$|(ij)(kl)...\rangle$ denote a state in which sites $i,j$ are in a singlet, sites $k,l$ are in a singlet, and so on.
-Then, the state $|(12)(34)(56)(78)\rangle+|(14)(32)(58)(76)\rangle$ has vanishing $S^{\rm VB}$ since
-no bonds connect $A$ to $B$, but non-vanishing $S^{ \rm vN}$.  
-On the other hand, consider a 4-site chain in
-the state $|(12)(34)\rangle+|(14)(32)\rangle$, and let region $A$ contain sites $1$ and $3$.  Then, the $S^{\rm VB}$ is maximal,
-equal to $2\log(2)$, while $S^{ \rm vN}$ is smaller.  The second state we have
-described is in fact the N\'eel state with no
-quantum fluctuations: the equal amplitude superposition of all configurations of bonds going from one sublattice to the other.
-Thus, it is not surprising that states with N\'eel order show $S^{\rm VB} > S^{ \rm vN}$.
+% older version, see below
+%The fact  that $S^{\rm VB}$ can be either greater or less than $S^{ \rm vN}$ can be understood through simple
+%examples.  Consider an 8-site chain, with sites 1 to 4 in region A.  Let
+%$|(ij)(kl)...\rangle$ denote a state in which sites $i,j$ are in a singlet, sites $k,l$ are in a singlet, and so on.
+%Then, the state $|(12)(34)(56)(78)\rangle+|(14)(32)(58)(76)\rangle$ has vanishing $S^{\rm VB}$ since
+%no bonds connect $A$ to $B$, but non-vanishing $S^{ \rm vN}$.  
+%On the other hand, consider a 4-site chain in
+%the state $|(12)(34)\rangle+|(14)(32)\rangle$, and let region $A$ contain sites $1$ and $3$.  Then, the $S^{\rm VB}$ is maximal,
+%equal to $2\log(2)$, while $S^{ \rm vN}$ is smaller.  The second state we have
+%described is in fact the N\'eel state with no
+%quantum fluctuations: the equal amplitude superposition of all configurations of bonds going from one sublattice to the other.
+%Thus, it is not surprising that states with N\'eel order show $S^{\rm VB} > S^{ \rm vN}$.
 
 % I rewrote this in a slightly different manner, which is slightly
 % shorter...
-%The fact  that $S^{\rm VB}$ can be either greater or less than $S^{ \rm
-%vN}$ can be understood through simple examples. Let $|(ij)(kl)...\rangle$
-%denote a state in which sites $i,j$ are in a singlet, sites $k,l$ are in a
-%singlet, and so on.  Consider an 8-site chain, with sites 1 to 4 in region
-%A. Then, the state $|(12)(34)(56)(78)\rangle+|(14)(32)(58)(76)\rangle$ has
-%vanishing $S^{\rm VB}$ since no bonds connect $A$ to $B$, but
-%non-vanishing $S^{ \rm vN}$.  On the other hand, consider a 4-site chain,
-%with sites $1$ and $3$ in region A. Then, the state
-%$|(12)(34)\rangle+|(14)(32)\rangle$ has a maximal $S^{\rm VB}$, equal to
-%$2\log(2)$, while $S^{ \rm vN}$ is smaller.  The second state we have
-%described is in fact the N\'eel state with no quantum fluctuations: the
-%equal amplitude superposition of all configurations of bonds going from
-%one sublattice to the other.  Thus, it is not surprising that states with
-%N\'eel order show $S^{\rm VB} > S^{ \rm vN}$.
+The fact  that $S^{\rm VB}$ can be either greater or less than $S^{ \rm
+vN}$ can be understood through simple examples. Let $|(ij)(kl)...\rangle$
+denote a state in which sites $i,j$ are in a singlet, sites $k,l$ are in a
+singlet, and so on.  Consider an 8-site chain, with sites 1 to 4 in region
+A. Then, the state $|(12)(34)(56)(78)\rangle+|(14)(32)(58)(76)\rangle$ has
+vanishing $S^{\rm VB}$ since no bonds connect $A$ to $B$, but
+non-vanishing $S^{ \rm vN}$.  On the other hand, consider a 4-site chain,
+with sites $1$ and $3$ in region A. Then, the state
+$|(12)(34)\rangle+|(14)(32)\rangle$ has a maximal $S^{\rm VB}$, equal to
+$2\log(2)$, while $S^{ \rm vN}$ is smaller.  The second state we have
+described is in fact the N\'eel state with no quantum fluctuations: the
+equal amplitude superposition of all configurations of bonds going from
+one sublattice to the other.  Thus, it is not surprising that states with
+N\'eel order show $S^{\rm VB} > S^{ \rm vN}$.
 
 This work has elucidated the relationship between the valence-bond and von Neumann entanglement entropies.
 Although clearly a good measurement of entanglement readily accessible to
