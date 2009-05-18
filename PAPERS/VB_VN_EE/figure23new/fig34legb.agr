@@ -1,6 +1,6 @@
 # Grace project file
 #
-@version 50122
+@version 50120
 @page size 792, 612
 @page scroll 5%
 @page inout 5%
@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Fri May  8 13:53:42 2009"
+@timestamp def "Sun May 17 20:58:17 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -475,18 +475,18 @@
 @    altyaxis  off
 @    legend on
 @    legend loctype view
-@    legend 0.8, 0.7
+@    legend 0.8, 0.73
 @    legend box color 1
 @    legend box pattern 1
 @    legend box linewidth 1.0
-@    legend box linestyle 1
+@    legend box linestyle 0
 @    legend box fill color 0
-@    legend box fill pattern 1
+@    legend box fill pattern 0
 @    legend font 0
 @    legend char size 1.500000
 @    legend color 1
 @    legend length 4
-@    legend vgap 1
+@    legend vgap 5
 @    legend hgap 1
 @    legend invert true
 @    frame type 0
@@ -544,7 +544,7 @@
 @    s0 errorbar riser clip off
 @    s0 errorbar riser clip length 0.100000
 @    s0 comment "/Users/rgmelko/Waterloo/VBbasis_QMC/VB_qmc/PAPERS/VB_VN_EE/figure2/entropy.4-leg-ladder.dat"
-@    s0 legend  "VN EE"
+@    s0 legend  " "
 @    s1 hidden false
 @    s1 type xy
 @    s1 symbol 1
@@ -593,7 +593,7 @@
 @    s1 errorbar riser clip off
 @    s1 errorbar riser clip length 0.100000
 @    s1 comment "/Users/rgmelko/Waterloo/VBbasis_QMC/VB_qmc/PAPERS/VB_VN_EE/figure2/4leg_ent.dat"
-@    s1 legend  "VB EE"
+@    s1 legend  " "
 @target G0.S0
 @type xy
 297 1.00197

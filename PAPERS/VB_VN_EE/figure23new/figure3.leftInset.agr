@@ -1,6 +1,6 @@
 # Grace project file
 #
-@version 50122
+@version 50120
 @page size 792, 612
 @page scroll 5%
 @page inout 5%
@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Thu May  7 16:55:14 2009"
+@timestamp def "Sun May 17 21:11:00 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -163,7 +163,7 @@
 @    xaxis  ticklabel start 0.000000
 @    xaxis  ticklabel stop type auto
 @    xaxis  ticklabel stop 0.000000
-@    xaxis  ticklabel char size 2.500000
+@    xaxis  ticklabel char size 2.900000
 @    xaxis  ticklabel font 0
 @    xaxis  ticklabel color 1
 @    xaxis  tick place both
@@ -214,7 +214,7 @@
 @    yaxis  ticklabel start 0.000000
 @    yaxis  ticklabel stop type auto
 @    yaxis  ticklabel stop 0.000000
-@    yaxis  ticklabel char size 2.500000
+@    yaxis  ticklabel char size 2.900000
 @    yaxis  ticklabel font 0
 @    yaxis  ticklabel color 1
 @    yaxis  tick place both
@@ -247,7 +247,7 @@
 @    s2 hidden false
 @    s2 type xydy
 @    s2 symbol 1
-@    s2 symbol size 0.810000
+@    s2 symbol size 1.060000
 @    s2 symbol color 1
 @    s2 symbol pattern 1
 @    s2 symbol fill color 4
@@ -296,7 +296,7 @@
 @    s3 hidden false
 @    s3 type xy
 @    s3 symbol 2
-@    s3 symbol size 0.810000
+@    s3 symbol size 1.060000
 @    s3 symbol color 1
 @    s3 symbol pattern 1
 @    s3 symbol fill color 2

@@ -1,6 +1,6 @@
 # Grace project file
 #
-@version 50122
+@version 50120
 @page size 792, 612
 @page scroll 5%
 @page inout 5%
@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Fri May  8 13:47:00 2009"
+@timestamp def "Sun May 17 20:50:45 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -475,18 +475,18 @@
 @    altyaxis  off
 @    legend on
 @    legend loctype view
-@    legend 0.41, 0.59
+@    legend 0.41, 0.65
 @    legend box color 1
 @    legend box pattern 1
 @    legend box linewidth 1.0
-@    legend box linestyle 1
+@    legend box linestyle 0
 @    legend box fill color 0
 @    legend box fill pattern 1
 @    legend font 0
 @    legend char size 1.500000
 @    legend color 1
 @    legend length 4
-@    legend vgap 1
+@    legend vgap 5
 @    legend hgap 1
 @    legend invert false
 @    frame type 0
@@ -544,7 +544,7 @@
 @    s0 errorbar riser clip off
 @    s0 errorbar riser clip length 0.100000
 @    s0 comment "/Users/akallin/VB_qmc/melko/LADDERS/RUNS/sharcruns/PBC_may/100/100_PBC_QMC.dat"
-@    s0 legend  "VB EE"
+@    s0 legend  " "
 @    s1 hidden false
 @    s1 type xy
 @    s1 symbol 2
@@ -593,7 +593,7 @@
 @    s1 errorbar riser clip off
 @    s1 errorbar riser clip length 0.100000
 @    s1 comment "/Users/akallin/VB_qmc/melko/LADDERS/RUNS/sharcruns/PBC_may/100/100_PBC_DMRG.dat"
-@    s1 legend  "VN EE"
+@    s1 legend  " "
 @g2 on
 @g2 hidden false
 @g2 type XY
