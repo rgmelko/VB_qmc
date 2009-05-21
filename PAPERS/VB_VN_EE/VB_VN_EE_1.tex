@@ -110,7 +110,7 @@ A comparison of the scaling of $S^{\rm VB}$ for (critical) 1D spin
 from CFT, however in the
  2D isotropic Heisenberg model it
 displays a {\it multiplicative} logarithmic correction to the area law \cite{Alet,Chh}.  If
-true also for $S^{ \rm vN}$, this fact would have negative consequences for the simulation of the 
+true also for $S^{ \rm vN}$, this fact may have negative consequences for the simulation of the 
 N\'eel groundstate using tensor-network simulations.
 
 %If this
@@ -199,7 +199,7 @@ have poorer convergence properties than OBCs and more states must be kept
 in each truncation.  The DMRG algorithm requires the regions A and B to
 be topologically connected, so in 1D the bipartition is defined by a site
 index $x$ with sites within the interval $[1,x]$ ($[x+1,L]$) belonging to
-region $A$ ($B$) [we label $S_A$ by its site index, $S(x)$].
+region $A$ ($B$) [we can label $S_A$ by its site index, $S(x)$].
 We stress that the QMC and DMRG results are on the same geometry and
 Hamiltonian, and reproduce the same ground state energies; Figure 1 (and subsequent figures) can be considered as exact comparisons between $S^{\rm VB}_A$ and $S^{ \rm vN}_A$.
 
@@ -227,7 +227,7 @@ $S^{\rm VB}$ and $S^{ \rm vN}$ are seen to fit well to the CFT result, although
 $S^{ \rm vN} > S^{\rm VB}$. The regression fit shows very good
 convergence with the central charge predicted by CFT, $c=1$, for $S^{ \rm vN}$, while
 $S^{\rm VB}$ fit yields a lower value than predicted.
-{\bf ANN: ADD DISCUSSION OF UNIVERSAL g (?)}.  
+%{\bf ANN: ADD DISCUSSION OF UNIVERSAL g (?)}.  
 For OBC both $S^{ \rm vN}$ and $S^{\rm VB}$ split into two branches, the upper (lower)
 corresponding to an odd (even) number of lattice sites in $A$.  This
 reflects a well-known ``dimerization'' effect induced by OBC~\cite{Ian1}.
@@ -236,10 +236,9 @@ than $S^{\rm VB}$. A regression fit of the lower branch to the form $c/6 \ln
 ({2x'})$ (inset) shows excellent convergence of $S^{ \rm vN}$ to the central
 charge predicted by CFT, $c=1$, once finite-size effects and the proximity
 of the data to the open boundaries are taken into account.  In contrast,
-$S^{\rm VB}$ fit deviates significantly from the CFT result for larger system
-sizes, give $c>1$ when all or most data is included in the fit, and $c<1$
-as data is systematically excluded from the fit (data closest to the open
-boundary is removed first).
+ $S^{\rm VB}$ deviates significantly from the CFT result, giving 
+$c>1$ when all or most data is included in the fit, changing to $c<1$
+as data closest to the open boundary is systematically excluded from the fit.
 
 {\it Multi-leg ladders.}-- Moving away from the 1D chain, one can add
 ``legs'' to the lattice in a systematic way. In this case the sum over
@@ -280,7 +279,7 @@ sites within regions A and B contribute to the entanglement,
 yielding $S(x)\propto\ln(x')$, 
 which follows the CFT result in
 analogy to the 1D case. As can be seen, $S(x)$ splits into branches, with a
-(quasi-)periodic structure superimposed over the main dependence on $x$,
+(quasi-) periodic structure superimposed over the main dependence on $x$,
 the period being $N$ ($2N$) for even- (odd-) leg ladders. This reflects the
 periodicity of the underlying 1D path through which the algorithm sweeps, and the fact that
 valence bonds within the same rung are energetically
@@ -324,7 +323,7 @@ multiplicative logarithmic correction occurs in $S^{\rm VB}$ only.  One can
 compare $S^{\rm VB}$ to data obtained for free fermions, which has a well-known \cite{2dfermion} logarithmic correction to the area law for $S^{ \rm vN}$ (Fig.~\ref{zigzag}).
 In the next section, we explain this 
 in the context of the bond length distribution in the QMC.
-Contrary to the suggestion in Ref.~\cite{Alet}, a gapless Goldstone mode will {\it not} give a logarithmic
+We note also that, contrary to the suggestion in Ref.~\cite{Alet}, a gapless Goldstone mode will {\it not} give a logarithmic
 divergence to $S^{ \rm vN}$ since a gapless bosonic mode in 2D
 obeys an area law \cite{2dboson}.  We have also done a spin-wave calculation of
 $S^{\rm vN}$ for this system and found an area law, albeit with
@@ -351,7 +350,8 @@ have 100 sites per leg.  \label{zigzag}}} \end{figure}
 
 {\it Bond Length Distribution---} Sandvik defined the bond length
 distribution $P(x,y)$ as the probability of a bond going from site $x$ to
-site $y$, and found that $P(x,y)\sim |x-y|^{-p}$ with $p\approx 3$.  
+site $y$, and found that $P(x,y)\sim |x-y|^{-p}$ with $p\approx 3$
+in the N\'eel state \cite{Sandvik}.
 %This value of $p$ gives the logarithmic divergence in the VB EE, as can
 %be found by directly calculating the VB EE from $\sum_{x\in A,y\in B}
 %P(x,y) \log(2)$.
@@ -391,7 +391,7 @@ it is less than $S^{ \rm vN}$ for periodic
 chains, and greater than $S^{ \rm vN}$ for open chains. In addition, fits to
 1D conformal field theory, which are excellent for $S^{ \rm vN}$ calculated
 via DMRG, appear to deviate significantly for $S^{\rm VB}$ in the large
-chain-size limit, approaching some $c<1$ for both boundary conditions.
+chain-size limit, approaching $c<1$ for both boundary conditions.
 
 % older version, see below
 %The fact  that $S^{\rm VB}$ can be either greater or less than $S^{ \rm vN}$ can be understood through simple
@@ -422,7 +422,7 @@ described is in fact the N\'eel state with no quantum fluctuations: the
 equal amplitude superposition of all configurations of bonds going from
 one sublattice to the other.  
 Thus, it is not surprising that states with N\'eel order would show $S^{\rm VB} > S^{ \rm vN}$,
-which we have demonstrated numerically on multi-leg ladder systems with open boundaries.
+a fact which we have demonstrated numerically on multi-leg ladder systems with open boundaries.
 
 %On multi-leg ladder systems with open boundaries, $S^{\rm VB}$ is
 %systematically greater than $S^{ \rm vN}$, a discrepancy which grows as the
@@ -430,9 +430,9 @@ which we have demonstrated numerically on multi-leg ladder systems with open bou
 
 Defining the boundary between the two entangled regions as being bipartitioned by a cut across all legs
 on a ladder, we have shown using DMRG that $S^{ \rm vN}$ obeys the area law in the large-leg limit.   
-Remarkably, the DMRG is {\it also} successful in measuring multiplicative log corrections to the area law (in 1D critical systems), suggesting that similar simulation procedures as presented here might enable the measurement of area-law corrections in $S^{\rm vN}$ as indicators of exotic phases in other models.
+Since the DMRG is {\it also} successful in measuring logarithmic size-dependencies of $S^{\rm vN}$ very accurately (in 1D critical systems), this suggests that simulation procedures similar to that presented here might enable the measurement of area-law corrections in $S^{\rm vN}$ as indicators of exotic phases in other models.
 
-The valence bond entanglement entropy harbors a multiplicative log correction \cite{Alet,Chh} for the N\'eel groundstate, which we have shown is caused simply by the valence-bond length distribution, and is not present in $S^{\rm vN}$.  It is clear that $S^{\rm VB}$ is still a reasonable measurement of entanglement, readily accessible to numerical simulations in 2D and higher, which is capable of reproducing the area law in some gapped groundstates \cite{Alet,Chh}.  However, inability of  $S^{\rm VB}$ to provide a bound on 
+The valence bond entanglement entropy harbors a multiplicative log correction \cite{Alet,Chh} for the N\'eel groundstate, which we have shown is caused simply by the valence-bond length distribution, and is not present in $S^{\rm vN}$.  It is clear that $S^{\rm VB}$ is still a reasonable measurement of entanglement, readily accessible to numerical simulations in 2D and higher, and capable of reproducing the area law in some gapped groundstates \cite{Alet,Chh}.  However, inability of  $S^{\rm VB}$ to provide a bound on 
 $S^{\rm vN}$ (unlike other measures such as Renyi entropies), along with its divergence from $S^{\rm vN}$ in 1D critical systems and the 2D N\'eel state, must be taken into account in proposals to use $S^{\rm VB}$ for such future tasks such as characterizing topological phases 
  or studying universality at quantum phase transitions.
 
