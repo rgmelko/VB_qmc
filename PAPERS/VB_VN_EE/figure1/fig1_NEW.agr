@@ -1,6 +1,6 @@
 # Grace project file
 #
-@version 50120
+@version 50122
 @page size 792, 612
 @page scroll 5%
 @page inout 5%
@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Wed May 20 22:33:33 2009"
+@timestamp def "Fri May 22 15:16:54 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -1246,7 +1246,7 @@
 @    frame background color 0
 @    frame background pattern 0
 @    s0 hidden false
-@    s0 type xy
+@    s0 type xydy
 @    s0 symbol 1
 @    s0 symbol size 0.750000
 @    s0 symbol color 1
@@ -1909,12 +1909,12 @@
 16 1.069932
 &
 @target G3.S0
-@type xy
-0.015625 0.964038
-0.01 0.957603
-0.0078125 0.950793
-0.005 0.940815
-0.00390625 0.936504
+@type xydy
+0.015625 0.964171 0.000704334
+0.01 0.957736 0.000621459
+0.0078125 0.950565 0.00131939
+0.005 0.941037 0.00105874
+0.00390625 0.935917 0.00206771
 &
 @target G3.S1
 @type xy
