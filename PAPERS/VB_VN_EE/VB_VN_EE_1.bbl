@@ -50,6 +50,12 @@
   \bibinfo{author}{\bibfnamefont{J.~I.} \bibnamefont{Cirac}}
   (\bibinfo{year}{2004}), \eprint{arXiv:cond-mat/0407066}.
 
+\bibitem[{\citenamefont{Evenbly and Vidal}(2009)}]{MERA}
+\bibinfo{author}{\bibfnamefont{G.}~\bibnamefont{Evenbly}} \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{G.}~\bibnamefont{Vidal}},
+  \bibinfo{journal}{Phys. Rev. B} \textbf{\bibinfo{volume}{79}},
+  \bibinfo{pages}{144108} (\bibinfo{year}{2009}).
+
 \bibitem[{\citenamefont{Alet et~al.}(2007)\citenamefont{Alet, Capponi,
   Laflorencie, and Mambrini}}]{Alet}
 \bibinfo{author}{\bibfnamefont{F.}~\bibnamefont{Alet}},
@@ -105,12 +111,6 @@
   \bibinfo{author}{\bibfnamefont{D.}~\bibnamefont{Scalapino}},
   \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{73}},
   \bibinfo{pages}{886} (\bibinfo{year}{1994}).
-
-\bibitem[{\citenamefont{Wolf}(2006)}]{2dfermion}
-\bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Wolf}},
-    \bibinfo{journal}{Phys. Rev. Lett.},
-  \textbf{\bibinfo{volume}{96}}, \bibinfo{pages}{010404}
-  (\bibinfo{year}{2006}).
 
 \bibitem[{\citenamefont{Cramer et~al.}(2006)\citenamefont{Cramer, Eisert, and
   Plenio}}]{2dboson}
