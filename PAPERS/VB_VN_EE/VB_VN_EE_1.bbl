@@ -135,6 +135,12 @@
   \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{96}},
   \bibinfo{pages}{100603} (\bibinfo{year}{2006}).
 
+\bibitem[{\citenamefont{Jacobsen and Saleur}(2008)}]{XXX}
+\bibinfo{author}{\bibfnamefont{J.~L.} \bibnamefont{Jacobsen}} \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{H.}~\bibnamefont{Saleur}},
+  \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{100}},
+  \bibinfo{pages}{087205} (\bibinfo{year}{2008}).
+
 \bibitem[{\citenamefont{White et~al.}(1994)\citenamefont{White, Noack, and
   Scalapino}}]{White1994}
 \bibinfo{author}{\bibfnamefont{S.}~\bibnamefont{White}},
@@ -165,5 +171,14 @@
   \bibinfo{author}{\bibfnamefont{G.}~\bibnamefont{Korniss}},
   \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{95}},
   \bibinfo{pages}{018701} (\bibinfo{year}{2005}).
+
+\bibitem[{\citenamefont{Sheng et~al.}(2009)\citenamefont{Sheng, Motrunich, and
+  Fisher}}]{BoseMetal}
+\bibinfo{author}{\bibfnamefont{D.~N.} \bibnamefont{Sheng}},
+  \bibinfo{author}{\bibfnamefont{O.~I.} \bibnamefont{Motrunich}},
+  \bibnamefont{and} \bibinfo{author}{\bibfnamefont{M.~P.~A.}
+  \bibnamefont{Fisher}}, \bibinfo{journal}{Phys. Rev. B}
+  \textbf{\bibinfo{volume}{79}}, \bibinfo{pages}{205112}
+  (\bibinfo{year}{2009}).
 
 \end{thebibliography}
