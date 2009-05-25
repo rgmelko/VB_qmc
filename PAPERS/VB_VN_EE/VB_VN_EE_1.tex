@@ -196,9 +196,11 @@ symbols) for system sizes $L=64$ (circles), $L=100$ (squares), $L=128$
 (diamonds), and $L=200$ (triangles) \label{1D}}} \end{figure}
 
 {\it One-dimensional chain.}-- We consider first the case of Heisenberg
-chains ($N=1$) of length $L$. We simulate both open (OBC) and periodic (PBC) boundary conditions, noting that in DMRG, PBCs typically
-have poorer convergence properties than OBCs and more states must be kept
-in each truncation.  The DMRG algorithm requires the regions A and B to
+chains ($N=1$) of length $L$. We simulate both open (OBC) and periodic (PBC) boundary conditions.
+%, noting that in DMRG, PBCs typically
+%have poorer convergence properties than OBCs and more states must be kept
+%in each truncation.  
+The DMRG algorithm requires the regions A and B to
 be topologically connected, so in 1D the bipartition is defined by a site
 index $x$ with sites within the interval $[1,x]$ ($[x+1,L]$) belonging to
 region $A$ ($B$) [we can label $S_A$ by its site index, $S(x)$].
