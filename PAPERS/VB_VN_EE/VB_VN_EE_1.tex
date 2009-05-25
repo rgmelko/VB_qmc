@@ -58,7 +58,7 @@ Here, the reduced density matrix $\rho_A = {\rm Tr}_B | \psi \rangle
 associated with the region B.
 
 The properties of $S^{ \rm vN}$ are well-studied in the field of quantum information theory.
-In interacting one dimensional (1D) quantum systems, exact analytical results are known from conformal
+In interacting one-dimensional (1D) quantum systems, exact analytical results are known from conformal
 field theories (CFT); they show that, away from special critical points,
 $S^{ \rm vN}_A$ scales as the size of the boundary between A and B.
 This so-called {\it area law}~\cite{Shredder} is also believed to hold in many
@@ -74,7 +74,7 @@ that may allow simulations of 2D quantum systems not amenable to quantum Monte C
 the notorious sign problem.  However, tensor network states (and MERA in two dimensions)
 are constructed to obey an area law; in order to be represented faithfully
 by them, a given 2D quantum groundstate must have physical entanglement
-properties which also obey the area law~\cite{ALreview}.
+properties that also obey the area law~\cite{ALreview}.
 
 %However, it is believed that 2D
 %states which lend themselves to accurate approximation by such methods
@@ -243,7 +243,7 @@ as data closest to the open boundary is systematically excluded.
 {\it Multi-leg ladders.}-- Moving away from the 1D chain, one can add
 ``legs'' to the lattice in a systematic way. In this case the sum over
 nearest neighbors is extended to neighbors along rungs as well as along
-legs.  As it was noted before, DMRG imposes contraints to the subregion
+legs.  As it was noted before, DMRG imposes constraints to the subregion
 geometry. In multi-leg ladders we choose to sweep in a 1D path that visits
 first bonds sitting in rungs rather than bonds sitting in legs (see
 Fig.~\ref{ladder}).  DMRG computational demands increase dramatically with
@@ -367,7 +367,7 @@ We can understand the value of $p$ from a scaling argument similar to that in \c
 Consider the number of bonds of length $l$ exiting a region of linear size $l$.  For $p>4$, this
 scales to zero and such a state should have no long-range order.
 For $p=4$, this number is $l$-independent, corresponding to a critical
-state ($p=2$ is the critical power in 1d, matching the
+state ($p=2$ is the critical power in 1D, matching the
 observed logarithmic behavor of $S^{\rm VB}$).
 For $p<2$, the bond length distribution is unnormalized, and all bonds are long, so that
 there is no short-range order.  $p=3$ represents a state with both long-
@@ -436,8 +436,14 @@ Defining the boundary between the two entangled regions as being bipartitioned b
 on a ladder, we have shown using DMRG that $S^{ \rm vN}$ obeys the area law in the large-leg limit.   
 Since the DMRG is {\it also} successful in measuring logarithmic size-dependencies of $S^{\rm vN}$ very accurately (in 1D critical systems), this suggests that simulation procedures similar to that presented here might enable the measurement of area-law corrections in $S^{\rm vN}$ as indicators of exotic phases in other models.
 
-The valence bond entanglement entropy harbors a multiplicative log correction \cite{Alet,Chh} for the N\'eel groundstate, which we have shown is caused by the valence-bond length distribution, and is not present in $S^{\rm vN}$.  It is clear that $S^{\rm VB}$ is still a reasonable measurement of entanglement, readily accessible to numerical simulations in 2D and higher, and capable of reproducing the area law in some gapped groundstates \cite{Alet,Chh}.  However, inability of  $S^{\rm VB}$ to provide a bound on 
-$S^{\rm vN}$ (unlike other measures such as Renyi entropies), along with its divergence from $S^{\rm vN}$ in 1D critical systems and the 2D N\'eel state, must be taken into account in proposals to use $S^{\rm VB}$ for such future tasks such as characterizing topological phases 
+The valence bond entanglement entropy harbors a multiplicative %log
+logarithmic
+correction~\cite{Alet,Chh} for the N\'eel groundstate, which we have shown is caused by the valence-bond length distribution, and is not present in $S^{\rm vN}$.  It is clear that $S^{\rm VB}$ is still a reasonable measurement of entanglement, readily accessible to numerical simulations in 2D and higher, and capable of reproducing the area law in some gapped groundstates \cite{Alet,Chh}.  However, inability of  $S^{\rm VB}$ to provide a bound on 
+$S^{\rm vN}$ (unlike other measures such as Renyi entropies), along with
+its divergence from $S^{\rm vN}$ in 1D critical systems and the 2D N\'eel
+state, must be taken into account in proposals to use $S^{\rm VB}$ for
+%such 
+future tasks such as characterizing topological phases 
  or studying universality at quantum phase transitions.
 
 
