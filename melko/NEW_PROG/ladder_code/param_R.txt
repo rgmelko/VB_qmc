@@ -1,0 +1,21 @@
+ energyLEG_LENGTH_nBOPS.txt
+entropyLEG_LENGTH_nBOPS.txt
+bondopsLEG_LENGTH_nBOPS.txt
+LEG
+LENGTH
+BOPS
+CHANGE
+ITERATIONS
+NUMBINS
+RANDNUM
+
+energy filename
+entropy filename
+bondop filename
+legs
+length
+y (number of bondops per site)
+r (number of bondops changed per step)
+its (number of iterations)
+number of bins (number of times the prog runs)
+random seed
