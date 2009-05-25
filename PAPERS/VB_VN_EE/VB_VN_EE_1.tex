@@ -67,7 +67,7 @@ although few exact results are available~\cite{ALreview}.  This has
 consequences in the
 rapidly-advancing field of computational quantum-many body theory, where
 it is known for example that groundstates of 1D Hamiltonians that satisfy an area law
-can be accurately represented by Matrix Product States (MPS)~\cite{MPS_DMRG}.
+can be accurately represented by Matrix Product States~\cite{MPS_DMRG}.
 Tensor-network states and MERA give two promising new classes of numerical
 algorithms~\cite{PEPS1,MERA} 
 that may allow simulations of 2D quantum systems not amenable to quantum Monte Carlo (QMC) due to
@@ -177,13 +177,14 @@ states obtained by this procedure.
 
 \begin{figure} {
 %\includegraphics[width=3.2in]{fig1_inset.eps}
-\includegraphics[width=3.3in]{4-panelFIG1.eps} \caption{(color online) Valence-bond
-and von Neumann entanglement entropies for a 1D Heisenberg chain with PBC and OBC. Upper panels show the entropies as a
+\includegraphics[width=3.3in]{4-panelFIG1.eps} \caption{(color online) 
+%Valence-bond and von Neumann 
+Entanglement entropies for a 1D Heisenberg chain with PBC and OBC. Upper panels show the entropies as a
 function of the conformal distance $x'$ for 100-site chains (see text).
 Lower plots show the values for the central charge $c$, obtained by
-fitting the numerical data to the CFT result, for several chain lengths.
+fitting the numerical data to the CFT result, for several $L$.
 For PBC, $c$ is calculated with the two smallest $x'$ points removed.
-For OBC, the fits depend on the number of sites included in the fit, $z$,
+For OBC, the fits depend on the number of sites included, $z$,
 which we
 %To bypass these effects we plot $c$ as
 %a function $z$ for each $L$. Here, $z$ is 
@@ -223,28 +224,27 @@ Figure~\ref{1D} illustrates simulation results in both cases, the left
 %central charge of $c=1$ was found for both cases.  In Fig.~\ref{1D} we
 %compare this result to the VN EE calculated from the DMRG.  
 For PBC both
-$S^{\rm VB}$ and $S^{ \rm vN}$ are seen to fit well to the CFT result, although
+$S^{\rm VB}$ and $S^{ \rm vN}$ appear to fit well to the CFT result, although
 $S^{ \rm vN} > S^{\rm VB}$. The regression fit shows very good
 convergence with the central charge predicted by CFT, $c=1$, for $S^{ \rm vN}$, while
-$S^{\rm VB}$ fit yields a lower value than predicted.
-%{\bf ANN: ADD DISCUSSION OF UNIVERSAL g (?)}.  
+the $S^{\rm VB}$ fit yields a lower value than predicted.
 For OBC both $S^{ \rm vN}$ and $S^{\rm VB}$ split into two branches, the upper (lower)
 corresponding to an odd (even) number of lattice sites in $A$.  This
 reflects a well-known ``dimerization'' effect induced by OBC~\cite{Ian1}.
-Notice that contrary to the PBC case, $S^{ \rm vN}$ is now \textit{smaller}
-than $S^{\rm VB}$. A regression fit of the lower branch to the form $c/6 \ln
+Notice that contrary to the PBC case, now $S^{ \rm vN} < S^{\rm VB}$. 
+A regression fit of the lower branch to the form $c/6 \ln
 ({2x'})$ (inset) shows excellent convergence of $S^{ \rm vN}$ to the central
 charge predicted by CFT, $c=1$, once finite-size effects and the proximity
 of the data to the open boundaries are taken into account.  In contrast,
  $S^{\rm VB}$ deviates significantly from the CFT result, giving 
 $c>1$ when all or most data is included in the fit, changing to $c<1$
-as data closest to the open boundary is systematically excluded from the fit.
+as data closest to the open boundary is systematically excluded.
 
 {\it Multi-leg ladders.}-- Moving away from the 1D chain, one can add
 ``legs'' to the lattice in a systematic way. In this case the sum over
 nearest neighbors is extended to neighbors along rungs as well as along
 legs.  As it was noted before, DMRG imposes contraints to the subregion
-geometry. In multi-leg ladders we choose to move in a 1D path that visits
+geometry. In multi-leg ladders we choose to sweep in a 1D path that visits
 first bonds sitting in rungs rather than bonds sitting in legs (see
 Fig.~\ref{ladder}).  DMRG computational demands increase dramatically with
 the number of legs, so in this paper we restrict ourselves to ladders with
@@ -263,7 +263,7 @@ scale. For (gapped) even-leg ladders, $S(x\gtrsim\xi)= {\rm const}.$
 %(gapped) $S(x\gtrsim\xi)=const.$ Both cases show the branched structure
 %discussed in the text. 
 The right inset shows the site indexing used for multi-leg ladders with the
-bipartition for $x=9$.  \label{ladder} }} \end{figure}
+bipartition A labelled by $x=9$.  \label{ladder} }} \end{figure}
 
 Figure~\ref{ladder} shows $S^{ \rm vN}$ and $S^{\rm VB}$ calculated
 for the 3-leg and 4-leg ladder. As happens with the OBC 1D chain, $S^{\rm VB} > S^{ \rm vN}$.  
@@ -305,13 +305,13 @@ We can use these results to address the question of the adherence of the 2D N\'e
 to an area law.  To do so, we
 define the lattice
 geometry such that region A is rectangular, cutting a multi-leg ladder
-cleanly across a rung, such that the ``area'' separating region A and B is
+cleanly across a rung, so that the ``area'' separating region A and B is
 equivalent to the number of legs in the ladder $N$.  We choose this area A
 to contain $2N^2$ sites, to have an aspect ratio of order unity.  In
 contrast, the entanglement entropy of a long
 skinny region would be dominated by the behavior
 of the gapless mode for odd-leg ladders.
-The 2:1 aspect ratio makes the region length even for all N, reducing even-odd oscillations.
+The 2:1 aspect ratio makes the region length even for all $N$, reducing even-odd oscillations.
 
 Figure~\ref{zigzag} illustrates the simulation results for $N$-leg ladders.
 Plotting $S(x)/N$ versus $N$ on a log scale, we obtain a
@@ -417,7 +417,7 @@ vN}$ can be understood through simple examples. Let $|(ij)(kl)...\rangle$
 denote a state in which sites $i,j$ are in a singlet, sites $k,l$ are in a
 singlet, and so on.  Consider an 8-site chain, with sites 1 to 4 in region
 A. Then, the state $|(12)(34)(56)(78)\rangle+|(14)(32)(58)(76)\rangle$ has
-vanishing $S^{\rm VB}$ since no bonds connect $A$ to $B$, but
+vanishing $S^{\rm VB}$ since no bonds connect A to B, but
 non-vanishing $S^{ \rm vN} \approx 0.325$.  On the other hand, consider a 4-site chain,
 with sites $1$ and $3$ in region A. Then, the state
 $|(12)(34)\rangle+|(14)(32)\rangle$ has a maximal $S^{\rm VB}$, equal to
@@ -436,7 +436,7 @@ Defining the boundary between the two entangled regions as being bipartitioned b
 on a ladder, we have shown using DMRG that $S^{ \rm vN}$ obeys the area law in the large-leg limit.   
 Since the DMRG is {\it also} successful in measuring logarithmic size-dependencies of $S^{\rm vN}$ very accurately (in 1D critical systems), this suggests that simulation procedures similar to that presented here might enable the measurement of area-law corrections in $S^{\rm vN}$ as indicators of exotic phases in other models.
 
-The valence bond entanglement entropy harbors a multiplicative log correction \cite{Alet,Chh} for the N\'eel groundstate, which we have shown is caused simply by the valence-bond length distribution, and is not present in $S^{\rm vN}$.  It is clear that $S^{\rm VB}$ is still a reasonable measurement of entanglement, readily accessible to numerical simulations in 2D and higher, and capable of reproducing the area law in some gapped groundstates \cite{Alet,Chh}.  However, inability of  $S^{\rm VB}$ to provide a bound on 
+The valence bond entanglement entropy harbors a multiplicative log correction \cite{Alet,Chh} for the N\'eel groundstate, which we have shown is caused by the valence-bond length distribution, and is not present in $S^{\rm vN}$.  It is clear that $S^{\rm VB}$ is still a reasonable measurement of entanglement, readily accessible to numerical simulations in 2D and higher, and capable of reproducing the area law in some gapped groundstates \cite{Alet,Chh}.  However, inability of  $S^{\rm VB}$ to provide a bound on 
 $S^{\rm vN}$ (unlike other measures such as Renyi entropies), along with its divergence from $S^{\rm vN}$ in 1D critical systems and the 2D N\'eel state, must be taken into account in proposals to use $S^{\rm VB}$ for such future tasks such as characterizing topological phases 
  or studying universality at quantum phase transitions.
 
