@@ -27,7 +27,7 @@ spin 1/2 Heisenberg systems using quantum Monte Carlo and density-matrix
 renormalization group simulations.  For one-dimensional chains we
 show that the valence bond entropy can be either less or greater than the
 von Neumann entropy, hence it cannot provide a bound on the latter.  
-On ladder geometries, simulations with up to 6 legs already indicate that
+On ladder geometries, simulations with up to 6 legs are sufficient to indicate that
 the von Neumann entropy in two dimensions obeys an area law,
 even though the valence bond entanglement entropy 
 has a multiplicative logarithmic correction.
@@ -58,7 +58,7 @@ Here, the reduced density matrix $\rho_A = {\rm Tr}_B | \psi \rangle
 associated with the region B.
 
 The properties of $S^{ \rm vN}$ are well-studied in the field of quantum information theory.
-In interacting one dimensional (1D) quantum systems, exact analytical results are known from conformal
+In interacting one-dimensional (1D) quantum systems, exact analytical results are known from conformal
 field theories (CFT); they show that, away from special critical points,
 $S^{ \rm vN}_A$ scales as the size of the boundary between A and B.
 This so-called {\it area law}~\cite{Shredder} is also believed to hold in many
@@ -74,7 +74,7 @@ that may allow simulations of 2D quantum systems not amenable to quantum Monte C
 the notorious sign problem.  However, tensor network states (and MERA in two dimensions)
 are constructed to obey an area law; in order to be represented faithfully
 by them, a given 2D quantum groundstate must have physical entanglement
-properties which also obey the area law~\cite{ALreview}.
+properties that also obey the area law~\cite{ALreview}.
 
 %However, it is believed that 2D
 %states which lend themselves to accurate approximation by such methods
@@ -126,7 +126,7 @@ $S^{ \rm vN}$ shows excellent agreement to $c=1$, whereas $S^{\rm VB}$ converges
 to $c<1$.
 For $N>1$, $S^{\rm VB}$ is systematically greater than $S^{ \rm vN}$,
 a trend which grows rapidly with $N$. An
-examination of entanglement defined by bisecting multi-leg ladders
+examination of entanglement defined by bipartitioning multi-leg ladders
 shows a logarithmic correction for the valence-bond entanglement entropy, $S^{\rm VB}_A = N \ln
 N$ (in agreement with Refs.~\cite{Alet,Chh}), however for data up to
 $N=6$, the von Neumann entanglement entropy  convincingly shows a scaling of
@@ -165,14 +165,15 @@ is larger than that needed to converge the energy alone.
 
 $S^{\rm VB}_A$ \cite{Alet,Chh} can be calculated using the valence-bond basis
 QMC proposed by Sandvik \cite{Sandvik}.  The 
-algorithm that we use is the simple single-projector method, with lattice
+algorithm we use is the simple single-projector method, with lattice
 geometries constructed to match those used by the DMRG algorithm.  The
 ground state of the system is projected out by repeated application of a
 list of bond operators on nearest neighbor sites of the ladder.  A number
 of bond operators are changed each step, and the change is accepted
-with a probability depending on the number of nearest neighbor bonds in
-the resulting valence bond states. Measured quantities such as energy or
-$S^{\rm VB}_A$ are then calculated by a weighted average over all the valence bond
+with a probability of $2^{n_{b}}/2^{n_{a}} $ where $n_{a}$ ($n_{b}$)
+is the number of off-diagonal operators in the current (last accepted) step.
+Measured quantities such as energy or $S^{\rm VB}_A$ are then calculated 
+by a weighted average over all the valence bond
 states obtained by this procedure.
 
 \begin{figure} {
@@ -207,12 +208,12 @@ Hamiltonian, and reproduce the same ground state energies; Figure 1 (and subsequ
 The 1D Heisenberg model is known to be critical and therefore can be
 mapped to a 2D classical Hamiltonian at its critical point, which
 can be described by CFT in the limit $L\to\infty$.  To address
-finite-length chains one can use the conformal mappings $x\to x'=L/\pi
+finite-length chains one can use the conformal mappings $x\to x'=(L/\pi)
 \sin(\pi x / L)$ for PBC, and 
 %$x\to x'=2L/\pi \sin(\pi x / L)$ 
 $x\to 2x'$ for OBC. %VN EE 
-Calculations within CFT~\cite{Cardy} obey $S^{\rm vN}(x)= c/3
-\ln(x') + S_1$ in the PBC case, and $S^{\rm vN}(x)= c/6 \ln(2x') +
+Calculations within CFT~\cite{Cardy} obey $S^{\rm vN}(x)= (c/3)
+\ln(x') + S_1$ in the PBC case, and $S^{\rm vN}(x)= (c/6) \ln(2x') +
 \ln(g)+S_1/2$ in the OBC case, where $c$ is the central charge of the CFT,
 $S_1$ is a model-dependent constant, and $g$ is Ludwig and Affleck's
 universal boundary term~\cite{AffleckAndLudwig}.
@@ -232,7 +233,7 @@ For OBC both $S^{ \rm vN}$ and $S^{\rm VB}$ split into two branches, the upper (
 corresponding to an odd (even) number of lattice sites in $A$.  This
 reflects a well-known ``dimerization'' effect induced by OBC~\cite{Ian1}.
 Notice that contrary to the PBC case, now $S^{ \rm vN} < S^{\rm VB}$. 
-A regression fit of the lower branch to the form $c/6 \ln
+A regression fit of the lower branch to the form $(c/6) \ln
 ({2x'})$ (inset) shows excellent convergence of $S^{ \rm vN}$ to the central
 charge predicted by CFT, $c=1$, once finite-size effects and the proximity
 of the data to the open boundaries are taken into account.  In contrast,
@@ -367,7 +368,7 @@ We can understand the value of $p$ from a scaling argument similar to that in \c
 Consider the number of bonds of length $l$ exiting a region of linear size $l$.  For $p>4$, this
 scales to zero and such a state should have no long-range order.
 For $p=4$, this number is $l$-independent, corresponding to a critical
-state ($p=2$ is the critical power in 1d, matching the
+state ($p=2$ is the critical power in 1D, matching the
 observed logarithmic behavor of $S^{\rm VB}$).
 For $p<2$, the bond length distribution is unnormalized, and all bonds are long, so that
 there is no short-range order.  $p=3$ represents a state with both long-
@@ -437,8 +438,14 @@ on a ladder, we have shown using DMRG that $S^{ \rm vN}$ obeys the area law in t
 Since DMRG can {\it also} accurately measure logarithmic size-dependencies of $S^{\rm vN}$ (in 1D critical systems), this suggests that simulation procedures similar to those here might enable the measurement of area-law corrections in $S^{\rm vN}$ as indicators of exotic phases in other models, such as those with
 a spinon Fermi surface.
 
-The valence bond entanglement entropy harbors a multiplicative log correction \cite{Alet,Chh} for the N\'eel groundstate, which we have shown is caused by the valence-bond length distribution, and is not present in $S^{\rm vN}$.  It is clear that $S^{\rm VB}$ is still a reasonable measurement of entanglement, readily accessible to numerical simulations in 2D and higher, and capable of reproducing the area law in some gapped groundstates \cite{Alet,Chh}.  However, the inability of  $S^{\rm VB}$ to provide a bound on 
-$S^{\rm vN}$ (unlike other measures such as Renyi entropies), along with its divergence from $S^{\rm vN}$ in 1D critical systems and the 2D N\'eel state, must be taken into account in proposals to use $S^{\rm VB}$ for such future tasks such as characterizing topological phases 
+The valence bond entanglement entropy harbors a multiplicative %log
+logarithmic
+correction~\cite{Alet,Chh} for the N\'eel groundstate, which we have shown is caused by the valence-bond length distribution, and is not present in $S^{\rm vN}$.  It is clear that $S^{\rm VB}$ is still a reasonable measurement of entanglement, readily accessible to numerical simulations in 2D and higher, and capable of reproducing the area law in some gapped groundstates \cite{Alet,Chh}.  However, inability of  $S^{\rm VB}$ to provide a bound on 
+$S^{\rm vN}$ (unlike other measures such as Renyi entropies), along with
+its divergence from $S^{\rm vN}$ in 1D critical systems and the 2D N\'eel
+state, must be taken into account in proposals to use $S^{\rm VB}$ for
+%such 
+future tasks such as characterizing topological phases 
  or studying universality at quantum phase transitions.
 
 
