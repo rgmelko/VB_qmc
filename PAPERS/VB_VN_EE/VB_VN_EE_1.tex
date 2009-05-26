@@ -1,10 +1,7 @@
 \documentclass[prl,aps,twocolumn,floatfix,amsmath,amssymb,superscriptaddress,tightenlines]{revtex4}
-\usepackage{graphicx}% Include figure files
-\usepackage{epstopdf}
-%\usepackage{amsmath}
+\usepackage{graphicx}
 \usepackage{amsfonts}
 \usepackage{bm}
-%\bibliographystyle{prsty}
 \begin{document}
 
 \date{\today}
@@ -34,8 +31,6 @@ has a multiplicative logarithmic correction.
 \end{abstract}
 \maketitle
 
-%\newpage
-
 {\it Introduction.}-- Entanglement has arisen 
 as a new paradigm for the study of correlations in condensed matter systems.  
 Measurements
@@ -55,7 +50,6 @@ S^{\rm vN}_A = - {\rm Tr} [ \rho_A \ln \rho_A ]. \label{vNEE}
 \end{equation}
 Here, the reduced density matrix $\rho_A = {\rm Tr}_B | \psi \rangle
 \langle \psi |$ is obtained by tracing out the degrees of freedom
-%associated with the region B.
 of B.
 
 The properties of $S^{ \rm vN}$ are well-studied in the field of quantum information theory.
@@ -73,21 +67,13 @@ Tensor-network states and MERA give two promising new classes of numerical
 algorithms~\cite{PEPS1} 
 that may allow simulations of 2D quantum systems not amenable to quantum Monte Carlo (QMC) due to
 the notorious sign problem.  However, 
-%tensor network states (and MERA in two dimensions)
 these simulation frameworks
 are constructed to obey an area law; in order to be represented faithfully
 by them, a given 2D quantum groundstate must have physical entanglement
 properties that also obey the area law~\cite{ALreview}.
 
-%However, it is believed that 2D
-%states which lend themselves to accurate approximation by such methods
-%must also obey an area law.
-
-Unfortunately, entanglement is %a difficult quantity to
-difficult to 
-measure in 2D, due to the fact that QMC 
-%- currently the only scalable method capable of unbiased 2D simulations - 
-does not have
+Unfortunately, entanglement is difficult to 
+measure in 2D, due to the fact that QMC does not have
 direct access to the groundstate wavefunction $| \psi \rangle$ required
 in Eq.~\eqref{vNEE}.  In response to this, several authors~\cite{Alet,
 Chh} have introduced the concept of {\it valence bond}
@@ -110,12 +96,6 @@ from CFT, however in the
 displays a {\it multiplicative} logarithmic correction to the area law~\cite{Alet,Chh}.  If
 true also for $S^{ \rm vN}$, this would have negative consequences for the simulation of the 
 N\'eel groundstate using tensor-network simulations.
-
-%If this
-%property were to be shared by the VN EE, it could have the consequence
-%that the 2D N\'eel groundstate can not be approximated by a tensor-network,
-%and is therefore not amenable to simulation techniques based on the MPS
-%framework
  
 In this paper, we compare $S^{\rm VB}$ calculated by valence-bond QMC to 
 $S^{ \rm vN}$ accessible through density-matrix renormalization group
@@ -137,11 +117,6 @@ Hamiltonian, given by  $H =  \sum_{\langle i j \rangle} {\mathbf S}_i
 \cdot {\mathbf S}_j \label{ham}$, where the sum is over nearest-neighbor
 lattice sites.  Geometries studied are 1D chains, and multi-leg ladders
 with length $L$ and number of legs $N$.  
-%Many properties of this model on open-boundary ladders with $n$ legs has
-%been exhaustively studied.  Of importance, it is known that a spin gap
-%exists for even-$n$ ladders in the limit of $L\rightarrow \infty$,
-%whereas odd-$n$ ladders behave somewhat more like quasi-1D  systems with
-%spin $n/2$ and, from Haldane's conjecture, are therefore gapless.  
 We employ two complementary numerical techniques, the valence-bond basis
 QMC and DMRG, both of which give {\it unbiased} approximations to the
 ground state of the Hamiltonian at zero temperature.  $S^{ \rm vN}_A$ is
@@ -163,11 +138,9 @@ can be calculated using the valence-bond basis
 QMC proposed by Sandvik \cite{Sandvik}.  The 
 algorithm we use is the simple single-projector method, with lattice
 geometries constructed to match those used by DMRG.
-%the DMRG algorithm.  
 The
 ground state of the system is projected out by repeated application of a
 list of nearest-neighbor bond operators,
-% on nearest neighbor sites of the ladder.  
 a number
 of which are changed each step.  The change is accepted
 with a probability of $2^{n_{b}}/2^{n_{a}} $ where $n_{a}$ ($n_{b}$)
@@ -177,9 +150,7 @@ by a weighted average over all the valence bond
 states obtained by this procedure.
 
 \begin{figure} {
-%\includegraphics[width=3.2in]{fig1_inset.eps}
 \includegraphics[width=3.3in]{4-panelFIG1.eps} \caption{(color online) 
-%Valence-bond and von Neumann 
 Entanglement entropies for a 1D Heisenberg chain with PBC and OBC. Upper
 panels show the entropies as a function of the conformal distance $x'$ for
 100-site chains (see text).  Lower plots show the values for the central
@@ -200,10 +171,7 @@ site index $x$ with sites within the interval $[1,x]$ ($[x+1,L]$)
 belonging to region $A$ ($B$) [thus we can label $S_A$ by its site index,
 $S(x)$].  We stress that the QMC and DMRG results are on the same geometry
 and Hamiltonian, and reproduce the same ground state energies; Figure 1
-(and subsequent figures) should 
-%can 
-be considered as exact comparisons between
-%$S^{\rm VB}_A$ and $S^{ \rm vN}_A$.
+(and subsequent figures) should be considered as exact comparisons between
 $S^{\rm VB}$ and $S^{ \rm vN}$.
 
 The 1D Heisenberg model is known to be critical and therefore can be
@@ -211,8 +179,7 @@ mapped to a 2D classical Hamiltonian at its critical point, which
 can be described by CFT in the limit $L\to\infty$.  To address
 finite-length chains one can use the conformal mappings $x\to x'=(L/\pi)
 \sin(\pi x / L)$ for PBC, and 
-%$x\to x'=2L/\pi \sin(\pi x / L)$ 
-$x\to 2x'$ for OBC. %VN EE 
+$x\to 2x'$ for OBC. 
 Calculations within CFT~\cite{Cardy} obey $S^{\rm vN}(x)= (c/3)
 \ln(x') + S_1$ in the PBC case, and $S^{\rm vN}(x)= (c/6) \ln(2x') +
 \ln(g)+S_1/2$ in the OBC case, where $c$ is the central charge of the CFT,
@@ -221,10 +188,6 @@ universal boundary term~\cite{AffleckAndLudwig}.
 
 Figure~\ref{1D} illustrates simulation results in both cases, the left
 (right) panels corresponding to PBC (OBC). 
-%In Refs.~\cite{Alet, Chh}, VB
-%EE calculated from QMC was compared to the CFT result, and a good fit to a
-%central charge of $c=1$ was found for both cases.  In Fig.~\ref{1D} we
-%compare this result to the VN EE calculated from the DMRG.  
 For PBC both
 $S^{\rm VB}$ and $S^{ \rm vN}$ appear to fit well to the CFT result, although
 $S^{ \rm vN} > S^{\rm VB}$. The regression fit shows very good
@@ -265,7 +228,6 @@ bipartition A labeled by $x=9$.  \label{ladder} }} \end{figure}
 Figure~\ref{ladder} shows $S^{ \rm vN}$ and $S^{\rm VB}$ calculated for
 the 3-leg and 4-leg ladder. As happens with the OBC 1D chain, $S^{\rm VB}
 > S^{ \rm vN}$.  
-%The
 Entropy shows different behavior depending on $N$ being even or odd.
 Even-leg ladders have a spin-gap~\cite{White1994}, and therefore only
 sites within distances from the boundary between A and B {\it smaller}
@@ -311,28 +273,13 @@ obeys an area law \cite{2dboson}.  We have also done a spin-wave calculation of
 $S^{\rm vN}$ for this system and found an area law, albeit with
 $S(x)/N\approx 0.2$, slightly lower than suggested for spin~$1/2$ in Fig.~\ref{zigzag}.
 
-%Despite the importance of adherence to the area law in tensor-network
-%generalization of MPS techniques, it is still not yet known whether the
-%2D isotropic Heisenberg ground state does obey the area law.  The results
-%from Refs.~\cite{Alet,Chh} for the VB EE in 2D indicate a multiplicative
-%logarithmic corrections to the area law.  We find it necessary to address
-%whether the same logarithmic correction exists in the VN EE.
-%Fig.~\ref{zigzag} shows the VB EE and VN EE for ladders with N legs.  The
-%lattice geometry is chosen such that subregion A contains $2N^2$ sites
-%and is always rectangular.  It is clear that Fig.~\ref{zigzag} shows a
-%logarithmic correction to the area law for VB EE, in agreement with
-%Refs.~\cite{Alet,Chh}.  However, in the case of the VN EE, the data
-%approaches a constant value and shows no correction to the area law.
-
 \begin{figure} { \includegraphics[width=3in]{fig4.eps} \caption{(color
 online) Entanglement entropies divided by $N$,  for $N$-leg Heisenberg
 (filled symbols) and free-fermion (open diamonds) ladders, taken such that
 the region A includes $2N^2$ sites.  
-%
 For the Heisenberg model and large $N$, $S^{\rm VB}\propto N \ln N$,
 whereas $S^{\rm vN}\propto N$.  
 Data for free fermions, $S^{\rm vN}_{\rm ff}\propto N \ln N$,  are shown for comparison.
-%
 All ladders have 100 sites per leg.  \label{zigzag}}} \end{figure}
 
 {\it Bond Length Distribution---} Sandvik defined the bond length
@@ -364,14 +311,8 @@ reproducing the power law decay of correlations.
 {\it Discussion.}-- In this paper, we have compared scaling properties of
 the valence bond entanglement entropy ($S^{\rm VB}$) \cite{Alet,Chh} to the von Neumann entanglement entropy ($S^{ \rm vN}$) in the
 spin 1/2 Heisenberg model on multi-leg ladder geometries, using QMC and DMRG simulations.
-%Both entropy measurements were evaluated using large-scale numerical
-%simulations; the VN EE with DMRG, which is restricted to 1D or seven-leg
-%and less open boundary ladders; and the VB EE with valence-bond basis QMC,
-%which is available for any lattice dimension or geometry. 
 In 1D, we find
 that $S^{\rm VB}$ mimics the behavior of $S^{ \rm vN}$ closely, although 
-%using
-%the definition of Eq.~\eqref{VBEE}, 
 it is less than $S^{ \rm vN}$ for periodic
 chains, and greater than $S^{ \rm vN}$ for open chains. In addition, fits to
 1D conformal field theory, which are excellent for $S^{ \rm vN}$ calculated
@@ -394,10 +335,6 @@ two sublattices.
 Thus, it is unsurprising that states with N\'eel order show $S^{\rm VB} > S^{ \rm vN}$,
 a fact which we have demonstrated numerically on multi-leg ladder systems with open boundaries.
 
-%On multi-leg ladder systems with open boundaries, $S^{\rm VB}$ is
-%systematically greater than $S^{ \rm vN}$, a discrepancy which grows as the
-%number of legs is increased.  
-
 Defining the boundary between the two entangled regions as being bipartitioned by a cut across all legs
 on a ladder, we have shown using DMRG that $S^{ \rm vN}$ obeys the area law in the many-leg limit.   
 Since DMRG can {\it also} accurately measure logarithmic size-dependencies of $S^{\rm vN}$ (in 1D critical systems), this suggests that simulation procedures similar to those here might enable the measurement of area-law corrections in $S^{\rm vN}$ as indicators of exotic phases in other models, such as those with
@@ -414,30 +351,13 @@ provide a bound on $S^{\rm vN}$ (unlike other measures such as Renyi
 entropies), along with its discrepancies from $S^{\rm vN}$ in 1D critical
 systems and the 2D N\'eel state, must be taken into account in proposals
 to use $S^{\rm VB}$ for
-%such 
 future tasks such as characterizing topological phases or studying
 universality at quantum phase transitions.
 
-%, $S^{\rm VB}$ does not provide a bound
-%on $S^{ \rm vN}$, unlike other entropic measures such as Renyi entropies.
-%Other properties of $S^{ \rm vN}$, such as its adherence to an area law, are
-%reproduced in the groundstates of some gapped systems \cite{Alet,Chh},
-%however in the case of the N\'eel groundstate of the 2D Heisenberg model,
-%unphysical multiplicative logarithmic corrections appear in $S^{\rm VB}$,
-%which are not caused by gapless excitations or algebraically decaying
-%correlations, but simply by the valence-bond length distribution.
-%The presence of this correction must
-%be taken into account in proposals to use $S^{\rm VB}$ for such important
-%future tasks such as characterizing topological phases 
-%using entanglement
-%entropy, 
-%or studying universality at quantum phase transitions.
 
 {\it Acknowledgments.}-- The authors thank I.~Affleck, J.~Berlinsky,
 N.~Bonesteel, A.~Del~Maestro, A.~Feiguin, 
 M.~Fisher, L.~Hormozi, and E.~S\o rensen 
-% should we use "full" names ? Does not need an extra line
-%M.~P.~A.~Fisher, L.~Hormozi, and E.~S.~Sorensen 
 for useful discussions.  This work was made possible by the
 computing facilities of SHARCNET and CESGA.  Support was provided by NSERC
 of Canada (A.B.K. and R.G.M.) and the NSF under Grant No. NSF PHY05-51164
