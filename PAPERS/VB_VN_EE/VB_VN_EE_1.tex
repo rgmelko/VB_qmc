@@ -158,10 +158,13 @@ that enough of the eigenvalue spectrum is included to converge $S^{ \rm
 vN}_A$ to sufficient accuracy; typically the number of states required is
 larger than that needed to converge the energy alone.
 
-$S^{\rm VB}_A$ \cite{Alet,Chh} can be calculated using the valence-bond basis
+$S^{\rm VB}_A$ \cite{Alet,Chh} 
+can be calculated using the valence-bond basis
 QMC proposed by Sandvik \cite{Sandvik}.  The 
 algorithm we use is the simple single-projector method, with lattice
-geometries constructed to match those used by the DMRG algorithm.  The
+geometries constructed to match those used by DMRG.
+%the DMRG algorithm.  
+The
 ground state of the system is projected out by repeated application of a
 list of nearest-neighbor bond operators,
 % on nearest neighbor sites of the ladder.  
