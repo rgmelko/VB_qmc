@@ -125,11 +125,11 @@ to $c<1$.
 For $N>1$, $S^{\rm VB}$ is systematically greater than $S^{ \rm vN}$,
 a trend which grows rapidly with $N$. An
 examination of entanglement defined by bipartitioning multi-leg ladders
-shows a logarithmic correction for the valence-bond entanglement entropy, $S^{\rm VB}_A = N \ln
+shows a logarithmic correction for the valence-bond entanglement entropy,
+$S^{\rm VB} \propto N \ln
 N$ (in agreement with Refs.~\cite{Alet,Chh}), however for data up to
 $N=6$, the von Neumann entanglement entropy  convincingly shows a scaling of
-$S^{\rm vN}_A = N$, thus obeying the area law.
-
+$S^{\rm vN} \propto N$, thus obeying the area law.
 
 
 {\it Model and Methods.}-- We consider the spin 1/2 Heisenberg
@@ -197,7 +197,7 @@ chains ($N=1$) of length $L$. We simulate both open (OBC) and periodic
 (PBC) boundary conditions.  The DMRG algorithm requires the regions A and
 B to be topologically connected, so in 1D the bipartition is defined by a
 site index $x$ with sites within the interval $[1,x]$ ($[x+1,L]$)
-belonging to region $A$ ($B$) [we can label $S_A$ by its site index,
+belonging to region $A$ ($B$) [thus we can label $S_A$ by its site index,
 $S(x)$].  We stress that the QMC and DMRG results are on the same geometry
 and Hamiltonian, and reproduce the same ground state energies; Figure 1
 (and subsequent figures) can be considered as exact comparisons between
@@ -324,8 +324,13 @@ $S(x)/N\approx 0.2$, slightly lower than suggested for spin~$1/2$ in Fig.~\ref{z
 \begin{figure} { \includegraphics[width=3in]{fig4.eps} \caption{(color
 online) Entanglement entropies divided by $N$,  for $N$-leg Heisenberg
 (filled symbols) and free-fermion (open diamonds) ladders, taken such that
-the region A includes $2N^2$ sites.  All ladders have 100 sites per leg.
-\label{zigzag}}} \end{figure}
+the region A includes $2N^2$ sites.  
+%
+For the Heisenberg model and large $N$, $S^{\rm VB}\propto N \ln N$,
+whereas $S^{\rm vN}\propto N$.  
+Data for free fermions, $S^{\rm vN}_{\rm ff}\propto N \ln N$,  are shown for comparison.
+%
+All ladders have 100 sites per leg.  \label{zigzag}}} \end{figure}
 
 {\it Bond Length Distribution---} Sandvik defined the bond length
 distribution $P(x,y)$ as the probability of a bond going from site $x$ to
