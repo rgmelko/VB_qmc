@@ -158,7 +158,7 @@ that enough of the eigenvalue spectrum is included to converge $S^{ \rm
 vN}_A$ to sufficient accuracy; typically the number of states required is
 larger than that needed to converge the energy alone.
 
-$S^{\rm VB}_A$ \cite{Alet,Chh} 
+$S^{\rm VB}_A$ 
 can be calculated using the valence-bond basis
 QMC proposed by Sandvik \cite{Sandvik}.  The 
 algorithm we use is the simple single-projector method, with lattice
@@ -186,7 +186,7 @@ panels show the entropies as a function of the conformal distance $x'$ for
 charge $c$, obtained by fitting the numerical data to the CFT result, for
 several $L$.  For PBC, $c$ is calculated with the two smallest $x'$ points
 removed.  For OBC, the fits depend on the number of sites included, $z$,
-which we systematically decreased by removing $x'$ data points from the
+which we systematically decrease by removing $x'$ data points from the
 {\it outside} ends of the chain.  $c$ is illustrated for $S^{\rm vN}$
 (closed symbols) and $S^{\rm VB}$ (open symbols) for system sizes $L=64$
 (circles), $L=100$ (squares), $L=128$ (diamonds), and $L=200$ (triangles)
@@ -256,9 +256,9 @@ $N=20$ with minimal CPU effort.
 \begin{figure} { \includegraphics[width=3.3in]{FIG23NEW.eps}
 \caption{(color online) Entanglement entropies for 3-leg (left)
 and 4-leg (right) ladder systems with OBC and 100 sites per leg.  For
-(gapless) odd-leg ladders, $S(x)\propto\ln(x')$.  The left
+odd-leg ladders, $S(x)\propto\ln(x')$.  The left
 inset shows $S(x)$ as a function of the conformal distance, $x'$, on a log
-scale. For (gapped) even-leg ladders, $S(x\gtrsim\xi)= {\rm const}.$
+scale. For even-leg ladders, $S(x\gtrsim\xi)= {\rm const}.$
 The right inset shows the site indexing used for multi-leg ladders with the
 bipartition A labeled by $x=9$.  \label{ladder} }} \end{figure}
 
@@ -358,7 +358,7 @@ and short-range order.  There is a heuristic argument that $p=3$ corresponds to 
 with Goldstone modes: the correlation function of two spins is the
 probability that they lie on the same loop.  This can be
 estimated by
-the Green's function of a Levy flight with power law distributed steps with power $3$,
+the Green's function of a L{\'e}vy flight with power law distributed steps with power $3$,
 reproducing the power law decay of correlations.
 
 {\it Discussion.}-- In this paper, we have compared scaling properties of
@@ -399,19 +399,19 @@ a fact which we have demonstrated numerically on multi-leg ladder systems with o
 %number of legs is increased.  
 
 Defining the boundary between the two entangled regions as being bipartitioned by a cut across all legs
-on a ladder, we have shown using DMRG that $S^{ \rm vN}$ obeys the area law in the large-leg limit.   
+on a ladder, we have shown using DMRG that $S^{ \rm vN}$ obeys the area law in the many-leg limit.   
 Since DMRG can {\it also} accurately measure logarithmic size-dependencies of $S^{\rm vN}$ (in 1D critical systems), this suggests that simulation procedures similar to those here might enable the measurement of area-law corrections in $S^{\rm vN}$ as indicators of exotic phases in other models, such as those with
 a spinon Fermi surface~\cite{BoseMetal}.
 
 The valence bond entanglement entropy harbors a multiplicative logarithmic
 correction~\cite{Alet,Chh} for the N\'eel groundstate, which we have shown
 is caused by the valence-bond length distribution, and is not present in
-$S^{\rm vN}$.  It is clear that $S^{\rm VB}$ is still a reasonable
+$S^{\rm vN}$.  It is clear that $S^{\rm VB}$ is a reasonable
 measurement of entanglement, readily accessible to numerical simulations
 in 2D and higher, and capable of reproducing the area law in some gapped
 groundstates \cite{Alet,Chh}.  However, the inability of  $S^{\rm VB}$ to
 provide a bound on $S^{\rm vN}$ (unlike other measures such as Renyi
-entropies), along with its divergence from $S^{\rm vN}$ in 1D critical
+entropies), along with its discrepancies from $S^{\rm vN}$ in 1D critical
 systems and the 2D N\'eel state, must be taken into account in proposals
 to use $S^{\rm VB}$ for
 %such 
@@ -435,7 +435,7 @@ universality at quantum phase transitions.
 
 {\it Acknowledgments.}-- The authors thank I.~Affleck, J.~Berlinsky,
 N.~Bonesteel, A.~Del~Maestro, A.~Feiguin, 
-M.~Fisher, L.~Hormozi, and E.~Sorensen 
+M.~Fisher, L.~Hormozi, and E.~S\o rensen 
 % should we use "full" names ? Does not need an extra line
 %M.~P.~A.~Fisher, L.~Hormozi, and E.~S.~Sorensen 
 for useful discussions.  This work was made possible by the
