@@ -165,7 +165,7 @@ which we systematically decrease by removing $x'$ data points from the
 \label{1D}}} \end{figure}
 
 {\it One-dimensional chain.}-- We consider first the case of Heisenberg
-chains ($N=1$) of length $L$. We simulate both open (OBC) and periodic
+chains ($N=1$) of length $L$, simulating both open (OBC) and periodic
 (PBC) boundary conditions.  The DMRG algorithm requires the regions A and
 B to be topologically connected, so in 1D the bipartition is defined by a
 site index $x$ with sites within the interval $[1,x]$ ($[x+1,L]$)
@@ -193,7 +193,7 @@ For PBC both
 $S^{\rm VB}$ and $S^{ \rm vN}$ appear to fit well to the CFT result, although
 $S^{ \rm vN} > S^{\rm VB}$. The regression fit for $S^{ \rm vN}$ shows very good
 convergence with the central charge predicted by CFT, $c=1$, while
-the one for $S^{\rm VB}$ yields a lower value of $c$ than predicted.
+the fit for $S^{\rm VB}$ yields a lower value of $c$ than predicted.
 For OBC both $S^{ \rm vN}$ and $S^{\rm VB}$ split into two branches, the upper (lower)
 corresponding to an odd (even) number of lattice sites in A.  This
 reflects a well-known ``dimerization'' effect induced by OBC~\cite{Ian1}.
@@ -223,8 +223,8 @@ and 4-leg (right) ladder systems with OBC and 100 sites per leg.  For
 odd-leg ladders, $S(x)\propto\ln(x')$.  The left
 inset shows $S(x)$ as a function of the conformal distance, $x'$, on a log
 scale. For even-leg ladders, $S(x\gtrsim\xi)= {\rm const}.$
-The right inset shows the site indexing used for multi-leg ladders with the
-bipartition A labeled by $x=9$.  \label{ladder} }} \end{figure}
+The right inset shows the site indexing used for multi-leg ladders where the
+bipartition A is shaded and labeled by $x=9$.  \label{ladder} }} \end{figure}
 
 Figure~\ref{ladder} shows $S^{ \rm vN}$ and $S^{\rm VB}$ calculated for
 the 3-leg and 4-leg ladder. As happens with the OBC 1D chain, $S^{\rm VB}
@@ -250,10 +250,10 @@ to an area law.  To do so, we
 define the lattice
 geometry such that region A is rectangular, cutting a multi-leg ladder
 cleanly across all legs, so that the ``area'' separating region A and B is
-equivalent to the number of legs in the ladder $N$.  We choose this area A
+equivalent to the number of legs in the ladder $N$.  We choose the region A
 to contain $2N^2$ sites, to have an aspect ratio of order unity.  In
 contrast, the entanglement entropy of a long
-skinny region would be dominated by the behavior
+narrow region would be dominated by the behavior
 of the gapless mode for odd-leg ladders.
 The 2:1 aspect ratio makes the region length even for all $N$, reducing even-odd oscillations.
 
@@ -283,7 +283,7 @@ whereas $S^{\rm vN}\propto N$.
 Data for free fermions, $S^{\rm vN}_{\rm ff}\propto N \ln N$,  are shown for comparison.
 All ladders have 100 sites per leg.  \label{zigzag}}} \end{figure}
 
-{\it Bond Length Distribution---} Sandvik defined the bond length
+{\it Bond Length Distribution.}-- Sandvik defined the bond length
 distribution $P(x,y)$ as the probability of a bond going from site $x$ to
 site $y$, and found that $P(x,y)\sim |x-y|^{-p}$ with $p\approx 3$ in the
 N\'eel state~\cite{Sandvik}.  This value of $p$ gives the logarithmic
@@ -342,7 +342,7 @@ Since DMRG can {\it also} accurately measure logarithmic size-dependencies of $S
 a spinon Fermi surface~\cite{BoseMetal}.
 
 The valence bond entanglement entropy harbors a multiplicative logarithmic
-correction~\cite{Alet,Chh} for the N\'eel groundstate, which we have shown
+correction for the N\'eel groundstate, which we have shown
 is caused by the valence-bond length distribution, and is not present in
 $S^{\rm vN}$.  It is clear that $S^{\rm VB}$ is a reasonable
 measurement of entanglement, readily accessible to numerical simulations
