@@ -83,18 +83,12 @@ properties that also obey the area law~\cite{ALreview}.
 %states which lend themselves to accurate approximation by such methods
 %must also obey an area law.
 
-%\begin{figure} { \includegraphics[width=2.4in]{ladder.eps}
-%\caption{(color online) A three-leg ladder.  The site labels $x$ indicate
-%the order in which DMRG sweeping takes place, which is also the index
-%order by which entanglement entropy is measured.  The blue box labels
-%sites in the region A, with $x=7$.  \label{ladder}}} \end{figure}
-
 Unfortunately, entanglement is a difficult quantity to
 measure in 2D, due to the fact that QMC 
 %- currently the only scalable method capable of unbiased 2D simulations - 
 does not have
 direct access to the groundstate wavefunction $| \psi \rangle$ required
-in Eq.~\eqref{vNEE}.  In response to this, several authors \cite{Alet,
+in Eq.~\eqref{vNEE}.  In response to this, several authors~\cite{Alet,
 Chh} have introduced the concept of {\it valence bond}
 entanglement entropy ($S^{\rm VB}$), defined for a  spin system as
 \begin{equation} 
@@ -106,13 +100,13 @@ ${( |\uparrow \downarrow \rangle - | \downarrow \uparrow
 $S^{ \rm vN}$, $S^{\rm VB}$ can be accessed easily in the valence-bond basis
 projector QMC method recently proposed by Sandvik \cite{Sandvik}.  As
 demonstrated in Refs.~\cite{Alet,Chh}, $S^{\rm VB}$ has many properties in
-common with $S^{ \rm vN}$, in particular the relationship $S_A = S_B$, and the
-fact that $S^{VB}_A=0$ for regions ``un-entangled'' by valence bonds.
+common with $S^{ \rm vN}$, in particular the relationship $S^{\rm VB}_A = S^{\rm VB}_B$, and the
+fact that $S^{\rm VB}_A=0$ for regions ``un-entangled'' by valence bonds.
 A comparison of the scaling of $S^{\rm VB}$ for (critical) 1D spin
 1/2 Heisenberg chains shows good agreement with analytical results known
 from CFT, however in the
  2D isotropic Heisenberg model it
-displays a {\it multiplicative} logarithmic correction to the area law \cite{Alet,Chh}.  If
+displays a {\it multiplicative} logarithmic correction to the area law~\cite{Alet,Chh}.  If
 true also for $S^{ \rm vN}$, this would have negative consequences for the simulation of the 
 N\'eel groundstate using tensor-network simulations.
 
