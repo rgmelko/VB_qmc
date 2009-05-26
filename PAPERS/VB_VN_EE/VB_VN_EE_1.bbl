@@ -113,8 +113,9 @@
   (\bibinfo{year}{2004});
   %\bibitem[{\citenamefont{Huanqiang et~al.}(2006)\citenamefont{Huanqiang,
 %  Barthel, and Schollwoeck}}]{Huanq2006}
-  \bibinfo{author}{\bibfnamefont{Z.}~\bibnamefont{Huanqiang}},
-  \bibinfo{author}{\bibfnamefont{T.}~\bibnamefont{Barthel}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{H.~Q.}~\bibnamefont{Zhou}},
+  \bibinfo{author}{\bibfnamefont{T.}~\bibnamefont{Barthel}}, 
+  \bibinfo{author}{\bibfnamefont{J.~O.}~\bibnamefont{Fjaerestad}}, \bibnamefont{and}
   \bibinfo{author}{\bibfnamefont{U.}~\bibnamefont{Schollwoeck}},
   \bibinfo{journal}{Phys. Rev. A} \textbf{\bibinfo{volume}{74}},
   \bibinfo{pages}{050305(R)} (\bibinfo{year}{2006}).
@@ -142,14 +143,14 @@
 
 \bibitem[{\citenamefont{White et~al.}(1994)\citenamefont{White, Noack, and
   Scalapino}}]{White1994}
-\bibinfo{author}{\bibfnamefont{S.}~\bibnamefont{White}},
-  \bibinfo{author}{\bibfnamefont{R.}~\bibnamefont{Noack}}, \bibnamefont{and}
-  \bibinfo{author}{\bibfnamefont{D.}~\bibnamefont{Scalapino}},
+\bibinfo{author}{\bibfnamefont{S.~R.}~\bibnamefont{White}},
+  \bibinfo{author}{\bibfnamefont{R.~M.}~\bibnamefont{Noack}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{D.~J.}~\bibnamefont{Scalapino}},
   \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{73}},
   \bibinfo{pages}{886} (\bibinfo{year}{1994}).
 
   \bibitem[{\citenamefont{Wolf}(2006)}]{2dfermion}
-  \bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Wolf}},
+  \bibinfo{author}{\bibfnamefont{M.~M.}~\bibnamefont{Wolf}},
   \bibinfo{journal}{Phys. Rev. Lett.},
   \textbf{\bibinfo{volume}{96}}, \bibinfo{pages}{010404}
   (\bibinfo{year}{2006}).
@@ -158,15 +159,16 @@
 \bibitem[{\citenamefont{Cramer et~al.}(2006)\citenamefont{Cramer, Eisert, and
   Plenio}}]{2dboson}
 \bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Cramer}},
-  \bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Eisert}}, \bibnamefont{and}
-  \bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Plenio}},
+  \bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Eisert}}, 
+  \bibinfo{author}{\bibfnamefont{M.~B.}~\bibnamefont{Plenio}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Dreissig}},
   \bibinfo{journal}{Phys. Rev. A} \textbf{\bibinfo{volume}{73}},
   \bibinfo{pages}{012309} (\bibinfo{year}{2006}).
 
 \bibitem[{\citenamefont{Kozma et~al.}(2005)\citenamefont{Kozma, Hastings, and
   Korniss}}]{network}
 \bibinfo{author}{\bibfnamefont{B.}~\bibnamefont{Kozma}},
-  \bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Hastings}}, \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{M.~B.}~\bibnamefont{Hastings}}, \bibnamefont{and}
   \bibinfo{author}{\bibfnamefont{G.}~\bibnamefont{Korniss}},
   \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{95}},
   \bibinfo{pages}{018701} (\bibinfo{year}{2005}).
