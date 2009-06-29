@@ -1,6 +1,6 @@
 # Grace project file
 #
-@version 50120
+@version 50122
 @page size 792, 612
 @page scroll 5%
 @page inout 5%
@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Sun May 17 20:36:58 2009"
+@timestamp def "Sun Jun 21 20:10:20 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -101,7 +101,7 @@
 @g0 fixedpoint format general general
 @g0 fixedpoint prec 6, 6
 @with g0
-@    world 1, 0.2, 21, 0.69
+@    world 1, 0.3, 21, 0.65
 @    stack world 0, 0, 0, 0
 @    znorm 1
 @    view 0.185243, 0.233909, 1.131868, 0.901099
@@ -248,16 +248,16 @@
 @    s0 type xy
 @    s0 symbol 3
 @    s0 symbol size 1.000000
-@    s0 symbol color 1
+@    s0 symbol color 0
 @    s0 symbol pattern 1
-@    s0 symbol fill color 15
+@    s0 symbol fill color 0
 @    s0 symbol fill pattern 0
 @    s0 symbol linewidth 2.0
 @    s0 symbol linestyle 1
 @    s0 symbol char 65
 @    s0 symbol char font 0
 @    s0 symbol skip 0
-@    s0 line type 1
+@    s0 line type 0
 @    s0 line linestyle 2
 @    s0 line linewidth 1.5
 @    s0 line color 1
@@ -282,7 +282,7 @@
 @    s0 avalue offset 0.000000 , 0.000000
 @    s0 errorbar on
 @    s0 errorbar place both
-@    s0 errorbar color 1
+@    s0 errorbar color 0
 @    s0 errorbar pattern 1
 @    s0 errorbar size 1.000000
 @    s0 errorbar linewidth 1.0
