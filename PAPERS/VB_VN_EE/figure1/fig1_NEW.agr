@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Sun Jun 21 18:17:16 2009"
+@timestamp def "Thu Jul  2 12:05:51 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -247,7 +247,7 @@
 @    s0 hidden false
 @    s0 type xy
 @    s0 symbol 2
-@    s0 symbol size 0.750000
+@    s0 symbol size 1.000000
 @    s0 symbol color 1
 @    s0 symbol pattern 1
 @    s0 symbol fill color 2
@@ -296,7 +296,7 @@
 @    s1 hidden false
 @    s1 type xydy
 @    s1 symbol 1
-@    s1 symbol size 0.750000
+@    s1 symbol size 1.000000
 @    s1 symbol color 1
 @    s1 symbol pattern 1
 @    s1 symbol fill color 4
@@ -499,7 +499,7 @@
 @    s0 hidden false
 @    s0 type xydy
 @    s0 symbol 1
-@    s0 symbol size 0.750000
+@    s0 symbol size 1.000000
 @    s0 symbol color 1
 @    s0 symbol pattern 1
 @    s0 symbol fill color 4
@@ -548,7 +548,7 @@
 @    s1 hidden false
 @    s1 type xy
 @    s1 symbol 2
-@    s1 symbol size 0.750000
+@    s1 symbol size 1.000000
 @    s1 symbol color 1
 @    s1 symbol pattern 1
 @    s1 symbol fill color 2
@@ -751,12 +751,12 @@
 @    s0 hidden false
 @    s0 type xydy
 @    s0 symbol 1
-@    s0 symbol size 0.650000
+@    s0 symbol size 1.000000
 @    s0 symbol color 11
 @    s0 symbol pattern 1
-@    s0 symbol fill color 11
-@    s0 symbol fill pattern 0
-@    s0 symbol linewidth 2.0
+@    s0 symbol fill color 1
+@    s0 symbol fill pattern 1
+@    s0 symbol linewidth 2.5
 @    s0 symbol linestyle 1
 @    s0 symbol char 65
 @    s0 symbol char font 0
@@ -800,12 +800,12 @@
 @    s1 hidden false
 @    s1 type xydy
 @    s1 symbol 3
-@    s1 symbol size 0.650000
+@    s1 symbol size 1.000000
 @    s1 symbol color 4
 @    s1 symbol pattern 1
-@    s1 symbol fill color 4
-@    s1 symbol fill pattern 0
-@    s1 symbol linewidth 2.0
+@    s1 symbol fill color 1
+@    s1 symbol fill pattern 1
+@    s1 symbol linewidth 2.5
 @    s1 symbol linestyle 1
 @    s1 symbol char 65
 @    s1 symbol char font 0
@@ -849,12 +849,12 @@
 @    s2 hidden false
 @    s2 type xydy
 @    s2 symbol 2
-@    s2 symbol size 0.650000
+@    s2 symbol size 1.000000
 @    s2 symbol color 15
 @    s2 symbol pattern 1
-@    s2 symbol fill color 15
-@    s2 symbol fill pattern 0
-@    s2 symbol linewidth 2.0
+@    s2 symbol fill color 1
+@    s2 symbol fill pattern 1
+@    s2 symbol linewidth 2.5
 @    s2 symbol linestyle 1
 @    s2 symbol char 65
 @    s2 symbol char font 0
@@ -898,7 +898,7 @@
 @    s3 hidden false
 @    s3 type xy
 @    s3 symbol 3
-@    s3 symbol size 0.650000
+@    s3 symbol size 1.000000
 @    s3 symbol color 1
 @    s3 symbol pattern 1
 @    s3 symbol fill color 4
@@ -947,12 +947,12 @@
 @    s7 hidden false
 @    s7 type xy
 @    s7 symbol 4
-@    s7 symbol size 0.650000
+@    s7 symbol size 1.000000
 @    s7 symbol color 1
 @    s7 symbol pattern 1
-@    s7 symbol fill color 1
+@    s7 symbol fill color 2
 @    s7 symbol fill pattern 1
-@    s7 symbol linewidth 1.0
+@    s7 symbol linewidth 2.0
 @    s7 symbol linestyle 1
 @    s7 symbol char 65
 @    s7 symbol char font 0
@@ -996,7 +996,7 @@
 @    s8 hidden false
 @    s8 type xy
 @    s8 symbol 2
-@    s8 symbol size 0.650000
+@    s8 symbol size 1.000000
 @    s8 symbol color 1
 @    s8 symbol pattern 1
 @    s8 symbol fill color 15
@@ -1045,7 +1045,7 @@
 @    s9 hidden false
 @    s9 type xy
 @    s9 symbol 1
-@    s9 symbol size 0.650000
+@    s9 symbol size 1.000000
 @    s9 symbol color 1
 @    s9 symbol pattern 1
 @    s9 symbol fill color 11
@@ -1248,7 +1248,7 @@
 @    s0 hidden false
 @    s0 type xydy
 @    s0 symbol 1
-@    s0 symbol size 0.750000
+@    s0 symbol size 1.000000
 @    s0 symbol color 1
 @    s0 symbol pattern 1
 @    s0 symbol fill color 4
@@ -1297,7 +1297,7 @@
 @    s1 hidden false
 @    s1 type xy
 @    s1 symbol 2
-@    s1 symbol size 0.750000
+@    s1 symbol size 1.000000
 @    s1 symbol color 1
 @    s1 symbol pattern 1
 @    s1 symbol fill color 2
@@ -1750,162 +1750,94 @@
 @target G2.S0
 @type xydy
 16 1.08113 0.0013712
-15 1.04652 0.00188666
 14 1.02604 0.0023124
-13 1.01225 0.00284777
 12 1.0019 0.00343471
-11 0.993954 0.00398227
 10 0.985944 0.00459969
-9 0.981234 0.00452197
 8 0.971892 0.00638166
-7 0.966402 0.00971604
 &
 @target G2.S1
 @type xydy
 32 1.03066 0.00203171
-31 1.00178 0.00262069
 30 0.984798 0.00314337
-29 0.972942 0.00355401
 28 0.964236 0.00412647
-27 0.958302 0.00465257
 26 0.952662 0.00532449
-25 0.947226 0.00573702
 24 0.94215 0.00631062
-23 0.939132 0.00699378
 22 0.93675 0.00788766
-21 0.933384 0.00929736
 &
 @target G2.S2
 @type xydy
 25 1.04827 0.00158086
-24 1.01693 0.00228403
 23 0.999108 0.00288895
-22 0.987174 0.00351985
 21 0.97905 0.00408074
-20 0.972588 0.00446507
 19 0.968202 0.00469956
-18 0.965652 0.00488891
 17 0.961926 0.00523314
-16 0.9543 0.00574368
 15 0.950514 0.00660636
 &
 @target G2.S3
 @type xy
-5 1.007904
 4 1.007982
 6 1.00821
-7 1.00836
 8 1.008612
-9 1.008894
 10 1.009218
-11 1.009602
 12 1.010022
-13 1.010478
 14 1.010994
-15 1.011558
 16 1.012188
-17 1.012884
 18 1.013664
-19 1.014528
 20 1.015488
-21 1.016556
 22 1.017762
-23 1.019118
 24 1.02066
-25 1.02243
 26 1.024488
-27 1.02693
 28 1.029882
-29 1.033572
 30 1.038396
-31 1.045116
 32 1.0548
 &
 @target G2.S7
 @type xy
-11 1.000878
 10 1.000956
 12 1.001124
 14 1.001184
-13 1.001202
-15 1.00125
 16 1.001532
-17 1.001742
 18 1.001982
-19 1.00218
 20 1.00233
-21 1.002528
 22 1.002798
-23 1.003086
 24 1.003398
-25 1.003728
 26 1.004082
-27 1.00446
 28 1.004862
-29 1.005294
 30 1.005756
-31 1.006254
 32 1.006788
-33 1.007364
 34 1.007982
-35 1.008648
 36 1.009374
-37 1.010166
 38 1.01103
-39 1.011978
 40 1.013028
-41 1.014204
 42 1.015518
-43 1.017024
 44 1.018758
-45 1.020792
 46 1.023252
-47 1.026324
 48 1.030332
-49 1.035966
 50 1.044426
 &
 @target G2.S8
 @type xy
 3 1.01241
-4 1.0128
 5 1.013076
-6 1.013484
 7 1.01385
-8 1.014354
 9 1.014894
-10 1.015524
 11 1.016262
-12 1.017096
 13 1.018056
-14 1.019142
 15 1.02039
-16 1.021818
 17 1.023462
-18 1.025364
 19 1.027596
-20 1.030254
 21 1.033494
-22 1.037544
 23 1.042842
-24 1.05018
 25 1.060446
 &
 @target G2.S9
 @type xy
-3 1.02357
 4 1.02414
-5 1.024926
 6 1.025928
-7 1.027224
 8 1.028826
-9 1.030782
 10 1.033176
-11 1.036122
 12 1.039788
-13 1.04445
 14 1.05057
-15 1.05897
 16 1.069932
 &
 @target G3.S0
