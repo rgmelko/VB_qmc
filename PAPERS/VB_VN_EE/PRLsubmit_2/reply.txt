@@ -47,7 +47,11 @@ We agree, but make the note that the statistical analysis of the QMC data is muc
 >  DMRG calculations? To what accuracy are the results for the van
 >  Neumann entropy converged in the number of states?
 
-We used up to 2000 states in the DMRG calculations for the largest lattice sizes...  (Ivan do you have this info?  I can't remember who ran these).
+As stated in our manuscript entropy calculations are harder to converge
+than energy ones. We used up to 2000 states per block in the DMRG
+calculations for the largest lattice sizes (N=5,6). The DMRG truncation
+error per site is under 10$^{-8}$ in all cases. We have added a sentence
+to the new version of the manuscript noting these values. 
 
 >  5) I suggest that the authors add axis labels to all figures
 >  (see, e.g.  the right panels in Fig. 1. In the lower right panel
