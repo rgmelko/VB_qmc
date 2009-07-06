@@ -154,12 +154,12 @@ states obtained by this procedure.
 \includegraphics[width=3.3in]{4-panelFIG1.eps} \caption{(color online) 
 Entanglement entropies for a 1D Heisenberg chain with PBC and OBC. Upper
 panels show the entropies as a function of the conformal distance $x'  = (L/\pi)\sin (\pi x/L)$ for
-100-site chains.  Lower plots show the values for the central
+100-site chains.  Lower plots show the central
 charge $c$, obtained by fitting the numerical data to the CFT result, for
 several $L$.  For PBC, $c$ is calculated with the two smallest $x'$ points
 removed.  For OBC, the fits depend on the number of sites included, $z$,
 which we systematically decrease by removing $x'$ data points from the
-{\it outside} ends of the chain.  $c$ is illustrated for $S^{\rm vN}$
+{\it outside} ends of the chain.  $c$ is shown for $S^{\rm vN}$
 (closed symbols) and $S^{\rm VB}$ (open symbols) for system sizes $L=64$
 (circles), $L=100$ (squares), $L=128$ (diamonds), and $L=200$ (triangles)
 \label{1D}}} \end{figure}
@@ -204,7 +204,7 @@ charge predicted by CFT, $c=1$, once finite-size effects and the proximity
 of the data to the open boundaries are taken into account.  In contrast,
  $S^{\rm VB}$ deviates significantly from the CFT result, giving 
 $c>1$ when all or most data is included in the fit, changing to $c<1$
-as data closest to the open boundary is systematically excluded~\cite{XXX}.
+as data closest to the open boundary is systematically excluded~\cite{XXX}, e.g. for $z=L/2$, $c_{L\to\infty} \approx 0.85$.
 
 {\it Multi-leg ladders.}-- Moving away from the 1D chain, one can add
 ``legs'' to the lattice in a systematic way. In this case the sum over
@@ -256,6 +256,7 @@ contrast, the entanglement entropy of a long
 narrow region would be dominated by the behavior
 of the gapless mode for odd-leg ladders.
 The 2:1 aspect ratio makes the region length even for all $N$, reducing even-odd oscillations.
+We note that other choices of bipartition compatible with the DMRG sweeping give similar results for the area law in $S^{ \rm vN}$.
 
 Figure~\ref{zigzag} illustrates the simulation results for $N$-leg ladders.
 Plotting $S(x)/N$ versus $N$ on a log scale, we obtain a
@@ -281,7 +282,8 @@ the region A includes $2N^2$ sites.
 For the Heisenberg model and large $N$, $S^{\rm VB}\propto N \ln N$,
 whereas $S^{\rm vN}\propto N$.  
 Data for free fermions, $S^{\rm vN}_{\rm ff}\propto N \ln N$,  are shown for comparison.
-All ladders have 100 sites per leg.  \label{zigzag}}} \end{figure}
+We include ladders with L=100 sites per leg and ladders with a number of sites 
+per leg (L=4N) proportional to the number of legs, N.  \label{zigzag}}} \end{figure}
 
 {\it Bond Length Distribution.}-- Sandvik defined the bond length
 distribution $P(x,y)$ as the probability of a bond going from site $x$ to
