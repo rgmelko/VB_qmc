@@ -1,6 +1,6 @@
 # Grace project file
 #
-@version 50120
+@version 50122
 @page size 792, 612
 @page scroll 5%
 @page inout 5%
@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Sun May 17 20:58:17 2009"
+@timestamp def "Mon Jul  6 14:55:37 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -157,8 +157,8 @@
 @    xaxis  ticklabel skip 0
 @    xaxis  ticklabel stagger 0
 @    xaxis  ticklabel place normal
-@    xaxis  ticklabel offset auto
-@    xaxis  ticklabel offset 0.000000 , 0.010000
+@    xaxis  ticklabel offset spec
+@    xaxis  ticklabel offset 0.000000 , 0.014000
 @    xaxis  ticklabel start type auto
 @    xaxis  ticklabel start 0.000000
 @    xaxis  ticklabel stop type auto
@@ -208,8 +208,8 @@
 @    yaxis  ticklabel skip 0
 @    yaxis  ticklabel stagger 0
 @    yaxis  ticklabel place normal
-@    yaxis  ticklabel offset auto
-@    yaxis  ticklabel offset 0.000000 , 0.010000
+@    yaxis  ticklabel offset spec
+@    yaxis  ticklabel offset 0.002000 , 0.010000
 @    yaxis  ticklabel start type auto
 @    yaxis  ticklabel start 0.000000
 @    yaxis  ticklabel stop type auto
@@ -409,8 +409,8 @@
 @    xaxis  ticklabel skip 0
 @    xaxis  ticklabel stagger 0
 @    xaxis  ticklabel place normal
-@    xaxis  ticklabel offset auto
-@    xaxis  ticklabel offset 0.000000 , 0.010000
+@    xaxis  ticklabel offset spec
+@    xaxis  ticklabel offset 0.000000 , 0.014000
 @    xaxis  ticklabel start type auto
 @    xaxis  ticklabel start 0.000000
 @    xaxis  ticklabel stop type auto
@@ -459,14 +459,14 @@
 @    yaxis  ticklabel angle 0
 @    yaxis  ticklabel skip 0
 @    yaxis  ticklabel stagger 0
-@    yaxis  ticklabel place normal
-@    yaxis  ticklabel offset auto
-@    yaxis  ticklabel offset 0.000000 , 0.010000
+@    yaxis  ticklabel place opposite
+@    yaxis  ticklabel offset spec
+@    yaxis  ticklabel offset 0.002000 , 0.010000
 @    yaxis  ticklabel start type auto
 @    yaxis  ticklabel start 0.000000
 @    yaxis  ticklabel stop type auto
 @    yaxis  ticklabel stop 0.000000
-@    yaxis  ticklabel char size 0.000000
+@    yaxis  ticklabel char size 1.500000
 @    yaxis  ticklabel font 0
 @    yaxis  ticklabel color 1
 @    yaxis  tick place both
