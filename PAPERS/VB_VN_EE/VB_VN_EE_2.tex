@@ -1,6 +1,6 @@
 \documentclass[prl,aps,twocolumn,floatfix,amsmath,amssymb,superscriptaddress,tightenlines]{revtex4}
 \usepackage{graphicx}
-%\usepackage{epstopdf}
+\usepackage{epstopdf}
 \usepackage{amsfonts}
 \usepackage{bm}
 \begin{document}
@@ -53,16 +53,17 @@ Here, the reduced density matrix $\rho_A = {\rm Tr}_B | \psi \rangle
 \langle \psi |$ is obtained by tracing out the degrees of freedom
 of B.
 
-The properties of $S^{ \rm vN}$ are well-studied in the field of quantum information theory.
+The properties of $S^{ \rm vN}$ are well-studied in %the field of 
+quantum information theory.
 In interacting one-dimensional (1D) quantum systems, exact analytical results are known from conformal
 field theories (CFT); they show that, away from special critical points,
 $S^{ \rm vN}_A$ scales as the size of the boundary between A and B.
 This so-called {\it area law}~\cite{Shredder} is also believed to hold in many
 groundstates of two dimensional (2D) interacting quantum systems,
-although few exact results are available~\cite{ALreview}.  This has 
+although exact results are scarce~\cite{ALreview}. This has 
 consequences in the
-rapidly-advancing field of computational quantum-many body theory, where
-it is known for example that groundstates of 1D Hamiltonians that satisfy an area law
+rapidly-advancing field of computational quantum many-body theory, where
+it is known for example that groundstates of 1D Hamiltonians satisfying an area law
 can be accurately represented by matrix product states~\cite{MPS_DMRG}.
 Tensor-network states and MERA give two promising new classes of numerical
 algorithms~\cite{PEPS1} 
@@ -70,8 +71,9 @@ that may allow simulations of 2D quantum systems not amenable to quantum Monte C
 the notorious sign problem.  However, 
 these simulation frameworks
 are constructed to obey an area law; in order to be represented faithfully
-by them, a given 2D quantum groundstate must have physical entanglement
-properties that also obey the area law~\cite{ALreview}.
+by them, a given 2D quantum groundstate must have %physical 
+entanglement
+properties also obeying the area law~\cite{ALreview}.
 
 Unfortunately, entanglement is difficult to 
 measure in 2D, due to the fact that QMC does not have
@@ -133,6 +135,10 @@ bound for $S^{\rm vN}_A$ is calculated, so care must be taken to ensure
 that enough of the eigenvalue spectrum is included to converge $S^{ \rm
 vN}_A$ to sufficient accuracy; typically the number of states required is
 larger than that needed to converge the energy alone.
+% new sentence addressing ref B's commemnt 4
+We have kept over 2000 states per block for the largest ladders, with
+truncation errors under 10$^{-7}$ in all cases.
+
 
 $S^{\rm VB}_A$ 
 can be calculated using the valence-bond basis
@@ -175,15 +181,15 @@ and Hamiltonian, and reproduce the same ground state energies; Figure 1
 (and subsequent figures) should be considered as exact comparisons between
 $S^{\rm VB}$ and $S^{ \rm vN}$.
 
-The 1D Heisenberg model is known to be critical and therefore can be
+The 1D Heisenberg model is known to be critical and thus can be
 mapped to a 2D classical Hamiltonian at its critical point, which
 can be described by CFT in the limit $L\to\infty$.  To address
 finite-length chains one can use the conformal mappings $x\to x'=(L/\pi)
 \sin(\pi x / L)$ for PBC, and 
 $x\to 2x'$ for OBC. 
 Calculations within CFT~\cite{Cardy} obey $S^{\rm vN}(x)= (c/3)
-\ln(x') + S_1$ in the PBC case, and $S^{\rm vN}(x)= (c/6) \ln(2x') +
-\ln(g)+S_1/2$ in the OBC case, where $c$ is the central charge of the CFT,
+\ln(x') + S_1$ for PBC, and $S^{\rm vN}(x)= (c/6) \ln(2x') +
+\ln(g)+S_1/2$ for OBC, where $c$ is the central charge of the CFT,
 $S_1$ is a model-dependent constant, and $g$ is Ludwig and Affleck's
 universal boundary term~\cite{AffleckAndLudwig}.
 
@@ -227,14 +233,14 @@ The right inset shows the site indexing used for multi-leg ladders where the
 bipartition A is shaded and labeled by $x=9$.  \label{ladder} }} \end{figure}
 
 Figure~\ref{ladder} shows $S^{ \rm vN}$ and $S^{\rm VB}$ calculated for
-the 3-leg and 4-leg ladder. As with the OBC 1D chain, $S^{\rm VB}
-> S^{ \rm vN}$.  
+the 3-leg and 4-leg ladder. As for the OBC 1D chain,~$S^{\rm VB}>S^{ \rm vN}$.  
 Entropy shows different behavior depending on $N$ being even or odd.
-Even-leg ladders have a spin-gap~\cite{White1994}, and therefore only
+Even-leg ladders have a spin-gap~\cite{White1994}, and thus only
 sites within distances from the boundary between A and B {\it smaller}
 than the correlation length $\xi$ contribute to the entanglement, yielding
 $S(x\gtrsim \xi)= {\rm const}.$ In contrast, odd-leg ladders are gapless,
-and therefore all sites within regions A and B contribute to the
+and thus all sites %in A and B 
+contribute to the
 entanglement, yielding $S(x)\propto\ln(x')$, which follows the CFT result
 in analogy to the 1D case. As can be seen, $S(x)$ splits into branches,
 with a (quasi-) periodic structure superimposed over the main dependence
@@ -282,7 +288,7 @@ the region A includes $2N^2$ sites.
 For the Heisenberg model and large $N$, $S^{\rm VB}\propto N \ln N$,
 whereas $S^{\rm vN}\propto N$.  
 Data for free fermions, $S^{\rm vN}_{\rm ff}\propto N \ln N$,  are shown for comparison.
-We include data for ladders with length (sites per leg) $L =100$ and
+We show data for ladders with length (sites per leg) $L =100$ and
 %ladders with length proportional to the number of legs 
 $L=4N$.  \label{zigzag}}} \end{figure}
 
