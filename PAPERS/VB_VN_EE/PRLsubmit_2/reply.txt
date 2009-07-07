@@ -1,13 +1,15 @@
 Dear Editor,
 
 We have resubmitted our manuscript and made changes in response to referee criticisms.  Below we detail specific changes in response to both referees comments.  
+
 We believe that our manuscript meets the requirements for publication in PRL.  Referee B states that "this work contributes to questions of fundamental importance to the strongly correlated electrons and quantum information theory communities, and should therefore be considered for publication in the Physical Review Letters."   In particular, we note that our manuscript provides the first ever demonstration of an area law for a nontrivial interacting system in two dimensions.  
 
-In accordance with PRL's own "re-invigorated standards", this result substantially advances the field of calculating von Neumann entropies in 2D, by demonstrating the feasibility of using DMRG simulations on multi-leg ladders.  This opens a new area of research, particularly in the measurement of area law corrections to entanglement entropy as indicators of exotic phases in other models (such as those with a spinon Fermi surface, as mentioned).  We have also solved the critical outstanding problem of the adherence of the S=1/2 heisenberg model to the area law, and demonstrated that previous claims to the contrary were the result of an artifact of the measurement procedure, the VB entanglement entropy.
+In accordance with PRL's own "re-invigorated standards", this result substantially advances the field of calculating von Neumann entropies in 2D, by demonstrating the feasibility of using DMRG simulations on multi-leg ladders.  This opens a new area of research, particularly in the measurement of area law corrections to entanglement entropy as indicators of exotic phases in other models (such as those with a spinon Fermi surface, as mentioned).  We have also solved the critical outstanding problem of the adherence of the S=1/2 Heisenberg model to the area law, and demonstrated that previous claims to the contrary were the result of an artifact of the measurement procedure, the VB entanglement entropy.
+
+Below are specific responses to Rreferee comments, and details of changes to the manuscript.
 
 Thank you,
 Ann Kallin, Ivan Gonzalez, Matthew Hastings, and Roger Melko
-
 
 
 > ----------------------------------------------------------------------
@@ -32,28 +34,23 @@ This is a good question, and we have addressed it in the revised version of the 
 >  possible? Have the authors studied other partitions as well with
 >  respect to the validity of area laws?
 
-We have indeed examined all of the other bipartitions possible with the DMRG: namely cuts across all legs that are not "cleanly" across a rung, for example like illustrated in figure 2.  We note that the DMRG is constrained to geometries such as this by the sweeping algorithm.  However, the scaling trends that we observe when examining these other bipartitions is essentially the same as with the bipartition that we have reported - hence we chose not to include it in order to not clutter our main results.  We have however added the following note to the manuscript:
-"We note that other choices of bipartition compatible with the DMRG sweeping give similar results for the area law in S^vN"
+We have indeed examined all of the other bipartitions possible with the DMRG: namely cuts across all legs that are not "cleanly" across a rung, for example like illustrated in figure 2.  We note that the DMRG is constrained to geometries such as this by the sweeping algorithm.  However, the scaling trends that we observe when examining these other bipartitions is essentially the same as with the bipartition that we have reported - hence we chose not to include it in order to not clutter our main results.  We have however added the following note to the manuscript as Reference [17]: " We note that other choices of bipartition compatible with DMRG sweeping give similar results for Fig. 3."
 
-In the VB QMC, there is no constraint on the choice of bipartition.  However, previous practitioners (Ref. 7 and 8) have found the same multiplicative log correction in the VB entropy using a square bipartition in 2D.  We feel that this is the most important result in regard to this question.
+In the VB QMC, there is no constraint on the choice of bipartition.  However, previous practitioners (Ref. 7 and 8) have found the same multiplicative log correction in the VB entropy using a square bipartition in 2D.  We feel that this is the most important additional result in regard to the referee's question, and so do not address it further in our manuscript.
 
 >  3) In the discussion of the 1D Heisenberg chain, it would be useful
 >  to know what the central charge is obtained from extrapolating the
 >  data for the valence bond entropy and open boundary conditions.
 
-We agree, but make the note that the statistical analysis of the QMC data is much more difficult in this case compared to the case of PBC, because of the influence of the boundaries.  What happens is that the statistical confidence in the fit to the central charge form gets systematically worse as points are removed from the boundary, so that by the time one is out of the region of influence of the boundary, the uncertainty in calculating c is very large.  We have however made an attempt to extrapolate our OBC data for the system sizes available, in the case where half of the data is removed from the boundary regions, as an example.  The result, c=0.85, is reported in the revised manuscript.
+We agree, but make the note that the statistical analysis of the QMC data is much more difficult in this case compared to the case of PBC, because of the influence of the boundaries.  What happens is that the statistical confidence in the fit to the central charge form gets systematically worse as points are removed from the boundary, so that by the time one is out of the region of influence of the boundary, the uncertainty in calculating c can become large.  A more systematic study of c in the OBC case must therefore be left to future work; we have however made an attempt to extrapolate our limited OBC data in one case as an example.  The result, where half of the data is removed from the boundary regions, is reported in the revised manuscript:
+" ... changing to c<1 as data closest to the open boundary is systematically excluded [14], e.g. for z=L/2, c_{L-> infty} ~0.85."
 
 >  4) In the case of N-leg ladders, how many states were used in the
 >  DMRG calculations? To what accuracy are the results for the van
 >  Neumann entropy converged in the number of states?
 
-As stated in our manuscript entropy calculations are harder to converge
-than energy ones. We used over 2000 states per block in the DMRG
-calculations for the largest lattice sizes (N=5,6, L=100). The DMRG truncation
-error (per site) is under 10$^{-7}$ in all cases. We have added the
-following sentence to the new version of the manuscript:
-"We have kept over 2000 states per block for the largest ladders, with
-truncation errors under 10$^{-7}$ in all cases."
+As stated in our manuscript entropy calculations are harder to converge than energy ones. We used over 1400 states per block in the DMRG calculations for the largest lattice sizes (N=5,6,7).  The most important metric of conversion,  the DMRG truncation error (per site) is under 10$^{-7}$ in all cases. We have added the following sentence to the new version of the manuscript: 
+"We have kept over 1400 states per block for the largest ladders, with truncation errors under 10$^{-7}$ in all cases."
 
 >  5) I suggest that the authors add axis labels to all figures
 >  (see, e.g.  the right panels in Fig. 1. In the lower right panel
@@ -83,9 +80,8 @@ We disagree with many of the conclusions of referee A, and we feel that some of 
 
 If the referee means that the VB QMC calculation is done on a "toy model", then this is a serious mis-understanding.  The VB QMC calculation is on the Heisenberg model itself - the same strongly-interacting quantum spin model as the DMRG considers.  The main difference is that the model is projected onto two different bases: the Sz basis in the DMRG, and the valence-bond basis in the QMC.  The approaches to solving this model in each case is also different - one a renormalization scheme and one a stochastic monte carlo - but in both cases the results for thermodynamic estimators are obtained essentially without bias, and agree with each other completely.  
 
-Perhaps the referee instead believes that it is the VB EE that is a "toy model",
-as he does also refer to the VB EE as not a serious contribution to the field.  However, up until our paper, the VB EE was the best available attempt to measure non-trivial entanglement properties in unbiased 2D simulations, and there have been many papers citing it since the first publications of reference 7 and 8.  Further, even before the idea of the valence bond entropy, bond length distributions are well studied, dating back to the early days of RVB.
+Perhaps the referee instead believes that it is the VB EE that is a "toy model", as he does also refer to the VB EE as not being a "serious contribution to the field".  However, up until our paper, the VB EE was the best available attempt to measure non-trivial entanglement properties in unbiased 2D simulations, and there have been many papers citing it since the first publications of reference 7 and 8.  Further, even before the idea of the valence bond entropy, bond length distributions are well studied, dating back to the early days of RVB.
 
-Contrary to the referee's criticism , this is not just a "methodological" paper - we present some new and important physics.  In particular, this is the *first ever* demonstration of area law behavior of the VN EE for a non-trivial interacting system in two dimensions.  People have calculated entanglement entropy for free fermions and bosons, and there are some toy Hamiltonians with exact PEPS ground states where it has been calculated, but no one has ever before shown the area law for an interesting interacting model such as this. 
+Contrary to the referee's criticism , this is not just a "methodological" paper - we present some new and important physics.  In particular, this is the *first ever* demonstration of area law behavior of the VN EE for a non-trivial interacting system in two dimensions.  People have calculated entanglement entropy for free fermions and bosons, and there are some toy Hamiltonians with exact PEPS ground states where it has been calculated, but no one has ever before shown the area law for a fundamentally interesting interacting model such as the S=1/2 Heisenberg model.
 
 
