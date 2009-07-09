@@ -49,8 +49,8 @@ We agree, but make the note that the statistical analysis of the QMC data is muc
 >  DMRG calculations? To what accuracy are the results for the van
 >  Neumann entropy converged in the number of states?
 
-As stated in our manuscript entropy calculations are harder to converge than energy ones. We used over 1800 states per block in the DMRG calculations for the largest lattice sizes (N=6,7). The most important metric of conversion, the DMRG truncation error (per site) is under 10$^{-7}$ in all cases. We have added the following sentence to the new version of the manuscript: 
-"We have kept over 1800 states per block for the largest ladders, with truncation errors under 10$^{-7}$ in all cases."
+As stated in our manuscript entropy calculations are harder to converge than energy ones. We used up to 1800 states per block in the DMRG calculations for the largest lattice sizes (N=6,7). The most important metric of conversion, the DMRG truncation error (per site) is under 10$^{-7}$ in all cases. We have added the following sentence to the new version of the manuscript: 
+"We have kept up to 1800 states per block for the largest ladders, with truncation errors under 10$^{-7}$ in all cases."
 
 >  5) I suggest that the authors add axis labels to all figures
 >  (see, e.g.  the right panels in Fig. 1. In the lower right panel
