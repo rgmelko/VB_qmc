@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Tue Jul  7 12:28:39 2009"
+@timestamp def "Thu Jul  9 10:06:55 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -640,7 +640,7 @@
 3 0.39938
 4 0.3360775
 5 0.369448
-6 0.335763
+6 0.33636
 &
 @target G0.S3
 @type xy
@@ -672,8 +672,8 @@
 3 0.37324
 4 0.334603
 5 0.358154
-6 0.33475
-7 0.338602
+6 0.334948
+7 0.3406227
 &
 @target G0.S5
 @type xy
