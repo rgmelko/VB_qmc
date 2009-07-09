@@ -34,7 +34,7 @@ This is a good question, and we have addressed it in the revised version of the 
 >  possible? Have the authors studied other partitions as well with
 >  respect to the validity of area laws?
 
-We have indeed examined all of the other bipartitions possible with the DMRG: namely cuts across all legs that are not "cleanly" across a rung, for example like illustrated in figure 2.  We note that the DMRG is constrained to geometries such as this by the sweeping algorithm.  However, the scaling trends that we observe when examining these other bipartitions is essentially the same as with the bipartition that we have reported - hence we chose not to include it in order to not clutter our main results.  We have however added the following note to the manuscript as Reference [17]: " We note that other choices of bipartition compatible with DMRG sweeping give similar results for Fig. 3."
+We have indeed examined other bipartitions possible with the DMRG: namely cuts across all legs that are not "cleanly" across a rung, for example like illustrated in figure 2 (right inset).  We note that the DMRG is constrained to geometries such as this by the sweeping algorithm.  However, the scaling trends that we observe when examining these other bipartitions is essentially the same as with the bipartition that we have reported - hence we chose not to include it in order to not clutter our main results.  We have however added the following note to the manuscript as Reference [16]: " We note that other choices of bipartition compatible with DMRG sweeping give similar results for Fig. 3."
 
 In the VB QMC, there is no constraint on the choice of bipartition.  However, previous practitioners (Ref. 7 and 8) have found the same multiplicative log correction in the VB entropy using a square bipartition in 2D.  We feel that this is the most important additional result in regard to the referee's question, and so do not address it further in our manuscript.
 
@@ -67,7 +67,7 @@ We have attempted to improve this figure along the lines suggested.
 
 We disagree with many of the conclusions of referee A, and we feel that some of these conclusions are based on a misunderstanding.
 
-1) The referee twice refers to the valence-bond QMC calculation as occurring on a "toy model":
+The referee twice refers to the valence-bond QMC calculation as occurring on a "toy model":
 
 > They conclude that the behavior derived from the entropy
 > on the RVB model, a kind of "toy model", could not be valid for
