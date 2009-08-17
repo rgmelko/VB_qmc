@@ -28,7 +28,10 @@ Description:
                 DMRG states) and the value obtained by keeping the 
                 largest m states, as well as the truncation error.
                 In this case the data for m<1800 may not necessarily
-                be converged.
+                be converged. 
+                INSET: The DMRG sweep data showing the von Neumann
+                entropy for all values of x over several sweeps of
+                the system.
 
 Total No. of Files:     3
 File Names:     README.TXT, mfig1.eps, mfig2.eps
