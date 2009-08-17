@@ -24,7 +24,7 @@ Ann Kallin, Ivan Gonzalez, Matthew Hastings, and Roger Melko
 >contain that much useful information.
 
 We have included a new reference [11] which will point to two new plots (which will be available on EPAPS) illustrating the scaling of entropy with the number of DMRG states kept. 
-The first EPAPS figure shows the the von Neumann entropies at x=2N^2 for ladders of two different sizes (4-leg with length 100, and 5-leg with length 4N) plotted against number of DMRG states kept on a logarithmic scale.
+The first EPAPS figure shows the the error in von Neumann entropies at x=2N^2 for ladders of two different sizes (4-leg with length 100, and 5-leg with length 4N) on a logarithmic scale plotted against number of DMRG states kept.  The error is taken as the difference between the von Neumann entropy obtained by keeping the largest number of states (1200 for 5-legs and 800 for 4-legs) and the entropy obtained keeping a smaller number of states.
 The second EPAPS figure looks at convergence of the entropy at x=2N^2 on a 7-leg ladder with 4N sites per leg.  It shows the difference between the exact entropy value (taken as the value obtained by keeping 1800 DMRG states) and the value obtained by keeping the largest m states, as well as the truncation error.
 We have also removed the sentence on the truncated weight from the text, as suggested by the referee.
 
