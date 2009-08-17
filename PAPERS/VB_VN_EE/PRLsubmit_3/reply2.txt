@@ -23,9 +23,10 @@ Ann Kallin, Ivan Gonzalez, Matthew Hastings, and Roger Melko
 >truncated weight can safely be removed from the text, it does not
 >contain that much useful information.
 
-We have included two plots illustrating the scaling of entropy with the number of DMRG states kept. (***NAME OF PLOT 1***) shows the the von Neumann entropies at x=2N^2 for ladders of two different sizes (4-leg with length 100, and 5-leg with length 4N) plotted against number of DMRG states kept on a logarithmic scale.
-The second figure, (***NAME OF PLOT 2***), looks at convergence of the entropy at x=2N^2 on a 7-leg ladder with 4N sites per leg.  It shows the difference between the exact entropy value (taken as the value obtained by keeping 1800 DMRG states) and the value obtained by keeping the largest m states, as well as the truncation error.
-We have also removed the sentence on the truncated weight from the text. (*** we haven't actually done this yet ***)
+We have included a new reference [11] which will point to two new plots (which will be available on EPAPS) illustrating the scaling of entropy with the number of DMRG states kept. 
+The first EPAPS figure shows the the von Neumann entropies at x=2N^2 for ladders of two different sizes (4-leg with length 100, and 5-leg with length 4N) plotted against number of DMRG states kept on a logarithmic scale.
+The second EPAPS figure looks at convergence of the entropy at x=2N^2 on a 7-leg ladder with 4N sites per leg.  It shows the difference between the exact entropy value (taken as the value obtained by keeping 1800 DMRG states) and the value obtained by keeping the largest m states, as well as the truncation error.
+We have also removed the sentence on the truncated weight from the text, as suggested by the referee.
 
 >- While in the abstract the authors carefully write "... are
 >sufficient to indicate ..." they say, later on: "Clearly, for S^vN
@@ -36,14 +37,16 @@ We have also removed the sentence on the truncated weight from the text. (*** we
 >suggest for N-leg ladders that the area law is valid in the N->
 >infinity limit as well, ie, in the Neel state".
 
-We have changed the statement "Clearly, for S^vN the area law is obeyed in the Neel ground state." to "Clearly, for S^vN our data suggest for N-leg ladders that the area law is valid in the N-> infinity limit as well, ie, in the Neel state." (*** haven't done this yet***)
+We agree, and have changed the statement along the lines suggested:
+"Clearly, for $S^{ \rm vN}$  our data suggest for $N$-leg ladders that 
+the area law is valid in the $N \rightarrow \infty$ limit (i.e.~the Neel state) as well,..."
 
 >- Discussion of "Bond-length distribution": I stumbled over the
 >word "unnormalized". Do the authors mean that for p<2, the sums
 >are infinite, and thus the norm of P(x,y) does not exist? This is
 >a semantic question.
 
-Yes, it is correct that we meant that the sums are infinite once the system size is taken to infinity.  We have replaced "unnormalized" with "unnormalizable" to avoid confusion. (*** also haven't done this ***)
+Yes, it is correct that we meant that the sums are infinite once the system size is taken to infinity.  We have replaced "unnormalized" with "unnormalizable" to avoid confusion. 
 
 >----------------------------------------------------------------------
 >Report of Referee C -- LE12663/Kallin
@@ -58,4 +61,6 @@ Yes, it is correct that we meant that the sums are infinite once the system size
 >conclusive proof of an area law in 2D. The authors might want to
 >address this in some small way.
 
-We believe this point has been addressed in Referee B's second point, and in response we have changed the wording of the statement "Clearly, for S^vN the area law is obeyed in the Neel ground state." to "Clearly, for S^vN our data suggest for N-leg ladders that the area law is valid in the N-> infinity limit as well, ie, in the Neel state." (*** haven't done this yet***)
+We believe this point has been addressed in Referee B's second point, and in response we have changed the wording of the statement "Clearly, for S^vN the area law is obeyed in the Neel ground state." to 
+"Clearly, for $S^{ \rm vN}$  our data suggest for $N$-leg ladders that 
+the area law is valid in the $N \rightarrow \infty$ limit (i.e.~the Neel state) as well,..."
