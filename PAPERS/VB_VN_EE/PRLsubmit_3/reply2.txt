@@ -23,10 +23,34 @@ Ann Kallin, Ivan Gonzalez, Matthew Hastings, and Roger Melko
 >truncated weight can safely be removed from the text, it does not
 >contain that much useful information.
 
-We have included a new reference [11] which will point to two new plots (which will be available on EPAPS) illustrating the scaling of entropy with the number of DMRG states kept. 
-The first EPAPS figure shows the the error in von Neumann entropies at x=2N^2 for ladders of two different sizes (4-leg with length 100, and 5-leg with length 4N) on a logarithmic scale plotted against number of DMRG states kept.  The error is taken as the difference between the von Neumann entropy obtained by keeping the largest number of states (1200 for 5-legs and 800 for 4-legs) and the entropy obtained keeping a smaller number of states.
-The second EPAPS figure looks at convergence of the entropy at x=2N^2 on a 7-leg ladder with 4N sites per leg.  It shows the difference between the exact entropy value (taken as the value obtained by keeping 1800 DMRG states) and the value obtained by keeping the largest m states, as well as the truncation error.
-We have also removed the sentence on the truncated weight from the text, as suggested by the referee.
+We have included a new reference [11] pointing to two new plots (which
+will be available on EPAPS) that illustrate the scaling of entropy with
+the number of DMRG states kept.  The first EPAPS figure shows the error in
+von Neumann entropies at x=2N^2 for ladders of two different sizes (4-leg
+with length 100, and 5-leg with length 4N) on a logarithmic scale plotted
+against number of DMRG states kept, m.  Each value of the entropy is
+calculated from an independent program run that is converged to keep m
+DMRG states per block at the end of the run.  The error corresponding to a
+given m is defined as the difference between the entropy obtained from the
+run with the largest value of m (1200 for 5-legs and 800 for 4-legs) and
+that obtained from the run with this particular m. As this method requires
+set of independent runs, we use an alternative way to analize the DMRG
+convergence for the thickest ladders.  The second EPAPS figure shows the
+error in the von Neumann entropy as well as the DMRG truncation error at
+x=2N^2 on a 7-leg ladder with 4N sites per leg.  In this case we use the
+data from a single program run that is converged to keep a large number of
+DMRG states per block (1800).  We save all the eigenvalues of the last
+density matrix (DM) diagonalization and use the largest m eigenvalues to
+calculate the entropy as $S^{vN}_{m}=\sum^{m}_{i=0}p_{i}ln p_{i}$, with
+$p{i}=\lambda_{i}/Z$ and $Z=\sum^{m}_{i=0}\lambda_{i}$, $\lambda_{i}$
+being the i-th largest eigenvalue of the DM diagonalization. The error
+correspoding to a given m is defined as the difference between the entropy
+obtained with all of the DM eigenvalues (1800x2=3600) and that obtained
+for this particular m. As shown in the EPAPS plots truncation errors from
+finite m are smaller than our estimate of finite size corrections, which
+can be extracted from the difference in S/N for N=7 and N=6. We have also
+removed the sentence on the truncated weight from the text, as suggested
+by the referee.
 
 >- While in the abstract the authors carefully write "... are
 >sufficient to indicate ..." they say, later on: "Clearly, for S^vN
