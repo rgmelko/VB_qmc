@@ -9,8 +9,8 @@ Title:  Valence bond and von Neumann entanglement entropy in
 
 DEPOSIT INFORMATION
 Description:
-README.TXT:  This text file contains information about the
-included EPAPS material.
+        README.TXT:  This text file contains information about the
+        included EPAPS material.
 
         mfig1.eps:  This figure shows the difference (Delta S) between 
         the value of the von Neumann entropy which has been converged 
