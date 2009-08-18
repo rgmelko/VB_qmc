@@ -34,7 +34,7 @@ DMRG states per block at the end of the run.  The error corresponding to a
 given m is defined as the difference between the entropy obtained from the
 run with the largest value of m (1200 for 5-legs and 800 for 4-legs) and
 that obtained from the run with this particular m. As this method requires
-set of independent runs, we use an alternative way to analize the DMRG
+a set of independent runs, we use an alternative way to analyze the DMRG
 convergence for the thickest ladders.  The second EPAPS figure shows the
 error in the von Neumann entropy as well as the DMRG truncation error at
 x=2N^2 on a 7-leg ladder with 4N sites per leg.  In this case we use the
