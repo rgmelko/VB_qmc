@@ -6,6 +6,7 @@ using namespace std;
 
 #include <vector>
 #include "MersenneTwister.h"
+#include "matrix.h"
 
 class index2{
 

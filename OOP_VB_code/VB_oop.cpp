@@ -29,7 +29,8 @@ int main(){
     alpha.Propogate(P1,beta);
     W_old =  beta.Weight;
 
-    for (int i=0; i<10000; i++){
+    //EQUIL
+    for (int i=0; i<2000; i++){
         P2.Sample_Ops();
         alpha.Propogate(P2,beta);
         W_new =  beta.Weight;
@@ -37,19 +38,46 @@ int main(){
         if (W_new > W_old){//keep changes
             W_old = W_new;
             P1 = P2;
-            cout<<-beta.Energy<<endl;
+            //cout<<-beta.Energy<<endl;
         }
         else if (W_new/W_old > met_rand.rand()){
             W_old = W_new;
             P1 = P2;
-            cout<<-beta.Energy<<endl;
+            //cout<<-beta.Energy<<endl;
         }
         else P2 = P1;
+    }//EQUIL
 
+    //MCS
+    int MCS = 200000;
+    double E_new, E_old;
+    double energy = 0;
+    alpha.Propogate(P1,beta);
+    W_old =  beta.Weight;
+    E_old = beta.Energy;
 
+    for (int i=0; i<MCS; i++){
+        P2.Sample_Ops();
+        alpha.Propogate(P2,beta);
+        W_new =  beta.Weight;
+        E_new = beta.Energy;
+        //E_new = beta.Calc_Energy();
 
+        if (W_new > W_old){//keep changes
+            W_old = W_new;
+            E_old = E_new;
+            P1 = P2;
+        }
+        else if (W_new/W_old > met_rand.rand()){
+            W_old = W_new;
+            E_old = E_new;
+            P1 = P2;
+            //cout<<-beta.Energy<<endl;
+        }
+        else P2 = P1;
+        energy -= E_old;
     }//MCS
-
+    cout<<energy/MCS<<endl;
 
 
   return 0;

@@ -18,6 +18,7 @@ class PARAMS
 
         //lattice spin coordination numbers
         vector <index2> Bst;
+        iMatrix is_neighbor; //alternate lookup array
 
         long int NN_;  //This is the length of the operator string
         int nX_;     //linear size of square lattice
@@ -45,6 +46,12 @@ PARAMS::PARAMS(){
     numLattB= 2*numSpin;
     ran.seed(SEED_);  //reseed generator
 
+    //initialize neighbor list
+    //is_neighbor.resize(numSpin,numSpin);
+    //for (int i=0; i<numSpin; i++)
+    //  for (int j=0; j<numSpin; j++)
+    //      is_neighbor(i,j) = 0;
+
     //initialize lattice bond array
     int a, b;
     int x,y;
@@ -59,6 +66,8 @@ PARAMS::PARAMS(){
         if ((x+y)%2==0) temp.set(a,b);  //order (A,B) sublattice
         else temp.set(b,a);
         Bst.push_back(temp);
+        //is_neighbor(a,b) = 1;
+        //is_neighbor(b,a) = 1;
 
         //vertical bond
         a = i;
@@ -68,6 +77,9 @@ PARAMS::PARAMS(){
         if ((x+y)%2==0) temp.set(a,b);  //order (A,B) sublattice
         else temp.set(b,a);
         Bst.push_back(temp);
+        //is_neighbor(a,b) = 1;
+        //is_neighbor(b,a) = 1;
+
     }
 
 }//constructor

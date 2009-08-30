@@ -22,6 +22,8 @@ class Basis: public PARAMS
         Basis();
         void print();
         void Propogate(const Projector&, Basis&);
+        double Calc_Energy();
+
 
 };
 
@@ -43,6 +45,7 @@ Basis::Basis(){//Square lattice constructor
         VBasis.push_back(b);  //0 connected to 1
         VBasis.push_back(a);  //1 connected to 0
     }
+
 };
 
 void Basis::print(){
@@ -91,6 +94,23 @@ void Basis::Propogate(const Projector& P, Basis& beta){
 
 }//Propogate
 
+double Basis::Calc_Energy(){
+
+    int n_ij = 0;
+    int a,b;
+    for (int i=0; i<VBasis.size(); i++){
+        a = i;
+        b = VBasis.at(i);
+
+        if (is_neighbor(a,b) == 1)
+           n_ij ++; 
+    }//i
+
+    n_ij ++;
+
+    return -0.5*n_ij;
+
+}
 
 #endif 
 
