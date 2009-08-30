@@ -2,7 +2,6 @@
 #define PARAMSIM_H
 
 #include <fstream>
-#include "MersenneTwister.h"
 #include "head_proj.h"
 
 //Class to read in the simulation parameters from a file

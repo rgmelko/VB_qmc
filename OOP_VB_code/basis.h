@@ -17,6 +17,7 @@ class Basis: public PARAMS
     public:
 
         double Weight;
+        double Energy;
 
         Basis();
         void print();
@@ -59,8 +60,9 @@ void Basis::Propogate(const Projector& P, Basis& beta){
     for (int i=0; i<(*this).VBasis.size(); i++)
         beta.VBasis.at(i) = (*this).VBasis.at(i);
 
-    Weight = 1;
-    
+    beta.Weight = 1;
+    beta.Energy = 0;
+
     int a,b;
     int bond1, bond2;
     for (int i=0; i<P.list_size; i++){
@@ -72,16 +74,20 @@ void Basis::Propogate(const Projector& P, Basis& beta){
 
         if (a == bond2) {
             if (b != bond1) cout<<"VB connection error \n";
+            beta.Energy += 1;
         }
         else{
             beta.VBasis[a] = b;
             beta.VBasis[b] = a;
             beta.VBasis[bond1] = bond2;
             beta.VBasis[bond2] = bond1;
-            Weight *= 0.5;
+            beta.Weight *= 0.5;
+            beta.Energy += 0.5;
+
         }
 
     }//i
+    beta.Energy /= 1.0*P.list_size;
 
 }//Propogate
 

@@ -5,6 +5,7 @@
 using namespace std;
 
 #include <vector>
+#include "MersenneTwister.h"
 
 class index2{
 

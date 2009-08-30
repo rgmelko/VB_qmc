@@ -60,7 +60,7 @@ void Projector::print(){
 void Projector::Sample_Ops(){
 
    int element, oper;
-   for (int i; i<sample_; i++){
+   for (int i=0; i<sample_; i++){
        element = ran.randInt(O_list.size()-1);
        oper = ran.randInt(Bst.size() - 1); //random bond operator
        O_list.at(element) = oper;

@@ -12,7 +12,7 @@
 
 int main(){
 
-    //MTran met_rand(2343983); //random number for metropolis
+    MTRand met_rand(2343983); //random number for metropolis
 
     Projector P1; //initialize projector 1
     //P1.print();
@@ -29,21 +29,26 @@ int main(){
     alpha.Propogate(P1,beta);
     W_old =  beta.Weight;
 
-//    for (int i=0; i<10000; i++){
-//        P2.Sample_Ops();
-//        alpha.Propogate(P2,beta);
-//        W_new =  beta.Weight;
-//
-//        if (W_new > W_old){//keep changes
-//            W_old = W_new;
-//            P1 = P2;
-//        }
-//        else if (W_new/W_old > met_rand.rand();){
-//            W_old = W_new;
-//            P1 = P2;
-//        }
-//        else P2 = P1;
-//    }//MCS
+    for (int i=0; i<10000; i++){
+        P2.Sample_Ops();
+        alpha.Propogate(P2,beta);
+        W_new =  beta.Weight;
+
+        if (W_new > W_old){//keep changes
+            W_old = W_new;
+            P1 = P2;
+            cout<<-beta.Energy<<endl;
+        }
+        else if (W_new/W_old > met_rand.rand()){
+            W_old = W_new;
+            P1 = P2;
+            cout<<-beta.Energy<<endl;
+        }
+        else P2 = P1;
+
+
+
+    }//MCS
 
 
 
