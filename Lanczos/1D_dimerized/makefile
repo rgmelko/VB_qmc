@@ -1,5 +1,6 @@
 OBJS = ED_Lan_1D.o GenHam.o  Lanczos_07.o lapack.o Lattice_1D.cpp
-CC = g++
+#CC = g++
+CC = icpc
 #CFLAGS = -g
 CFLAGS = -O2 -arch x86_64
 #LIBS = -lm -framework veclib
