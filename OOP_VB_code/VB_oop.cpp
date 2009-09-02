@@ -22,7 +22,8 @@ int main(){
     Basis alpha;
     //alpha.print();
   
-    double W_old, W_new; //old and new weights
+    long int W_old, W_new; //old and new weights
+    double DeltaW;
     P2 = P1;  //set projectors equal
     
     Basis beta;
@@ -34,13 +35,14 @@ int main(){
         P2.Sample_Ops();
         alpha.Propogate(P2,beta);
         W_new =  beta.Weight;
+        DeltaW = pow(2,W_old - W_new);
 
-        if (W_new > W_old){//keep changes
+        if (DeltaW >= 1){//keep changes
             W_old = W_new;
             P1 = P2;
             //cout<<-beta.Energy<<endl;
         }
-        else if (W_new/W_old > met_rand.rand()){
+        else if (DeltaW > met_rand.rand()){
             W_old = W_new;
             P1 = P2;
             //cout<<-beta.Energy<<endl;
@@ -49,7 +51,7 @@ int main(){
     }//EQUIL
 
     //MCS
-    int MCS = 200000;
+    int MCS = 250000;
     double E_new, E_old;
     double energy = 0;
     alpha.Propogate(P1,beta);

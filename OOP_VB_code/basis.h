@@ -16,7 +16,7 @@ class Basis: public PARAMS
 
     public:
 
-        double Weight;
+        long int Weight;
         double Energy;
 
         Basis();
@@ -63,7 +63,7 @@ void Basis::Propogate(const Projector& P, Basis& beta){
     for (int i=0; i<(*this).VBasis.size(); i++)
         beta.VBasis.at(i) = (*this).VBasis.at(i);
 
-    beta.Weight = 1;
+    beta.Weight = 0;
     beta.Energy = 0;
 
     int a,b;
@@ -84,7 +84,7 @@ void Basis::Propogate(const Projector& P, Basis& beta){
             beta.VBasis[b] = a;
             beta.VBasis[bond1] = bond2;
             beta.VBasis[bond2] = bond1;
-            beta.Weight *= 0.5;
+            beta.Weight += 1;
             beta.Energy += 0.5;
 
         }
