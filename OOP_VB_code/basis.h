@@ -13,6 +13,7 @@ class Basis: public PARAMS
 
         //vector<index2>  VBasis;   //VB basis
         vector<int>  VBasis;   //VB basis
+        iMatrix is_neighbor; //alternate lookup array
 
     public:
 
@@ -44,6 +45,17 @@ Basis::Basis(){//Square lattice constructor
         //VBasis.push_back(temp);
         VBasis.push_back(b);  //0 connected to 1
         VBasis.push_back(a);  //1 connected to 0
+    }
+
+    //initialize neighbor list
+    is_neighbor.resize(numSpin,numSpin);
+    for (int i=0; i<numSpin; i++)
+        for (int j=0; j<numSpin; j++)
+            is_neighbor(i,j) = 0;
+
+    for (int i=0; i<Bst.size(); i++){
+        is_neighbor(Bst[i].A,Bst[i].B) = 1;
+        is_neighbor(Bst[i].B,Bst[i].A) = 1;
     }
 
 };
@@ -108,7 +120,7 @@ double Basis::Calc_Energy(){
 
     n_ij ++;
 
-    return -0.5*n_ij;
+    return -0.5*n_ij/numSpin;
 
 }
 

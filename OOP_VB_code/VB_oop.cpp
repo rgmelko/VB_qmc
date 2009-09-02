@@ -62,8 +62,8 @@ int main(){
         P2.Sample_Ops();
         alpha.Propogate(P2,beta);
         W_new =  beta.Weight;
-        E_new = beta.Energy;
-        //E_new = beta.Calc_Energy();
+        //E_new = beta.Energy;
+        E_new = beta.Calc_Energy();
 
         if (W_new > W_old){//keep changes
             W_old = W_new;
@@ -77,9 +77,9 @@ int main(){
             //cout<<-beta.Energy<<endl;
         }
         else P2 = P1;
-        energy -= E_old;
+        energy += E_old;
     }//MCS
-    cout<<energy/MCS<<endl;
+    cout<<energy/(1.0*MCS)<<endl;
 
 
   return 0;
