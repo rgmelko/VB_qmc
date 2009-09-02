@@ -24,45 +24,59 @@ int main(){
   
     long int W_old, W_new; //old and new weights
     double DeltaW;
-    P2 = P1;  //set projectors equal
     
     Basis beta;
 
     //MCS
-    int MCS = 300000;
-    double E_new, E_old;
-    double energy;
+    int MCS = 500000;
+    double E1_new, E1_old;
+    double E2_new, E2_old;
+    double energy1, energy2;
     for (int EQMC = 0; EQMC <2; EQMC++) { //EQL and MCS run loop
-        energy = 0;
+        P2 = P1;  //set projectors equal
+        energy1 = 0;
+        energy2 = 0;
         alpha.Propogate(P1,beta);
         W_old =  beta.Weight;
-        E_old = beta.Energy;
+        E1_old = -beta.Energy;
+        E2_old = beta.Calc_Energy();
 
         for (int i=0; i<MCS; i++){
+
             P2.Sample_Ops();
             alpha.Propogate(P2,beta);
-            DeltaW = pow(2,W_old - W_new);
             W_new =  beta.Weight;
-            //E_new = beta.Energy;
-            E_new = beta.Calc_Energy();
+            DeltaW = pow(2,W_old - W_new);
+            //cout<<W_old<<" "<<W_new<<" "<<DeltaW<<" "<<met_rand.rand()<<endl;
+            E1_new = - beta.Energy;
+            E2_new = beta.Calc_Energy();
 
             if (DeltaW >= 1){//keep changes
                 W_old = W_new;
-                E_old = E_new;
+                E1_old = E1_new;
+                E2_old = E2_new;
                 P1 = P2;
             }
             else if (DeltaW > met_rand.rand()){
                 W_old = W_new;
-                E_old = E_new;
+                E1_old = E1_new;
+                E2_old = E2_new;
                 P1 = P2;
                 //cout<<-beta.Energy<<endl;
             }
             else P2 = P1;
-            energy += E_old;
+
+            energy1 += E1_old;
+            energy2 += E2_old;
         }//MCS
 
     }//EQMC
-    cout<<energy/(1.0*MCS)<<endl;
+    energy1 /= MCS;
+    energy2 /= MCS;
+    energy2 += beta.numLattB/4.0;
+
+    cout<<energy1<<endl;
+    cout<<energy2<<endl;
 
 
   return 0;

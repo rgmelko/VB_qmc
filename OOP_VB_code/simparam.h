@@ -7,14 +7,16 @@
 //Class to read in the simulation parameters from a file
 class PARAMS
 {
+    public:
+        int numSpin; 
+        int numLattB;  //number of lattice bonds is 2N
+
     protected:
         //Randon number generator
         MTRand ran;
 
         //derived constants
-        int numSpin; //N
         int numVB; //number of valence bonds = N/2
-        int numLattB;  //number of lattice bonds is 2N
 
         //lattice spin coordination numbers
         vector <index2> Bst;

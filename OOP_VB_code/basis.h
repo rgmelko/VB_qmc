@@ -39,15 +39,11 @@ Basis::Basis(){//Square lattice constructor
         b = i+1;
         if ((i+1)%nX_ == 0)
             b = a-nX_;
-        //x = a%nX_; y = a/nX_;
-        //if ((x+y)%2 == 0) temp.set(a,b);
-        //else temp.set(b,a);
-        //VBasis.push_back(temp);
         VBasis.push_back(b);  //0 connected to 1
         VBasis.push_back(a);  //1 connected to 0
     }
 
-    //initialize neighbor list
+    //initialize neighbor list (for energy calc)
     is_neighbor.resize(numSpin,numSpin);
     for (int i=0; i<numSpin; i++)
         for (int j=0; j<numSpin; j++)
@@ -87,10 +83,12 @@ void Basis::Propogate(const Projector& P, Basis& beta){
         bond1 = beta.VBasis[a]; 
         bond2 = beta.VBasis[b];
 
+        //diagonal operation
         if (a == bond2) {
             if (b != bond1) cout<<"VB connection error \n";
             beta.Energy += 1;
         }
+        //off diagonal operation
         else{
             beta.VBasis[a] = b;
             beta.VBasis[b] = a;
@@ -120,7 +118,7 @@ double Basis::Calc_Energy(){
 
     n_ij ++;
 
-    return -0.5*n_ij/numSpin;
+    return -0.5*n_ij;
 
 }
 
