@@ -63,6 +63,11 @@ void Basis::print(){
         //VBasis[i].print();
         cout<<VBasis[i]<<endl;
 
+    //cout<<"Is neighbor \n";
+    //for(int i=0; i<numSpin; i++){
+    //    for(int j=0; j<numSpin; j++)
+    //        cout<<i<<" "<<j<<" "<<is_neighbor(i,j)<<endl;
+    //}
 
 };//print
 
@@ -96,7 +101,6 @@ void Basis::Propogate(const Projector& P, Basis& beta){
             beta.VBasis[bond2] = bond1;
             beta.Weight += 1;
             beta.Energy += 0.5;
-
         }
 
     }//i
@@ -106,19 +110,20 @@ void Basis::Propogate(const Projector& P, Basis& beta){
 
 double Basis::Calc_Energy(){
 
-    int n_ij = 0;
+    double n_ij = 0;
     int a,b;
     for (int i=0; i<VBasis.size(); i++){
         a = i;
         b = VBasis.at(i);
 
         if (is_neighbor(a,b) == 1)
-           n_ij ++; 
+           n_ij += 1; 
     }//i
 
-    n_ij ++;
+    n_ij *= 0.5;   //think I've double counted
+    n_ij += 1; //add the +1
 
-    return -0.5*n_ij;
+    return n_ij;
 
 }
 

@@ -26,13 +26,16 @@ int main(){
     double DeltaW;
     
     Basis beta;
+    //beta.print();
+    //return 0;
 
     //MCS
-    int MCS = 500000;
+    int MCS = 100000;
     double E1_new, E1_old;
     double E2_new, E2_old;
     double energy1, energy2;
     for (int EQMC = 0; EQMC <2; EQMC++) { //EQL and MCS run loop
+        MCS *= 2;
         P2 = P1;  //set projectors equal
         energy1 = 0;
         energy2 = 0;
@@ -73,10 +76,10 @@ int main(){
     }//EQMC
     energy1 /= MCS;
     energy2 /= MCS;
-    energy2 += beta.numLattB/4.0;
+    //energy2 += beta.num/4.0;
 
     cout<<energy1<<endl;
-    cout<<energy2<<endl;
+    cout<<-energy2/beta.numSpin - 0.25<<endl;
 
 
   return 0;
