@@ -14,17 +14,17 @@ class Projector: public PARAMS
 
         int list_size;
 
-        Projector();           //constructor 1
+        Projector(MTRand& ran);           //constructor 1
         Projector(const int);  //constructor 2
         void print();
-        void Sample_Ops(); //swap a number of operators
+        void Sample_Ops(MTRand& ran); //swap a number of operators
 
         Projector operator=(const Projector & Pj);
 
 
 };
 
-Projector::Projector(){ //overloaded constructor 1
+Projector::Projector(MTRand& ran){ //overloaded constructor 1
 
     list_size = NN_;
     //cout<<"inside "<<N<<" \n";
@@ -57,7 +57,7 @@ void Projector::print(){
 }//print
 
 
-void Projector::Sample_Ops(){
+void Projector::Sample_Ops(MTRand& ran){
 
    int element, oper, old;
    for (int i=0; i<sample_; i++){

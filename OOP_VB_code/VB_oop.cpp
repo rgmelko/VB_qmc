@@ -12,11 +12,12 @@
 
 int main(){
 
-    MTRand met_rand(2343983); //random number for metropolis
+    PARAMS param;
+    MTRand mrand(param.SEED_); //random number for metropolis
 
-    Projector P1; //initialize projector 1
+    Projector P1(mrand); //initialize projector 1
     //P1.print();
-    Projector P2; //initialize projector 2
+    Projector P2(mrand); //initialize projector 2
     //P2.print();
 
     Basis alpha;
@@ -46,7 +47,7 @@ int main(){
 
         for (int i=0; i<MCS; i++){
 
-            P2.Sample_Ops();
+            P2.Sample_Ops(mrand);
             alpha.Propogate(P2,beta);
             W_new =  beta.Weight;
             DeltaW = pow(2,W_old - W_new);
@@ -54,13 +55,7 @@ int main(){
             E1_new = - beta.Energy;
             E2_new = beta.Calc_Energy();
 
-            if (DeltaW >= 1){//keep changes
-                W_old = W_new;
-                E1_old = E1_new;
-                E2_old = E2_new;
-                P1 = P2;
-            }
-            else if (DeltaW > met_rand.rand()){
+            if (DeltaW > mrand.rand()){
                 W_old = W_new;
                 E1_old = E1_new;
                 E2_old = E2_new;

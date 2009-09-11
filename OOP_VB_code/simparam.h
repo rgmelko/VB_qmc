@@ -10,10 +10,10 @@ class PARAMS
     public:
         int numSpin; 
         int numLattB;  //number of lattice bonds is 2N
+        long SEED_;
+        PARAMS();
 
     protected:
-        //Randon number generator
-        MTRand ran;
 
         //derived constants
         int numVB; //number of valence bonds = N/2
@@ -24,10 +24,8 @@ class PARAMS
         long int NN_;  //This is the length of the operator string
         int nX_;     //linear size of square lattice
         int sample_; //number of operators to sample each iteration
-        long SEED_;
-
-        PARAMS();
         void printBst();
+
 }; //PARAMS
 
 PARAMS::PARAMS(){
@@ -45,8 +43,6 @@ PARAMS::PARAMS(){
     numSpin = nX_ * nX_;
     numVB= numSpin/2;
     numLattB= 2*numSpin;
-    ran.seed(SEED_);  //reseed generator
-
 
     //initialize lattice bond array
     int a, b;
