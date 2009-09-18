@@ -31,21 +31,17 @@ int main(){
     //return 0;
 
     //MCS
-    int MCS = 100000;
+    int MCS = 200000;
     double E1_new, E1_old;
-    double E2_new, E2_old;
-    double energy1, energy2;
-    double bondtot_new, bondtot_old;
+    double energy1;
     for (int EQMC = 0; EQMC <2; EQMC++) { //EQL and MCS run loop
         MCS *= 2;
         P2 = P1;  //set projectors equal
         energy1 = 0;
-        energy2 = 0;
 		alpha.Propogate(P1,beta);
 		W_old =  beta.Weight;
 
-		E1_new = beta.Calc_Energy()-1;
-		E2_old = beta.Calc_Energy();
+		E1_new = beta.Calc_Energy()-1; //energy calculation from total nn bond 
 
         for (int i=0; i<MCS; i++){
 
@@ -53,31 +49,26 @@ int main(){
             alpha.Propogate(P2,beta);
             W_new =  beta.Weight;
             DeltaW = pow(2,W_old - W_new);
-            //cout<<W_old<<" "<<W_new<<" "<<DeltaW<<" "<<met_rand.rand()<<endl;
-            E1_new = beta.Calc_Energy()-1;
-            E2_new = beta.Calc_Energy();
 
-            if (DeltaW > mrand.rand()){
+            E1_new = beta.Calc_Energy()-1; //energy
+
+            if (DeltaW > mrand.rand()){ //Accept the move
                 W_old = W_new;
                 E1_old = E1_new;
-                E2_old = E2_new;
                 P1 = P2;
                 //cout<<-beta.Energy<<endl;
             }
-            else P2 = P1;
+            else P2 = P1;  //reject the move
 
             energy1 += E1_old;
-            energy2 -= E2_old;
+
         }//MCS
 
     }//EQMC
     energy1 /= 1.0*MCS;
-    energy2 /= 1.0*MCS;
     //energy2 += beta.num/4.0;
 
-    cout<<0.5*energy1+ beta.numLattB/4.0<<endl;
     cout<<-0.5*energy1/beta.numSpin - 0.5<<endl;
-    cout<<0.5*energy2/beta.numSpin + 0.5<<endl;
 
 
   return 0;
