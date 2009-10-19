@@ -39,6 +39,11 @@ int main(){
         P2 = P1;  //set projectors equal
         energy1 = 0;
 		alpha.Propogate(P1,beta);
+        alpha.print();
+        beta.print();
+        cout<<(alpha|beta)<<endl; //calculate overlap
+        return 0;
+
 		W_old =  beta.Weight;
 
 		E1_new = beta.Calc_Energy()-1; //energy calculation from total nn bond 
