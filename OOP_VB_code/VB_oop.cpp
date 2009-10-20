@@ -32,12 +32,8 @@ int main(){
     
     Measure Observ; //create measurement object
 
-    //MCS
-    int MCS = 300000;
-    //double E1_new, E1_old;
-    //double energy1;
-    //double C_new, C_old;
-    //double CL_2 =0;
+    int MCS = 500000;
+
     for (int EQMC = 0; EQMC <2; EQMC++) { //EQL and MCS run loop
         MCS *= 2;
         Observ.zero(); //set observable values to zero
