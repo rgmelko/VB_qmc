@@ -39,10 +39,7 @@ int main(){
         P2 = P1;  //set projectors equal
         energy1 = 0;
 		alpha.Propogate(P1,beta);
-        alpha.print();
-        beta.print();
-        cout<<(alpha|beta)<<endl; //calculate overlap
-        return 0;
+        //cout<<(alpha|beta)<<endl; //calculate overlap
 
 		W_old =  beta.Weight;
 

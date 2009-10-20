@@ -137,14 +137,14 @@ int Basis::operator|(const Basis & B){
     int next;
     int Nloop = 0;
 
-    cout<<"LOOPSIZE \n";
+    //cout<<"LOOPSIZE \n";
     for (int i=0; i<B.VBasis.size(); i++){
 
         if (is_in_loop.at(i) == 0){
             is_in_loop.at(i) = 1;
 
             next = (*this).VBasis.at(i); //V_A basis
-            cout<<"A "<<i<<" "<<next<<" "<<Nloop<<endl;
+            //cout<<"A "<<i<<" "<<next<<" "<<Nloop<<endl;
 
             while (is_in_loop.at(next) == 0){
 
@@ -154,15 +154,14 @@ int Basis::operator|(const Basis & B){
                 next = B.VBasis.at(next);      //V_B basis
                 if  (is_in_loop.at(next) != 1) is_in_loop.at(next) = 1; 
                 else break;
-                cout<<"B "<<i<<" "<<next<<" "<<Nloop<<endl;
+                //cout<<"B "<<i<<" "<<next<<" "<<Nloop<<endl;
 
                 next = (*this).VBasis.at(next); //V_A basis 
-                cout<<"C "<<i<<" "<<next<<" "<<Nloop<<endl;
+                //cout<<"C "<<i<<" "<<next<<" "<<Nloop<<endl;
 
             }//while
 
             Nloop ++;
-            cout<<"NLOOP "<<Nloop<<endl;
 
         }//if
 
