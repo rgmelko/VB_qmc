@@ -8,6 +8,7 @@
 class PARAMS
 {
     public:
+        int LinX;  //linear lattice size
         int numSpin; 
         int numLattB;  //number of lattice bonds is 2N
         long SEED_;
@@ -40,6 +41,7 @@ PARAMS::PARAMS(){
     pfin.close();
 
     //initialize constants
+    LinX = nX_;
     numSpin = nX_ * nX_;
     numVB= numSpin/2;
     numLattB= 2*numSpin;
