@@ -25,7 +25,10 @@ class Basis: public PARAMS
         void Propogate(const Projector&, Basis&);
         double Calc_Energy();
 
-        int operator|(const Basis & );
+        int operator|(const Basis & ); //returns number of loops in overlap
+
+        //measurements
+        double CorrFnct(const Basis &);
 
 
 };
@@ -137,15 +140,11 @@ int Basis::operator|(const Basis & B){
     int next;
     int Nloop = 0;
 
-    //cout<<"LOOPSIZE \n";
     for (int i=0; i<B.VBasis.size(); i++){
 
         if (is_in_loop.at(i) == 0){
             is_in_loop.at(i) = 1;
-
             next = (*this).VBasis.at(i); //V_A basis
-            //cout<<"A "<<i<<" "<<next<<" "<<Nloop<<endl;
-
             while (is_in_loop.at(next) == 0){
 
                 if  (is_in_loop.at(next) == 1) cout<<"loop error 1 \n";
@@ -154,20 +153,56 @@ int Basis::operator|(const Basis & B){
                 next = B.VBasis.at(next);      //V_B basis
                 if  (is_in_loop.at(next) != 1) is_in_loop.at(next) = 1; 
                 else break;
-                //cout<<"B "<<i<<" "<<next<<" "<<Nloop<<endl;
 
                 next = (*this).VBasis.at(next); //V_A basis 
-                //cout<<"C "<<i<<" "<<next<<" "<<Nloop<<endl;
-
             }//while
 
             Nloop ++;
 
         }//if
-
     }//i
 
     return Nloop;
+
+} //operator |
+    
+double Basis::CorrFnct(const Basis & B){
+
+    vector<int> is_in_loop;  //records whether a spin is counted in a loop 
+    is_in_loop.assign(B.VBasis.size(),0);
+
+    int next;
+    int Nloop = 0;
+
+    int count = 1;
+    for (int i=0; i<B.VBasis.size(); i++){
+
+        if (is_in_loop.at(i) == 0){
+            is_in_loop.at(i) = count;
+            next = (*this).VBasis.at(i); //V_A basis
+            while (is_in_loop.at(next) == 0){
+
+                if  (is_in_loop.at(next) != 0) cout<<"loop error 1 \n";
+                else is_in_loop.at(next) = count;
+
+                next = B.VBasis.at(next);      //V_B basis
+                if  (is_in_loop.at(next) == 0) is_in_loop.at(next) = count; 
+                else break;
+
+                next = (*this).VBasis.at(next); //V_A basis 
+            }//while
+
+            count++;
+            Nloop ++;
+
+        }//if
+    }//i
+
+    if (is_in_loop.at(0) == is_in_loop.at(nX_/2) )
+        return 0.75;
+    else 
+        return 0;
+
 
 }
 

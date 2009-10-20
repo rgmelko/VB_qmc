@@ -34,6 +34,8 @@ int main(){
     int MCS = 200000;
     //double E1_new, E1_old;
     //double energy1;
+    double C_new, C_old;
+    double CL_2 =0;
     for (int EQMC = 0; EQMC <2; EQMC++) { //EQL and MCS run loop
         MCS *= 2;
 
@@ -41,6 +43,7 @@ int main(){
         P1 = Pold1;
         P2 = Pold2;
         //energy1 = 0;
+        CL_2 = 0;
 		alpha.Propogate(P1,beta_1);  //P1|alpha> = W1|beta_1>
 		alpha.Propogate(P2,beta_2);  //P1|alpha> = W1|beta_1>
         
@@ -49,6 +52,7 @@ int main(){
         N_loop_old = beta_1|beta_2;     // calculate number of loops in <V1 | V2>
 
 		//E1_new = beta.Calc_Energy()-1; //energy calculation from total nn bond 
+        C_old= beta_1.CorrFnct(beta_2);
 
         for (int i=0; i<MCS; i++){
 
@@ -59,20 +63,23 @@ int main(){
             N_loop_new = beta_1|beta_2; //calcualte new overlap
             DeltaW = pow(2,W1_old - W1_new + N_loop_new - N_loop_old);
             //E1_new = beta.Calc_Energy()-1; //energy
+            C_new= beta_1.CorrFnct(beta_2);
             if (DeltaW > mrand.rand()){ //Accept the move
                 W1_old = W1_new;
-                //E1_old = E1_new;
                 Pold1 = P1;
                 N_loop_old = N_loop_new;
-                //cout<<-beta.Energy<<endl;
+                //measurements
+                //E1_old = E1_new;
+                C_old = C_new;
             }
-            else {  //reject the move          //???REDUNDANT
-                P1 = Pold1;                    //???
-                N_loop_new = N_loop_old;       //???
-            }                                  //???
+            else {  //reject the move          
+                P1 = Pold1;                    
+                N_loop_new = N_loop_old;       
+            }                                  
             //--------------------------end sample proj 1 --------------
 
             //energy1 += E1_old;
+            CL_2 += C_old;
 
             //-----sample projector 2 first---------------------------
             P2.Sample_Ops(mrand);       //sample new operators
@@ -81,26 +88,32 @@ int main(){
             N_loop_new = beta_1|beta_2;         //calcualte new overlap
             DeltaW = pow(2,W2_old - W2_new + N_loop_new - N_loop_old);
             //E1_new = beta.Calc_Energy()-1; //energy
+            C_new= beta_1.CorrFnct(beta_2);
             if (DeltaW > mrand.rand()){ //Accept the move
                 W2_old = W2_new;
-                //E1_old = E1_new;
                 Pold2 = P2;
                 N_loop_old = N_loop_new;
-                //cout<<-beta.Energy<<endl;
+                //measurements
+                //E1_old = E1_new;
+                C_old = C_new;
             }
-            else {  //reject the move          //???REDUNDANT
-                P2 = Pold2;                    //???
-                N_loop_new = N_loop_old;       //???
-            }                                  //???
+            else {  //reject the move          
+                P2 = Pold2;                    
+                N_loop_new = N_loop_old;       
+            }                                  
             //--------------------------end sample proj 2 --------------
 
-        }//MCS
+             CL_2 += C_old;
+
+       }//MCS
 
     }//EQMC
     //energy1 /= 1.0*MCS;
     //energy2 += beta.num/4.0;
 
     //cout<<-0.5*energy1/beta.numSpin - 0.5<<endl;
+
+    cout<<CL_2/(2.0*MCS)<<endl; //factor of 2 for 2 projector samples
 
 
   return 0;
