@@ -10,8 +10,9 @@ int main()
   /*** READ IN PARAMETERS **********************************************/
   string enerfilename, bondlengthfilename, corrfilename;
   string bondopfile1, bondopfile2;
-  int xsites, ysites, zsites, corrsite, bondops_per_site, change_number;
-  int iterations_per_loop, loops; 
+  int xsites, ysites, zsites, corrsite, change_number;
+  int iterations_per_loop, loops;
+  double bondops_per_site;
   long long ranseed;
     
   ifstream fin("param.txt"); // read in paramaters from file
@@ -22,7 +23,7 @@ int main()
   
   fin.close();
 
-  int bondops = xsites*ysites*zsites*bondops_per_site;
+  int bondops = int(floor(xsites*ysites*zsites*bondops_per_site+.1));
   
   cout << endl;
   cout << xsites << " x " << ysites << " x " << zsites << " system" << endl;
