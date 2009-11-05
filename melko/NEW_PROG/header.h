@@ -5,6 +5,7 @@
 #include<fstream>
 #include<math.h>
 #include"mtrand.h"
+#include<iomanip>
 using namespace std;
 
 #endif
