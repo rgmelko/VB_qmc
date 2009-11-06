@@ -1,0 +1,27 @@
+#!/bin/sh
+
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a032/corrfunc* ./corr032.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a064/corrfunc* ./corr064.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a096/corrfunc* ./corr096.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a128/corrfunc* ./corr128.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a160/corrfunc* ./corr160.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a192/corrfunc* ./corr192.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a224/corrfunc* ./corr224.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a256/corrfunc* ./corr256.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a288/corrfunc* ./corr288.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a320/corrfunc* ./corr320.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a352/corrfunc* ./corr352.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a384/corrfunc* ./corr384.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a416/corrfunc* ./corr416.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a448/corrfunc* ./corr448.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a480/corrfunc* ./corr480.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a512/corrfunc* ./corr512.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a544/corrfunc* ./corr544.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a576/corrfunc* ./corr576.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a608/corrfunc* ./corr608.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a640/corrfunc* ./corr640.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a672/corrfunc* ./corr800.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a704/corrfunc* ./corr672.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a736/corrfunc* ./corr704.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a768/corrfunc* ./corr736.dat;  
+scp akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/a800/corrfunc* ./corr768.dat;  

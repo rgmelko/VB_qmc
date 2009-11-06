@@ -1,0 +1,28 @@
+#!/bin/sh
+
+./average corr032.dat 1 5 > corrdat_all.dat;
+./average corr064.dat 1 5 >> corrdat_all.dat;
+./average corr096.dat 1 5 >> corrdat_all.dat;
+./average corr128.dat 1 5 >> corrdat_all.dat;
+./average corr160.dat 1 5 >> corrdat_all.dat;
+./average corr192.dat 1 5 >> corrdat_all.dat;
+./average corr224.dat 1 5 >> corrdat_all.dat;
+./average corr256.dat 1 5 >> corrdat_all.dat;
+./average corr288.dat 1 5 >> corrdat_all.dat;
+./average corr320.dat 1 5 >> corrdat_all.dat;
+./average corr352.dat 1 5 >> corrdat_all.dat;
+./average corr384.dat 1 5 >> corrdat_all.dat;
+./average corr416.dat 1 5 >> corrdat_all.dat;
+./average corr448.dat 1 5 >> corrdat_all.dat;
+./average corr480.dat 1 5 >> corrdat_all.dat;
+./average corr512.dat 1 5 >> corrdat_all.dat;
+./average corr544.dat 1 5 >> corrdat_all.dat;
+./average corr576.dat 1 5 >> corrdat_all.dat;
+./average corr608.dat 1 5 >> corrdat_all.dat;
+./average corr640.dat 1 5 >> corrdat_all.dat;
+./average corr672.dat 1 5 >> corrdat_all.dat;
+./average corr704.dat 1 5 >> corrdat_all.dat;
+./average corr736.dat 1 5 >> corrdat_all.dat;
+./average corr768.dat 1 5 >> corrdat_all.dat;
+./average corr800.dat 1 5 >> corrdat_all.dat;
+
