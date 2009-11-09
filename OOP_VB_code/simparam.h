@@ -14,14 +14,13 @@ class PARAMS
         long SEED_;
         PARAMS();
 
+        //lattice spin coordination numbers
+        vector <index2> Bst;
+
     protected:
 
         //derived constants
         int numVB; //number of valence bonds = N/2
-
-        //lattice spin coordination numbers
-        vector <index2> Bst;
-
         long int NN_;  //This is the length of the operator string
         int nX_;     //linear size of square lattice
         int sample_; //number of operators to sample each iteration

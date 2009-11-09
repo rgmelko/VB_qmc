@@ -32,7 +32,7 @@ int main(){
     
     Measure Observ; //create measurement object
 
-    int MCS = 500000;
+    int MCS = 50000;
 
     for (int EQMC = 0; EQMC <2; EQMC++) { //EQL and MCS run loop
         MCS *= 2;

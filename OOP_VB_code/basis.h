@@ -20,10 +20,12 @@ class Basis: public PARAMS
         double Energy;
 
         Basis();
+        Basis(const Basis &);  //copy constructor
         void print();
         void Propogate(const Projector&, Basis&);
         double Calc_Energy();
 
+        //Basis operator=(const Basis & );
         int operator|(const Basis & ); //returns number of loops in overlap
 
 
@@ -31,7 +33,6 @@ class Basis: public PARAMS
 };
 
 Basis::Basis(){//Square lattice constructor
-
 
     int a, b;
     //int x,y;
@@ -43,6 +44,27 @@ Basis::Basis(){//Square lattice constructor
             b = a-nX_;
         VBasis.push_back(b);  //0 connected to 1
         VBasis.push_back(a);  //1 connected to 0
+    }
+
+    //initialize neighbor list (for energy calc)
+    is_neighbor.resize(numSpin,numSpin);
+    for (int i=0; i<numSpin; i++)
+        for (int j=0; j<numSpin; j++)
+            is_neighbor(i,j) = 0;
+
+    for (int i=0; i<Bst.size(); i++){
+        is_neighbor(Bst[i].A,Bst[i].B) = 1;
+        is_neighbor(Bst[i].B,Bst[i].A) = 1;
+    }
+
+};
+
+Basis::Basis(const Basis & B){//Copy constructor
+
+	int temp;
+    for (int i=0; i<B.VBasis.size(); i++){
+		temp = B.VBasis.at(i);
+        (*this).VBasis.push_back(temp);  //0 connected to 1
     }
 
     //initialize neighbor list (for energy calc)
@@ -128,6 +150,7 @@ double Basis::Calc_Energy(){
     return n_ij;
 
 }
+
 
 int Basis::operator|(const Basis & B){
 
