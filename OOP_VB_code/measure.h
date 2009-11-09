@@ -21,7 +21,7 @@ class Measure
       void measure(const Basis &, const Basis &);
       void update();
       void record();
-      void output(const int &);
+      void output(const PARAMS &);
   
 };
 
@@ -138,10 +138,11 @@ void Measure::record(){
 
 }//update
 
-void Measure::output(const int & MCS){
+void Measure::output(const PARAMS & p){
 
-    cout<<TOT_energy/(2.0*MCS)<<" ";
-    cout<<TOT_cL_2/(2.0*MCS)<<endl; //factor of 2 for 2 projector samples
+    TOT_energy/= (2.0*p.MCS_);
+    cout<<-TOT_energy/p.numSpin<<" ";
+    cout<<TOT_cL_2/(2.0*p.MCS_)<<endl; //factor of 2 for 2 projector samples
 
 }//output
 

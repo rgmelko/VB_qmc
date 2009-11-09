@@ -32,10 +32,8 @@ int main(){
     
     Measure Observ; //create measurement object
 
-    int MCS = 50000;
-
     for (int EQMC = 0; EQMC <2; EQMC++) { //EQL and MCS run loop
-        MCS *= 2;
+        //MCS *= 2;
         Observ.zero(); //set observable values to zero
 
         //set to old values
@@ -53,7 +51,7 @@ int main(){
         Observ.measure(beta_1, beta_2); //make initial measurements (assign "new" values)
         Observ.update();  //assign "new" to "old" values
 
-        for (int i=0; i<MCS; i++){
+        for (int i=0; i<param.MCS_; i++){
 
             //-----sample projector 1 first---------------------------
             P1.Sample_Ops(mrand);       //sample new operators
@@ -106,7 +104,7 @@ int main(){
     }//EQMC
 
 
-    Observ.output(MCS); //output observables
+    Observ.output(param); //output observables
 
 
   return 0;

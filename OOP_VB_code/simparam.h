@@ -11,6 +11,7 @@ class PARAMS
         int LinX;  //linear lattice size
         int numSpin; 
         int numLattB;  //number of lattice bonds is 2N
+		int MCS_; //the number of Monte Carlo steps
         long SEED_;
         PARAMS();
 
@@ -36,6 +37,7 @@ PARAMS::PARAMS(){
     pfin >> nX_;
     pfin >> NN_;
     pfin >> sample_;
+    pfin >> MCS_;
     pfin >> SEED_;
     pfin.close();
 
