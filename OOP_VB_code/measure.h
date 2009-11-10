@@ -18,7 +18,8 @@ class Measure
       double TOT_cL_2;    //C(L/2,L/2)
 
       void zero();
-      void measure(const Basis &, const Basis &);
+      void measure_energy(const Basis &, const Basis &);
+      void measure_CL2L2(const Basis &, const Basis &);
       void update();
       void record();
       void output(const PARAMS &);
@@ -28,13 +29,16 @@ class Measure
 
 void Measure::zero(){
 
+    E_old=0;
+    E_new=0;
+    C_old=0;
+
     TOT_energy = 0.0;
     TOT_cL_2 = 0.0;
 }
 
-void Measure::measure(const Basis & A, const Basis & B){
-
-    //******************** Energy *********************	
+void Measure::measure_energy(const Basis & A, const Basis & B){
+//******************** Energy *********************	
 
 	int Nloop_num, Nloop_den; //number of loops in numerator and denominator
 
@@ -84,8 +88,11 @@ void Measure::measure(const Basis & A, const Basis & B){
     //cout<<Enrgy<<endl;
 	E_new = Enrgy; 
 
+}//measure_energy 
 
-	//********************C(L/2,L/2)*********************	
+void Measure::measure_CL2L2(const Basis & A, const Basis & B){
+//********************C(L/2,L/2)*********************	
+
 	vector<int> is_in_loop;  //records whether a spin is counted in a loop 
 	is_in_loop.assign(B.VBasis.size(),0);
 
@@ -116,13 +123,13 @@ void Measure::measure(const Basis & A, const Basis & B){
 		}//if
 	}//i
 
-	if (is_in_loop.at(0) == is_in_loop.at(A.LinX/2) )
+	if (is_in_loop.at(0) == is_in_loop.at(A.LinX*A.LinX/2+A.LinX/2) ) //fixed the (L/2,L/2) bug
 		C_new= 0.75;
 	else 
 		C_new= 0;
 
 
-}//measure
+}//measure_CL2L2
 
 void Measure::update(){
 

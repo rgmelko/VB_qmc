@@ -32,8 +32,8 @@ int main(){
     
     Measure Observ; //create measurement object
 
+    int MCsteps;
     for (int EQMC = 0; EQMC <2; EQMC++) { //EQL and MCS run loop
-        //MCS *= 2;
         Observ.zero(); //set observable values to zero
 
         //set to old values
@@ -48,10 +48,14 @@ int main(){
         N_loop_old = beta_1|beta_2;     // calculate number of loops in <V1 | V2>
 
         //initialize measurements: two steps
-        Observ.measure(beta_1, beta_2); //make initial measurements (assign "new" values)
+        //Observ.measure_energy(beta_1, beta_2); //make initial measurements (assign "new" values)
+        Observ.measure_CL2L2(beta_1, beta_2); 
         Observ.update();  //assign "new" to "old" values
 
-        for (int i=0; i<param.MCS_; i++){
+        if (EQMC == 0) MCsteps = param.EQL_;
+        else MCsteps = param.MCS_;
+
+        for (int i=0; i<MCsteps; i++){
 
             //-----sample projector 1 first---------------------------
             P1.Sample_Ops(mrand);       //sample new operators
@@ -60,7 +64,8 @@ int main(){
             N_loop_new = beta_1|beta_2; //calcualte new overlap
             DeltaW = pow(2,W1_old - W1_new + N_loop_new - N_loop_old);
             //measurements
-            Observ.measure(beta_1, beta_2); //make initial measurements (assign "new" values)
+            //Observ.measure_energy(beta_1, beta_2); //measure energy
+            Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
             if (DeltaW > mrand.rand()){ //Accept the move
                 W1_old = W1_new;
                 Pold1 = P1;
@@ -83,7 +88,8 @@ int main(){
             N_loop_new = beta_1|beta_2;         //calcualte new overlap
             DeltaW = pow(2,W2_old - W2_new + N_loop_new - N_loop_old);
             //measurements
-            Observ.measure(beta_1, beta_2); //make initial measurements (assign "new" values)
+			//Observ.measure_energy(beta_1, beta_2); //measure energy
+            Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
             if (DeltaW > mrand.rand()){ //Accept the move
                 W2_old = W2_new;
                 Pold2 = P2;
