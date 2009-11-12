@@ -1,0 +1,43 @@
+  energy_16x16.dat
+bondops1_16x16.dat
+bondops2_16x16.dat
+bondleng_16x16.dat
+corrfunc_16x16.dat
+
+16
+16 
+1
+
+119
+
+1   
+3
+
+100000
+100
+
+89548093
+
+filenames:
+energy
+bond operator list 1
+bond operator list 2
+bond length distribution
+correlations function
+
+lattice dimensions:
+x
+y
+z
+
+correlation site
+(find correlation fcn for this site and the first site (0,0)
+
+bond operators per site
+number of bond operators changed per step
+
+number of iterations per loop
+number of loops
+
+random seed
+
