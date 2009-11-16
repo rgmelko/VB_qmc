@@ -53,6 +53,7 @@ void Measure::measure_energy(const Basis & A, const Basis & B){
 	int a,b, bond1, bond2;
 	int old1, old2, old3, old4;
 	double Enrgy=0;
+	int off_d_count;
 	for (int i=0; i<Vr.numLattB; i++){ //Propogate Vr
 
 		a=Vr.Bst.at(i).A;
@@ -67,6 +68,7 @@ void Measure::measure_energy(const Basis & A, const Basis & B){
 		if (a == bond2) {
 			if (b != bond1) cout<<"Measurement connection error \n";
 			Nloop_num = Vl|Vr;  //Calculate overlap here
+			off_d_count = 0;
 		}
 		//off diagonal operation
 		else{
@@ -79,9 +81,10 @@ void Measure::measure_energy(const Basis & A, const Basis & B){
 			Vr.VBasis[b] = old2;
 			Vr.VBasis[bond1] = old3;
 			Vr.VBasis[bond2] = old4;
+			off_d_count = 1;
 		}
 
-		Enrgy += 1.0*pow(2,Nloop_num - Nloop_den);
+		Enrgy += 1.0*pow(2,Nloop_num - Nloop_den - off_d_count);
 
 	}//i
 
@@ -148,7 +151,7 @@ void Measure::record(){
 void Measure::output(const PARAMS & p){
 
     TOT_energy/= (2.0*p.MCS_);
-    cout<<-TOT_energy/p.numSpin<<" ";
+    cout<<-TOT_energy/p.numSpin+0.5<<" ";
     cout<<TOT_cL_2/(2.0*p.MCS_)<<endl; //factor of 2 for 2 projector samples
 
 }//output
