@@ -151,7 +151,8 @@ void Measure::record(){
 void Measure::output(const PARAMS & p){
 
     TOT_energy/= (2.0*p.MCS_);
-    cout<<-TOT_energy/p.numSpin+0.5<<" ";
+    //cout<<-TOT_energy/p.numSpin+0.5<<" "; //For 2D
+    cout<<-TOT_energy/p.numSpin+0.25*p.numLattB/p.numSpin<<" ";
     cout<<TOT_cL_2/(2.0*p.MCS_)<<endl; //factor of 2 for 2 projector samples
 
 }//output

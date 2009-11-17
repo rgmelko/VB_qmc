@@ -49,7 +49,7 @@ int main(){
 
         //initialize measurements: two steps
         Observ.measure_energy(beta_1, beta_2); //make initial measurements (assign "new" values)
-        Observ.measure_CL2L2(beta_1, beta_2); 
+        //Observ.measure_CL2L2(beta_1, beta_2); 
         Observ.update();  //assign "new" to "old" values
 
         if (EQMC == 0) MCsteps = param.EQL_;
@@ -65,7 +65,7 @@ int main(){
             DeltaW = pow(2,W1_old - W1_new + N_loop_new - N_loop_old);
             //measurements
             Observ.measure_energy(beta_1, beta_2); //measure energy
-            Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
+            //Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
             if (DeltaW > mrand.rand()){ //Accept the move
                 W1_old = W1_new;
                 Pold1 = P1;
@@ -89,7 +89,7 @@ int main(){
             DeltaW = pow(2,W2_old - W2_new + N_loop_new - N_loop_old);
             //measurements
 			Observ.measure_energy(beta_1, beta_2); //measure energy
-            Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
+            //Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
             if (DeltaW > mrand.rand()){ //Accept the move
                 W2_old = W2_new;
                 Pold2 = P2;
