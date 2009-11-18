@@ -53,6 +53,7 @@ int main()
 	  system.apply_ops(i);
 	  system.decide(i);
 	  system.measure_energy();
+	  system.measure_bondlengths();
 	  system.reinitialize(i);
 	}
 
@@ -67,6 +68,7 @@ int main()
  
       system.print_quantities(enerfilename,system.energy);
       system.print_quantities(corrfilename,system.corrfinal);
+      system.print_bondlengths(bondlengthfilename,system.bondlengthcounter);
       system.print_bondops(bondopfile1,system.bondops1,system.offdiag1);
       system.print_bondops(bondopfile2,system.bondops2,system.offdiag2);
 

@@ -1,5 +1,6 @@
 // Nov 4, 2009 // Header for new double-projector vb qmc prog (dubproj.cpp)
-// Nov ??,2009 // Trying to fix energy measurement so it doesn't take so long
+// Nov 17,2009 // Fixed energy measurement so it doesn't take so long
+// Nov 18,2009 // Putting in bond length measurement along (x,0)
 
 #ifndef header_dubproj
 #define header_dubproj
@@ -36,7 +37,7 @@ public:
   vector <int> init; // the inital bond state
   vector <int> bondops1, bondops2, bondops3; // bondops for systems A and B
   vector <int> whichloop_new, whichloop_old; // stores which loop each site is in. used for nrg
-  //  vector <long long> bondlengthcounter;
+  vector <long long> bondlengthcounter;
   
  
   iMatrix nnbonds; //list of all nnbonds (used to pick bond ops)
@@ -60,8 +61,11 @@ public:
   void super_initialize(); 
   int loop_counter();
   void measure_energy();
+  void measure_bondlengths();
   void print_quantities(string filename, long double quantity);
+  void print_bondlengths(string filename, vector <long long> bondlengths);
   void print_bondops(string filename, vector <int> bondlist, int offdiag);
+  
 };
 
 LATTICE::LATTICE(int x, int y, int z, int corset, int bondops, int r, int its, 
@@ -98,13 +102,13 @@ LATTICE::LATTICE(int x, int y, int z, int corset, int bondops, int r, int its,
   bonds1.resize (number_of_sites);
   bonds2.resize (number_of_sites);
   bonds3.resize (number_of_sites);
-  nrgbonds.resize (number_of_sites);
   init.resize (number_of_sites);
   bondops1.resize (number_of_bondops); 
   bondops2.resize (number_of_bondops);
   bondops3.resize (number_of_bondops);
   whichloop_new.resize (number_of_sites);
   whichloop_old.resize (number_of_sites);
+  bondlengthcounter.assign (xsites/2+1,0);
 
   for(int i01=0; i01<number_of_sites; i01++)
     {
@@ -389,8 +393,7 @@ void LATTICE::super_initialize()
   energy = 0;
   energyint = 0;
   correlation = 0;
-  // bondlengthcounter.assign(number_of_sites-1,0);
-
+  bondlengthcounter.assign(xsites/2+1,0);
  }
 
 /********************* ENERGY MEASUREMENT **************************/
@@ -410,6 +413,23 @@ void LATTICE::super_initialize()
   correlation += corrold;
 }
 
+/********************* BOND LENGTH MEASUREMENT *********************/
+void LATTICE::measure_bondlengths()
+{
+  for(int q = 0; q < xsites-1; q++){
+    int s = bonds3[q];
+    
+    if((s>q)&&(s<xsites)){
+      int length = s-q;
+      
+      if(length>(xsites/2)){ length = xsites - length; }
+      
+      bondlengthcounter[length]++;
+      bondlengthcounter[xsites/2]++;
+    }
+  }
+}
+
 /******************** ENERGY/CORRFUNCTION CALCULATIONS ****************/
 void LATTICE::calculate_stuff()
 {
@@ -427,6 +447,20 @@ void LATTICE::print_quantities(string filename, long double quantity)
   fouttemp.close();
 }
 
+/***************** PRINT BOND LENGTHS **********************************/
+void LATTICE::print_bondlengths(string filename, vector <long long> bondlengths)
+{
+  ofstream foutlength(filename.c_str(),ios::app);
+  foutlength.precision(10);
+  double total = 1.0*bondlengths[xsites/2];
+  for(int quint=1; quint< xsites/2; quint+=2){
+    double percent = bondlengths[quint]*1.0/total;
+    foutlength << percent << " ";
+      }
+  foutlength << endl;
+  foutlength.close();
+}
+
 /******************* PRINT BONDOP LIST *********************************/
 void LATTICE::print_bondops(string filename, vector <int> bondlist, int offdiag)
 {
@@ -437,29 +471,5 @@ void LATTICE::print_bondops(string filename, vector <int> bondlist, int offdiag)
   foutbond << offdiag << endl;
   foutbond.close();
 }
-
-
-
-
-
-
-/*********************HAVEN'T DONE BONDLENGTH YET ****************
-void LADDER::measure()
-{
-  for(int i05=0; i05<number_of_sites; i05++)
-    {
-      if(i05<bonds[i05])
-	{
-	  enercounter += nncheck(i05,bonds[i05]);
-
-	  for(int i06=i05; i06<bonds[i05]; i06++)
-	    {
-	      entrocounter[i06]++;
-	    }
-	}
-    }
-}
-
-*/
 
 #endif
