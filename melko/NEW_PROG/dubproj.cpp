@@ -62,8 +62,9 @@ int main()
       cout << "energy = " << system.energy << endl;
       cout << "energy/site = " << system.energy/(xsites*ysites*zsites)<< endl;
       cout << system.accept/(iterations_per_loop*1.0)*100 
-	   << "% accepted" << endl;
+	   << "% accepted" << endl << endl;
     
+ 
       system.print_quantities(enerfilename,system.energy);
       system.print_quantities(corrfilename,system.corrfinal);
       system.print_bondops(bondopfile1,system.bondops1,system.offdiag1);

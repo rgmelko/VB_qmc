@@ -1,4 +1,6 @@
 // Nov 4, 2009 // Header for new double-projector vb qmc prog (dubproj.cpp)
+// Nov ??,2009 // Trying to fix energy measurement so it doesn't take so long
+
 #ifndef header_dubproj
 #define header_dubproj
 
@@ -21,19 +23,21 @@ public:
   int number_of_bonds, number_of_sites;
   int change_number; // number of bond ops changed per step
  
-  int offdiag1, offdiag2, offdiag3, nrgoffdiag;
+  int offdiag1, offdiag2, offdiag3;
   int newloops, oldloops;
   int corrsite, corryes, corrold, correlation;
   long double corrfinal;
   long double accept;
-  long double topenergy, bottomenergy;
   long double energy;
+  long int energyint, mdiff;
   string bondfile1, bondfile2;
   
   vector <int> bonds1, bonds2, bonds3, nrgbonds; // the bonds
   vector <int> init; // the inital bond state
   vector <int> bondops1, bondops2, bondops3; // bondops for systems A and B
+  vector <int> whichloop_new, whichloop_old; // stores which loop each site is in. used for nrg
   //  vector <long long> bondlengthcounter;
+  
  
   iMatrix nnbonds; //list of all nnbonds (used to pick bond ops)
   iMatrix nncheck; //matrix st nncheck(a,b) is 1 if a,b are nn. O otherwise
@@ -55,7 +59,6 @@ public:
   void read_bonds();
   void super_initialize(); 
   int loop_counter();
-  int energy_loop_counter();
   void measure_energy();
   void print_quantities(string filename, long double quantity);
   void print_bondops(string filename, vector <int> bondlist, int offdiag);
@@ -79,9 +82,9 @@ LATTICE::LATTICE(int x, int y, int z, int corset, int bondops, int r, int its,
   number_of_sites = x*y*z;
   number_of_bonds = number_of_sites/2;
   accept = 0;
-  offdiag1=0; offdiag2=0; offdiag3=0, nrgoffdiag=0;
+  offdiag1=0; offdiag2=0; offdiag3=0;
   newloops=0; oldloops=0;
-  topenergy=0; bottomenergy=0; energy=0;
+  energy=0, energyint=0, mdiff=0;
 
   //determining dimension of the system
   if((x==1&&y==1)|(x==1&&z==1)|(y==1&&z==1)){dim=1;}
@@ -100,6 +103,8 @@ LATTICE::LATTICE(int x, int y, int z, int corset, int bondops, int r, int its,
   bondops1.resize (number_of_bondops); 
   bondops2.resize (number_of_bondops);
   bondops3.resize (number_of_bondops);
+  whichloop_new.resize (number_of_sites);
+  whichloop_old.resize (number_of_sites);
 
   for(int i01=0; i01<number_of_sites; i01++)
     {
@@ -205,8 +210,7 @@ void LATTICE::apply_ops(int stepnum)
 	bonds2[a] = b;
 	bonds2[b] = a;
 	  
-	offdiag2++;
-	
+	offdiag2++;	
       }
     }
   }
@@ -258,6 +262,7 @@ void LATTICE::first_step()
   apply_ops(2);
 
   oldloops = newloops;
+  whichloop_old = whichloop_new;
   reinitialize(1);
 }
 
@@ -282,6 +287,7 @@ void LATTICE::read_bonds()
   apply_ops(2);
 
   oldloops = newloops;
+  whichloop_old = whichloop_new;
   reinitialize(1);
 }
 
@@ -297,6 +303,8 @@ int LATTICE::loop_counter()
 
     site[counter]=1;
     startsite = counter;
+    
+    whichloop_new[startsite] = loopnumber+1;
 
     a = bonds1[counter];
     if((startsite==0)&&(a==corrsite)){corryes=1;}
@@ -305,6 +313,7 @@ int LATTICE::loop_counter()
     while(a!=startsite){
       
       site[a] = 1;
+      whichloop_new[a] = loopnumber+1;
 
       if(which==0){
 	a = bonds2[a];
@@ -314,60 +323,34 @@ int LATTICE::loop_counter()
 	a = bonds1[a];
 	which--;
       }
+      whichloop_new[a] = loopnumber+1;
       if((startsite==0)&&(a==corrsite)){corryes=1;}
     }
     loopnumber++;
-
     while(site[counter]==1){counter++;}
   }
   return loopnumber;
 }
-/************ ENERGY LOOP COUNTER *************************************/
-int LATTICE::energy_loop_counter()
-{
-  int counter0(0), loopnumber0(0), startsite0(0), a0(-99), which0(0);
-  vector <int> site0(number_of_sites+2,0);
 
-  while(counter0 < number_of_sites){
-
-    site0[counter0]=1;
-    startsite0 = counter0;
-
-    a0 = bonds1[counter0];
-    which0 = 0;
-   
-    while(a0!=startsite0){
-      
-      site0[a0] = 1;
-
-      if(which0==0){
-	a0 = nrgbonds[a0];
-	which0++;
-      }
-      else{
-	a0 = bonds1[a0];
-	which0--;
-      }
-    }
-    loopnumber0++;
-
-    while(site0[counter0]==1){counter0++;}
-  }
-  return loopnumber0;
-}
 
 //************ DECIDE TO KEEP OR REVERT ****************************/
 void LATTICE::decide(int stepnum)
 {
-  double prob = pow(2,newloops-oldloops);
+  double prob = 0;
   double weight = 0;
   double brand = drand();
+
+  int loopyloop = newloops - oldloops;
+  prob = pow(2,loopyloop);
+
   if(stepnum%2==0){
-    weight = pow(2,-offdiag1+offdiag3);
+    int moffbag = offdiag3-offdiag1;
+    weight = pow(2,moffbag);
     prob = weight*prob;
     
     if(brand<prob){
       oldloops = newloops;
+      whichloop_old = whichloop_new;
       accept++;
       corrold=corryes;
     }
@@ -378,11 +361,13 @@ void LATTICE::decide(int stepnum)
     }
   }
   else{
-    weight = pow(2,-offdiag2+offdiag3);
+    int moffbag = offdiag3-offdiag2;
+    weight = pow(2,moffbag);
     prob = weight*prob;
 
     if(brand<prob){
       oldloops = newloops;
+      whichloop_old = whichloop_new;
       accept++;
       corrold=corryes;
     }
@@ -402,6 +387,7 @@ void LATTICE::super_initialize()
   offdiag3 = 0;
   accept = 0;
   energy = 0;
+  energyint = 0;
   correlation = 0;
   // bondlengthcounter.assign(number_of_sites-1,0);
 
@@ -410,42 +396,24 @@ void LATTICE::super_initialize()
 /********************* ENERGY MEASUREMENT **************************/
  void LATTICE::measure_energy()
 {
-  topenergy =0;
+  mdiff=0;
 
   for(int k1=0; k1<number_of_nnbonds; k1++){
 
-    nrgbonds = bonds2;
-    nrgoffdiag=0;
-
-    int a2(0),b2(0),c2(0),d2(0);
-    a2 = nnbonds(k1,0);
-    b2 = nnbonds(k1,1);
+    int a(0),b(0);
+    a = nnbonds(k1,0);
+    b = nnbonds(k1,1);
     
-    if(nrgbonds[a2] != b2){
-      c2 = nrgbonds[a2];
-      d2 = nrgbonds[b2];
-      
-      nrgbonds[c2] = d2;
-      nrgbonds[d2] = c2;
-      nrgbonds[a2] = b2;
-      nrgbonds[b2] = a2;
-
-      nrgoffdiag++;
-    }
-
-    topenergy += pow(2,energy_loop_counter()-nrgoffdiag);
+    if(whichloop_old[a]!=whichloop_old[b]){mdiff++;}
   }
-
-  bottomenergy = pow(2,oldloops);
-  energy += 0.25*number_of_nnbonds - topenergy/bottomenergy;
-  
+  energyint += mdiff - number_of_nnbonds;
   correlation += corrold;
 }
 
 /******************** ENERGY/CORRFUNCTION CALCULATIONS ****************/
 void LATTICE::calculate_stuff()
 {
-  energy = energy/iterations;
+  energy = energyint*0.75/iterations;
 
   corrfinal = correlation*.75/iterations;
 }
