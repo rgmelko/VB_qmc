@@ -9,9 +9,9 @@ class Measure
 {
     private: 
       //observables here
-      double E_old, E_new;   //energy
-      double E2_old, E2_new;   //energy
-      double C_old, C_new;   //C(L/2,L/2)
+      double E_old; //energy
+      double E2_old;  //energy
+      double C_old; //C(L/2,L/2)
 
       void MapLoops(const Basis &, const Basis &, vector<int> & temp); //creates overlap map of numbered loops
 
@@ -25,7 +25,6 @@ class Measure
       void measure_energy(const Basis &, const Basis &);
       void measure_energy2(const Basis &, const Basis &);
       void measure_CL2L2(const Basis &, const Basis &);
-      void update();
       void record();
       void output(const PARAMS &);
   
@@ -34,8 +33,8 @@ class Measure
 
 void Measure::zero(){
 
-    E_old=0; E_new=0;
-    E2_old=0; E2_new=0;
+    E_old=0; 
+    E2_old=0;
     C_old=0;
 
     TOT_energy = 0.0;
@@ -95,7 +94,8 @@ void Measure::measure_energy(const Basis & A, const Basis & B){
 	}//i
 
     //cout<<Enrgy<<endl;
-	E_new = Enrgy; 
+	E_old = Enrgy; 
+	//E_new = Enrgy; 
 
 }//measure_energy 
 
@@ -116,7 +116,8 @@ void Measure::measure_energy2(const Basis & A, const Basis & B){
 		else if (is_in_loop.at(a) != is_in_loop.at(b)) m_diff ++;
 	}
 
-	E2_new = 0.75*(m_diff - A.numLattB);
+	//E2_new = 0.75*(m_diff - A.numLattB);
+	E2_old = 0.75*(m_diff - A.numLattB);
 
 }//energy2
 
@@ -128,9 +129,9 @@ void Measure::measure_CL2L2(const Basis & A, const Basis & B){
 	MapLoops(A,B,is_in_loop);
 
 	if (is_in_loop.at(0) == is_in_loop.at(A.LinX*A.LinX/2+A.LinX/2) ) //fixed the (L/2,L/2) bug
-		C_new= 0.75;
+		C_old= 0.75;
 	else 
-		C_new= 0;
+		C_old= 0;
 
 
 }//measure_CL2L2
@@ -170,14 +171,6 @@ void Measure::MapLoops(const Basis & A, const Basis & B, vector<int> & is_in_loo
 
 }//MapLoops
 
-void Measure::update(){
-
-    E_old = E_new;
-    E2_old = E2_new;
-    C_old = C_new;
-
-}//update
-
 void Measure::record(){
 
     TOT_energy += E_old;
@@ -188,8 +181,8 @@ void Measure::record(){
 
 void Measure::output(const PARAMS & p){
 
-    //TOT_energy/= (2.0*p.MCS_);
-    //cout<<-TOT_energy/p.numSpin+0.25*p.numLattB/p.numSpin<<" ";
+    TOT_energy/= (2.0*p.MCS_);
+    cout<<-TOT_energy/p.numSpin+0.25*p.numLattB/p.numSpin<<" ";
     cout<<TOT_energy2/(2.0*p.MCS_ * p.numSpin)<<" ";
     cout<<TOT_cL_2/(2.0*p.MCS_)<<endl; //factor of 2 for 2 projector samples
 
