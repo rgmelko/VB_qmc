@@ -40,7 +40,7 @@ void Renyi::measure_H1(const Basis & A, const Basis & B, const int & num_Swap){
 
 	for (int i=0; i<num_Swap; i++){
 	  a = i;
-	  b = i+A.LinX;
+	  b = i+A.LinX; //b in the other layer
 
 	  bond1 = Vr.VBasis[a]; 
 	  bond2 = Vr.VBasis[b];
@@ -55,33 +55,6 @@ void Renyi::measure_H1(const Basis & A, const Basis & B, const int & num_Swap){
 	}//num_Swap 
 
     Nloop_num = Vl|Vr; //new overlap
-
-	//a=0;
-	//b=A.LinX;
-
-	//bond1 = Vr.VBasis[a]; 
-	//bond2 = Vr.VBasis[b];
-	////diagonal operation
-	//old1 = Vr.VBasis[a];
-	//old2 = Vr.VBasis[b];
-	//old3 = Vr.VBasis[bond1];
-	//old4 = Vr.VBasis[bond2];
-	//if (a == bond2) {
-	//	if (b != bond1) cout<<"Measurement connection error \n";
-	//	Nloop_num = Vl|Vr;  //Calculate overlap here
-	//}
-	////off diagonal operation
-	//else{
-	//	Vr.VBasis[a] = b;
-	//	Vr.VBasis[b] = a;
-	//	Vr.VBasis[bond1] = bond2;
-	//	Vr.VBasis[bond2] = bond1;
-	//	Nloop_num = Vl|Vr;  //Calculate overlap here
-	//	Vr.VBasis[a] = old1;
-	//	Vr.VBasis[b] = old2;
-	//	Vr.VBasis[bond1] = old3;
-	//	Vr.VBasis[bond2] = old4;
-	//}
 
     entropy = 1.0*pow(2,Nloop_num - Nloop_den);
 
