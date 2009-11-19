@@ -49,13 +49,13 @@ PARAMS::PARAMS(){
 	LinX = nX_;
 	numSpin = 2*nX_;
 	numVB = numSpin/2;
-	numLattB = numSpin;
     //2D square
   // LinX = nX_;
   // numSpin = nX_ * nX_;
   // numVB= numSpin/2;
   // numLattB= 2*numSpin;
 
+	numLattB = 0;
 	//initialize lattice bond array: 1D linear
 	int a,b;
 	index2 temp;
@@ -66,8 +66,10 @@ PARAMS::PARAMS(){
 		if (i%2 == 0) temp.set(a,b);  //order (A,B) sublattice
 	    else temp.set(b,a);
 		Bst.push_back(temp);
+		numLattB ++;
 
 	}
+	//cout<<numLattB<<endl;
 
    // //initialize lattice bond array: 2D square
    // int a, b;

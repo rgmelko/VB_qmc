@@ -48,7 +48,7 @@ int main(){
         N_loop_old = beta_1|beta_2;     // calculate number of loops in <V1 | V2>
 
         //initialize measurements: two steps
-        Observ.measure_energy(beta_1, beta_2); //make initial measurements (assign "new" values)
+        //Observ.measure_energy(beta_1, beta_2); //make initial measurements (assign "new" values)
         Observ.measure_energy2(beta_1, beta_2); //make initial measurements (assign "new" values)
         //Observ.measure_CL2L2(beta_1, beta_2); 
 
@@ -69,7 +69,7 @@ int main(){
                 N_loop_old = N_loop_new;
                 //measurements            
                 Observ.measure_energy2(beta_1, beta_2); //measure energy
-				Observ.measure_energy(beta_1, beta_2); //measure energy
+				//Observ.measure_energy(beta_1, beta_2); //measure energy
                 //Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
             }
             else {  //reject the move          
@@ -92,7 +92,7 @@ int main(){
                 N_loop_old = N_loop_new;
                 //measurements
 			    Observ.measure_energy2(beta_1, beta_2); //measure energy
-			    Observ.measure_energy(beta_1, beta_2); //measure energy
+			    //Observ.measure_energy(beta_1, beta_2); //measure energy
                 //Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
             }
             else {  //reject the move          
