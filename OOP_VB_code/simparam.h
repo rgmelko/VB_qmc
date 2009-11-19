@@ -63,10 +63,12 @@ PARAMS::PARAMS(){
 		a = i;
 		b = i+1;
 		if ( b%nX_ == 0) b -= nX_;
-		if (i%2 == 0) temp.set(a,b);  //order (A,B) sublattice
-	    else temp.set(b,a);
-		Bst.push_back(temp);
-		numLattB ++;
+		else{
+		  if (i%2 == 0) temp.set(a,b);  //order (A,B) sublattice
+	      else temp.set(b,a);
+		  Bst.push_back(temp);
+		  numLattB ++;
+		}//OBC
 
 	}
 	//cout<<numLattB<<endl;

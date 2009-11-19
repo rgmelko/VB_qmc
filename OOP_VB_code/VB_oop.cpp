@@ -10,6 +10,7 @@
 #include "basis.h"
 #include "projector.h"
 #include "measure.h"
+#include "renyi.h"
 
 int main(){
 
@@ -31,10 +32,12 @@ int main(){
     double DeltaW;
     
     Measure Observ; //create measurement object
+	Renyi renyi; //object for measuring Renyi entropy
 
     int MCsteps;
     for (int EQMC = 0; EQMC <2; EQMC++) { //EQL and MCS run loop
         Observ.zero(); //set observable values to zero
+        renyi.zero(); 
 
         //set to old values
         P1 = Pold1;
@@ -51,6 +54,7 @@ int main(){
         //Observ.measure_energy(beta_1, beta_2); //make initial measurements (assign "new" values)
         Observ.measure_energy2(beta_1, beta_2); //make initial measurements (assign "new" values)
         //Observ.measure_CL2L2(beta_1, beta_2); 
+		renyi.measure_H1(beta_1, beta_2);
 
         if (EQMC == 0) MCsteps = param.EQL_;
         else MCsteps = param.MCS_;
@@ -69,6 +73,7 @@ int main(){
                 N_loop_old = N_loop_new;
                 //measurements            
                 Observ.measure_energy2(beta_1, beta_2); //measure energy
+				renyi.measure_H1(beta_1, beta_2);
 				//Observ.measure_energy(beta_1, beta_2); //measure energy
                 //Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
             }
@@ -79,6 +84,7 @@ int main(){
             //--------------------------end sample proj 1 --------------
 
             Observ.record(); //assign running total
+			renyi.record();
 
             //-----sample projector 2 first---------------------------
             P2.Sample_Ops(mrand);       //sample new operators
@@ -92,6 +98,7 @@ int main(){
                 N_loop_old = N_loop_new;
                 //measurements
 			    Observ.measure_energy2(beta_1, beta_2); //measure energy
+				renyi.measure_H1(beta_1, beta_2);
 			    //Observ.measure_energy(beta_1, beta_2); //measure energy
                 //Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
             }
@@ -102,6 +109,7 @@ int main(){
             //--------------------------end sample proj 2 --------------
 
             Observ.record(); //assign running total
+			renyi.record();
 
         }//MCS
 
@@ -109,6 +117,7 @@ int main(){
 
 
     Observ.output(param); //output observables
+	renyi.output(param);
 
 
   return 0;
