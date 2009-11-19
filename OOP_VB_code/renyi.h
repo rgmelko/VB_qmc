@@ -13,7 +13,7 @@ class Renyi
 
     public: 
       void zero();
-      void measure_H1(const Basis &, const Basis &);
+      void measure_H1(const Basis &, const Basis &, const int &);
       void record();
       void output(PARAMS &);
 
@@ -28,7 +28,7 @@ void Renyi::zero(){
 }//zero
 
 
-void Renyi::measure_H1(const Basis & A, const Basis & B){
+void Renyi::measure_H1(const Basis & A, const Basis & B, const int & num_Swap){
 
 	int Nloop_num, Nloop_den; //number of loops in numerator and denominator
 	Basis Vl(A);   //copy constructors
@@ -38,7 +38,6 @@ void Renyi::measure_H1(const Basis & A, const Basis & B){
 	int a,b, bond1, bond2;
 	int old1, old2, old3, old4;
 
-    int num_Swap = 4;
 	for (int i=0; i<num_Swap; i++){
 	  a = i;
 	  b = i+A.LinX;
