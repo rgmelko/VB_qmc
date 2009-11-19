@@ -10,15 +10,20 @@ class Measure
     private: 
       //observables here
       double E_old, E_new;   //energy
+      double E2_old, E2_new;   //energy
       double C_old, C_new;   //C(L/2,L/2)
+
+      void MapLoops(const Basis &, const Basis &, vector<int> & temp); //creates overlap map of numbered loops
 
 
     public:
       double TOT_energy;   //energy
+      double TOT_energy2;   //energy
       double TOT_cL_2;    //C(L/2,L/2)
 
       void zero();
       void measure_energy(const Basis &, const Basis &);
+      void measure_energy2(const Basis &, const Basis &);
       void measure_CL2L2(const Basis &, const Basis &);
       void update();
       void record();
@@ -29,11 +34,12 @@ class Measure
 
 void Measure::zero(){
 
-    E_old=0;
-    E_new=0;
+    E_old=0; E_new=0;
+    E2_old=0; E2_new=0;
     C_old=0;
 
     TOT_energy = 0.0;
+    TOT_energy2 = 0.0;
     TOT_cL_2 = 0.0;
 }
 
@@ -93,10 +99,46 @@ void Measure::measure_energy(const Basis & A, const Basis & B){
 
 }//measure_energy 
 
+void Measure::measure_energy2(const Basis & A, const Basis & B){
+//******************** Ann's Energy *********************	
+
+	vector<int> is_in_loop;  //records whether a spin is counted in a loop 
+	MapLoops(A,B,is_in_loop);
+
+    int a,b;
+    int m_diff = 0;
+	for (int i=0; i<A.numLattB; i++){
+
+		a=A.Bst.at(i).A;
+		b=A.Bst.at(i).B;
+
+		if (is_in_loop.at(a) == 0 || is_in_loop.at(b) == 0) cout<<"Energy 2 error \n";
+		else if (is_in_loop.at(a) != is_in_loop.at(b)) m_diff ++;
+	}
+
+	E2_new = 0.75*(m_diff - A.numLattB);
+
+}//energy2
+
+
 void Measure::measure_CL2L2(const Basis & A, const Basis & B){
 //********************C(L/2,L/2)*********************	
 
 	vector<int> is_in_loop;  //records whether a spin is counted in a loop 
+	MapLoops(A,B,is_in_loop);
+
+	if (is_in_loop.at(0) == is_in_loop.at(A.LinX*A.LinX/2+A.LinX/2) ) //fixed the (L/2,L/2) bug
+		C_new= 0.75;
+	else 
+		C_new= 0;
+
+
+}//measure_CL2L2
+
+
+void Measure::MapLoops(const Basis & A, const Basis & B, vector<int> & is_in_loop){
+//****************creates overlap map of numbered loops ****************	
+
 	is_in_loop.assign(B.VBasis.size(),0);
 
 	int next;
@@ -126,17 +168,12 @@ void Measure::measure_CL2L2(const Basis & A, const Basis & B){
 		}//if
 	}//i
 
-	if (is_in_loop.at(0) == is_in_loop.at(A.LinX*A.LinX/2+A.LinX/2) ) //fixed the (L/2,L/2) bug
-		C_new= 0.75;
-	else 
-		C_new= 0;
-
-
-}//measure_CL2L2
+}//MapLoops
 
 void Measure::update(){
 
     E_old = E_new;
+    E2_old = E2_new;
     C_old = C_new;
 
 }//update
@@ -144,15 +181,16 @@ void Measure::update(){
 void Measure::record(){
 
     TOT_energy += E_old;
+    TOT_energy2 += E2_old;
     TOT_cL_2 += C_old;
 
 }//update
 
 void Measure::output(const PARAMS & p){
 
-    TOT_energy/= (2.0*p.MCS_);
-    //cout<<-TOT_energy/p.numSpin+0.5<<" "; //For 2D
-    cout<<-TOT_energy/p.numSpin+0.25*p.numLattB/p.numSpin<<" ";
+    //TOT_energy/= (2.0*p.MCS_);
+    //cout<<-TOT_energy/p.numSpin+0.25*p.numLattB/p.numSpin<<" ";
+    cout<<TOT_energy2/(2.0*p.MCS_ * p.numSpin)<<" ";
     cout<<TOT_cL_2/(2.0*p.MCS_)<<endl; //factor of 2 for 2 projector samples
 
 }//output
