@@ -1,0 +1,27 @@
+#!/bin/sh
+
+cd a032;  sqsub -o 1.log -r 9h ./dubproj032; cd ../;
+cd a064;  sqsub -o 1.log -r 9h ./dubproj064; cd ../;
+cd a096;  sqsub -o 1.log -r 9h ./dubproj096; cd ../;
+cd a128;  sqsub -o 1.log -r 9h ./dubproj128; cd ../;
+cd a160;  sqsub -o 1.log -r 9h ./dubproj160; cd ../;
+cd a192;  sqsub -o 1.log -r 9h ./dubproj192; cd ../;
+cd a224;  sqsub -o 1.log -r 9h ./dubproj224; cd ../;
+cd a256;  sqsub -o 1.log -r 9h ./dubproj256; cd ../;
+cd a288;  sqsub -o 1.log -r 9h ./dubproj288; cd ../;
+cd a320;  sqsub -o 1.log -r 9h ./dubproj320; cd ../;
+cd a352;  sqsub -o 1.log -r 9h ./dubproj352; cd ../;
+cd a384;  sqsub -o 1.log -r 9h ./dubproj384; cd ../;
+cd a416;  sqsub -o 1.log -r 9h ./dubproj416; cd ../;
+cd a448;  sqsub -o 1.log -r 9h ./dubproj448; cd ../;
+cd a480;  sqsub -o 1.log -r 9h ./dubproj480; cd ../;
+cd a512;  sqsub -o 1.log -r 9h ./dubproj512; cd ../;
+cd a544;  sqsub -o 1.log -r 9h ./dubproj544; cd ../;
+cd a576;  sqsub -o 1.log -r 9h ./dubproj576; cd ../;
+cd a608;  sqsub -o 1.log -r 9h ./dubproj608; cd ../;
+cd a640;  sqsub -o 1.log -r 9h ./dubproj640; cd ../;
+cd a672;  sqsub -o 1.log -r 9h ./dubproj672; cd ../;
+cd a704;  sqsub -o 1.log -r 9h ./dubproj704; cd ../;
+cd a736;  sqsub -o 1.log -r 9h ./dubproj736; cd ../;
+cd a768;  sqsub -o 1.log -r 9h ./dubproj768; cd ../;
+cd a800;  sqsub -o 1.log -r 9h ./dubproj800; cd ../;
