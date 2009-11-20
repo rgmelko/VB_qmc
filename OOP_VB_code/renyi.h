@@ -96,7 +96,7 @@ void Renyi::record(){
 
 void Renyi::output(PARAMS & p){
 
-	cout<<-log(TOTAL_H1/(2.0*p.MCS_))<<endl;
+	cout<<-log(TOTAL_H1/(2.0*p.MCS_))<<" ";
 
 }//output
 

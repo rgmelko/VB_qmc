@@ -13,7 +13,6 @@ class PARAMS
         int numLattB;  //number of lattice bonds is 2N
 		int EQL_; //the number of Monte Carlo steps
 		int MCS_; //the number of Monte Carlo steps
-		int nS_;  //number of sites to swap for Renyi entropy
         int nX_;     //linear size of square lattice
         int nBin_;     //number of production bins
         long SEED_;
@@ -43,7 +42,6 @@ PARAMS::PARAMS(){
     pfin >> sample_;
     pfin >> EQL_;
     pfin >> MCS_;
-    pfin >> nS_;
     pfin >> SEED_;
     pfin >> nBin_;
     pfin.close();

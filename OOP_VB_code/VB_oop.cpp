@@ -32,7 +32,11 @@ int main(){
     double DeltaW;
     
     Measure Observ; //create measurement object
-	Renyi renyi(param.nX_,param.nS_); //object for measuring Renyi entropy
+	vector<Renyi> renyi_vec;
+	for (int r=1; r<param.nX_; r++){
+		Renyi temp(param.nX_,r); //object for measuring Renyi entropy
+		renyi_vec.push_back(temp);
+	}
 
 	int MCsteps;
 	int bin;
@@ -51,7 +55,8 @@ int main(){
 		for (int binCount=0; binCount < bin; binCount++){
 
 			Observ.zero(); //set observable values to zero
-			renyi.zero(); 
+			for (int r=1; r<param.nX_; r++)
+				renyi_vec.at(r-1).zero(); 
 
 			//set to old values
 			P1 = Pold1;
@@ -68,7 +73,8 @@ int main(){
 			//Observ.measure_energy(beta_1, beta_2); //make initial measurements (assign "new" values)
 			Observ.measure_energy2(beta_1, beta_2); //make initial measurements (assign "new" values)
 			//Observ.measure_CL2L2(beta_1, beta_2); 
-			renyi.measure_H1(beta_1, beta_2);
+			for (int r=1; r<param.nX_; r++)
+				renyi_vec.at(r-1).measure_H1(beta_1, beta_2);
 
 			if (EQMC == 0) MCsteps = param.EQL_;
 			else MCsteps = param.MCS_;
@@ -87,7 +93,8 @@ int main(){
 					N_loop_old = N_loop_new;
 					//measurements            
 					Observ.measure_energy2(beta_1, beta_2); //measure energy
-					renyi.measure_H1(beta_1, beta_2);
+					for (int r=1; r<param.nX_; r++)
+						renyi_vec.at(r-1).measure_H1(beta_1, beta_2);
 					//Observ.measure_energy(beta_1, beta_2); //measure energy
 					//Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
 				}
@@ -98,7 +105,9 @@ int main(){
 				//--------------------------end sample proj 1 --------------
 
 				Observ.record(); //assign running total
-				renyi.record();
+				for (int r=1; r<param.nX_; r++)
+					renyi_vec.at(r-1).record();
+
 
 				//-----sample projector 2 first---------------------------
 				P2.Sample_Ops(mrand);       //sample new operators
@@ -112,7 +121,8 @@ int main(){
 					N_loop_old = N_loop_new;
 					//measurements
 					Observ.measure_energy2(beta_1, beta_2); //measure energy
-					renyi.measure_H1(beta_1, beta_2);
+					for (int r=1; r<param.nX_; r++)
+						renyi_vec.at(r-1).measure_H1(beta_1, beta_2);
 					//Observ.measure_energy(beta_1, beta_2); //measure energy
 					//Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
 				}
@@ -123,7 +133,8 @@ int main(){
 				//--------------------------end sample proj 2 --------------
 
 				Observ.record(); //assign running total
-				renyi.record();
+				for (int r=1; r<param.nX_; r++)
+					renyi_vec.at(r-1).record();
 
 			}//MCS
 
@@ -134,7 +145,9 @@ int main(){
 
 			if (EQMC == 1){ //for MC production step
 				Observ.output(param); //output observables
-				renyi.output(param);
+				for (int r=1; r<param.nX_; r++)
+					renyi_vec.at(r-1).output(param);
+				cout<<endl;
 			}
 
 		}//nBin
