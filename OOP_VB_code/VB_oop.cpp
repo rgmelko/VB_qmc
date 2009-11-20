@@ -34,91 +34,115 @@ int main(){
     Measure Observ; //create measurement object
 	Renyi renyi(param.nX_,param.nS_); //object for measuring Renyi entropy
 
-    int MCsteps;
-    for (int EQMC = 0; EQMC <2; EQMC++) { //EQL and MCS run loop
-        Observ.zero(); //set observable values to zero
-        renyi.zero(); 
+	int MCsteps;
+	int bin;
+	for (int EQMC = 0; EQMC <2; EQMC++) { //EQL and MCS run loop
 
-        //set to old values
-        P1 = Pold1;
-        P2 = Pold2;
+        if (param.EQL_ == 0) EQMC = 1; //skip equilibriation
+		if (EQMC == 0) bin=1;    //only loop over nBins for production steps
+		else {
+			bin = param.nBin_;	
+			//read in configuration
+			Pold1.fileread(1);
+			Pold2.fileread(2);
+			alpha.fileread(1);
+		}//production step
 
-		alpha.Propogate(P1,beta_1);  //P1|alpha> = W1|beta_1>
-		alpha.Propogate(P2,beta_2);  //P1|alpha> = W1|beta_1>
-        
-        W1_old = beta_1.Weight;
-        W2_old = beta_2.Weight;
-        N_loop_old = beta_1|beta_2;     // calculate number of loops in <V1 | V2>
+		for (int binCount=0; binCount < bin; binCount++){
 
-        //initialize measurements: two steps
-        //Observ.measure_energy(beta_1, beta_2); //make initial measurements (assign "new" values)
-        Observ.measure_energy2(beta_1, beta_2); //make initial measurements (assign "new" values)
-        //Observ.measure_CL2L2(beta_1, beta_2); 
-		renyi.measure_H1(beta_1, beta_2);
+			Observ.zero(); //set observable values to zero
+			renyi.zero(); 
 
-        if (EQMC == 0) MCsteps = param.EQL_;
-        else MCsteps = param.MCS_;
+			//set to old values
+			P1 = Pold1;
+			P2 = Pold2;
 
-        for (int i=0; i<MCsteps; i++){
+			alpha.Propogate(P1,beta_1);  //P1|alpha> = W1|beta_1>
+			alpha.Propogate(P2,beta_2);  //P1|alpha> = W1|beta_1>
 
-            //-----sample projector 1 first---------------------------
-            P1.Sample_Ops(mrand);       //sample new operators
-            alpha.Propogate(P1,beta_1); //propogate basis
-            W1_new =  beta_1.Weight;    //calculate new weight
-            N_loop_new = beta_1|beta_2; //calcualte new overlap
-            DeltaW = pow(2,W1_old - W1_new + N_loop_new - N_loop_old);
-            if (DeltaW > mrand.rand()){ //Accept the move
-                W1_old = W1_new;
-                Pold1 = P1;
-                N_loop_old = N_loop_new;
-                //measurements            
-                Observ.measure_energy2(beta_1, beta_2); //measure energy
-				renyi.measure_H1(beta_1, beta_2);
-				//Observ.measure_energy(beta_1, beta_2); //measure energy
-                //Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
-            }
-            else {  //reject the move          
-                P1 = Pold1;                    
-                N_loop_new = N_loop_old;       
-            }                                  
-            //--------------------------end sample proj 1 --------------
+			W1_old = beta_1.Weight;
+			W2_old = beta_2.Weight;
+			N_loop_old = beta_1|beta_2;     // calculate number of loops in <V1 | V2>
 
-            Observ.record(); //assign running total
-			renyi.record();
+			//initialize measurements: two steps
+			//Observ.measure_energy(beta_1, beta_2); //make initial measurements (assign "new" values)
+			Observ.measure_energy2(beta_1, beta_2); //make initial measurements (assign "new" values)
+			//Observ.measure_CL2L2(beta_1, beta_2); 
+			renyi.measure_H1(beta_1, beta_2);
 
-            //-----sample projector 2 first---------------------------
-            P2.Sample_Ops(mrand);       //sample new operators
-            alpha.Propogate(P2,beta_2); //propogate basis
-            W2_new =  beta_2.Weight;    //calculate new weight
-            N_loop_new = beta_1|beta_2;         //calcualte new overlap
-            DeltaW = pow(2,W2_old - W2_new + N_loop_new - N_loop_old);
-            if (DeltaW > mrand.rand()){ //Accept the move
-                W2_old = W2_new;
-                Pold2 = P2;
-                N_loop_old = N_loop_new;
-                //measurements
-			    Observ.measure_energy2(beta_1, beta_2); //measure energy
-				renyi.measure_H1(beta_1, beta_2);
-			    //Observ.measure_energy(beta_1, beta_2); //measure energy
-                //Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
-            }
-            else {  //reject the move          
-                P2 = Pold2;                    
-                N_loop_new = N_loop_old;       
-            }                                  
-            //--------------------------end sample proj 2 --------------
+			if (EQMC == 0) MCsteps = param.EQL_;
+			else MCsteps = param.MCS_;
 
-            Observ.record(); //assign running total
-			renyi.record();
+			for (int i=0; i<MCsteps; i++){
 
-        }//MCS
+				//-----sample projector 1 first---------------------------
+				P1.Sample_Ops(mrand);       //sample new operators
+				alpha.Propogate(P1,beta_1); //propogate basis
+				W1_new =  beta_1.Weight;    //calculate new weight
+				N_loop_new = beta_1|beta_2; //calcualte new overlap
+				DeltaW = pow(2,W1_old - W1_new + N_loop_new - N_loop_old);
+				if (DeltaW > mrand.rand()){ //Accept the move
+					W1_old = W1_new;
+					Pold1 = P1;
+					N_loop_old = N_loop_new;
+					//measurements            
+					Observ.measure_energy2(beta_1, beta_2); //measure energy
+					renyi.measure_H1(beta_1, beta_2);
+					//Observ.measure_energy(beta_1, beta_2); //measure energy
+					//Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
+				}
+				else {  //reject the move          
+					P1 = Pold1;                    
+					N_loop_new = N_loop_old;       
+				}                                  
+				//--------------------------end sample proj 1 --------------
 
-    }//EQMC
+				Observ.record(); //assign running total
+				renyi.record();
+
+				//-----sample projector 2 first---------------------------
+				P2.Sample_Ops(mrand);       //sample new operators
+				alpha.Propogate(P2,beta_2); //propogate basis
+				W2_new =  beta_2.Weight;    //calculate new weight
+				N_loop_new = beta_1|beta_2;         //calcualte new overlap
+				DeltaW = pow(2,W2_old - W2_new + N_loop_new - N_loop_old);
+				if (DeltaW > mrand.rand()){ //Accept the move
+					W2_old = W2_new;
+					Pold2 = P2;
+					N_loop_old = N_loop_new;
+					//measurements
+					Observ.measure_energy2(beta_1, beta_2); //measure energy
+					renyi.measure_H1(beta_1, beta_2);
+					//Observ.measure_energy(beta_1, beta_2); //measure energy
+					//Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
+				}
+				else {  //reject the move          
+					P2 = Pold2;                    
+					N_loop_new = N_loop_old;       
+				}                                  
+				//--------------------------end sample proj 2 --------------
+
+				Observ.record(); //assign running total
+				renyi.record();
+
+			}//MCS
+
+			//output configuration: 2 projectors and the unprojected basis (optional)
+			P1.filewrite(1);
+			P2.filewrite(2);
+			alpha.filewrite(1);
+
+			if (EQMC == 1){ //for MC production step
+				Observ.output(param); //output observables
+				renyi.output(param);
+			}
+
+		}//nBin
+
+	}//EQMC
 
 
-    Observ.output(param); //output observables
-	renyi.output(param);
 
 
-  return 0;
+	return 0;
 };

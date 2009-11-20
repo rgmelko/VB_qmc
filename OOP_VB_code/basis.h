@@ -25,9 +25,11 @@ class Basis: public PARAMS
         void Propogate(const Projector&, Basis&);
         double Calc_Energy();
 
-        //Basis operator=(const Basis & );
-        int operator|(const Basis & ); //returns number of loops in overlap
+		//Basis operator=(const Basis & );
+		int operator|(const Basis & ); //returns number of loops in overlap
 
+		void Basis::filewrite(const int & num);
+		void Basis::fileread(const int & num);
 
 
 };
@@ -187,6 +189,77 @@ int Basis::operator|(const Basis & B){
 } //operator |
     
 
+void Basis::filewrite(const int & num){
+
+	char fname[8];
+
+	if (num == 0) fname[1] = '0';
+	else if (num%9 == 0) fname[1] = '9';
+	else if (num%8 == 0) fname[1] = '8';
+	else if (num%7 == 0) fname[1] = '7';
+	else if (num%6 == 0) fname[1] = '6';
+	else if (num%5 == 0) fname[1] = '5';
+	else if (num%4 == 0) fname[1] = '4';
+	else if (num%3 == 0) fname[1] = '3';
+	else if (num%2 == 0) fname[1] = '2';
+	else if (num%1 == 0) fname[1] = '1';
+
+	fname[0] = '0';
+	fname[2] = '.';
+	fname[3] = 'b';
+	fname[4] = 'a';
+	fname[5] = 's';
+	fname[6] = 'e';
+	fname[7] = '\0';
+
+
+	ofstream cfout;
+	cfout.open(fname);
+
+    for (int i=0;  i<VBasis.size(); i++)
+        cfout<<VBasis[i]<<endl;
+
+	cfout.close();
+
+}//filewrite
+
+void Basis::fileread(const int & num){
+
+	char fname[8];
+
+	if (num == 0) fname[1] = '0';
+	else if (num%9 == 0) fname[1] = '9';
+	else if (num%8 == 0) fname[1] = '8';
+	else if (num%7 == 0) fname[1] = '7';
+	else if (num%6 == 0) fname[1] = '6';
+	else if (num%5 == 0) fname[1] = '5';
+	else if (num%4 == 0) fname[1] = '4';
+	else if (num%3 == 0) fname[1] = '3';
+	else if (num%2 == 0) fname[1] = '2';
+	else if (num%1 == 0) fname[1] = '1';
+
+	fname[0] = '0';
+	fname[2] = '.';
+	fname[3] = 'b';
+	fname[4] = 'a';
+	fname[5] = 's';
+	fname[6] = 'e';
+	fname[7] = '\0';
+
+
+	ifstream cfin;
+	cfin.open(fname);
+
+	int temp=0;
+    for (int i=0;  i<VBasis.size(); i++){
+        cfin>>VBasis[i];
+		temp++;
+	}
+	if (temp != VBasis.size()) cout<<"Basis Read ERROR \n";
+
+	cfin.close();
+
+}//fileread
 
 #endif 
 

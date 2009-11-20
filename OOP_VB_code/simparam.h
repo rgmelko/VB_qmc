@@ -15,6 +15,7 @@ class PARAMS
 		int MCS_; //the number of Monte Carlo steps
 		int nS_;  //number of sites to swap for Renyi entropy
         int nX_;     //linear size of square lattice
+        int nBin_;     //number of production bins
         long SEED_;
         PARAMS();
 
@@ -44,6 +45,7 @@ PARAMS::PARAMS(){
     pfin >> MCS_;
     pfin >> nS_;
     pfin >> SEED_;
+    pfin >> nBin_;
     pfin.close();
 
     //initialize constants : 

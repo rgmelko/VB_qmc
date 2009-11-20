@@ -21,6 +21,9 @@ class Projector: public PARAMS
 
         Projector operator=(const Projector & Pj);
 
+        void filewrite(const int & num);
+        void fileread(const int & num);
+
 
 };
 
@@ -79,7 +82,84 @@ Projector Projector::operator=(const Projector & Pj){
 
     return *this;
 
-
 }
+
+void Projector::filewrite(const int & num){
+
+	char fname[8];
+
+	if (num == 0) fname[1] = '0';
+	else if (num%9 == 0) fname[1] = '9';
+	else if (num%8 == 0) fname[1] = '8';
+	else if (num%7 == 0) fname[1] = '7';
+	else if (num%6 == 0) fname[1] = '6';
+	else if (num%5 == 0) fname[1] = '5';
+	else if (num%4 == 0) fname[1] = '4';
+	else if (num%3 == 0) fname[1] = '3';
+	else if (num%2 == 0) fname[1] = '2';
+	else if (num%1 == 0) fname[1] = '1';
+
+	fname[0] = '0';
+	fname[2] = '.';
+	fname[3] = 'c';
+	fname[4] = 'o';
+	fname[5] = 'n';
+	fname[6] = 'f';
+	fname[7] = '\0';
+
+
+	ofstream cfout;
+	cfout.open(fname);
+
+    cfout<<list_size<<endl;
+    for (int i=0; i<list_size; i++){
+        cfout<<O_list.at(i)<<" ";
+    }
+
+	cfout.close();
+
+}//filewrite
+
+
+void Projector::fileread(const int & num){
+
+	char fname[8];
+
+	if (num == 0) fname[1] = '0';
+	else if (num%9 == 0) fname[1] = '9';
+	else if (num%8 == 0) fname[1] = '8';
+	else if (num%7 == 0) fname[1] = '7';
+	else if (num%6 == 0) fname[1] = '6';
+	else if (num%5 == 0) fname[1] = '5';
+	else if (num%4 == 0) fname[1] = '4';
+	else if (num%3 == 0) fname[1] = '3';
+	else if (num%2 == 0) fname[1] = '2';
+	else if (num%1 == 0) fname[1] = '1';
+
+	fname[0] = '0';
+	fname[2] = '.';
+	fname[3] = 'c';
+	fname[4] = 'o';
+	fname[5] = 'n';
+	fname[6] = 'f';
+	fname[7] = '\0';
+
+
+	ifstream cfin;
+	cfin.open(fname);
+
+	O_list.clear();
+
+    int temp;
+    cfin>>list_size;
+    for (int i=0; i<list_size; i++){
+		cfin>>temp;
+        O_list.push_back(temp);
+    }
+	if (O_list.size() !=  list_size) cout<<"READ IN ERROR \n";
+
+	cfin.close();
+
+}//fileread
 
 #endif
