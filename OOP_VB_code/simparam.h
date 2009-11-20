@@ -14,6 +14,7 @@ class PARAMS
 		int EQL_; //the number of Monte Carlo steps
 		int MCS_; //the number of Monte Carlo steps
 		int nS_;  //number of sites to swap for Renyi entropy
+        int nX_;     //linear size of square lattice
         long SEED_;
         PARAMS();
 
@@ -27,7 +28,6 @@ class PARAMS
         //derived constants
         int numVB; //number of valence bonds = N/2
         long int NN_;  //This is the length of the operator string
-        int nX_;     //linear size of square lattice
         int sample_; //number of operators to sample each iteration
 
 }; //PARAMS

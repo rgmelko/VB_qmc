@@ -32,7 +32,7 @@ int main(){
     double DeltaW;
     
     Measure Observ; //create measurement object
-	Renyi renyi; //object for measuring Renyi entropy
+	Renyi renyi(param.nX_,param.nS_); //object for measuring Renyi entropy
 
     int MCsteps;
     for (int EQMC = 0; EQMC <2; EQMC++) { //EQL and MCS run loop
@@ -54,7 +54,7 @@ int main(){
         //Observ.measure_energy(beta_1, beta_2); //make initial measurements (assign "new" values)
         Observ.measure_energy2(beta_1, beta_2); //make initial measurements (assign "new" values)
         //Observ.measure_CL2L2(beta_1, beta_2); 
-		renyi.measure_H1(beta_1, beta_2,param.nS_);
+		renyi.measure_H1(beta_1, beta_2);
 
         if (EQMC == 0) MCsteps = param.EQL_;
         else MCsteps = param.MCS_;
@@ -73,7 +73,7 @@ int main(){
                 N_loop_old = N_loop_new;
                 //measurements            
                 Observ.measure_energy2(beta_1, beta_2); //measure energy
-				renyi.measure_H1(beta_1, beta_2,param.nS_);
+				renyi.measure_H1(beta_1, beta_2);
 				//Observ.measure_energy(beta_1, beta_2); //measure energy
                 //Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
             }
@@ -98,7 +98,7 @@ int main(){
                 N_loop_old = N_loop_new;
                 //measurements
 			    Observ.measure_energy2(beta_1, beta_2); //measure energy
-				renyi.measure_H1(beta_1, beta_2,param.nS_);
+				renyi.measure_H1(beta_1, beta_2);
 			    //Observ.measure_energy(beta_1, beta_2); //measure energy
                 //Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
             }
