@@ -28,8 +28,8 @@ class Basis//: public PARAMS
 		//Basis operator=(const Basis & );
 		int operator|(const Basis & ); //returns number of loops in overlap
 
-		void Basis::filewrite(const int & num);
-		void Basis::fileread(const int & num);
+		void filewrite(const int & num);
+		void fileread(const int & num);
 
 };
 

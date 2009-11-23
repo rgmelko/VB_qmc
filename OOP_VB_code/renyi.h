@@ -122,8 +122,14 @@ void Renyi::record(){
 
 void Renyi::output(PARAMS & p){
 
+	ofstream cfout;
+	cfout.open("00.data",ios::app);
+
     for (int i=0; i<TOTAL_H2.size(); i++)
-	  cout<<-log(TOTAL_H2.at(i)/(2.0*p.MCS_))<<" ";
+	  cfout<<-log(TOTAL_H2.at(i)/(2.0*p.MCS_))<<" ";
+	cfout<<endl;
+
+	cfout.close();
 
 }//output
 

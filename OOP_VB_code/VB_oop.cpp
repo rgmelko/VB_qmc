@@ -136,7 +136,7 @@ int main(){
 			if (EQMC == 1){ //for MC production step
 				Observ.output(param); //output observables
 				renyi.output(param);
-				cout<<endl;
+				//cout<<endl;
 			}
 
 		}//nBin
