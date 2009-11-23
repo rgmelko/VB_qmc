@@ -22,8 +22,8 @@ class Measure
       double TOT_cL_2;    //C(L/2,L/2)
 
       void zero();
-      void measure_energy(const Basis &, const Basis &);
-      void measure_energy2(const Basis &, const Basis &);
+      void measure_energy(const Basis &, const Basis &, const PARAMS &);
+      void measure_energy2(const Basis &, const Basis &, const PARAMS &);
       void measure_CL2L2(const Basis &, const Basis &);
       void record();
       void output(const PARAMS &);
@@ -42,7 +42,7 @@ void Measure::zero(){
     TOT_cL_2 = 0.0;
 }
 
-void Measure::measure_energy(const Basis & A, const Basis & B){
+void Measure::measure_energy(const Basis & A, const Basis & B, const PARAMS & p){
 //******************** Energy *********************	
 
 	int Nloop_num, Nloop_den; //number of loops in numerator and denominator
@@ -61,8 +61,11 @@ void Measure::measure_energy(const Basis & A, const Basis & B){
 	int off_d_count;
 	for (int i=0; i<Vr.numLattB; i++){ //Propogate Vr
 
-		a=Vr.Bst.at(i).A;
-		b=Vr.Bst.at(i).B;
+		//a=Vr.Bst.at(i).A;
+		//b=Vr.Bst.at(i).B;
+		a=p.Bst.at(i).A;
+		b=p.Bst.at(i).B;
+
 		bond1 = Vr.VBasis[a]; 
 		bond2 = Vr.VBasis[b];
 		//diagonal operation
@@ -99,7 +102,7 @@ void Measure::measure_energy(const Basis & A, const Basis & B){
 
 }//measure_energy 
 
-void Measure::measure_energy2(const Basis & A, const Basis & B){
+void Measure::measure_energy2(const Basis & A, const Basis & B, const PARAMS & p){
 //******************** Ann's Energy *********************	
 
 	vector<int> is_in_loop;  //records whether a spin is counted in a loop 
@@ -109,8 +112,10 @@ void Measure::measure_energy2(const Basis & A, const Basis & B){
     int m_diff = 0;
 	for (int i=0; i<A.numLattB; i++){
 
-		a=A.Bst.at(i).A;
-		b=A.Bst.at(i).B;
+		//a=A.Bst.at(i).A;
+		//b=A.Bst.at(i).B;
+		a=p.Bst.at(i).A;
+		b=p.Bst.at(i).B;
 
 		if (is_in_loop.at(a) == 0 || is_in_loop.at(b) == 0) cout<<"Energy 2 error \n";
 		else if (is_in_loop.at(a) != is_in_loop.at(b)) m_diff ++;

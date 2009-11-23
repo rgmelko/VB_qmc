@@ -6,19 +6,24 @@
 #include "projector.h"
 
 
-class Basis: public PARAMS
+class Basis//: public PARAMS
 {
 
-    public:
-        vector<int>  VBasis;   //VB basis
+	public:
+		int LinX;
+		int numSpin;
+		int numVB;
+		int numLattB;
 
-        long int Weight;
+		vector<int>  VBasis;   //VB basis
+
+		long int Weight;
         double Energy;
 
-        Basis();
+        Basis(const PARAMS &);
         Basis(const Basis &);  //copy constructor
         void print();
-        void Propogate(const Projector&, Basis&);
+        void Propogate(const Projector&, Basis&, const PARAMS &);
 
 		//Basis operator=(const Basis & );
 		int operator|(const Basis & ); //returns number of loops in overlap
@@ -28,16 +33,21 @@ class Basis: public PARAMS
 
 };
 
-Basis::Basis(){//Square lattice constructor
+Basis::Basis(const PARAMS &p){//Square lattice constructor
 
-    int a, b;
-    //int x,y;
+	LinX = p.nX_;
+	numLattB = p.numLattB;
+	numSpin = 2*p.nX_;
+	numVB = numSpin/2;
+
+	int a, b;
+	//int x,y;
     index2 temp;
     for (int i=0; i<numSpin; i+=2){
         a = i;
         b = i+1;
-        if ((i+1)%nX_ == 0)
-            b = a-nX_;
+        if ((i+1)%LinX == 0)
+            b = a-LinX;
         VBasis.push_back(b);  //0 connected to 1
         VBasis.push_back(a);  //1 connected to 0
     }
@@ -45,6 +55,11 @@ Basis::Basis(){//Square lattice constructor
 };
 
 Basis::Basis(const Basis & B){//Copy constructor
+
+	LinX = B.LinX;
+	numLattB = B.numLattB;
+	numSpin = 2*LinX;
+	numVB = numSpin/2;
 
 	int temp;
     for (int i=0; i<B.VBasis.size(); i++){
@@ -69,7 +84,7 @@ void Basis::print(){
 
 };//print
 
-void Basis::Propogate(const Projector& P, Basis& beta){
+void Basis::Propogate(const Projector& P, Basis& beta, const PARAMS & p){
 
     for (int i=0; i<(*this).VBasis.size(); i++)
         beta.VBasis.at(i) = (*this).VBasis.at(i);
@@ -80,8 +95,8 @@ void Basis::Propogate(const Projector& P, Basis& beta){
     int a,b;
     int bond1, bond2;
     for (int i=0; i<P.list_size; i++){
-        a=Bst.at(P.O_list[i]).A;
-        b=Bst.at(P.O_list[i]).B;
+        a=p.Bst.at(P.O_list[i]).A;
+        b=p.Bst.at(P.O_list[i]).B;
 
         bond1 = beta.VBasis[a]; 
         bond2 = beta.VBasis[b];
