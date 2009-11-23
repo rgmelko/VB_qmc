@@ -8,30 +8,36 @@
 class Renyi
 {
     private: 
-	  double entropy;
-	  double TOTAL_H1;
+	  vector<double> entropy;
+	  vector<double> TOTAL_H2;
 	  vector<int> inAreg; //inside the "A region
 	  int nSwap;
+	  int Nloop_den;   //number of loops in the denominator
 
     public: 
-	  Renyi(const int &, const int &);
+	  Renyi(const int &);
       void zero();
-      void measure_H1(const Basis &, const Basis &);
+      void measure_H2(const Basis &, const Basis &);
+      double calc_SWAP(const Basis &, const Basis &, const int &);
       void record();
       void output(PARAMS &);
 
 
 };//Renyi
 
-Renyi::Renyi(const int & Lsize, const int & num_Swap){
+Renyi::Renyi(const int & Lsize){
 
-	nSwap = num_Swap;
+	nSwap = Lsize;
 
-    inAreg.assign(2*Lsize,0);
-	for (int i=0; i<num_Swap; i++){
-		inAreg.at(i)=1;
-		inAreg.at(i+Lsize)=1;
-	}
+	entropy.assign(nSwap-2,0);  //resize and initialize entropy
+	TOTAL_H2.assign(nSwap-2,0);  //resize and initialize entropy total
+
+     //********TEMPORARY FIX: SEE calc_SWAP
+    //inAreg.assign(2*Lsize,0);
+	//for (int i=0; i<nSwap; i++){
+	//	inAreg.at(i)=1;
+	//	inAreg.at(i+Lsize)=1;
+	//}
 
 
 };//constructor
@@ -39,14 +45,34 @@ Renyi::Renyi(const int & Lsize, const int & num_Swap){
 
 void Renyi::zero(){
 
-	TOTAL_H1 = 0; 
+	TOTAL_H2.assign(nSwap-2,0);
 
 }//zero
 
 
-void Renyi::measure_H1(const Basis & A, const Basis & B){
+void Renyi::measure_H2(const Basis & A, const Basis & B){
 
-	int Nloop_num, Nloop_den; //number of loops in numerator and denominator
+	//Basis Vl(A);   //copy constructors
+	//Basis Vr(B);
+    //Nloop_den = Vl|Vr ; 
+
+	for (int r=1; r<nSwap-1; r++)
+		entropy.at(r-1) = calc_SWAP(A,B,r);
+
+}//measure_H2
+
+
+
+double Renyi::calc_SWAP(const Basis & A, const Basis & B, const int & X){
+
+    //TEMPORARY FIX
+    inAreg.assign(2*A.LinX,0);
+	for (int i=0; i<X; i++){
+		inAreg.at(i)=1;
+		inAreg.at(i+A.LinX)=1;
+	}
+
+	int Nloop_num; //number of loops in numerator and denominator
 	Basis Vl(A);   //copy constructors
 	Basis Vr(B);
     Nloop_den = Vl|Vr ; 
@@ -56,7 +82,7 @@ void Renyi::measure_H1(const Basis & A, const Basis & B){
 
     //cout<<nSwap<<" ";
     //Vr.print();
-	for (int i=0; i<nSwap; i++){
+	for (int i=0; i<X; i++){ //X is the maximum distance to take region "A"
       
 	  a = i;
 	  b = i+A.LinX; //b in the other layer
@@ -84,19 +110,24 @@ void Renyi::measure_H1(const Basis & A, const Basis & B){
 
     Nloop_num = Vl|Vr; //new overlap
 
-    entropy = 1.0*pow(2,Nloop_num - Nloop_den);
+    //entropy = 1.0*pow(2,Nloop_num - Nloop_den);
+    return 1.0*pow(2,Nloop_num - Nloop_den);
 
-}//measure_H1
+}//calc_SWAP
+
 
 void Renyi::record(){
 
-	TOTAL_H1 += entropy;
+    for (int i=0; i<TOTAL_H2.size(); i++)
+	   TOTAL_H2.at(i) += entropy.at(i);
 
 }//record
 
+
 void Renyi::output(PARAMS & p){
 
-	cout<<-log(TOTAL_H1/(2.0*p.MCS_))<<" ";
+    for (int i=0; i<TOTAL_H2.size(); i++)
+	  cout<<-log(TOTAL_H2.at(i)/(2.0*p.MCS_))<<" ";
 
 }//output
 
