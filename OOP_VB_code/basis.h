@@ -9,10 +9,6 @@
 class Basis: public PARAMS
 {
 
-    private: 
-
-        iMatrix is_neighbor; //alternate lookup array
-
     public:
         vector<int>  VBasis;   //VB basis
 
@@ -23,14 +19,12 @@ class Basis: public PARAMS
         Basis(const Basis &);  //copy constructor
         void print();
         void Propogate(const Projector&, Basis&);
-        double Calc_Energy();
 
 		//Basis operator=(const Basis & );
 		int operator|(const Basis & ); //returns number of loops in overlap
 
 		void Basis::filewrite(const int & num);
 		void Basis::fileread(const int & num);
-
 
 };
 
@@ -48,17 +42,6 @@ Basis::Basis(){//Square lattice constructor
         VBasis.push_back(a);  //1 connected to 0
     }
 
-    //initialize neighbor list (for energy calc)
-    is_neighbor.resize(numSpin,numSpin);
-    for (int i=0; i<numSpin; i++)
-        for (int j=0; j<numSpin; j++)
-            is_neighbor(i,j) = 0;
-
-    for (int i=0; i<Bst.size(); i++){
-        is_neighbor(Bst[i].A,Bst[i].B) = 1;
-        is_neighbor(Bst[i].B,Bst[i].A) = 1;
-    }
-
 };
 
 Basis::Basis(const Basis & B){//Copy constructor
@@ -67,17 +50,6 @@ Basis::Basis(const Basis & B){//Copy constructor
     for (int i=0; i<B.VBasis.size(); i++){
 		temp = B.VBasis.at(i);
         (*this).VBasis.push_back(temp);  //0 connected to 1
-    }
-
-    //initialize neighbor list (for energy calc)
-    is_neighbor.resize(numSpin,numSpin);
-    for (int i=0; i<numSpin; i++)
-        for (int j=0; j<numSpin; j++)
-            is_neighbor(i,j) = 0;
-
-    for (int i=0; i<Bst.size(); i++){
-        is_neighbor(Bst[i].A,Bst[i].B) = 1;
-        is_neighbor(Bst[i].B,Bst[i].A) = 1;
     }
 
 };
@@ -133,25 +105,6 @@ void Basis::Propogate(const Projector& P, Basis& beta){
     beta.Energy /= 1.0*P.list_size;
 
 }//Propogate
-
-double Basis::Calc_Energy(){
-
-    double n_ij = 0;
-    int a,b;
-    for (int i=0; i<VBasis.size(); i++){
-        a = i;
-        b = VBasis.at(i);
-
-        if (is_neighbor(a,b) == 1)
-           n_ij += 1; 
-    }//i
-
-    n_ij *= 0.5;   //think I've double counted
-    n_ij += 1; //add the +1
-
-    return n_ij;
-
-}
 
 
 int Basis::operator|(const Basis & B){
