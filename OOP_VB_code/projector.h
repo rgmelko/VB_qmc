@@ -5,8 +5,12 @@
 #include "head_proj.h"
 
 
-class Projector: public PARAMS
+class Projector//: public PARAMS
 {
+
+	private:
+	    int numLattB;
+		int sample;
 
     public:
         vector<int>  O_list;  //Operator list, the Bst number
@@ -14,8 +18,7 @@ class Projector: public PARAMS
 
         int list_size;
 
-        Projector(MTRand& ran);           //constructor 1
-        Projector(const int);  //constructor 2
+        Projector(MTRand& ran, const PARAMS &);           //constructor 1
         void print();
         void Sample_Ops(MTRand& ran); //swap a number of operators
 
@@ -27,34 +30,32 @@ class Projector: public PARAMS
 
 };
 
-Projector::Projector(MTRand& ran){ //overloaded constructor 1
+Projector::Projector(MTRand& ran, const PARAMS & p){ //overloaded constructor 1
 
-    list_size = NN_;
-    //cout<<"inside "<<N<<" \n";
+    sample = p.sample_;
+    numLattB = p.Bst.size();
+	if (numLattB != p.numLattB) cout<<"Proj constructor error \n";
+    list_size = p.NN_;
 
     //printBst();
 
     int temp;
     for (int i=0; i<list_size; i++){
-        temp = ran.randInt(Bst.size() - 1); //random bond operator
+        temp = ran.randInt(numLattB - 1); //random bond operator
         O_list.push_back(temp);
     }
 
 
 }//constructor
 
-//Projector::Projector(const int N){ //overloaded constructor 2
-//
-//
-//}//constructor
 
 void Projector::print(){
 
     cout<<"List size is: "<<list_size<<endl;
     //cout<<O_list.size()<<endl;
     for (int i=0; i<list_size; i++){
-        cout<<O_list.at(i)<<" ";
-        Bst[O_list.at(i)].print();
+        cout<<O_list.at(i)<<"\n";
+        //Bst[O_list.at(i)].print();
     }
 
 }//print
@@ -63,11 +64,11 @@ void Projector::print(){
 void Projector::Sample_Ops(MTRand& ran){
 
    int element, oper, old;
-   for (int i=0; i<sample_; i++){
+   for (int i=0; i<sample; i++){
        element = ran.randInt(O_list.size()-1);
        old = O_list.at(element);
        do {
-          oper = ran.randInt(Bst.size() - 1); //random bond operator
+          oper = ran.randInt(numLattB - 1); //random bond operator
        } while (oper == old);
        O_list.at(element) = oper;
    }

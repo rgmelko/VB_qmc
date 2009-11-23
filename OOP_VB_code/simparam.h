@@ -23,8 +23,6 @@ class PARAMS
 
         void printBst();
 		
-    protected:
-
         //derived constants
         int numVB; //number of valence bonds = N/2
         long int NN_;  //This is the length of the operator string

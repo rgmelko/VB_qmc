@@ -17,10 +17,10 @@ int main(){
     PARAMS param;
     MTRand mrand(param.SEED_); //random number for metropolis
 
-    Projector P1(mrand); //initialize projector 1
-    Projector P2(mrand); //initialize projector 2
-    Projector Pold1(mrand); //initialize old projector  (for metropolis)
-    Projector Pold2(mrand); //initialize old projector  (for metropolis)
+    Projector P1(mrand,param); //initialize projector 1
+    Projector P2(mrand,param); //initialize projector 2
+    Projector Pold1(mrand,param); //initialize old projector  (for metropolis)
+    Projector Pold2(mrand,param); //initialize old projector  (for metropolis)
 
     Basis alpha(param);  //This is the starting baisis |V>
     Basis beta_1(param); //This is P1|V> = w1|V1>
