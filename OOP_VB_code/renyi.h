@@ -66,11 +66,11 @@ void Renyi::measure_H2(const Basis & A, const Basis & B){
 double Renyi::calc_SWAP(const Basis & A, const Basis & B, const int & X){
 
     //TEMPORARY FIX
-    inAreg.assign(2*A.LinX,0);
-	for (int i=0; i<X; i++){
-		inAreg.at(i)=1;
-		inAreg.at(i+A.LinX)=1;
-	}
+    //inAreg.assign(2*A.LinX,0);
+	//for (int i=0; i<X; i++){
+	//	inAreg.at(i)=1;
+	//	inAreg.at(i+A.LinX)=1;
+	//}
 
 	int Nloop_num; //number of loops in numerator and denominator
 	Basis Vl(A);   //copy constructors
@@ -80,8 +80,6 @@ double Renyi::calc_SWAP(const Basis & A, const Basis & B, const int & X){
 	int a,b, bond1, bond2;
 	int old1, old2, old3, old4;
 
-    //cout<<nSwap<<" ";
-    //Vr.print();
 	for (int i=0; i<X; i++){ //X is the maximum distance to take region "A"
       
 	  a = i;
@@ -90,14 +88,16 @@ double Renyi::calc_SWAP(const Basis & A, const Basis & B, const int & X){
 	  bond1 = Vr.VBasis[a]; 
 	  bond2 = Vr.VBasis[b];
 
-	  if (inAreg.at(bond2) == 1 )
+	  //if (inAreg.at(bond2) == 1 )
+	  if (bond2 < X || (bond2 > A.LinX && bond2< (A.LinX+X) ) )  //bonded spin in the zone
 		  Vr.VBasis[a] = bond2 - A.LinX;
       else{
 		  Vr.VBasis[a] = bond2;
 		  Vr.VBasis[bond2] = a;
 	  }
 
-	  if (inAreg.at(bond1) == 1 )
+	  //if (inAreg.at(bond1) == 1 )
+	  if (bond1 < X || (bond1 > A.LinX && bond1< (A.LinX+X) ) )  //bonded spin in the zone
 		  Vr.VBasis[b] = bond1 + A.LinX;
       else{
 		  Vr.VBasis[b] = bond1;
@@ -105,8 +105,6 @@ double Renyi::calc_SWAP(const Basis & A, const Basis & B, const int & X){
 	  }
 
 	}//nSwap 
-	//Vr.print();
-	//cout<<endl;
 
     Nloop_num = Vl|Vr; //new overlap
 
