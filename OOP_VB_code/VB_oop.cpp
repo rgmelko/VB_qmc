@@ -1,4 +1,4 @@
-//
+// 
 // VB_oop.cpp: the main body of the program
 // A OOP VB basis projector code 
 // Roger Melko, Aug 29 2009, Santa Barbara
