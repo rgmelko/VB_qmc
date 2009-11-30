@@ -76,7 +76,7 @@ LATTICE::LATTICE(int x, int y, int z, int bondops, int r, int its,
   ysites = y;
   zsites = z;
   number_of_bondops = 2*bondops;
-  change_number = 2*r;
+  change_number = r;
   iterations = its;
   bondfile1 = bondopfile1;
   bondfile2 = bondopfile2;
