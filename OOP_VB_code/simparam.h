@@ -44,7 +44,7 @@ PARAMS::PARAMS(){
     pfin >> nBin_;
     pfin.close();
 
-	sample_ *= 2*nX_*nX_;  // multiply by number of spins (in 2D)
+	NN_ *= 2*nX_*nX_;  // multiply by number of spins (in 2D)
 
    //   //initialize constants : 1D linear
    //   LinX = nX_;
