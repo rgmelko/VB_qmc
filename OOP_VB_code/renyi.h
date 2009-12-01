@@ -29,8 +29,8 @@ Renyi::Renyi(const int & Lsize){
 
 	nSwap = Lsize;
 
-	entropy.assign(nSwap-2,0);  //resize and initialize entropy
-	TOTAL_H2.assign(nSwap-2,0);  //resize and initialize entropy total
+	entropy.assign(nSwap-1,0);  //resize and initialize entropy
+	TOTAL_H2.assign(nSwap-1,0);  //resize and initialize entropy total
 
      //********TEMPORARY FIX: SEE calc_SWAP
     //inAreg.assign(2*Lsize,0);
@@ -45,7 +45,7 @@ Renyi::Renyi(const int & Lsize){
 
 void Renyi::zero(){
 
-	TOTAL_H2.assign(nSwap-2,0);
+	TOTAL_H2.assign(nSwap-1,0);
 
 }//zero
 
@@ -56,7 +56,7 @@ void Renyi::measure_H2(const Basis & A, const Basis & B){
 	//Basis Vr(B);
     //Nloop_den = Vl|Vr ; 
 
-	for (int r=1; r<nSwap-1; r++)
+	for (int r=1; r<nSwap; r++)
 		entropy.at(r-1) = calc_SWAP(A,B,r);
 
 }//measure_H2
@@ -65,12 +65,24 @@ void Renyi::measure_H2(const Basis & A, const Basis & B){
 
 double Renyi::calc_SWAP(const Basis & A, const Basis & B, const int & X){
 
-    //TEMPORARY FIX
-    inAreg.assign(2*A.LinX,0);
+    //  //1D
+    //  inAreg.assign(2*A.LinX,0);
+	//  for (int i=0; i<X; i++){
+	//  	inAreg.at(i)=1;
+	//  	inAreg.at(i+A.LinX)=1;
+	//  }
+
+	//2D
+	inAreg.assign(A.numSpin,0);
 	for (int i=0; i<X; i++){
-		inAreg.at(i)=1;
-		inAreg.at(i+A.LinX)=1;
+		for (int j=0; j<X; j++){
+			inAreg.at(i+j*A.LinX)=1;
+			inAreg.at(i+j*A.LinX+A.numSpin/2)=1;
+		}
 	}
+
+	//for (int i=0; i < inAreg.size(); i++)
+	//	cout<<i<<" "<<inAreg.at(i)<<endl;
 
 	int Nloop_num; //number of loops in numerator and denominator
 	Basis Vl(A);   //copy constructors
@@ -83,20 +95,20 @@ double Renyi::calc_SWAP(const Basis & A, const Basis & B, const int & X){
 	for (int i=0; i<X; i++){ //X is the maximum distance to take region "A"
       
 	  a = i;
-	  b = i+A.LinX; //b in the other layer
+	  b = i+A.numSpin/2; //b in the other layer
 
 	  bond1 = Vr.VBasis[a]; 
 	  bond2 = Vr.VBasis[b];
 
 	  if (inAreg.at(bond2) == 1 )
-		  Vr.VBasis[a] = bond2 - A.LinX;
+		  Vr.VBasis[a] = bond2 - A.numSpin/2;
       else{
 		  Vr.VBasis[a] = bond2;
 		  Vr.VBasis[bond2] = a;
 	  }
 
 	  if (inAreg.at(bond1) == 1 )
-		  Vr.VBasis[b] = bond1 + A.LinX;
+		  Vr.VBasis[b] = bond1 + A.numSpin/2;
       else{
 		  Vr.VBasis[b] = bond1;
 		  Vr.VBasis[bond1] = b;
