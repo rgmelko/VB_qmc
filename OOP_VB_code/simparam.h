@@ -44,57 +44,73 @@ PARAMS::PARAMS(){
     pfin >> nBin_;
     pfin.close();
 
-    //initialize constants : 
-	//1D linear
-	LinX = nX_;
-	numSpin = 2*nX_;
-	numVB = numSpin/2;
+   //   //initialize constants : 1D linear
+   //   LinX = nX_;
+   //   numSpin = 2*nX_;
+   //   numVB = numSpin/2;
+   // 	//initialize lattice bond array: 1D linear
+   // 	numLattB = 0;
+   // 	int a,b;
+   // 	index2 temp;
+   // 	for (int i=0; i<numSpin; i++){
+   // 		a = i;
+   // 		b = i+1;
+   // 		if ( b%nX_ == 0) b -= nX_;
+   // 		else{
+   // 		  if (i%2 == 0) temp.set(a,b);  //order (A,B) sublattice
+   // 	      else temp.set(b,a);
+   // 		  Bst.push_back(temp);
+   // 		  numLattB ++;
+   // 		}//OBC
+   // 
+   // 	}
+   //  //cout<<numLattB<<endl;
+
     //2D square
-  // LinX = nX_;
-  // numSpin = nX_ * nX_;
-  // numVB= numSpin/2;
-  // numLattB= 2*numSpin;
-
-	numLattB = 0;
-	//initialize lattice bond array: 1D linear
-	int a,b;
-	index2 temp;
-	for (int i=0; i<numSpin; i++){
-		a = i;
-		b = i+1;
-		if ( b%nX_ == 0) b -= nX_;
-		else{
-		  if (i%2 == 0) temp.set(a,b);  //order (A,B) sublattice
-	      else temp.set(b,a);
-		  Bst.push_back(temp);
-		  numLattB ++;
-		}//OBC
-
-	}
-	//cout<<numLattB<<endl;
-
-   // //initialize lattice bond array: 2D square
-   // int a, b;
-   // int x,y;
-   // index2 temp;
-   // for (int i=0; i<numSpin; i++){
-   //     //horizontal bond
-   //     a = i;
-   //     b = i+1;
-   //     if ( b%nX_ == 0) b -= nX_;
-   //     x = a%nX_; y = a/nX_;
-   //     if ((x+y)%2==0) temp.set(a,b);  //order (A,B) sublattice
-   //     else temp.set(b,a);
-   //     Bst.push_back(temp);
-   //     //vertical bond
-   //     a = i;
-   //     b = i+nX_;
-   //     if (b>= numSpin) b -= numSpin;
-   //     x = a%nX_; y = a/nX_;
-   //     if ((x+y)%2==0) temp.set(a,b);  //order (A,B) sublattice
-   //     else temp.set(b,a);
-   //     Bst.push_back(temp);
-   // }
+    LinX = nX_;
+    numSpin = 2* nX_ * nX_;
+    numVB= numSpin/2;
+    numLattB= 2*numSpin;
+    //initialize lattice bond array: 2D square
+    int a, b;
+    int x,y;
+    index2 temp;
+    for (int i=0; i<numSpin/2; i++){  //REAL SYSTEM (LAYER 1)
+        //horizontal bond
+        a = i;
+        b = i+1;
+        if ( b%nX_ == 0) b -= nX_;
+        x = a%nX_; y = a/nX_;
+        if ((x+y)%2==0) temp.set(a,b);  //order (A,B) sublattice
+        else temp.set(b,a);
+        Bst.push_back(temp);
+        //vertical bond
+        a = i;
+        b = i+nX_;
+        if (b>= LinX*LinX) b -= LinX*LinX;
+        x = a%nX_; y = a/nX_;
+        if ((x+y)%2==0) temp.set(a,b);  //order (A,B) sublattice
+        else temp.set(b,a);
+        Bst.push_back(temp);
+    }//layer 1
+    for (int i=numSpin/2; i<numSpin; i++){  //ANCILLARY SYSTEM (LAYER 2)
+        //horizontal bond
+        a = i;
+        b = i+1;
+        if ( b%nX_ == 0) b -= nX_;
+        x = a%nX_; y = a/nX_;
+        if ((x+y)%2==0) temp.set(a,b);  //order (A,B) sublattice
+        else temp.set(b,a);
+        Bst.push_back(temp);
+        //vertical bond
+        a = i;
+        b = i+nX_;
+        if (b>= numSpin) b -= LinX*LinX;
+        x = a%nX_; y = a/nX_;
+        if ((x+y)%2==0) temp.set(a,b);  //order (A,B) sublattice
+        else temp.set(b,a);
+        Bst.push_back(temp);
+    }//layer2
 
 }//constructor
 

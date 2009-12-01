@@ -37,8 +37,8 @@ Basis::Basis(const PARAMS &p){//Square lattice constructor
 
 	LinX = p.nX_;
 	numLattB = p.numLattB;
-	numSpin = 2*p.nX_;
-	numVB = numSpin/2;
+	numSpin = p.numSpin;
+	numVB = p.numVB;
 
 	int a, b;
 	//int x,y;
@@ -58,8 +58,8 @@ Basis::Basis(const Basis & B){//Copy constructor
 
 	LinX = B.LinX;
 	numLattB = B.numLattB;
-	numSpin = 2*LinX;
-	numVB = numSpin/2;
+	numSpin = B.numSpin;
+	numVB = B.numVB;
 
 	int temp;
     for (int i=0; i<B.VBasis.size(); i++){
