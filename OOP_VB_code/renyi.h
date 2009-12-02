@@ -92,29 +92,35 @@ double Renyi::calc_SWAP(const Basis & A, const Basis & B, const int & X){
 	int a,b, bond1, bond2;
 	int old1, old2, old3, old4;
 
-	for (int i=0; i<X; i++){ //X is the maximum distance to take region "A"
-      
-	  a = i;
-	  b = i+A.numSpin/2; //b in the other layer
+    int sA; //spin in region "A"
+	for (int i=0; i<X; i++){ //X is the maximum *linear* distance to take region "A"
+		for (int j=0; j<X; j++){ 
 
-	  bond1 = Vr.VBasis[a]; 
-	  bond2 = Vr.VBasis[b];
+			sA = i+j*A.LinX;
+			if (inAreg.at(sA) != 1) cout<<"Renyi error: A reg\n";
 
-	  if (inAreg.at(bond2) == 1 )
-		  Vr.VBasis[a] = bond2 - A.numSpin/2;
-      else{
-		  Vr.VBasis[a] = bond2;
-		  Vr.VBasis[bond2] = a;
-	  }
+			a = sA;
+			b = sA + A.numSpin/2; //b in the other layer
 
-	  if (inAreg.at(bond1) == 1 )
-		  Vr.VBasis[b] = bond1 + A.numSpin/2;
-      else{
-		  Vr.VBasis[b] = bond1;
-		  Vr.VBasis[bond1] = b;
-	  }
+			bond1 = Vr.VBasis[a]; 
+			bond2 = Vr.VBasis[b];
 
-	}//nSwap 
+			if (inAreg.at(bond2) == 1 )
+				Vr.VBasis[a] = bond2 - A.numSpin/2;
+			else{
+				Vr.VBasis[a] = bond2;
+				Vr.VBasis[bond2] = a;
+			}
+
+			if (inAreg.at(bond1) == 1 )
+				Vr.VBasis[b] = bond1 + A.numSpin/2;
+			else{
+				Vr.VBasis[b] = bond1;
+				Vr.VBasis[bond1] = b;
+			}
+
+		}//j
+	}//i
 
     Nloop_num = Vl|Vr; //new overlap
 
