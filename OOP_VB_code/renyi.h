@@ -18,7 +18,7 @@ class Renyi
 	  Renyi(const int &);
       void zero();
       void measure_H2(const Basis &, const Basis &);
-      double calc_SWAP(const Basis &, const Basis &, const int &);
+      int calc_SWAP(const Basis &, const Basis &, const int &);
       void record();
       void output(PARAMS &);
 
@@ -52,18 +52,20 @@ void Renyi::zero(){
 
 void Renyi::measure_H2(const Basis & A, const Basis & B){
 
-	//Basis Vl(A);   //copy constructors
-	//Basis Vr(B);
-    //Nloop_den = Vl|Vr ; 
+	Basis Vl(A);   //copy constructors
+	Basis Vr(B);
+    Nloop_den = Vl|Vr ; 
 
-	for (int r=1; r<nSwap; r++)
-		entropy.at(r-1) = calc_SWAP(A,B,r);
+    int Nloop_num;
+	for (int r=1; r<nSwap; r++){
+        Nloop_num = calc_SWAP(A,B,r);
+		entropy.at(r-1) = 1.0*pow(2,Nloop_num - Nloop_den);
+	}
 
 }//measure_H2
 
 
-
-double Renyi::calc_SWAP(const Basis & A, const Basis & B, const int & X){
+int Renyi::calc_SWAP(const Basis & A, const Basis & B, const int & X){
 
     //  //1D
     //  inAreg.assign(2*A.LinX,0);
@@ -87,7 +89,7 @@ double Renyi::calc_SWAP(const Basis & A, const Basis & B, const int & X){
 	int Nloop_num; //number of loops in numerator and denominator
 	Basis Vl(A);   //copy constructors
 	Basis Vr(B);
-    Nloop_den = Vl|Vr ; 
+    //Nloop_den = Vl|Vr ; 
 
 	int a,b, bond1, bond2;
 	int old1, old2, old3, old4;
@@ -125,7 +127,8 @@ double Renyi::calc_SWAP(const Basis & A, const Basis & B, const int & X){
     Nloop_num = Vl|Vr; //new overlap
 
     //entropy = 1.0*pow(2,Nloop_num - Nloop_den);
-    return 1.0*pow(2,Nloop_num - Nloop_den);
+    //return 1.0*pow(2,Nloop_num - Nloop_den);
+    return Nloop_num;
 
 }//calc_SWAP
 
