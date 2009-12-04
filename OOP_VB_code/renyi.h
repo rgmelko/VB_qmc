@@ -15,9 +15,11 @@ class Renyi
 	  int Nloop_den;   //number of loops in the denominator
 
     public: 
-	  Renyi(const int &);
+	  Renyi(const int &);  //direct <swap>
+	  Renyi(const int &, const int &); //ratio 
       void zero();
       void measure_H2(const Basis &, const Basis &);
+	  void measure_ratio(const Basis & , const Basis & , const int & );
       int calc_SWAP_1D(const Basis &, const Basis &, const int &);
       int calc_SWAP_2D(const Basis &, const Basis &, const int &);
       void record();
@@ -36,6 +38,15 @@ Renyi::Renyi(const int & Lsize){
 };//constructor
 
 
+Renyi::Renyi(const int & Lsize, const int & x_num){
+
+	nSwap = Lsize-x_num; //exclude some number of points for the overlap
+
+	entropy.assign(nSwap-2,0);  //resize and initialize entropy
+	TOTAL_H2.assign(nSwap-2,0);  //resize and initialize entropy total
+
+};//constructor
+
 void Renyi::zero(){
 
 	TOTAL_H2.assign(nSwap-2,0);
@@ -53,6 +64,24 @@ void Renyi::measure_H2(const Basis & A, const Basis & B){
 	for (int r=1; r<nSwap-1; r++){
         Nloop_num = calc_SWAP_1D(A,B,r);
 		entropy.at(r-1) = 1.0*pow(2,Nloop_num - Nloop_den);
+	}
+
+}//measure_H2
+
+
+void Renyi::measure_ratio(const Basis & A, const Basis & B, const int & x_num){
+
+	Basis Vl(A);   //copy constructors
+	Basis Vr(B);
+    //Nloop_den = Vl|Vr ; 
+	Nloop_den = calc_SWAP_1D(Vl,Vr,x_num);
+
+    int Nloop_num;
+	int r=x_num;
+	for (int i=0; i<entropy.size(); i++){
+        Nloop_num = calc_SWAP_1D(A,B,r);
+		entropy.at(i) = 1.0*pow(2,Nloop_num - Nloop_den);
+		r++;
 	}
 
 }//measure_H2
