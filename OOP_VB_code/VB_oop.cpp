@@ -32,7 +32,7 @@ int main(){
     double DeltaW;
     
     Measure Observ; //create measurement object
-	Renyi renyi(param.nX_, 6);
+	Renyi renyi(param.nX_, param.ratio_);
 
 	int MCsteps;
 	int bin;
@@ -63,14 +63,14 @@ int main(){
 			W1_old = beta_1.Weight;
 			W2_old = beta_2.Weight;
 			//N_loop_old = beta_1|beta_2;     // calculate number of loops in <V1 | V2>
-			N_loop_old = renyi.calc_SWAP_1D(beta_1,beta_2,6);      // for ratio
+			N_loop_old = renyi.calc_SWAP_1D(beta_1,beta_2,param.ratio_);      // for ratio
 
 			//initialize measurements: two steps
 			//Observ.measure_energy(beta_1, beta_2, param); //make initial measurements (assign "new" values)
 			Observ.measure_energy2(beta_1, beta_2, param); //make initial measurements (assign "new" values)
 			//Observ.measure_CL2L2(beta_1, beta_2); 
 			//renyi.measure_H2(beta_1, beta_2);
-            renyi.measure_ratio(beta_1, beta_2,6);
+            renyi.measure_ratio(beta_1, beta_2,param.ratio_);
 
 			if (EQMC == 0) MCsteps = param.EQL_;
 			else MCsteps = param.MCS_;
@@ -82,7 +82,7 @@ int main(){
 				alpha.Propogate(P1,beta_1,param); //propogate basis
 				W1_new =  beta_1.Weight;    //calculate new weight
 				//N_loop_new = beta_1|beta_2; //calcualte new overlap
-				N_loop_new = renyi.calc_SWAP_1D(beta_1,beta_2,6);      // for ratio
+				N_loop_new = renyi.calc_SWAP_1D(beta_1,beta_2,param.ratio_);      // for ratio
 				DeltaW = pow(2,W1_old - W1_new + N_loop_new - N_loop_old);
 				if (DeltaW > mrand.rand()){ //Accept the move
 					W1_old = W1_new;
@@ -91,7 +91,7 @@ int main(){
 					//measurements            
 					Observ.measure_energy2(beta_1, beta_2, param); //measure energy
 					//renyi.measure_H2(beta_1, beta_2);
-					renyi.measure_ratio(beta_1, beta_2,6);
+					renyi.measure_ratio(beta_1, beta_2,param.ratio_);
 					//Observ.measure_energy(beta_1, beta_2, param); //measure energy
 					//Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
 				}
@@ -110,7 +110,7 @@ int main(){
 				alpha.Propogate(P2,beta_2,param); //propogate basis
 				W2_new =  beta_2.Weight;    //calculate new weight
 				//N_loop_new = beta_1|beta_2;         //calcualte new overlap
-				N_loop_new = renyi.calc_SWAP_1D(beta_1,beta_2,6);      // for ratio
+				N_loop_new = renyi.calc_SWAP_1D(beta_1,beta_2,param.ratio_);      // for ratio
 				DeltaW = pow(2,W2_old - W2_new + N_loop_new - N_loop_old);
 				if (DeltaW > mrand.rand()){ //Accept the move
 					W2_old = W2_new;
@@ -119,7 +119,7 @@ int main(){
 					//measurements
 					Observ.measure_energy2(beta_1, beta_2, param); //measure energy
 					//renyi.measure_H2(beta_1, beta_2);
-					renyi.measure_ratio(beta_1, beta_2,6);
+					renyi.measure_ratio(beta_1, beta_2,param.ratio_);
 					//Observ.measure_energy(beta_1, beta_2, param); //measure energy
 					//Observ.measure_CL2L2(beta_1, beta_2);  //measure spin-spin correlation function
 				}

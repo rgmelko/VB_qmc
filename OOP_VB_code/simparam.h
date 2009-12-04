@@ -15,6 +15,7 @@ class PARAMS
 		int MCS_; //the number of Monte Carlo steps
         int nX_;     //linear size of square lattice
         int nBin_;     //number of production bins
+        int ratio_;     //the number for Renyi in the denominator of SWAP
         long SEED_;
         PARAMS();
 
@@ -42,6 +43,7 @@ PARAMS::PARAMS(){
     pfin >> MCS_;
     pfin >> SEED_;
     pfin >> nBin_;
+    pfin >> ratio_;
     pfin.close();
 
 //	NN_ *= 2*nX_*nX_;  // multiply by number of spins (in 2D)
