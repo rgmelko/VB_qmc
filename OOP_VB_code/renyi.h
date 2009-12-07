@@ -32,8 +32,8 @@ Renyi::Renyi(const int & Lsize){
 
 	nSwap = Lsize;
 
-	entropy.assign(nSwap-2,0);  //resize and initialize entropy
-	TOTAL_H2.assign(nSwap-2,0);  //resize and initialize entropy total
+	entropy.assign(nSwap-1,0);  //resize and initialize entropy
+	TOTAL_H2.assign(nSwap-1,0);  //resize and initialize entropy total
 
 };//constructor
 
@@ -42,14 +42,14 @@ Renyi::Renyi(const int & Lsize, const int & x_num){
 
 	nSwap = Lsize-x_num; //exclude some number of points for the overlap
 
-	entropy.assign(nSwap-2,0);  //resize and initialize entropy
-	TOTAL_H2.assign(nSwap-2,0);  //resize and initialize entropy total
+	entropy.assign(nSwap-1,0);  //resize and initialize entropy
+	TOTAL_H2.assign(nSwap-1,0);  //resize and initialize entropy total
 
 };//constructor
 
 void Renyi::zero(){
 
-	TOTAL_H2.assign(nSwap-2,0);
+	TOTAL_H2.assign(nSwap-1,0);
 
 }//zero
 
@@ -61,9 +61,12 @@ void Renyi::measure_H2(const Basis & A, const Basis & B){
     Nloop_den = Vl|Vr ; 
 
     int Nloop_num;
-	for (int r=1; r<nSwap-1; r++){
-        Nloop_num = calc_SWAP_1D(A,B,r);
+	int r=1;
+	//for (int r=1; r<nSwap; r++){
+	for (int i=0; i<entropy.size(); i++){
+		Nloop_num = calc_SWAP_2D(A,B,r);
 		entropy.at(r-1) = 1.0*pow(2,Nloop_num - Nloop_den);
+		r++;
 	}
 
 }//measure_H2
@@ -73,12 +76,12 @@ void Renyi::measure_ratio(const Basis & A, const Basis & B, const int & x_num){
 
 	Basis Vl(A);   //copy constructors
 	Basis Vr(B);
-	Nloop_den = calc_SWAP_1D(Vl,Vr,x_num);
+	Nloop_den = calc_SWAP_2D(Vl,Vr,x_num);  //1D or 2D: careful
 
     int Nloop_num;
 	int r=x_num+1;
 	for (int i=0; i<entropy.size(); i++){
-        Nloop_num = calc_SWAP_1D(A,B,r);
+        Nloop_num = calc_SWAP_2D(A,B,r);
 		entropy.at(i) = 1.0*pow(2,Nloop_num - Nloop_den);
 		r++;
 	}
