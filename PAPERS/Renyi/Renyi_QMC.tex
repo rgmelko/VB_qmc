@@ -58,14 +58,146 @@ definition of the von Neumann entropy, $S_1 (\rho_A) = - {\rm Tr}( \rho_A \ln \r
 is accessible numerically only in procedures where the reduced density matrix can be calculated directly, such as Lanczos 
 or DMRG.  Scalable simulations methods in $D>1$, needed in order to study the groundstate, finite-temperature, and 
 critical properties of the vast majority of systems of interested to condensed-matter physics, are so far essentially
-restricted to quantum Monte Carlo (QMC).  In QMC, the wavefunction if the system is sampled inside of the trace...
+restricted to quantum Monte Carlo (QMC).  However, the functional dependence of $\rho_A$ inside of the trace in the 
+von Neumann makes calculating $S_1$ in QMC difficult or impossible.  
 
- von Neumann entropy is 
+The general Renyi $\alpha$-entropies has recently attracted considerable attention, due to their ability to encode
+information about the whole ``entanglement spectrum'' of $\rho_A$, together allowing the set of $S_{\alpha}$ to contain 
+much more information that $S_1$ alone.  For example, the concept of topological entanglement entropy has recently been
+generalized to the family of Renyi entropies, where it has been shown to be equal to the logarithm of the total quantum 
+dimension, $S_{\rm top} \propto \log D$, regardless of $\alpha$ \cite{PI}.  Universal corrections to the scaling of $S_{\alpha}$ 
+have also recently been calculated in a field-theoretic treatment of the $O(N)$ model \cite{Max}.
+In addition, two Renyi entropies $S_{\alpha}$ and $S_{\beta}$ obey the fundamental
+inequality $S_{\alpha} \geq S_{\beta}$ when $\alpha > \beta$, making for example $S_2$ useful as a rigorous
+lower bound on $S_1$.  
+
+In this paper we show that the Renyi entropy $S_2$ can be represented in the valence-bond basis as the expectation
+value of a unitary swap operator.  This swap operator is directly accessible as a simple expectation value in a QMC simulation scheme
+based on the valence-bond basis.  Using QMC simulations, we calculate the entropy $S_2$ for a $S=1/2$ Heisenberg model
+in 1D and 2D lattices.  In 1D, we demonstrate that $S_2$ calculated with QMC converges to the exact result obtained with DMRG simulations.  In 2D, we show that the leading order term in the scaling of $S_2$ goes like the boundary of the region $A$, 
+confirming the area law expected from recent studies \cite{Ann}.
 
 \begin{figure} {
-\includegraphics[width=2in]{swap_2.eps} \caption{(color online) 
-\label{swap_2}}} \end{figure}
+\includegraphics[width=2.5in]{swap_2.eps} \caption{(color online) 
+\label{swap_2}
+}
+} \end{figure}
 
+{\it Valence-bond basis and the Swap operator.}-- We follow the notation of Sandvik, and write the expansion of a singlet
+wavefunction $\Psi$ of $N$ spins as $N/2$ valence bonds:
+\begin{equation}
+| \Psi \rangle = \sum_r f_r|(a^r_1,b^r_1) \ldots (a^r_{N/2},b^r_{N/2}) \rangle = \sum_r f_r| V_r \rangle
+\end{equation}
+where the valence bonds (singlet pairs) denoted by $(a,b) = (\uparrow_a \downarrow_b - \downarrow_a \uparrow_b)/\sqrt{2}$ occur between sites of the opposite sublattices of a bipartite lattice, and $r$ labels all possible tilings of bonds.  The coefficients $f_r$ are unknown, but an importance sampling scheme for the valence bond state $| V_r \rangle$ is outlined below.  
+
+We now give an equivalent definition of
+the Renyi entropy $S_2$ as the expectation
+value of a {\it Swap} operator on two copies of the system.  
+%We first
+%present a formal solution to the problem of measuring the entropy
+%in QMC, Eq.~(\ref{ensembleavg}) below, as a QMC averge.
+%We then explain how to better perform the statistical sampling for
+%actual calculations.
+Define an
+operator $Swap_A$ which acts on two copies of the system, swapping the
+configurations within region $A$.  To more precisely define the operator
+$Swap_A$, we now write out its matrix elements in a product basis.
+Let $|\alpha\rangle$  represent a complete basis of states in region
+$A$ and let $|\beta\rangle$ represent a complete basis of states in
+region $B$.  Then, $|\alpha\rangle \otimes |\beta\rangle$ represent
+a complete basis of states for the whole system, and
+$\Bigl( |\alpha_1\rangle \otimes |\beta_1\rangle \Bigr) \otimes
+\Bigl( |\alpha_2\rangle \otimes |\beta_2\rangle \Bigr)$
+represent a complete basis of states for two copies of the system.
+Define the operator $Swap_A$ by
+\begin{eqnarray}
+&& Swap_A \Bigl( |\alpha_1\rangle \otimes |\beta_1\rangle \Bigr) \otimes
+\Bigl( |\alpha_2\rangle \otimes |\beta_2\rangle \Bigr) \nonumber \\ &&=
+\Bigl( |\alpha_2\rangle \otimes |\beta_1\rangle \Bigr) \otimes
+\Bigl( |\alpha_1\rangle \otimes |\beta_2\rangle \Bigr).
+\end{eqnarray}
+The operator $Swap_A$ is a unitary operator.
+On immediately sees that the Renyi entropy is simply
+\begin{eqnarray}
+\label{H2fromSwap}
+S_2(\rho_A) &=&-\ln(\langle \Psi\otimes \Psi|Swap_A|\Psi\otimes \Psi\rangle) \\
+&=&-\ln(\langle Swap_A \rangle).
+\end{eqnarray}
+The $Swap_A$ operator is illustrated for a 1D lattice with six sites.  There, two copies of the system (``real'' and ``ancillary'') are
+drawn before (a) and after (b) operation by the $Swap_A$ operator.  The result is an entangling of the valence bonds between the 
+real and ancillary systems across the boundary of the region $A$.
+
+{\it Measuring the Swap operator in QMC.}--
+We now present a procedure for measuring the entropy $S_2$ via importance sampling of the $Swap_A$ operator in QMC.  A
+projector scheme in the valence-bond basis has recently been popularized by Sandvik \cite{Sandvik}, where high powers of
+a Hamiltonian $H$ are used to project out the ground state $|0\rangle$ from a trial wavefunction, 
+$(-H)^m|\Psi \rangle \propto |0\rangle$.  In Sandvik's QMC scheme, $(-H)^m$ is written as a sum of all products of $m$ bond
+operators,
+\begin{equation}
+(-H)^m = \sum_r \prod_{i=1}^m H_{a_i^r b_i^r} = \sum_r P_r,
+\end{equation}
+where for simplicity we use the Heisenberg model, defining $H=-\sum_{\langle a,b \rangle}H_{ab}$ and 
+$H_{ab} = -({\bf S}_a \cdot {\bf S}_b - 1/4)$.  The operator string $P_r$ is sampled according to its weight, $W_r$, accrued upon
+evolution of a trial valence-bond state $|V \rangle$ under projection:
+\begin{equation}
+P_r |V \rangle = W_r |V(r) \rangle.
+\end{equation}
+As shown in Ref.~\cite{Sandvik}, for the Heisenberg model, $W_r$ is simply related to the number of off-diagonal 
+operations $m_{\rm off}$ in the projection, $W_r = 2^{-m_{\rm off}}$.
+
+To sample the $Swap_A$ operator, one requires a double-projector valence-bond QMC scheme \cite{Sandvik}, where
+a general expectation value for an observable $\mathcal{O}$ is given by
+\begin{equation}
+\label{expect}
+\langle \mathcal{O} \rangle = \frac{\sum_{rl} \langle V | P_l^* \mathcal{O} P_r | V \rangle} {\sum_{rl} \langle V | P_l^* P_r | V \rangle} 
+= \frac{\sum_{rl} W_l W_r \langle V(l) | \mathcal{O} | V(r) \rangle} {\sum_{rl} W_l W_r \langle V(l) | V(r) \rangle}
+\end{equation} 
+This expectation value can be applied directly to the $Swap_A$ operator, illustrated in Fig.~\ref{swap_2}.  Namely, one 
+performs important sampling of operator strings according to the weight $W_l W_r \langle V(l) | V(r) \rangle$, and measures
+the QMC average expectation value
+\begin{equation}
+\langle Swap_A \rangle =  \left\langle{ \frac{ \langle V(l) | Swap_A | V(r) \rangle}{\langle V(l) | V(r) \rangle}  }\right\rangle 
+\end{equation}
+
+Results are illustrated in Fig.~XXX.  There, simulations were performed using a simple double-projector QMC \cite{Sandvik}, where
+the trial $| V \rangle$ is a columnar state, four random bond operators were changed per Monte Carlo step, and unless otherwise
+stated $m=40N$.  Exact results for $S_2(\rho_A)$ were obtained with a DMRG simulation, converged with 1000 states.  One 
+immediately sees that the naive expectation value $\langle Swap_A \rangle$ results in a grossly incorrect result when the region
+A grows large (in 1D A is the linear region of size $x$).   
+One may understand this by invoking the area law: namely,
+we expect
+that $S_2(\rho_A)$ will be proportional to the {\it surface area} of the region
+$A$ (and in certain systems, such as one dimensional critical systems, it
+may be even larger, of order the log of the interior size).  Thus,
+the expectation value $\langle Swap_A \rangle$ should be exponentially small in the
+surface area of $A$.  Thus once $A$ becomes
+large, we are computing a very small quantity and
+statistical fluctuations will be important;
+%(it is not clear whether or not the numerator in the average
+%of (\ref{ensembleavg}) should be positive for every given realization,
+%though maybe it is; even if it is positive for every realization,
+%so that we are averaging a positive quantity, 
+the fact that the expectation
+of $Swap_A$ is so small means that we are doing the importance sampling
+incorrectly, since then only very few configurations contribute much to this
+expectation value.
+
+To combat this issue, we propose the following refinement to the algorithm: define regions $A^1,A^2,...,A^n$, such
+that $A^i$ contains $i$ sites, and $A^i$ is a subset of $A^{i+1}$.  So, each region $A^{i+1}$ is obtained by adding one site to region
+$A^{i}$, and region $A^0$ is the empty set (thus, $Swap_{A^0}$ is equal to the identity operator).
+Then, if one computes the ratio
+\begin{equation}
+\frac{\langle Swap_{A^{i+1}}\rangle}{\langle Swap_{A^{i}}\rangle}
+= \frac{\sum_{rl} W_l W_r \langle V(l) | Swap_{A^{i+1}} | V(r) \rangle} {\sum_{rl} W_l W_r \langle V(l) | Swap_{A^i} | V(r) \rangle}
+\end{equation}
+for each $i=0,...,n-1$, the log of this ratio is equal to minus the
+difference $S_2(\rho_{A^{i+1}})-S_2(\rho_{A^{i}})$.
+Computing this ratio for each $i$ will let us compute $S_2$ for all $A^i$.  To calculate this ratio, simulations must be performed 
+with the modified sampling weight
+\begin{equation}
+W_l W_r \langle V(l) | Swap_{A^i} | V(r) \rangle,
+\end{equation}
+i.e., a unique QMC simulation must be performed for each desired $i$.
 
 {\it Acknowledgments.}-- The authors thank ...
 This work was made possible by the
