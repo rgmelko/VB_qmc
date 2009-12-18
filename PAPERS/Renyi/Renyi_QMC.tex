@@ -80,6 +80,8 @@ confirming the area law expected from recent studies \cite{Ann}.
 \begin{figure} {
 \includegraphics[width=2.5in]{swap_2.eps} \caption{(color online) 
 \label{swap_2}
+An 8-site chain, with two non-interacting copies (top and bottom) before (a) and after (b) operator of the $Swap_A$ operator.  
+The region A consists of three light-colored spins on the left; the entangled region B.
 }
 } \end{figure}
 
@@ -182,6 +184,12 @@ of $Swap_A$ is so small means that we are doing the importance sampling
 incorrectly, since then only very few configurations contribute much to this
 expectation value.
 
+\begin{figure} {
+\includegraphics[width=2.8in]{fig2.eps} \caption{(color online) 
+\label{1Dfig}
+}
+} \end{figure}
+
 To combat this issue, we propose the following refinement to the algorithm: define regions $A^1,A^2,...,A^n$, such
 that $A^i$ contains $i$ sites, and $A^i$ is a subset of $A^{i+1}$.  So, each region $A^{i+1}$ is obtained by adding one site to region
 $A^{i}$, and region $A^0$ is the empty set (thus, $Swap_{A^0}$ is equal to the identity operator).
@@ -202,8 +210,7 @@ i.e., a unique QMC simulation must be performed for each desired $i$.
 {\it Acknowledgments.}-- The authors thank ...
 This work was made possible by the
 computing facilities of SHARCNET and CESGA.  Support was provided by NSERC
-of Canada (A.B.K. and R.G.M.) and the NSF under Grant No. NSF PHY05-51164
-(I.G.).
+of Canada (R.G.M.).
 
 \bibliography{Biblio}
 
