@@ -80,7 +80,7 @@ confirming the area law expected from recent studies \cite{Ann}.
 \begin{figure} {
 \includegraphics[width=2.7in]{swap_2.eps} \caption{(color online) 
 \label{swap_2}
-A six-site chain, with two non-interacting copies (top and bottom) before (a) and after (b) operator of the $Swap_A$ operator.  
+A six-site chain, with two non-interacting copies (top and bottom) before (a) and after (b) operation of the $Swap_A$ operator.  
 The region A consists of three light-colored sites on the left; the entangled region B of three dark sites on the right.
 }
 } \end{figure}
@@ -165,7 +165,7 @@ Results are illustrated in Fig.~XXX.  There, simulations were performed using a 
 the trial $| V \rangle$ is a columnar state, four random bond operators were changed per Monte Carlo step, and unless otherwise
 stated $m=40N$.  Exact results for $S_2(\rho_A)$ were obtained with a DMRG simulation, converged with 1000 states.  One 
 immediately sees that the naive expectation value $\langle Swap_A \rangle$ results in a grossly incorrect result when the region
-A grows large (in 1D A is the linear region of size $x$).   
+$A$ grows large (in 1D, $A$ is the linear region of size $x$).   
 One may understand this by invoking the area law: namely,
 we expect
 that $S_2(\rho_A)$ will be proportional to the {\it surface area} of the region
@@ -205,7 +205,11 @@ with the modified sampling weight
 \begin{equation}
 W_l W_r \langle V(l) | Swap_{A^i} | V(r) \rangle,
 \end{equation}
-i.e., a unique QMC simulation must be performed for each desired $i$.
+i.e., a unique QMC simulation must be performed for each desired $i$.  Thus, our simple double-projector algorithm, which scales 
+approximately as $~{\rm max}(m^2, N)$ \cite{AWSloop}, obtains an additional multiplicative factor of $N$ in the scaling.  In practice, 
+this can be reduced by noting that good statistical control can be retained by calculating 
+${\langle Swap_{A^{i+j}}\rangle}/{\langle Swap_{A^{i}}\rangle}$ for a range of $j \in [1,j_{\max}]$.  We illustrate this in Fig.~\ref{1Dfig},
+where simulations with $j_{\rm max}=4$ are sufficient to converge a 1D chain with $N=64$ to the exact results within error bars.
 
 {\it Acknowledgments.}-- The authors thank ...
 This work was made possible by the
