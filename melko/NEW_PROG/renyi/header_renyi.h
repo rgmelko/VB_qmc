@@ -267,14 +267,14 @@ void LATTICE::read_bonds()
   for(int i11=0; i11<number_of_bondops; i11++){
     fin2 >> bondops1[i11];
   }
-  fin2 >> offdiag1;
+  offdiag1=0;
   fin2.close();
   
   ifstream fin9(bondfile2.c_str());
   for(int i11=0; i11<number_of_bondops; i11++){
     fin9 >> bondops2[i11];
   }
-  fin9 >> offdiag2;
+  offdiag2=0;
   fin9.close();
 
   apply_ops(1);
@@ -439,6 +439,64 @@ void LATTICE::print_bondops(string filename, vector <int> bondlist, int offdiag)
   foutbond.close();
 }
 
+
+void LATTICE::swaperator()
+{
+  vector <int> tempbonds;
+  tempbonds = bonds2;
+
+  int a,b,c,d;
+
+  for(int lint=0; lint<xsites-1; lint++){
+    a = lint;
+    d = lint+xsites;
+    b = tempbonds[d];
+    c = tempbonds[a];
+
+    tempbonds[a] = b;
+    tempbonds[b] = a;
+    tempbonds[d] = c;
+    tempbonds[c] = d;
+
+    
+    int counter(0), temploopnum(0), startsite(0), a(-99), which(0);
+    vector <int> site(number_of_sites+2,0);
+    
+    while(counter < number_of_sites){
+      
+      site[counter]=1;
+      startsite = counter;
+      
+      whichloop_new[startsite] = temploopnum+1;
+      
+      a = bonds1[counter];
+      which = 0;
+      
+      while(a!=startsite){
+	
+	site[a] = 1;
+	whichloop_new[a] = temploopnum+1;
+	
+	if(which==0){
+	  a = tempbonds[a];
+	  which++;
+	}
+	else{
+	  a = bonds1[a];
+	  which--;
+	}
+	whichloop_new[a] = temploopnum+1;
+      }
+      temploopnum++;
+      while(site[counter]==1){counter++;}
+    }
+    int loopdiff = temploopnum - oldloops;
+    entropy[lint] += pow(2,loopdiff);
+  }
+}
+
+
+/*
 void LATTICE::swaperator()
 {
   //figure out a way to define the zone, or many zones.
@@ -500,7 +558,7 @@ void LATTICE::swaperator()
     entropy[lint] += pow(2,loopdiff);
   }
 }
-
+*/
 #endif
 
 
