@@ -1,0 +1,36 @@
+  energy.dat
+ entropy.dat
+bondops1.dat
+bondops2.dat
+
+4
+4
+1
+
+40
+4
+
+1000000
+1000
+
+89548093
+
+filenames:
+energy
+entropy
+bond operator list 1
+bond operator list 2
+
+lattice dimensions:
+x
+y
+z
+
+bond operators per site
+number of bond operators changed per step
+
+number of iterations per loop
+number of loops
+
+random seed
+
