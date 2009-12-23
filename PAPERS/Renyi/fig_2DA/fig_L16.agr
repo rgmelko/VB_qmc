@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Tue Dec 22 16:40:38 2009"
+@timestamp def "Wed Dec 23 12:48:15 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -132,7 +132,7 @@
 @    xaxis  label color 1
 @    xaxis  label place normal
 @    xaxis  tick on
-@    xaxis  tick major 2
+@    xaxis  tick major 5
 @    xaxis  tick minor ticks 1
 @    xaxis  tick default 6
 @    xaxis  tick place rounded true
@@ -227,14 +227,14 @@
 @    legend box color 1
 @    legend box pattern 1
 @    legend box linewidth 1.0
-@    legend box linestyle 1
+@    legend box linestyle 0
 @    legend box fill color 0
 @    legend box fill pattern 1
 @    legend font 0
-@    legend char size 1.000000
+@    legend char size 1.080000
 @    legend color 1
 @    legend length 4
-@    legend vgap 1
+@    legend vgap 0
 @    legend hgap 1
 @    legend invert false
 @    frame type 0
@@ -246,7 +246,7 @@
 @    frame background pattern 0
 @    s0 hidden false
 @    s0 type xydy
-@    s0 symbol 1
+@    s0 symbol 2
 @    s0 symbol size 0.500000
 @    s0 symbol color 1
 @    s0 symbol pattern 1
@@ -284,7 +284,7 @@
 @    s0 errorbar place both
 @    s0 errorbar color 1
 @    s0 errorbar pattern 1
-@    s0 errorbar size 0.500000
+@    s0 errorbar size 0.650000
 @    s0 errorbar linewidth 1.0
 @    s0 errorbar linestyle 1
 @    s0 errorbar riser linewidth 1.0
@@ -292,7 +292,7 @@
 @    s0 errorbar riser clip off
 @    s0 errorbar riser clip length 0.100000
 @    s0 comment "Cols 1:2:3"
-@    s0 legend  "swap"
+@    s0 legend  "Swap"
 @    s1 hidden false
 @    s1 type xydy
 @    s1 symbol 1
@@ -333,7 +333,7 @@
 @    s1 errorbar place both
 @    s1 errorbar color 1
 @    s1 errorbar pattern 1
-@    s1 errorbar size 0.500000
+@    s1 errorbar size 0.650000
 @    s1 errorbar linewidth 1.0
 @    s1 errorbar linestyle 1
 @    s1 errorbar riser linewidth 1.0
@@ -341,10 +341,10 @@
 @    s1 errorbar riser clip off
 @    s1 errorbar riser clip length 0.100000
 @    s1 comment "Cols 1:2:3"
-@    s1 legend  "rmax=1"
+@    s1 legend  "r\smax\N=1"
 @    s2 hidden false
 @    s2 type xydy
-@    s2 symbol 1
+@    s2 symbol 3
 @    s2 symbol size 0.500000
 @    s2 symbol color 1
 @    s2 symbol pattern 1
@@ -382,7 +382,7 @@
 @    s2 errorbar place both
 @    s2 errorbar color 1
 @    s2 errorbar pattern 1
-@    s2 errorbar size 0.500000
+@    s2 errorbar size 0.650000
 @    s2 errorbar linewidth 1.0
 @    s2 errorbar linestyle 1
 @    s2 errorbar riser linewidth 1.0
@@ -390,10 +390,10 @@
 @    s2 errorbar riser clip off
 @    s2 errorbar riser clip length 0.100000
 @    s2 comment "Cols 1:2:3"
-@    s2 legend  "rmax=2"
+@    s2 legend  "r\smax\N=2"
 @    s3 hidden false
 @    s3 type xydy
-@    s3 symbol 1
+@    s3 symbol 4
 @    s3 symbol size 0.500000
 @    s3 symbol color 1
 @    s3 symbol pattern 1
@@ -431,7 +431,7 @@
 @    s3 errorbar place both
 @    s3 errorbar color 1
 @    s3 errorbar pattern 1
-@    s3 errorbar size 0.500000
+@    s3 errorbar size 0.650000
 @    s3 errorbar linewidth 1.0
 @    s3 errorbar linestyle 1
 @    s3 errorbar riser linewidth 1.0
@@ -439,10 +439,10 @@
 @    s3 errorbar riser clip off
 @    s3 errorbar riser clip length 0.100000
 @    s3 comment "Cols 1:2:3"
-@    s3 legend  "rmax=3"
+@    s3 legend  "r\smax\N=3"
 @    s4 hidden false
 @    s4 type xydy
-@    s4 symbol 1
+@    s4 symbol 5
 @    s4 symbol size 0.500000
 @    s4 symbol color 1
 @    s4 symbol pattern 1
@@ -480,7 +480,7 @@
 @    s4 errorbar place both
 @    s4 errorbar color 1
 @    s4 errorbar pattern 1
-@    s4 errorbar size 0.500000
+@    s4 errorbar size 0.650000
 @    s4 errorbar linewidth 1.0
 @    s4 errorbar linestyle 1
 @    s4 errorbar riser linewidth 1.0
@@ -488,10 +488,10 @@
 @    s4 errorbar riser clip off
 @    s4 errorbar riser clip length 0.100000
 @    s4 comment "Cols 1:2:3"
-@    s4 legend  "rmax=4"
+@    s4 legend  "r\smax\N=4"
 @    s5 hidden false
 @    s5 type xydy
-@    s5 symbol 1
+@    s5 symbol 6
 @    s5 symbol size 0.500000
 @    s5 symbol color 1
 @    s5 symbol pattern 1
@@ -529,7 +529,7 @@
 @    s5 errorbar place both
 @    s5 errorbar color 1
 @    s5 errorbar pattern 1
-@    s5 errorbar size 0.500000
+@    s5 errorbar size 0.650000
 @    s5 errorbar linewidth 1.0
 @    s5 errorbar linestyle 1
 @    s5 errorbar riser linewidth 1.0
@@ -537,7 +537,7 @@
 @    s5 errorbar riser clip off
 @    s5 errorbar riser clip length 0.100000
 @    s5 comment "Cols 1:2:3"
-@    s5 legend  "rmax=8"
+@    s5 legend  "r\smax\N=8"
 @target G0.S0
 @type xydy
 1 0.693147 0
@@ -559,20 +559,20 @@
 @target G0.S1
 @type xydy
 1 0.693147 0
-2 0.6007 0.0055002
-3 0.61336667 0.0051614
-4 0.5964125 0.00770905
-5 0.583714 0.0076703
-6 0.56995 0.0096867
-7 0.55765429 0.0094162857
-8 0.54048625 0.010886075
-9 0.52911667 0.010916011
-10 0.52117 0.0124184
-11 0.51005364 0.012252182
-12 0.49729917 0.014081833
-13 0.48386308 0.014165923
-14 0.46329 0.015961143
-15 0.43808067 0.015827133
+2 0.60191 0.00382793
+3 0.61417333 0.0040465333
+4 0.59434 0.006119225
+5 0.582056 0.00639844
+6 0.56577667 0.0079365
+7 0.55407714 0.0079161143
+8 0.53846625 0.0091175
+9 0.52732111 0.0093439444
+10 0.517524 0.010526
+11 0.50673909 0.010531818
+12 0.49523917 0.011768
+13 0.48196154 0.012030077
+14 0.462425 0.013438786
+15 0.43727333 0.013472933
 &
 @target G0.S2
 @type xydy
@@ -597,18 +597,18 @@
 1 0.693147 0
 2 0.59801 0.002106865
 3 0.61336667 0.0019022767
-4 0.5964125 0.0052647
-5 0.581154 0.0050017
-6 0.57508833 0.00655925
-7 0.56205857 0.0067356143
-8 0.549985 0.0065158
-9 0.55000222 0.0064367889
-10 0.539967 0.00838708
-11 0.53196273 0.010147545
-12 0.53449333 0.010829083
-13 0.51819615 0.011163385
-14 0.50239929 0.011102357
-15 0.489944 0.011308867
+4 0.593735 0.00451105
+5 0.580752 0.00425128
+6 0.57273 0.00517695
+7 0.56003714 0.0055507857
+8 0.54821625 0.005479075
+9 0.54843 0.0055152556
+10 0.536522 0.0070802
+11 0.52791909 0.0085675727
+12 0.530555 0.0092294167
+13 0.51456077 0.0096867692
+14 0.49902357 0.0097312143
+15 0.48679333 0.010029133
 &
 @target G0.S4
 @type xydy

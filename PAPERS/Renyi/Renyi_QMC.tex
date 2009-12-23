@@ -162,6 +162,16 @@ the QMC average expectation value
 \langle Swap_A \rangle =  \left\langle{ \frac{ \langle V(l) | Swap_A | V(r) \rangle}{\langle V(l) | V(r) \rangle}  }\right\rangle 
 \end{equation}
 
+\begin{figure} {
+\includegraphics[width=2.8in]{L100_fig2.eps} \caption{(color online) 
+\label{1Dfig}
+The Renyi entropy $S_2(x)$ as a function of site index $x \in A$, for a 100-site Heisenberg chain with open boundaries, 
+calculated with DMRG and QMC.  The data for $\langle Swap_A \rangle$ was obtained with one simulation, whereas ``Ratio'' labels data for 
+${\langle Swap_{A^{i+j}}\rangle}/{\langle Swap_{A^{i}}\rangle}$
+with a range of  $j \in [1,5]$.  The inset shows the convergence of $S_2(6)$ up to $m=4000$.
+}
+} \end{figure}
+
 Results are illustrated in Fig.~XXX.  There, simulations were performed using a simple double-projector QMC \cite{Sandvik}, where
 the trial $| V \rangle$ is a columnar state, four random bond operators were changed per Monte Carlo step, and unless otherwise
 stated $m=40N$.  Exact results for $S_2(\rho_A)$ were obtained with a DMRG simulation, converged with 1000 states.  One 
@@ -185,12 +195,6 @@ of $Swap_A$ is so small means that we are doing the importance sampling
 incorrectly, since then only very few configurations contribute much to this
 expectation value.
 
-\begin{figure} {
-\includegraphics[width=2.8in]{L100_fig2.eps} \caption{(color online) 
-\label{1Dfig}
-}
-} \end{figure}
-
 To combat this issue, we propose the following refinement to the algorithm: define regions $A^1,A^2,...,A^n$, such
 that $A^i$ contains $i$ sites, and $A^i$ is a subset of $A^{i+1}$.  So, each region $A^{i+1}$ is obtained by adding one site to region
 $A^{i}$, and region $A^0$ is the empty set (thus, $Swap_{A^0}$ is equal to the identity operator).
@@ -210,7 +214,7 @@ i.e., a unique QMC simulation must be performed for each desired $i$.  Thus, our
 approximately as $~{\rm max}(m^2, N)$ \cite{AWSloop}, obtains an additional multiplicative factor of $N$ in the scaling.  In practice, 
 this can be reduced by noting that good statistical control can be retained by calculating 
 ${\langle Swap_{A^{i+j}}\rangle}/{\langle Swap_{A^{i}}\rangle}$ for a range of $j \in [1,j_{\max}]$.  We illustrate this in Fig.~\ref{1Dfig},
-where simulations with $j_{\rm max}=4$ are sufficient to converge a 1D chain with $N=64$ to the exact results within error bars.
+where simulations with $j_{\rm max}=5$ are sufficient to converge a 1D chain with $N=100$ to the exact results within error bars.
 
 {\it 2D Heisenberg Results.}-- We now extend these concepts to QMC simulations of the spin 1/2 Heisenberg model on $N=L \times L$ lattices.  We define the entangled region $A$ as a square region of linear length $\ell$ encompassing $\ell \times \ell$ sites.  We calculate the expectation value of both the $\langle Swap_A \rangle$ directly using one simulation, as well as the ratio ${\langle Swap_{A^{\ell+r}}\rangle}/{\langle Swap_{A^{\ell}}\rangle}$.  Here, both $\ell$ and $r$ are variables denoting the linear dimension of $A$; i.e. $A^{\ell+r}$ contains $2(\ell+r)$ more sites than $A^{\ell}$.
 
