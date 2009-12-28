@@ -1,6 +1,6 @@
 # Grace project file
 #
-@version 50121
+@version 50120
 @page size 792, 612
 @page scroll 5%
 @page inout 5%
@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Mon Dec 28 11:11:50 2009"
+@timestamp def "Mon Dec 28 15:59:50 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -231,10 +231,10 @@
 @    legend box fill color 0
 @    legend box fill pattern 0
 @    legend font 0
-@    legend char size 1.000000
+@    legend char size 1.250000
 @    legend color 1
 @    legend length 4
-@    legend vgap 4
+@    legend vgap 2
 @    legend hgap 1
 @    legend invert false
 @    frame type 0
@@ -246,7 +246,7 @@
 @    frame background pattern 0
 @    s0 hidden false
 @    s0 type xy
-@    s0 symbol 1
+@    s0 symbol 2
 @    s0 symbol size 0.650000
 @    s0 symbol color 1
 @    s0 symbol pattern 1
@@ -292,11 +292,11 @@
 @    s0 errorbar riser clip off
 @    s0 errorbar riser clip length 0.100000
 @    s0 comment "/Users/rgmelko/Waterloo/VBbasis_QMC/VB_qmc/PAPERS/Renyi/fig_1D/renyi.dat"
-@    s0 legend  " "
+@    s0 legend  "DMRG"
 @    s1 hidden false
 @    s1 type xydy
 @    s1 symbol 3
-@    s1 symbol size 0.500000
+@    s1 symbol size 0.570000
 @    s1 symbol color 2
 @    s1 symbol pattern 1
 @    s1 symbol fill color 2
@@ -341,16 +341,16 @@
 @    s1 errorbar riser clip off
 @    s1 errorbar riser clip length 0.100000
 @    s1 comment "Cols 1:2:3"
-@    s1 legend  " "
+@    s1 legend  "swap"
 @    s2 hidden false
 @    s2 type xydy
-@    s2 symbol 2
+@    s2 symbol 1
 @    s2 symbol size 0.650000
 @    s2 symbol color 4
 @    s2 symbol pattern 1
 @    s2 symbol fill color 4
 @    s2 symbol fill pattern 0
-@    s2 symbol linewidth 2.0
+@    s2 symbol linewidth 1.5
 @    s2 symbol linestyle 1
 @    s2 symbol char 65
 @    s2 symbol char font 0
@@ -390,7 +390,7 @@
 @    s2 errorbar riser clip off
 @    s2 errorbar riser clip length 0.100000
 @    s2 comment "Cols 1:2:3"
-@    s2 legend  " "
+@    s2 legend  " r\smax\N=1"
 @g1 on
 @g1 hidden false
 @g1 type XY
@@ -402,7 +402,7 @@
 @g1 fixedpoint format general general
 @g1 fixedpoint prec 6, 6
 @with g1
-@    world 0.000199526231, 0.25, 0.00251188643, 0.35
+@    world 0.0001, 0.1, 0.006, 0.4
 @    stack world 0, 0, 0, 0
 @    znorm 1
 @    view 0.243873, 0.570000, 0.610000, 0.821078
@@ -484,7 +484,7 @@
 @    yaxis  label color 1
 @    yaxis  label place normal
 @    yaxis  tick on
-@    yaxis  tick major 0.02
+@    yaxis  tick major 0.05
 @    yaxis  tick minor ticks 1
 @    yaxis  tick default 6
 @    yaxis  tick place rounded true
@@ -949,19 +949,20 @@
 &
 @target G1.S0
 @type xy
-0.00025 0.343702
+0.0001 0.343702
 0.00033333333 0.343702
 0.0005 0.343702
 0.00083333333 0.343702
 0.001 0.343702
-0.002 0.343702
+0.006 0.343702
 &
 @target G1.S1
 @type xydy
-0.00025 0.341414 0.003004
-0.00033333333 0.339362 0.00324968
-0.0005 0.335751 0.00312192
-0.00083333333 0.320515 0.00323539
-0.001 0.314447 0.00197727
-0.002 0.252875 0.00126566
+0.00033333333 0.340108 0.00239821
+0.0005 0.335953 0.00211358
+0.000625 0.327303 0.00213048
+0.001 0.313513 0.0013967
+0.00083333333 0.319753 0.0016578
+0.002 0.253591 0.000777006
+0.005 0.144038 0.000336588
 &
