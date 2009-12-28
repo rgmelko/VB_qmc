@@ -22,11 +22,13 @@
 %\affiliation{Department of Physics and Astronomy, University of Waterloo, Ontario, N2L 3G1, Canada} 
 
 \begin{abstract} 
-We develop a procedure for measuring the entanglemenet entropy of a region $A$ in a quantum
-many-body system using valence-bond basis quantum Monte Carlo simulations.  Specifically, an 
-estimator for the so-called Renyi $\alpha$-entropy, with $\alpha = 2$, is related to the expectation of
-a unitary operator which swaps the basis states of a region $A$ with an ancillary copy of that region.
-We demonstrate that the Renyi entropy calculated for a Heisenberg model in quantum Monte Carlo 
+We develop a procedure for measuring the entanglement entropy of a subregion $A$ in a quantum
+many-body system using valence-bond basis quantum Monte Carlo simulations.  Namely, an 
+estimator for the Renyi entropy is related to the expectation of a unitary operator which swaps the 
+basis states of a region $A$ with an ancillary copy of that region.  We outline an algorithm for 
+calculating the Renyi entropy directly from this Swap operator, as well as an improved estimator
+involving the ratio of Swap operators for different subregions.
+We demonstrate that the Renyi entropy calculated for a Heisenberg model  
 converges to exact results provided by density matrix renormalization group calculations.  Finally, we 
 calculate the scaling of the Renyi entropy in the 2D Heisenberg model and confirm that the N\'eel 
 groundstate obeys the expected area law.
@@ -35,47 +37,41 @@ groundstate obeys the expected area law.
 
 {\it Introduction.}-- 
 The measurement of entanglement in interacting quantum many-body systems has promised to provide
-new tools and insight to the field of condensed-matter physics.  Most exciting are proposals to use 
+new tools and insights to the field of condensed-matter physics.  Most exciting are proposals to use 
 entanglement as a probe to detect topological order, for example in paramagnetic spin liquids with no 
 local order parameters, and fractional quantum hall states important in proposals for topologically protected qbits.  
-A variety of measures of entanglement entropy are used, including fidelity, concurrence, and entropy, the 
-latter being perhaps the most widely studied.  The general belief is that in two dimensions (2D) and higher, the 
-leading contribution to the entanglement entropy scales as the boundary of a subsystem $A$ -- the so-called
-``area law''.  In additional to important corrections in topological phases, subleading universal corrections are
-believed to occur in the presence of a quantum critical point, or because of the presence of ``corners'' in the region
-$A$.  Thus, the study of entanglement entropy would provide a rich new avenue for the study of ...
+A variety of measures of entanglement entropy are used by the community, including fidelity, concurrence, and entropy;
+however the latter is by far the most widely studied.  In most prototypical quantum systems in two dimensions (2D) and higher, the 
+leading contribution to scaling of the entanglement entropy goes as the boundary of a subsystem $A$ -- the so-called
+``area law''.  Important {\it universal} subleading corrections to this scaling are known to occur in topological phases, or 
+in the presence of a quantum critical point.  Thus, the study of entanglement entropy promises to provide an important new 
+window into the understanding of universal behavior, a uniting concept across all field of experimental and theoretical 
+quantum physics.
 
-A major obstacle in the use of entanglement entropy as a resource for studying condensed-matter systems is 
-the difficulty in calculating it numerically in 2D and higher.
-
-Consider the Renyi entropy, defined as 
+However, a major obstacle to date in the use of entanglement entropy as a resource for studying condensed-matter systems is 
+the difficulty in calculating it numerically in 2D and higher.  To understand this, consider the generalized Renyi entropy, defined as 
 \begin{equation}
-S_{\alpha} (\rho_A) = \frac{1}{1- \alpha} \ln \left[{ {\rm Tr}\big( \rho_A^{\alpha} \big) }\right],
+S_{n} (\rho_A) = \frac{1}{1- n} \ln \left[{ {\rm Tr}\big( \rho_A^{n} \big) }\right],
 \end{equation}
 where $\rho_A$ is the reduced-density matrix of a subregion $A$ entangled with its complement $B$, and 
-$\alpha$ is a positive-definite integer parameter.  In the limit $\alpha \rightarrow 1$, one recovers the formal 
-definition of the von Neumann entropy, $S_1 (\rho_A) = - {\rm Tr}( \rho_A \ln \rho_A )$.  The von Neumann entropy
+$n$ is a positive-definite integer parameter.  In the limit $n \rightarrow 1$, one recovers the formal 
+definition of the familiar von Neumann entropy, $S_1 (\rho_A) = - {\rm Tr}( \rho_A \ln \rho_A )$.  The von Neumann entropy
 is accessible numerically only in procedures where the reduced density matrix can be calculated directly, such as Lanczos 
-or DMRG.  Scalable simulations methods in $D>1$, needed in order to study the groundstate, finite-temperature, and 
-critical properties of the vast majority of systems of interested to condensed-matter physics, are so far essentially
-restricted to quantum Monte Carlo (QMC).  However, the functional dependence of $\rho_A$ inside of the trace in the 
-von Neumann makes calculating $S_1$ in QMC difficult or impossible.  
+or density matrix renormalization group (DMRG).  Scalable simulations methods in dimensions $D>1$, needed in order to study the groundstate, finite-temperature, and 
+critical properties of the vast majority of systems of interest to condensed-matter physics, are so far essentially
+restricted to quantum Monte Carlo (QMC).  However, the functional dependence of $\rho_A$ inside of the trace
+makes calculating $S_1$ in QMC difficult or impossible, where this trace is approximated by a Markov Chain calculated
+through a Metropolis importance-sampling algorithm. 
 
-The general Renyi $\alpha$-entropies has recently attracted considerable attention, due to their ability to encode
-information about the whole ``entanglement spectrum'' of $\rho_A$, together allowing the set of $S_{\alpha}$ to contain 
-much more information that $S_1$ alone.  For example, the concept of topological entanglement entropy has recently been
+Recently, the general Renyi entropies has recently attracted considerable attention, due to their ability to encode
+information about the whole ``entanglement spectrum'' of $\rho_A$, together allowing the set of $S_{n}$ to contain 
+much more information than $S_1$ alone.  For example, the concept of topological entanglement entropy has recently been
 generalized to the family of Renyi entropies, where it has been shown to be equal to the logarithm of the total quantum 
-dimension, $S_{\rm top} \propto \log D$, regardless of $\alpha$ \cite{PI}.  Universal corrections to the scaling of $S_{\alpha}$ 
+dimension, $S_{\rm top} \propto \log {\mathcal D}$, regardless of $n$ \cite{PI}.  Universal corrections to the scaling of $S_{n}$ 
 have also recently been calculated in a field-theoretic treatment of the $O(N)$ model \cite{Max}.
 In addition, two Renyi entropies $S_{\alpha}$ and $S_{\beta}$ obey the fundamental
 inequality $S_{\alpha} \geq S_{\beta}$ when $\alpha > \beta$, making for example $S_2$ useful as a rigorous
 lower bound on $S_1$.  
-
-In this paper we show that the Renyi entropy $S_2$ can be represented in the valence-bond basis as the expectation
-value of a unitary swap operator.  This swap operator is directly accessible as a simple expectation value in a QMC simulation scheme
-based on the valence-bond basis.  Using QMC simulations, we calculate the entropy $S_2$ for a $S=1/2$ Heisenberg model
-in 1D and 2D lattices.  In 1D, we demonstrate that $S_2$ calculated with QMC converges to the exact result obtained with DMRG simulations.  In 2D, we show that the leading order term in the scaling of $S_2$ goes like the boundary of the region $A$, 
-confirming the area law expected from recent studies \cite{Ann}.
 
 \begin{figure} {
 \includegraphics[width=2.5
@@ -86,16 +82,25 @@ The region A consists of three light-colored sites on the left; the entangled re
 }
 } \end{figure}
 
-{\it Valence-bond basis and the Swap operator.}-- We follow the notation of Sandvik, and write the expansion of a singlet
+In this paper we show that the Renyi entropy $S_2$ can be represented in the valence-bond basis as the expectation
+value of a unitary swap operator.  This swap operator is directly accessible as a simple expectation value in a QMC simulation scheme
+based on the valence-bond basis.  Using QMC simulations, we calculate the entropy $S_2$ for a $S=1/2$ Heisenberg model
+in 1D and 2D lattices.  In 1D, we demonstrate that $S_2$ calculated with QMC converges to the exact result obtained with DMRG simulations.  In 2D, we show that the leading order term in the scaling of $S_2$ goes like the boundary of the region $A$, 
+confirming the area law expected in the N\'eel groudstate from recent studies \cite{Ann}.
+
+{\it Valence-bond basis and the Swap operator.}-- We briefly review the notation of Sandvik, and refer the reader to 
+Refs.~\cite{Sandvik,AWSloop} for details.
+We write the expansion of a singlet
 wavefunction $\Psi$ of $N$ spins as $N/2$ valence bonds:
 \begin{equation}
 | \Psi \rangle = \sum_r f_r|(a^r_1,b^r_1) \ldots (a^r_{N/2},b^r_{N/2}) \rangle = \sum_r f_r| V_r \rangle
 \end{equation}
-where the valence bonds (singlet pairs) denoted by $(a,b) = (\uparrow_a \downarrow_b - \downarrow_a \uparrow_b)/\sqrt{2}$ occur between sites of the opposite sublattices of a bipartite lattice, and $r$ labels all possible tilings of bonds.  The coefficients $f_r$ are unknown, but an importance sampling scheme for the valence bond state $| V_r \rangle$ is outlined below.  
+where the valence bonds are singlet pairs denoted by $(a,b) = (\uparrow_a \downarrow_b - \downarrow_a \uparrow_b)/\sqrt{2}$,
+occuring between sites of the opposite sublattices of a bipartite lattice, and $r$ labels all possible tilings of bonds.  The coefficients $f_r$ are unknown, but an importance sampling scheme \cite{Sandvik} for the valence bond state $| V_r \rangle$ will be outlined below.  
 
 We now give an equivalent definition of
 the Renyi entropy $S_2$ as the expectation
-value of a {\it Swap} operator on two copies of the system.  
+value of a swap operator on two copies of the system.  
 %We first
 %present a formal solution to the problem of measuring the entropy
 %in QMC, Eq.~(\ref{ensembleavg}) below, as a QMC averge.
@@ -105,7 +110,7 @@ Define an
 operator $Swap_A$ which acts on two copies of the system, swapping the
 configurations within region $A$.  To more precisely define the operator
 $Swap_A$, we now write out its matrix elements in a product basis.
-Let $|\alpha\rangle$  represent a complete basis of states in region
+Let $|\alpha\rangle$  represent a complete basis of states in the complement region
 $A$ and let $|\beta\rangle$ represent a complete basis of states in
 region $B$.  Then, $|\alpha\rangle \otimes |\beta\rangle$ represent
 a complete basis of states for the whole system, and
@@ -126,20 +131,22 @@ On immediately sees that the Renyi entropy is simply
 S_2(\rho_A) &=&-\ln(\langle \Psi\otimes \Psi|Swap_A|\Psi\otimes \Psi\rangle) \\
 &=&-\ln(\langle Swap_A \rangle).
 \end{eqnarray}
-The $Swap_A$ operator is illustrated for a 1D lattice with six sites.  There, two copies of the system (``real'' and ``ancillary'') are
+The $Swap_A$ operator is illustrated for a 1D lattice with six sites in Fig~\ref{swap_2}.  There, two copies of the system (``real'' and ``ancillary'') are
 drawn before (a) and after (b) operation by the $Swap_A$ operator.  The result is an entangling of the valence bonds between the 
 real and ancillary systems across the boundary of the region $A$.
 
 {\it Measuring the Swap operator in QMC.}--
 We now present a procedure for measuring the entropy $S_2$ via importance sampling of the $Swap_A$ operator in QMC.  A
-projector scheme in the valence-bond basis has recently been popularized by Sandvik \cite{Sandvik}, where high powers of
+projector scheme in the valence-bond basis has recently been poineered by Sandvik \cite{Sandvik}, and we only briefly
+review the notation here, referring the reading to Refs.~\cite{Sandvik,AWSloop} for details of implementation.
+In short, the method is a $T=0$ projector QMC, where high powers of
 a Hamiltonian $H$ are used to project out the ground state $|0\rangle$ from a trial wavefunction, 
 $(-H)^m|\Psi \rangle \propto |0\rangle$.  In Sandvik's QMC scheme, $(-H)^m$ is written as a sum of all products of $m$ bond
 operators,
 \begin{equation}
 (-H)^m = \sum_r \prod_{i=1}^m H_{a_i^r b_i^r} = \sum_r P_r,
 \end{equation}
-where for simplicity we use the Heisenberg model, defining $H=-\sum_{\langle a,b \rangle}H_{ab}$ and 
+where for simplicity we use the spin 1/2 Heisenberg model, defining $H=-\sum_{\langle a,b \rangle}H_{ab}$ and 
 $H_{ab} = -({\bf S}_a \cdot {\bf S}_b - 1/4)$.  The operator string $P_r$ is sampled according to its weight, $W_r$, accrued upon
 evolution of a trial valence-bond state $|V \rangle$ under projection:
 \begin{equation}
@@ -160,6 +167,7 @@ performs important sampling of operator strings according to the weight $W_l W_r
 the QMC average expectation value
 \begin{equation}
 \langle Swap_A \rangle =  \left\langle{ \frac{ \langle V(l) | Swap_A | V(r) \rangle}{\langle V(l) | V(r) \rangle}  }\right\rangle 
+\label{Swap}
 \end{equation}
 
 \begin{figure} {
@@ -168,11 +176,11 @@ the QMC average expectation value
 The Renyi entropy $S_2(x)$ as a function of site index $x \in A$, for a 100-site Heisenberg chain with open boundaries, 
 calculated with DMRG and QMC.  The data for $\langle Swap_A \rangle$ was obtained with one simulation, whereas ``Ratio'' labels data for 
 ${\langle Swap_{A^{i+j}}\rangle}/{\langle Swap_{A^{i}}\rangle}$
-with a range of  $j \in [1,5]$.  The inset shows the convergence of $S_2(6)$ up to $m=4000$.
+with a range of  $j \in [1,5]$.  The inset shows the convergence of $S_2$ with $x=6$ up to $m=4000$.
 }
 } \end{figure}
 
-Results are illustrated in Fig.~XXX.  There, simulations were performed using a simple double-projector QMC \cite{Sandvik}, where
+Results for a 1D chain are illustrated in Fig.~\ref{1Dfig}.  There, simulations were performed using a simple double-projector QMC \cite{Sandvik}, where
 the trial $| V \rangle$ is a columnar state, four random bond operators were changed per Monte Carlo step, and unless otherwise
 stated $m=40N$.  Exact results for $S_2(\rho_A)$ were obtained with a DMRG simulation, converged with 1000 states.  One 
 immediately sees that the naive expectation value $\langle Swap_A \rangle$ results in a grossly incorrect result when the region
@@ -180,7 +188,7 @@ $A$ grows large (in 1D, $A$ is the linear region of size $x$).
 One may understand this by invoking the area law: namely,
 we expect
 that $S_2(\rho_A)$ will be proportional to the {\it surface area} of the region
-$A$ (and in certain systems, such as one dimensional critical systems, it
+$A$ (and in certain systems, such as 1D critical systems, it
 may be even larger, of order the log of the interior size).  Thus,
 the expectation value $\langle Swap_A \rangle$ should be exponentially small in the
 surface area of $A$.  Thus once $A$ becomes
@@ -194,6 +202,9 @@ the fact that the expectation
 of $Swap_A$ is so small means that we are doing the importance sampling
 incorrectly, since then only very few configurations contribute much to this
 expectation value.
+In fact, for $x > 25$ in Fig.~\ref{1Dfig}, the Renyi entropy calculated with Eq.~\eqref{Swap} develops a discrepancy from the
+exact value that cannot be accounted for by statistical fluctuations (error bars are one standard deviation).  The importance
+sampling of $\langle Swap_A \rangle$ is apparently so low that simulation ergodicity is jeopardized. 
 
 To combat this issue, we propose the following refinement to the algorithm: define regions $A^1,A^2,...,A^n$, such
 that $A^i$ contains $i$ sites, and $A^i$ is a subset of $A^{i+1}$.  So, each region $A^{i+1}$ is obtained by adding one site to region
@@ -202,6 +213,7 @@ Then, if one computes the ratio
 \begin{equation}
 \frac{\langle Swap_{A^{i+1}}\rangle}{\langle Swap_{A^{i}}\rangle}
 = \frac{\sum_{rl} W_l W_r \langle V(l) | Swap_{A^{i+1}} | V(r) \rangle} {\sum_{rl} W_l W_r \langle V(l) | Swap_{A^i} | V(r) \rangle}
+\label{Ratio}
 \end{equation}
 for each $i=0,...,n-1$, the log of this ratio is equal to minus the
 difference $S_2(\rho_{A^{i+1}})-S_2(\rho_{A^{i}})$.
@@ -221,6 +233,9 @@ where simulations with $j_{\rm max}=5$ are sufficient to converge a 1D chain wit
 \begin{figure} {
 \includegraphics[width=2.8in]{L8n12_ratio.eps} \caption{(color online) 
 \label{L16fig}
+The Renyi entropy divided by the linear dimension $\ell$ of the entangled region $A$, for 2D lattices with $L=8$ and $L=12$.  The data labelled ``Swap'' is from a single simulation calculating Eq.~\eqref{Swap} directly.  The other
+data sets are derived from the improved ratio estimator, Eq.~\eqref{Ratio}, with different ranges of $r \in [1,r_{\rm max}]$.  The inset 
+is a periodic $L=8$ lattice with region $A$ consisting of the 16 central (dark) sites, labelled by $\ell = 4$.
 }
 } \end{figure}
 
@@ -232,12 +247,18 @@ the improved ratio estimator.  We can see the convergence of the data as one suc
 so that $r_{\rm max}=2$ is converged to be identical to $r_{\rm max}=1$, which is the smallest possible range to increment the 
 improved ratio estimator in the 2D geometry illustrated.  It is important to note that for large $r_{\rm max}$ the correct value of $S_2$ does {\it not} lie within the error bars of the data.  This is an indication that the algorithm will not converge to the expected result in polynomial time, since the expectation value is exponentially decreasing.
 
-
 \begin{figure} {
 \includegraphics[width=3.1in]{fig4.eps} \caption{(color online) 
 \label{fig4}
+Scaling of the Renyi entropy divided by the linear dimension $\ell$ of the entangled region $A$ for different systems sizes
+in 2D.  All data is calculated with the improved ratio estimator, Eq.~\eqref{Ratio}, with different $r_{\rm max}=1$.  
 }
 } \end{figure}
+
+We use the improved ratio estimator with $r_{\max}=1$ to scale the results for the Renyi entropy of the Heisenberg model to larger system sizes in 2D.  Results are given in Fig.~\ref{fig4} for $L=4$ to $L=28$, plotted as $S_2/\ell$.  For area-law scaling, expected from the DMRG results of Ref.~\cite{Ann}, one would expect the scaling to obey $S_2/\ell ~ {\rm const.}$, for $\ell<<L$, at which point boundary effects would become important.  The data illustrated is clearly consistent with the area law; in particular, multiplicative log corrections (which were apparent in similar system sizes and geometries for the Valence-Bond Entanglement Entropy
+\cite{Alet,Chh}) are not apparent.
+
+{\it Discussion.}-- 
 
 
 
