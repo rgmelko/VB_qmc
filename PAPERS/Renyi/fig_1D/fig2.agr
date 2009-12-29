@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Mon Dec 28 15:59:50 2009"
+@timestamp def "Tue Dec 29 10:00:55 2009"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -341,7 +341,7 @@
 @    s1 errorbar riser clip off
 @    s1 errorbar riser clip length 0.100000
 @    s1 comment "Cols 1:2:3"
-@    s1 legend  "swap"
+@    s1 legend  "Swap"
 @    s2 hidden false
 @    s2 type xydy
 @    s2 symbol 1
@@ -390,7 +390,7 @@
 @    s2 errorbar riser clip off
 @    s2 errorbar riser clip length 0.100000
 @    s2 comment "Cols 1:2:3"
-@    s2 legend  " r\smax\N=1"
+@    s2 legend  " j\smax\N=1"
 @g1 on
 @g1 hidden false
 @g1 type XY
