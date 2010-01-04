@@ -1,4 +1,4 @@
-\begin{thebibliography}{8}
+\begin{thebibliography}{13}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname bibnamefont\endcsname\relax
   \def\bibnamefont#1{#1}\fi
@@ -11,6 +11,45 @@
 \expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
 \providecommand{\bibinfo}[2]{#2}
 \providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem[{\citenamefont{Calabrese and Cardy}(2004)}]{Cardy}
+\bibinfo{author}{\bibfnamefont{P.}~\bibnamefont{Calabrese}} \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Cardy}}, \bibinfo{journal}{J.
+  Stat. Mech.: Theor. Exp.} \textbf{\bibinfo{volume}{P06002}}
+  (\bibinfo{year}{2004}).
+
+\bibitem[{\citenamefont{Kitaev and Preskill}(2006)}]{KP}
+\bibinfo{author}{\bibfnamefont{A.}~\bibnamefont{Kitaev}} \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Preskill}},
+  \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{96}},
+  \bibinfo{eid}{110404} (\bibinfo{year}{2006}).
+
+\bibitem[{\citenamefont{Levin and Wen}(2006)}]{LW}
+\bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Levin}} \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{X.-G.} \bibnamefont{Wen}},
+  \bibinfo{journal}{Phys. Rev. Lett} \textbf{\bibinfo{volume}{96}},
+  \bibinfo{eid}{110405} (\bibinfo{year}{2006}).
+
+\bibitem[{\citenamefont{Casini and Huerta}(2007)}]{corner}
+\bibinfo{author}{\bibfnamefont{H.}~\bibnamefont{Casini}} \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Huerta}},
+  \bibinfo{journal}{Nucl. Phys. B} \textbf{\bibinfo{volume}{764}},
+  \bibinfo{pages}{183} (\bibinfo{year}{2007}).
+
+\bibitem[{\citenamefont{Ryu and Takayanagi}(2006)}]{ryu}
+\bibinfo{author}{\bibfnamefont{S.}~\bibnamefont{Ryu}} \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{T.}~\bibnamefont{Takayanagi}},
+  \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{96}},
+  \bibinfo{pages}{181602} (\bibinfo{year}{2006}).
+
+\bibitem[{\citenamefont{Kallin et~al.}(2009)\citenamefont{Kallin, Gonz\'{a}lez,
+  Hastings, and Melko}}]{Ann}
+\bibinfo{author}{\bibfnamefont{A.~B.} \bibnamefont{Kallin}},
+  \bibinfo{author}{\bibfnamefont{I.}~\bibnamefont{Gonz\'{a}lez}},
+  \bibinfo{author}{\bibfnamefont{M.~B.} \bibnamefont{Hastings}},
+  \bibnamefont{and} \bibinfo{author}{\bibfnamefont{R.~G.} \bibnamefont{Melko}},
+  \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{103}},
+  \bibinfo{pages}{117203} (\bibinfo{year}{2009}).
 
 \bibitem[{\citenamefont{Li and Haldane}(2008)}]{Espec}
 \bibinfo{author}{\bibfnamefont{H.}~\bibnamefont{Li}} \bibnamefont{and}
@@ -32,15 +71,6 @@
   \bibinfo{author}{\bibfnamefont{C.~A.} \bibnamefont{Fuertes}},
   \bibnamefont{and} \bibinfo{author}{\bibfnamefont{S.}~\bibnamefont{Sachdev}}
   (\bibinfo{year}{2009}), \eprint{arXiv:0904.4477}.
-
-\bibitem[{\citenamefont{Kallin et~al.}(2009)\citenamefont{Kallin, Gonz\'{a}lez,
-  Hastings, and Melko}}]{Ann}
-\bibinfo{author}{\bibfnamefont{A.~B.} \bibnamefont{Kallin}},
-  \bibinfo{author}{\bibfnamefont{I.}~\bibnamefont{Gonz\'{a}lez}},
-  \bibinfo{author}{\bibfnamefont{M.~B.} \bibnamefont{Hastings}},
-  \bibnamefont{and} \bibinfo{author}{\bibfnamefont{R.~G.} \bibnamefont{Melko}},
-  \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{103}},
-  \bibinfo{pages}{117203} (\bibinfo{year}{2009}).
 
 \bibitem[{\citenamefont{Sandvik}(2005)}]{Sandvik}
 \bibinfo{author}{\bibfnamefont{A.~W.} \bibnamefont{Sandvik}},
