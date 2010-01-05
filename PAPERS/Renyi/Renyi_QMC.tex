@@ -281,25 +281,42 @@ effects likely become important.  In particular, multiplicative log corrections 
 \cite{Alet,Chh}) are not present.
 
 {\it Discussion.}-- 
-We have presented the first measurement of Renyi entanglement entropy in two dimensional systems, confirming the area law.
-Using the improved ratio estimator, we were able to converge the expectation value of the swap operator.
+In this paper we have presented a numerical algorithm for measuring the Renyi entropy in valence-bond QMC simulations via
+the expectation value of a swap operator between two copies of the system.
+Using an improved ratio estimator, we are able to converge the expectation value of the swap operator to the exact
+result on a 1D Heisenberg chain.
+Using the same procedure, we have presented the first measurement of the Renyi entanglement entropy in a two dimensional system, confirming the area law for the N\'eel groundstate of the Heisenberg model.
+%Using the improved ratio estimator, we were able to converge the expectation value of the swap operator.
 
-It is known that, by using loop algorithms, it is possible to compute observables such as energy and spin correlation functins
-for systems much larger than $L=28$.  The loop algorithms significantly speed up the ROGER, CAN YOU WRITE SOMETHING HERE?
-In future work, we will implement a loop algorithm using the improved ratio estimator.
-The question naturally arises: will it still be possible to converge the expectation value of the swap operator using
-only polynomially many sample?  After all, at the largest system sizes we considered, $r=2$ was insufficient for convegence.
-However, it is possible to change the sequence of regions $A^i$ that we use.  Rather, than considering a sequence of regions $A^{\ell}$ consisting
-of $\ell$-by-$\ell$ squares, we can use a more finely grained sequence of regions.  For example, 
-we can define $A^i$ to contain
-$i$ sites such that for $i=\ell^2$, $A^i$ is an $\ell$-by-$\ell$ square.  Since at each stage we only change the region locally, building up  a square of size $\ell+1$ by adding sites one at a time around the edge, we expect that
-this will require only a polynomial number of samples for convergence for arbitrary system sizes.
+The simple double-projector QMC algorithm used in this paper is known to scale approximately as $O(m^2)$, \cite{AWSloop}
+assuming $m >N$ and remembering that two copies of a $N=L \times L$ lattices are needed to measure the Renyi
+ entropy.
+  The current simulation results for the direct swap expectation value, Eq~\eqref{Swap}, therefore also have
+ $O(m^2)$ scaling, whereas results obtained using the improved ratio estimator Eq.~\eqref{Ratio} have $O(Lm^2)$ scaling in the current geometries.
+We note however that these geometries may not be ideal for very large $\ell$ and $L$, even in the improved ratio sampling.
+For example for $L=28$ and  $\ell=L/2$, we found a relative error between $r_{\rm max}=2$ and $r_{\rm max}=1$ of less than 0.04 (the
+results for $S_2$ remaining identical within error bars); however for $\ell$ significantly larger than $L/2$, the statistical sampling error
+increases dramatically and results for $S_2$ using  $r_{\rm max}=2$ and $r_{\rm max}=1$ begin to deviate outside of error bars,
+indicating a lack of ergodicity in $r_{\rm max}=2$ at least.  
+This being noted, it is of course true that in practice for such large $\ell$, one would prefer to do the simulation by measuring the 
+expectation value of the swap operator on the complement of $A$, not on $A$ itself.
 
-\begin{enumerate}
-\item Future work: universal corrections from geometry of $A$, critical points? etc.
-\item Is there an easy spin wave calculation for S2 in this geometry?
-\end{enumerate}
+From the current work (which took less than 10 CPU years of resources), 
+the question naturally arises whether it is possible to converge the expectation value of the swap operator on
+larger system sizes, especially in light of the desire to test more fully the convergence of $r_{\rm max}=1$ on large $L$ and $\ell$.
+We note first that it is easy to change the sequence of regions $A^i$ that one uses in the improved ratio estimator.
+Rather, than considering a sequence of regions $A^{\ell}$ consisting of $\ell$-by-$\ell$ squares, 
+we can use a more finely grained sequence of regions; e.g. by defining $A^i$ to contain
+$i$ sites such that for $i=\ell^2$, $A^i$ is an $\ell$-by-$\ell$ square.  Incrementing the number of sites in $i$ by one would result in
+(at worst) $O(Nm^2)$ scaling in the current algorithm.  
 
+However, we also note that recently-developed {\it loop} algorithms
+result in significant improvement in scaling, allowing for the convergence of observables such as energy and spin correlation functions for $L=256$ and larger \cite{AWSloop}.  In these schemes, the scaling of the direct swap operator (Eq.~\eqref{Swap}), like
+other observables, decreases to $O(m)$, while the expected scaling of the improved ratio estimator would be $O(Nm)$ at worst, depending
+on the definitions of the $A^i$ regions.
+% Since at each stage we only change the region locally, building up  a square of size $\ell+1$ by adding sites one at a time around the edge, we 
+We therefore expect that
+the algorithm will require only a polynomial number of samples for convergence of arbitrary system sizes.
 
 
 {\it Acknowledgments.}-- The authors thank Kevin Beach ...
