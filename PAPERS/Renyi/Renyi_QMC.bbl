@@ -18,18 +18,6 @@
   Stat. Mech.: Theor. Exp.} \textbf{\bibinfo{volume}{P06002}}
   (\bibinfo{year}{2004}).
 
-\bibitem[{\citenamefont{Kitaev and Preskill}(2006)}]{KP}
-\bibinfo{author}{\bibfnamefont{A.}~\bibnamefont{Kitaev}} \bibnamefont{and}
-  \bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Preskill}},
-  \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{96}},
-  \bibinfo{eid}{110404} (\bibinfo{year}{2006}).
-
-\bibitem[{\citenamefont{Levin and Wen}(2006)}]{LW}
-\bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Levin}} \bibnamefont{and}
-  \bibinfo{author}{\bibfnamefont{X.-G.} \bibnamefont{Wen}},
-  \bibinfo{journal}{Phys. Rev. Lett} \textbf{\bibinfo{volume}{96}},
-  \bibinfo{eid}{110405} (\bibinfo{year}{2006}).
-
 \bibitem[{\citenamefont{Casini and Huerta}(2007)}]{corner}
 \bibinfo{author}{\bibfnamefont{H.}~\bibnamefont{Casini}} \bibnamefont{and}
   \bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Huerta}},
@@ -41,6 +29,18 @@
   \bibinfo{author}{\bibfnamefont{T.}~\bibnamefont{Takayanagi}},
   \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{96}},
   \bibinfo{pages}{181602} (\bibinfo{year}{2006}).
+
+\bibitem[{\citenamefont{Kitaev and Preskill}(2006)}]{KP}
+\bibinfo{author}{\bibfnamefont{A.}~\bibnamefont{Kitaev}} \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{J.}~\bibnamefont{Preskill}},
+  \bibinfo{journal}{Phys. Rev. Lett.} \textbf{\bibinfo{volume}{96}},
+  \bibinfo{eid}{110404} (\bibinfo{year}{2006}).
+
+\bibitem[{\citenamefont{Levin and Wen}(2006)}]{LW}
+\bibinfo{author}{\bibfnamefont{M.}~\bibnamefont{Levin}} \bibnamefont{and}
+  \bibinfo{author}{\bibfnamefont{X.-G.} \bibnamefont{Wen}},
+  \bibinfo{journal}{Phys. Rev. Lett} \textbf{\bibinfo{volume}{96}},
+  \bibinfo{eid}{110405} (\bibinfo{year}{2006}).
 
 \bibitem[{\citenamefont{Kallin et~al.}(2009)\citenamefont{Kallin, Gonz\'{a}lez,
   Hastings, and Melko}}]{Ann}
