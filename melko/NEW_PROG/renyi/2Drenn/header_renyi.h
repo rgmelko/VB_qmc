@@ -92,7 +92,7 @@ LATTICE::LATTICE(int x, int y, int z, int bondops, int r, int its,
   else if((x==1)|(y==1)|(z==1)){dim=2;}
   else {dim=3;}
 
-  number_of_nnbonds = 48; //depends on dimension
+  number_of_nnbonds = 64; //depends on dimension
 
   nnbonds.resize (number_of_nnbonds,2);
   bonds1.resize (number_of_sites);
@@ -104,7 +104,7 @@ LATTICE::LATTICE(int x, int y, int z, int bondops, int r, int its,
   bondops3.resize (number_of_bondops);
   whichloop_new.resize (number_of_sites);
   whichloop_old.resize (number_of_sites);
-  entropy.assign(3,0);
+  entropy.assign(4,0);
   
   //initial state is dimerized..
   for(int i01=0; i01<number_of_sites; i01+=2)
@@ -193,8 +193,32 @@ void LATTICE::nnbondlist()
   nnbonds(23,0) = 11;
   nnbonds(23,1) = 15;
 
-  for(int b1=24; b1<48; b1++){
-    int a1 = 24;
+  nnbonds(24,0) = 3;
+  nnbonds(24,1) = 0;
+
+  nnbonds(25,0) = 7;
+  nnbonds(25,1) = 4;
+
+  nnbonds(26,0) = 11;
+  nnbonds(26,1) = 8;
+
+  nnbonds(27,0) = 15;
+  nnbonds(27,1) = 12;
+
+  nnbonds(28,0) = 0;
+  nnbonds(28,1) = 12;
+
+  nnbonds(29,0) = 1;
+  nnbonds(29,1) = 13;
+
+  nnbonds(30,0) = 2;
+  nnbonds(30,1) = 14;
+
+  nnbonds(31,0) = 3;
+  nnbonds(31,1) = 15;
+
+  for(int b1=32; b1<64; b1++){
+    int a1 = 32;
     nnbonds(b1,0) = nnbonds(b1-a1,0)+16;
     nnbonds(b1,1) = nnbonds(b1-a1,1)+16;
   }
@@ -425,7 +449,7 @@ void LATTICE::super_initialize()
   accept = 0;
   energy = 0;
   energyint = 0;
-  entropy.assign(3,0);
+  entropy.assign(4,0);
  }
 
 /********************* ENERGY MEASUREMENT **************************/
@@ -450,7 +474,7 @@ void LATTICE::calculate_stuff()
 {
   energy = energyint*0.75/iterations;
 
-  for(int rint=0; rint<3; rint++){
+  for(int rint=0; rint<4; rint++){
     entropy[rint]/=(1.0*iterations);
     entropy[rint] = -log(entropy[rint]);
   }
@@ -470,7 +494,7 @@ void LATTICE::print_entropies(string filename, vector <long double> entropy)
   ofstream foutent(filename.c_str(),ios::app);
   foutent.precision(10);
   foutent.width(12);
-  for(int sint=0; sint<3; sint++){
+  for(int sint=0; sint<4; sint++){
     foutent << entropy[sint] << " ";
   }
   foutent << endl;
@@ -497,6 +521,10 @@ void LATTICE::swaperator()
   int a4,b4,c4,d4;
   int latt = 16;
 
+  //  for(int q=0; q<32; q++){
+    //    cout << q << "," << bonds1[q] << "       " << q << "," << tempbonds[q] <<endl;
+    //  }
+
 
   a4 = 0;
   d4 = latt;
@@ -507,6 +535,10 @@ void LATTICE::swaperator()
   tempbonds[b4] = a4;
   tempbonds[d4] = c4;
   tempbonds[c4] = d4;
+
+
+  //  for(int q=0; q<32; q++){
+    //    cout << q << "," << bonds1[q] << "       " << q << "," << tempbonds[q] <<endl;  }
   
   
   int counter(0), temploopnum(0), startsite(0), e(-99), which(0);
@@ -536,6 +568,9 @@ void LATTICE::swaperator()
     temploopnum++;
     while(smite[counter]==1){counter++;}
   }
+
+  // cout << "temploops: " << temploopnum << endl;
+  //  cout << "oldloops:  " << oldloops << endl;
   int loopdiff = temploopnum - oldloops;
   entropy[0] += pow(2,loopdiff);
 
@@ -548,6 +583,11 @@ void LATTICE::swaperator()
   
   a4 = 5; d4 = 5+latt; b4 = tempbonds[d4]; c4 = tempbonds[a4];
   tempbonds[a4] = b4; tempbonds[b4] = a4; tempbonds[d4] = c4; tempbonds[c4] = d4;
+
+
+
+  //  for(int q=0; q<32; q++){
+  //    cout << q << "," << bonds1[q] << "       " << q << "," << tempbonds[q] <<endl;  }
   
   counter=0; temploopnum=0; startsite=0; e=-99; which=0;
   smite.assign(number_of_sites+2,0);
@@ -576,6 +616,9 @@ void LATTICE::swaperator()
     temploopnum++;
     while(smite[counter]==1){counter++;}
   }
+
+  //  cout << "temploops: " << temploopnum << endl;
+  //  cout << "oldloops:  " << oldloops << endl;
   loopdiff = temploopnum - oldloops;
   entropy[1] += pow(2,loopdiff);
 
@@ -594,6 +637,10 @@ void LATTICE::swaperator()
   a4 = 10; d4 = 10+latt; b4 = tempbonds[d4]; c4 = tempbonds[a4];
   tempbonds[a4] = b4; tempbonds[b4] = a4; tempbonds[d4] = c4; tempbonds[c4] = d4;
 
+
+  //  for(int q=0; q<32; q++){
+  //    cout << q << "," << bonds1[q] << "       " << q << "," << tempbonds[q] <<endl;  }
+
   counter=0; temploopnum=0; startsite=0; e=-99; which=0;
   smite.assign(number_of_sites+2,0);
   
@@ -621,8 +668,61 @@ void LATTICE::swaperator()
     temploopnum++;
     while(smite[counter]==1){counter++;}
   }
+
+  //  cout << "temploops: " << temploopnum << endl;
+  // cout << "oldloops:  " << oldloops << endl;
   loopdiff = temploopnum - oldloops;
   entropy[2] += pow(2,loopdiff);
+
+
+  a4 = 3; d4 = 3+latt; b4 = tempbonds[d4]; c4 = tempbonds[a4];
+  tempbonds[a4] = b4; tempbonds[b4] = a4; tempbonds[d4] = c4; tempbonds[c4] = d4;
+
+  a4 = 7; d4 = 7+latt; b4 = tempbonds[d4]; c4 = tempbonds[a4];
+  tempbonds[a4] = b4; tempbonds[b4] = a4; tempbonds[d4] = c4; tempbonds[c4] = d4;
+
+  a4 = 11; d4 = 11+latt; b4 = tempbonds[d4]; c4 = tempbonds[a4];
+  tempbonds[a4] = b4; tempbonds[b4] = a4; tempbonds[d4] = c4; tempbonds[c4] = d4;
+
+  a4 = 12; d4 = 12+latt; b4 = tempbonds[d4]; c4 = tempbonds[a4];
+  tempbonds[a4] = b4; tempbonds[b4] = a4; tempbonds[d4] = c4; tempbonds[c4] = d4;
+
+  a4 = 13; d4 = 13+latt; b4 = tempbonds[d4]; c4 = tempbonds[a4];
+  tempbonds[a4] = b4; tempbonds[b4] = a4; tempbonds[d4] = c4; tempbonds[c4] = d4;
+ 
+  a4 = 14; d4 = 14+latt; b4 = tempbonds[d4]; c4 = tempbonds[a4];
+  tempbonds[a4] = b4; tempbonds[b4] = a4; tempbonds[d4] = c4; tempbonds[c4] = d4;
+
+  counter=0; temploopnum=0; startsite=0; e=-99; which=0;
+  smite.assign(number_of_sites+2,0);
+  
+  while(counter < number_of_sites){
+    
+    smite[counter]=1;
+    startsite = counter;
+        
+    e = bonds1[counter];
+    which = 0;
+    
+    while(e!=startsite){
+      
+      smite[e] = 1;
+      
+      if(which==0){
+	e = tempbonds[e];
+	which++;
+      }
+      else{
+	e = bonds1[e];
+	which--;
+      }
+    }
+    temploopnum++;
+    while(smite[counter]==1){counter++;}
+  }
+
+  loopdiff = temploopnum - oldloops;
+  entropy[3] += pow(2,loopdiff);
 }
 
 #endif
