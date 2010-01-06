@@ -10,8 +10,6 @@
 #include"matrix.h"
 #include<vector>
 
-using namespace std;
-
 class LATTICE
 {
 
@@ -26,6 +24,7 @@ public:
   int change_number; // number of bond ops changed per step
  
   int offdiag1, offdiag2, offdiag3;
+  int L;
   int newloops, oldloops;
   long double accept;
   long double energy;
@@ -72,6 +71,7 @@ LATTICE::LATTICE(int x, int y, int z, int bondops, int r, int its,
   irand.seed(rseed);
   drand.seed(rseed);
 
+  L = 4;
   xsites = x;
   ysites = y;
   zsites = z;
@@ -80,8 +80,8 @@ LATTICE::LATTICE(int x, int y, int z, int bondops, int r, int its,
   iterations = its;
   bondfile1 = bondopfile1;
   bondfile2 = bondopfile2;
-  number_of_sites = 32;
-  number_of_bonds = 16;
+  number_of_sites = 2*L*L;
+  number_of_bonds = L*L;
   accept = 0;
   offdiag1=0; offdiag2=0; offdiag3=0;
   newloops=0; oldloops=0;
@@ -92,7 +92,7 @@ LATTICE::LATTICE(int x, int y, int z, int bondops, int r, int its,
   else if((x==1)|(y==1)|(z==1)){dim=2;}
   else {dim=3;}
 
-  number_of_nnbonds = 64; //depends on dimension
+  number_of_nnbonds = 4*L*L; //depends on dimension
 
   nnbonds.resize (number_of_nnbonds,2);
   bonds1.resize (number_of_sites);
@@ -120,108 +120,27 @@ LATTICE::LATTICE(int x, int y, int z, int bondops, int r, int its,
 /******************** BONDLIST ************************************/
 void LATTICE::nnbondlist()
 {
-  
-  nnbonds(0,0) = 0;
-  nnbonds(0,1) = 1;
-
-  nnbonds(1,0) = 1;
-  nnbonds(1,1) = 2;
-
-  nnbonds(2,0) = 2;
-  nnbonds(2,1) = 3;
-
-  nnbonds(3,0) = 4;
-  nnbonds(3,1) = 5;
-
-  nnbonds(4,0) = 5;
-  nnbonds(4,1) = 6;
-
-  nnbonds(5,0) = 6;
-  nnbonds(5,1) = 7;
-
-  nnbonds(6,0) = 8;
-  nnbonds(6,1) = 9;
-
-  nnbonds(7,0) = 9;
-  nnbonds(7,1) = 10;
-
-  nnbonds(8,0) = 10;
-  nnbonds(8,1) = 11;
-
-  nnbonds(9,0) = 12;
-  nnbonds(9,1) = 13;
-  
-  nnbonds(10,0) = 13;
-  nnbonds(10,1) = 14;
-
-  nnbonds(11,0) = 14;
-  nnbonds(11,1) = 15;
-
-  nnbonds(12,0) = 0;
-  nnbonds(12,1) = 4;
-
-  nnbonds(13,0) = 1;
-  nnbonds(13,1) = 5;
-
-  nnbonds(14,0) = 2;
-  nnbonds(14,1) = 6;
-
-  nnbonds(15,0) = 3;
-  nnbonds(15,1) = 7;
-
-  nnbonds(16,0) = 4;
-  nnbonds(16,1) = 8;
-
-  nnbonds(17,0) = 5;
-  nnbonds(17,1) = 9;
-
-  nnbonds(18,0) = 6;
-  nnbonds(18,1) = 10;
-
-  nnbonds(19,0) = 7;
-  nnbonds(19,1) = 11;
-
-  nnbonds(20,0) = 8;
-  nnbonds(20,1) = 12;
-
-  nnbonds(21,0) = 9;
-  nnbonds(21,1) = 13;
-
-  nnbonds(22,0) = 10;
-  nnbonds(22,1) = 14;
-
-  nnbonds(23,0) = 11;
-  nnbonds(23,1) = 15;
-
-  nnbonds(24,0) = 3;
-  nnbonds(24,1) = 0;
-
-  nnbonds(25,0) = 7;
-  nnbonds(25,1) = 4;
-
-  nnbonds(26,0) = 11;
-  nnbonds(26,1) = 8;
-
-  nnbonds(27,0) = 15;
-  nnbonds(27,1) = 12;
-
-  nnbonds(28,0) = 0;
-  nnbonds(28,1) = 12;
-
-  nnbonds(29,0) = 1;
-  nnbonds(29,1) = 13;
-
-  nnbonds(30,0) = 2;
-  nnbonds(30,1) = 14;
-
-  nnbonds(31,0) = 3;
-  nnbonds(31,1) = 15;
-
-  for(int b1=32; b1<64; b1++){
-    int a1 = 32;
-    nnbonds(b1,0) = nnbonds(b1-a1,0)+16;
-    nnbonds(b1,1) = nnbonds(b1-a1,1)+16;
+  for(int i=0; i<L; i++){
+    for(int j=0; j<L; j++){
+      nnbonds(i+j*L,0) = i + j*L;
+      nnbonds(i+j*L,1) = j*L + (i+1)%L;
+    }
   }
+
+  for(int i=0; i<L; i++){
+    for(int j=0; j<L; j++){
+      nnbonds(L*L+i+j*L,0) = i + j*L;
+      nnbonds(L*L+i+j*L,1) = i + ((j+1)%L)*L;
+    }
+  }
+
+
+  for(int b1=2*L*L; b1<4*L*L; b1++){
+    int a1 = 2*L*L;
+    nnbonds(b1,0) = nnbonds(b1-a1,0)+L*L;
+    nnbonds(b1,1) = nnbonds(b1-a1,1)+L*L;
+  }
+
 }
 
 /*********** GENERATE OPERATORS *****************************************/
