@@ -61,7 +61,7 @@ Unfortunately, there are
 no known simulation methods to calculate entanglement entropy in $D>1$ for large quantum-many body systems.
 The von Neumann entropy ($S_1$, defined below)
 is accessible numerically, but only when the reduced density matrix can be calculated directly, such as in Lanczos 
-or density matrix renormalization group (DMRG) methods.  However, scalable simulation techniques in dimensions $D>1$,
+or density matrix renormalization group (DMRG) methods.  Scalable simulation techniques in dimensions $D>1$,
 are so far essentially
 restricted to quantum Monte Carlo (QMC), which does not provide access to the reduced density matrix, but only approximates it
 via a Metropolis importance-sampling algorithm. 
@@ -95,7 +95,7 @@ generalized to the family of Renyi entropies, where it has been shown to be equa
 dimension, $S_{\rm top} \propto \log {\mathcal D}$, independent of $n$ \cite{PI}.  Universal corrections to the scaling of $S_{n}$ 
 have also been calculated in a field-theoretic treatment of the $O(N)$ model \cite{Max}.
 In addition, it is useful to note that two Renyi entropies $S_{n}$ and $S_{m}$ obey the fundamental
-inequality $S_{n} \geq S_{m}$ when $n > m$, making for example $S_2$ useful as a rigorous
+inequality $S_{n} \geq S_{m}$ when $n < m$, making for example $S_2$ useful as a rigorous
 lower bound on $S_1$.  
 
 \begin{figure} {
