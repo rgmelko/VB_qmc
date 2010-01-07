@@ -114,7 +114,7 @@ wavefunction $\Psi$ of $N$ spins as $N/2$ valence bonds:
 \begin{equation}
 | \Psi \rangle = \sum_r f_r|(a^r_1,b^r_1) \ldots (a^r_{N/2},b^r_{N/2}) \rangle = \sum_r f_r| V_r \rangle
 \end{equation}
-where the valence bonds are singlet pairs denoted by $(a,b) = (\uparrow_a \downarrow_b - \downarrow_a \uparrow_b)/\sqrt{2}$,
+where the valence bonds are singlet pairs denoted by $(a,b) = (\lvert\uparrow_a \downarrow_b \rangle - \lvert\downarrow_a \uparrow_b\rangle)/\sqrt{2}$,
 occuring between sites of the opposite sublattices of a bipartite lattice, and $r$ labels all possible tilings of bonds.  The coefficients $f_r$ are unknown, but an importance sampling scheme \cite{Sandvik} for the valence bond state $| V_r \rangle$ will be outlined below.  
 
 In order to derive an estimator for $S_2$, it is necessary to construct two separate copies of the
@@ -159,7 +159,7 @@ real and ancillary systems across the boundary of region $A$.
 {\it Measuring the Swap operator in QMC.}--
 We now present a procedure for measuring the entropy $S_2$ via importance sampling of the $Swap_A$ operator in QMC.  A
 projector scheme in the valence-bond basis has recently been pioneered by Sandvik \cite{Sandvik}, and we only briefly
-review the notation here, referring the reading to Refs.~\cite{Sandvik,Beach,AWSloop} for details of implementation.
+review the notation here, referring the reader to Refs.~\cite{Sandvik,Beach,AWSloop} for details of implementation.
 In short, the method is a $T=0$ projector QMC, where high powers of
 a Hamiltonian $H$ are used to project out the ground state $|0\rangle$ from a trial wavefunction, 
 $(-H)^m|\Psi \rangle \propto |0\rangle$.  In Sandvik's QMC scheme, $(-H)^m$ is written as a sum of all products of $m$ bond
@@ -186,7 +186,7 @@ a general expectation value for any observable $\mathcal{O}$ is given by
 In this case, the two projectors are applied to two copies of the system; 
 the expectation value of the $Swap_A$ operator as illustrated in Fig.~\ref{swap_2} 
 can then be calculated directly.  Specifically, one 
-performs important sampling of operator strings according to the weight $W_l W_r \langle V(l) | V(r) \rangle$, and measures
+performs importance sampling of operator strings according to the weight $W_l W_r \langle V(l) | V(r) \rangle$, and measures
 the QMC average expectation value
 \begin{equation}
 \langle Swap_A \rangle =  \left\langle{ \frac{ \langle V(l) | Swap_A | V(r) \rangle}{\langle V(l) | V(r) \rangle}  }\right\rangle,
@@ -246,7 +246,7 @@ this can be reduced by noting that good statistical control can be retained by c
 ${\langle Swap_{A^{i+j}}\rangle}/{\langle Swap_{A^{i}}\rangle}$ for fixed $i$ and a range of $j \in [1,j_{\max}]$ (see also the Discussion).  We illustrate this in Fig.~\ref{1Dfig},
 where simulations with $j_{\rm max}=5$ are sufficient to converge 100-site chain to the exact results along most of its length.
 
-{\it 2D Heisenberg Results.}-- We now extend these concepts to QMC simulations of the spin 1/2 Heisenberg model on $N=L \times L$ lattices.  We define the entangled region $A^l$ as a square region of linear length $\ell$ encompassing $\ell \times \ell$ sites.  We calculate the expectation value of both $\langle Swap_A \rangle$ (Eq.~\ref{Swap}) directly using one simulation, as well as the improved ratio estimator ${\langle Swap_{A^{\ell+r}}\rangle}/{\langle Swap_{A^{\ell}}\rangle}$.  Here, both $\ell$ and $r$ are variables denoting the linear dimension of $A$; i.e. $A^{\ell+r}$ contains $2\ell r+r^2$ more sites than $A^{\ell}$.
+{\it 2D Heisenberg Results.}-- We now extend these concepts to QMC simulations of the spin 1/2 Heisenberg model on $N=L \times L$ lattices.  We define the entangled region $A^\ell$ as a square region of linear length $\ell$ encompassing $\ell \times \ell$ sites.  We calculate the expectation value of both $\langle Swap_A \rangle$ (Eq.~\ref{Swap}) directly using one simulation, as well as the improved ratio estimator ${\langle Swap_{A^{\ell+r}}\rangle}/{\langle Swap_{A^{\ell}}\rangle}$.  Here, both $\ell$ and $r$ are variables denoting the linear dimension of $A$; i.e. $A^{\ell+r}$ contains $2\ell r+r^2$ more sites than $A^{\ell}$.
 
 \begin{figure} {
 \includegraphics[width=2.8in]{L8n12_ratio.eps} \caption{(color online) 
