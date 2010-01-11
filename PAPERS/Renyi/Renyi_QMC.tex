@@ -80,6 +80,15 @@ constructed in the valence-bond basis.  Using QMC simulations, we calculate $S_2
 on 1D and 2D lattices.  In 1D, we demonstrate that $S_2$ calculated with QMC converges to the exact result obtained with DMRG simulations.  In 2D, we show that the leading order term in the scaling of $S_2$ goes like the boundary of a subregion $A$, 
 confirming the area law expected in the N\'eel groudstate from recent studies \cite{Ann}.
 
+\begin{figure} {
+\includegraphics[width=2.5
+in]{swap_2.eps} \caption{(color online) 
+\label{swap_2}
+A six-site chain, with two non-interacting copies (top and bottom) before (a) and after (b) operation of the $Swap_A$ operator.  
+The region A consists of three light-colored sites on the left; the entangled region B of three dark sites on the right.
+}
+} \end{figure}
+
 The generalized Renyi entanglement entropies are defined by
 \begin{equation}
 S_{n} (\rho_A) = \frac{1}{1- n} \ln \left[{ {\rm Tr}\big( \rho_A^{n} \big) }\right],
@@ -98,14 +107,14 @@ In addition, it is useful to note that two Renyi entropies $S_{n}$ and $S_{m}$ o
 inequality $S_{n} \geq S_{m}$ when $n < m$, making for example $S_2$ useful as a rigorous
 lower bound on $S_1$.  
 
-\begin{figure} {
-\includegraphics[width=2.5
-in]{swap_2.eps} \caption{(color online) 
-\label{swap_2}
-A valence-bond state on a six-site chain, with two non-interacting copies (top and bottom) before (a) and after (b) operation of the $Swap_A$ operator.  
-The region A consists of three light-colored sites on the left; the entangled region B of three dark sites on the right.
-}
-} \end{figure}
+%\begin{figure} {
+%\includegraphics[width=2.5
+%in]{swap_2.eps} \caption{(color online) 
+%\label{swap_2}
+%A valence-bond state on a six-site chain, with two non-interacting copies (top and bottom) before (a) and after (b) operation of the $Swap_A$ operator.  
+%The region A consists of three light-colored sites on the left; the entangled region B of three dark sites on the right.
+%}
+%} \end{figure}
 
 {\it Valence-bond basis and the Swap operator.}-- We briefly review the notation of Sandvik, and refer the reader to 
 Refs.~\cite{Sandvik,Beach,AWSloop} for additional details on the valence bond basis.
@@ -273,7 +282,7 @@ so that $r_{\rm max}=2$ is identical to $r_{\rm max}=1$, which is the smallest p
 This is an indication that simulation ergodicity is jeopardized by low sampling of the $Swap$ operator, similar to that observed in 1D.
 
 \begin{figure} {
-\includegraphics[width=3.1in]{fig4.eps} \caption{(color online) 
+\includegraphics[width=3.2in]{fig4.eps} \caption{(color online) 
 \label{fig4}
 Scaling of the Renyi entropy divided by the linear dimension $\ell$ of the entangled region $A$ for different systems sizes
 in 2D.  All data is calculated with the improved ratio estimator, Eq.~\eqref{Ratio}, with different $r_{\rm max}=1$.  
