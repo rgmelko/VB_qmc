@@ -205,7 +205,7 @@ calculating $S_2$ from Eq.~\eqref{s2}.
 \label{1Dfig}
 The Renyi entropy $S_2$ as a function of site index $i \in A$, for a 100-site Heisenberg chain with open boundaries, 
 calculated with DMRG and QMC.  Data labelled ``Swap'' was obtained from Eq.~\eqref{Swap} with one simulation, whereas 
-data labelled $j_{\rm max}=5$ was calculated with Eq.~\ref{Ratio} using 19 separate simulations with a range of  $j \in [1,5]$.  The inset shows the convergence of $S_2$ to the exact value (dashed line) with $i=6$ up to $m=4000$.
+data labelled $j_{\rm max}=5$ was calculated with Eq.~\eqref{Ratio} using 19 separate simulations with a range of  $j \in [1,5]$.  The inset shows the convergence of $S_2$ to the exact value (dashed line) with $i=6$ up to $m=4000$.
 }
 } \end{figure}
 
@@ -282,7 +282,8 @@ in 2D.  All data is calculated with the improved ratio estimator, Eq.~\eqref{Rat
 
 We use the improved ratio estimator with $r_{\max}=1$ to scale the results for the Renyi entropy of the Heisenberg model to larger system sizes in 2D.  Results are given in Fig.~\ref{fig4} for $L=4$ to $L=28$, plotted as $S_2/\ell$.  From  Ref.~\cite{Ann}
 one expects the scaling of $S_1$ in the N\'eel state to obey the area law; also recall that $S_2 \leq S_1$.  
-The data illustrated is clearly consistent with the area law $S_2/\ell \sim {\rm const.}$ for $\ell<<L$, at which point boundary 
+The data illustrated is clearly consistent with the area law $S_2/\ell
+\sim {\rm const.}$ for $\ell \ll L$, at which point boundary 
 effects likely become important.  In particular, multiplicative log corrections (which were apparent in similar system sizes and geometries for the Valence-Bond entanglement entropy
 \cite{Alet,Chh}) are not present.
 
