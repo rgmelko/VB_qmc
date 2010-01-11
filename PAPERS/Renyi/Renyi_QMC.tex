@@ -149,8 +149,9 @@ $\Bigl( |\alpha_1\rangle \otimes |\beta_1\rangle \Bigr) \otimes
 represent a complete basis of states for both copies of the system.
 Define the operator $Swap_A$ by
 \begin{eqnarray}
+\label{SwapDef}
 && Swap_A \Bigl( |\alpha_1\rangle \otimes |\beta_1\rangle \Bigr) \otimes
-\Bigl( |\alpha_2\rangle \otimes |\beta_2\rangle \Bigr) \nonumber \\ &&=
+\Bigl( |\alpha_2\rangle \otimes |\beta_2\rangle \Bigr) \nonumber \\ &=&
 \Bigl( |\alpha_2\rangle \otimes |\beta_1\rangle \Bigr) \otimes
 \Bigl( |\alpha_1\rangle \otimes |\beta_2\rangle \Bigr).
 \end{eqnarray}
@@ -158,12 +159,15 @@ The operator $Swap_A$ is a unitary operator.
 One immediately sees that the Renyi entropy is simply
 \begin{eqnarray}
 \label{H2fromSwap}
-S_2(\rho_A) &=&-\ln(\langle \Psi\otimes \Psi|Swap_A|\Psi\otimes \Psi\rangle) \\
+S_2(\rho_A) &=&-\ln(\langle \Psi\otimes \Psi|Swap_A|\Psi\otimes \Psi\rangle) 
+\nonumber
+\\
 &=&-\ln(\langle Swap_A \rangle). \label{s2}
 \end{eqnarray}
-In the valence-bond basis, this relationship holds, although the simple expression of the wavefunction in terms
-of a product basis is not possible.  Rather, the swap operator has the
-effect of swapping the endpoint of a valence-bond between the real and ancillary copies in the region $A$.
+Eq.~(\ref{H2fromSwap}) is basis independent, holding in particular in the valence
+bond basis.  However, in the valence bond basis, the swap operator is
+not defined by Eq.~(\ref{SwapDef}) but rather it is defined to
+swap the endpoints of valence bonds between the real and ancillary copies in the region $A$.
 %across the boundary of region $A$.
 The $Swap_A$ operator is illustrated for a 1D lattice with six sites in Fig~\ref{swap_2}.  
 There, two copies of the system are drawn before (a) and after (b) operation by the $Swap_A$ operator on a
