@@ -1,0 +1,13 @@
+Dear Editor,
+
+We are submitting the attached paper on "Measuring Entanglement Entropy with Quantum Monte Carlo" to Physical Review Letters.  The study of entanglement entropy in quantum many-body systems has become a major research topic in recent years.  It provides new universal diagnostics of critical behavior, and displays exotic phenomena in topologically ordered systems.  
+
+However, almost all of this work is either purely theoretical or is restricted to one dimension.  In fact, despite all this work, there is no reliable way to measure this quantity numerically in more than one dimension in a truly scalable way.  Methods such as DMRG are restricted to one dimension or to quasi-one-dimensional ladder geometries.  Methods such as exact diagonalization are limited to small systems.  There is some hope that recent numerical techniques, such as MERA, may allow a calculation of entanglement entropy in large systems, but currently the gold standard for simulation of large many-body systems is quantum Monte Carlo.  In this paper, we demonstrate that quantum Monte Carlo can be used to determine Renyi entanglement entropy.  We develop a novel sampling scheme to make this possible, and we numerically demonstrate the presence of an area law for the Heisenberg anti-ferromagnet for system sizes up to L=28.
+
+Our numerical method opens the door to an entire field of simulation able to study entanglement scaling in more than one dimension.  This will allow the determination of universal physics in a plethora of quantum systems of interest to condensed matter physics and beyond.  We anticipate that our algorithm will be extended in the future by loop algorithms, thus providing large (L of order 256 or more) calculations of entanglement entropy and determination of universal features in higher dimensions, testing theoretical predictions for these quantities.
+
+Thank you,
+Matthew Hastings
+Ivan Gonzalez
+Ann Kallinn
+Roger Melko
