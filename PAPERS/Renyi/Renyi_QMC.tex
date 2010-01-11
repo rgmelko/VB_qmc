@@ -118,9 +118,9 @@ lower bound on $S_1$.
 {\it Valence-bond basis and the Swap operator.}-- We briefly review the notation of Sandvik, and refer the reader to 
 Refs.~\cite{Sandvik,Beach,AWSloop} for additional details on the valence bond basis.
 One begins by writing the expansion of a singlet
-wavefunction $\Psi$ of $N$ spins as $N/2$ valence bonds:
+wavefunction $\Psi_0$ of $N$ spins as $N/2$ valence bonds:
 \begin{equation}
-| \Psi \rangle = \sum_r f_r|(a^r_1,b^r_1) \ldots (a^r_{N/2},b^r_{N/2}) \rangle = \sum_r f_r| V_r \rangle
+| \Psi_0 \rangle = \sum_r f_r|(a^r_1,b^r_1) \ldots (a^r_{N/2},b^r_{N/2}) \rangle = \sum_r f_r| V_r \rangle
 \end{equation}
 where the valence bonds are singlet pairs denoted by $(a,b) = (\lvert\uparrow_a \downarrow_b \rangle - \lvert\downarrow_a \uparrow_b\rangle)/\sqrt{2}$,
 occuring between sites of the opposite sublattices of a bipartite lattice, and $r$ labels all possible tilings of bonds.  The coefficients $f_r$ are unknown, but an importance sampling scheme \cite{Sandvik} for the valence bond state $| V_r \rangle$ will be outlined below.  
@@ -141,7 +141,7 @@ configurations within region $A$.  To more precisely define the operator
 $Swap_A$, one may write out its matrix elements in a product basis, e.g. the $S^z$ basis.
 Let $|\alpha\rangle$  represent a complete basis of states in the subregion
 $A$ and let $|\beta\rangle$ represent a complete basis of states in
-the complement subregion $B$.  Then, $|\Psi \rangle =|\alpha_1 \rangle \otimes |\beta_1 \rangle$ represent
+the complement subregion $B$.  Then, $|\alpha_1 \rangle \otimes |\beta_1 \rangle$ represent
 a complete basis of states for the ``real'' system, and
 $\Bigl( |\alpha_1\rangle \otimes |\beta_1\rangle \Bigr) \otimes
 \Bigl( |\alpha_2\rangle \otimes |\beta_2\rangle \Bigr)$
@@ -158,7 +158,7 @@ Define the unitary operator $Swap_A$ by
 One immediately sees that the Renyi entropy is simply
 \begin{eqnarray}
 \label{H2fromSwap}
-S_2(\rho_A) &=&-\ln(\langle \Psi\otimes \Psi|Swap_A|\Psi\otimes \Psi\rangle) 
+S_2(\rho_A) &=&-\ln(\langle \Psi_0\otimes \Psi_0|Swap_A|\Psi_0\otimes \Psi_0\rangle) 
 \nonumber
 \\
 &=&-\ln(\langle Swap_A \rangle). \label{s2}
@@ -179,8 +179,8 @@ We now present a procedure for measuring the entropy $S_2$ via importance sampli
 projector scheme in the valence-bond basis has recently been pioneered by Sandvik, and we only briefly
 review the notation here, referring the reader to Refs.~\cite{Sandvik,Beach,AWSloop} for details of implementation.
 The method is a $T=0$ projector QMC, where high powers of
-a Hamiltonian $H$ are used to project out the ground state $|0\rangle$ from a trial wavefunction, 
-$(-H)^m|\Psi \rangle \propto |0\rangle$.  In Sandvik's QMC scheme, $(-H)^m$ is written as a sum of all products of $m$ bond
+a Hamiltonian $H$ are used to project out the ground state $|\Psi_0\rangle$ from a trial wavefunction $\Psi$:
+$(-H)^m|\Psi \rangle \propto |\Psi_0\rangle$.  In Sandvik's QMC scheme, $(-H)^m$ is written as a sum of all products of $m$ bond
 operators,
 \begin{equation}
 (-H)^m = \sum_r \prod_{i=1}^m H_{a_i^r b_i^r} = \sum_r P_r,
