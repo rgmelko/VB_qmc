@@ -42,26 +42,24 @@ groundstate obeys the expected area law for systems up to linear size $L=28$.
 \end{abstract}
 \maketitle
 
-{\it Introduction.}-- 
-The measurement of entanglement in interacting quantum many-body systems has promised to provide
-new tools and insights to the field of condensed-matter physics.  An important example is conformally invariant
-systems in one dimension (1D), which display universal logarithmic
-scaling of entanglement entropy \cite{Cardy}.  In addition, many
+The measurement of entanglement entropy  provides
+new tools to determine universal properties of interacting quantum many-body systems in condensed-matter physics.  For example, conformally invariant
+systems in one dimension (1D) display universal logarithmic
+scaling of entanglement entropy \cite{Cardy}.  Many
 quantum systems in two dimensions (2D) and higher are predicted to have ``area law''
 scaling of entanglement entropy, with
 either universal additive logarithmic corrections for critical systems \cite{corner,ryu} or
 universal additive constant corrections for topologically ordered systems \cite{KP,LW}.
-Thus, the study of entanglement entropy can provide an important new 
-window into the understanding of universal behavior, a uniting concept across broad fields of experimental and theoretical 
-physics.
 
-Scalable simulation methods are crucial for the 
-study of groundstate, finite-temperature, and critical properties of the plethora of systems of interest to condensed-matter physics.
+Scalable simulation methods have become crucial for the 
+study of groundstate, finite-temperature, and critical properties of quantum
+many-body systems.
 Unfortunately, there are 
-no known simulation methods to calculate entanglement entropy in $D>1$ for large quantum-many body systems.
-The von Neumann entropy ($S_1$, defined below)
-is accessible numerically, but only when the reduced density matrix can be calculated directly, such as in Lanczos 
-or density matrix renormalization group (DMRG) methods.  Scalable simulation techniques in dimensions $D>1$,
+no known scalable simulation methods to calculate entanglement entropy in $D>1$.
+Calculating the von Neumann entropy ($S_1$, defined below) requires calculating
+the reduced density matrix,
+which can be done in Lanczos 
+or density matrix renormalization group (DMRG).  However, scalable simulation techniques in dimensions $D>1$,
 are so far essentially
 restricted to quantum Monte Carlo (QMC), which does not provide access to the reduced density matrix, but only approximates it
 via a Metropolis importance-sampling algorithm. 
@@ -74,12 +72,12 @@ via a Metropolis importance-sampling algorithm.
 %restricted to quantum Monte Carlo (QMC) which does not provide access to the reduce density matrix but only approximates it
 %via a Metropolis importance-sampling algorithm. 
 
-We resolve this problem and show that a generalized Renyi entropy ($S_2$, defined below) can be be related to the expectation
+We resolve this problem and show that a generalized Renyi entropy ($S_2$, defined below) can be related to the expectation
 value of a unitary swap operator in the valence-bond basis,
-directly accessible to QMC techniques.
+directly accessible in QMC.
 Using QMC simulations, we calculate $S_2$ for a spin $1/2$ Heisenberg model
 on 1D and 2D lattices.  In 1D, we demonstrate that $S_2$ calculated with QMC converges to the exact result obtained with DMRG simulations.  In 2D, we show that the leading-order term in the scaling of $S_2$ goes like the boundary of a subregion $A$, 
-confirming the area law expected in the N\'eel groudstate from recent studies \cite{Ann}.
+confirming the area law expected from recent studies \cite{Ann}.
 
 \begin{figure} {
 \includegraphics[width=2.4
@@ -104,7 +102,7 @@ much more information than $S_1$ alone \cite{Espec}.  For example, the concept o
 generalized to the family of Renyi entropies, where it has been shown to be equal to the logarithm of the total quantum 
 dimension, $S_{\rm top} \propto \log {\mathcal D}$, independent of $n$ \cite{PI}.  Universal corrections to the scaling of $S_{n}$ 
 have also been calculated in a field-theoretic treatment of the $O(N)$ model \cite{Max}.
-In addition, it is useful to note that two Renyi entropies $S_{n}$ and $S_{m}$ obey the fundamental
+In addition, any two Renyi entropies $S_{n}$ and $S_{m}$ obey the fundamental
 inequality $S_{n} \geq S_{m}$ when $n < m$, making for example $S_2$ useful as a rigorous
 lower bound on $S_1$.  
 
@@ -127,8 +125,8 @@ wavefunction $\Psi$ of $N$ spins as $N/2$ valence bonds:
 where the valence bonds are singlet pairs denoted by $(a,b) = (\lvert\uparrow_a \downarrow_b \rangle - \lvert\downarrow_a \uparrow_b\rangle)/\sqrt{2}$,
 occuring between sites of the opposite sublattices of a bipartite lattice, and $r$ labels all possible tilings of bonds.  The coefficients $f_r$ are unknown, but an importance sampling scheme \cite{Sandvik} for the valence bond state $| V_r \rangle$ will be outlined below.  
 
-In order to derive an estimator for $S_2$, it is advantageous to construct two separate copies of the
-system under consideration; one ``real'', one ``ancillary'' (Fig.~\ref{swap_2}).
+To derive an estimator for $S_2$, we construct two separate copies of the
+system under consideration (higher entropies $S_n$ require $n$ copies); one ``real'', one ``ancillary'' (Fig.~\ref{swap_2}).
 %We now give an equivalent definition of
 %the Renyi entropy $S_2$ as the expectation
 %value of a swap operator on two copies of the system.  
@@ -180,7 +178,7 @@ valence-bond state $|V_r\rangle$.
 We now present a procedure for measuring the entropy $S_2$ via importance sampling of the $Swap_A$ operator in QMC.  A
 projector scheme in the valence-bond basis has recently been pioneered by Sandvik, and we only briefly
 review the notation here, referring the reader to Refs.~\cite{Sandvik,Beach,AWSloop} for details of implementation.
-In short, the method is a $T=0$ projector QMC, where high powers of
+The method is a $T=0$ projector QMC, where high powers of
 a Hamiltonian $H$ are used to project out the ground state $|0\rangle$ from a trial wavefunction, 
 $(-H)^m|\Psi \rangle \propto |0\rangle$.  In Sandvik's QMC scheme, $(-H)^m$ is written as a sum of all products of $m$ bond
 operators,
@@ -218,7 +216,7 @@ calculating $S_2$ from Eq.~\eqref{s2}.
 \includegraphics[width=2.7in]{L100_fig2.eps} \caption{(color online) 
 \label{1Dfig}
 The Renyi entropy $S_2$ as a function of site index $i \in A$, for a 100-site Heisenberg chain with open boundaries, 
-calculated with DMRG and QMC.  Data labelled ``Swap'' was obtained from Eq.~\eqref{Swap} with one simulation, whereas 
+calculated with DMRG and QMC.  Data labelled ``Swap'' was obtained from Eq.~\eqref{Swap} with one simulation, while
 data labelled $j_{\rm max}=5$ was calculated with Eq.~\eqref{Ratio} using 19 separate simulations with a range of  $j \in [1,5]$.  The inset shows the convergence of $S_2$ to the exact value (dashed line) for $i=6$ with up to $m=4000$.
 }
 } \end{figure}
@@ -266,7 +264,11 @@ this can be reduced by noting that good statistical control can be retained by c
 ${\langle Swap_{A^{i+j}}\rangle}/{\langle Swap_{A^{i}}\rangle}$ for fixed $i$ and a range of $j \in [1,j_{\max}]$ (see also the Discussion).  We illustrate this in Fig.~\ref{1Dfig},
 where simulations with $j_{\rm max}=5$ are sufficient to converge 100-site chain to the exact results along most of its length.
 
-{\it 2D Heisenberg Results.}-- We now extend these concepts to QMC simulations of the spin 1/2 Heisenberg model on $N=L \times L$ lattices.  We define the entangled region $A^\ell$ as a square region of linear length $\ell$ encompassing $\ell \times \ell$ sites.  We calculate the expectation value of both $\langle Swap_A \rangle$ (Eq.~\ref{Swap}) directly using one simulation, as well as the improved ratio estimator ${\langle Swap_{A^{\ell+r}}\rangle}/{\langle Swap_{A^{\ell}}\rangle}$.  Here, both $\ell$ and $r$ are variables denoting the linear dimension of $A$; i.e. $A^{\ell+r}$ contains $2\ell r+r^2$ more sites than $A^{\ell}$.
+{\it 2D Heisenberg Results.}-- We now extend these concepts to QMC simulations of the spin 1/2 Heisenberg model on $N=L \times L$ lattices.  
+For the simulations using the improved ratio estimator, 
+${\langle Swap_{A^{\ell+r}}\rangle}/{\langle Swap_{A^{\ell}}\rangle}$,
+we define $A^\ell$ as a square region of linear size $\ell$ containing $\ell \times \ell$ sites, so
+$A^{\ell+r}$ contains $2\ell r+r^2$ more sites than $A^{\ell}$.
 
 \begin{figure} {
 \includegraphics[width=2.7in]{L8n12_ratio.eps} \caption{(color online) 
@@ -279,7 +281,7 @@ is a periodic $L=8$ lattice with region $A$ consisting of the 16 central (dark) 
 
 Figure \ref{L16fig} illustrates $S_2$ on two 2D Heisenberg models with  $L=8$ and  $L=12$.  In the case of $L=8$, data for a single 
 simulation calculating $\langle Swap_A \rangle$ directly is identical to the improved ratio estimators for all except the largest $\ell$.  
-Here, the direct estimator (Eq~\eqref{Swap}) corresponds to one simulation, whereas $r_{\rm max}=1$ corresponds to 6 different simulations of the improved ratio estimator ${\langle Swap_{A^{\ell+1}}\rangle}/{\langle Swap_{A^{\ell}}\rangle}$ and $\ell \in [1,6]$.
+Here, the direct estimator (Eq~\eqref{Swap}) corresponds to one simulation, while $r_{\rm max}=1$ corresponds to 6 different simulations of the improved ratio estimator ${\langle Swap_{A^{\ell+1}}\rangle}/{\langle Swap_{A^{\ell}}\rangle}$ and $\ell \in [1,6]$.
 In contrast to $L=8$, for $L=12$ the direct estimator is significantly different than 
 the improved ratio estimator.  We can see the convergence of the data as one successively decreases the range of $r \in [1,r_{\rm max}]$, 
 so that $r_{\rm max}=2$ is identical to $r_{\rm max}=1$, which is the smallest possible range for the improved ratio estimator in the 2D geometry illustrated.  It is important to note that for large $r_{\rm max}$ the correct value of $S_2$ does {\it not} lie within the error bars of the data.  
@@ -310,26 +312,25 @@ Using the same procedure, we have presented the first measurement of the Renyi e
 %Using the improved ratio estimator, we were able to converge the expectation value of the swap operator.
 
 The simple double-projector QMC algorithm used in this paper is known to scale approximately as $O(m^2)$, \cite{AWSloop}
-assuming $m >N$ and remembering that two copies of a $L \times L$ lattice are needed to measure the Renyi
- entropy.
-  The current simulation results for the direct swap expectation value, Eq~\eqref{Swap}, therefore also have
- $O(m^2)$ scaling, whereas results obtained using the improved ratio estimator Eq.~\eqref{Ratio} have $O(Lm^2)$ scaling in the current geometries.
+assuming $m >N$.
+Thus, the current simulation results for the direct swap expectation value, Eq~\eqref{Swap}, also have
+ $O(m^2)$ scaling, while results obtained using the improved ratio estimator Eq.~\eqref{Ratio} have $O(Lm^2)$ scaling in the current geometries.
 We note however that these geometries may not be ideal for very large $\ell$ and $L$, even in the improved ratio sampling.
 For example for $L=28$, %and  $\ell=L/2$, 
 %we found a relative error between $r_{\rm max}=2$ and $r_{\rm max}=1$ of less than 0.04 (the
 %results for $S_2$ remaining identical within error bars); however for $\ell$ significantly larger than $L/2$, the statistical sampling error
 %increases dramatically and results for $S_2$ using  $r_{\rm max}=2$ and $r_{\rm max}=1$ begin to deviate outside of error bars,
 %indicating a lack of ergodicity in $r_{\rm max}=2$ at least.  
-although results for $r_{\rm max}=2$ and $r_{\rm max}=1$ were converged for $\ell < L/2$, for larger $\ell$ the
+while results for $r_{\rm max}=2$ and $r_{\rm max}=1$ were converged for $\ell < L/2$, for $\ell>L/2$ the
 statistical sampling error increased dramatically and the results develop a discrepancy outside of error bars, indicating a lack of ergodicity
-in $r_{\rm max}=2$ at least.
-This being noted, it is of course true that in practice for such large $\ell$, one would prefer to do the simulation by measuring the 
-expectation value of the swap operator on the complement of $A$, not on $A$ itself.
+in $r_{\rm max}=2$ at least (of course, in practice for such large $\ell$ one would prefer to do the simulation by measuring the 
+expectation value of the swap operator on the complement of $A$, not on $A$ itself).
 
 From the current work (which took about 10 CPU years of resources), 
 the question naturally arises whether it is possible to converge the expectation value of the swap operator on
 larger system sizes.  %, especially in light of the desire to test more fully the convergence of $r_{\rm max}=1$ on large $L$ and $\ell$.
-Clearly, it is easy to change the sequence of regions $A^i$ that one uses in the improved ratio estimator.
+We expect that this will be possible using a different
+sequence of regions $A^i$ in the improved ratio estimator.
 Rather than considering a sequence of regions $A^{\ell}$ consisting of $\ell$-by-$\ell$ squares, 
 we can use a more finely grained sequence of regions; e.g. by defining $A^i$ to contain
 $i$ sites such that for $i=\ell^2$, $A^i$ is an $\ell$-by-$\ell$ square.  Incrementing the number of sites in $i$ by one would result in
