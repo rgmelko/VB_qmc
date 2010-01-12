@@ -84,7 +84,7 @@ confirming the area law expected from recent studies \cite{Ann}.
 in]{swap_2.eps} \caption{(color online) 
 \label{swap_2}
 A six-site chain, with two non-interacting copies (top and bottom) before (a) and after (b) operation of the $Swap_A$ operator.  
-The region A consists of three light-colored sites on the left; the entangled region B of three dark sites on the right.
+The region $A$ consists of three light-colored sites on the left; the entangled region $B$ of three dark sites on the right.
 }
 } \end{figure}
 
@@ -164,13 +164,13 @@ S_2(\rho_A) &=&-\ln(\langle \Psi_0\otimes \Psi_0|Swap_A|\Psi_0\otimes \Psi_0\ran
 &=&-\ln(\langle Swap_A \rangle). \label{s2}
 \end{eqnarray}
 Equation~(\ref{H2fromSwap}) is basis independent, holding in particular in the valence
-bond basis.  However, in the valence bond basis, the swap operator is
+bond basis.  However, in the valence bond basis, the $Swap_A$ operator is
 not defined by Eq.~(\ref{SwapDef}) but rather it is defined to
 swap the endpoints of valence bonds between the real and ancillary copies in the region $A$.
 %across the boundary of region $A$.
 The $Swap_A$ operator is illustrated for a 1D lattice with six sites in Fig~\ref{swap_2}.  
-There, two copies of the system are drawn before (a) and after (b) operation by the $Swap_A$ operator on a
-valence-bond state $|V_r\rangle$.
+%There, two copies of the system are drawn before (a) and after (b) operation by the $Swap_A$ operator on a
+%valence-bond state $|V_r\rangle$.
 %The result is an entangling of the valence bonds between the 
 %real and ancillary systems across the boundary of region $A$.
 
@@ -199,7 +199,7 @@ a general expectation value for any observable $\mathcal{O}$ is given by
 \begin{equation}
 \label{expect}
 \langle \mathcal{O} \rangle = \frac{\sum_{rl} \langle V | P_l^* \mathcal{O} P_r | V \rangle} {\sum_{rl} \langle V | P_l^* P_r | V \rangle} 
-= \frac{\sum_{rl} W_l W_r \langle V(l) | \mathcal{O} | V(r) \rangle} {\sum_{rl} W_l W_r \langle V(l) | V(r) \rangle}
+= \frac{\sum_{rl} W_l W_r \langle V(l) | \mathcal{O} | V(r) \rangle} {\sum_{rl} W_l W_r \langle V(l) | V(r) \rangle}.
 \end{equation} 
 In this case, the two operator strings, $P_l$ and $P_r$, are applied to two copies of the system; 
 the expectation value of the $Swap_A$ operator as illustrated in Fig.~\ref{swap_2} 
@@ -286,7 +286,7 @@ In contrast to $L=8$, for $L=12$ the direct estimator is significantly different
 the improved ratio estimator.  We can see the convergence of the data as one successively decreases the range of $r \in [1,r_{\rm max}]$, 
 so that $r_{\rm max}=2$ is identical to $r_{\rm max}=1$, which is the smallest possible range for the improved ratio estimator in the 2D geometry illustrated.  It is important to note that for large $r_{\rm max}$ the correct value of $S_2$ does {\it not} lie within the error bars of the data.  
 %This is an indication that the algorithm will not converge to the expected result in polynomial time, since the expectation value is exponentially decreasing.
-This is an indication that simulation ergodicity is jeopardized by low sampling of the $Swap$ operator, similar to that observed in 1D.
+This is an indication that simulation ergodicity is jeopardized by low sampling of the $Swap_A$ operator, similar to that observed in 1D.
 
 \begin{figure} {
 \includegraphics[width=3in]{fig4.eps} \caption{(color online) 
@@ -347,7 +347,7 @@ We therefore expect that
 the algorithm will require only a polynomial number of samples for convergence of arbitrary system sizes.
 
 
-{\it Acknowledgments.}-- The authors thank Kevin Beach ...
+{\it Acknowledgments.}-- The authors thank  ...
 This work was made possible by the
 computing facilities of SHARCNET and CESGA.  Support was provided by NSERC
 of Canada (A.B.K. and R.G.M.).
