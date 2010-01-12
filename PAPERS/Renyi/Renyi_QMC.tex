@@ -163,7 +163,7 @@ S_2(\rho_A) &=&-\ln(\langle \Psi_0\otimes \Psi_0|Swap_A|\Psi_0\otimes \Psi_0\ran
 \\
 &=&-\ln(\langle Swap_A \rangle). \label{s2}
 \end{eqnarray}
-Eq.~(\ref{H2fromSwap}) is basis independent, holding in particular in the valence
+Equation~(\ref{H2fromSwap}) is basis independent, holding in particular in the valence
 bond basis.  However, in the valence bond basis, the swap operator is
 not defined by Eq.~(\ref{SwapDef}) but rather it is defined to
 swap the endpoints of valence bonds between the real and ancillary copies in the region $A$.
@@ -201,7 +201,7 @@ a general expectation value for any observable $\mathcal{O}$ is given by
 \langle \mathcal{O} \rangle = \frac{\sum_{rl} \langle V | P_l^* \mathcal{O} P_r | V \rangle} {\sum_{rl} \langle V | P_l^* P_r | V \rangle} 
 = \frac{\sum_{rl} W_l W_r \langle V(l) | \mathcal{O} | V(r) \rangle} {\sum_{rl} W_l W_r \langle V(l) | V(r) \rangle}
 \end{equation} 
-In this case, the two operator string, $P_l$ and $P_r$, are applied to two copies of the system; 
+In this case, the two operator strings, $P_l$ and $P_r$, are applied to two copies of the system; 
 the expectation value of the $Swap_A$ operator as illustrated in Fig.~\ref{swap_2} 
 can then be calculated directly.  Specifically, one 
 performs importance sampling of operator strings according to the weight $W_l W_r \langle V(l) | V(r) \rangle$, and measures
@@ -313,8 +313,10 @@ Using the same procedure, we have presented the first measurement of the Renyi e
 
 The simple double-projector QMC algorithm used in this paper is known to scale approximately as $O(m^2)$, \cite{AWSloop}
 assuming $m >N$.
-Thus, the current simulation results for the direct swap expectation value, Eq~\eqref{Swap}, also have
- $O(m^2)$ scaling, while results obtained using the improved ratio estimator Eq.~\eqref{Ratio} have $O(Lm^2)$ scaling in the current geometries.
+Thus, the current simulation results for the direct swap expectation
+value, Eq.~\eqref{Swap}, also have
+ $O(m^2)$ scaling, while results obtained using the improved ratio
+estimator, Eq.~\eqref{Ratio}, have $O(Lm^2)$ scaling in the current geometries.
 We note however that these geometries may not be ideal for very large $\ell$ and $L$, even in the improved ratio sampling.
 For example for $L=28$, %and  $\ell=L/2$, 
 %we found a relative error between $r_{\rm max}=2$ and $r_{\rm max}=1$ of less than 0.04 (the
