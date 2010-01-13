@@ -54,14 +54,6 @@ are so far essentially
 restricted to quantum Monte Carlo (QMC), which does not provide access to the reduced density matrix, but only approximates it
 via a Metropolis importance-sampling algorithm. 
 
-%Unfortunately, there are 
-%no known simulation methods to calculate entanglement entropy in $D>1$ for large systems of interest in
-%condensed matter.
-% needed in order to study the groundstate, finite-temperature, and 
-%critical properties of the vast majority of systems of interest to condensed-matter physics, are so far essentially
-%restricted to quantum Monte Carlo (QMC) which does not provide access to the reduce density matrix but only approximates it
-%via a Metropolis importance-sampling algorithm. 
-
 We resolve this problem and show that a generalized Renyi entropy ($S_2$, defined below) can be related to the expectation
 value of a unitary swap operator in the valence-bond basis,
 directly accessible in QMC.
@@ -74,7 +66,7 @@ confirming the area law expected from recent studies \cite{Ann}.
 in]{swap_2.eps} \caption{(color online) 
 \label{swap_2}
 A six-site chain, with two non-interacting copies (top and bottom) before (a) and after (b) operation of the $Swap_A$ operator.  
-The region $A$ consists of three light-colored sites on the left; the entangled region $B$ of three dark sites on the right.
+The region $A$ consists of three light-colored sites on the left; the complement region $B$ of three dark sites on the right.
 }
 } \end{figure}
 
@@ -96,15 +88,6 @@ In addition, any two Renyi entropies $S_{n}$ and $S_{m}$ obey the fundamental
 inequality $S_{n} \geq S_{m}$ when $n < m$, making for example $S_2$ useful as a rigorous
 lower bound on $S_1$.  
 
-%\begin{figure} {
-%\includegraphics[width=2.5
-%in]{swap_2.eps} \caption{(color online) 
-%\label{swap_2}
-%A valence-bond state on a six-site chain, with two non-interacting copies (top and bottom) before (a) and after (b) operation of the $Swap_A$ operator.  
-%The region A consists of three light-colored sites on the left; the entangled region B of three dark sites on the right.
-%}
-%} \end{figure}
-
 {\it Valence-bond basis and the Swap operator.}-- We briefly review the notation of Sandvik, and refer the reader to 
 Refs.~\cite{Sandvik,Beach,AWSloop} for additional details on the valence bond basis.
 One begins by writing the expansion of a singlet
@@ -113,18 +96,10 @@ wavefunction $\Psi_0$ of $N$ spins as $N/2$ valence bonds:
 | \Psi_0 \rangle = \sum_r f_r|(a^r_1,b^r_1) \ldots (a^r_{N/2},b^r_{N/2}) \rangle = \sum_r f_r| V_r \rangle
 \end{equation}
 where the valence bonds are singlet pairs denoted by $(a,b) = (\lvert\uparrow_a \downarrow_b \rangle - \lvert\downarrow_a \uparrow_b\rangle)/\sqrt{2}$,
-occuring between sites of the opposite sublattices of a bipartite lattice, and $r$ labels all possible tilings of bonds.  The coefficients $f_r$ are unknown, but an importance sampling scheme \cite{Sandvik} for the valence bond state $| V_r \rangle$ will be outlined below.  
+occurring between sites of the opposite sublattices of a bipartite lattice, and $r$ labels all possible tilings of bonds.  The coefficients $f_r$ are unknown, but an importance sampling scheme \cite{Sandvik} for the valence bond state $| V_r \rangle$ will be outlined below.  
 
 To derive an estimator for $S_2$, we construct two separate copies of the
 system under consideration (higher entropies $S_n$ require $n$ copies); one ``real'', one ``ancillary'' (Fig.~\ref{swap_2}).
-%We now give an equivalent definition of
-%the Renyi entropy $S_2$ as the expectation
-%value of a swap operator on two copies of the system.  
-%We first
-%present a formal solution to the problem of measuring the entropy
-%in QMC, Eq.~(\ref{ensembleavg}) below, as a QMC averge.
-%We then explain how to better perform the statistical sampling for
-%actual calculations.
 Then, one defines an
 operator $Swap_A$ which acts between the copies of the system, swapping the
 configurations within region $A$.  To more precisely define the operator
@@ -144,7 +119,6 @@ Define the unitary operator $Swap_A$ by
 \Bigl( |\alpha_2\rangle \otimes |\beta_1\rangle \Bigr) \otimes
 \Bigl( |\alpha_1\rangle \otimes |\beta_2\rangle \Bigr).
 \end{eqnarray}
-%The operator $Swap_A$ is a unitary operator.
 One immediately sees that the Renyi entropy is simply
 \begin{eqnarray}
 \label{H2fromSwap}
@@ -157,12 +131,7 @@ Equation~(\ref{H2fromSwap}) is basis independent, holding in particular in the v
 bond basis.  However, in the valence bond basis, the $Swap_A$ operator is
 not defined by Eq.~(\ref{SwapDef}) but rather it is defined to
 swap the endpoints of valence bonds between the real and ancillary copies in the region $A$.
-%across the boundary of region $A$.
-The $Swap_A$ operator is illustrated for a 1D lattice with six sites in Fig~\ref{swap_2}.  
-%There, two copies of the system are drawn before (a) and after (b) operation by the $Swap_A$ operator on a
-%valence-bond state $|V_r\rangle$.
-%The result is an entangling of the valence bonds between the 
-%real and ancillary systems across the boundary of region $A$.
+The $Swap_A$ operator is illustrated for a 1D lattice with six sites in Fig.~\ref{swap_2}.  
 
 {\it Measuring the Swap operator in QMC.}--
 We now present a procedure for measuring the entropy $S_2$ via importance sampling of the $Swap_A$ operator in QMC.  A
@@ -203,11 +172,11 @@ the QMC average expectation value
 calculating $S_2$ from Eq.~\eqref{s2}.
 
 \begin{figure} {
-\includegraphics[width=2.7in]{L100_fig2.eps} \caption{(color online) 
+\includegraphics[width=2.9in]{L100_fig2.eps} \caption{(color online) 
 \label{1Dfig}
 The Renyi entropy $S_2$ as a function of site index $i \in A$, for a 100-site Heisenberg chain with open boundaries, 
-calculated with DMRG and QMC.  Data labelled ``Swap'' was obtained from Eq.~\eqref{Swap} with one simulation, while
-data labelled $j_{\rm max}=5$ was calculated with Eq.~\eqref{Ratio} using 19 separate simulations with a range of  $j \in [1,5]$.  The inset shows the convergence of $S_2$ to the exact value (dashed line) for $i=6$ with up to $m=4000$.
+calculated with DMRG and QMC.  Data labeled ``Swap'' was obtained from Eq.~\eqref{Swap} with one QMC simulation, while
+data labeled $j_{\rm max}=5$ was calculated with Eq.~\eqref{Ratio} using 19 separate QMC simulations with a range of  $j \in [1,5]$.  The inset shows the convergence of $S_2$ to the exact value (dashed line) for $i=6$ with up to $m=4000$.
 }
 } \end{figure}
 
@@ -222,7 +191,7 @@ One may understand this incorrect result by considering the expected scaling of 
 $S_2$ scales logarithmically with the size of $A$, so the expectation value
 $\langle Swap_A \rangle$ should be polynomially small in $A$.  As a result, there
 are only very
-few configurations contributing significantly to $\langle Swap_A \rangle$, so the importance  sampling is in practice done incorrectly,
+few configurations contributing significantly to $\langle Swap_A \rangle$, so in practice the importance  sampling is done incorrectly,
 jeopardizing simulation ergodicity \footnote{The valence bond basis does alleviate this problem, compared to the
 $S^z$ basis, in some systems; for example, a valence
 bond crystal can have an exponentially small $\langle Swap_A \rangle$, without having {\it any} realization-to-realization fluctuations,
@@ -246,8 +215,7 @@ with the modified sampling weight,
 \begin{equation}
 W_l W_r \langle V(l) | Swap_{A^i} | V(r) \rangle,
 \end{equation}
-i.e., a unique QMC simulation must be done for each desired $i$.  %Thus, our simple double-projector algorithm, which scales 
-%approximately as $~{\rm max}(m^2, N)$ \cite{AWSloop}, obtains an additional multiplicative factor of $N$ in the scaling.  
+i.e., a unique QMC simulation must be done for each desired $i$.  
 If every site were used for a different simulation weight, the QMC algorithm would obtain an additional multiplicative factor of $N$ in its scaling.
 In practice, 
 this can be reduced by noting that good statistical control can be retained by calculating 
@@ -261,11 +229,11 @@ we define $A^\ell$ as a square region of linear size $\ell$ containing $\ell \ti
 $A^{\ell+r}$ contains $2\ell r+r^2$ more sites than $A^{\ell}$.
 
 \begin{figure} {
-\includegraphics[width=2.7in]{L8n12_ratio.eps} \caption{(color online) 
+\includegraphics[width=2.9in]{L8n12_ratio.eps} \caption{(color online) 
 \label{L16fig}
-The Renyi entropy divided by the linear dimension $\ell$ of the entangled region $A$, for 2D lattices with $L=8$ and $L=12$.  The data labelled ``Swap'' is from a single simulation calculating Eq.~\eqref{Swap} directly.  The other
+The Renyi entropy divided by the linear dimension $\ell$ of the entangled region $A$, for 2D lattices with $L=8$ and $L=12$.  The data labeled ``Swap'' is from a single simulation calculating Eq.~\eqref{Swap} directly.  The other
 data sets are derived from the improved ratio estimator, Eq.~\eqref{Ratio}, with different ranges of $r \in [1,r_{\rm max}]$ (see text).  The inset 
-is a periodic $L=8$ lattice with region $A$ consisting of the 16 central (dark) sites labelled by $\ell = 4$.
+is a periodic $L=8$ lattice with region $A$ consisting of the 16 central (dark) sites labeled by $\ell = 4$.
 }
 } \end{figure}
 
@@ -275,14 +243,13 @@ Here, the direct estimator (Eq.~\eqref{Swap}) corresponds to one simulation, whi
 In contrast to $L=8$, for $L=12$ the direct estimator is significantly different than 
 the improved ratio estimator.  We can see the convergence of the data as one successively decreases the range of $r \in [1,r_{\rm max}]$, 
 so that $r_{\rm max}=2$ is identical to $r_{\rm max}=1$, which is the smallest possible range for the improved ratio estimator in the 2D geometry illustrated.  It is important to note that for large $r_{\rm max}$ the correct value of $S_2$ does {\it not} lie within the error bars of the data.  
-%This is an indication that the algorithm will not converge to the expected result in polynomial time, since the expectation value is exponentially decreasing.
 This is an indication that simulation ergodicity is jeopardized by low sampling of the $Swap_A$ operator, similar to that observed in 1D.
 
 \begin{figure} {
-\includegraphics[width=3in]{fig4.eps} \caption{(color online) 
+\includegraphics[width=3.2in]{fig4.eps} \caption{(color online) 
 \label{fig4}
 Scaling of the Renyi entropy divided by the linear dimension $\ell$ of the entangled region $A$ for different systems sizes
-in 2D.  All data is calculated with the improved ratio estimator, Eq.~\eqref{Ratio}, with different $r_{\rm max}=1$.  
+in 2D.  All data is calculated with the improved ratio estimator, Eq.~\eqref{Ratio}, with $r_{\rm max}=1$.  
 }
 } \end{figure}
 
@@ -299,7 +266,6 @@ the expectation value of a swap operator between two copies of the system.
 Using an improved ratio estimator, we are able to converge the expectation value of $S_2$ to the exact
 result on a 1D Heisenberg chain.
 Using the same procedure, we have presented the first measurement of the Renyi entanglement entropy in a 2D system, confirming the area law for the N\'eel groundstate of the Heisenberg model.
-%Using the improved ratio estimator, we were able to converge the expectation value of the swap operator.
 
 The simple double-projector QMC algorithm used in this paper is known to scale approximately as $O(m^2)$, \cite{AWSloop}
 assuming $m >N$.
@@ -308,11 +274,7 @@ value, Eq.~\eqref{Swap}, also have
  $O(m^2)$ scaling, while results obtained using the improved ratio
 estimator, Eq.~\eqref{Ratio}, have $O(Lm^2)$ scaling in the current geometries.
 We note however that these geometries may not be ideal for very large $\ell$ and $L$, even in the improved ratio sampling.
-For example for $L=28$, %and  $\ell=L/2$, 
-%we found a relative error between $r_{\rm max}=2$ and $r_{\rm max}=1$ of less than 0.04 (the
-%results for $S_2$ remaining identical within error bars); however for $\ell$ significantly larger than $L/2$, the statistical sampling error
-%increases dramatically and results for $S_2$ using  $r_{\rm max}=2$ and $r_{\rm max}=1$ begin to deviate outside of error bars,
-%indicating a lack of ergodicity in $r_{\rm max}=2$ at least.  
+For example for $L=28$, 
 while results for $r_{\rm max}=2$ and $r_{\rm max}=1$ were converged for $\ell < L/2$, for $\ell>L/2$ the
 statistical sampling error increased dramatically and the results develop a discrepancy outside of error bars, indicating a lack of ergodicity
 in $r_{\rm max}=2$ at least (of course, in practice for such large $\ell$ one would prefer to do the simulation by measuring the 
@@ -320,7 +282,7 @@ expectation value of the swap operator on the complement of $A$, not on $A$ itse
 
 From the current work (which took about 10 CPU years of resources), 
 the question naturally arises whether it is possible to converge the expectation value of the swap operator on
-larger system sizes.  %, especially in light of the desire to test more fully the convergence of $r_{\rm max}=1$ on large $L$ and $\ell$.
+larger system sizes. 
 We expect that this will be possible using a different
 sequence of regions $A^i$ in the improved ratio estimator.
 Rather than considering a sequence of regions $A^{\ell}$ consisting of $\ell$-by-$\ell$ squares, 
@@ -329,12 +291,9 @@ $i$ sites such that for $i=\ell^2$, $A^i$ is an $\ell$-by-$\ell$ square.  Increm
 (at worst) $O(Nm^2)$ scaling in the current algorithm.  
 However, we also note that recently-developed {\it loop} algorithms
 result in significant improvement in scaling, allowing for the convergence of observables such as energy and spin correlation functions for $L=256$ and larger \cite{AWSloop}.  In these schemes, the scaling of the direct swap operator (Eq.~\eqref{Swap}) 
-%, like other observables, 
 would decrease to $O(m)$, while the expected scaling of the improved ratio estimator would be $O(Nm)$ at worst, depending
 on the definitions of the $A^i$ regions.
-% Since at each stage we only change the region locally, building up  a square of size $\ell+1$ by adding sites one at a time around the edge, we 
-We therefore expect that
-the algorithm will require only a polynomial number of samples for convergence of arbitrary system sizes.
+We therefore expect that the algorithm will require only a polynomial number of samples for converge of the Renyi entropy on arbitrary system sizes.
 
 
 {\it Acknowledgments.}-- The authors thank A. Sandvik for useful discussions.
