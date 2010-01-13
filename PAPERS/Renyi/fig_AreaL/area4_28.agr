@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Thu Jan  7 15:06:57 2010"
+@timestamp def "Wed Jan 13 10:48:25 2010"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -236,7 +236,7 @@
 @    legend length 4
 @    legend vgap 1
 @    legend hgap 1
-@    legend invert false
+@    legend invert true
 @    frame type 0
 @    frame linestyle 1
 @    frame linewidth 1.0
@@ -247,7 +247,7 @@
 @    s0 hidden false
 @    s0 type xydy
 @    s0 symbol 1
-@    s0 symbol size 0.650000
+@    s0 symbol size 0.730000
 @    s0 symbol color 1
 @    s0 symbol pattern 1
 @    s0 symbol fill color 2
@@ -296,7 +296,7 @@
 @    s1 hidden false
 @    s1 type xydy
 @    s1 symbol 2
-@    s1 symbol size 0.570000
+@    s1 symbol size 0.650000
 @    s1 symbol color 1
 @    s1 symbol pattern 1
 @    s1 symbol fill color 1
@@ -345,7 +345,7 @@
 @    s2 hidden false
 @    s2 type xydy
 @    s2 symbol 3
-@    s2 symbol size 0.570000
+@    s2 symbol size 0.650000
 @    s2 symbol color 1
 @    s2 symbol pattern 1
 @    s2 symbol fill color 2
@@ -394,7 +394,7 @@
 @    s3 hidden false
 @    s3 type xydy
 @    s3 symbol 4
-@    s3 symbol size 0.570000
+@    s3 symbol size 0.650000
 @    s3 symbol color 1
 @    s3 symbol pattern 1
 @    s3 symbol fill color 3
@@ -443,7 +443,7 @@
 @    s4 hidden false
 @    s4 type xydy
 @    s4 symbol 5
-@    s4 symbol size 0.570000
+@    s4 symbol size 0.650000
 @    s4 symbol color 1
 @    s4 symbol pattern 1
 @    s4 symbol fill color 4
@@ -492,7 +492,7 @@
 @    s5 hidden false
 @    s5 type xydy
 @    s5 symbol 6
-@    s5 symbol size 0.570000
+@    s5 symbol size 0.650000
 @    s5 symbol color 1
 @    s5 symbol pattern 1
 @    s5 symbol fill color 5
@@ -541,7 +541,7 @@
 @    s6 hidden false
 @    s6 type xydy
 @    s6 symbol 7
-@    s6 symbol size 0.570000
+@    s6 symbol size 0.650000
 @    s6 symbol color 1
 @    s6 symbol pattern 1
 @    s6 symbol fill color 6
@@ -590,7 +590,7 @@
 @    s7 hidden false
 @    s7 type xydy
 @    s7 symbol 1
-@    s7 symbol size 0.570000
+@    s7 symbol size 0.650000
 @    s7 symbol color 1
 @    s7 symbol pattern 1
 @    s7 symbol fill color 7
@@ -639,7 +639,7 @@
 @    s8 hidden false
 @    s8 type xydy
 @    s8 symbol 2
-@    s8 symbol size 0.570000
+@    s8 symbol size 0.650000
 @    s8 symbol color 1
 @    s8 symbol pattern 1
 @    s8 symbol fill color 8
