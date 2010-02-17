@@ -95,24 +95,28 @@ LOOPS::LOOPS(int xsites, int ysites, int bondops, bool ob, long long its,
   VR=VL;
 }
 
- /**************NNBONDLIST***********************************************
+/********** nnbondlist() ***********************************************
    Uses:
+     Global:
          dim2                   //
-         number_of_nnbonds      //sets value based on 1D/2D and PBC/OBC
+         number_of_nnbonds______sets value based on 1D/2D and PBC/OBC
          number_of_sites        //
          OBC                    //
-         nnbonds[#nnbonds][2]   //sized and filled
-         nn_mat[#sites][#sites] //sized and filled
+         nnbonds[#nnbonds][2]___sized and filled
+         nn_mat[#sites][#sites]_sized and filled
          dim1                   //
-         init_antipar[#nnbonds] //sized and filled
-         init_isgood[#nnbodds]  //sized and filled
-         antipar[#nnbonds]      //sized
-         isgood[#nnbonds]       //sized
+         init_antipar[#nnbonds]_sized and filled
+         init_isgood[#nnbodds]__sized and filled
+         antipar[#nnbonds]______sized
+         isgood[#nnbonds]_______sized
+      
+      Local:
+         counter //represents the number of the nnbond we're on
 
    Create the list of nnbonds and a matrix called nn_mat, which gives 
    the bond number for a pair of sites, and garbage if they're not nn 
    sites... maybe I should make it -99...
-  **********************************************************************/
+**********************************************************************/
 void LOOPS::nnbondlist()
 {
   if(dim2==1){
@@ -200,6 +204,20 @@ void LOOPS::nnbondlist()
 }
 
 /************* Nnnbondlist() *************************************************
+ Uses:
+  Global:
+   dim2                   //
+   Nnnbonds[#Nnnbonds][2] //sizes and fills
+   number_of_nnbonds      //
+   nn_mat[#sites][#sites] //
+   OBC                    //
+   number_of_sites        //
+
+  Local:
+   counter__goes from 0-3 (i think) and represents the number of neighbours
+            we've found so far.
+   bnum_____the number of the bond we're looking at
+
    Creates a list of the neighbouring bonds for a given bond.
    Works for OBC, PBC, 1D, and 2D.
    For 2D, uses the matrix nn_mat, which is created in nnbondlist().
@@ -247,6 +265,14 @@ void LOOPS::Nnnbondlist()
   } 
 }
 /***** generate_ops() *****************************************************
+ Uses:
+   number_of_bondops      //
+   bops[#bondops][2]______fills randomly
+   number_of_nnbonds      //
+   superbops[#bondops][2]_sizes and fills with edges and ops from bops
+   number_of_sites        //
+   nn_mat[#sites][#sites] //
+
 ***************************************************************************/
 void LOOPS::generate_ops()
 {
@@ -272,6 +298,10 @@ void LOOPS::generate_ops()
     }
 }
 /************ create_Vlinks() ************************************************
+ Uses:
+   vlegs         //
+   Vlinks[vlegs] //filled with the vertical links
+
 ******************************************************************************/
 void LOOPS::create_Vlinks()
 {
@@ -283,6 +313,18 @@ void LOOPS::create_Vlinks()
   
 }
 /************ create__Hlinks() ************************************************
+ Uses:
+  Global:
+   number_of_sites        //
+   number_of_bondops      //
+   Hlinks[vlegs]__________filled with horizontal links
+   nnbonds[#nnbonds][2]   //
+   superbops[#bondops][2] //
+
+  Local:
+   last[#sites]_stores the last vertex leg corresponding to a site
+   legnum_______the vertex leg number of the current bondop
+   bopnum_______counts through the bondops
 *******************************************************************************/
 void LOOPS::create__Hlinks()
 {
@@ -310,8 +352,38 @@ void LOOPS::create__Hlinks()
 }
 
 /************ make_flip_loops() **********************************************
-| Creates loops and flips them with probability 1/2                          |
-|
+ Creates loops and flips them with probability 1/2
+
+ Global:
+   VL[#sites]___________get filled by looking at links crossing the boundary
+   VR[#sites]___________same
+   whichloop[#sites]____get filled. stores the loop number for each site
+   cross________________counts the number of loops crossing the boundary
+   vlegs                //
+   Hlinks[vlegs]        //
+   sides[vlegs]         //
+   nnbonds[#nnbonds][2] //
+   superbops[#bops][2]  //
+   Vlinks[vlegs]        //
+
+ Local:
+   loopnums[vlegs].stores the loop number for each vertex leg
+   loopnum_________the loop number we're currently looking at
+   startsite_______the start site for the current loop
+   counter_________starts at the beginning of the vertex legs, goes to the end
+   site____________the current vertex leg we're looking at
+   which___________0 for looking at vertical links, 1 for horizontal
+   flip____________0 if we're not flipping this loop, 1 if we are
+   firstcross______the first site involved in a loop crossing the boundary. 
+                   Used to get the last bond at the boundary.
+   lastcross_______the last site involved in a loop crossing the boundary
+   current_________the current site we're looking at (corresponds to some 
+                   vertex leg.
+   right___________0 if the current loop is going left over the boundary, 1
+                   if it's going right (the operators go from left to right)
+   boolcross_______1 if the loop that was just completed crosses the boundary
+                   so we can increase the cross counter. O otherwise.
+   
 *****************************************************************************/
 void LOOPS::make_flip_loops()
 {
@@ -320,7 +392,6 @@ void LOOPS::make_flip_loops()
   long long counter(0), site(0);
   bool which(0), flip=0;
   int firstcross(-99),lastcross(-99), current(0); 
-  int boundary = 2*(number_of_sites + number_of_bondops);
   int right=-99;
   bool boolcross=0;
 
@@ -414,6 +485,17 @@ void LOOPS::make_flip_loops()
   }
 }   
 /************ take_measurement() *********************************************
+ Global:
+   number_of_nnbonds
+   nnbonds[#nnbonds][2]
+   whichloop[#sites]
+   energyint
+
+ Local:
+   mdiff
+   a
+   b
+
 *****************************************************************************/
 void LOOPS::take_measurement()
 {
