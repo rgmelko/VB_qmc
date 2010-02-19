@@ -150,10 +150,13 @@ void LOOPS::nnbondlist()
     number_of_nnbonds = 2*number_of_sites;
     if(OBC){number_of_nnbonds -= (dim1+dim2);}
     
-    nnbonds.resize (number_of_nnbonds,2);
+    //****changed**** multiplied first dimension by 2
+    nnbonds.resize (2*number_of_nnbonds,2);
 
     //resize and initialize the matrix of nnbonds
-    nn_mat.resize(number_of_sites, number_of_sites);
+    //****changed**** multiplied dimensions by 2
+    nn_mat.resize(2*number_of_sites, 2*number_of_sites);
+
     for(int i=0; i<number_of_sites; i++){
       for(int j=0; j<number_of_sites; j++){
 	nn_mat(i,j) = -99;
@@ -295,10 +298,10 @@ void LOOPS::Nnnbondlist()
   for(int q=number_of_nnbonds; q<2*number_of_nnbonds; q++){
     for(int s=0; s<num_neighbs; s++){
       int t=number_of_nnbonds;
-      Nnnbonds(q,s)=Nnnbonds(q-t,s)+number_of_nnbonds;
+      if(Nnnbonds(q-t,s)==-99){Nnnbonds(q,s)=-99;}
+      else{Nnnbonds(q,s)=Nnnbonds(q-t,s)+number_of_nnbonds;}
     }
   }
-
 
   //****changed**** for realisies doubling #nnbonds and #sites
 				    number_of_nnbonds *= 2;
@@ -337,6 +340,7 @@ void LOOPS::generate_ops()
       superbops(number_of_sites/2+i,0)=bops(i,0);
       superbops(number_of_sites/2+i,1)=bops(i,1);
     }
+
 }
 /************ create_Vlinks() ************************************************
  Uses:
@@ -594,6 +598,7 @@ void LOOPS::change__operators()
 
 	int loc = Nnnbonds(superbops(op,0),i);
 
+	if(loc<0){continue;}//goto start of loop ifOBC&that nn doesnt exist
 	if(antipar[loc]==1){//if bond's already antiparallel change to parallel
 
 	  int j=-1;
