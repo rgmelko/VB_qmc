@@ -1,4 +1,5 @@
 //Jan 18, 2010 --- starting loop code
+//Feb 19, 2010 --- trying to swap-ify
 
 #ifndef loop_header
 #define loop_header
@@ -75,9 +76,11 @@ LOOPS::LOOPS(int xsites, int ysites, int bondops, bool ob, long long its,
   dim2 = ysites;
   OBC = ob;
   number_of_sites = dim1*dim2; //calculates total number of sites
-  number_of_bondops = 2*bondops; /*the *real* number of bondops is multiplied
+  //****changed**** multiplied by 2
+  number_of_bondops = 2*2*bondops; /*the *real* number of bondops is multiplied
 				   by 2, one set for |VL> and one for |VR> */
-  vlegs = 4*number_of_sites + 4*number_of_bondops; //number of vertex legs
+    //****changed**** multiplied first term by 2
+  vlegs = 2*4*number_of_sites + 4*number_of_bondops; //number of vertex legs
   energyint = 0; energy = 0; //initialize the energy counters
   iterations = its; 
   bopfile = bondopfile; //name of the bond operator file
@@ -122,9 +125,11 @@ void LOOPS::nnbondlist()
   if(dim2==1){
     number_of_nnbonds = number_of_sites;
     if(OBC){number_of_nnbonds--;}//if we have open BCs there's one less bond
-
-    nnbonds.resize (number_of_nnbonds,2);//make nnbonds the proper size
-    nn_mat.resize(number_of_sites, number_of_sites);
+    
+    //****changed**** multiplied first dimension by 2
+    nnbonds.resize (number_of_nnbonds*2,2);//make nnbonds the proper size
+    //****changed**** multiplied dimensions by 2
+    nn_mat.resize(number_of_sites*2, number_of_sites*2);
    
     for(int i=0; i<number_of_nnbonds; i++){
       nnbonds(i,0) = i;
@@ -140,6 +145,7 @@ void LOOPS::nnbondlist()
     }
     
   }
+  
   else{
     number_of_nnbonds = 2*number_of_sites;
     if(OBC){number_of_nnbonds -= (dim1+dim2);}
@@ -193,14 +199,31 @@ void LOOPS::nnbondlist()
     }
     // make sure we have the proper number of nnbonds
     if(counter!=number_of_nnbonds){cout << "supererror" << endl;}
-  }  
-
+  }
+  
+  //****changed**** added this part in to double nnbonds and nnmat
+      for(int b=number_of_nnbonds; b<2*number_of_nnbonds; b++){
+	int a = number_of_nnbonds;
+	nnbonds(b,0) = nnbonds(b-a,0)+number_of_sites;
+	nnbonds(b,1) = nnbonds(b-a,1)+number_of_sites;
+	nn_mat(nnbonds(b,0),nnbonds(b,1))=b;
+	nn_mat(nnbonds(b,1),nnbonds(b,0))=b;
+      }
+  /**** end of this change *****/
+	
+  //****changed**** now multiplying #nnbonds by 2
+      number_of_nnbonds *=2; 
+  
   // resizing antiparallelness vectors
   init_antipar.assign(number_of_nnbonds, 0);
+   
   init_isgood.resize(number_of_nnbonds);
   for(int i=0; i<number_of_nnbonds; i++){init_antipar[i]=1; init_isgood[i]=i;}
   antipar.resize(number_of_nnbonds);
   isgood.resize(number_of_nnbonds);
+
+  //****changed**** changing #nnbonds back now
+      number_of_nnbonds /=2;
 }
 
 /************* Nnnbondlist() *************************************************
@@ -224,8 +247,11 @@ void LOOPS::nnbondlist()
 *****************************************************************************/
 void LOOPS::Nnnbondlist()
 {
+  int num_neighbs = 0;
   if(dim2==1){  // 1D case
-    Nnnbonds.resize(number_of_nnbonds,2);
+    num_neighbs = 2;
+    //****changed**** multiplied first dimension by 2
+    Nnnbonds.resize(2*number_of_nnbonds,num_neighbs);
 
     // generate nearest nnbonds
     for(int i=0; i<number_of_nnbonds; i++){
@@ -239,10 +265,12 @@ void LOOPS::Nnnbondlist()
   }
   
   else{  // the 2D case... more complicated...
+    num_neighbs = 6;
     // Resize and initialize Nnnbonds
-    Nnnbonds.resize(number_of_nnbonds,6);
+    //****changed**** multiplied first dimension by 2
+    Nnnbonds.resize(2*number_of_nnbonds,num_neighbs);
     for(int i=0; i<number_of_nnbonds; i++){
-      for(int j=0; j<6; j++){
+      for(int j=0; j<num_neighbs; j++){
 	Nnnbonds(i,j)=-99;
       }
     }
@@ -263,7 +291,20 @@ void LOOPS::Nnnbondlist()
       }
     } 
   } 
+  //****changed**** added this in to copy Nnnbonds.. to double it.. sorta
+  for(int q=number_of_nnbonds; q<2*number_of_nnbonds; q++){
+    for(int s=0; s<num_neighbs; s++){
+      int t=number_of_nnbonds;
+      Nnnbonds(q,s)=Nnnbonds(q-t,s)+number_of_nnbonds;
+    }
+  }
+
+
+  //****changed**** for realisies doubling #nnbonds and #sites
+				    number_of_nnbonds *= 2;
+  number_of_sites *= 2;
 }
+
 /***** generate_ops() *****************************************************
  Uses:
    number_of_bondops      //
@@ -481,7 +522,7 @@ void LOOPS::make_flip_loops()
     loopnum++; //loop is finished, go to next loop
     lastcross = -99; right = -99;
     //if counter is already in a loop increase counter
-    while(loopnums[counter]>0){counter++;}
+    while(loopnums[counter]>0){counter++; if(counter>vlegs){break;}}
   }
 }   
 /************ take_measurement() *********************************************
@@ -577,7 +618,7 @@ void LOOPS::change__operators()
 ******************************************************************************/
 void LOOPS::calculate_stuff()
 {
-  energy = (energyint*0.75)/iterations;
+  energy = 0.5*(energyint*0.75)/iterations;
   energyint = 0;
 }
 

@@ -44,13 +44,13 @@ int main(){
     for(int jk=0; jk<its_per_loop; jk++){
       //      cout << "1" << endl;
       system.create_Vlinks();    //build vertical LL from init VBs and operators
-      //      cout << "2" << endl;
+      //       cout << "2" << endl;
       system.create__Hlinks();   //build horizontal linked list from operators
-      //      cout << "3" << endl;
+      //       cout << "3" << endl;
       system.make_flip_loops();  //generate loops and flip w/ prob 0.5
-      //      cout << "4" << endl;
+      //        cout << "4" << endl;
       system.take_measurement();
-      //      cout << "5" << endl;
+      //        cout << "5" << endl;
       system.change__operators(); //Change the diagonal operators
     }
 
