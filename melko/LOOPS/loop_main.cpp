@@ -50,6 +50,7 @@ int main(){
       system.make_flip_loops();  //generate loops and flip w/ prob 0.5
       //      cout << "4" << endl;
       system.take_measurement();
+      system.swaperator();
       //      cout << "5" << endl;
       system.change__operators(); //Change the diagonal operators
     }
@@ -57,15 +58,23 @@ int main(){
     system.calculate_stuff();
 
     ofstream energy_out(enerfilename.c_str(),ios::app);
-    //  ofstream entrpy_out(entrofilename.c_str(),ios::app);
+    ofstream entrpy_out(entrofilename.c_str(),ios::app);
     energy_out.precision(10);
-    //  entrpy_out.precision(10);
+    entrpy_out.precision(10);
 
-    cout << system.energy << endl;
+    cout << left << setw(12) << system.energy << "    ";
     energy_out << system.energy << endl;
 
+    cout << system.entropy_final[2] << endl;
     energy_out.close();
-    //  entrpy_out.close();
+    
+    
+    for(int i=0; i<system.entropy_final.size(); i++){
+      entrpy_out << setw(15) << system.entropy_final[i];
+    }
+    entrpy_out << endl;
+    
+    entrpy_out.close();
     system.print_bops();
   }
 

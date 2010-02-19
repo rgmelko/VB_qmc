@@ -38,6 +38,7 @@ class LOOPS
   vector <int> VL, VR; //the propagated left and right VB states
   vector <int> whichloop; /* stores which loop number each site is in. used
 			     in the energy measurement */
+  vector <double> entropy, entropy_final;
 
   iMatrix nnbonds;//list of all possible nnbonds.  Index is the bond number
   iMatrix nn_mat; /*matrix of the nnbonds. indices are sites
@@ -58,6 +59,8 @@ class LOOPS
   void make_flip_loops(); //generates and flips loops (w/ prob 1/2)
   void take_measurement(); //measures energy at the moment
   void change__operators(); //changes the diagonal operators randomly
+
+  void swaperator(); //the swap operator
 
   void calculate_stuff(); //calculates energy at the moment
   void print_bops(); //prints the bond operators after every loop of iterations
@@ -84,6 +87,9 @@ LOOPS::LOOPS(int xsites, int ysites, int bondops, bool ob, long long its,
   energyint = 0; energy = 0; //initialize the energy counters
   iterations = its; 
   bopfile = bondopfile; //name of the bond operator file
+
+  entropy.assign(xsites-1,0);
+  entropy_final = entropy;
 
   Vlinks.assign(vlegs, -99); //set size and initialize
   Hlinks.assign(vlegs, -99); 
@@ -506,7 +512,7 @@ void LOOPS::make_flip_loops()
 	      VL[current] = lastcross;
 	      VL[lastcross] = current;
 	    }
-	    right = (right+1%2);  //change cross direction
+	    right = (right+1)%2;  //change cross direction
 	  }
 	  lastcross = current;
 	  whichloop[current]=loopnum;
@@ -528,6 +534,7 @@ void LOOPS::make_flip_loops()
     //if counter is already in a loop increase counter
     while(loopnums[counter]>0){counter++; if(counter>vlegs){break;}}
   }
+
 }   
 /************ take_measurement() *********************************************
  Global:
@@ -618,13 +625,71 @@ void LOOPS::change__operators()
     }
   }
 }
+/************ swaperator() ****************************************************
+******************************************************************************/
+void LOOPS::swaperator()
+{
+  vector <int> tempbonds;
+  tempbonds = VR;
 
+  int a,b,c,d;
+
+  for(int lint=0; lint<dim1-1; lint++){
+
+    a = lint;
+    d = lint+number_of_sites/2;
+    b = tempbonds[d];
+    c = tempbonds[a];
+
+    tempbonds[a] = b;
+    tempbonds[b] = a;
+    tempbonds[d] = c;
+    tempbonds[c] = d;
+
+    int counter(0), temploopnum(0), startsite(0), mite(-99), which(0);
+    vector <int> site(number_of_sites+2,0);
+ 
+    while(counter < number_of_sites){
+ 
+      site[counter]=1;
+      startsite = counter;
+
+      mite = VL[counter];
+      which=0;
+      
+      while(mite!=startsite){
+
+	if(mite==-99){exit(1);}
+	site[mite]=1;
+	
+	if(which==0){
+	  mite = tempbonds[mite];
+	  which++;
+	}
+	else{
+	  mite = VL[mite];
+	  which--;
+	}
+      }
+      temploopnum++;
+      while(site[counter]==1){counter++;}
+    }
+    int loopdiff = temploopnum - cross;
+    entropy[lint] += pow(2,loopdiff);
+
+  }
+}
 /************ calculate_stuff() ***********************************************
 ******************************************************************************/
 void LOOPS::calculate_stuff()
 {
   energy = 0.5*(energyint*0.75)/iterations;
   energyint = 0;
+
+  for(int i=0; i<entropy.size(); i++){
+    entropy_final[i] = -log(entropy[i]/(1.0*iterations));
+    entropy[i]=0;
+  }
 }
 
 /************ print_bops() ****************************************************
