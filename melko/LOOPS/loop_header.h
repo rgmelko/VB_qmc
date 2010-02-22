@@ -634,13 +634,13 @@ void LOOPS::swaperator()
   vector <int> VLflip = VL, VLuse = VL;
   int a,b,c,d;
 
-  for(int q=0; q<VLflip.size()/2; q++){
-      VLflip[q]=VL[q+VL.size()/2]-VL.size()/2;
-      VLflip[q+VL.size()/2] = VL[q]+VL.size()/2;
-  } 
+  //  for(int q=0; q<VLflip.size()/2; q++){
+  //      VLflip[q]=VL[q+VL.size()/2]-VL.size()/2;
+  //      VLflip[q+VL.size()/2] = VL[q]+VL.size()/2;
+  //  } 
 
-      if(drand()<0.5){VLuse = VL;}
-      else{VLuse = VLflip;}
+  //      if(drand()<0.5){VLuse = VL;}
+  //      else{VLuse = VLflip;}
   for(int lint=0; lint<dim1-1; lint++){
 
     a = lint;
@@ -693,7 +693,8 @@ void LOOPS::calculate_stuff()
   energyint = 0;
 
   for(int i=0; i<entropy.size(); i++){
-    entropy_final[i] = -log(entropy[i]/(1.0*iterations));
+    //  entropy_final[i] = -log(entropy[i]/(1.0*iterations));
+    entropy_final[i] = (entropy[i]/(1.0*iterations));
     entropy[i]=0;
   }
 }
