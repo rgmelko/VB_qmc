@@ -11,6 +11,7 @@ int main(){
 
   int dim1, dim2;
   long long its_per_loop=10000, loops=100;
+  long long initialization;
   double bops_per_site=10;
   bool OBC=0;
   long long ranseed=43289841;
@@ -21,7 +22,8 @@ int main(){
       >> dim1 >> dim2
       >> its_per_loop >> loops
       >> bops_per_site >> OBC
-      >> ranseed;
+      >> ranseed
+      >> initialization;
   fin.close();
   
   int total_bops = dim1*dim2*bops_per_site;
@@ -40,6 +42,12 @@ int main(){
   system.Nnnbondlist();
   system.read_bops(); //checks if file has bops, otherwise generates new ones
 
+  for(int jj=0; jj<initialization; jj++){
+    system.create_Vlinks();
+    system.create__Hlinks();
+    system.make_flip_loops();
+    system.change__operators();
+  }
   for(int kk=0; kk<loops; kk++){
     for(int jk=0; jk<its_per_loop; jk++){
       //        cout << "1" << endl;
@@ -65,7 +73,7 @@ int main(){
     cout << left << setw(12) << system.energy << "    ";
     energy_out << system.energy << endl;
 
-    cout << system.entropy_final[2] << endl;
+    cout << system.entropy_final[dim1-2] << endl;
     energy_out.close();
     
     

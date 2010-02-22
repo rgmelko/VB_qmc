@@ -631,9 +631,16 @@ void LOOPS::swaperator()
 {
   vector <int> tempbonds;
   tempbonds = VR;
-
+  vector <int> VLflip = VL, VLuse = VL;
   int a,b,c,d;
 
+  for(int q=0; q<VLflip.size()/2; q++){
+      VLflip[q]=VL[q+VL.size()/2]-VL.size()/2;
+      VLflip[q+VL.size()/2] = VL[q]+VL.size()/2;
+  } 
+
+      if(drand()<0.5){VLuse = VL;}
+      else{VLuse = VLflip;}
   for(int lint=0; lint<dim1-1; lint++){
 
     a = lint;
@@ -650,33 +657,32 @@ void LOOPS::swaperator()
     vector <int> site(number_of_sites+2,0);
  
     while(counter < number_of_sites){
- 
+
       site[counter]=1;
       startsite = counter;
 
-      mite = VL[counter];
+      mite = VLuse[counter];
       which=0;
       
       while(mite!=startsite){
 
-	if(mite==-99){exit(1);}
-	site[mite]=1;
-	
-	if(which==0){
-	  mite = tempbonds[mite];
-	  which++;
-	}
-	else{
-	  mite = VL[mite];
-	  which--;
-	}
+          if(mite==-99){exit(1);}
+          site[mite]=1;
+
+          if(which==0){
+              mite = tempbonds[mite];
+              which++;
+          }
+          else{
+              mite = VLuse[mite];
+              which--;
+          }
       }
       temploopnum++;
       while(site[counter]==1){counter++;}
     }
     int loopdiff = temploopnum - cross;
     entropy[lint] += pow(2,loopdiff);
-
   }
 }
 /************ calculate_stuff() ***********************************************
