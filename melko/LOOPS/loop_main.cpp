@@ -78,7 +78,7 @@ int main(){
     
     
     for(int i=0; i<system.entropy_final.size(); i++){
-      entrpy_out << setw(15) << system.entropy_final[i];
+      entrpy_out << setw(18) << system.entropy_final[i];
     }
     entrpy_out << endl;
     
