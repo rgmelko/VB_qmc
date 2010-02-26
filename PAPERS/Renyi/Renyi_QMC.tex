@@ -26,7 +26,7 @@
 
 We develop a quantum Monte Carlo procedure, in the valence bond basis, to measure the Renyi entanglement entropy of a
 many-body ground state as the expectation value of a unitary {\it Swap} operator acting on two copies of the system.
-An improved estimator involving the ratio of {\it Swap} operators for different subregions enables simulations to converge the entropy in a time polynomial in the system size.  We demonstrate convergence of the Renyi entropy to exact results for a Heisenberg chain. Finally, we calculate the scaling of the Renyi entropy in the two-dimensional Heisenberg model and confirm that the N\'eel groundstate obeys the expected area law for systems up to linear size $L=28$.
+An improved estimator involving the ratio of {\it Swap} operators for different subregions enables simulations to converge the entropy in a time polynomial in the system size.  We demonstrate convergence of the Renyi entropy to exact results for a Heisenberg chain. Finally, we calculate the scaling of the Renyi entropy in the two-dimensional Heisenberg model and confirm that the N\'eel groundstate obeys the expected area law for systems up to linear size $L=32$.
 
 
 \end{abstract}
@@ -96,7 +96,7 @@ wavefunction $\Psi_0$ of $N$ spins as $N/2$ valence bonds:
 | \Psi_0 \rangle = \sum_r f_r|(a^r_1,b^r_1) \ldots (a^r_{N/2},b^r_{N/2}) \rangle = \sum_r f_r| V_r \rangle
 \end{equation}
 where the valence bonds are singlet pairs denoted by $(a,b) = (\lvert\uparrow_a \downarrow_b \rangle - \lvert\downarrow_a \uparrow_b\rangle)/\sqrt{2}$,
-occurring between sites of the opposite sublattices of a bipartite lattice, and $r$ labels all possible tilings of bonds.  The coefficients $f_r$ are unknown, but an importance sampling scheme \cite{Sandvik} for the valence bond state $| V_r \rangle$ will be outlined below.  
+occurring between sites \textcolor{red}{$a$ and $b$} of the opposite sublattices of a bipartite lattice, and $r$ labels all possible tilings of bonds.  The coefficients $f_r$ are unknown, but an importance sampling scheme \cite{Sandvik} for the valence bond state $| V_r \rangle$ will be outlined below.  
 
 To derive an estimator for $S_2$, we construct two separate copies of the
 system under consideration (higher entropies $S_n$ require $n$ copies); one ``real'', one ``ancillary'' (Fig.~\ref{swap_2}).
@@ -135,7 +135,7 @@ S_2(\rho_A) &=&-\ln({\rm Tr}(\rho_A^2))
 \\
 &=&-\ln(\langle Swap_A \rangle). \label{s2}
 \end{eqnarray}
-Equation~(\ref{H2fromSwap}) is basis independent, holding in particular in the valence
+Equation~(\ref{H2fromSwap}) is basis independent \cite{Jaeger}, holding in particular in the valence
 bond basis.  However, in the valence bond basis, the $Swap_A$ operator is
 not defined by Eq.~(\ref{SwapDef}) but rather it is defined to
 swap the endpoints of valence bonds between the real and ancillary copies in the region $A$.
@@ -190,12 +190,20 @@ data labeled $j_{\rm max}=5$ was calculated with Eq.~\eqref{Ratio} using 19 sepa
 
 Results for a 1D chain are illustrated in Fig.~\ref{1Dfig}.  There, simulations were performed using a double-projector QMC,  where
 the trial state $| V \rangle$ is a simple ``columnar'' state (or alternating nearest-neighbor bonds in 1D).  In the following data, four random bond operators were changed in each operator string per Monte Carlo step, and (unless otherwise
-stated) $m=40N$.  Exact results for $S_2$ were obtained with a DMRG simulation, converged with 1000 states.  One 
-immediately sees that the naive expectation value $\langle Swap_A \rangle$ results in a grossly incorrect result when the region
-$A$ grows large (in 1D, $A$ is the linear region of size $i$).   
-In fact, for $i > 25$ in Fig.~\ref{1Dfig}, the Renyi entropy calculated with Eq.~\eqref{Swap} develops a discrepancy from the
+stated) $m=40N$.  Exact results for $S_2$ were obtained with a DMRG simulation, converged with 1000 states.  
+\textcolor{red}{One 
+immediately sees that the naive expectation value $\langle Swap_A \rangle$ 
+%results in a grossly incorrect result
+results in very large statistical error bars }
+when the region
+$A$ grows large (in 1D, $A$ is the linear region of size $i$).  
+\textcolor{red}{ 
+In fact, for some $i$ in Fig.~\ref{1Dfig}, the Renyi entropy calculated with Eq.~\eqref{Swap} has a discrepancy from the
 exact value that cannot be accounted for by statistical fluctuations (error bars are one standard deviation).  
-One may understand this incorrect result by considering the expected scaling of $S_2$.  Namely,
+}
+One may understand this 
+%incorrect result 
+by considering the expected scaling of $S_2$.  Namely,
 $S_2$ scales logarithmically with the size of $A$, so the expectation value
 $\langle Swap_A \rangle$ should be polynomially small in $A$.  As a result, there
 are only very
@@ -239,7 +247,7 @@ $A^{\ell+r}$ contains $2\ell r+r^2$ more sites than $A^{\ell}$.
 \begin{figure} {
 \includegraphics[width=2.9in]{L8n16_ratio.eps} \caption{(color online) 
 \label{L16fig}
-The Renyi entropy divided by the linear dimension $\ell$ of the entangled region $A$, for 2D lattices with $L=8$ and $L=12$.  The data labeled ``Swap'' is from a single simulation calculating Eq.~\eqref{Swap} directly.  The other
+The Renyi entropy divided by the linear dimension $\ell$ of the entangled region $A$, for 2D lattices with $L=8$ and $L=16$.  The data labeled ``Swap'' is from a single simulation calculating Eq.~\eqref{Swap} directly.  The other
 data sets are derived from the improved ratio estimator, Eq.~\eqref{Ratio}, with different ranges of $r \in [1,r_{\rm max}]$ (see text).  The inset 
 is a periodic $L=8$ lattice with region $A$ consisting of the 16 central (dark) sites labeled by $\ell = 4$.
 }
@@ -248,7 +256,7 @@ is a periodic $L=8$ lattice with region $A$ consisting of the 16 central (dark) 
 Figure \ref{L16fig} illustrates $S_2$ on two 2D Heisenberg models with  $L=8$ and  $L=12$.  In the case of $L=8$, data for a single 
 simulation calculating $\langle Swap_A \rangle$ directly is identical to the improved ratio estimators for all except the largest $\ell$.  
 Here, the direct estimator (Eq.~\eqref{Swap}) corresponds to one simulation, while $r_{\rm max}=1$ corresponds to 6 different simulations of the improved ratio estimator ${\langle Swap_{A^{\ell+1}}\rangle}/{\langle Swap_{A^{\ell}}\rangle}$ and $\ell \in [1,6]$.
-In contrast to $L=8$, for $L=12$ the direct estimator is significantly different than 
+In contrast to $L=8$, for $L=16$ the direct estimator is significantly different than 
 the improved ratio estimator.  We can see the convergence of the data as one successively decreases the range of $r \in [1,r_{\rm max}]$, 
 so that $r_{\rm max}=2$ is identical to $r_{\rm max}=1$, which is the smallest possible range for the improved ratio estimator in the 2D geometry illustrated.  It is important to note that for large $r_{\rm max}$ the correct value of $S_2$ does {\it not} lie within the error bars of the data.  
 This is an indication that simulation ergodicity is jeopardized by low sampling of the $Swap_A$ operator, similar to that observed in 1D.
@@ -261,7 +269,7 @@ in 2D.  All data is calculated with the improved ratio estimator, Eq.~\eqref{Rat
 }
 } \end{figure}
 
-We use the improved ratio estimator with $r_{\max}=1$ to scale the results for the Renyi entropy of the Heisenberg model to larger system sizes in 2D.  Results are given in Fig.~\ref{fig4} for $L=4$ to $L=28$, plotted as $S_2/\ell$.  From  Ref.~\cite{Ann}
+We use the improved ratio estimator with $r_{\max}=1$ to scale the results for the Renyi entropy of the Heisenberg model to larger system sizes in 2D.  Results are given in Fig.~\ref{fig4} for $L=4$ to $L=32$, plotted as $S_2/\ell$.  From  Ref.~\cite{Ann}
 one expects the scaling of $S_1$ in the N\'eel state to obey the area law; also recall that $S_2 \leq S_1$.  
 The data illustrated is clearly consistent with the area law $S_2/\ell
 \sim {\rm const.}$ for $\ell \ll L$, at which point boundary 
@@ -282,11 +290,14 @@ value, Eq.~\eqref{Swap}, also have
  $O(m^2)$ scaling, while results obtained using the improved ratio
 estimator, Eq.~\eqref{Ratio}, have $O(Lm^2)$ scaling in the current geometries.
 We note however that these geometries may not be ideal for very large $\ell$ and $L$, even in the improved ratio sampling.
-For example for $L=28$, 
-while results for $r_{\rm max}=2$ and $r_{\rm max}=1$ were converged for $\ell < L/2$, for $\ell>L/2$ the
-statistical sampling error increased dramatically and the results develop a discrepancy outside of error bars, indicating a lack of ergodicity
-in $r_{\rm max}=2$ at least (of course, in practice for such large $\ell$ one would prefer to do the simulation by measuring the 
-expectation value of the swap operator on the complement of $A$, not on $A$ itself).
+For example for $L=32$, results for $r_{\rm max}=2$ and $r_{\rm max}=1$ 
+\textcolor{red}{although remaining converged within error bars,
+begin to develop larger discrepancies.
+}
+%for $\ell < L/2$, for $\ell>L/2$ the
+%statistical sampling error increased dramatically and the results develop a discrepancy outside of error bars, indicating a lack of ergodicity
+%in $r_{\rm max}=2$ at least (of course, in practice for such large $\ell$ one would prefer to do the simulation by measuring the 
+%expectation value of the swap operator on the complement of $A$, not on $A$ itself).
 
 From the current work (which took about 10 CPU years of resources), 
 the question naturally arises whether it is possible to converge the expectation value of the swap operator on
