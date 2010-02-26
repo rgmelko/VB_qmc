@@ -127,14 +127,16 @@ S_2(\rho_A) &=&-\ln({\rm Tr}(\rho_A^2))
 (\rho_A)_{\alpha_2,\alpha_1}) \nonumber
 \\
 \nonumber
-&=& -\ln(\sum_{\alpha_1,\alpha_2,\beta_1,\beta_2} A_{\alpha_1,\beta_1} \overline A_{\beta_1,\alpha_2} A_{\alpha_2,\beta_2} \overline A_{\beta_2,\alpha_1})
+&=& -\ln(\sum_{\alpha_1,\alpha_2,\beta_1,\beta_2} A_{\alpha_1,\beta_1} \overline A_{\alpha_2,\beta_1} A_{\alpha_2,\beta_2} \overline A_{\alpha_1,\beta_2})
 \\ \nonumber
 &=&
 -\ln(\langle \Psi_0\otimes \Psi_0|Swap_A|\Psi_0\otimes \Psi_0\rangle) 
 \nonumber
 \\
-&=&-\ln(\langle Swap_A \rangle). \label{s2}
+&=&-\ln(\langle Swap_A \rangle), \label{s2}
 \end{eqnarray}
+where $(\rho_A)_{\alpha_1,\alpha_2}=\sum_{\beta_1}
+A_{\alpha_1,\beta_1} \overline A_{\alpha_2,\beta_1}$ denotes a matrix element of $\rho_A$.
 Equation~(\ref{H2fromSwap}) is basis independent \cite{Jaeger}, holding in particular in the valence
 bond basis.  However, in the valence bond basis, the $Swap_A$ operator is
 not defined by Eq.~(\ref{SwapDef}) but rather it is defined to
