@@ -119,10 +119,18 @@ Define the unitary operator $Swap_A$ by
 \Bigl( |\alpha_2\rangle \otimes |\beta_1\rangle \Bigr) \otimes
 \Bigl( |\alpha_1\rangle \otimes |\beta_2\rangle \Bigr).
 \end{eqnarray}
-One immediately sees that the Renyi entropy is simply
+Since $\Psi_0$ can be decomposed in this basis as $\sum_{\alpha,\beta} A_{\alpha,\beta} |\alpha\rangle \otimes | \beta \rangle$ for some amplitudes $A_{\alpha,\beta}$, we have
 \begin{eqnarray}
 \label{H2fromSwap}
-S_2(\rho_A) &=&-\ln(\langle \Psi_0\otimes \Psi_0|Swap_A|\Psi_0\otimes \Psi_0\rangle) 
+S_2(\rho_A) &=&-\ln({\rm Tr}(\rho_A^2)) 
+= -\ln(\sum_{\alpha_1,\alpha_2} (\rho_A)_{\alpha_1,\alpha_2}
+(\rho_A)_{\alpha_2,\alpha_1}) \nonumber
+\\
+\nonumber
+&=& -\ln(\sum_{\alpha_1,\alpha_2,\beta_1,\beta_2} A_{\alpha_1,\beta_1} \overline A_{\beta_1,\alpha_2} A_{\alpha_2,\beta_2} \overline A_{\beta_2,\alpha_1})
+\\ \nonumber
+&=&
+\langle \Psi_0\otimes \Psi_0|Swap_A|\Psi_0\otimes \Psi_0\rangle) 
 \nonumber
 \\
 &=&-\ln(\langle Swap_A \rangle). \label{s2}
