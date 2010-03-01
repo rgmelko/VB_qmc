@@ -98,50 +98,114 @@ wavefunction $\Psi_0$ of $N$ spins as $N/2$ valence bonds:
 where the valence bonds are singlet pairs denoted by $(a,b) = (\lvert\uparrow_a \downarrow_b \rangle - \lvert\downarrow_a \uparrow_b\rangle)/\sqrt{2}$,
 occurring between sites \textcolor{red}{$a$ and $b$} of the opposite sublattices of a bipartite lattice, and $r$ labels all possible tilings of bonds.  The coefficients $f_r$ are unknown, but an importance sampling scheme \cite{Sandvik} for the valence bond state $| V_r \rangle$ will be outlined below.  
 
+%=======================================================================
+%
+% The new paragraph
+%
 To derive an estimator for $S_2$, we construct two separate copies of the
-system under consideration (higher entropies $S_n$ require $n$ copies); one ``real'', one ``ancillary'' (Fig.~\ref{swap_2}).
-Then, one defines an
-operator $Swap_A$ which acts between the copies of the system, swapping the
-configurations within region $A$.  We may precisely define the operator
-$Swap_A$ by its matrix elements in a product basis, e.g. the $S^z$ basis.
-Let $|\alpha\rangle$  be a complete basis of states in the subregion
-$A$ and let $|\beta\rangle$ be a complete basis of states in
-the complement subregion $B$.  Then, $|\alpha_1 \rangle \otimes |\beta_1 \rangle$ are
-a complete basis of states for the ``real'' system, and
-$\Bigl( |\alpha_1\rangle \otimes |\beta_1\rangle \Bigr) \otimes
-\Bigl( |\alpha_2\rangle \otimes |\beta_2\rangle \Bigr)$
-are a complete basis of states for both copies of the system.
-Define the unitary operator $Swap_A$ by
+system under consideration (higher entropies $S_n$ require $n$ copies);
+one ``real'', one ``ancillary'' (Fig.~\ref{swap_2}). Then one defines an
+operator $Swap_A$ which acts between the copies of the system, swapping
+the configurations within region $A$.  To define this operator it is
+convenient to calculate its matrix elements in a product basis, e.g.  the
+$S^z$ basis.  Let $|\alpha\rangle$  be a complete basis of states in the
+subregion $A$ and let $|\beta\rangle$ be a complete basis of states in the
+complement subregion $B$. The state of each copy can be decomposed
+in this product basis as $\Psi=\sum_{\alpha,\beta} C_{\alpha,\beta}
+|\alpha\rangle | \beta \rangle$ for some amplitudes $C_{\alpha,\beta}$. As
+the real and ancillary copies do not interact with each other, the state
+of the system with the two copies can be built as the product state
+$|\Psi_1 \otimes \Psi_2\rangle$. We define the unitary operator $Swap_A$
+acting on such a state by
+
 \begin{eqnarray}
 \label{SwapDef}
-&& Swap_A \Bigl( |\alpha_1\rangle \otimes |\beta_1\rangle \Bigr) \otimes
-\Bigl( |\alpha_2\rangle \otimes |\beta_2\rangle \Bigr) \nonumber \\ &=&
-\Bigl( |\alpha_2\rangle \otimes |\beta_1\rangle \Bigr) \otimes
-\Bigl( |\alpha_1\rangle \otimes |\beta_2\rangle \Bigr).
+%&& Swap_A (|\Psi_1 \otimes \Psi_2\rangle) \nonumber\\&=& 
+&& Swap_A  \Bigl( \sum_{\alpha_1,\beta_1} C_{\alpha_1,\beta_1}|\alpha_1\rangle |\beta_1\rangle \Bigr) \otimes
+\Bigl( \sum_{\alpha_2,\beta_2} D_{\alpha_2,\beta_2}|\alpha_2\rangle
+|\beta_2\rangle \Bigr) \nonumber\\ &=&
+\sum_{\alpha_1,\beta_1} C_{\alpha_1,\beta_1}
+\sum_{\alpha_2,\beta_2} D_{\alpha_2,\beta_2}
+\Bigl( |\alpha_2\rangle |\beta_1\rangle \Bigr) \otimes
+\Bigl( |\alpha_1\rangle |\beta_2\rangle \Bigr).
 \end{eqnarray}
-Since $\Psi_0$ can be decomposed in this basis as $\sum_{\alpha,\beta} A_{\alpha,\beta} |\alpha\rangle \otimes | \beta \rangle$ for some amplitudes $A_{\alpha,\beta}$, we have
+Note that when the real and ancillary are \textit{identical} copies (i.e.
+they are both in the same state $\Psi_0$) we have
 \begin{eqnarray}
 \label{H2fromSwap}
-S_2(\rho_A) &=&-\ln({\rm Tr}(\rho_A^2)) 
-= -\ln(\sum_{\alpha_1,\alpha_2} (\rho_A)_{\alpha_1,\alpha_2}
-(\rho_A)_{\alpha_2,\alpha_1}) \nonumber
-\\
-\nonumber
-&=& -\ln(\sum_{\alpha_1,\alpha_2,\beta_1,\beta_2} A_{\alpha_1,\beta_1} \overline A_{\alpha_2,\beta_1} A_{\alpha_2,\beta_2} \overline A_{\alpha_1,\beta_2})
-\\ \nonumber
+&& \langle \Psi_0\otimes \Psi_0|Swap_A|\Psi_0\otimes \Psi_0\rangle
+\nonumber \\ 
+&=& 
+\sum_{\alpha_1,\alpha_2,\beta_1,\beta_2} C_{\alpha_1,\beta_1} \overline C_{\alpha_2,\beta_1} C_{\alpha_2,\beta_2} \overline C_{\alpha_1,\beta_2}
+\nonumber \\
 &=&
--\ln(\langle \Psi_0\otimes \Psi_0|Swap_A|\Psi_0\otimes \Psi_0\rangle) 
-\nonumber
-\\
-&=&-\ln(\langle Swap_A \rangle), \label{s2}
+\sum_{\alpha_1,\alpha_2} (\rho_A)_{\alpha_1,\alpha_2}
+(\rho_A)_{\alpha_2,\alpha_1}={\rm Tr}(\rho_A^2),
 \end{eqnarray}
-where $(\rho_A)_{\alpha_1,\alpha_2}=\sum_{\beta_1}
-A_{\alpha_1,\beta_1} \overline A_{\alpha_2,\beta_1}$ denotes a matrix element of $\rho_A$.
-Equation~(\ref{H2fromSwap}) is basis independent \cite{Jaeger}, holding in particular in the valence
-bond basis.  However, in the valence bond basis, the $Swap_A$ operator is
-not defined by Eq.~(\ref{SwapDef}) but rather it is defined to
-swap the endpoints of valence bonds between the real and ancillary copies in the region $A$.
-The $Swap_A$ operator is illustrated for a 1D lattice with six sites in Fig.~\ref{swap_2}.  
+where $\sum_{\beta_1}C_{\alpha_1,\beta_1} \overline C_{\alpha_2,\beta_1}$
+denotes a matrix element of $\rho_A$. Therefore, as long as both copies
+are identical, 
+
+\begin{equation} 
+\label{s2}
+S_2(\rho_A) =-\ln({\rm Tr}(\rho_A^2))=-\ln(\langle Swap_A \rangle). 
+\end{equation}
+Equation~(\ref{s2}) is basis independent~\cite{Jaeger}. In particular it
+holds in the valence bond basis, where the $Swap_A$ operator is not
+defined by Eq.~(\ref{SwapDef}), but rather it is defined to swap the
+endpoints of valence bonds between the real and ancillary copies in the
+region $A$.  The action of $Swap_A$ in the valence bond basis is
+illustrated in Fig.~\ref{swap_2}.  
+
+%=======================================================================
+%
+%  What we had before
+%
+%To derive an estimator for $S_2$, we construct two separate copies of the
+%system under consideration (higher entropies $S_n$ require $n$ copies); one ``real'', one ``ancillary'' (Fig.~\ref{swap_2}).
+%Then, one defines an
+%operator $Swap_A$ which acts between the copies of the system, swapping the
+%configurations within region $A$.  We may precisely define the operator
+%$Swap_A$ by its matrix elements in a product basis, e.g. the $S^z$ basis.
+%Let $|\alpha\rangle$  be a complete basis of states in the subregion
+%$A$ and let $|\beta\rangle$ be a complete basis of states in
+%the complement subregion $B$.  Then, $|\alpha_1 \rangle \otimes |\beta_1 \rangle$ are
+%a complete basis of states for the ``real'' system, and
+%$\Bigl( |\alpha_1\rangle \otimes |\beta_1\rangle \Bigr) \otimes
+%\Bigl( |\alpha_2\rangle \otimes |\beta_2\rangle \Bigr)$
+%are a complete basis of states for both copies of the system.
+%Define the unitary operator $Swap_A$ by
+%\begin{eqnarray}
+%\label{SwapDef}
+%&& Swap_A \Bigl( |\alpha_1\rangle \otimes |\beta_1\rangle \Bigr) \otimes
+%\Bigl( |\alpha_2\rangle \otimes |\beta_2\rangle \Bigr) \nonumber \\ &=&
+%\Bigl( |\alpha_2\rangle \otimes |\beta_1\rangle \Bigr) \otimes
+%\Bigl( |\alpha_1\rangle \otimes |\beta_2\rangle \Bigr).
+%\end{eqnarray}
+%Since $\Psi_0$ can be decomposed in this basis as $\sum_{\alpha,\beta} A_{\alpha,\beta} |\alpha\rangle \otimes | \beta \rangle$ for some amplitudes $A_{\alpha,\beta}$, we have
+%\begin{eqnarray}
+%\label{H2fromSwap}
+%S_2(\rho_A) &=&-\ln({\rm Tr}(\rho_A^2)) 
+%= -\ln(\sum_{\alpha_1,\alpha_2} (\rho_A)_{\alpha_1,\alpha_2}
+%(\rho_A)_{\alpha_2,\alpha_1}) \nonumber
+%\\
+%\nonumber
+%&=& -\ln(\sum_{\alpha_1,\alpha_2,\beta_1,\beta_2} A_{\alpha_1,\beta_1} \overline A_{\alpha_2,\beta_1} A_{\alpha_2,\beta_2} \overline A_{\alpha_1,\beta_2})
+%\\ \nonumber
+%&=&
+%-\ln(\langle \Psi_0\otimes \Psi_0|Swap_A|\Psi_0\otimes \Psi_0\rangle) 
+%\nonumber
+%\\
+%&=&-\ln(\langle Swap_A \rangle), \label{s2}
+%\end{eqnarray}
+%where $(\rho_A)_{\alpha_1,\alpha_2}=\sum_{\beta_1}
+%A_{\alpha_1,\beta_1} \overline A_{\alpha_2,\beta_1}$ denotes a matrix element of $\rho_A$.
+%Equation~(\ref{H2fromSwap}) is basis independent \cite{Jaeger}, holding in particular in the valence
+%bond basis.  However, in the valence bond basis, the $Swap_A$ operator is
+%not defined by Eq.~(\ref{SwapDef}) but rather it is defined to
+%swap the endpoints of valence bonds between the real and ancillary copies in the region $A$.
+%The $Swap_A$ operator is illustrated for a 1D lattice with six sites in Fig.~\ref{swap_2}.  
+%=======================================================================
 
 {\it Measuring the Swap operator in QMC.}--
 We now present a procedure for measuring the entropy $S_2$ via importance sampling of the $Swap_A$ operator in QMC.  A
