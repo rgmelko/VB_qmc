@@ -31,7 +31,8 @@ Finally, we are happy to note that we have improved the data in figures
 process has allowed us to run simulations longer to improve data (in 
 particular, larger system sizes in figures 3 and 4).  Second, thanks to 
 a thorough error analysis of our data by a colleague, we have identified a 
-small systematic error in our analysis which happened to affect data with 
+small systematic error in our analysis (a minor error in the numerical
+code we used to store binned data) which happened to affect data with 
 large statistical fluctuations.  The most important change is the "bare"
 swap data in figure 2, which the reader will now notice has larger error 
 bars and a mean closer to the exact answer (an improvement caused by a
@@ -39,7 +40,9 @@ combination of the two points above).  The reanalysis of the data has
 led to only a slight change in the conclusions of the paper, specifically 
 that the discrepency of the swap to ratio estimators is related to poor
 sampling statistics and *not* necessarily ergodicity breaking; the relevant
-parts have been updated.  The general conclusions of the paper are unchanged.
+parts have been updated.  The general conclusions of the paper are unchanged,
+and in fact the applicability of this techniques has been, if anything,
+increased.
 
 In summary, we believe that our thourough consideration of referee criticism
 has significantly improved our manuscript, and therefore we hope the 
