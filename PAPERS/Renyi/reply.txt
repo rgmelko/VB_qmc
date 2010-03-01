@@ -1,0 +1,157 @@
+Re: LN11981
+   Measuring Renyi entanglement entropy with quantum Monte Carlo
+   by Matthew B. Hastings, Iv\'an Gonz\'alez, Ann B. Kallin, et al.
+
+
+Dear Dr. Millev
+
+We thank the referees for their thorough and thoughful reviews on our 
+manuscript.  Referee A states "I recommend it for publication in Physical 
+Review Letters."  Referee C ends his report with "... I found the
+paper proposes a new idea for numerical method which may work
+generally, which could be appreciated for PRL."  Referee B states "Perhaps 
+this is broad enough in the editor's estimation to merit publication 
+in PRL...".  We believe that all of these statement indicate the referees'
+(conditional) approval with publication in PRL.  We have made some specific
+changes to the manuscript that we believe improve the discussion significantly,
+answering we trust all referee criticism.  Specific responses to referee
+queries follow below, however we note the folling general changes to the 
+paper:
+
+First, Referees A and C had a common criticism, namely that our proof relating
+the expectation value of the Swap operator to the Renyi entropy S2 was 
+insufficiently opaque.  We have considerably lengthened the proof around
+equations (3) and (4), as detailed below, that we belive will allow for
+a straight-forward derivation of the relationship. 
+
+Regard the general critisim of Referee B regarding "Broad interest..." MATT?
+
+Finally, we are happy to note that we have improved the data in figures
+2 to 4 on two fronts.  First, the time period corresponding to this review
+process has allowed us to run simulations longer to improve data (in 
+particular, larger system sizes in figures 3 and 4).  Second, thanks to 
+a thorough error analysis of our data by a colleague, we have identified a 
+small systematic error in our analysis which happened to affect data with 
+large statistical fluctuations.  The most important change is the "bare"
+swap data in figure 2, which the reader will now notice has larger error 
+bars and a mean closer to the exact answer (an improvement caused by a
+combination of the two points above).  The reanalysis of the data has 
+led to only a slight change in the conclusions of the paper, specifically 
+that the discrepency of the swap to ratio estimators is related to poor
+sampling statistics and *not* necessarily ergodicity breaking; the relevant
+parts have been updated.  The general conclusions of the paper are unchanged.
+
+In summary, we believe that our thourough consideration of referee criticism
+has significantly improved our manuscript, and therefore we hope the 
+referees and editor agree that publication in PRL is now appropriate.
+
+
+
+
+> ----------------------------------------------------------------------
+> Report of Referee A -- LN11981/Hastings
+> ----------------------------------------------------------------------
+> 
+> Being able to compute entanglement entropy of a many-body ground-state
+> has been recently shown to be crucial to understand criticality,
+> quantum phase transitions and so on. Unfortunately, it has not been
+> possible yet to compute von Neumann entropy on large clusters (except
+> for a few models). In this context, this paper makes an interesting
+> breakthrough in showing that the Renyi entropy S2, which is another
+> measure of entanglement, can be computed numerically on large spin
+> systems (thanks to the powerful quantum Monte-Carlo (QMC) algorithm).
+> 
+> First, the authors use a trick to show that S2 can be defined as an
+> average of a "swap" operator, with additional "ancilla" sites that
+> represent a copy of the system. While no reference are given in this
+> part, I would like to point out that their main formulas (Eq.(3) and
+> (4)) were already known in the quantum information community, see
+> e.g.the book "Quantum state and process estimation"
+> 
+> (Springer New York 2007), chapter 8 DOI: 10.1007/978-0-387-36944-0_8
+> link:
+> http://www.springerlink.com/content/k4644p1788448765/fulltext.pdf
+> 
+> where this relation is written down. By the way, I find the proof in
+> this reference even clearer that the one proposed in the Letter. I
+> would like to suggest to the authors to add some references and
+> possibly rewrite the proof.
+> 
+> Second, the authors implement this calculation in a valence-bond QMC
+> scheme and compute S2 both for one-dimensional and two-dimensional
+> Heisenberg spin-1/2 models. It turns out that an additional difficulty
+> emerge but the authors have used another nice trick to circumvent it.
+> Therefore, they are able to provide convincing data, showing for
+> instance that the 2d Heisenberg ground-state follow the area law, as
+> already stated by the same authors using a different approach (Ref.
+> [6]).
+> 
+> In conclusion, this paper is nicely written, brings a new tool to
+> compute entanglement of spin systems in any dimension, which will
+> surely turn out to be useful in this field. Therefore, I recommend it
+> for publication in Physical Review Letters.
+> 
+> ----------------------------------------------------------------------
+> Report of Referee B -- LN11981/Hastings
+> ----------------------------------------------------------------------
+> 
+> In this paper, the authors define a new Monte Carlo method for
+> computing the Renyi entropies of ground states of many-body systems.
+> For the estimator, they use the expectation value of a SWAP operator,
+> or the ratio of of this for different system sizes. They test their
+> work on the 1- and 2-dimensional Heisenberg model and in particular
+> confirm that the Neel ground state obeys the expected area law on a
+> lattice with linear size L=28. This calculation is for the Renyi
+> 2-entropy, since this is the easiest to calculate and provides the
+> tightest lower bound on the von Neumann entropy, which may be of
+> interest.
+> 
+> The paper motivates the material reasonably well, but (as with
+> essentially any PRL, regrettably) more background and motivation would
+> be preferable. I think that researchers doing computational physics of
+> many-body systems will find this result interesting.
+> 
+> I am sitting on the fence whether to suggest publication in PRL or in
+> PRB. The paper is well-reasoned and contains interesting results, but
+> I don't know if anyone outside the community of computational
+> physicists will find it interesting. Perhaps this is broad enough in
+> the editor's estimation to merit publication in PRL, but otherwise, I
+> suggest to consider the manuscript for publication in PRB.
+> 
+> There is a typo in the abstract: "to converge the entropy".
+> 
+> ----------------------------------------------------------------------
+> Report of Referee C -- LN11981/Hastings
+> ----------------------------------------------------------------------
+> 
+> The paper studies how the Renyi entanglement entropy is obtained by a
+> quantum Monte Carlo method. They found a method to using Swap operator
+> and also discuss a way to improve the estimation. The trial of this
+> paper is interesting from a view point of numerical calculation.
+> However, I found some difficulties in the paper, which should be
+> improved.
+> 
+> The definition of $|\phi_0$ is not clear. In (2), which sites do $a$
+> and $b$ denote?
+> 
+> In the text, I understood that $|\alpha\rangle$ is a wavefunction for
+> the sub region A (left 3 spins in Fig.1) ,and $|\alpha\rangle $ is a
+> wavefunction for the sub region B (right 3 spins in Fig.1). If so
+> $|\alpha\rangle\otimes|beta\rangle $ does not contain singlet pair
+> between the regions A and B. I understand the product state can give a
+> complete basis, but as long as we take a state of one product there
+> are not coupling between A and B whatever $\Psi_0$ is.
+> 
+> I suppose that they calculate the Renyi entanglement entropy for the
+> ground state of the models where coupling between A and B exists.
+> Maybe because of this lack of understanding, I cannot move
+> "immediately " from (3) to (4). I am not sure that this part is common
+> sense among the people of this area, but this part is essential for
+> the paper and more detail explanation is necessary, at least for me.
+> 
+> The content is related to current topics, but what is proposed is
+> rather of specific interest, and one may say that the paper is rather
+> technical and Brief report may be appropriate. However, I found the
+> paper proposes a new idea for numerical method which may work
+> generally, which could be appreciated for PRL.
+> 
