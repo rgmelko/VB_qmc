@@ -102,22 +102,18 @@ occurring between sites \textcolor{red}{$a$ and $b$} of the opposite sublattices
 %
 % The new paragraph
 %
-To derive an estimator for $S_2$, we construct two separate copies of the
-system under consideration (higher entropies $S_n$ require $n$ copies);
-one ``real'', one ``ancillary'' (Fig.~\ref{swap_2}). Then one defines an
+To derive an estimator for $S_2$, we construct two copies of the
+system (higher entropies $S_n$ require $n$ copies);
+one ``real'', one ``ancillary'' (Fig.~\ref{swap_2}). Then we define an
 operator $Swap_A$ which acts between the copies of the system, swapping
-the configurations within region $A$.  To define this operator it is
-convenient to calculate its matrix elements in a product basis, e.g.  the
+the configurations within region $A$.  To define this operator, we
+give its matrix elements in a product basis, e.g.  the
 $S^z$ basis.  Let $|\alpha\rangle$  be a complete basis of states in the
 subregion $A$ and let $|\beta\rangle$ be a complete basis of states in the
 complement subregion $B$. The state of each copy can be decomposed
 in this product basis as $|\Psi\rangle=\sum_{\alpha,\beta} C_{\alpha,\beta}
-|\alpha\rangle | \beta \rangle$ for some amplitudes $C_{\alpha,\beta}$. As
-the real and ancillary copies do not interact with each other, the state
-of the system with the two copies can be built as the product state
-$|\Psi_1 \otimes \Psi_2\rangle$. We define the unitary operator $Swap_A$
-acting on such a state by
-
+|\alpha\rangle | \beta \rangle$ for some amplitudes $C_{\alpha,\beta}$.
+We define the unitary operator $Swap_A$ by
 \begin{eqnarray}
 \label{SwapDef}
 %&& Swap_A (|\Psi_1 \otimes \Psi_2\rangle) \nonumber\\&=& 
@@ -129,8 +125,11 @@ acting on such a state by
 \Bigl( |\alpha_2\rangle |\beta_1\rangle \Bigr) \otimes
 \Bigl( |\alpha_1\rangle |\beta_2\rangle \Bigr).
 \end{eqnarray}
-Note that when the real and ancillary are \textit{identical} copies (i.e.
-they are both in the same state $\Psi_0$) we have
+The two copies of the system will not interact with each other, so the
+ground state of the combined system will be the product of the ground states
+on each copy:
+$|\Psi_0\otimes \Psi_0\rangle$.  Thus, the expectation value
+of $Swap_A$ is
 \begin{eqnarray}
 \label{H2fromSwap}
 && \langle \Psi_0\otimes \Psi_0|Swap_A|\Psi_0\otimes \Psi_0\rangle
@@ -142,10 +141,8 @@ they are both in the same state $\Psi_0$) we have
 \sum_{\alpha_1,\alpha_2} (\rho_A)_{\alpha_1,\alpha_2}
 (\rho_A)_{\alpha_2,\alpha_1}={\rm Tr}(\rho_A^2),
 \end{eqnarray}
-where $\sum_{\beta_1}C_{\alpha_1,\beta_1} \overline C_{\alpha_2,\beta_1}$
-denotes a matrix element of $\rho_A$. Therefore, as long as both copies
-are identical, 
-
+where $(\rho_A)_{\alpha_1,\alpha_2}=\sum_{\beta_1}C_{\alpha_1,\beta_1} \overline C_{\alpha_2,\beta_1}$
+denotes a matrix element of $\rho_A$. Therefore, 
 \begin{equation} 
 \label{s2}
 S_2(\rho_A) =-\ln({\rm Tr}(\rho_A^2))=-\ln(\langle Swap_A \rangle). 
