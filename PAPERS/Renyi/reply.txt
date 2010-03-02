@@ -1,6 +1,6 @@
 Re: LN11981
    Measuring Renyi entanglement entropy with quantum Monte Carlo
-   by Matthew B. Hastings, Iv\'an Gonz\'alez, Ann B. Kallin, et al.
+   by Matthew B. Hastings, Ivan Gonzalez, Ann B. Kallin, and Roger G. Melko
 
 
 Dear Dr. Millev
@@ -12,11 +12,11 @@ proposes a new idea for numerical method which may work generally, which
 could be appreciated for PRL."  Referee B states "Perhaps this is broad
 enough in the editor's estimation to merit publication in PRL...".  We
 believe that all of these statement indicate the referees' (conditional)
-approval with publication in PRL.  We have made some specific changes to
-the manuscript that we believe improve the discussion significantly,
-answering we trust all referee criticism.  Specific responses to referee
-queries, as well as detailed descriptions of general changes in the
-manuscript follow below.
+approval of publication in PRL.  We have made some specific changes to
+the manuscript that we think improve the discussion significantly,
+answering all referee criticism.  General changes in the manuscript are
+outlined in the three paragraphs below; specific reponses to referee 
+queries are at bottom.
 
 [1]
 First, Referees A and C had a common criticism, namely that our proof
@@ -24,7 +24,7 @@ relating the expectation value of the Swap operator to the Renyi entropy
 S_2 was insufficiently clear.  We have considerably lengthened the proof
 around equations (3) and (4), as detailed below, that we believe will
 allow for a straight-forward derivation of the relationship. Further,
-following Referee A's suggestion, we have added a reference to this
+following Referee A's suggestion, we have added a reference [13] to this
 relationship (it is sometimes called the "replica trick", though there are
 several techniques that go by that name). It is important to note that
 equation (5) is basis independent, although for convenience we have used a
@@ -32,8 +32,8 @@ product basis in equations (3) and (4) to prove it. The key ingredients of
 the proof are that the two copies of the system are identical and that the
 state of the combined system is the product state of the states of each
 copy. This is guaranteed by the fact that the two copies do not interact
-with each other and therefore the ground state of the combined system that
-the QMC will sample, is simply the product of the ground state on the two
+with each other, and therefore, the ground state of the combined system that
+the QMC will sample is simply the product of the ground state on the two
 copies. This is now stated in the text after equation (3) and with the
 added citation to Reference [13]. Despite this generality, we wanted to
 provide the reader with a simple and self-contained proof of equation (5),
@@ -42,20 +42,20 @@ equations (3) and (4). In fact, whereas the proof can be made even simpler
 by using the Schmidt decomposition to write the state of each copy (having
 this the only requirement that the state to decompose is a pure state,
 which indeed is the case for groundstates), we feel this  may hinder
-access for the general reader. Our QMC algorithm will work in the valence
-bond basis, therefore we wanted to explain the action of the Swap_A
-operator in this basis. Here the action of Swap_A is really simple: just
+access for the general reader. Our QMC algorithm works in the valence
+bond basis, therefore we wish to explain the action of the Swap_A
+operator in this basis. Here, the action of Swap_A is very simple: it just
 swaps the endpoints of valence bonds between real and ancillary copies in
 the region A. We explain this in the text after equation (5), as well as
-within figure (1). Note that valence bond basis states are in general not
-product states between A and B (indeed, this is why there is a
-non-vanishing entanglement entropy), as Referee B points with certainty
-and we show in figure (1).  While the ground state of the combined system
-is a product between the two copies, each such state on the copy is a sum
-of many different valence bond states, having the general expansion stated
-in equation (2). Because of this linear combination, the computation of
-the expectation value of Swap_A using Monte Carlo sampling will involve
-the action of Swap_A on product states of two, in general, different
+in the revised caption to figure (1). Note that valence bond basis states 
+are in general *not* product states between A and B (indeed, this is why 
+there is a non-vanishing entanglement entropy), as Referee B points out with 
+certainty, and we show in figure (1).  While the ground state of the 
+combined system is a product between the two copies, each such state on the 
+copy is a sum of many different valence bond states, having the general 
+expansion stated in equation (2). Because of this linear combination, the 
+computation of the expectation value of Swap_A using Monte Carlo sampling 
+will involve the action of Swap_A on product states of two, in general, different
 valence bond states, each corresponding to one of the copies. This is what
 we illustrate in figure 1. To clarify this point to the reader we have
 added a more detailed explanation in figure 1's caption.
@@ -91,25 +91,24 @@ Finally, we are happy to note that we have improved the data in figures
 process has allowed us to run simulations longer to improve data (in 
 particular, larger system sizes in figures 3 and 4).  Second, thanks to 
 a thorough error analysis of our data by a colleague, we have identified a 
-small systematic error in our analysis (a minor error in the numerical
-code we used to store binned data) which happened to affect data with 
-large statistical fluctuations.  The most important change is the "bare"
-swap data in figure 2, which the reader will now notice has larger error 
-bars and a mean closer to the exact answer (an improvement caused by a
-combination of the two points above).  The reanalysis of the data has 
-led to only a slight change in the conclusions of the paper, specifically 
-that the discrepency of the swap to ratio estimators is related to poor
-sampling statistics and *not* necessarily ergodicity breaking; the relevant
-parts have been updated.  The general conclusions of the paper are unchanged,
-and in fact the applicability of this techniques has been, if anything,
-increased.
+minor systematic error in our analysis (in the numerical code used to store 
+binned QMC data), which happened to affect data with large statistical 
+fluctuations.  The most important change is the "bare" swap data in 
+figure 2, which the reader will now notice has larger error bars and a 
+mean closer to the exact answer (an improvement caused by a combination 
+of the two points above).  The reanalysis of the data has led to only a 
+slight change in the conclusions of the paper, specifically that the 
+discrepency of the swap to ratio estimators is related to poor sampling 
+statistics and *not* necessarily ergodicity breaking; the relevant parts 
+of the text have been updated.  The general conclusions of the paper are 
+unchanged, and in fact the applicability of this technique (in particular
+the bare swap estimator) has been, if anything, increased.
 
 In summary, we believe that our thourough consideration of referee criticism
 has significantly improved our manuscript, and therefore we hope the 
 referees and editor agree that publication in PRL is now appropriate.
 
-
-
+Below we outline a few more specific responses to referee queries.
 
 > ----------------------------------------------------------------------
 > Report of Referee A -- LN11981/Hastings
@@ -128,7 +127,7 @@ referees and editor agree that publication in PRL is now appropriate.
 > average of a "swap" operator, with additional "ancilla" sites that
 > represent a copy of the system. While no reference are given in this
 > part, I would like to point out that their main formulas (Eq.(3) and
-> (4)) were already known in the quantum information community, see
+> (4)) were already known in the quantum1G information community, see
 > e.g.the book "Quantum state and process estimation"
 > 
 > (Springer New York 2007), chapter 8 DOI: 10.1007/978-0-387-36944-0_8
@@ -140,7 +139,9 @@ referees and editor agree that publication in PRL is now appropriate.
 > would like to suggest to the authors to add some references and
 > possibly rewrite the proof.
 
-These concerns are addressed in paragraph [1].  We have both rewritten equations (3) and (4) to improve clarity, and added this appropriate reference.
+These concerns are addressed in paragraph [1] above.  We have both rewritten 
+equations (3) and (4) to improve clarity, and added this reference as [13]
+in the revised manuscript.
 
 > Second, the authors implement this calculation in a valence-bond QMC
 > scheme and compute S2 both for one-dimensional and two-dimensional
@@ -176,7 +177,10 @@ These concerns are addressed in paragraph [1].  We have both rewritten equations
 > be preferable. I think that researchers doing computational physics of
 > many-body systems will find this result interesting.
 
-****************[Not sure what to put here.]
+We have considered carefully this point, and decided that, in the absence
+of a similar concern by referees A and B, we will not attempt to rewrite the
+introduction background and motivation.  We refer the referee however to 
+paragraph [2] above.
  
 > I am sitting on the fence whether to suggest publication in PRL or in
 > PRB. The paper is well-reasoned and contains interesting results, but
@@ -184,12 +188,11 @@ These concerns are addressed in paragraph [1].  We have both rewritten equations
 > physicists will find it interesting. Perhaps this is broad enough in
 > the editor's estimation to merit publication in PRL, but otherwise, I
 > suggest to consider the manuscript for publication in PRB.
- 
-This criticism is addressed in paragraph [2].
-
+> 
+>
 > There is a typo in the abstract: "to converge the entropy".
 
-Fixed.
+We have carefully considered and slightly changed the abstract.
 
 > 
 > ----------------------------------------------------------------------
@@ -206,9 +209,13 @@ Fixed.
 > The definition of $|\phi_0$ is not clear. In (2), which sites do $a$
 > and $b$ denote?
 
-The text under eqn (2) has been modified to say that (a,b) represents a 
-valence bond between sites a and b. $\phi_0$ is the ground state of the 
-system.
+We thank the referee for pointing this out.  The notation is used in the 
+references, however we have clarified this by modifying the text under
+Eq. (2), to say that (a,b) represents a valence bond between sites a and b. 
+
+We note also that $\Psi_0$ is the ground state of the system, independent 
+of basis.  We hope the new discussion (see paragraph [1] above) will 
+clarify this.
  
 > In the text, I understood that $|\alpha\rangle$ is a wavefunction for
 > the sub region A (left 3 spins in Fig.1) ,and $|\alpha\rangle $ is a
@@ -221,7 +228,7 @@ system.
 This is addressed in paragraph [1]. We have modified eqn (3) to show the
 SWAP operator acting on general states expressed as a linear combination
 of product states.  These general states can have valence bonds between 
-regions A and B.
+regions A and B and are therefore entangled, as illustrated in figure 1. 
  
 > I suppose that they calculate the Renyi entanglement entropy for the
 > ground state of the models where coupling between A and B exists.
@@ -239,4 +246,6 @@ equations (3) and (4) to make the proof more understandable.
 > paper proposes a new idea for numerical method which may work
 > generally, which could be appreciated for PRL.
 
-The comment that this paper may be "rather of specific interest" is addressed in paragraph [2].
+We hope that the comment that this paper may be "rather of specific interest" 
+is addressed in paragraph [2].
+
