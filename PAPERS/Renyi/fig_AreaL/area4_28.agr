@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Fri Feb 26 10:39:26 2010"
+@timestamp def "Tue Mar  2 15:39:28 2010"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -101,7 +101,7 @@
 @g0 fixedpoint format general general
 @g0 fixedpoint prec 6, 6
 @with g0
-@    world 0, 0.3, 32.5, 0.71
+@    world 0, 0.3, 32, 0.71
 @    stack world 0, 0, 0, 0
 @    znorm 1
 @    view 0.150000, 0.337010, 0.928922, 0.850000
@@ -688,16 +688,16 @@
 @target G0.S0
 @type xydy
 1 0.693147 0
-2 0.550565 0.00091148
-3 0.51227 0.00090711667
+2 0.55048444 0.00091258868
+3 0.51214753 0.00091296333
 &
 @target G0.S1
 @type xydy
 1 0.693147 0
-2 0.586875 0.001487455
-3 0.58064 0.0014283833
-4 0.531465 0.0014757275
-5 0.47286 0.00206038
+2 0.58665424 0.001486938
+3 0.5803348 0.0014350827
+4 0.53102864 0.0014985147
+5 0.47180253 0.0020829456
 &
 @target G0.S2
 @type xydy
