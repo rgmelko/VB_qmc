@@ -35,7 +35,7 @@ with each other and therefore the ground state of the combined system that
 the QMC will sample, is simply the product of the ground state on the two
 copies. This is now stated in the text after equation (3) and with the
 added citation to Reference [13]. Despite this generality, we wanted to
-provide the reader with a simple and self-contained proof of Equation (5),
+provide the reader with a simple and self-contained proof of equation (5),
 and for this reason we choose to work in a product state basis in
 equations (3) and (4). In fact, whereas the proof can be made even simpler
 by using the Schmidt decomposition to write the state of each copy (having
@@ -45,19 +45,19 @@ access for the general reader. Our QMC algorithm will work in the valence
 bond basis, therefore we wanted to explain the action of the Swap_A
 operator in this basis. Here the action of Swap_A is really simple: just
 swaps the endpoints of valence bonds between real and ancillary copies in
-the region A. We explain this in the text after Equation (5), as well as
-within Figure (1). Note that valence bond basis states are in general not
+the region A. We explain this in the text after equation (5), as well as
+within figure (1). Note that valence bond basis states are in general not
 product states between A and B (indeed, this is why there is a
 non-vanishing entanglement entropy), as Referee B points with certainty
-and we show in Figure (1).  While the ground state of the combined system
+and we show in figure (1).  While the ground state of the combined system
 is a product between the two copies, each such state on the copy is a sum
 of many different valence bond states, having the general expansion stated
 in equation (2). Because of this linear combination, the computation of
 the expectation value of Swap_A using Monte Carlo sampling will involve
 the action of Swap_A on product states of two, in general, different
 valence bond states, each corresponding to one of the copies. This is what
-we illustrate in Figure 1. To clarify this point to the reader we have
-added a more detailed explanation in Figure 1's caption.
+we illustrate in figure 1. To clarify this point to the reader we have
+added a more detailed explanation in figure 1's caption.
 
 Second, regarding the general critisim of Referee B regarding interest in
 this paper outside the numerical community, we have in fact already
