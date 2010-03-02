@@ -18,6 +18,7 @@ answering we trust all referee criticism.  Specific responses to referee
 queries, as well as detailed descriptions of general changes in the
 manuscript follow below.
 
+[1]
 First, Referees A and C had a common criticism, namely that our proof
 relating the expectation value of the Swap operator to the Renyi entropy
 S_2 was insufficiently clear.  We have considerably lengthened the proof
@@ -59,6 +60,7 @@ valence bond states, each corresponding to one of the copies. This is what
 we illustrate in figure 1. To clarify this point to the reader we have
 added a more detailed explanation in figure 1's caption.
 
+[2]
 Second, regarding the general critisim of Referee B regarding interest in
 this paper outside the numerical community, we have in fact already
 received significant interest from people within the quantum information
@@ -83,6 +85,7 @@ entanglement properties of one-dimensional systems using DMRG; we hope
 that our work will lead to similar activity in certain higher dimensional
 systems.
 
+[3]
 Finally, we are happy to note that we have improved the data in figures
 2 to 4 on two fronts.  First, the time period corresponding to this review
 process has allowed us to run simulations longer to improve data (in 
@@ -136,7 +139,9 @@ referees and editor agree that publication in PRL is now appropriate.
 > this reference even clearer that the one proposed in the Letter. I
 > would like to suggest to the authors to add some references and
 > possibly rewrite the proof.
-> 
+
+These concerns are addressed in paragraph [1].  We have both rewritten equations (3) and (4) to improve clarity, and added this appropriate reference.
+
 > Second, the authors implement this calculation in a valence-bond QMC
 > scheme and compute S2 both for one-dimensional and two-dimensional
 > Heisenberg spin-1/2 models. It turns out that an additional difficulty
@@ -170,15 +175,22 @@ referees and editor agree that publication in PRL is now appropriate.
 > essentially any PRL, regrettably) more background and motivation would
 > be preferable. I think that researchers doing computational physics of
 > many-body systems will find this result interesting.
-> 
+
+****************[Not sure what to put here.]
+ 
 > I am sitting on the fence whether to suggest publication in PRL or in
 > PRB. The paper is well-reasoned and contains interesting results, but
 > I don't know if anyone outside the community of computational
 > physicists will find it interesting. Perhaps this is broad enough in
 > the editor's estimation to merit publication in PRL, but otherwise, I
 > suggest to consider the manuscript for publication in PRB.
-> 
+ 
+This criticism is addressed in paragraph [2].
+
 > There is a typo in the abstract: "to converge the entropy".
+
+Fixed.
+
 > 
 > ----------------------------------------------------------------------
 > Report of Referee C -- LN11981/Hastings
@@ -193,7 +205,11 @@ referees and editor agree that publication in PRL is now appropriate.
 > 
 > The definition of $|\phi_0$ is not clear. In (2), which sites do $a$
 > and $b$ denote?
-> 
+
+The text under eqn (2) has been modified to say that (a,b) represents a 
+valence bond between sites a and b. $\phi_0$ is the ground state of the 
+system.
+ 
 > In the text, I understood that $|\alpha\rangle$ is a wavefunction for
 > the sub region A (left 3 spins in Fig.1) ,and $|\alpha\rangle $ is a
 > wavefunction for the sub region B (right 3 spins in Fig.1). If so
@@ -201,17 +217,26 @@ referees and editor agree that publication in PRL is now appropriate.
 > between the regions A and B. I understand the product state can give a
 > complete basis, but as long as we take a state of one product there
 > are not coupling between A and B whatever $\Psi_0$ is.
-> 
+
+This is addressed in paragraph [1]. We have modified eqn (3) to show the
+SWAP operator acting on general states expressed as a linear combination
+of product states.  These general states can have valence bonds between 
+regions A and B.
+ 
 > I suppose that they calculate the Renyi entanglement entropy for the
 > ground state of the models where coupling between A and B exists.
 > Maybe because of this lack of understanding, I cannot move
 > "immediately " from (3) to (4). I am not sure that this part is common
 > sense among the people of this area, but this part is essential for
 > the paper and more detail explanation is necessary, at least for me.
-> 
+
+This is also addressed in paragraph [1].  We have significantly expanded
+equations (3) and (4) to make the proof more understandable.
+ 
 > The content is related to current topics, but what is proposed is
 > rather of specific interest, and one may say that the paper is rather
 > technical and Brief report may be appropriate. However, I found the
 > paper proposes a new idea for numerical method which may work
 > generally, which could be appreciated for PRL.
-> 
+
+The comment that this paper may be "rather of specific interest" is addressed in paragraph [2].
