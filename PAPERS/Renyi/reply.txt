@@ -5,62 +5,83 @@ Re: LN11981
 
 Dear Dr. Millev
 
-We thank the referees for their thorough and thoughtful reviews on our 
-manuscript.  Referee A states "I recommend it for publication in Physical 
-Review Letters."  Referee C ends his report with "... I found the
-paper proposes a new idea for numerical method which may work
-generally, which could be appreciated for PRL."  Referee B states "Perhaps 
-this is broad enough in the editor's estimation to merit publication 
-in PRL...".  We believe that all of these statement indicate the referees'
-(conditional) approval with publication in PRL.  We have made some specific
-changes to the manuscript that we believe improve the discussion significantly,
+We thank the referees for their thorough and thoughtful reviews on our
+manuscript.  Referee A states "I recommend it for publication in Physical
+Review Letters."  Referee C ends his report with "... I found the paper
+proposes a new idea for numerical method which may work generally, which
+could be appreciated for PRL."  Referee B states "Perhaps this is broad
+enough in the editor's estimation to merit publication in PRL...".  We
+believe that all of these statement indicate the referees' (conditional)
+approval with publication in PRL.  We have made some specific changes to
+the manuscript that we believe improve the discussion significantly,
 answering we trust all referee criticism.  Specific responses to referee
-queries follow below, however we note the folling general changes to the 
-paper:
+queries, as well as detailed descriptions of general changes in the
+manuscript follow below.
 
-First, Referees A and C had a common criticism, namely that our proof relating
-the expectation value of the Swap operator to the Renyi entropy S_2 was 
-insufficiently clear.  We have considerably lengthened the proof around
-equations (3) and (4), as detailed below, that we believe will allow for
-a straight-forward derivation of the relationship.   Further, following
-Referee A's suggestion, we add a reference to this relationship (it
-is sometimes called the "replica trick", though there are several
-techniques that go by that name).  For preciseness
-we define the operator Swap_A within a product basis (a basis which is
-unentangled between sites within A and those outside of A).  However,
-since the valence bond state is not a product basis, we also explain the
-action of Swap_A within the valence bond basis, both verbally
-and pictorially.  We clarified a few points: the two copies of the system do
-not interact, so that the ground state of the combined system is a product of
-the ground state on the two copies and in fact each copy has the same
-ground state.  However, each copy has interactions
-connecting sites in A to those in B.  Thus, the ground state of a given
-copy is in general not a product state between A and B (indeed, this is why it has
-a non-vanishing entanglement entropy).  Finally, while the ground state
-of the combined system is a product between the two copies, each such
-state on the copy is a sum of many different valence bond states which
-we sample using quantum Monte Carlo; since we
-compute the expectation value of Swap_A using Monte Carlo sampling,
-on a given Monte Carlo sample the state we consider is a product
-state between the two copies but need not be the same state on each copy.
+First, Referees A and C had a common criticism, namely that our proof
+relating the expectation value of the Swap operator to the Renyi entropy
+S_2 was insufficiently clear.  We have considerably lengthened the proof
+around equations (3) and (4), as detailed below, that we believe will
+allow for a straight-forward derivation of the relationship. Further,
+following Referee A's suggestion, we have added a reference to this
+relationship (it is sometimes called the "replica trick", though there are
+several techniques that go by that name). It is important to note that
+equation (5) is basis independent, although for convenience we have used a
+product basis in equations (3) and (4) to prove it. The key ingredients of
+the proof are that the two copies of the system are identical and that the
+state of the combined system is the product state of the states of each
+copy. This is guaranteed by the fact that the two copies do not interact
+with each other and therefore the ground state of the combined system that
+the QMC will sample, is simply the product of the ground state on the two
+copies. This is now stated in the text after equation (3) and with the
+added citation to Reference [13]. Despite this generality, we wanted to
+provide the reader with a simple and self-contained proof of Equation (5),
+and for this reason we choose to work in a product state basis in
+equations (3) and (4). In fact, whereas the proof can be made even simpler
+by using the Schmidt decomposition to write the state of each copy (having
+this the only requirement that the state to decompose is a pure state,
+which indeed is the case for groundstates), we feel this  may hinder
+access for the general reader. Our QMC algorithm will work in the valence
+bond basis, therefore we wanted to explain the action of the Swap_A
+operator in this basis. Here the action of Swap_A is really simple: just
+swaps the endpoints of valence bonds between real and ancillary copies in
+the region A. We explain this in the text after Equation (5), as well as
+within Figure (1). Note that valence bond basis states are in general not
+product states between A and B (indeed, this is why there is a
+non-vanishing entanglement entropy), as Referee B points with certainty
+and we show in Figure (1).  While the ground state of the combined system
+is a product between the two copies, each such state on the copy is a sum
+of many different valence bond states, having the general expansion stated
+in equation (2). Because of this linear combination, the computation of
+the expectation value of Swap_A using Monte Carlo sampling will involve
+the action of Swap_A on product states of two, in general, different
+valence bond states, each corresponding to one of the copies. This is what
+we illustrate in Figure 1. To clarify this point to the reader we have
+added a more detailed explanation in Figure 1's caption.
 
-Regarding the general critisim of Referee B regarding interest in this
-paper outside the numerical community, we have in fact already received significant
-interest from people within the quantum information science community.  More generally,
-we note the intense recent research interest in entanglement entropy in various models.
-We have cited several different papers, in fields ranging from condensed matter
-physics to topological quantum computing to high energy physics, where universal terms have been found.  However,
-while this large body of exciting theoretical work may offer new ways to characterize
-many-body systems, it has never received any experimental confirmation because, simply
-put, there is no way to experimentally measure entanglement entropy on a many-body interacting system.
-In this case, numerical work is essential to test the theoretical predictions.  By opening
-the way to a numerical test of some of these predictions (predictions that rely on techniques
-as diverse as the AdS/CFT correspondance and as the method of stabilizer codes), we anticipate
-that our paper will generate interest among many fields of physics.  Further, it will
-allow a numerical diagnostic for exotic phases characterized by entanglement properties,
-increasing the recent collaboration between numerics and theory.  As evidence for this prediction,
-we would like simply to mention the activity in studying entanglement properties of one-dimensional
-systems using DMRG; we hope that our work will lead to similar activity in certain higher dimensional systems.
+Second, regarding the general critisim of Referee B regarding interest in
+this paper outside the numerical community, we have in fact already
+received significant interest from people within the quantum information
+science community.  More generally, we note the intense recent research
+interest in entanglement entropy in various models.  We have cited several
+different papers, in fields ranging from condensed matter physics to
+topological quantum computing to high energy physics, where universal
+terms have been found.  However, while this large body of exciting
+theoretical work may offer new ways to characterize many-body systems, it
+has never received any experimental confirmation because, simply put,
+there is no way to experimentally measure entanglement entropy on a
+many-body interacting system.  In this case, numerical work is essential
+to test the theoretical predictions.  By opening the way to a numerical
+test of some of these predictions (predictions that rely on techniques as
+diverse as the AdS/CFT correspondence and as the method of stabilizer
+codes), we anticipate that our paper will generate interest among many
+fields of physics.  Further, it will allow a numerical diagnostic for
+exotic phases characterized by entanglement properties, increasing the
+recent collaboration between numerics and theory.  As evidence for this
+prediction, we would like simply to mention the activity in studying
+entanglement properties of one-dimensional systems using DMRG; we hope
+that our work will lead to similar activity in certain higher dimensional
+systems.
 
 Finally, we are happy to note that we have improved the data in figures
 2 to 4 on two fronts.  First, the time period corresponding to this review
