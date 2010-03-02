@@ -63,11 +63,16 @@ on 1D and 2D lattices.  In 1D, we demonstrate that $S_2$ calculated with QMC con
 confirming the area law expected from recent studies \cite{Ann}.
 
 \begin{figure} {
-\includegraphics[width=2.4
-in]{swap_2.eps} \caption{(color online) 
+\includegraphics[width=2.4 in]{swap_2.eps} \caption{(color online) 
 \label{swap_2}
-A six-site chain, with two non-interacting copies (top and bottom) before (a) and after (b) operation of the $Swap_A$ operator.  
-The region $A$ consists of three light-colored sites on the left; the complement region $B$ of three dark sites on the right.
+A six-site chain, with two non-interacting copies (top and bottom) before
+(a) and after (b) $Swap_A$ operation. % in the valence bond basis.  
+The
+region $A$ consists of three light-colored sites on the left; the
+complement region $B$ of three dark sites on the right. Curvy lines denote
+singlets. $|V_{r}\rangle$ is a product of two (one \textit{per} copy
+and in general different) valence bond states. The ground state of the
+two-copy system is a linear combination of such $|V_{r}\rangle$.
 }
 } \end{figure}
 
@@ -110,8 +115,8 @@ operator $Swap_A$ which acts between the copies of the system, swapping
 the configurations within region $A$.  To define this operator, we
 give its matrix elements in a product basis, e.g.  the
 $S^z$ basis.  Let $|\alpha\rangle$  be a complete basis of states in the
-subregion $A$ and let $|\beta\rangle$ be a complete basis of states in the
-complement subregion $B$. The state of each copy can be decomposed
+region $A$ and let $|\beta\rangle$ be a complete basis of states in the
+complement region $B$. The state of each copy can be decomposed
 in this product basis as $|\Psi\rangle=\sum_{\alpha,\beta} C_{\alpha,\beta}
 |\alpha\rangle | \beta \rangle$ for some amplitudes $C_{\alpha,\beta}$.
 We define the unitary operator $Swap_A$ by
@@ -154,56 +159,6 @@ defined by Eq.~(\ref{SwapDef}), but rather it is defined to swap the
 endpoints of valence bonds between the real and ancillary copies in the
 region $A$.  The action of $Swap_A$ in the valence bond basis is
 illustrated in Fig.~\ref{swap_2}.  
-
-%=======================================================================
-%
-%  What we had before
-%
-%To derive an estimator for $S_2$, we construct two separate copies of the
-%system under consideration (higher entropies $S_n$ require $n$ copies); one ``real'', one ``ancillary'' (Fig.~\ref{swap_2}).
-%Then, one defines an
-%operator $Swap_A$ which acts between the copies of the system, swapping the
-%configurations within region $A$.  We may precisely define the operator
-%$Swap_A$ by its matrix elements in a product basis, e.g. the $S^z$ basis.
-%Let $|\alpha\rangle$  be a complete basis of states in the subregion
-%$A$ and let $|\beta\rangle$ be a complete basis of states in
-%the complement subregion $B$.  Then, $|\alpha_1 \rangle \otimes |\beta_1 \rangle$ are
-%a complete basis of states for the ``real'' system, and
-%$\Bigl( |\alpha_1\rangle \otimes |\beta_1\rangle \Bigr) \otimes
-%\Bigl( |\alpha_2\rangle \otimes |\beta_2\rangle \Bigr)$
-%are a complete basis of states for both copies of the system.
-%Define the unitary operator $Swap_A$ by
-%\begin{eqnarray}
-%\label{SwapDef}
-%&& Swap_A \Bigl( |\alpha_1\rangle \otimes |\beta_1\rangle \Bigr) \otimes
-%\Bigl( |\alpha_2\rangle \otimes |\beta_2\rangle \Bigr) \nonumber \\ &=&
-%\Bigl( |\alpha_2\rangle \otimes |\beta_1\rangle \Bigr) \otimes
-%\Bigl( |\alpha_1\rangle \otimes |\beta_2\rangle \Bigr).
-%\end{eqnarray}
-%Since $\Psi_0$ can be decomposed in this basis as $\sum_{\alpha,\beta} A_{\alpha,\beta} |\alpha\rangle \otimes | \beta \rangle$ for some amplitudes $A_{\alpha,\beta}$, we have
-%\begin{eqnarray}
-%\label{H2fromSwap}
-%S_2(\rho_A) &=&-\ln({\rm Tr}(\rho_A^2)) 
-%= -\ln(\sum_{\alpha_1,\alpha_2} (\rho_A)_{\alpha_1,\alpha_2}
-%(\rho_A)_{\alpha_2,\alpha_1}) \nonumber
-%\\
-%\nonumber
-%&=& -\ln(\sum_{\alpha_1,\alpha_2,\beta_1,\beta_2} A_{\alpha_1,\beta_1} \overline A_{\alpha_2,\beta_1} A_{\alpha_2,\beta_2} \overline A_{\alpha_1,\beta_2})
-%\\ \nonumber
-%&=&
-%-\ln(\langle \Psi_0\otimes \Psi_0|Swap_A|\Psi_0\otimes \Psi_0\rangle) 
-%\nonumber
-%\\
-%&=&-\ln(\langle Swap_A \rangle), \label{s2}
-%\end{eqnarray}
-%where $(\rho_A)_{\alpha_1,\alpha_2}=\sum_{\beta_1}
-%A_{\alpha_1,\beta_1} \overline A_{\alpha_2,\beta_1}$ denotes a matrix element of $\rho_A$.
-%Equation~(\ref{H2fromSwap}) is basis independent \cite{Jaeger}, holding in particular in the valence
-%bond basis.  However, in the valence bond basis, the $Swap_A$ operator is
-%not defined by Eq.~(\ref{SwapDef}) but rather it is defined to
-%swap the endpoints of valence bonds between the real and ancillary copies in the region $A$.
-%The $Swap_A$ operator is illustrated for a 1D lattice with six sites in Fig.~\ref{swap_2}.  
-%=======================================================================
 
 {\it Measuring the Swap operator in QMC.}--
 We now present a procedure for measuring the entropy $S_2$ via importance sampling of the $Swap_A$ operator in QMC.  A
@@ -351,7 +306,8 @@ For example, for $L=32$, results for $r_{\rm max}=2$ and $r_{\rm max}=1$,
 although remaining converged within error bars,
 begin to develop larger discrepancies when $\ell$ approaches $L$.
 
-From the current work (which took about 10 CPU years of resources), 
+From the current work %(which took about 10 CPU years of resources), 
+(which used about 10 CPU-years), 
 the question naturally arises whether it is possible to converge the expectation value of the swap operator on
 larger system sizes. 
 We expect that this will be possible using a different
