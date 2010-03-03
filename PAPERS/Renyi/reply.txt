@@ -38,18 +38,14 @@ copies. This is now stated in the text after equation (3) and with the
 added citation to Reference [13]. Despite this generality, we wanted to
 provide the reader with a simple and self-contained proof of equation (5),
 and for this reason we choose to work in a product state basis in
-equations (3) and (4). In fact, whereas the proof can be made even simpler
-by using the Schmidt decomposition to write the state of each copy (having
-this the only requirement that the state to decompose is a pure state,
-which indeed is the case for groundstates), we feel this  may hinder
-access for the general reader. Our QMC algorithm works in the valence
+equations (3) and (4).  Our QMC algorithm works in the valence
 bond basis, therefore we wish to explain the action of the Swap_A
 operator in this basis. Here, the action of Swap_A is very simple: it just
 swaps the endpoints of valence bonds between real and ancillary copies in
 the region A. We explain this in the text after equation (5), as well as
 in the revised caption to figure (1). Note that valence bond basis states 
-are in general *not* product states between A and B (indeed, this is why 
-there is a non-vanishing entanglement entropy), as Referee B points out with 
+are in general *not* product states between A and B (indeed, this contributes
+to the non-vanishing entanglement entropy), as Referee B points out with 
 certainty, and we show in figure (1).  While the ground state of the 
 combined system is a product between the two copies, each such state on the 
 copy is a sum of many different valence bond states, having the general 
@@ -177,10 +173,11 @@ in the revised manuscript.
 > be preferable. I think that researchers doing computational physics of
 > many-body systems will find this result interesting.
 
-We have considered carefully this point, and decided that, in the absence
-of a similar concern by referees A and B, we will not attempt to rewrite the
-introduction background and motivation.  We refer the referee however to 
-paragraph [2] above.
+We have considered carefully this point, and we have decided, in the
+absence of a similar concern by referees A and B, not to lengthen the
+introductory background and motivation, as we agree with the referee
+that space limitations in PRL always limit the possible background information.
+We refer the referee however to paragraph [2] above.
  
 > I am sitting on the fence whether to suggest publication in PRL or in
 > PRB. The paper is well-reasoned and contains interesting results, but
