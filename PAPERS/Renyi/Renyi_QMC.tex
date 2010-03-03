@@ -56,7 +56,7 @@ restricted to quantum Monte Carlo (QMC), which does not provide access to the re
 via a Metropolis importance-sampling algorithm. 
 
 We resolve this problem and show that a generalized Renyi entropy ($S_2$, defined below) can be related to the expectation
-value of a unitary {\it Swap} operator in the valence-bond basis,
+value of a unitary {\it Swap} operator in the valence bond basis,
 directly accessible in QMC.
 Using QMC simulations, we calculate $S_2$ for a spin $1/2$ Heisenberg model
 on 1D and 2D lattices.  In 1D, we demonstrate that $S_2$ calculated with QMC converges to the exact result obtained with DMRG simulations.  In 2D, we show that the leading-order term in the scaling of $S_2$ goes like the boundary of a subregion $A$, 
@@ -93,7 +93,7 @@ Further, any two Renyi entropies $S_{n}$ and $S_{m}$ obey the
 inequality $S_{n} \geq S_{m}$ for $n < m$, making $S_2$ a
 useful lower bound on $S_1$.  
 
-{\it Valence-bond basis and the Swap operator.}-- We briefly review the notation of Sandvik, and refer the reader to 
+{\it Valence bond basis and the Swap operator.}-- We briefly review the notation of Sandvik, and refer the reader to 
 Refs.~\cite{Sandvik,Beach,AWSloop} for additional details on the valence bond basis.
 One begins by writing the expansion of a singlet
 wavefunction $\Psi_0$ of $N$ spins as $N/2$ valence bonds:
@@ -160,7 +160,7 @@ region $A$, as illustrated in Fig.~\ref{swap_2}.
 
 {\it Measuring the Swap operator in QMC.}--
 We now present a procedure for measuring the entropy $S_2$ via importance sampling of the $Swap_A$ operator in QMC.  A
-projector scheme in the valence-bond basis has recently been pioneered by Sandvik, and we only briefly
+projector scheme in the valence bond basis has recently been pioneered by Sandvik, and we only briefly
 review the notation here, referring the reader to Refs.~\cite{Sandvik,Beach,AWSloop} for details of implementation.
 The method is a $T=0$ projector QMC, where high powers of
 a Hamiltonian $H$ are used to project out the ground state $|\Psi_0\rangle$ from a trial wavefunction $\Psi$:
@@ -171,14 +171,14 @@ operators,
 \end{equation}
 where for concreteness we use the spin 1/2 Heisenberg model, defining $H=-\sum_{\langle a,b \rangle}H_{ab}$ and 
 $H_{ab} = -({\bf S}_a \cdot {\bf S}_b - 1/4)$.  The ``operator string'' $P_r$ is sampled according to its weight, $W_r$, accrued upon
-evolution of a trial valence-bond state $|V \rangle$ under projection:
+evolution of a trial valence bond state $|V \rangle$ under projection:
 \begin{equation}
 P_r |V \rangle = W_r |V(r) \rangle.
 \end{equation} 
 As shown in Ref.~\cite{Sandvik}, for the Heisenberg model, $W_r$ is simply related to the number of off-diagonal 
 operations $m_{\rm off}$ in the projection, $W_r = 2^{-m_{\rm off}}$.
 
-To sample the $Swap_A$ operator, one requires a double-projector valence-bond QMC scheme \cite{Sandvik}, where
+To sample the $Swap_A$ operator, one requires a double-projector valence bond QMC scheme \cite{Sandvik}, where
 a general expectation value for any observable $\mathcal{O}$ is given by
 \begin{equation}
 \label{expect}
@@ -286,7 +286,7 @@ effects likely become important.  In particular, multiplicative log corrections 
 \cite{Alet,Chh}) are not present.
 
 {\it Discussion.}-- 
-In this paper we have presented an algorithm for measuring the Renyi entropy $S_2$ in valence-bond basis QMC simulations via
+In this paper we have presented an algorithm for measuring the Renyi entropy $S_2$ in valence bond basis QMC simulations via
 the expectation value of a swap operator between two copies of the system.
 Using an improved ratio estimator, we are able to converge the expectation value of $S_2$ to the exact
 result on a 1D Heisenberg chain.
