@@ -11,10 +11,10 @@ Review Letters."  Referee C ends his report with "... I found the paper
 proposes a new idea for numerical method which may work generally, which
 could be appreciated for PRL."  Referee B states "Perhaps this is broad
 enough in the editor's estimation to merit publication in PRL...".  We
-believe that all of these statement indicate the referees' (conditional)
+believe that all of these statements indicate the referees' (conditional)
 approval of publication in PRL.  We have made some specific changes to
 the manuscript that we think improve the discussion significantly,
-answering all referee criticism.  General changes in the manuscript are
+answering all referee criticisms.  General changes in the manuscript are
 outlined in the three paragraphs below; specific reponses to referee 
 queries are at bottom.
 
@@ -32,32 +32,33 @@ product basis in equations (3) and (4) to prove it. The key ingredients of
 the proof are that the two copies of the system are identical and that the
 state of the combined system is the product state of the states of each
 copy. This is guaranteed by the fact that the two copies do not interact
-with each other, and therefore, the ground state of the combined system that
-the QMC will sample is simply the product of the ground state on the two
-copies. This is now stated in the text after equation (3) and with the
-added citation to Reference [13]. Despite this generality, we wanted to
+with each other, and therefore, the ground state of the combined system
+that the QMC will sample is simply the product of the ground state on the
+two copies. This is now stated in the text after equation (3) and with the
+added citation to reference [13]. Despite this generality, we wanted to
 provide the reader with a simple and self-contained proof of equation (5),
 and for this reason we choose to work in a product state basis in
-equations (3) and (4).  Our QMC algorithm works in the valence
-bond basis, therefore we wish to explain the action of the Swap_A
-operator in this basis. Here, the action of Swap_A is very simple: it just
-swaps the endpoints of valence bonds between real and ancillary copies in
-the region A. We explain this in the text after equation (5), as well as
-in the revised caption to figure (1). Note that valence bond basis states 
-are in general *not* product states between A and B (indeed, this contributes
-to the non-vanishing entanglement entropy), as Referee B points out with 
-certainty, and we show in figure (1).  While the ground state of the 
-combined system is a product between the two copies, each such state on the 
-copy is a sum of many different valence bond states, having the general 
-expansion stated in equation (2). Because of this linear combination, the 
-computation of the expectation value of Swap_A using Monte Carlo sampling 
-will involve the action of Swap_A on product states of two, in general, different
-valence bond states, each corresponding to one of the copies. This is what
-we illustrate in figure 1. To clarify this point to the reader we have
-added a more detailed explanation in figure 1's caption.
+equations (3) and (4).  Our QMC algorithm works in the valence bond basis,
+therefore we wish to explain the action of the Swap_A operator in this
+basis. Here, the action of Swap_A is very simple: it just swaps the
+endpoints of valence bonds between real and ancillary copies in the region
+A. We explain this in the text after equation (5), as well as in the
+revised caption to figure (1). Note that valence bond basis states are in
+general *not* product states between A and B (indeed, this contributes to
+the non-vanishing entanglement entropy), as Referee B points out with
+certainty, and we show in figure (1).  While the ground state of the
+combined system is a product between the two copies, each such state on
+the copy is a sum of many different valence bond states, having the
+general expansion stated in equation (2). Because of this linear
+combination, the computation of the expectation value of Swap_A using
+Monte Carlo sampling will involve the action of Swap_A on product states
+of two, in general, different valence bond states, each corresponding to
+one of the copies. This is what we illustrate in figure 1. To clarify this
+point to the reader we have added a more detailed explanation in figure
+1's caption.
 
 [2]
-Second, regarding the general critisim of Referee B regarding interest in
+Second, regarding the general critisim of Referee B about the interest in
 this paper outside the numerical community, we have in fact already
 received significant interest from people within the quantum information
 science community.  More generally, we note the intense recent research
@@ -100,9 +101,10 @@ of the text have been updated.  The general conclusions of the paper are
 unchanged, and in fact the applicability of this technique (in particular
 the bare swap estimator) has been, if anything, increased.
 
-In summary, we believe that our thourough consideration of referee criticism
-has significantly improved our manuscript, and therefore we hope the 
-referees and editor agree that publication in PRL is now appropriate.
+In summary, we believe that our thourough consideration of referee
+criticisms has significantly improved our manuscript, and therefore we
+hope the referees and editor agree that publication in PRL is now
+appropriate.
 
 Below we outline a few more specific responses to referee queries.
 
@@ -175,8 +177,8 @@ in the revised manuscript.
 
 We have considered carefully this point, and we have decided, in the
 absence of a similar concern by referees A and C, not to lengthen the
-introductory background and motivation, as we agree with the referee
-that space limitations in PRL always limit the possible background information.
+introductory background and motivation, as we agree with the referee that
+space limitations in PRL always limit the possible background information.
 We refer the referee however to paragraph [2] above.
  
 > I am sitting on the fence whether to suggest publication in PRL or in
