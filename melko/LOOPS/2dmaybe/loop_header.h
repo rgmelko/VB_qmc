@@ -632,18 +632,37 @@ void LOOPS::swaperator()
   vector <int> tempbonds;
   tempbonds = VR;
   int a,b,c,d;
+  int superflip(1);
 
   for(int lint=0; lint<dim1-1; lint++){
 
+    if(superflip&&((lint+1)*(lint+1)>(dim1*dim2)/2.0)){
+      for(int oint=0; oint<dim1; oint++){
+	for(int pint=0; pint<dim2; pint++){
+	  
+	  a = oint+pint*dim1;
+	  d = a+number_of_sites/2;
+	  b = tempbonds[d];
+	  c = tempbonds[a];
+	  
+	  tempbonds[a] = b;
+	  tempbonds[b] = a;
+	  tempbonds[d] = c;
+	  tempbonds[c] = d;
+	  superflip=0;
+	}
+      }
+    }
+	  
     a = lint;
-      d = lint+number_of_sites/2;
-      b = tempbonds[d];
-      c = tempbonds[a];
-      
-      tempbonds[a] = b;
-      tempbonds[b] = a;
-      tempbonds[d] = c;
-      tempbonds[c] = d;
+    d = lint+number_of_sites/2;
+    b = tempbonds[d];
+    c = tempbonds[a];
+    
+    tempbonds[a] = b;
+    tempbonds[b] = a;
+    tempbonds[d] = c;
+    tempbonds[c] = d;
 
     for(int mint=1; mint<=lint; mint++){
       a = lint+(mint*dim1); 
