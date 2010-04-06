@@ -23,6 +23,7 @@ public:
   int number_of_nnbonds;
   int number_of_bonds, number_of_sites;
   int change_number; // number of bond ops changed per step
+  int its_per_meas;
  
   int offdiag1, offdiag2, offdiag3;
   int newloops, oldloops;
@@ -43,7 +44,8 @@ public:
   // Constructor
   LATTICE(int xsites, int ysites, int zsites,
 	  int number_of_bondops, int change_number, int iterations, 
-	  string bondopfile1, string bondfile2, long long randnumbseed);
+	  string bondopfile1, string bondfile2, int its_per_measurement,
+	  long long randnumbseed);
 
   void nnbondlist();//creates list of nnbonds
   void generate_ops();//generates the initial operators
@@ -56,7 +58,7 @@ public:
   void calculate_stuff();
   void read_bonds();
   void super_initialize(); 
-  int  loop_counter(vector <int> leftside, vector <int> rightside);
+  int  loop_counter(vector <int> leftside, vector <int> rightside, int superwhich);
   void measure_energy();
   void print_quantities(string filename, long double quantity);
   void print_bondops(string filename, vector <int> bondlist, int offdiag);
@@ -67,7 +69,8 @@ public:
 };
 
 LATTICE::LATTICE(int x, int y, int z, int bondops, int r, int its, 
-		 string bondopfile1, string bondopfile2, long long rseed)
+		 string bondopfile1, string bondopfile2, int its_per_measurement,
+		 long long rseed)
 {
   irand.seed(rseed);
   drand.seed(rseed);
@@ -78,6 +81,7 @@ LATTICE::LATTICE(int x, int y, int z, int bondops, int r, int its,
   number_of_bondops = 2*bondops;
   change_number = r;
   iterations = its;
+  its_per_meas = its_per_measurement;
   bondfile1 = bondopfile1;
   bondfile2 = bondopfile2;
   number_of_sites = 2*xsites*ysites;
@@ -201,7 +205,7 @@ void LATTICE::apply_ops(int stepnum)
   // for(int q =0; q<number_of_sites ; q++){ cout << q << "," << bonds1[q] << "     " << q << "," <<  bonds2[q] << endl;}
   // cout << endl;
 
-  newloops = loop_counter(bonds1, bonds2);
+  newloops = loop_counter(bonds1, bonds2, 1);
 }
 
 /************* CHANGE OPERATORS ****************************************/
@@ -279,7 +283,7 @@ void LATTICE::read_bonds()
 }
 
 /************ LOOP COUNTER ***********************************************/
-int LATTICE::loop_counter(vector <int> leftside, vector <int> rightside)
+int LATTICE::loop_counter(vector <int> leftside, vector <int> rightside, int superwhich)
 {
   int counter(0), loopnumber(0), startsite(0), AA(-99), which(0);
   vector <int> site(number_of_sites+2,0);
@@ -289,14 +293,14 @@ int LATTICE::loop_counter(vector <int> leftside, vector <int> rightside)
     site[counter]=1;
     startsite = counter;
     
-    whichloop_new[startsite] = loopnumber+1;
+    if(superwhich){whichloop_new[startsite] = loopnumber+1;}
 
     AA = leftside[counter];
     which = 0;
    
     while(AA!=startsite){
       site[AA] = 1;
-      whichloop_new[AA] = loopnumber+1;
+      if(superwhich){whichloop_new[AA] = loopnumber+1;}
       
       if(which==0){
 	AA = rightside[AA];
@@ -392,10 +396,10 @@ void LATTICE::super_initialize()
 /******************** ENERGY/ENTROPY CALCULATIONS ****************/
 void LATTICE::calculate_stuff()
 {
-  energy = energyint*0.75/iterations;
+  energy = energyint*0.75/iterations*its_per_meas;
 
   for(int rint=0; rint<xsites-1; rint++){
-    entropy[rint]/=(1.0*iterations);
+    entropy[rint]/=(1.0*iterations/its_per_meas);
   }
 }
 
@@ -458,7 +462,7 @@ double LATTICE::swaperator(int linsize)
     }
   }
   
-  int temploopnum = loop_counter(VLuse, tempbonds);
+  int temploopnum = loop_counter(VLuse, tempbonds, 0);
   int loopdiff = temploopnum - oldloops;
   return pow(2,loopdiff);
 }
