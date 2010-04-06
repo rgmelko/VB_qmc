@@ -57,7 +57,7 @@ int main()
 	  system.apply_ops(i);     //Apply them to the trial state
 	  system.decide(i);        //Decide whether to keep the changes
 	  system.measure_energy(); //Measure the energy
-	  system.swaperator();     //Measure the swap 
+	  system.measure_swap();   //Measure the swap 
 	  system.reinitialize(i);  //Reinitialize some things
 	}
 

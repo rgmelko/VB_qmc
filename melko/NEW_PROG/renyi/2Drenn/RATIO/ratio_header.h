@@ -56,12 +56,13 @@ public:
   void calculate_stuff();
   void read_bonds();
   void super_initialize(); 
-  int loop_counter(vector <int> leftside, vector <int> rightside);
+  int  loop_counter(vector <int> leftside, vector <int> rightside);
   void measure_energy();
   void print_quantities(string filename, long double quantity);
   void print_bondops(string filename, vector <int> bondlist, int offdiag);
   void print_entropies(string filename, vector <long double> entropy);
-  void swaperator();
+  double swaperator(int linsize);
+  void measure_swap();
   
 };
 
@@ -395,7 +396,6 @@ void LATTICE::calculate_stuff()
 
   for(int rint=0; rint<xsites-1; rint++){
     entropy[rint]/=(1.0*iterations);
-    entropy[rint] = -log(entropy[rint]);
   }
 }
 
@@ -431,8 +431,9 @@ void LATTICE::print_bondops(string filename, vector <int> bondlist, int offdiag)
   foutbond.close();
 }
 
+/******************* SWAPERATOR ****************************************/
 
-void LATTICE::swaperator()
+double LATTICE::swaperator(int linsize)
 {  
 
   vector <int> tempbonds;
@@ -440,12 +441,12 @@ void LATTICE::swaperator()
 
   vector <int> VLflip = bonds1, VLuse = bonds1;
   int a,b,c,d;
-  int dim1 = xsites;
-
-  for(int lint=0; lint<dim1-1; lint++){
-	  
-    a = lint;
-    d = lint+number_of_sites/2;
+ 
+  for(int A=0; A<linsize; A++){
+    for(int B=0; B<linsize; B++){
+    	  
+    a = A + B*xsites;
+    d = a + number_of_sites/2;
     b = tempbonds[d];
     c = tempbonds[a];
     
@@ -454,34 +455,20 @@ void LATTICE::swaperator()
     tempbonds[d] = c;
     tempbonds[c] = d;
 
-    for(int mint=1; mint<=lint; mint++){
-      a = lint+(mint*dim1); 
-      d = lint+(mint*dim1)+number_of_sites/2;
-      b = tempbonds[d];
-      c = tempbonds[a];
-      
-      tempbonds[a] = b;
-      tempbonds[b] = a;
-      tempbonds[d] = c;
-      tempbonds[c] = d;
-
-      a = lint*dim1+mint-1;  
-      d = lint*dim1+(mint-1)+number_of_sites/2;
-      b = tempbonds[d];
-      c = tempbonds[a];
-      
-      tempbonds[a] = b;
-      tempbonds[b] = a;
-      tempbonds[d] = c;
-      tempbonds[c] = d;
     }
-
-    int temploopnum = loop_counter(VLuse, tempbonds);
-    int loopdiff = temploopnum - oldloops;
-    entropy[lint] += pow(2,loopdiff);
   }
+  
+  int temploopnum = loop_counter(VLuse, tempbonds);
+  int loopdiff = temploopnum - oldloops;
+  return pow(2,loopdiff);
 }
 
+void LATTICE::measure_swap()
+{  
+  for(int i=0; i<xsites-1; i++){
+    entropy[i] += swaperator(i+1);
+  }
+}
 #endif
 
 
