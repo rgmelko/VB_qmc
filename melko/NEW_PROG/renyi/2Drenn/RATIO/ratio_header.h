@@ -56,7 +56,7 @@ public:
   void calculate_stuff();
   void read_bonds();
   void super_initialize(); 
-  int loop_counter();
+  int loop_counter(vector <int> leftside, vector <int> rightside);
   void measure_energy();
   void print_quantities(string filename, long double quantity);
   void print_bondops(string filename, vector <int> bondlist, int offdiag);
@@ -200,7 +200,7 @@ void LATTICE::apply_ops(int stepnum)
   // for(int q =0; q<number_of_sites ; q++){ cout << q << "," << bonds1[q] << "     " << q << "," <<  bonds2[q] << endl;}
   // cout << endl;
 
-  newloops = loop_counter();
+  newloops = loop_counter(bonds1, bonds2);
 }
 
 /************* CHANGE OPERATORS ****************************************/
@@ -278,9 +278,9 @@ void LATTICE::read_bonds()
 }
 
 /************ LOOP COUNTER ***********************************************/
-int LATTICE::loop_counter()
+int LATTICE::loop_counter(vector <int> leftside, vector <int> rightside)
 {
-  int counter(0), loopnumber(0), startsite(0), a2(-99), which(0);
+  int counter(0), loopnumber(0), startsite(0), AA(-99), which(0);
   vector <int> site(number_of_sites+2,0);
 
   while(counter < number_of_sites){
@@ -290,23 +290,23 @@ int LATTICE::loop_counter()
     
     whichloop_new[startsite] = loopnumber+1;
 
-    a2 = bonds1[counter];
+    AA = leftside[counter];
     which = 0;
    
-    while(a2!=startsite){
-      site[a2] = 1;
-      whichloop_new[a2] = loopnumber+1;
+    while(AA!=startsite){
+      site[AA] = 1;
+      whichloop_new[AA] = loopnumber+1;
       
       if(which==0){
-	a2 = bonds2[a2];
+	AA = rightside[AA];
 	which++;
       }
       else{
-	a2 = bonds1[a2];
+	AA = leftside[AA];
 	which--;
       }
-      whichloop_new[a2] = loopnumber+1;
-      site[a2] = 1;
+      whichloop_new[AA] = loopnumber+1;
+      site[AA] = 1;
     }
     loopnumber++;
     while(site[counter]==1){counter++;}
@@ -476,35 +476,7 @@ void LATTICE::swaperator()
       tempbonds[c] = d;
     }
 
-
-    int counter(0), temploopnum(0), startsite(0), mite(-99), which(0);
-    vector <int> site(number_of_sites+2,0);
- 
-    while(counter < number_of_sites){
-
-      site[counter]=1;
-      startsite = counter;
-
-      mite = VLuse[counter];
-      which=0;
-      
-      while(mite!=startsite){
-
-          if(mite==-99){exit(1);}
-          site[mite]=1;
-
-          if(which==0){
-              mite = tempbonds[mite];
-              which++;
-          }
-          else{
-              mite = VLuse[mite];
-              which--;
-          }
-      }
-      temploopnum++;
-      while(site[counter]==1){counter++;}
-    }
+    int temploopnum = loop_counter(VLuse, tempbonds);
     int loopdiff = temploopnum - oldloops;
     entropy[lint] += pow(2,loopdiff);
   }
