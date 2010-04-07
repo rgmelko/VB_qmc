@@ -10,7 +10,6 @@ int main()
   cout.precision(10);
 
   /*** READ IN PARAMETERS **********************************************/
-  int its_per_measurement = 100;
   string enerfilename, entrfilename;
   string bondopfile1, bondopfile2;
   int xsites, ysites, zsites, change_number;
@@ -40,7 +39,7 @@ int main()
 
   LATTICE system (xsites, ysites, zsites, bondops, change_number, 
 		  iterations_per_loop, bondopfile1, bondopfile2, 
-		  its_per_measurement, ranseed);
+		  ranseed);
 
   /*** CREATE LIST OF NEAREST NEIGHBOUR BONDS **************************/
 
@@ -53,20 +52,14 @@ int main()
 
       else{ system.read_bonds(); } //Otherwise, read in the last configuration
     
-      for(int i=0; i<iterations_per_loop/its_per_measurement; i++)
+      for(int i=0; i<iterations_per_loop; i++)
 	{
-	  for(int j=0; j<its_per_measurement-1; j++){
-	    system.change_ops(j);    //Change a few operators 
-	    system.apply_ops(j);     //Apply them to the trial state
-	    system.decide(j);        //Decide whether to keep the changes
-	    system.reinitialize(j);  //Reinitialize some things
-	  }
-	  system.change_ops(its_per_measurement-1);//Change a few operators 
-	  system.apply_ops(its_per_measurement-1);//Apply to the trial state
-	  system.decide(its_per_measurement-1);//Decide if we keep the changes
+	  system.change_ops(i);//Change a few operators 
+	  system.apply_ops(i);//Apply to the trial state
+	  system.decide(i);//Decide if we keep the changes
 	  system.measure_energy();//Measure the energy
 	  system.measure_swap();//Measure the swap 
-	  system.reinitialize(its_per_measurement-1);//Reinitialize some things
+	  system.reinitialize(i);//Reinitialize some things
 	}
 
    

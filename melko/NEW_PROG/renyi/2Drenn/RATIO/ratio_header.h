@@ -23,10 +23,10 @@ public:
   int number_of_nnbonds;
   int number_of_bonds, number_of_sites;
   int change_number; // number of bond ops changed per step
-  int its_per_meas;
  
   int offdiag1, offdiag2, offdiag3;
   int newloops, oldloops;
+  double newswap, oldswap;
   long double accept;
   long double energy;
   long int energyint, mdiff;
@@ -44,7 +44,7 @@ public:
   // Constructor
   LATTICE(int xsites, int ysites, int zsites,
 	  int number_of_bondops, int change_number, int iterations, 
-	  string bondopfile1, string bondfile2, int its_per_measurement,
+	  string bondopfile1, string bondfile2,
 	  long long randnumbseed);
 
   void nnbondlist();//creates list of nnbonds
@@ -69,7 +69,7 @@ public:
 };
 
 LATTICE::LATTICE(int x, int y, int z, int bondops, int r, int its, 
-		 string bondopfile1, string bondopfile2, int its_per_measurement,
+		 string bondopfile1, string bondopfile2,
 		 long long rseed)
 {
   irand.seed(rseed);
@@ -81,7 +81,6 @@ LATTICE::LATTICE(int x, int y, int z, int bondops, int r, int its,
   number_of_bondops = 2*bondops;
   change_number = r;
   iterations = its;
-  its_per_meas = its_per_measurement;
   bondfile1 = bondopfile1;
   bondfile2 = bondopfile2;
   number_of_sites = 2*xsites*ysites;
@@ -89,6 +88,7 @@ LATTICE::LATTICE(int x, int y, int z, int bondops, int r, int its,
   accept = 0;
   offdiag1=0; offdiag2=0; offdiag3=0;
   newloops=0; oldloops=0;
+  newswap=1; oldswap=1;
   energy=0, energyint=0, mdiff=0;
 
   //determining dimension of the system
@@ -206,6 +206,7 @@ void LATTICE::apply_ops(int stepnum)
   // cout << endl;
 
   newloops = loop_counter(bonds1, bonds2, 1);
+  newswap = swaperator(0);
 }
 
 /************* CHANGE OPERATORS ****************************************/
@@ -227,6 +228,7 @@ void LATTICE::change_ops(int stepnum)
 void LATTICE::reinitialize(int stepnum)
 {
   newloops = 0;
+  newswap = 0;
 
   if(stepnum%2==0){
     bondops3 = bondops2;
@@ -253,6 +255,7 @@ void LATTICE::first_step()
   apply_ops(2);
 
   oldloops = newloops;
+  oldswap = newswap;
   whichloop_old = whichloop_new;
   reinitialize(1);
 }
@@ -278,6 +281,7 @@ void LATTICE::read_bonds()
   apply_ops(2);
 
   oldloops = newloops;
+  oldswap = newswap;
   whichloop_old = whichloop_new;
   reinitialize(1);
 }
@@ -327,8 +331,9 @@ void LATTICE::decide(int stepnum)
   double weight = 0;
   double brand = drand();
 
-  int loopyloop = newloops - oldloops;
-  prob = pow(2,loopyloop);
+  //  int loopyloop = newloops - oldloops;
+  prob = newswap/oldswap;
+  //  prob = pow(2,loopyloop);
 
   if(stepnum%2==0){
     int moffbag = offdiag3-offdiag1;
@@ -337,6 +342,7 @@ void LATTICE::decide(int stepnum)
     
     if(brand<prob){
       oldloops = newloops;
+      oldswap = newswap;
       whichloop_old = whichloop_new;
       accept++;
     }
@@ -353,6 +359,7 @@ void LATTICE::decide(int stepnum)
 
     if(brand<prob){
       oldloops = newloops;
+      oldswap = newswap;
       whichloop_old = whichloop_new;
       accept++;
     }
@@ -396,10 +403,10 @@ void LATTICE::super_initialize()
 /******************** ENERGY/ENTROPY CALCULATIONS ****************/
 void LATTICE::calculate_stuff()
 {
-  energy = energyint*0.75/iterations*its_per_meas;
+  energy = energyint*0.75/iterations;
 
   for(int rint=0; rint<xsites-1; rint++){
-    entropy[rint]/=(1.0*iterations/its_per_meas);
+    entropy[rint]/=(1.0*iterations);
   }
 }
 
@@ -464,13 +471,15 @@ double LATTICE::swaperator(int linsize)
   
   int temploopnum = loop_counter(VLuse, tempbonds, 0);
   int loopdiff = temploopnum - oldloops;
-  return pow(2,loopdiff);
+  // return pow(2,loopdiff);
+
+  return pow(2,temploopnum);
 }
 
 void LATTICE::measure_swap()
 {  
   for(int i=0; i<xsites-1; i++){
-    entropy[i] += swaperator(i+1);
+    entropy[i] += swaperator(i+1)/oldswap;
   }
 }
 #endif
