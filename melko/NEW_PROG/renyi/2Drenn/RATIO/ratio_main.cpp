@@ -12,6 +12,7 @@ int main()
   /*** READ IN PARAMETERS **********************************************/
   string enerfilename, entrfilename;
   string bondopfile1, bondopfile2;
+  int swapsites;
   int xsites, ysites, zsites, change_number;
   int iterations_per_loop, loops;
   double bondops_per_site;
@@ -19,6 +20,7 @@ int main()
     
   ifstream fin("param.txt"); // read in paramaters from file
   fin >> enerfilename >> entrfilename >> bondopfile1 >> bondopfile2 
+      >> swapsites
       >> xsites >> ysites >> zsites
       >> bondops_per_site >> change_number
       >> iterations_per_loop >> loops >> ranseed;
@@ -29,6 +31,7 @@ int main()
  
   /*** OUTPUT PARAMETERS *********************************************/
   cout << endl;
+  cout << "weighting by <swap_x> where x = " << swapsites << endl;
   cout << xsites << " x " << ysites << " x " << zsites << " system" << endl;
   cout << "r   = " << change_number << "  bondops changed per step \n";
   cout << "n/N = " << bondops_per_site << "  bond operators / site" << endl;
@@ -37,7 +40,7 @@ int main()
 
   /*** CREATE LATTICE ***(object that contains all the information)*****/
 
-  LATTICE system (xsites, ysites, zsites, bondops, change_number, 
+  LATTICE system (swapsites, xsites, ysites, zsites, bondops, change_number, 
 		  iterations_per_loop, bondopfile1, bondopfile2, 
 		  ranseed);
 
