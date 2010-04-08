@@ -97,8 +97,8 @@ LATTICE::LATTICE(int swap, int x, int y, int z, int bondops, int r, int its,
   else if((x==1)|(y==1)|(z==1)){dim=2;}
   else {dim=3;}
 
-  number_of_nnbonds = 4*xsites*ysites; //depends on dimension
-
+  number_of_nnbonds = number_of_sites - 2; //for 1D (2 copies of the system)
+                                           //minus 2 for pbc
   nnbonds.resize (number_of_nnbonds,2);
   bonds1.resize (number_of_sites);
   bonds2.resize (number_of_sites);
@@ -127,25 +127,15 @@ void LATTICE::nnbondlist()
 {
   int L = xsites;
 
-  for(int i=0; i<L; i++){
-    for(int j=0; j<L; j++){
-      nnbonds(i+j*L,0) = i + j*L;
-      nnbonds(i+j*L,1) = j*L + (i+1)%L;
-    }
+  for(int i=0; i<L-1; i++){
+    nnbonds(i,0) = i;
+    nnbonds(i,1) = i+1;
   }
 
-  for(int i=0; i<L; i++){
-    for(int j=0; j<L; j++){
-      nnbonds(L*L+i+j*L,0) = i + j*L;
-      nnbonds(L*L+i+j*L,1) = i + ((j+1)%L)*L;
-    }
-  }
-
-
-  for(int b1=2*L*L; b1<4*L*L; b1++){
-    int a1 = 2*L*L;
-    nnbonds(b1,0) = nnbonds(b1-a1,0)+L*L;
-    nnbonds(b1,1) = nnbonds(b1-a1,1)+L*L;
+  int a1 = L-1;
+  for(int b1=L-1; b1<2*L-2; b1++){
+    nnbonds(b1,0) = nnbonds(b1-a1,0)+L;
+    nnbonds(b1,1) = nnbonds(b1-a1,1)+L;
   }
 }
 
@@ -448,9 +438,7 @@ double LATTICE::swaperator(int linsize)
   int a,b,c,d;
  
   for(int A=0; A<linsize; A++){
-    for(int B=0; B<linsize; B++){
-    	  
-    a = A + B*xsites;
+    a = A;
     d = a + number_of_sites/2;
     b = tempbonds[d];
     c = tempbonds[a];
@@ -459,8 +447,6 @@ double LATTICE::swaperator(int linsize)
     tempbonds[b] = a;
     tempbonds[d] = c;
     tempbonds[c] = d;
-
-    }
   }
   
   int temploopnum = loop_counter(VLuse, tempbonds, 0);
