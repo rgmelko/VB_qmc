@@ -395,7 +395,6 @@ void LATTICE::calculate_stuff()
 
   for(int rint=0; rint<4; rint++){
     entropy[rint]/=(1.0*iterations);
-    entropy[rint] = -log(entropy[rint]);
   }
 }
 
