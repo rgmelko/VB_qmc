@@ -20,8 +20,6 @@ int main(int argc, char *argv[]){
     cout<<"I expect a command line argument: filename, number of columns, number to exclude.\n";
     exit(1);
   }
-  
-  double temp;
     
   //Number of spins
   string filename;
@@ -29,69 +27,52 @@ int main(int argc, char *argv[]){
   int nExclude;
   filename = argv[1];
   nSpin = atoi(argv[2]); //first command line parameter
-  nExclude = atoi(argv[3]);
+  nExclude = atoi(argv[3]);//second command line parameter
   
   ifstream cfin(filename.c_str());
   // cout << filename << endl << nSpin << endl << nExclude << endl;
   
-  vector<double> EA;
-  vector<double> nontemp;
-  EA.assign(nSpin,0);
-  nontemp.assign(nSpin,0);
-  
+  vector<double> Sum, Sum_Sq;
+  double temp(0);
+  Sum.assign(nSpin,0);
+  Sum_Sq = Sum;
 
-  int index = 0;
   int numRow = 0;
 
   double dummy;
-  for(int i=0; i<nExclude; i++)
+	//throw out the excluded data
+	for(int i=0; i<nExclude; i++) //number of rows to exclude
     {
-      for(int j=0; j<nSpin; j++){cfin>>dummy;}
+      for(int j=0; j<nSpin; j++){cfin>>dummy;} //number of columns per row
     }
   
-  cfin>>nontemp[index];
- 
+  cfin>>temp;//read in the first entry
+
+		
   while( !cfin.eof() ){
-    numRow++;
-    nontemp.resize(nSpin*numRow+1000);
+    numRow++; //increase the number of rows each time
     
-    EA.at(0) += nontemp[index];
-    index++;
+    Sum.at(0) += temp; //add the first value to sum
+	Sum_Sq.at(0) += temp*temp;
     
-    for (int i=1; i<EA.size(); i++){
-      cfin>>nontemp[index];
-      EA.at(i) += nontemp[index];
-      index++;
-    }
+    for (int i=1; i<Sum.size(); i++){ //for the rest of the row
+      cfin>>temp;          //read in the rest of the values
+      Sum.at(i) += temp;    //add them to sum
+	  Sum_Sq.at(i) += temp*temp;
+	  
+	}
     
-    cfin>>nontemp[index];
+    cfin>>temp;            //read in the first value of the next row
   };
   // cout<<numRow<<endl;
 
   
-  vector<double> summ(nSpin);
-  summ.assign(nSpin,0);
-
-
-  for(int i=0; i<nSpin; i++)
-    {
-      for(int j=0; j<numRow; j++)
-	{
-	  index = j*nSpin+i;
-	  nontemp[index] -= EA.at(i)/numRow;
-	  summ[i] += nontemp[index]*nontemp[index];
-	}
-      summ[i] = sqrt(summ[i]/(numRow*(numRow-1)));
-      
-    }
-
-  
   //average
-  for (int i=0; i<EA.size(); i++){
-    EA.at(i) /= numRow;
-    cout<<i+1<<" "<<EA.at(i)<<" "<<summ[i]<<endl;
+  for (int i=0; i<Sum.size(); i++){
+    Sum.at(i) /= numRow;
+	Sum_Sq.at(i)/= numRow;
+    cout<<i+1<<" "<<Sum.at(i)<<" "<<sqrt((Sum_Sq[i]-Sum[i]*Sum[i])/((numRow-1))) << endl; //dividing by extra numRow in error is SDOM instead of SD
   }
   
   cfin.close();
-
 }
