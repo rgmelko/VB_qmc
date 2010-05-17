@@ -1,7 +1,7 @@
 // May 7, 2010 // Making supermatrix to show overcompleteness
 
 #include"header.h"
-#include"matrix.h"
+#include"lapack.h"
 #include<vector>
 
 int loop_counter(vector <int> leftside, vector <int> rightside);
@@ -9,7 +9,7 @@ int loop_counter(vector <int> leftside, vector <int> rightside);
 int main(){  
 
   int supermat[24][24] = {0};
-  double doublemat[24][24] = {0};
+  Array<double , 2> doublemat(24,24);
 
   int states[8][24] = {0};
 
@@ -162,14 +162,27 @@ int main(){
   }
 
 
-  cout << " smat = [";
     for(int i=0; i<24; i++){
       for(int j=0; j<24; j++){
-	cout << pow(2.0,supermat[i][j]-4) << " " ;
+	doublemat(i,j) = pow(2.0,supermat[i][j]-4);
       }
-      cout << "; ";
     }
-  cout << "]";
+
+
+
+  cout.flush();
+  vector<double> dd;
+  cout << "starting diagonalization\n";
+  diagWithLapack_R(doublemat,dd);  //*** LAPACK DIAG
+			
+  cout<<"Done diagonalizting the Hamiltonian \n";
+  cout.flush();
+  
+  for (int ii=0; ii<dd.size(); ii++) {
+   cout<<setprecision(12)<<dd.at(ii)<<"\n";
+  }
+  cout<<endl;
+  
   return 0;
 }
 
