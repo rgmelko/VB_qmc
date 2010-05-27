@@ -110,7 +110,7 @@ LATTICE::LATTICE(int swap, int x, int y, int z, int bondops, int r, int its,
   bondops3.resize (number_of_bondops);
   whichloop_new.resize (number_of_sites);
   whichloop_old.resize (number_of_sites);
-  entropy.assign(ysites/2,0);  // CHANGED FOR TORUS THING
+  entropy.assign(ysites-1,0);  // CHANGED FOR TORUS THING
   
   //initial state is dimerized..
   for(int i01=0; i01<number_of_sites; i01+=2)
@@ -377,7 +377,7 @@ void LATTICE::super_initialize()
   accept = 0;
   energy = 0;
   energyint = 0;
-  entropy.assign(ysites/2,0); //CHANGED FOR TORUS
+  entropy.assign(ysites-1,0); //CHANGED FOR TORUS
  }
 
 /********************* ENERGY MEASUREMENT **************************/
@@ -404,7 +404,7 @@ void LATTICE::calculate_stuff()
 {
   energy = energyint*0.75*0.5/iterations;
 
-  for(int rint=0; rint<ysites/2; rint++){
+  for(int rint=0; rint<ysites-1; rint++){
     entropy[rint]/=(1.0*iterations);
   }
 }
@@ -423,7 +423,7 @@ void LATTICE::print_entropies(string filename, vector <long double> entropy)
   ofstream foutent(filename.c_str(),ios::app);
   foutent.precision(10);
   foutent.width(12);
-  for(int sint=0; sint<ysites/2; sint++){ //CHANGED FOR TORUS
+  for(int sint=0; sint<ysites-1; sint++){ //CHANGED FOR TORUS
     foutent << setw(16) << entropy[sint] << " ";
   }
   foutent << endl;
@@ -477,7 +477,7 @@ double LATTICE::swaperator(int linsize)
 // changed to increment region A by columns for torus geometry
 void LATTICE::measure_swap()
 {  
-  for(int i=0; i<ysites/2; i++){
+  for(int i=0; i<ysites-1; i++){
     entropy[i] += swaperator(i+1)/oldswap;
   }
 }
