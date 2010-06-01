@@ -1,0 +1,883 @@
+
+weighting by <swap_x> where x = 5
+4 x 16 x 1 system
+r   = 3  bondops changed per step 
+n/N = 80  bond operators / site
+its = 1000000  iterations/loop for 10000 loops
+
+energy = -148.3226295
+energy/site = -1.158770543
+44.2326% accepted
+
+energy = -217.6936082
+energy/site = -1.700731314
+44.1134% accepted
+
+energy = -215.1249258
+energy/site = -1.680663483
+44.1302% accepted
+
+energy = -125.9751863
+energy/site = -0.984181143
+44.085% accepted
+
+energy = -221.0025245
+energy/site = -1.726582223
+44.1723% accepted
+
+energy = -134.4331844
+energy/site = -1.050259253
+44.2694% accepted
+
+energy = -97.44611354
+energy/site = -0.7612977621
+44.1785% accepted
+
+energy = -117.2095178
+energy/site = -0.9156993575
+44.0379% accepted
+
+energy = -99.34379203
+energy/site = -0.7761233752
+44.0985% accepted
+
+energy = -174.8843457
+energy/site = -1.366283951
+44.0955% accepted
+
+energy = -130.4284735
+energy/site = -1.018972449
+43.9598% accepted
+
+energy = -170.2315449
+energy/site = -1.329933944
+44.2846% accepted
+
+energy = -146.0868663
+energy/site = -1.141303643
+44.0183% accepted
+
+energy = -144.3598199
+energy/site = -1.127811093
+43.9727% accepted
+
+energy = -148.7085002
+energy/site = -1.161785158
+44.0532% accepted
+
+energy = -126.1093169
+energy/site = -0.9852290382
+43.9598% accepted
+
+energy = -99.79646466
+energy/site = -0.7796598801
+44.1133% accepted
+
+energy = -135.8113594
+energy/site = -1.061026246
+44.0448% accepted
+
+energy = -227.281886
+energy/site = -1.775639735
+44.0454% accepted
+
+energy = -192.5627671
+energy/site = -1.504396618
+44.1216% accepted
+
+energy = -143.6221747
+energy/site = -1.12204824
+44.0491% accepted
+
+energy = -125.4307961
+energy/site = -0.9799280948
+44.0238% accepted
+
+energy = -123.487982
+energy/site = -0.9647498591
+44.0152% accepted
+
+energy = -137.6127967
+energy/site = -1.075099975
+44.1899% accepted
+
+energy = -93.81823866
+energy/site = -0.7329549895
+43.9475% accepted
+
+energy = -141.892837
+energy/site = -1.108537789
+44.0302% accepted
+
+energy = -203.7309257
+energy/site = -1.591647857
+44.0948% accepted
+
+energy = -115.5810428
+energy/site = -0.902976897
+43.9407% accepted
+
+energy = -122.0940023
+energy/site = -0.9538593926
+44.2087% accepted
+
+energy = -152.1637254
+energy/site = -1.188779105
+44.0263% accepted
+
+energy = -174.6084924
+energy/site = -1.364128847
+44.1886% accepted
+
+energy = -200.8946122
+energy/site = -1.569489157
+44.1285% accepted
+
+energy = -237.2551249
+energy/site = -1.853555663
+44.1868% accepted
+
+energy = -184.3655834
+energy/site = -1.44035612
+44.0789% accepted
+
+energy = -172.9630552
+energy/site = -1.351273869
+44.0603% accepted
+
+energy = -114.0862481
+energy/site = -0.891298813
+43.9905% accepted
+
+energy = -93.16487055
+energy/site = -0.7278505511
+43.9113% accepted
+
+energy = -173.0524131
+energy/site = -1.351971977
+44.0736% accepted
+
+energy = -173.4342341
+energy/site = -1.354954954
+44.1527% accepted
+
+energy = -149.5860271
+energy/site = -1.168640837
+44.0674% accepted
+
+energy = -221.3930121
+energy/site = -1.729632907
+44.1144% accepted
+
+energy = -163.2765665
+energy/site = -1.275598176
+44.1136% accepted
+
+energy = -137.7928523
+energy/site = -1.076506659
+44.0517% accepted
+
+energy = -121.0827418
+energy/site = -0.9459589203
+44.1972% accepted
+
+energy = -148.3960882
+energy/site = -1.159344439
+44.1081% accepted
+
+energy = -131.6808939
+energy/site = -1.028756984
+44.0424% accepted
+
+energy = -134.7193189
+energy/site = -1.052494679
+44.1053% accepted
+
+energy = -141.9013065
+energy/site = -1.108603957
+44.2185% accepted
+
+energy = -106.8292992
+energy/site = -0.8346038997
+43.9545% accepted
+
+energy = -229.3045625
+energy/site = -1.791441894
+43.9743% accepted
+
+energy = -228.1852443
+energy/site = -1.782697221
+44.153% accepted
+
+energy = -174.6434814
+energy/site = -1.364402199
+44.1117% accepted
+
+energy = -169.3693238
+energy/site = -1.323197842
+43.9298% accepted
+
+energy = -122.4857411
+energy/site = -0.9569198525
+44.0262% accepted
+
+energy = -131.7128991
+energy/site = -1.029007024
+43.9584% accepted
+
+energy = -139.6995889
+energy/site = -1.091403038
+44.1257% accepted
+
+energy = -207.5225263
+energy/site = -1.621269737
+44.1247% accepted
+
+energy = -97.18780826
+energy/site = -0.759279752
+44.0958% accepted
+
+energy = -155.4447839
+energy/site = -1.214412374
+44.1643% accepted
+
+energy = -85.92106449
+energy/site = -0.6712583163
+44.0148% accepted
+
+energy = -87.51405886
+energy/site = -0.6837035849
+44.1217% accepted
+
+energy = -123.9432813
+energy/site = -0.968306885
+44.2677% accepted
+
+energy = -143.2082149
+energy/site = -1.118814179
+44.1147% accepted
+
+energy = -95.17733251
+energy/site = -0.7435729103
+44.0394% accepted
+
+energy = -136.3988807
+energy/site = -1.065616256
+44.032% accepted
+
+energy = -121.2548522
+energy/site = -0.9473035326
+44.0822% accepted
+
+energy = -113.5137551
+energy/site = -0.8868262115
+44.1716% accepted
+
+energy = -118.7550258
+energy/site = -0.927773639
+43.9953% accepted
+
+energy = -206.65024
+energy/site = -1.614455
+44.1209% accepted
+
+energy = -153.2878513
+energy/site = -1.197561339
+44.0757% accepted
+
+energy = -152.6708011
+energy/site = -1.192740633
+44.1325% accepted
+
+energy = -117.2476256
+energy/site = -0.9159970748
+43.9258% accepted
+
+energy = -190.0557335
+energy/site = -1.484810418
+44.1425% accepted
+
+energy = -180.3970342
+energy/site = -1.40935183
+44.1666% accepted
+
+energy = -90.25304485
+energy/site = -0.7051019129
+44.2894% accepted
+
+energy = -108.2021625
+energy/site = -0.8453293944
+44.1293% accepted
+
+energy = -158.8504227
+energy/site = -1.241018928
+44.0651% accepted
+
+energy = -124.2031838
+energy/site = -0.9703373734
+43.994% accepted
+
+energy = -225.7230001
+energy/site = -1.763460938
+44.105% accepted
+
+energy = -120.24197
+energy/site = -0.9393903904
+44.1098% accepted
+
+energy = -99.34036238
+energy/site = -0.7760965811
+44.2107% accepted
+
+energy = -188.6177303
+energy/site = -1.473576018
+44.0513% accepted
+
+energy = -140.8794476
+energy/site = -1.100620684
+44.0214% accepted
+
+energy = -137.8352168
+energy/site = -1.076837632
+44.0588% accepted
+
+energy = -134.8413391
+energy/site = -1.053447962
+44.0543% accepted
+
+energy = -212.9177522
+energy/site = -1.663419939
+44.1672% accepted
+
+energy = -99.99789182
+energy/site = -0.7812335299
+44.1168% accepted
+
+energy = -223.4655157
+energy/site = -1.745824342
+43.8685% accepted
+
+energy = -118.7743732
+energy/site = -0.9279247905
+44.0535% accepted
+
+energy = -156.0751773
+energy/site = -1.219337323
+44.0283% accepted
+
+energy = -221.207903
+energy/site = -1.728186743
+43.9967% accepted
+
+energy = -135.9724778
+energy/site = -1.062284983
+44.0356% accepted
+
+energy = -272.2086655
+energy/site = -2.126630199
+44.0697% accepted
+
+energy = -124.4859336
+energy/site = -0.9725463566
+44.1029% accepted
+
+energy = -104.7879711
+energy/site = -0.8186560243
+44.1787% accepted
+
+energy = -124.6530234
+energy/site = -0.9738517455
+44.1523% accepted
+
+energy = -158.7110918
+energy/site = -1.239930405
+44.1251% accepted
+
+energy = -105.1426629
+energy/site = -0.8214270535
+43.9931% accepted
+
+energy = -115.5760155
+energy/site = -0.9029376212
+44.0413% accepted
+
+energy = -114.7621867
+energy/site = -0.8965795836
+44.0986% accepted
+
+energy = -198.9299418
+energy/site = -1.55414017
+44.022% accepted
+
+energy = -116.7397452
+energy/site = -0.9120292593
+44.0961% accepted
+
+energy = -181.0822993
+energy/site = -1.414705463
+44.3214% accepted
+
+energy = -234.4738149
+energy/site = -1.831826679
+43.9962% accepted
+
+energy = -104.4711127
+energy/site = -0.8161805683
+43.982% accepted
+
+energy = -168.6232866
+energy/site = -1.317369427
+44.0771% accepted
+
+energy = -76.50873387
+energy/site = -0.5977244834
+44.1229% accepted
+
+energy = -260.3721991
+energy/site = -2.034157806
+44.0557% accepted
+
+energy = -142.2702845
+energy/site = -1.111486598
+44.1138% accepted
+
+energy = -127.6605444
+energy/site = -0.9973480034
+43.975% accepted
+
+energy = -257.6836276
+energy/site = -2.013153341
+44.0411% accepted
+
+energy = -200.0213911
+energy/site = -1.562667118
+44.1581% accepted
+
+energy = -159.309174
+energy/site = -1.244602922
+44.0992% accepted
+
+energy = -121.7310511
+energy/site = -0.9510238367
+44.0773% accepted
+
+energy = -84.30695014
+energy/site = -0.6586480479
+44.0484% accepted
+
+energy = -184.5487068
+energy/site = -1.441786772
+44.0951% accepted
+
+energy = -305.6316053
+energy/site = -2.387746916
+44.0343% accepted
+
+energy = -109.1385144
+energy/site = -0.8526446435
+44.122% accepted
+
+energy = -184.241907
+energy/site = -1.439389899
+44.172% accepted
+
+energy = -97.58272816
+energy/site = -0.7623650637
+44.0868% accepted
+
+energy = -93.02085341
+energy/site = -0.7267254173
+44.1426% accepted
+
+energy = -118.7920311
+energy/site = -0.9280627433
+44.174% accepted
+
+energy = -254.0210251
+energy/site = -1.984539258
+44.1867% accepted
+
+energy = -111.5597343
+energy/site = -0.8715604242
+44.0943% accepted
+
+energy = -137.9039964
+energy/site = -1.077374972
+44.1031% accepted
+
+energy = -173.7378854
+energy/site = -1.35732723
+44.104% accepted
+
+energy = -119.9344255
+energy/site = -0.9369876994
+44.2494% accepted
+
+energy = -518.0626569
+energy/site = -4.047364507
+44.1034% accepted
+
+energy = -185.3671084
+energy/site = -1.448180535
+44.0419% accepted
+
+energy = -175.3038105
+energy/site = -1.36956102
+43.9799% accepted
+
+energy = -126.8006804
+energy/site = -0.9906303157
+44.2055% accepted
+
+energy = -127.0834558
+energy/site = -0.9928394986
+44.2078% accepted
+
+energy = -149.4173539
+energy/site = -1.167323077
+44.0553% accepted
+
+energy = -128.6493078
+energy/site = -1.005072717
+44.102% accepted
+
+energy = -161.8243128
+energy/site = -1.264252444
+44.0409% accepted
+
+energy = -191.1213182
+energy/site = -1.493135299
+44.1373% accepted
+
+energy = -100.1783139
+energy/site = -0.7826430775
+44.0847% accepted
+
+energy = -169.4197501
+energy/site = -1.323591798
+44.1559% accepted
+
+energy = -112.3228807
+energy/site = -0.8775225054
+44.0749% accepted
+
+energy = -127.5634506
+energy/site = -0.9965894578
+44.0042% accepted
+
+energy = -138.2005328
+energy/site = -1.079691662
+44.0564% accepted
+
+energy = -117.3809528
+energy/site = -0.9170386938
+44.051% accepted
+
+energy = -212.4558346
+energy/site = -1.659811208
+44.1171% accepted
+
+energy = -136.5689958
+energy/site = -1.06694528
+44.1401% accepted
+
+energy = -117.4097592
+energy/site = -0.9172637437
+43.8858% accepted
+
+energy = -171.9923941
+energy/site = -1.343690579
+44.104% accepted
+
+energy = -239.9071721
+energy/site = -1.874274782
+44.0464% accepted
+
+energy = -122.8794542
+energy/site = -0.9599957356
+44.1834% accepted
+
+energy = -151.6850929
+energy/site = -1.185039788
+44.1161% accepted
+
+energy = -189.5530555
+energy/site = -1.480883246
+44.0898% accepted
+
+energy = -107.6105007
+energy/site = -0.8407070365
+44.0827% accepted
+
+energy = -257.1791275
+energy/site = -2.009211933
+44.1723% accepted
+
+energy = -197.6866704
+energy/site = -1.544427113
+44.1426% accepted
+
+energy = -178.0927296
+energy/site = -1.39134945
+44.089% accepted
+
+energy = -139.6583265
+energy/site = -1.091080676
+44.0742% accepted
+
+energy = -156.3952035
+energy/site = -1.221837527
+44.0404% accepted
+
+energy = -265.267636
+energy/site = -2.072403406
+44.1366% accepted
+
+energy = -172.7948479
+energy/site = -1.349959749
+44.1636% accepted
+
+energy = -87.04816299
+energy/site = -0.6800637734
+43.9845% accepted
+
+energy = -301.27124
+energy/site = -2.353681562
+44.0518% accepted
+
+energy = -169.6780557
+energy/site = -1.32560981
+43.9744% accepted
+
+energy = -140.0682357
+energy/site = -1.094283091
+44.019% accepted
+
+energy = -147.0294135
+energy/site = -1.148667293
+44.104% accepted
+
+energy = -120.7937795
+energy/site = -0.9437014026
+44.2128% accepted
+
+energy = -95.26780745
+energy/site = -0.7442797457
+44.1119% accepted
+
+energy = -136.1118332
+energy/site = -1.063373697
+44.0397% accepted
+
+energy = -153.2745503
+energy/site = -1.197457424
+44.1441% accepted
+
+energy = -176.1623463
+energy/site = -1.376268331
+44.0763% accepted
+
+energy = -142.2533594
+energy/site = -1.11135437
+44.0332% accepted
+
+energy = -117.7835024
+energy/site = -0.9201836126
+44.1797% accepted
+
+energy = -143.1856659
+energy/site = -1.118638015
+43.9871% accepted
+
+energy = -198.6345579
+energy/site = -1.551832484
+44.0243% accepted
+
+energy = -143.5799851
+energy/site = -1.121718634
+44.1385% accepted
+
+energy = -122.9766656
+energy/site = -0.9607551999
+44.1038% accepted
+
+energy = -169.4049129
+energy/site = -1.323475882
+44.2058% accepted
+
+energy = -156.8761508
+energy/site = -1.225594928
+43.9926% accepted
+
+energy = -96.79167409
+energy/site = -0.7561849538
+43.9387% accepted
+
+energy = -184.4177102
+energy/site = -1.440763361
+44.1766% accepted
+
+energy = -92.65129513
+energy/site = -0.7238382432
+43.9684% accepted
+
+energy = -132.8869831
+energy/site = -1.038179556
+44.0066% accepted
+
+energy = -227.3746951
+energy/site = -1.776364806
+44.1319% accepted
+
+energy = -102.6965741
+energy/site = -0.8023169852
+44.1635% accepted
+
+energy = -207.2114593
+energy/site = -1.618839526
+44.0482% accepted
+
+energy = -144.3573527
+energy/site = -1.127791818
+44.0138% accepted
+
+energy = -109.6809503
+energy/site = -0.8568824242
+44.1288% accepted
+
+energy = -127.0327203
+energy/site = -0.9924431272
+44.0792% accepted
+
+energy = -167.6146871
+energy/site = -1.309489743
+44.1609% accepted
+
+energy = -139.1084843
+energy/site = -1.086785034
+44.0346% accepted
+
+energy = -141.6198397
+energy/site = -1.106404998
+44.0729% accepted
+
+energy = -141.5487103
+energy/site = -1.1058493
+44.1656% accepted
+
+energy = -175.3441082
+energy/site = -1.369875846
+44.131% accepted
+
+energy = -123.9017223
+energy/site = -0.9679822057
+44.1504% accepted
+
+energy = -139.9277535
+energy/site = -1.093185574
+44.0465% accepted
+
+energy = -123.4047442
+energy/site = -0.9640995642
+44.1382% accepted
+
+energy = -205.1710563
+energy/site = -1.602898877
+44.0718% accepted
+
+energy = -151.8063833
+energy/site = -1.18598737
+44.0388% accepted
+
+energy = -123.0685701
+energy/site = -0.961473204
+44.0947% accepted
+
+energy = -176.1398454
+energy/site = -1.376092542
+44.0724% accepted
+
+energy = -100.772393
+energy/site = -0.7872843203
+44.2787% accepted
+
+energy = -166.7821195
+energy/site = -1.302985308
+44.1314% accepted
+
+energy = -96.60547258
+energy/site = -0.7547302545
+44.1405% accepted
+
+energy = -111.1457818
+energy/site = -0.8683264206
+44.0456% accepted
+
+energy = -125.2778436
+energy/site = -0.9787331533
+44.1096% accepted
+
+energy = -163.4455258
+energy/site = -1.27691817
+44.0755% accepted
+
+energy = -183.63452
+energy/site = -1.434644688
+44.1644% accepted
+
+energy = -187.5252363
+energy/site = -1.465040909
+44.0791% accepted
+
+energy = -128.7557918
+energy/site = -1.005904623
+44.2041% accepted
+
+energy = -150.9069562
+energy/site = -1.178960595
+44.115% accepted
+
+energy = -208.5922157
+energy/site = -1.629626685
+44.033% accepted
+
+energy = -80.97153357
+energy/site = -0.632590106
+44.0296% accepted
+
+energy = -108.152854
+energy/site = -0.8449441719
+44.1916% accepted
+
+energy = -172.2572305
+energy/site = -1.345759613
+44.1931% accepted
+
+energy = -109.4159543
+energy/site = -0.8548121432
+44.0792% accepted
+
+energy = -121.6675574
+energy/site = -0.950527792
+44.1469% accepted
+
+energy = -190.5721688
+energy/site = -1.488845069
+44.2378% accepted
+
+energy = -145.7808993
+energy/site = -1.138913276
+44.07% accepted
+
+energy = -243.3298252
+energy/site = -1.90101426
+44.1563% accepted
+
+energy = -138.2743307
+energy/site = -1.080268209
+44.081% accepted
+
+energy = -148.8146216
+energy/site = -1.162614231
+44.1336% accepted
+

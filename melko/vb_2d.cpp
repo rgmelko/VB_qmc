@@ -96,6 +96,7 @@ main() // the main program..
   double w_old=0, w_new=0;   // the new and old weights
   int cross[2] = {0}; //the number of bonds crossing the zone boundary
   double energy = 0;          // the energy
+  double energy2 = 0;
   double entropy = 0;
 
   //-------Generate Operators----------------------------------------
@@ -163,6 +164,7 @@ main() // the main program..
 		  if(box[chain[id][0]]+box[chain[id][1]]==1){cross[1]+=1;}
 		}
 	      energy += bond[1];
+	      energy2 += w_new;
 	      entropy += cross[1];
 	      q+=1;
 	      acc+=1;
@@ -185,6 +187,7 @@ main() // the main program..
 	    else
 	      {
 		energy += bond[0]; //*w_old;
+		energy2 += w_old;
 		entropy += cross[0]; //*w_old;
 		q+=1;
 		rej+=1;
@@ -210,11 +213,15 @@ main() // the main program..
   energy += -1;
   energy *= 0.5;
 
+  energy2 /= q*1.0;
+  energy2 = n*1.0 - 0.5*energy2;
+
   entropy /= q;
   entropy *= log(2);
  
   cout << endl;
   cout << "energy = " << energy << endl;
+  cout << "energy2 = " << energy2 << endl;
   cout << "entropy = " << entropy << endl;
   cout << "entropy/x = " << entropy/zone << endl;
  	   

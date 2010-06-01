@@ -3604,3 +3604,166 @@ energy = -2449.66491
 energy/site = -0.7221889475
 44.507% accepted
 
+C(L/2,L/2) = 0.233895
+energy = -2475.655575
+energy/site = -0.7298512898
+44.22% accepted
+
+C(L/2,L/2) = 0.28863
+energy = -2476.130918
+energy/site = -0.7299914261
+44.205% accepted
+
+C(L/2,L/2) = 0.212295
+energy = -2424.034973
+energy/site = -0.7146329518
+43.745% accepted
+
+C(L/2,L/2) = 0.313245
+energy = -2433.237562
+energy/site = -0.7173459795
+43.647% accepted
+
+C(L/2,L/2) = 0.168345
+energy = -2441.440733
+energy/site = -0.7197643669
+44.001% accepted
+
+C(L/2,L/2) = 0.1394775
+energy = -2450.186392
+energy/site = -0.7223426865
+43.933% accepted
+
+C(L/2,L/2) = 0.200025
+energy = -2417.887552
+energy/site = -0.7128206228
+43.965% accepted
+
+C(L/2,L/2) = 0.24297
+energy = -2497.82784
+energy/site = -0.7363879245
+44.101% accepted
+
+C(L/2,L/2) = 0.2109
+energy = -2469.45003
+energy/site = -0.7280218249
+44.415% accepted
+
+C(L/2,L/2) = 0.175455
+energy = -2469.119677
+energy/site = -0.7279244332
+43.607% accepted
+
+C(L/2,L/2) = 0.03999
+energy = -2442.503625
+energy/site = -0.7200777196
+44.138% accepted
+
+C(L/2,L/2) = 0.0586425
+energy = -2490.274913
+energy/site = -0.734161236
+44.577% accepted
+
+C(L/2,L/2) = 0.2191875
+energy = -2481.180247
+energy/site = -0.7314800258
+44.332% accepted
+
+C(L/2,L/2) = 0.1248525
+energy = -2489.339827
+energy/site = -0.7338855624
+44.169% accepted
+
+C(L/2,L/2) = 0.2267175
+energy = -2456.869268
+energy/site = -0.7243128737
+44.107% accepted
+
+C(L/2,L/2) = 0.29886
+energy = -2442.23055
+energy/site = -0.719997214
+44.303% accepted
+
+C(L/2,L/2) = 0.29427
+energy = -2458.318853
+energy/site = -0.7247402277
+44.288% accepted
+
+C(L/2,L/2) = 0.1560825
+energy = -2440.217962
+energy/site = -0.7194038805
+44.026% accepted
+
+C(L/2,L/2) = 0.0216975
+energy = -2430.282113
+energy/site = -0.7164746794
+44.295% accepted
+
+C(L/2,L/2) = 0.0618975
+energy = -2440.974517
+energy/site = -0.7196269214
+44.185% accepted
+
+C(L/2,L/2) = 0.0950775
+energy = -2413.40277
+energy/site = -0.7114984581
+44.314% accepted
+
+C(L/2,L/2) = 0.128475
+energy = -2477.793435
+energy/site = -0.7304815551
+44.535% accepted
+
+C(L/2,L/2) = 0.1800375
+energy = -2446.41591
+energy/site = -0.7212311055
+44.092% accepted
+
+C(L/2,L/2) = 0.3020625
+energy = -2410.498808
+energy/site = -0.7106423371
+43.999% accepted
+
+C(L/2,L/2) = 0.2049675
+energy = -2472.436005
+energy/site = -0.7289021241
+43.777% accepted
+
+C(L/2,L/2) = 0.1795275
+energy = -2439.065722
+energy/site = -0.7190641871
+44.339% accepted
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@wha267>
+Subject: Job 8865314: <./dubproj53L64> Exited
+
+Job <./dubproj53L64> was submitted from host <wha780> by user <akallin>.
+Job was executed on host(s) <wha267>, in queue <serial>, as user <akallin>.
+</home/akallin> was used as the home directory.
+</work/akallin/sharcruns/dub_proj/bondlength/53L64> was used as the working directory.
+Started at Wed Nov 18 18:58:22 2009
+Results reported at Thu Nov 19 18:09:24 2009
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+./dubproj53L64
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with signal termination: Alarm clock.
+
+Resource usage summary:
+
+    CPU time   :  83332.12 sec.
+    Max Memory :        50 MB
+    Max Swap   :       172 MB
+
+    Max Processes  :         4
+    Max Threads    :         4
+
+The output (if any) is above this job summary.
+
