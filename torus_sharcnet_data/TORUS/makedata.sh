@@ -1,5 +1,7 @@
 #!/bin/sh
 
+rsync -turav akallin@whale.sharcnet.ca:/work/akallin/TORUS/ .;
+
 average    3leg/entropy.dat 11 0 > 3leg/avgent;
 average 3leg/01/entropy.dat 11 0 > 3leg/01/avgent;
 average 3leg/02/entropy.dat 11 0 > 3leg/02/avgent;
@@ -128,3 +130,7 @@ cd 10leg; ./extract.sh > ratiod; cd ..;
 
 ./extract_superplot.sh > superplot;
 
+
+cd OBC;
+./justmakedata.sh;
+cd ..
