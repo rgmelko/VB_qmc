@@ -2,44 +2,56 @@ This is BibTeX, Version 0.99c (Web2C 7.5.7)
 The top-level auxiliary file: thesis.aux
 The style file: plain.bst
 Database file #1: thesis.bib
-You've used 5 entries,
+Warning--empty title in Cardy
+Warning--empty title in 2dboson
+Warning--empty title in ALreview
+Warning--empty journal in ALreview
+Warning--empty title in MERA
+Warning--empty title in XXX
+Warning--empty title in network
+Warning--empty title in Ian1
+Warning--empty title in PEPS1
+Warning--empty journal in PEPS1
+Warning--empty title in PEPS2
+You've used 27 entries,
             2118 wiz_defined-function locations,
-            541 strings with 4813 characters,
-and the built_in function-call counts, 1693 in all, are:
-= -- 160
-> -- 73
+            670 strings with 7012 characters,
+and the built_in function-call counts, 8817 in all, are:
+= -- 838
+> -- 416
 < -- 0
-+ -- 29
-- -- 24
-* -- 144
-:= -- 292
-add.period$ -- 15
-call.type$ -- 5
-change.case$ -- 27
++ -- 164
+- -- 136
+* -- 736
+:= -- 1508
+add.period$ -- 72
+call.type$ -- 27
+change.case$ -- 140
 chr.to.int$ -- 0
-cite$ -- 5
-duplicate$ -- 55
-empty$ -- 137
-format.name$ -- 24
-if$ -- 343
+cite$ -- 38
+duplicate$ -- 294
+empty$ -- 689
+format.name$ -- 136
+if$ -- 1770
 int.to.chr$ -- 0
-int.to.str$ -- 5
-missing$ -- 5
-newline$ -- 28
-num.names$ -- 10
-pop$ -- 17
+int.to.str$ -- 27
+missing$ -- 27
+newline$ -- 129
+num.names$ -- 54
+pop$ -- 121
 preamble$ -- 1
-purify$ -- 22
+purify$ -- 122
 quote$ -- 0
-skip$ -- 36
+skip$ -- 189
 stack$ -- 0
-substring$ -- 133
-swap$ -- 5
+substring$ -- 649
+swap$ -- 25
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 20
-warning$ -- 0
-while$ -- 15
-width$ -- 6
-write$ -- 57
+type$ -- 108
+warning$ -- 11
+while$ -- 84
+width$ -- 29
+write$ -- 277
+(There were 11 warnings)

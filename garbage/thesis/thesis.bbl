@@ -1,9 +1,42 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{AffleckAndLudwig}
+Ian Affleck and Andreas W.~W. Ludwig.
+\newblock Universal noninteger \char96{}\char96{}ground-state
+  degeneracy\char39{}\char39{} in critical quantum systems.
+\newblock {\em Phys. Rev. Lett.}, 67(2):161--164, Jul 1991.
+
+\bibitem{Alet}
+Fabien Alet, Sylvain Capponi, Nicolas Laflorencie, and Matthieu Mambrini.
+\newblock Valence bond entanglement entropy.
+\newblock {\em Phys. Rev. Lett.}, 99(11):117204, 2007.
 
 \bibitem{Anderson1973}
 P.~W. Anderson.
 \newblock Resonating valence bonds: A new kind of insulator?
 \newblock {\em Materials Research Bulletin}, 8(2):153 -- 160, 1973.
+
+\bibitem{Cardy}
+Pasquale Calabrese and John Cardy.
+\newblock {\em J. Stat. Mech.: Theor. Exp.}, P06002, 2004.
+
+\bibitem{Chh}
+Ravindra~W. Chhajlany, Piotr Tomczak, and Antoni W\'{o}jcik.
+\newblock Topological estimator of block entanglement for heisenberg
+  antiferromagnets.
+\newblock {\em Phys. Rev. Lett.}, 99(16):167204, 2007.
+
+\bibitem{2dboson}
+MJ~Cramer, J~Eisert, and MB~Plenio.
+\newblock {\em Phys. Rev. A}, 73:012309, 2006.
+
+\bibitem{ALreview}
+J.~Eisert, M.~Cramer, and M.B. Plenio.
+\newblock 2008.
+
+\bibitem{MERA}
+G~Evenbly and G~Vidal.
+\newblock {\em Phys. Rev. B}, 79:144108, 2009.
 
 \bibitem{Anderson1974}
 P.~Fazekas and P.~W. Anderson.
@@ -17,16 +50,87 @@ Matthew~B. Hastings, Iv\'an Gonz\'alez, Ann~B. Kallin, and Roger~G. Melko.
   simulations.
 \newblock {\em Phys. Rev. Lett.}, 104(15):157201, Apr 2010.
 
+\bibitem{Huanq2006}
+Z~Huanqiang, T~Barthel, and U~Schollwoeck.
+\newblock Entanglement and boundary critical phenomena.
+\newblock {\em Phys. Rev. A}, 74(5):050305(R), Jan 2006.
+
+\bibitem{XXX}
+J.~L. Jacobsen and H.~Saleur.
+\newblock {\em Phys. Rev. Lett.}, 100(8):087205, 2008.
+
 \bibitem{PRL1}
 Ann~B. Kallin, Iv\'an Gonz\'alez, Matthew~B. Hastings, and Roger~G. Melko.
 \newblock Valence bond and von neumann entanglement entropy in heisenberg
   ladders.
 \newblock {\em Phys. Rev. Lett.}, 103(11):117203, Sep 2009.
 
+\bibitem{KP}
+Alexei Kitaev and John Preskill.
+\newblock Topological entanglement entropy.
+\newblock {\em Phys. Rev. Lett.}, 96(11):110404, 2006.
+
+\bibitem{network}
+B~Kozma, MB~Hastings, and G~Korniss.
+\newblock {\em Phys. Rev. Lett.}, 95:018701, 2005.
+
+\bibitem{Ian1}
+Nicolas Laflorencie, Erik~S. Sorensen, Ming-Shyang Chang, and Ian Affleck.
+\newblock {\em Phys. Rev. Lett.}, 96:100603, 2006.
+
+\bibitem{LW}
+Michael Levin and Xiao-Gang Wen.
+\newblock Detecting topological order in a ground state wave function.
+\newblock {\em Phys. Rev. Lett}, 96(11):110405, 2006.
+
+\bibitem{MPS_DMRG}
+Stellan \"Ostlund and Stefan Rommer.
+\newblock Thermodynamic limit of density matrix renormalization.
+\newblock {\em Phys. Rev. Lett.}, 75(19):3537--3540, Nov 1995.
+
 \bibitem{Sandvik_vbqmc}
 Anders~W. Sandvik.
 \newblock Ground state projection of quantum spin systems in the valence-bond
   basis.
 \newblock {\em Phys. Rev. Lett.}, 95(20):207203, Nov 2005.
+
+\bibitem{Scholl05}
+U.~Schollw\"ock.
+\newblock The density-matrix renormalization group.
+\newblock {\em Rev. Mod. Phys.}, 77(1):259--315, Apr 2005.
+
+\bibitem{BoseMetal}
+D.~N. Sheng, Olexei~I. Motrunich, and Matthew P.~A. Fisher.
+\newblock Spin bose-metal phase in a spin-(1/2) model with ring exchange on a
+  two-leg triangular strip.
+\newblock {\em Phys. Rev. B}, 79(20):205112, 2009.
+
+\bibitem{Shredder}
+Mark Srednicki.
+\newblock Entropy and area.
+\newblock {\em Phys. Rev. Lett.}, 71(5):666--669, Aug 1993.
+
+\bibitem{PEPS1}
+F.~Verstraete and J.~I. Cirac.
+\newblock 2004.
+
+\bibitem{PEPS2}
+F.~Verstraete, M.~M. Wolf, D.~Perez-Garcia, and J.~I. Cirac.
+\newblock {\em Phys. Rev. Lett.}, 96:220601, 2006.
+
+\bibitem{White1994}
+SR~White, RM~Noack, and DJ~Scalapino.
+\newblock Resonating valence bond theory of coupled heisenberg chains.
+\newblock {\em Phys. Rev. Lett.}, 73(6):886--889, 1994.
+
+\bibitem{White92}
+Steven~R. White.
+\newblock Density matrix formulation for quantum renormalization groups.
+\newblock {\em Phys. Rev. Lett.}, 69(19):2863--2866, Nov 1992.
+
+\bibitem{wolf}
+Michael~M. Wolf, Frank Verstraete, Matthew~B. Hastings, and J.~Ignacio Cirac.
+\newblock Area laws in quantum systems: Mutual information and correlations.
+\newblock {\em Phys. Rev. Lett.}, 100:070502, 2008.
 
 \end{thebibliography}
