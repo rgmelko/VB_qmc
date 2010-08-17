@@ -9,7 +9,7 @@ Ian Affleck and Andreas W.~W. Ludwig.
 \bibitem{Alet}
 Fabien Alet, Sylvain Capponi, Nicolas Laflorencie, and Matthieu Mambrini.
 \newblock Valence bond entanglement entropy.
-\newblock {\em Phys. Rev. Lett.}, 99(11):117204, 2007.
+\newblock {\em Phys. Rev. Lett.}, 99(11):117204, Sep 2007.
 
 \bibitem{Anderson1973}
 P.~W. Anderson.
@@ -18,31 +18,46 @@ P.~W. Anderson.
 
 \bibitem{Cardy}
 Pasquale Calabrese and John Cardy.
-\newblock {\em J. Stat. Mech.: Theor. Exp.}, P06002, 2004.
+\newblock Entanglement entropy and quantum field theory.
+\newblock {\em J. Stat. Mech.: Theor. Exp.}, 2004(06):P06002, 2004.
+
+\bibitem{Casini2007}
+H.~Casini and M.~Huerta.
+\newblock Universal terms for the entanglement entropy in 2+1 dimensions.
+\newblock {\em Nuclear Physics B}, 764(3):183 -- 201, 2007.
 
 \bibitem{Chh}
-Ravindra~W. Chhajlany, Piotr Tomczak, and Antoni W\'{o}jcik.
+Ravindra~W. Chhajlany, Piotr Tomczak, and Antoni W\'ojcik.
 \newblock Topological estimator of block entanglement for heisenberg
   antiferromagnets.
-\newblock {\em Phys. Rev. Lett.}, 99(16):167204, 2007.
+\newblock {\em Phys. Rev. Lett.}, 99(16):167204, Oct 2007.
 
 \bibitem{2dboson}
-MJ~Cramer, J~Eisert, and MB~Plenio.
-\newblock {\em Phys. Rev. A}, 73:012309, 2006.
+M.~Cramer, J.~Eisert, M.~B. Plenio, and J.~Drei\ss{}ig.
+\newblock Entanglement-area law for general bosonic harmonic lattice systems.
+\newblock {\em Phys. Rev. A}, 73(1):012309, Jan 2006.
 
 \bibitem{ALreview}
-J.~Eisert, M.~Cramer, and M.B. Plenio.
-\newblock 2008.
+J.~Eisert, M.~Cramer, and M.~B. Plenio.
+\newblock Colloquium: Area laws for the entanglement entropy.
+\newblock {\em Rev. Mod. Phys.}, 82(1):277--306, Feb 2010.
 
 \bibitem{MERA}
-G~Evenbly and G~Vidal.
-\newblock {\em Phys. Rev. B}, 79:144108, 2009.
+G.~Evenbly and G.~Vidal.
+\newblock Algorithms for entanglement renormalization.
+\newblock {\em Phys. Rev. B}, 79(14):144108, Apr 2009.
 
 \bibitem{Anderson1974}
 P.~Fazekas and P.~W. Anderson.
 \newblock On the ground state properties of the anisotropic triangular
   antiferromagnet.
 \newblock {\em Philosophical Magazine}, 30(2):423 -- 440, 1974.
+
+\bibitem{Bbob}
+Steven~T. Flammia, Alioscia Hamma, Taylor~L. Hughes, and Xiao-Gang Wen.
+\newblock Topological entanglement r\'enyi entropy and reduced density matrix
+  structure.
+\newblock {\em Phys. Rev. Lett.}, 103(26):261601, Dec 2009.
 
 \bibitem{PRL2}
 Matthew~B. Hastings, Iv\'an Gonz\'alez, Ann~B. Kallin, and Roger~G. Melko.
@@ -51,13 +66,15 @@ Matthew~B. Hastings, Iv\'an Gonz\'alez, Ann~B. Kallin, and Roger~G. Melko.
 \newblock {\em Phys. Rev. Lett.}, 104(15):157201, Apr 2010.
 
 \bibitem{Huanq2006}
-Z~Huanqiang, T~Barthel, and U~Schollwoeck.
+Z.~Huanqiang, T.~Barthel, and U.~Schollwoeck.
 \newblock Entanglement and boundary critical phenomena.
 \newblock {\em Phys. Rev. A}, 74(5):050305(R), Jan 2006.
 
 \bibitem{XXX}
 J.~L. Jacobsen and H.~Saleur.
-\newblock {\em Phys. Rev. Lett.}, 100(8):087205, 2008.
+\newblock Exact valence bond entanglement entropy and probability distribution
+  in the $xxx$ spin chain and the potts model.
+\newblock {\em Phys. Rev. Lett.}, 100(8):087205, Feb 2008.
 
 \bibitem{PRL1}
 Ann~B. Kallin, Iv\'an Gonz\'alez, Matthew~B. Hastings, and Roger~G. Melko.
@@ -68,25 +85,46 @@ Ann~B. Kallin, Iv\'an Gonz\'alez, Matthew~B. Hastings, and Roger~G. Melko.
 \bibitem{KP}
 Alexei Kitaev and John Preskill.
 \newblock Topological entanglement entropy.
-\newblock {\em Phys. Rev. Lett.}, 96(11):110404, 2006.
+\newblock {\em Phys. Rev. Lett.}, 96(11):110404, Mar 2006.
 
 \bibitem{network}
-B~Kozma, MB~Hastings, and G~Korniss.
-\newblock {\em Phys. Rev. Lett.}, 95:018701, 2005.
+Bal\'azs Kozma, Matthew~B. Hastings, and G.~Korniss.
+\newblock Diffusion processes on power-law small-world networks.
+\newblock {\em Phys. Rev. Lett.}, 95(1):018701, Jun 2005.
 
 \bibitem{Ian1}
-Nicolas Laflorencie, Erik~S. Sorensen, Ming-Shyang Chang, and Ian Affleck.
-\newblock {\em Phys. Rev. Lett.}, 96:100603, 2006.
+Nicolas Laflorencie, Erik~S. S\o{}rensen, Ming-Shyang Chang, and Ian Affleck.
+\newblock Boundary effects in the critical scaling of entanglement entropy in
+  1d systems.
+\newblock {\em Phys. Rev. Lett.}, 96(10):100603, Mar 2006.
 
 \bibitem{LW}
 Michael Levin and Xiao-Gang Wen.
 \newblock Detecting topological order in a ground state wave function.
-\newblock {\em Phys. Rev. Lett}, 96(11):110405, 2006.
+\newblock {\em Phys. Rev. Lett.}, 96(11):110405, Mar 2006.
+
+\bibitem{Spectrum}
+Hui Li and F.~D.~M. Haldane.
+\newblock Entanglement spectrum as a generalization of entanglement entropy:
+  Identification of topological order in non-abelian fractional quantum hall
+  effect states.
+\newblock {\em Phys. Rev. Lett.}, 101(1):010504, Jul 2008.
+
+\bibitem{Max}
+Max~A. Metlitski, Carlos~A. Fuertes, and Subir Sachdev.
+\newblock Entanglement entropy in the $ o (n) $ model.
+\newblock {\em Phys. Rev. B}, 80(11):115122, Sep 2009.
 
 \bibitem{MPS_DMRG}
 Stellan \"Ostlund and Stefan Rommer.
 \newblock Thermodynamic limit of density matrix renormalization.
 \newblock {\em Phys. Rev. Lett.}, 75(19):3537--3540, Nov 1995.
+
+\bibitem{Ryu}
+Shinsei Ryu and Tadashi Takayanagi.
+\newblock Holographic derivation of entanglement entropy from the anti--de
+  sitter space/conformal field theory correspondence.
+\newblock {\em Phys. Rev. Lett.}, 96(18):181602, May 2006.
 
 \bibitem{Sandvik_vbqmc}
 Anders~W. Sandvik.
@@ -94,13 +132,19 @@ Anders~W. Sandvik.
   basis.
 \newblock {\em Phys. Rev. Lett.}, 95(20):207203, Nov 2005.
 
+\bibitem{Loops}
+Anders~W. Sandvik and Hans~Gerd Evertz.
+\newblock Loop updates for variational and projector quantum monte carlo
+  simulations in the valence-bond basis.
+\newblock {\em Phys. Rev. B}, 82(2):024407, Jul 2010.
+
 \bibitem{Scholl05}
 U.~Schollw\"ock.
 \newblock The density-matrix renormalization group.
 \newblock {\em Rev. Mod. Phys.}, 77(1):259--315, Apr 2005.
 
 \bibitem{BoseMetal}
-D.~N. Sheng, Olexei~I. Motrunich, and Matthew P.~A. Fisher.
+D.?N. Sheng, O.?I. Motrunich, and M.?P.?A. Fisher.
 \newblock Spin bose-metal phase in a spin-(1/2) model with ring exchange on a
   two-leg triangular strip.
 \newblock {\em Phys. Rev. B}, 79(20):205112, 2009.
@@ -112,14 +156,18 @@ Mark Srednicki.
 
 \bibitem{PEPS1}
 F.~Verstraete and J.~I. Cirac.
-\newblock 2004.
+\newblock Renormalization algorithms for quantum-many body systems in two and
+  higher dimensions.
+\newblock {\em arXiv:cond-mat/0407066}, 2004.
 
 \bibitem{PEPS2}
 F.~Verstraete, M.~M. Wolf, D.~Perez-Garcia, and J.~I. Cirac.
-\newblock {\em Phys. Rev. Lett.}, 96:220601, 2006.
+\newblock Criticality, the area law, and the computational power of projected
+  entangled pair states.
+\newblock {\em Phys. Rev. Lett.}, 96(22):220601, Jun 2006.
 
 \bibitem{White1994}
-SR~White, RM~Noack, and DJ~Scalapino.
+S.~R. White, R.~M. Noack, and D.~J. Scalapino.
 \newblock Resonating valence bond theory of coupled heisenberg chains.
 \newblock {\em Phys. Rev. Lett.}, 73(6):886--889, 1994.
 
@@ -131,6 +179,6 @@ Steven~R. White.
 \bibitem{wolf}
 Michael~M. Wolf, Frank Verstraete, Matthew~B. Hastings, and J.~Ignacio Cirac.
 \newblock Area laws in quantum systems: Mutual information and correlations.
-\newblock {\em Phys. Rev. Lett.}, 100:070502, 2008.
+\newblock {\em Phys. Rev. Lett.}, 100(7):070502, Feb 2008.
 
 \end{thebibliography}
