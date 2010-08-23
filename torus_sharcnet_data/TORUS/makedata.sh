@@ -1,6 +1,6 @@
 #!/bin/sh
 
-rsync -turav akallin@whale.sharcnet.ca:/work/akallin/TORUS/ .;
+rsync -turav --exclude '*.log' akallin@whale.sharcnet.ca:/work/akallin/TORUS/ .;
 
 average    3leg/entropy.dat 11 0 > 3leg/avgent;
 average 3leg/01/entropy.dat 11 0 > 3leg/01/avgent;
