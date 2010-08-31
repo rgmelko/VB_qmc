@@ -13,7 +13,7 @@
 
 {\color{red} The valence bond basis, like the $S^Z$ basis, can be used to represent spin states.}
 
-\subsection{The Valence Bond}
+\subsection{The Spin 1/2 Singlet State}
 
 
 Typically the spin states of spin 1/2 particles are represented in the $S^Z$ basis.  Applying the
@@ -25,19 +25,40 @@ and spin down eigenstates respectively.
    S^Z\lvert \downarrow \rangle = -\frac{1}{2} \lvert \downarrow \rangle
    \label{SZ}
 \end{equation}
-{\color{red} something else?}
 
-The valence bond, or singlet state, is a maximally entangled state between two spin 1/2 particles
-which together have zero spin angular momentum.  A valence bond can be represented in the $S^Z$ basis, as a list of the two sites joined, or 
-visually as a bond joining two sites.  {\color{red} (mention direction of singlet? i.e. Unlike the triplet states, the order of the particles involved will change the phase of the state.)}
+A singlet state refers the any spin state of a particle or group of particles with vanishing total spin angular momentum.
+For two spin 1/2 particles there is exactly one singlet state, represented in the $S^Z$ basis as
 
 \begin{equation}
-   \lvert(a,b)\rangle = \frac{1}{\sqrt{2}}\big( \lvert \uparrow_a \downarrow_b \rangle - \lvert \downarrow_a \uparrow_b \rangle \big) = 
+  \frac{1}{\sqrt{2}}\left( \lvert \uparrow_1 \downarrow_2 \rangle - \lvert \downarrow_1 \uparrow_2 \rangle \right) .
+   \label{singlet}
+\end{equation}
+
+  {\color{red} show that total spin is 0?
+  
+  (mention direction of singlet? i.e. Unlike the triplet states, the order of the particles involved will change the phase of the state.)
+
+\begin{equation}
+   \lvert(a,b)\rangle = \frac{1}{\sqrt{2}}\big( \lvert \uparrow_a \downarrow_b \rangle - \lvert \downarrow_a \uparrow_b \rangle \big) = ...
    \label{eqn_vb}
 \end{equation}
-{\color{red} add in a picture of a valence bond... not sure how to draw that yet.}  
+}
 
-{\color{red} Maybe add something about the VB spin or what it's an eigenstate of... total 
+{\color{red} y'know, make this whole thing better.}
+A bond between two atoms created by sharing valence electrons in the outer orbital is called a valence bond, or a covalent bond.  Since electrons are fermionic (have half integer spin) their total
+wave function must be antisymmetric (an exchange of the identical particles in the wave function
+gives a factor of -1). {\color{red} show with an equation?}
+The total wave function is a product of the spatial and spin
+wave functions, so one of those wave functions must be antisymmetric and the other symmetric 
+(exchanging the particles does not change the wave function).
+As part of the same valence bond, two electrons will have a symmetric spatial wave function, so
+their spin state must be antisymmetric.  For two spin 1/2 particles the only antisymmetric spin state
+is the singlet state.  Hence, in the case of two spin 1/2 particles, a valence bond is equivalent to the
+spin 1/2 singlet state from equation (\ref{singlet}).
+
+{\color{red} add in a picture of a valence bond... not sure how to draw that yet.
+
+ Maybe add something about the VB spin or what it's an eigenstate of... total 
 $S^Z$ and $S^2$}
 
 {\color{red} Fazekas and Anderson said it's a good choice for the heis s=1/2 antiferro GS
