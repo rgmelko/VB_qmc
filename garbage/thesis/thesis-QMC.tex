@@ -21,9 +21,9 @@ Typically the spin states of spin 1/2 particles are represented in the $S^Z$ bas
 $S^Z$ operator to its eigenstates yields either $+1/2$ or $-1/2$ corresponding to the spin up
 and spin down eigenstates respectively.
 \begin{equation}
-   S^Z\lvert \uparrow \rangle = +\frac{1}{2} \lvert \uparrow \rangle
+   S^z\lvert \uparrow \rangle = +\frac{1}{2} \lvert \uparrow \rangle
    \:\:\:    \:\:\:    \:\:\:    \:\:\:    \:\:\:    \:\:\: 
-   S^Z\lvert \downarrow \rangle = -\frac{1}{2} \lvert \downarrow \rangle
+   S^z\lvert \downarrow \rangle = -\frac{1}{2} \lvert \downarrow \rangle
    \label{SZ}
 \end{equation}
 
@@ -117,7 +117,7 @@ has some overlap with every other covering.
 Because of this overcompleteness we can eliminate some of the valence bond states and still
 represent any singlet state.
 It is convenient to define two sublattices, A and B, on a bipartite lattice, such that sites on 
-sublattice A are neighboured only by sublattice B sites and vice versa. 
+sublattice A are neighbored only by sublattice B sites and vice versa. 
 {\color{red} diagram of sublattices on a square lattice or something.}
 We can choose the valence bond coverings containing only bonds going from sublattice A
 to B.  (I say "from A to B" because valence bonds are, in fact, directional.  The ordering of the
@@ -176,34 +176,68 @@ the unique coefficients.
 If we apply the Hamiltonian to the state in Eq.~(\ref{state}) we are left with
 \begin{equation}
 \mathcal{H}\lvert \psi \rangle = \sum_n c_n \mathcal{H} \lvert n \rangle =
- 		\sum_n c_n \lambda_n \lvert n \rangle = 
-		c_0 \lambda_0 \lvert 0 \rangle + c_1 \lambda_1 \lvert 1 \rangle +
-		c_2 \lambda_2 \lvert 2 \rangle + \cdots,
+ 		\sum_n c_n E_n \lvert n \rangle = 
+		c_0 E_0 \lvert 0 \rangle + c_1 E_1 \lvert 1 \rangle +
+		c_2 E_2 \lvert 2 \rangle + \cdots,
 \end{equation}
-where $\lambda_n$ is the $n^{\rm{th}}$ energy eigenvalue of the Hamiltonian, $\mathcal{H}$.
-We can then take out a factor of $\lambda_0$ to get
+where $E_n$ is the $n^{\rm{th}}$ energy eigenvalue of the Hamiltonian, $\mathcal{H}$.
+We can then take out a factor of $E_0$ to get
 \begin{equation}
 \mathcal{H}\lvert \psi \rangle =
-		\lambda_0 \left(c_0 \lvert 0 \rangle + c_1 \frac{\lambda_1}{\lambda_0} \lvert 1 \rangle +
-		c_2\frac{ \lambda_2}{\lambda_0} \lvert 2 \rangle + \cdots \right).
+		E_0 \left(c_0 \lvert 0 \rangle + c_1 \frac{E_1}{E_0} \lvert 1 \rangle +
+		c_2\frac{ E_2}{E_0} \lvert 2 \rangle + \cdots \right).
 \end{equation}
 
-If it is the case that $\lambda_0$ if the eigenvalue of the largest magnitude, then all the coefficients
+If $E_0$ is the energy largest in magnitude, then all the coefficients
 of the excited states are fractions less (in magnitude) than 1.  
 In that case, if we apply the Hamiltonian a large number of times, denoted by m, all terms excluding
 the ground state term will vanish.
 \begin{equation}
 \mathcal{H}^m\lvert \psi \rangle =
-		\lambda_0^m \left(c_0 \lvert 0 \rangle + 
-		c_1 \left(\frac{\lambda_1}{\lambda_0}\right)^m \lvert 1 \rangle +
-		c_2\left(\frac{ \lambda_2}{\lambda_0}\right)^m \lvert 2 \rangle + \cdots \right)
-		\approx \lambda_0^m c_n \lvert 0 \rangle
+		E_0^m \left(c_0 \lvert 0 \rangle + 
+		c_1 \left(\frac{E_1}{E_0}\right)^m \lvert 1 \rangle +
+		c_2\left(\frac{ E_2}{E_0}\right)^m \lvert 2 \rangle + \cdots \right)
+		\approx E_0^m c_0 \lvert 0 \rangle
 \end{equation}
 
+{\color{red} Check the sign for this part.}
+If the ground state energy is not the largest in magnitude, as is the case with the Heisenberg
+model, we can manipulate the Hamiltonian slightly by adding or subtracting an
+appropriately chosen constant term, $x$, in which case we will have
+\begin{equation}
+(x-\mathcal{H)}^m\lvert \psi \rangle =
+		(E_0-x)^m \left(c_0 \lvert 0 \rangle + 
+		c_1 \left(\frac{E_1-x}{E_0-x}\right)^m \lvert 1 \rangle  + \cdots \right)
+		\approx (E_0-x)^m c_0 \lvert 0 \rangle.
+\end{equation}
+
+{\color{red} Comments to totally conclude up this section.}
 
 
 %--------------------------------------------------------------------------------------------------------------------------
-\section{The Hamiltonian / Bond Operators}
+\section{The Hamiltonian and Bond Operators}
+
+Throughout this thesis we will be looking at the Heisenberg model in one and two dimensions,
+and so the Hamiltonian used will be the isotropic, antiferromagnetic Heisenberg 
+Hamiltonian:
+\begin{equation}
+\mathcal{H}_{\rm{Heis}}=J\sum_{\langle i,j \rangle} \mathbf{S}_i\cdot \mathbf{S}_j
+= J\sum_{\langle i,j \rangle}
+	\left( S_i^z S_j^z + \tfrac{1}{2}\left[ S_i^+ S_j^- + S_i^- S_j^+ \right]\right),
+\end{equation}
+where the coupling constant $J$ is always positive, and $\sum_{\langle i,j \rangle}$ 
+represents a sum over all nearest-neighbor pairs of sites.
+
+We slightly modify the Hamiltonian for use in the ground state projection scheme:
+{\color{red} Check the sign!}
+\begin{equation}
+\mathcal{H}= \left(\mathcal{H}_{\rm{Heis}} - \tfrac{1}{4} \right)= \sum_{\langle i,j \rangle} 
+	\left(\mathbf{S}_i\cdot \mathbf{S}_j - \tfrac{1}{4}\right)
+	= - \sum_{\langle i,j \rangle} H_{ij}.
+\end{equation}
+Here the coupling constant $J$ is set to 1, and we define a \it{bond operator} \rm as 
+$H_{ij}=-\left(\mathbf{S}_i\cdot \mathbf{S}_j - \tfrac{1}{4}\right)$.
+
 %--------------------------------------------------------------------------------------------------------------------------
 \section{Single Projector}
 \subsection{Measurements}
