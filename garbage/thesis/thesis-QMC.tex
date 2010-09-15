@@ -227,16 +227,27 @@ Hamiltonian:
 \end{equation}
 where the coupling constant $J$ is always positive, and $\sum_{\langle i,j \rangle}$ 
 represents a sum over all nearest-neighbor pairs of sites.
+{\color{red} Talk about what this Hamiltonian does to $S^z$ spin states?}
 
 We slightly modify the Hamiltonian for use in the ground state projection scheme:
-{\color{red} Check the sign!}
+
 \begin{equation}
 \mathcal{H}= \left(\mathcal{H}_{\rm{Heis}} - \tfrac{1}{4} \right)= \sum_{\langle i,j \rangle} 
 	\left(\mathbf{S}_i\cdot \mathbf{S}_j - \tfrac{1}{4}\right)
 	= - \sum_{\langle i,j \rangle} H_{ij}.
 \end{equation}
-Here the coupling constant $J$ is set to 1, and we define a \it{bond operator} \rm as 
+Here the coupling constant $J$ is set to 1, and rewrite the Hamiltonian in terms of a list of
+\it{bond operators}, \rm $H_{ij}$, where 
 $H_{ij}=-\left(\mathbf{S}_i\cdot \mathbf{S}_j - \tfrac{1}{4}\right)$.
+
+The effect of these bond operators acting on a valence bond basis state is 
+surprisingly simple.  If a bond operator acts on two sites already joined by a valence
+bond, it acts as the identity and does not changed the state.  If the two sites acted upon are 
+not joined in a valence bond, the operator joins those two sites, and as a byproduct the 
+two sites that were once joined to those sites form a valence bond themselves.
+This is depicted in {\color{red} picture of VBs and bond ops acting on them and stuff.}
+It can also be shown mathematically:
+
 
 %--------------------------------------------------------------------------------------------------------------------------
 \section{Single Projector}
