@@ -167,7 +167,40 @@ Though valence bond states are not necessarily represented uniquely, an arbitrar
 always be represented as a unique combination of the energy eigenstates of a Hamiltonian,
 \begin{equation}
 \lvert \psi \rangle = \sum_n c_n \lvert n \rangle,
+\label{state}
 \end{equation}
+where $\lvert n \rangle$ is the $n^{\rm{th}}$ energy eigenstate of a Hamiltonian and the 
+$c_n$\!'s are
+the unique coefficients.
+
+If we apply the Hamiltonian to the state in Eq.~(\ref{state}) we are left with
+\begin{equation}
+\mathcal{H}\lvert \psi \rangle = \sum_n c_n \mathcal{H} \lvert n \rangle =
+ 		\sum_n c_n \lambda_n \lvert n \rangle = 
+		c_0 \lambda_0 \lvert 0 \rangle + c_1 \lambda_1 \lvert 1 \rangle +
+		c_2 \lambda_2 \lvert 2 \rangle + \cdots,
+\end{equation}
+where $\lambda_n$ is the $n^{\rm{th}}$ energy eigenvalue of the Hamiltonian, $\mathcal{H}$.
+We can then take out a factor of $\lambda_0$ to get
+\begin{equation}
+\mathcal{H}\lvert \psi \rangle =
+		\lambda_0 \left(c_0 \lvert 0 \rangle + c_1 \frac{\lambda_1}{\lambda_0} \lvert 1 \rangle +
+		c_2\frac{ \lambda_2}{\lambda_0} \lvert 2 \rangle + \cdots \right).
+\end{equation}
+
+If it is the case that $\lambda_0$ if the eigenvalue of the largest magnitude, then all the coefficients
+of the excited states are fractions less (in magnitude) than 1.  
+In that case, if we apply the Hamiltonian a large number of times, denoted by m, all terms excluding
+the ground state term will vanish.
+\begin{equation}
+\mathcal{H}^m\lvert \psi \rangle =
+		\lambda_0^m \left(c_0 \lvert 0 \rangle + 
+		c_1 \left(\frac{\lambda_1}{\lambda_0}\right)^m \lvert 1 \rangle +
+		c_2\left(\frac{ \lambda_2}{\lambda_0}\right)^m \lvert 2 \rangle + \cdots \right)
+		\approx \lambda_0^m c_n \lvert 0 \rangle
+\end{equation}
+
+
 
 %--------------------------------------------------------------------------------------------------------------------------
 \section{The Hamiltonian / Bond Operators}
