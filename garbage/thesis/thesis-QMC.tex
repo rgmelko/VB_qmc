@@ -105,7 +105,7 @@ and each of these singlet states is linearly independent of the others.
 In contrast, the number of possible valence bond states is given by
 \begin{equation}
 C_{\rm{VB}}^N =
-	\frac{(2N)!}{N!2^N},
+	\frac{(2N)!}{2^NN!},
 \end{equation}
 since we choose sites at random ($2N!$ ways to choose them) pairing them, but the order 
 in which each member of the bond is chosen does not matter (divide by 2 for every bond), 
@@ -119,13 +119,16 @@ represent any singlet state.
 It is convenient to define two sublattices, A and B, on a bipartite lattice, such that sites on 
 sublattice A are neighboured only by sublattice B sites and vice versa. 
 {\color{red} diagram of sublattices on a square lattice or something.}
-We can choose the valence bond covering containing only bonds going from sublattice A
+We can choose the valence bond coverings containing only bonds going from sublattice A
 to B.  (I say "from A to B" because valence bonds are, in fact, directional.  The ordering of the
 sites matters, and if the order is switched we get the same state with a factor of -1.)
+This restriction eliminates some, though not all, of the overcompleteness of the states.
+The, now reduced, number of valence bond states is simply $C_{\rm{AB}}^N = N!$.
+{\color{red} graph comparing the functions}
+{\color{red} maybe show some of my awesome matrix calculations? $S^2$ for N=2 and N=3, and 
+the lack of linear independence for N=3.}
 
 {\color{red}
-- next look at the number of VB states -- check\\
-- then the restricted set\\
 - maybe include that maple graph\\
 - then actually go over the properties if they haven't already been mentioned.
 
@@ -149,6 +152,23 @@ but with math and stuff this time.}
 
 %--------------------------------------------------------------------------------------------------------------------------
 \section{Ground State Projection}
+
+Quantum Monte Carlo in the valence bond basis is a ground state projection technique, 
+which means we start with a trial wave function apply high powers of the Hamiltonian until 
+we are left with the zero temperature ground state of the system.  {\color{red} Is this off topic $-->$}
+Though, being that it is a
+Monte Carlo technique, we are not actually left with the wave function, but we sample terms in
+the ground state wave function and we can then sample observable properties
+ according to the statistics of the 
+ground state wave function.\\
+{\color{red} explain GS projection real good now.}
+
+Though valence bond states are not necessarily represented uniquely, an arbitrary state can 
+always be represented as a unique combination of the energy eigenstates of a Hamiltonian,
+\begin{equation}
+\lvert \psi \rangle = \sum_n c_n \lvert n \rangle,
+\end{equation}
+
 %--------------------------------------------------------------------------------------------------------------------------
 \section{The Hamiltonian / Bond Operators}
 %--------------------------------------------------------------------------------------------------------------------------
