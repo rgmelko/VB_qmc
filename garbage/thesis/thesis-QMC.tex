@@ -268,7 +268,7 @@ operator has two different eigenvalues, or it could change the state
 if the initial state is not one of the four total spin eigenstates.
 
 Acting on an eigenstate of the total spin operator for two spins with a bond operator yields:
-\begin{eqnarray}
+\begin{equation}
 H_{ij}\lvert \psi \rangle = \begin{cases}
 	-\left(\tfrac{1}{2} \left[(0) - \tfrac{3}{4} - \tfrac{3}{4}\right] -\tfrac{1}{4}\right)\lvert\psi\rangle 
 	= \lvert\psi\rangle \text{ for total spin 0}\\
@@ -276,10 +276,86 @@ H_{ij}\lvert \psi \rangle = \begin{cases}
 	 = 0 \text{ \;\;\;for total spin 1}
 	 \end{cases}
 	 \label{bop}
-\end{eqnarray}
+\end{equation}
 If we want to use the bond operators on valence bond basis states Eq.~(\ref{bop}) tells
-us what happens when sites i and j are already joined in a valence bond, but we still
-need to look at the case in which the sites are initially part of different valence bonds.
+us what happens when sites $i$ and $j$ are already joined in a valence bond, but we still
+need to look at the case in which the sites are initially part of two different valence bonds.
+For four sites $a$, $b$, $c$, and $d$, with sites a and c on sublattice A 
+and the other on sublattice B,
+apply the operator $H_{cb}$
+\begin{eqnarray}
+H_{cb}\lvert(a,b)(c,d)\rangle &=& H_{cb}
+	\tfrac{1}{\sqrt{2}} \big( 
+	\lvert \uparrow_a \downarrow_b \rangle - \lvert \downarrow_a \uparrow_b \rangle 
+	\big) 
+	\tfrac{1}{\sqrt{2}} \big( 
+	\lvert \uparrow_c \downarrow_d \rangle - \lvert \downarrow_c \uparrow_d \rangle 
+	\big) \nonumber \\ 
+	&=&
+	  \tfrac{1}{2} H_{cb} \big(
+	   \lvert\uparrow_a \downarrow_d\rangle \lvert \uparrow_c \downarrow_b \rangle
+	   - \lvert \uparrow_a \uparrow_d \rangle \lvert \downarrow_c \downarrow_b \rangle
+	   - \lvert \downarrow_a \downarrow_d \rangle \lvert \uparrow_c \uparrow_b \rangle
+	   + \lvert \downarrow_a \uparrow_d \rangle \lvert \downarrow_c \uparrow_b \rangle
+	   \big) \nonumber
+\end{eqnarray}
+At this point it is convenient to represent the spin states involving sites $b$ and $c$
+in terms of eigenvalues of singlet and triplet states.
+\begin{eqnarray}
+H_{cb}\lvert(a,b)(c,d)\rangle &=&
+	     \tfrac{1}{2} H_{cb} \left( \lvert\uparrow_a \downarrow_d \rangle 
+	     \tfrac{1}{ \sqrt{2}} \left[ 
+	     	\tfrac{1}{ \sqrt{2}} \big(
+	     	\lvert \uparrow_c \downarrow_b \rangle - \lvert \downarrow_c \uparrow_b \rangle 
+	     \big) + 
+	     \tfrac{1}{ \sqrt{2}} \big(
+	     \lvert \uparrow_c \downarrow_b \rangle + \lvert \downarrow_c \uparrow_b \rangle 
+	     \big)
+	     \right]
+	     \right) \nonumber \\
+	     &&
+	     -   \tfrac{1}{2} H_{cb}
+	     \Big(\lvert \uparrow_a \uparrow_d \rangle \lvert \downarrow_c \downarrow_b \rangle
+	   + \lvert \downarrow_a \downarrow_d \rangle \lvert \uparrow_c \uparrow_b \rangle
+	   \Big) \\
+	   && - 	     \tfrac{1}{2} H_{cb} \left( \lvert\downarrow_a \uparrow_d \rangle 
+	     \tfrac{1}{ \sqrt{2}} \left[ 
+	     	\tfrac{1}{ \sqrt{2}} \big(
+	     	\lvert \uparrow_c \downarrow_b \rangle - \lvert \downarrow_c \uparrow_b \rangle 
+	     \big) -
+	     \tfrac{1}{ \sqrt{2}} \big(
+	     \lvert \uparrow_c \downarrow_b \rangle + \lvert \downarrow_c \uparrow_b \rangle 
+	     \big)
+	     \right]
+	     \right) \nonumber
+\end{eqnarray}
+We are left with states for which we know the outcome of applying this bond operator.
+The states with a nonzero total spin will vanish.
+\begin{eqnarray}
+H_{cb}\lvert(a,b)(c,d)\rangle &=&
+	     \tfrac{1}{2}\left( \lvert\uparrow_a \downarrow_d \rangle 
+	     \tfrac{1}{ \sqrt{2}} \left[ 
+	     	\tfrac{1}{ \sqrt{2}} \big(
+	     	\lvert \uparrow_c \downarrow_b \rangle - \lvert \downarrow_c \uparrow_b \rangle 
+	     \big)
+	     \right]
+	     \right) \nonumber \\    
+	   && \;\; \;\;\;\;\;\; \;\;\;\;\;
+	    - 	     \tfrac{1}{2} \left( \lvert\downarrow_a \uparrow_d \rangle 
+	     \tfrac{1}{ \sqrt{2}} \left[ 
+	     	\tfrac{1}{ \sqrt{2}} \big(
+	     	\lvert \uparrow_c \downarrow_b \rangle - \lvert \downarrow_c \uparrow_b \rangle 
+	     \big)
+	     \right]
+	     \right) \nonumber \\
+	     &=&  \tfrac{1}{2} \left[ \tfrac{1}{ \sqrt{2}} 
+	     \big( \lvert\uparrow_a \downarrow_d \rangle - \lvert\downarrow_a \uparrow_d \rangle  
+	     \big)\right]
+	     \left[ \tfrac{1}{ \sqrt{2}} 
+	     \big( \lvert\uparrow_c \downarrow_b \rangle - \lvert\downarrow_c \uparrow_b \rangle  
+	     \big)\right] \\
+	     &=& \tfrac{1}{2} \lvert(a,d)(c,b)\rangle \nonumber
+\end{eqnarray}
 	
 
 
