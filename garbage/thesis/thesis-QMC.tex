@@ -97,11 +97,34 @@ where S is the $(2S+1)$-degenerate state of spin $S$ \cite{Beach2006}.
 	\oplus 3 \nonumber
 \end{eqnarray}
 For and even number of spins, 2N, the number of singlet states is given by 
-$\frac{(2N)!}{N!(N+1)!}$.
+\begin{equation}
+C_{\rm{sing}}^N = \frac{1}{N+1}\binom{2N}{N}\ = \frac{(2N)!}{N!(N+1)!},
+\end{equation}  
+and each of these singlet states is linearly independent of the others.
+{\color{red} Can I figure out what the states actually look like?  Why is it 1/(n+1)(2n choose n)?}
+In contrast, the number of possible valence bond states is given by
+\begin{equation}
+C_{\rm{VB}}^N =
+	\frac{(2N)!}{N!2^N},
+\end{equation}
+since we choose sites at random ($2N!$ ways to choose them) pairing them, but the order 
+in which each member of the bond is chosen does not matter (divide by 2 for every bond), 
+nor does the order in which the $N$ bonds are chosen (divide by $N!$).
+For $N>1$ there more valence bond coverings than singlet states, the excess increasing 
+drastically with increasing $N$.  
+The valence bond states are not orthogonal to each other, in fact every valence bond covering
+has some overlap with every other covering.
+Because of this overcompleteness we can eliminate some of the valence bond states and still
+represent any singlet state.
+It is convenient to define two sublattices, A and B, on a bipartite lattice, such that sites on 
+sublattice A are neighboured only by sublattice B sites and vice versa. 
+{\color{red} diagram of sublattices on a square lattice or something.}
+We can choose the valence bond covering containing only bonds going from sublattice A
+to B.  (I say "from A to B" because valence bonds are, in fact, directional.  The ordering of the
+sites matters, and if the order is switched we get the same state with a factor of -1.)
 
-
-{\color{red} Can I figure out what the states actually look like?  Why is it 1/(n+1)(2n choose n)?\\
-- next look at the number of VB states\\
+{\color{red}
+- next look at the number of VB states -- check\\
 - then the restricted set\\
 - maybe include that maple graph\\
 - then actually go over the properties if they haven't already been mentioned.
