@@ -32,13 +32,116 @@ A singlet state refers to a spin state of a particle or group of particles with 
 For two spin 1/2 particles there is exactly one singlet state, represented in the $S^Z$ basis as
 
 \begin{equation}
-  \frac{1}{\sqrt{2}}\left( \lvert \uparrow_1 \downarrow_2 \rangle - \lvert \downarrow_1 \uparrow_2 \rangle \right) .
+  \frac{1}{\sqrt{2}}\left( \lvert \uparrow_a \downarrow_b \rangle - \lvert \downarrow_a \uparrow_b \rangle \right).
    \label{singlet}
 \end{equation}
+We can see this explicitly by finding the eigenstates of the $S^2$ operator for 
+two spin 1/2 particles.  We begin by expressing the $S^2$ operator in terms of its different
+spin components:
+\begin{eqnarray}
+S^2 &=& (S^x)^2 + (S^y)^2 + (S^z)^2 \\
+(S_a + S_b)^2 &=& (S^x_a+S^x_b)^2 + (S^y_a+S^y_b)^2 + (S^z_a+S^z_b)^2 \nonumber \\
+			&=&(S^x\otimes I+I \otimes S^x)^2 + 
+			(S^y\otimes I+I\otimes S^y)^2 + (S^z\otimes I+I\otimes S^z)^2
+			\label{s2}
+\end{eqnarray}
+where $I$ is the 2x2 identity matrix.  In Eq.~\eqref{s2} the operators are single spin operators.
+Switching to matrix notation now, we have
+\begin{eqnarray}
+(S_a + S_b)^2 &=& 
+\left(
+	\frac{1}{2}
+	\left[  \begin{array}{cc}
+	0 & 1\\
+	1 & 0\\
+ 	\end{array} \right] \otimes 
+ 	\left[  \begin{array}{cc}
+	1 & 0\\
+	0 & 1\\
+	 \end{array} \right] 
+	 +
+	 	\frac{1}{2}
+	\left[  \begin{array}{cc}
+	1 & 0\\
+	0 & 1\\
+ 	\end{array} \right] \otimes \nonumber
+ 	\left[  \begin{array}{cc}
+	0 & 1\\
+	1 & 0\\
+	 \end{array} \right] 
+	 \right)^2\\
+	 &&+
+	 \left(
+	\frac{1}{2}
+	\left[  \begin{array}{cc}
+	0 & -i\\
+	i & 0\\
+ 	\end{array} \right] \otimes 
+ 	\left[  \begin{array}{cc}
+	1 & 0\\
+	0 & 1\\
+	 \end{array} \right] 
+	 +
+	 	\frac{1}{2}
+	\left[  \begin{array}{cc}
+	1 & 0\\
+	0 & 1\\
+ 	\end{array} \right] \otimes 
+ 	\left[  \begin{array}{cc}
+	0 & -i\\
+	i & 0\\
+	 \end{array} \right] 
+	 \right)^2\\
+	 &&+
+	 \left(
+	\frac{1}{2}
+	\left[  \begin{array}{cc}
+	1 & 0\\
+	0 & -1\\
+ 	\end{array} \right] \otimes 
+ 	\left[  \begin{array}{cc}
+	1 & 0\\
+	0 & 1\\
+	 \end{array} \right] 
+	 +
+	 	\frac{1}{2}
+	\left[  \begin{array}{cc}
+	1 & 0\\
+	0 & 1\\
+ 	\end{array} \right] \otimes 
+ 	\left[  \begin{array}{cc}
+	1 & 0\\
+	0 & -1\\
+	 \end{array} \right] 
+	 \right)^2\nonumber \\
+	 &=& \left[  \begin{array}{cccc}
+	2 & 0 & 0 & 0\\
+	0 & 1 & 1 & 0\\
+	0 & 1 & 1 & 0\\
+	0 & 0 & 0 & 2\\
+	 \end{array} \right]
+\end{eqnarray}
+where the eigenvalues and eigenvectors are:
+\begin{eqnarray}
+\lambda_1 = 2,  &\mathbf{v}_1 = \left[ \begin{array}{cccc}1&0&0&0\end{array}  \right]
+	 &= \lvert \uparrow \uparrow \rangle \nonumber\\
+	 \lambda_2 = 2,  &\mathbf{v}_2 = \left[ \begin{array}{cccc}0&0&0&1\end{array}  \right]
+	 &= \lvert \downarrow \downarrow \rangle \nonumber\\
+	 \lambda_3 = 2,  &\;\;\;\;\,\mathbf{v}_3 =\tfrac{1}{\sqrt{2}}
+	  \left[ \begin{array}{cccc}0&1&1&0\end{array}  \right]
+	 &= \tfrac{1}{\sqrt{2}} \big(
+	 \lvert \uparrow \downarrow \rangle + \lvert \downarrow \uparrow \rangle \big) \nonumber\\
+	  \lambda_4 = 0,  &\;\;\;\;\;\;\;\;\mathbf{v}_4 =\tfrac{1}{\sqrt{2}}
+	  \left[ \begin{array}{cccc}0&1&-1&0\end{array}  \right]
+	 &= \tfrac{1}{\sqrt{2}} \big(
+	 \lvert \uparrow \downarrow \rangle - \lvert \downarrow \uparrow \rangle \big).
+\end{eqnarray}
+There is only one state with total spin equal to zero.  The other three states have total spin 1. 
+(If $\lvert \psi\rangle$ is a total spin eigenstate then 
+$S^2\lvert\psi\rangle = s(s+1)\lvert\psi\rangle$, where $s$ is the total spin.)
 
-  {\color{red} show that total spin is 0? (in scribbly notebook, Sept 14th)
   
-  (mention direction of singlet? i.e. Unlike the triplet states, the order of the particles involved will change the phase of the state.  Will have to do this later anyway.)
+ {\color{red} (mention direction of singlet? i.e. Unlike the triplet states, the order of the particles involved will change the phase of the state.  Will have to do this later anyway.)
 
 \begin{equation}
    \lvert(a,b)\rangle = \frac{1}{\sqrt{2}}\big( \lvert \uparrow_a \downarrow_b \rangle - \lvert \downarrow_a \uparrow_b \rangle \big) = ...
@@ -46,7 +149,9 @@ For two spin 1/2 particles there is exactly one singlet state, represented in th
 \end{equation}
 }
 
-{\color{red} y'know, make this whole thing better.}
+{\color{red} Q: Are the terms "valence bond" and "singlet state" interchangeable? \\
+A: For two spins, yes.  Otherwise, no.\\}
+{\it{Aside on the equivalence of the terms ``valence bond'' and ``singlet state'':}}
 A bond between two atoms created by sharing valence electrons in the outer orbitals is called a valence bond, or a covalent bond \cite{Slater1931,Pauling1933}.
 Since electrons are fermionic (have half integer spin) their total
 wave function must be antisymmetric (an exchange of the identical particles in the wave function
@@ -358,6 +463,7 @@ H_{cb}\lvert(a,b)(c,d)\rangle &=&
 \end{eqnarray}
 As was asserted earlier, the operator acts to rearrange to bonds.
 Also the state gains a factor of $\frac{1}{2}$.
+{\color{red} And of course I need to write a bit more for this section... but about what?}
 
 
 %--------------------------------------------------------------------------------------------------------------------------
