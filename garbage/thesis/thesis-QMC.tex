@@ -226,8 +226,12 @@ Hamiltonian:
 	\left( S_i^z S_j^z + \tfrac{1}{2}\left[ S_i^+ S_j^- + S_i^- S_j^+ \right]\right),
 \end{equation}
 where the coupling constant $J$ is always positive, and $\sum_{\langle i,j \rangle}$ 
-represents a sum over all nearest-neighbor pairs of sites.
-{\color{red} Talk about what this Hamiltonian does to $S^z$ spin states?}
+represents a sum over all nearest-neighbor pairs of sites.  
+{\color{red} Make this better or get rid of it?}
+If we apply this Hamiltonian to states in the $S^z$ basis, 
+the first term will assign lower energy to pairs of sites with antiparallel spins,
+while the remainder of the Hamiltonian will act to flip pairs of spins that are already 
+antiparallel or annihilate states with parallel spins.
 
 We slightly modify the Hamiltonian for use in the ground state projection scheme:
 
@@ -246,7 +250,37 @@ bond, it acts as the identity and does not changed the state.  If the two sites 
 not joined in a valence bond, the operator joins those two sites, and as a byproduct the 
 two sites that were once joined to those sites form a valence bond themselves.
 This is depicted in {\color{red} picture of VBs and bond ops acting on them and stuff.}
-It can also be shown mathematically:
+It can also be shown mathematically, but first let's examine the effect of bond operators
+on a general spin 1/2 state.
+
+We can rewrite the dot product of spin operators:
+\begin{eqnarray}
+\mathbf{S}_i\cdot \mathbf{S}_j = \tfrac{1}{2}\left[ \left(S_i + S_j\right)^2 -S_i^2-S_i^2 \right],
+\end{eqnarray}
+and since we are dealing with spin 1/2 particles, applying the $S^2$ operators to any state will
+give 
+\begin{equation}
+S^2\lvert \psi\rangle = s(s+1)\lvert \psi \rangle = \tfrac{1}{2}(\tfrac{1}{2} + 1)\lvert \psi \rangle
+	= \tfrac{3}{4}\lvert\psi\rangle
+\end{equation}
+for an arbitrary spin 1/2 state, $\lvert \psi\rangle$.  However, the $\left(S_i + S_j\right)^2$ 
+operator has two different eigenvalues, or it could change the state
+if the initial state is not one of the four total spin eigenstates.
+
+Acting on an eigenstate of the total spin operator for two spins with a bond operator yields:
+\begin{eqnarray}
+H_{ij}\lvert \psi \rangle = \begin{cases}
+	-\left(\tfrac{1}{2} \left[(0) - \tfrac{3}{4} - \tfrac{3}{4}\right] -\tfrac{1}{4}\right)\lvert\psi\rangle 
+	= \lvert\psi\rangle \text{ for total spin 0}\\
+	 -\left(\tfrac{1}{2} \left[(2) - \tfrac{3}{4}- \tfrac{3}{4}\right]-\tfrac{1}{4}\right)\lvert\psi\rangle
+	 = 0 \text{ \;\;\;for total spin 1}
+	 \end{cases}
+	 \label{bop}
+\end{eqnarray}
+If we want to use the bond operators on valence bond basis states Eq.~(\ref{bop}) tells
+us what happens when sites i and j are already joined in a valence bond, but we still
+need to look at the case in which the sites are initially part of different valence bonds.
+	
 
 
 %--------------------------------------------------------------------------------------------------------------------------
