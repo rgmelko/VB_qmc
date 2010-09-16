@@ -575,10 +575,20 @@ The single projector valence bond quantum Monte Carlo algorithm projects only on
 the Heisenberg ground state.
 
 \begin{enumerate}
-\item{\fbox{Choose or generate an initial valence bond state $\ket{V}$.}}
-\item{\fbox{Generate a list of m random bond operators $P_{r_1}$.}}
-\item{\fbox{Apply the list of bond operators  $P_{r_i}$ to $\ket{V}$ to get $\ket{V(r_i)}$.}}
-
+\item \fbox{\parbox{415pt}{Choose or generate an initial valence bond state $\ket{V}$.}}
+\item \fbox{\parbox{415pt}{Generate a list of m random bond operators $P_{\text{old}}$.}}
+\item \fbox{\parbox{415pt}{Apply the list of bond operators to the initial state.  
+		\begin{equation}
+		P_{\text{old}}\ket{V}=W_{\text{old}}\ket{V_{\text{old}}} \nonumber
+		\end{equation}
+		}}
+\item \fbox{\parbox{415pt}{Randomly change a predetermined number, 
+		$q$, of the bond operators 
+		in $P_{\text{old}}$ and relabel it as $P_{\text{new}}$.}}
+\item \fbox{\parbox{415pt}{Apply the new list of bond operators to the original initial state. 
+		\begin{equation} P_{\text{new}}\ket{V}=W_{\text{new}}\ket{V_{\text{new}}}
+		\end{equation}
+		}}
 \end{enumerate}
 
 %--------------------------------------------------------------------------------------------------------------------------
