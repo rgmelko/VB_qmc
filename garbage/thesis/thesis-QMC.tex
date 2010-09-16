@@ -541,32 +541,45 @@ In section \ref{gsp} we saw that repeated application of the Hamiltonian to any 
 give us (\change{in the limit of a large power of the Hamiltonian}) a state proportional to the
 ground state of the system.
 However, computing this exactly would be \change{extremely computationally expensive}.
-\notsay{The Hamiltonian has $N_{nn}$ terms, one for each possible nearest-neighbor bond.  
-Raising it to the even power $m$ would give us $N_{nn}^m$ terms each containing $m$ bond operators.}
-\begin{equation}
-	\ham = -\sum_{r=1}^{N_{nn}}H_r \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;   
+The Hamiltonian has $N_{nn}$ terms, one for each possible nearest-neighbor bond.  
+Raising it to the even power $m$ would give us $N_{nn}^m$ terms each containing $m$ bond operators,
+\begin{equation} \label{bopss}  
 	\ham^m=\left(\sum_{r=1}^{N_{nn}}H_r\right)^m=
 	\sum_{r_1=1}^{N_{nn}}\sum_{r_2=1}^{N_{nn}}\cdots \sum_{r_m=1}^{N_{nn}}
-	\bigg( H_{r_1} H_{r_2} \cdots H_{r_m} \bigg) \end{equation}
-\change{This can be avoided} by using a Monte Carlo sampling algorithm.  
-If we sample terms in this sum we can \change{approximate} the ground state of the system.
-The simulation \change{becomes more effective} by \change{favoring} terms that are more heavily
-weighted in the \change{sum}.
-
-To simulate applying the Hamiltonian to a state $m$ times we apply a list of  $m$ bond operators to
-a trial state $\ket{V}$:
-\begin{equation}
+	\bigg( H_{r_1} H_{r_2} \cdots H_{r_m} \bigg) 
+	=\sum_{r=1}^{N_{nn}^m} P_r,
 \end{equation}
+where $r$ goes over each of the possible nearest neighbor bonds.  
+Applying $\ham^m$ to a trial state $\ket{V}$ gives us
+\begin{equation} \label{hamapp}
+	\ham^m \ket{V} = \sum_{r=1}^{N_{nn}^m} P_r \ket{V} = \sum_{r=1}^{N_{nn}^m} W(r)\ket{V(r)}
+	= \sum_{r=1}^{N_{nn}^m} 2^{-m_r^{\text{off}}}\ket{V(P_r)},
+\end{equation}
+where $W(r)$ is the weight resulting from applying the $r^{\text{th}}$ term from \eqref{bopss} to 
+the trial state, which is equivalent to the $1/2$ raised to the power of number of
+ off-diagonal bond operators (bond operators
+acting on sites that are not already joined by a valence bond) in $P_r$.
 
-%=\sum_{r=1}^{N_{nn}^m} P_r
+Instead of computing the full sum from \eqref{hamapp}, we stochastically sample terms
+from the sum, with sampling proportional to their weight $W(r)$ in the sum.
 
 
+
+
+\comment{actually put in the algorithms}
 
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Single Projector}
 %--------------------------------------------------------------------------------------------------------------------------
 The single projector valence bond quantum Monte Carlo algorithm projects only one state \change{into}
 the Heisenberg ground state.
+
+\begin{enumerate}
+\item{\fbox{Choose or generate an initial valence bond state $\ket{V}$.}}
+\item{\fbox{Generate a list of m random bond operators $P_{r_1}$.}}
+\item{\fbox{Apply the list of bond operators  $P_{r_i}$ to $\ket{V}$ to get $\ket{V(r_i)}$.}}
+
+\end{enumerate}
 
 %--------------------------------------------------------------------------------------------------------------------------
 \subsubsection{Measurements}
