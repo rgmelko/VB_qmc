@@ -609,15 +609,90 @@ the Heisenberg ground state.
 \item \fbox{\parbox{410pt}{
 		Go to Step 4.	
 		}}	
-
-
-
 \end{enumerate}
 
 %--------------------------------------------------------------------------------------------------------------------------
 \subsubsection{Measurements}
+\change{
+- energy \\
+- is there anything else we can measure? properties of the valence bonds.\\
+- singlet-triplet gap? check sandvik's papers.
+}
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Double Projector}
 %--------------------------------------------------------------------------------------------------------------------------
+\change{
+- similar to single projector, but two states are projected separately and the weights are different\\
+- mention that single projector is not variational and double projector is\\
+- can measure many other (non-energy) quantities 
+}
+
+\begin{enumerate}
+\item \fbox{\parbox{410pt}{Choose or generate an initial valence bond state $\ket{V}$.}}
+\item \fbox{\parbox{410pt}{Generate two lists of m random bond operators $L_{\text{old}}$
+					and  $R_{\text{old}}$ .}}
+\item \fbox{\parbox{410pt}{Apply the lists of bond operators to the initial state.  
+		\begin{equation}
+		\bra{V}L^\dagger_{\text{old}}=W^L_{\text{old}}\bra{V^L_{\text{old}}} \nonumber
+		\;\;\;\;\;\;\;\;\;\;
+		R_{\text{old}}\ket{V}=W^R_{\text{old}}\ket{V^R_{\text{old}}} 
+		\end{equation}
+		}}
+\item \fbox{\parbox{410pt}{Randomly change a predetermined number, 
+		$q$, of the bond operators 
+		in $L_{\text{old}}$ and relabel it as $L_{\text{new}}$.}}
+\item \fbox{\parbox{410pt}{Apply the new left list of bond operators to the original initial state. 
+		\begin{equation} 
+			\bra{V}L^\dagger_{\text{new}}=W^L_{\text{new}}\bra{V^L_{\text{new}}} \nonumber			\end{equation}
+		}}
+\change{
+\item \fbox{\parbox{410pt}{
+		If $W_{\text{new}} \ge W_{\text{old}}$: \;\; Set $W_{\text{old}} = W_{\text{new}}$
+									and $P_{\text{old}} = P_{\text{new}}$. 
+									
+		\hspace{21pt} Otherwise:   \;\; Generate a random number $A \in [0,1)$.
+		
+		\hspace{93pt} If $A < W_{\text{new}}/W_{\text{old}}$:
+			\;\; Set $W_{\text{old}} = W_{\text{new}}$.
+			
+		}}
+}
+\item \fbox{\parbox{410pt}{Randomly change a predetermined number, 
+		$q$, of the bond operators 
+		in $R_{\text{old}}$ and relabel it as $R_{\text{new}}$.}}
+\item \fbox{\parbox{410pt}{Apply the new right list of bond operators to the original initial state. 
+		\begin{equation} 
+			R_{\text{new}}\ket{V}=W^R_{\text{new}}\ket{V^R_{\text{new}}}  \nonumber					\end{equation}
+		}}
+\change{
+\item \fbox{\parbox{410pt}{
+		If $W_{\text{new}} \ge W_{\text{old}}$: \;\; Set $W_{\text{old}} = W_{\text{new}}$
+									and $P_{\text{old}} = P_{\text{new}}$. 
+									
+		\hspace{21pt} Otherwise:   \;\; Generate a random number $A \in [0,1)$.
+		
+		\hspace{93pt} If $A < W_{\text{new}}/W_{\text{old}}$:
+			\;\; Set $W_{\text{old}} = W_{\text{new}}$.
+			
+		}}
+\item \fbox{\parbox{410pt}{
+		
+		Take a measurement using the state $\ket{V_{\text{old}}}$. 
+			
+		}}	
+		
+\item \fbox{\parbox{410pt}{
+		Go to Step 4.	
+		}}	}
+\end{enumerate}
+
+
+
+%--------------------------------------------------------------------------------------------------------------------------
 \subsection{Loop Moves}
 %--------------------------------------------------------------------------------------------------------------------------
+\change{
+- sooooooooooooo fast \\
+- drawbacks (can't change weight, light for renyi sampling thing)
+}
+
