@@ -8,26 +8,27 @@
 %======================================================================
 %======================================================================
 \section{The Valence Bond Basis}
+%--------------------------------------------------------------------------------------------------------------------------
 %What is a VB and how can it be represented?\\
 %Representing multiple VBs\\
 %VB basis properties\\
 
 {\color{red} The valence bond basis, like the $S^Z$ basis, can be used to represent spin states.}
-
+%--------------------------------------------------------------------------------------------------------------------------
 \subsection{The Spin 1/2 Singlet State}
-
+%--------------------------------------------------------------------------------------------------------------------------
 
 Typically the states of spin 1/2 particles are represented in the $S^Z$ basis.  
-{\color{red} is this part even necessary?} 
+{\color{blue}  
 Applying the $S^Z$ operator to its eigenstates yields either $+1/2$ or $-1/2$ 
 corresponding to the spin up and spin down eigenstates respectively.
 \begin{equation}
-   S^z\lvert \uparrow \rangle = +\frac{1}{2} \lvert \uparrow \rangle
-   \:\:\:    \:\:\:    \:\:\:    \:\:\:    \:\:\:    \:\:\: 
-   S^z\lvert \downarrow \rangle = -\frac{1}{2} \lvert \downarrow \rangle
-   \label{SZ}
+ 	  S^z\lvert \uparrow \rangle = +\frac{1}{2} \lvert \uparrow \rangle
+ 	 \:\:\:    \:\:\:    \:\:\:    \:\:\:    \:\:\:    \:\:\: 
+ 	  S^z\lvert \downarrow \rangle = -\frac{1}{2} \lvert \downarrow \rangle
+	   \label{SZ}
 \end{equation}
-
+}
 A singlet state refers to a spin state of a particle or group of particles with vanishing total spin angular momentum.
 %other states are not eigenstates of S^2
 For two spin 1/2 particles there is exactly one singlet state, represented in the $S^Z$ basis as
@@ -141,8 +142,9 @@ where the eigenvalues and eigenvectors are:
 There is only one state with total spin equal to zero.  The other three states have total spin 1. 
 (If $\lvert \psi\rangle$ is a total spin eigenstate then 
 $S^2\lvert\psi\rangle = s(s+1)\lvert\psi\rangle$, where $s$ is the total spin.)
-
+%--------------------------------------------------------------------------------------------------------------------------
 \subsubsection{Aside: Equivalence of the valence bond and the singlet state}
+%--------------------------------------------------------------------------------------------------------------------------
 {\it{A bond between two atoms created by sharing valence electrons in the outer orbitals is called a valence bond, or a covalent bond \cite{Slater1931,Pauling1933}.
 Since electrons are fermionic (have half integer spin) their total
 wave function must be antisymmetric (an exchange of the identical particles in the wave function
@@ -150,7 +152,7 @@ gives a factor of -1, i.e. $\Psi(1,2) = -\Psi(2,1)$).
 The total wave function is a product of the spatial and spin wave functions, so one of those wave functions must be antisymmetric and the other symmetric (an exchange of particles yields the same wave function, i.e. $\Psi(1,2) = \Psi(2,1)$).
 As part of the same valence bond, two electrons will have a symmetric spatial wave function {\color{red} true?}, so their spin state must be antisymmetric.  For two spin 1/2 particles the only antisymmetric spin state is the singlet state.  
 Hence, in the case of two spin 1/2 particles, a valence bond is equivalent to the spin 1/2 singlet state from equation \eqref{singlet}.}}
-
+%--------------------------------------------------------------------------------------------------------------------------
 We represent these valence bonds, or singlet states, in three ways: 
 \begin{itemize}
 \item{in the $S^z$ basis using up spins and down spins, 
@@ -160,39 +162,48 @@ i.e. $\tfrac{1}{\sqrt{2}}( \lvert \uparrow_a \downarrow_b \rangle - \lvert \down
 or pictorially as a bond joining two sites ({\color{red}see figure}).}
 \end{itemize}
 
- {\color{red} add in a picture of a valence bond... not sure how to draw that yet.}
+
+{\color{red} add in a picture of a valence bond... not sure how to draw that yet.}
 
 {\color{red} anything about it being maximally entangled?}
 
 {\color{red}REFERENCES!!!!!!!!!!!!!!!}
 
-
+%--------------------------------------------------------------------------------------------------------------------------
 \subsection{Basis Properties}
-
+%--------------------------------------------------------------------------------------------------------------------------
 A collection of sites on a lattice can be paired into a valence bonds such that each site
-belongs to exactly one bond.  We call this a valence bond covering (depicted in {\color{red}
-Figure Whatever}).  
-{\color{red} Totally put in a VB covering figure}
+belongs to exactly one bond.  
+We call this a valence bond covering, and it is most conveniently represented as a list of 
+sites that are paired in valence bonds:
+\begin{equation}
+	\ket{V} = \ket{(i_1,j_1)(i_2,j_2)\cdots(i_N,j_N)},
+\end{equation}
+where bonds go from sites $i$ to $j$ for a lattice with $2N$ sites.  
+{\color{blue}Changing the order of the bonds in this list will not change the state, but reversing the order of an
+$i$, $j$ pair may.}
+{\color{red} Totally put in a VB covering figure.}
 A basis of valence bond coverings can be used to represent an arbitrary singlet state
-for an even number of spins.
+for an even number of spins, but in general that representation is not unique.
+
 The number of possible singlet states for a given number of spin 1/2 sites can be enumerated
 using the rule for the addition of angular momentum for each added spin,
 \begin{equation}
-S\otimes \tfrac{1}{2}  = \left(S-\tfrac{1}{2}\right)\oplus\left(S+\tfrac{1}{2}\right),
+	S\otimes \tfrac{1}{2}  = \left(S-\tfrac{1}{2}\right)\oplus\left(S+\tfrac{1}{2}\right),
 \end{equation}
 where S is the $(2S+1)$-degenerate state of spin $S$ \cite{Beach2006}.
 \begin{eqnarray}
-\tfrac{1}{2} \otimes \tfrac{1}{2}  &=& 0 \oplus 1\nonumber \\ 
-\tfrac{1}{2} \otimes \tfrac{1}{2}  \otimes \tfrac{1}{2} &=& 
+	\tfrac{1}{2} \otimes \tfrac{1}{2}  &=& 0 \oplus 1\nonumber \\ 
+	\tfrac{1}{2} \otimes \tfrac{1}{2}  \otimes \tfrac{1}{2} &=& 
 	\tfrac{1}{2} \oplus  \tfrac{1}{2} \oplus  \tfrac{3}{2} \nonumber \\
-\tfrac{1}{2} \otimes \tfrac{1}{2}  \otimes \tfrac{1}{2} \otimes \tfrac{1}{2} &=& 
+	\tfrac{1}{2} \otimes \tfrac{1}{2}  \otimes \tfrac{1}{2} \otimes \tfrac{1}{2} &=& 
 	0 \oplus 0 \oplus 1 \oplus 1 \oplus 1 \oplus 2 \nonumber \\
-\tfrac{1}{2} \otimes \tfrac{1}{2}  \otimes \tfrac{1}{2}  \otimes \tfrac{1}{2}  \otimes \tfrac{1}{2}&=& 
+	\tfrac{1}{2} \otimes \tfrac{1}{2}  \otimes \tfrac{1}{2}  \otimes \tfrac{1}{2}  \otimes \tfrac{1}{2}&=& 
 	\tfrac{1}{2} \oplus \tfrac{1}{2} \oplus \tfrac{1}{2} \oplus \tfrac{1}{2} \oplus \tfrac{1}{2} \oplus  
 	\tfrac{3}{2} \oplus \tfrac{3}{2} \oplus \tfrac{3}{2} \oplus \tfrac{3}{2} \oplus
 	  \tfrac{5}{2} \nonumber \\
-\tfrac{1}{2} \otimes \tfrac{1}{2}  \otimes \tfrac{1}{2} \otimes \tfrac{1}{2} \otimes \tfrac{1}{2}
-\otimes \tfrac{1}{2} &=& 
+	\tfrac{1}{2} \otimes \tfrac{1}{2}  \otimes \tfrac{1}{2} \otimes \tfrac{1}{2} \otimes \tfrac{1}{2}
+	\otimes \tfrac{1}{2} &=& 
 	\underbrace{0 \oplus\cdots \oplus 0}_{5 \rm{\; times}} \oplus 
 	\underbrace{1 \oplus \cdots \oplus 1}_{9 \rm{\; times}} \oplus 
 	\underbrace{2 \oplus \cdots \oplus 2}_{5 \rm{\; times}} 
@@ -200,13 +211,13 @@ where S is the $(2S+1)$-degenerate state of spin $S$ \cite{Beach2006}.
 \end{eqnarray}
 For and even number of spins, 2N, the number of singlet states is given by 
 \begin{equation}
-C_{\rm{sing}}^N = \frac{1}{N+1}\binom{2N}{N}\ = \frac{(2N)!}{N!(N+1)!},
+	C_{\rm{sing}}^N = \frac{1}{N+1}\binom{2N}{N}\ = \frac{(2N)!}{N!(N+1)!},
 \end{equation}  
 and each of these singlet states is linearly independent of the others.
 {\color{red} Can I figure out what the states actually look like?  Why is it 1/(n+1)(2n choose n)?}
 In contrast, the number of possible valence bond states is given by
 \begin{equation}
-C_{\rm{VB}}^N =
+	C_{\rm{VB}}^N =
 	\frac{(2N)!}{2^NN!},
 \end{equation}
 since we choose sites at random ($2N!$ ways to choose them) pairing them, but the order 
@@ -265,7 +276,14 @@ We can choose the valence bond coverings containing only bonds going from sublat
 to B.  (I say ``from A to B" because valence bonds are directional; the ordering of the
 sites matters, and reversing the order gives a factor of -1.)
 This restriction eliminates some, though not all, of the overcompleteness of the states.
-The, now reduced, number of valence bond states is simply $C_{\rm{AB}}^N = N!$.
+The, now reduced, number of valence bond states is simply $C_{\rm{AB}}^N = N!$ for a system of $2N$ spins.
+
+One way to see the linear dependence of these valence bond states would be to again diagonalize
+the $S^2$ matrix, for a six-site system this time (in which there are $3!=6$ A-B sublattice
+valence bond states, but only $6!/(3!4!) = 5$ singlet states).
+This, however, would require us to diagonalize a 64x64 matrix, or a 20x20 matrix if we only look at
+the $S^z=0$ sector.
+
 
 {\color{red} Perhaps, show how even with the AB sublattice coverings only, it's still overcomplete.
 Though I do this using the *overlap* matrix, which I need to compute the overlap for... and I haven't
@@ -273,11 +291,10 @@ said how the calculate the overlap.  Where is that going to go, btw?}
 
 
 {\color{red} graph comparing the functions}
-{\color{red} maybe show some of my awesome matrix calculations? $S^2$ for N=2 and N=3, and 
+{\color{red} maybe show some of my awesome matrix calculations? \\ 
 the lack of linear independence for N=3.}
 
 {\color{red}
-- maybe include that maple graph\\
 - then actually go over the properties if they haven't already been mentioned.
 
 - VB basis can be used to represent any singlet state\\
@@ -292,20 +309,30 @@ because it has total spin zero, and lower energy than the N\'eel state.  check i
 {\color{red} Thing from Anderson 1973 about energy per NN VB vs energy per 2 antiparallel sites,
 but with math and stuff this time.}
 
-\subsection{One more section, but on what?}
+\subsection{The Inner Product}
+
+{\color{red} show pictures and stuff.  Show mathematically how the VB overlap is calculated,
+representing the VBs in the Sz basis.}
 
 
 %--------------------------------------------------------------------------------------------------------------------------
 \section{Ground State Projection}
+%--------------------------------------------------------------------------------------------------------------------------
+{\color{red} maybe somewhere in this section do the whole "we can represent any singlet states in
+terms of valence bond states *EQUATION*, though that representation is not unique (even with just
+the AB sublattice VBs) for more than 4 sites.  How*ever* we can always represent a state uniquely 
+in terms of it's energy eigenstates..."}
 
 Quantum Monte Carlo in the valence bond basis is a ground state projection technique, 
 which means we start with a trial wave function apply high powers of the Hamiltonian until 
-we are left with the zero temperature ground state of the system.  {\color{red} Is this off topic $-->$}
+we are left with the zero temperature ground state of the system. 
+ {\color{blue}
 Though, being that it is a
 Monte Carlo technique, we are not actually left with the wave function, but we sample terms in
 the ground state wave function and we can then sample observable properties
  according to the statistics of the 
 ground state wave function.\\
+}
 {\color{red} explain GS projection real good now.}
 
 Though valence bond states are not necessarily represented uniquely, an arbitrary state can 
@@ -361,7 +388,7 @@ appropriately chosen constant term, $x$, in which case we will have
 
 %--------------------------------------------------------------------------------------------------------------------------
 \section{The Hamiltonian and Bond Operators}
-
+%--------------------------------------------------------------------------------------------------------------------------
 Throughout this thesis we will be looking at the Heisenberg model in one and two dimensions,
 and so the Hamiltonian used will be the isotropic, antiferromagnetic Heisenberg 
 Hamiltonian:
@@ -372,11 +399,12 @@ Hamiltonian:
 \end{equation}
 where the coupling constant $J$ is always positive, and $\sum_{\langle i,j \rangle}$ 
 represents a sum over all nearest-neighbor pairs of sites.  
-{\color{red} Make this better or get rid of it?}
+{\color{blue} 
 If we apply this Hamiltonian to states in the $S^z$ basis, 
 the first term will assign lower energy to pairs of sites with antiparallel spins,
 while the remainder of the Hamiltonian will act to flip pairs of spins that are already 
-antiparallel or annihilate states with parallel spins.
+antiparallel or annihilate states with parallel spins. 
+}
 
 We slightly modify the Hamiltonian for use in the ground state projection scheme:
 
@@ -508,6 +536,7 @@ Also the state gains a factor of $\frac{1}{2}$.
 
 %--------------------------------------------------------------------------------------------------------------------------
 \section{Single Projector}
+%--------------------------------------------------------------------------------------------------------------------------
 \subsection{Measurements}
 %--------------------------------------------------------------------------------------------------------------------------
 \section{Double Projector}
