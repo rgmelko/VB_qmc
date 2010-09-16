@@ -121,19 +121,20 @@ Switching to matrix notation now, we have
 	0 & 1 & 1 & 0\\
 	0 & 0 & 0 & 2\\
 	 \end{array} \right]
+	 \label{diagon}
 \end{eqnarray}
 where the eigenvalues and eigenvectors are:
 \begin{eqnarray}
-\lambda_1 = 2,  &\mathbf{v}_1 = \left[ \begin{array}{cccc}1&0&0&0\end{array}  \right]
+\lambda_1 = 2,  &\mathbf{v}_1 = \left[ \begin{array}{cccc}1&0&0&0\end{array}  \right] ^\top
 	 &= \lvert \uparrow \uparrow \rangle \nonumber\\
-	 \lambda_2 = 2,  &\mathbf{v}_2 = \left[ \begin{array}{cccc}0&0&0&1\end{array}  \right]
+	 \lambda_2 = 2,  &\mathbf{v}_2 = \left[ \begin{array}{cccc}0&0&0&1\end{array}  \right] ^\top
 	 &= \lvert \downarrow \downarrow \rangle \nonumber\\
 	 \lambda_3 = 2,  &\;\;\;\;\,\mathbf{v}_3 =\tfrac{1}{\sqrt{2}}
-	  \left[ \begin{array}{cccc}0&1&1&0\end{array}  \right]
+	  \left[ \begin{array}{cccc}0&1&1&0\end{array}  \right]^\top
 	 &= \tfrac{1}{\sqrt{2}} \big(
 	 \lvert \uparrow \downarrow \rangle + \lvert \downarrow \uparrow \rangle \big) \nonumber\\
 	  \lambda_4 = 0,  &\;\;\;\;\;\;\;\;\mathbf{v}_4 =\tfrac{1}{\sqrt{2}}
-	  \left[ \begin{array}{cccc}0&1&-1&0\end{array}  \right]
+	  \left[ \begin{array}{cccc}0&1&-1&0\end{array}  \right]^\top
 	 &= \tfrac{1}{\sqrt{2}} \big(
 	 \lvert \uparrow \downarrow \rangle - \lvert \downarrow \uparrow \rangle \big).
 \end{eqnarray}
@@ -211,20 +212,66 @@ C_{\rm{VB}}^N =
 since we choose sites at random ($2N!$ ways to choose them) pairing them, but the order 
 in which each member of the bond is chosen does not matter (divide by 2 for every bond), 
 nor does the order in which the $N$ bonds are chosen (divide by $N!$).
-For $N>1$ there more valence bond coverings than singlet states, the excess increasing 
-drastically with increasing $N$.  
+For $N>1$ there are more valence bond coverings than singlet states, the excess increasing 
+drastically by increasing $N$.  
+
 The valence bond states are not orthogonal to each other, in fact every valence bond covering
 has some overlap with every other covering.
 Because of this overcompleteness we can eliminate some of the valence bond states and still
-represent any singlet state.
+represent any singlet state.  
+In fact, this can be seen for a four-site system by again diagonalizing the $S^2$ matrix.
+This time we will only look at the $S^z=0$ sector, since all the singlet states will be found there.
+With the same method used to get \eqref{diagon}, we find:
+\begin{eqnarray}
+S^2_{\text{reduced}} =\left[
+\begin{array}{cccccc}
+2&1&1&1&1&0\\
+1&2&1&1&0&1\\
+1&1&2&0&1&1\\
+1&1&0&2&1&1\\
+1&0&1&1&2&1\\
+0&1&1&1&1&2\\
+\end{array} \right] 
+\begin{array}{cc}
+\lambda_1=6,&\mathbf{v_1} =\left[\begin{array}{cccccc} 1&1&1&1&1&1\end{array} \right]\\
+\lambda_2=2,&\mathbf{v_2} =\left[\begin{array}{cccccc} 1&0&0&0&0&-1\end{array} \right]\\
+\lambda_3=2,&\mathbf{v_3} =\left[\begin{array}{cccccc} 0&1&-3&3&-1&0\end{array} \right]\\
+\lambda_4=2,&\mathbf{v_4} =\left[\begin{array}{cccccc} 0&3&1&-1&-3&0\end{array} \right]\\
+\lambda_5=0,&\mathbf{v_5} =\left[\begin{array}{cccccc} 0&1&-1&-1&1&0\end{array} \right]\\
+\lambda_6=0,&\mathbf{v_6} =\left[\begin{array}{cccccc} 1&-1&0&0&-1&1\end{array} \right]\\
+\end{array} 
+\end{eqnarray}
+where $\mathbf{v_5}$ and $\mathbf{v_6}$ are the (so far unnormalized) singlet states.
+Note that there are only two linearly independent singlet states, while there are three valence bond states
+for a four-site system.
+Also interesting is that the singlet states are composed of two-site valence bonds. 
+Expressing $\mathbf{v_5}$ and $\mathbf{v_6}$ in the spin and valence bond bases we get
+\begin{eqnarray}
+\mathbf{v_5} &=&\frac{1}{2}\bigg(\lvert \dw \up \dw \up \rangle - \lvert \dw \up \up \dw \rangle
+			- \lvert \up \dw \dw \up \rangle + \lvert \up \dw \up \dw \rangle \bigg) 
+			= \lvert(a,b)(c,d)\rangle\\
+\mathbf{v_6} &=&\frac{1}{2}\bigg(\lvert \dw \dw \up \up \rangle - \lvert \dw \up \up \dw \rangle
+			- \lvert \up \dw \dw \up \rangle + \lvert \up \up \dw \dw \rangle \bigg)
+			= \lvert(a,d)(c,b)\rangle
+\end{eqnarray}
+{\color{red} is there a way to get little vb diagrams in there? - note: also made up of vbs.
+Talk about how we can express the 3rd VB config in terms of the other two.}
+
+
 It is convenient to define two sublattices, A and B, on a bipartite lattice, such that sites on 
 sublattice A are neighbored only by sublattice B sites and vice versa. 
 {\color{red} diagram of sublattices on a square lattice or something.}
 We can choose the valence bond coverings containing only bonds going from sublattice A
-to B.  (I say "from A to B" because valence bonds are, in fact, directional.  The ordering of the
-sites matters, and if the order is switched we get the same state with a factor of -1.)
+to B.  (I say ``from A to B" because valence bonds are directional; the ordering of the
+sites matters, and reversing the order gives a factor of -1.)
 This restriction eliminates some, though not all, of the overcompleteness of the states.
 The, now reduced, number of valence bond states is simply $C_{\rm{AB}}^N = N!$.
+
+{\color{red} Perhaps, show how even with the AB sublattice coverings only, it's still overcomplete.
+Though I do this using the *overlap* matrix, which I need to compute the overlap for... and I haven't
+said how the calculate the overlap.  Where is that going to go, btw?}
+
+
 {\color{red} graph comparing the functions}
 {\color{red} maybe show some of my awesome matrix calculations? $S^2$ for N=2 and N=3, and 
 the lack of linear independence for N=3.}
@@ -235,10 +282,7 @@ the lack of linear independence for N=3.}
 
 - VB basis can be used to represent any singlet state\\
 - spans the spin 0 sector\\
-- only for an even number of sites\\
-- singlets have a lower energy that the classical N\'eel state\\
-- mention sign/directionality of VBs\\
-- have to go from sublattice A to B (maybe put this in a different section?)\\
+***- singlets have a lower energy that the classical N\'eel state\\
 - show how we represent VB's and VB coverings
 }
 
