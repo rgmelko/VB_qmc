@@ -542,19 +542,31 @@ give us (\change{in the limit of a large power of the Hamiltonian}) a state prop
 ground state of the system.
 However, computing this exactly would be \change{extremely computationally expensive}.
 \notsay{The Hamiltonian has $N_{nn}$ terms, one for each possible nearest-neighbor bond.  
-Raising it to the power $m$ would give us $N_{nn}^m$ terms each containing $m$ bond operators.}
-
+Raising it to the even power $m$ would give us $N_{nn}^m$ terms each containing $m$ bond operators.}
+\begin{equation}
+	\ham = -\sum_{r=1}^{N_{nn}}H_r \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;   
+	\ham^m=\left(\sum_{r=1}^{N_{nn}}H_r\right)^m=
+	\sum_{r_1=1}^{N_{nn}}\sum_{r_2=1}^{N_{nn}}\cdots \sum_{r_m=1}^{N_{nn}}
+	\bigg( H_{r_1} H_{r_2} \cdots H_{r_m} \bigg) \end{equation}
 \change{This can be avoided} by using a Monte Carlo sampling algorithm.  
 If we sample terms in this sum we can \change{approximate} the ground state of the system.
 The simulation \change{becomes more effective} by \change{favoring} terms that are more heavily
 weighted in the \change{sum}.
-\comment{Something about how we use the simulations to get the ground state wavefunction of the
-system in the valence bond basis.}
+
+To simulate applying the Hamiltonian to a state $m$ times we apply a list of  $m$ bond operators to
+a trial state $\ket{V}$:
+\begin{equation}
+\end{equation}
+
+%=\sum_{r=1}^{N_{nn}^m} P_r
+
+
 
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Single Projector}
 %--------------------------------------------------------------------------------------------------------------------------
-
+The single projector valence bond quantum Monte Carlo algorithm projects only one state \change{into}
+the Heisenberg ground state.
 
 %--------------------------------------------------------------------------------------------------------------------------
 \subsubsection{Measurements}
