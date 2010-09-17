@@ -1,15 +1,31 @@
 %======================================================================
 \chapter{Valence Bond Entanglement Entropy}
 %======================================================================
-In \change{year that this happened} a new quantity called {\it{valence bond entanglement entropy}} (VB EE) which seems to have properties
+In \change{year that this happened} a new quantity called {\it{valence bond entanglement entropy}} ($\vb$) which seems to have properties
 similar to entanglement entropy was proposed by \change{Fabian and co, also affleck or something?}.  
 The main \change{draw, advantage} of this quantity is its \change{easy to measure -ableness,
 ease of measurement?} when working in the valence bond basis.
-For a valence bond basis state the VB EE between two regions, A and B, is defined as the 
-number of bonds crossing the boundary between those two regions. 
+For a valence bond basis state $\vb$ between two regions, A and B, is defined as 
+\begin{equation}
+\vb_A = \ln({2})\mathcal{N}_{\text{A}},
+\end{equation} 
+where $\mathcal{N}_{\text{A}}$ is the number of valence bonds crossing the boundary between
+regions A and B.
 \comment{Add in a figure showing this!!}
 
-To study \change{this quantity} and check its \change{correspondence} to a known measure of entanglement we compare it to the von Neumann entanglement entropy (vN EE) calculated
+
+$\vb$ shares some properties with $\vn$; in particular, for both quantities: $S_{\text{A}} = S_{\text{B}}$.
+Also, $\vb = 0$ for systems with no entanglement between regions A and B.
+For any single valence bond basis state $\vb$ and $\vn$ agree exactly, and
+in one-dimensional Heisenberg spin-1/2 systems, $\vb$ seems to to be in good agreement with
+the conformal field theory results for $\vn$.
+However, in two dimensions $\vb$ shows a multiplicative logarithmic correction to the area law
+for the isotropic Heisenberg model.  
+Ground states of unfrustrated 2D spin-1/2 systems with exclusively nearest-neighbour interactions
+are expected to follow an area law \comment {reference that paper (eisert)}, though for the 2D isotropic Heisenberg model the entanglement entropy had not yet been studied \change{explicitly}.
+
+
+To \change{study/examine?} \change{this quantity} and check its \change{correspondence} to a known measure of entanglement we compare it to the von Neumann entanglement entropy ($\vn$) calculated
 using density matrix renormalization group (DMRG) simulations.
 
 \section{One Dimensional Systems}
