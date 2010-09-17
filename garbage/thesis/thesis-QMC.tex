@@ -607,8 +607,26 @@ the Heisenberg ground state.
 
 %--------------------------------------------------------------------------------------------------------------------------
 \subsubsection{Measurements}
+
+\change{energy measurement}
+
+\begin{equation}
+	E_0 = \frac{\bra{R}\ham\ket{0}}{\bra{R}0\rangle} = 
+	\frac{\bra{R}-\sum_{r=1}^{N_{nn}}H_r\ket{0}}{\bra{R}0\rangle} = 
+	-\sum_{r=1}^{N_{nn}} \frac{\bra{R}H_r\ket{0}}{\bra{R}0\rangle}
+\end{equation}
+\change{If we choose the reference state $\ket{R}$ to be a classical N\'eel state, 
+which has equal overlap with every valence bond state, 
+we can further simplify this formula.}
+\begin{equation}
+	E_0 = -\sum_{r=1}^{N_{nn}} \frac{W(r)\bra{R}S_r\rangle}{\bra{R}0\rangle} =
+	 -\sum_{r=1}^{N_{nn}} W(r) = -\left(\frac{n_{\text{off}}}{2} + n_{\text{diag}}\right),
+\end{equation}
+where $W(r)$ and $\ket{S_r}$ are the weight and the state gained by applying the $r^{\text{th}}$ bond operator to the ground state, $n_{\text{off}}$ is the number of off-diagonal bond operators 
+in the Hamiltonian, and $n_{\text{diag}}$ is the number of diagonal bond operators in the Hamiltonian.
+
+
 \change{
-- energy \\
 - is there anything else we can measure? properties of the valence bonds.\\
 - singlet-triplet gap? check sandvik's papers.
 }
@@ -663,13 +681,10 @@ the Heisenberg ground state.
 		 W^L_{\text{old}}W^R_{\text{old}}\bra{V^L_{\text{old}}}V^R_{\text{old}}\rangle$, 
 		 relabel all ``new" right quantities as ``old".		
 		 }}
-\item \fbox{\parbox{410pt}{
-		
+\item \fbox{\parbox{410pt}{		
 		Take a measurement using the states $\bra{V^L_{\text{old}}}$ and
-		$\ket{V^R_{\text{old}}}$. 
-			
-		}}	
-		
+		$\ket{V^R_{\text{old}}}$. 			
+		}}		
 \item \fbox{\parbox{410pt}{
 		Go to Step 4.	
 		}}	
@@ -682,6 +697,6 @@ the Heisenberg ground state.
 %--------------------------------------------------------------------------------------------------------------------------
 \change{
 - sooooooooooooo fast \\
-- drawbacks (can't change weight, light for renyi sampling thing)
+- drawbacks (can't change weight, like for renyi sampling thing)
 }
 
