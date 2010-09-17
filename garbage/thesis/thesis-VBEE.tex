@@ -27,9 +27,10 @@ Ground states of unfrustrated 2D spin-1/2 systems with exclusively nearest-neigh
 are expected to follow an area law \comment {reference that paper (eisert)}, though for the 2D isotropic Heisenberg model the entanglement entropy had not yet been studied \change{explicitly}.
 
 
-To \change{study/examine?} \change{this quantity} and check its \change{correspondence} to a known measure of entanglement we directly compare $\vb$ and $\vn$, where $\vb$ is calculated
-using quantum Monte Carlo simulations in the valence bond basis, and $\vn$ is calculated with
-density matrix renormalization group (DMRG) simulations.
+To \change{study/examine?} \change{this quantity} and check its \change{correspondence} to a known measure of entanglement we place our $\vb$ data alongside measurements of $\vn$
+on the same system, calculated with density matrix renormalization group (DMRG) simulations. \comment{somehow say it wasn't done by me.} 
+$\vb$ is calculated using valence bond quantum Monte Carlo (VB QMC) simulations.
+
 \notsay{
 In 1D we fit the entanglement entropy results to the analytical results from CFT...}
 \comment{Do i do an overview of what i'm going to talk about in this part?}
@@ -39,6 +40,12 @@ In 1D we fit the entanglement entropy results to the analytical results from CFT
 
 \change{We begin by simulating one dimensional systems, examining both the cases of
 open and periodic boundary conditions.}
+The DMRG simulations require both of regions A and B to be topologically connected, and the 
+same \change{convention} is used in the VB QMC simulations.
+
+It is convenient to denote the size of region A by the number of sites included in that region 
+(i.e. for a 1D system of length $L$, $S_{\text{A}} = S(x)$ is the entanglement entropy for a system where region A contains sites $\{1,2,\dots,x\}$ and the rest of the sites $\{x+1,x+2,\dots,L\}$
+belong to region B.
 
 
 \begin{figure} {
