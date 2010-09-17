@@ -18,20 +18,25 @@ $\vb$ shares some properties with $\vn$; in particular, for both quantities: $S_
 Also, $\vb = 0$ for systems with no entanglement between regions A and B.
 For any single valence bond basis state $\vb$ and $\vn$ agree exactly, and
 in one-dimensional Heisenberg spin-1/2 systems, $\vb$ seems to to be in good agreement with
-the conformal field theory results for $\vn$.
+the conformal field theory (CFT) results for $\vn$.
 However, in two dimensions $\vb$ shows a multiplicative logarithmic correction to the area law
 for the isotropic Heisenberg model.  
 Ground states of unfrustrated 2D spin-1/2 systems with exclusively nearest-neighbour interactions
 are expected to follow an area law \comment {reference that paper (eisert)}, though for the 2D isotropic Heisenberg model the entanglement entropy had not yet been studied \change{explicitly}.
 
 
-To \change{study/examine?} \change{this quantity} and check its \change{correspondence} to a known measure of entanglement we compare it to the von Neumann entanglement entropy ($\vn$) calculated
-using density matrix renormalization group (DMRG) simulations.
-
+To \change{study/examine?} \change{this quantity} and check its \change{correspondence} to a known measure of entanglement we directly compare $\vb$ and $\vn$, where $\vb$ is calculated
+using quantum Monte Carlo simulations in the valence bond basis, and $\vn$ is calculated with
+density matrix renormalization group (DMRG) simulations.
+\notsay{
+In 1D we fit the entanglement entropy results to the analytical results from CFT...}
+\comment{Do i do an overview of what i'm going to talk about in this part?}
+%-----------------------------------------------------------------------------------------------------------------------
 \section{One Dimensional Systems}
+%-----------------------------------------------------------------------------------------------------------------------
 
-\change{We begin by simulating one dimensional systems with both open and periodic boundary 
-conditions.}
+\change{We begin by simulating one dimensional systems, examining both the cases of
+open and periodic boundary conditions.}
 
 
 \begin{figure} {
