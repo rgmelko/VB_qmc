@@ -35,10 +35,15 @@ A singlet state refers to a spin state of a particle or group of particles with 
 %other states are not eigenstates of S^2
 For two spin 1/2 particles there is exactly one singlet state, represented in the $S^Z$ basis as
 
-\begin{equation}
-  \frac{1}{\sqrt{2}}\left( \lvert \uparrow_a \downarrow_b \rangle - \lvert \downarrow_a \uparrow_b \rangle \right).
-   \label{singlet}
-\end{equation}
+\begin{center}
+\begin{tabular}{ccc}
+$  \frac{1}{\sqrt{2}}\left( \lvert \uparrow_a \downarrow_b \rangle - \lvert \downarrow_a \uparrow_b \rangle \right) $ & $= $
+&
+\includegraphics [width=1in]
+{./figures/made/bond2.pdf}
+\end{tabular}
+\end{center}
+
 We can see this explicitly by finding the eigenstates of the $S^2$ operator for 
 two spin 1/2 particles.  We begin by expressing the $S^2$ operator in terms of its different
 spin components:
@@ -189,11 +194,13 @@ where bonds go from sites $i$ to $j$ for a lattice with $2N$ sites.
 \notsay{Changing the order of the bonds in this list will not change the state, but reversing the order of an
 $i$, $j$ pair may.}
 
-\begin{figure} { \includegraphics [width=3in]
-{./figures/made/covering.eps}
+\begin{figure} { \includegraphics [width=5.5in]
+{./figures/made/coverings.pdf}
 \centering
- \caption[An example of a valence bond covering]{
- \comment{Maybe redo this figure.} An example of a valence bond covering.
+ \caption[Two valence bond coverings]{
+	Two examples of valence bond coverings.  (Left) An unrestricted valence bond state.
+	(Right) sites belonging to sublattice A are indicated in red and sublattice B sites are blue.   	 	This valence bond state has bonds which are restricted to go 
+	between sublattice A and sublattice B sites.  
  }
  }
 \label{covering}
@@ -281,6 +288,11 @@ Expressing $\mathbf{v_5}$ and $\mathbf{v_6}$ in the spin and valence bond bases 
 			- \lvert \up \dw \dw \up \rangle + \lvert \up \up \dw \dw \rangle \bigg)
 			= \lvert(a,d)(c,b)\rangle
 \end{eqnarray}
+\begin{tabular}{cc}
+$\mathbf{v_5} =$ &  \includegraphics [width=2in]{./figures/made/state5.eps} 
+\end{tabular}
+
+
 {\color{red} is there a way to get little vb diagrams in there? - note: also made up of vbs.
 Talk about how we can express the 3rd VB config in terms of the other two.}
 
