@@ -409,10 +409,19 @@ look together.  Bonds from separate loops will have no overlap with each other.
 Before we superimpose $\ket{V_\text{L}}$ and $\ket{V_\text{R}}$, the state of each set of sites
 is a sum (including negative terms) of a subset of all possible combinations of spins such that there is an equal number of up and down spins.  This set is restricted by the valence bonds; if there is a bond going between sites $a$ and $b$ then the spin on site $a$ must always be opposite of the spin on site $b$.  
 
-Examining the third loop, which contains four sites, for the state of $\ket{V_\text{L}}$ sites 9 and 12 must always have opposite spins, as much sites 10 and 11.  There are six $S^z=0$ states, four of which satisfy these restrictions.  For the state of $\ket{V_\text{R}}$ there are also four spin states that satisfy its restrictions, but since the restrictions are different (spins 11 and 12 are opposite and spins 9 and 10 are opposite) it turns out that when we overlap $\ket{V_\text{L}}$ and $\ket{V_\text{R}}$ there are only two spin states that satisfy both sets of restrictions.  This is true for all loops: there are only two possible spin states.  These states correspond to alternating up and down spins around the loop.  
+Examining the third loop, which contains four sites, for the state of $\ket{V_\text{L}}$ sites 9 and 12 must always have opposite spins, as much sites 10 and 11.  There are six $S^z=0$ states, four of which satisfy these restrictions.  For the state of $\ket{V_\text{R}}$ there are also four spin states that satisfy its restrictions, but since the restrictions are different (spins 11 and 12 are opposite and spins 9 and 10 are opposite) it turns out that when we overlap $\ket{V_\text{L}}$ and $\ket{V_\text{R}}$ there are only two spin states that satisfy both sets of restrictions.  This is true for all loops: there are only two possible spin states.  These states correspond to alternating up and down spins around the loop, or equivalently, the state in which all the sublattice A sites in the loop have a given spin (either up or down) and the sublattice B sites have the opposite spin.  
+
+\begin{figure} { \includegraphics [width=3.5in]
+{./figures/made/spinstate.pdf}
+\centering
+ \caption[fds]{
+	fdsfds }
+\label{spinstate}
+}
+\end{figure}
 
 The number of terms needed to express a valence bond state for a group of $N$ spins is $2^{N/2}$, so the normalization factor for that group of spins will be $1/\sqrt{2^{N/2}}$.
-The inner product can be expressed as a product of inner products for each of the loops:
+The inner product can be expressed as a product of the inner products for each of the loops:
 \begin{eqnarray}
 \inn{V^\text{L}}{V^\text{R}} &= &
 				\prod^{N_{\text{loops}}}_{k=1}
@@ -439,6 +448,7 @@ $\ket{\beta_i}$'s, however, because of the convention in which bonds go from sub
 
 
 \comment{discuss how you would get a maximal inner product maybe.}
+\comment{and talk about things the inner product is useful for perhaps?}
 
 
 %--------------------------------------------------------------------------------------------------------------------------
