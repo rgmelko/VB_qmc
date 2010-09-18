@@ -37,7 +37,7 @@ For two spin 1/2 particles there is exactly one singlet state, represented in th
 
 \begin{center}
 \begin{tabular}{ccc}
-$  \frac{1}{\sqrt{2}}\left( \lvert \uparrow_a \downarrow_b \rangle - \lvert \downarrow_a \uparrow_b \rangle \right) $ & $= $
+$  \frac{1}{\sqrt{2}}\big( \lvert \uparrow_a \downarrow_b \rangle - \lvert \downarrow_a \uparrow_b \rangle \big) $ & $= $
 &
 \includegraphics [width=1in]
 {./figures/made/bond2.pdf}
@@ -158,15 +158,15 @@ wave function must be antisymmetric (an exchange of the identical particles in t
 gives a factor of -1, i.e. $\Psi(1,2) = -\Psi(2,1)$).
 The total wave function is a product of the spatial and spin wave functions, so one of those wave functions must be antisymmetric and the other symmetric (an exchange of particles yields the same wave function, i.e. $\Psi(1,2) = \Psi(2,1)$).
 As part of the same valence bond, two electrons will have a symmetric spatial wave function {\color{red} true?}, so their spin state must be antisymmetric.  For two spin 1/2 particles the only antisymmetric spin state is the singlet state.  
-Hence, in the case of two spin 1/2 particles, a valence bond is equivalent to the spin 1/2 singlet state from equation \eqref{singlet}.}}
+Hence, in the case of two spin 1/2 particles, a valence bond is equivalent to the spin 1/2 singlet state.}}
 %--------------------------------------------------------------------------------------------------------------------------
 We represent these valence bonds, or singlet states, in three ways: 
 \begin{itemize}
 \item{in the $S^z$ basis using up spins and down spins, 
-i.e. $\tfrac{1}{\sqrt{2}}( \lvert \uparrow_a \downarrow_b \rangle - \lvert \downarrow_a \uparrow_b \rangle)$,}
+i.e. $\tfrac{1}{\sqrt{2}}\big(\lvert \uparrow_a \downarrow_b \rangle - \lvert \downarrow_a \uparrow_b \rangle\big)$,}
 \item{ as a list of the bonded sites, i.e. $\lvert(a,b)\rangle$,}
 \item{
-or pictorially as a bond joining two sites. (See Figure~\ref{bond}.)}
+or pictorially as a bond joining two sites.\; \includegraphics[width=1in]{./figures/made/bond2.pdf}}
 \end{itemize}
 
 {\color{red} anything about it being maximally entangled?}
@@ -584,10 +584,6 @@ acting on sites that are not already joined by a valence bond) in $P_r$.
 Instead of computing the full sum from \eqref{hamapp}, we stochastically sample terms
 from the sum, with sampling proportional to their weight $W(r)$ in the sum.
 
-
-
-
-\comment{actually put in the algorithms}
 
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Single Projector}
