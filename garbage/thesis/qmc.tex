@@ -185,6 +185,7 @@ where bonds go from sites $i$ to $j$ for a lattice with $2N$ sites.
 \notsay{Changing the order of the bonds in this list will not change the state, but reversing the order of an
 $i$, $j$ pair may.}
 
+
 \begin{figure} { \includegraphics [width=5.5in]
 {./figures/made/coverings.pdf}
 \centering
@@ -332,6 +333,30 @@ but with math and stuff this time.}
 
 \comment{Show pictures and stuff.  Show mathematically how the VB overlap is calculated,
 representing the VBs in the Sz basis.}
+
+\begin{figure} { 
+\centering
+\includegraphics [width=5.5in]{./figures/made/overlap.pdf}
+\begin{tabular*}{5.5in}{ccc}
+\hspace{12mm}$\ket{V^\text{L}}$& 
+\hspace{39mm}$\ket{V^\text{R}}$ \hspace{40mm}& 
+\hspace{33mm}$\bra{V^\text{L}} V^\text{R} \rangle$ \hspace{5mm}\\
+\end{tabular*}
+
+ \caption[Illustration of valence bond state inner product calculation]{
+ Calculation of the inner product between the states $\ket{V^\text{L}}$ and $\ket{V^\text{R}}$.
+ The inner product is simply 
+ $\bra{V^\text{L}} V^\text{R} \rangle = 2^{(N_{\text{loops}}-N_{\text{sites}}/2)}$, 
+ where $N_{\text{loops}}$ is the number of loops \change{created} by overlapping the 
+ two valence bond states.
+ In this case there are 3 loops and 16 sites, so 
+ $\bra{V^\text{L}} V^\text{R} \rangle = 2^{3-8} = 2^{-5}$.
+ }
+ }
+\label{overlap}
+\end{figure}
+
+\comment{discuss how you would get a maximal inner product maybe.}
 
 
 %--------------------------------------------------------------------------------------------------------------------------
