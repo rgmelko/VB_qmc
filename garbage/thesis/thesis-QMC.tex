@@ -194,8 +194,8 @@ $i$, $j$ pair may.}
 	(Right) sites belonging to sublattice A are indicated in red and sublattice B sites are blue.   	 	This valence bond state has bonds which are restricted to go 
 	between sublattice A and sublattice B sites.  
  }
- }
 \label{covering}
+}
 \end{figure}
  
 A basis of valence bond coverings can be used to represent an arbitrary singlet state
@@ -292,7 +292,7 @@ Talk about how we can express the 3rd VB config in terms of the other two.}
 
 
 It is convenient to define two sublattices, A and B, on a bipartite lattice, such that sites on 
-sublattice A are neighbored only by sublattice B sites and vice versa. (See figure~\ref{covering}
+sublattice A are neighbored only by sublattice B sites and vice versa. (See Figure~\ref{covering}
 where the red sites belong to sublattice A and the blue sites belong to sublattice B.  Note that there are only A-B sublattice bonds present.)
 We can choose the valence bond coverings containing only bonds going from sublattice A
 to B.  (I say ``from A to B" because valence bonds are directional; the ordering of the
@@ -374,10 +374,9 @@ $S^z$ basis.  From \eqref{state5} and \eqref{state6} we have:
 \end{eqnarray}
 since all other terms will vanish.  
 This method of calculating the inner product, however, quickly becomes \change{messy} even with a small number of spins.
-A more intuitive way to calculate the overlap is to superimpose diagrams of the two valence bond states as in Figure~\ref{overlap}.
-
-\comment{Show pictures and stuff.  Show mathematically how the VB overlap is calculated,
-representing the VBs in the Sz basis.}
+A more intuitive way to calculate the overlap is to superimpose diagrams of the two valence bond states, as in Figure~\ref{overlap}.
+We can rewrite the valence bond states from the figure, keeping the bonds belonging to the same 
+look together.  Bonds from separate loops will have no overlap with each other.
 
 \begin{figure} {  
 \centering
@@ -387,7 +386,6 @@ representing the VBs in the Sz basis.}
 \hspace{39mm}$\ket{V^\text{R}}$ \hspace{40mm}& 
 \hspace{33mm}$\bra{V^\text{L}} V^\text{R} \rangle$ \hspace{5mm}\\
 \end{tabular*}
-
  \caption[Illustration of valence bond state inner product calculation]{
  Calculation of the inner product between the states $\ket{V^\text{L}}$ and $\ket{V^\text{R}}$.
  The inner product is simply 
@@ -400,6 +398,45 @@ representing the VBs in the Sz basis.}
  \label{overlap}
  }
 \end{figure}
+
+
+\begin{eqnarray}
+\ket{V_\text{L}} &=&  \ket{(1,4)(3,2)(6,5)(8,15)(9,12)(11,10)(14,13)(16,7)}\nonumber\\ 
+			&=&  \ket{(1,4)(16,7)(8,15)(14,13)(6,5)}\otimes\ket{(3,2)}\otimes\ket{(9,12)(11,10)}\\
+\ket{V_\text{R}} &=& \ket{(1,5)(3,2)(6,13)(8,7)(9,10)(11,12)(14,15)(16,4)}\nonumber\\
+			&=& \ket{(16,4)(8,7)(14,15)(6,13)(1,5)}\otimes\ket{(3,2)}\otimes\ket{(11,12)(9,10)}
+\end{eqnarray}
+Before we superimpose $\ket{V_\text{L}}$ and $\ket{V_\text{R}}$, the state of each set of sites
+is a sum (including negative terms) of a subset of all possible combinations of spins such that there is an equal number of up and down spins.  This set is restricted by the valence bonds; if there is a bond going between sites $a$ and $b$ then the spin on site $a$ must always be opposite of the spin on site $b$.  
+
+Examining the third loop, which contains four sites, for the state of $\ket{V_\text{L}}$ sites 9 and 12 must always have opposite spins, as much sites 10 and 11.  There are six $S^z=0$ states, four of which satisfy these restrictions.  For the state of $\ket{V_\text{R}}$ there are also four spin states that satisfy its restrictions, but since the restrictions are different (spins 11 and 12 are opposite and spins 9 and 10 are opposite) it turns out that when we overlap $\ket{V_\text{L}}$ and $\ket{V_\text{R}}$ there are only two spin states that satisfy both sets of restrictions.  This is true for all loops: there are only two possible spin states.  These states correspond to alternating up and down spins around the loop.  
+
+The number of terms needed to express a valence bond state for a group of $N$ spins is $2^{N/2}$, so the normalization factor for that group of spins will be $1/\sqrt{2^{N/2}}$.
+The inner product can be expressed as a product of inner products for each of the loops:
+\begin{eqnarray}
+\inn{V^\text{L}}{V^\text{R}} &= &
+				\prod^{N_{\text{loops}}}_{k=1}
+				\frac{1}
+				{\sqrt{2^{N^s_k/2}}}
+				\Big( \bra{\alpha_1} + \bra{\alpha_2} + \cdots \bra{\alpha_{N^s_k/2}}\Big)
+				\frac{1}
+				{\sqrt{2^{N^s_k/2}}} \nonumber
+				\Big( \ket{\beta_1} + \ket{\beta_2} + \cdots \ket{\beta_{N^s_k/2}}\Big)\\
+				&=&\prod^{N_{\text{loops}}}_{k=1}
+				\frac{1}
+				{2^{N^s_k/2}}
+				\Big( 2\Big)
+				= \left(\frac{1}
+				{2^{N_{\text{sites}}/2}}\right)
+				 2^{N_{\text{loops}}} 
+				 = 2^{N_{\text{loops}} - N_{\text{sites}}/2},
+\end{eqnarray}
+where $N^s_k$ is the number of spins contained in loop $k$, and the $\ket{\alpha_i}$'s and 
+$\ket{\beta_i}$'s are the spin states used to represent $\ket{V^\text{L}}$ and $\ket{V^\text{R}}$ respectively.
+More accurately, the first line should have some negative signs in the sums of the 
+$\ket{\alpha_i}$'s and 
+$\ket{\beta_i}$'s, however, because of the convention in which bonds go from sublattice A to B, the signs of the two terms that do not vanish are always the same.
+
 
 \comment{discuss how you would get a maximal inner product maybe.}
 
