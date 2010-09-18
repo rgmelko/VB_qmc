@@ -329,7 +329,28 @@ because it has total spin zero, and lower energy than the N\'eel state.  check i
 {\color{red} Thing from Anderson 1973 about energy per NN VB vs energy per 2 antiparallel sites,
 but with math and stuff this time.}
 
+%----------------------------------------------------------------------------------------------------
 \subsection{The Inner Product}
+%----------------------------------------------------------------------------------------------------
+
+In the $S^z$ basis, to calculate the overlap between two states we simply take the inner products 
+between the various terms of the two states.  
+Since the $S^z$ basis states are all mutually orthonormal, the process is quite simple, e.g.
+\begin{equation*}
+\ket{\psi} = \frac{1}{2}\big(\sqrt{3}\ket{\up\up} + \ket{\dw\dw}\big) \hspace{1cm}
+\ket{\phi} = \frac{1}{\sqrt{2}} \big(\ket{\dw\up} + \ket{\dw\dw}\big) \nonumber
+\end{equation*}
+\begin{eqnarray}
+\inn{\psi}{\phi}&=& \frac{1}{2\sqrt{2}}\big(
+		\sqrt{3}\inn{\up\up}{\dw\up} + \sqrt{3}\inn{\up\up}{\dw\dw} +
+		\inn{\dw\dw}{\dw\up} + \inn{\dw\dw}{\dw\dw}
+		\big) \nonumber \\
+		&=& \frac{1}{2\sqrt{2}}\big(
+		0 + 0 +
+		0 +1
+		\big)
+		= \frac{1}{2\sqrt{2}}
+\end{eqnarray}
 
 \comment{Show pictures and stuff.  Show mathematically how the VB overlap is calculated,
 representing the VBs in the Sz basis.}
@@ -350,7 +371,7 @@ representing the VBs in the Sz basis.}
  where $N_{\text{loops}}$ is the number of loops \change{created} by overlapping the 
  two valence bond states.
  In this case there are 3 loops and 16 sites, so 
- $\bra{V^\text{L}} V^\text{R} \rangle = 2^{3-8} = 2^{-5}$.
+ $\bra{V^\text{L}} V^\text{R} \rangle = 2^{-5}$.
  }
  }
 \label{overlap}
