@@ -275,10 +275,10 @@ Expressing $\mathbf{v_5}$ and $\mathbf{v_6}$ in the spin and valence bond bases 
 \begin{eqnarray}
 \mathbf{v_5} &=&\frac{1}{2}\bigg(\lvert \dw \up \dw \up \rangle - \lvert \dw \up \up \dw \rangle
 			- \lvert \up \dw \dw \up \rangle + \lvert \up \dw \up \dw \rangle \bigg) 
-			= \lvert(a,b)(c,d)\rangle\\
+			= \lvert(a,b)(c,d)\rangle \label{state5}\\
 \mathbf{v_6} &=&\frac{1}{2}\bigg(\lvert \dw \dw \up \up \rangle - \lvert \dw \up \up \dw \rangle
 			- \lvert \up \dw \dw \up \rangle + \lvert \up \up \dw \dw \rangle \bigg)
-			= \lvert(a,d)(c,b)\rangle
+			= \lvert(a,d)(c,b)\rangle \label{state6}
 \end{eqnarray}
 \begin{center}
 \begin{tabular}{ccccc}
@@ -351,13 +351,37 @@ Since the $S^z$ basis states are all mutually orthonormal, the process is quite 
 		\big)
 		= \frac{1}{2\sqrt{2}}
 \end{eqnarray}
+We can compute valence bond state overlaps in the same way, by expressing the states in the
+$S^z$ basis.  From \eqref{state5} and \eqref{state6} we have:
+\begin{eqnarray}
+\inn{\mathbf{v_5}}{\mathbf{v_6}} &=& 	 
+	 \frac{1}{4} 
+	 \big(	
+		\inn{\dw\up\dw\up}{\dw\dw\up\up} - \inn{\dw\up\dw\up}{\dw\up\up\dw} \nonumber
+		- \inn{\dw\up\dw\up}{\up\dw\dw\up} + \inn{\dw\up\dw\up}{\up\up\dw\dw} \\				
+		&&-\inn{\dw\up\up\dw}{\dw\dw\up\up} + \comment{\inn{\dw\up\up\dw}{\dw\up\up\dw}}
+		+ \inn{\dw\up\up\dw}{\up\dw\dw\up} - \inn{\dw\up\up\dw}{\up\up\dw\dw}	\nonumber\\	
+		&&-\inn{\up\dw\dw\up}{\dw\dw\up\up} + \inn{\up\dw\dw\up}{\dw\up\up\dw}\nonumber
+	+\comment{ \inn{\up\dw\dw\up}{\up\dw\dw\up}} - \inn{\up\dw\dw\up}{\up\up\dw\dw}	\\	
+		&&+\inn{\up\dw\up\dw}{\dw\dw\up\up} - \inn{\up\dw\up\dw}{\dw\up\up\dw}
+		- \inn{\up\dw\up\dw}{\up\dw\dw\up} + \inn{\up\dw\up\dw}{\up\up\dw\dw}
+	 \big) \\	 
+	&=& \frac{1}{4} \nonumber
+	\left(
+		\inn{\dw\up\up\dw}{\dw\up\up\dw} + \inn{\up\dw\dw\up}{\up\dw\dw\up}
+	 \right) 
+	 = \frac{1}{2}.\nonumber
+\end{eqnarray}
+since all other terms will vanish.  
+This method of calculating the inner product, however, quickly becomes \change{messy} even with a small number of spins.
+A more intuitive way to calculate the overlap is to superimpose diagrams of the two valence bond states as in Figure~\ref{overlap}.
 
 \comment{Show pictures and stuff.  Show mathematically how the VB overlap is calculated,
 representing the VBs in the Sz basis.}
 
-\begin{figure} { 
+\begin{figure} {  
 \centering
-\includegraphics [width=5.5in]{./figures/made/overlap.pdf}
+\includegraphics [width=5.5in]{./figures/made/overlap.pdf} 
 \begin{tabular*}{5.5in}{ccc}
 \hspace{12mm}$\ket{V^\text{L}}$& 
 \hspace{39mm}$\ket{V^\text{R}}$ \hspace{40mm}& 
@@ -373,8 +397,8 @@ representing the VBs in the Sz basis.}
  In this case there are 3 loops and 16 sites, so 
  $\bra{V^\text{L}} V^\text{R} \rangle = 2^{-5}$.
  }
+ \label{overlap}
  }
-\label{overlap}
 \end{figure}
 
 \comment{discuss how you would get a maximal inner product maybe.}
