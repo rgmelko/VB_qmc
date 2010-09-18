@@ -3,6 +3,8 @@
 %======================================================================
 \chapter{Quantum Monte Carlo in the Valence Bond Basis}
 
+\comment{REFERENCES!!}
+
 {\color{red} - VB QMC is a T=0, GS projection technique (redundant? Yes)}
 \\
 %======================================================================
@@ -173,13 +175,11 @@ or pictorially as a bond joining two sites. (See Figure~\ref{bond}.)}
 
 {\color{red} anything about it being maximally entangled?}
 
-{\color{red}REFERENCES!!!!!!!!!!!!!!!}
-
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Basis Properties}
 %--------------------------------------------------------------------------------------------------------------------------
 A collection of sites on a lattice can be paired into a valence bonds such that each site
-belongs to exactly one bond.  
+belongs to exactly one bond (see in Figure~\ref{covering}).  
 We call this a valence bond covering, and it is most conveniently represented as a list of 
 sites that are paired in valence bonds:
 \begin{equation}
@@ -188,13 +188,13 @@ sites that are paired in valence bonds:
 where bonds go from sites $i$ to $j$ for a lattice with $2N$ sites.  
 \notsay{Changing the order of the bonds in this list will not change the state, but reversing the order of an
 $i$, $j$ pair may.}
-{\color{red} Totally put in a VB covering figure.}
 
 \begin{figure} { \includegraphics [width=3in]
 {./figures/made/covering.eps}
 \centering
- \caption[\change{A diagrammatic representation of a valence bond}]{
- \change{A pictorial representation of a valence bond joining sites a and b.}}
+ \caption[An example of a valence bond covering]{
+ An example of a valence bond covering.
+ }
  }
 \label{covering}
 \end{figure}
@@ -259,7 +259,7 @@ S^2_{\text{reduced}} =\left[
 1&0&1&1&2&1\\
 0&1&1&1&1&2\\
 \end{array} \right] 
-\begin{array}{cc}
+\begin{array}{cl}
 \lambda_1=6,&\mathbf{v_1} =\left[\begin{array}{cccccc} 1&1&1&1&1&1\end{array} \right]\\
 \lambda_2=2,&\mathbf{v_2} =\left[\begin{array}{cccccc} 1&0&0&0&0&-1\end{array} \right]\\
 \lambda_3=2,&\mathbf{v_3} =\left[\begin{array}{cccccc} 0&1&-3&3&-1&0\end{array} \right]\\
@@ -286,8 +286,8 @@ Talk about how we can express the 3rd VB config in terms of the other two.}
 
 
 It is convenient to define two sublattices, A and B, on a bipartite lattice, such that sites on 
-sublattice A are neighbored only by sublattice B sites and vice versa. 
-{\color{red} diagram of sublattices on a square lattice or something.}
+sublattice A are neighbored only by sublattice B sites and vice versa. (See figure~\ref{covering}
+where the red sites belong to sublattice A and the blue sites belong to sublattice B.  Note that there are only A-B sublattice bonds present.)
 We can choose the valence bond coverings containing only bonds going from sublattice A
 to B.  (I say ``from A to B" because valence bonds are directional; the ordering of the
 sites matters, and reversing the order gives a factor of -1.)
