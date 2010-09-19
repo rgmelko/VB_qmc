@@ -15,25 +15,22 @@
 %Representing multiple VBs\\
 %VB basis properties\\
 
-{\color{red} The valence bond basis, like the $S^Z$ basis, can be used to represent spin states.}
+{\color{red} The valence bond basis, like the $S^z$ basis, can be used to represent spin states.}
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{The Spin 1/2 Singlet State}
 %--------------------------------------------------------------------------------------------------------------------------
 
-Typically the states of spin 1/2 particles are represented in the $S^Z$ basis.  
-\notsay{ 
-Applying the $S^Z$ operator to its eigenstates yields either $+1/2$ or $-1/2$ 
-corresponding to the spin up and spin down eigenstates respectively.
+Typically the states of spin-1/2 particles are represented in the $S^z$ basis: the basis of eigenstates of the $S^z$ operator ($\{\ket{\up},\ket{\dw}\}$ for one spin).  
 \begin{equation}
  	  S^z\lvert \uparrow \rangle = +\frac{1}{2} \lvert \uparrow \rangle
  	 \:\:\:    \:\:\:    \:\:\:    \:\:\:    \:\:\:    \:\:\: 
  	  S^z\lvert \downarrow \rangle = -\frac{1}{2} \lvert \downarrow \rangle
 	   \label{SZ}
 \end{equation}
-}
+
 A singlet state refers to a spin state of a particle or group of particles with vanishing total spin angular momentum.
 %other states are not eigenstates of S^2
-For two spin 1/2 particles there is exactly one singlet state, represented in the $S^Z$ basis and graphically as
+For two spin-1/2 particles (labeled here as $a$ and $b$) there is exactly one singlet state, represented in the $S^z$ basis and graphically as
 
 \begin{center}
 \begin{tabular}{ccc}
@@ -54,7 +51,7 @@ S^2 &=& (S^x)^2 + (S^y)^2 + (S^z)^2 \\
 			(S^y\otimes I+I\otimes S^y)^2 + (S^z\otimes I+I\otimes S^z)^2
 			\label{s2}
 \end{eqnarray}
-where $I$ is the 2x2 identity matrix.  In Eq.~\eqref{s2} the operators are single spin operators.
+where $I$ is 2x2 the identity matrix and Eq.~\eqref{s2} the operators are single spin operators.
 Switching to matrix notation now, we have
 \begin{eqnarray}
 (S_a + S_b)^2 &=& 
@@ -131,7 +128,7 @@ Switching to matrix notation now, we have
 	 \end{array} \right]
 	 \label{diagon}
 \end{eqnarray}
-where the eigenvalues and eigenvectors are:
+where the eigenvalues and eigenvectors of \eqref{diagon} are:
 \begin{eqnarray}
 \lambda_1 = 2,  &\mathbf{v}_1 = \left[ \begin{array}{cccc}1&0&0&0\end{array}  \right] ^\top
 	 &= \lvert \uparrow \uparrow \rangle \nonumber\\
@@ -155,10 +152,11 @@ $S^2\lvert\psi\rangle = s(s+1)\lvert\psi\rangle$, where $s$ is the total spin.)
 {\it{A bond between two atoms created by sharing valence electrons in the outer orbitals is called a valence bond, or a covalent bond \cite{Slater1931,Pauling1933}.
 Since electrons are fermionic (have half integer spin) their total
 wave function must be antisymmetric (an exchange of the identical particles in the wave function
-gives a factor of -1, i.e. $\Psi(1,2) = -\Psi(2,1)$).
-The total wave function is a product of the spatial and spin wave functions, so one of those wave functions must be antisymmetric and the other symmetric (an exchange of particles yields the same wave function, i.e. $\Psi(1,2) = \Psi(2,1)$).
-As part of the same valence bond, two electrons will have a symmetric spatial wave function {\color{red} true?}, so their spin state must be antisymmetric.  For two spin 1/2 particles the only antisymmetric spin state is the singlet state.  
-Hence, in the case of two spin 1/2 particles, a valence bond is equivalent to the spin 1/2 singlet state.}}
+gives a factor of -1, i.e. $\Psi(a,b) = -\Psi(b,a)$).
+The total wave function is a product of the spatial and spin wave functions, so one of those wave functions must be antisymmetric and the other symmetric (an exchange of particles yields the same wave function, i.e. $\Psi(a,b) = \Psi(b,a)$).
+As part of the same valence bond, two electrons will have a spatially symmetric wave function {\color{red} true?}, so their spin state must be antisymmetric.  For two spin 1/2 particles the only antisymmetric spin state is the singlet state.  
+Hence, in the case of two spin 1/2 particles, a valence bond is equivalent to the spin-1/2 singlet state.}}
+
 %--------------------------------------------------------------------------------------------------------------------------
 We represent these valence bonds, or singlet states, in three ways: 
 \begin{itemize}
@@ -176,37 +174,33 @@ or pictorially as a bond joining two sites.\; \includegraphics[width=1in]{./figu
 %--------------------------------------------------------------------------------------------------------------------------
 A collection of sites on a lattice can be paired into a valence bonds such that each site
 belongs to exactly one bond (see in Figure~\ref{covering}).  
-We call this a valence bond covering, and it is most conveniently represented as a list of 
+We call this a valence bond covering or valence bond state, and it is most conveniently represented as a list of 
 sites that are paired in valence bonds:
 \begin{equation}
 	\ket{V} = \ket{(i_1,j_1)(i_2,j_2)\cdots(i_N,j_N)},
 \end{equation}
 where bonds go from sites $i$ to $j$ for a lattice with $2N$ sites.  
-\notsay{Changing the order of the bonds in this list will not change the state, but reversing the order of an
-$i$, $j$ pair may.}
-
+Changing the order of the bonds in this list will not change the state, but reversing the order of an
+$i$, $j$ will change the sign of the state.
 
 \begin{figure} { \includegraphics [width=5.5in]
 {./figures/made/coverings.pdf}
 \centering
  \caption[Two valence bond coverings]{
 	Two examples of valence bond coverings.  (Left) An unrestricted valence bond state.
-	(Right) sites belonging to sublattice A are indicated in red and sublattice B sites are blue.   	 	This valence bond state has bonds which are restricted to go 
-	between sublattice A and sublattice B sites.  
+	(Right) sites belonging to sublattice A are indicated in red and sublattice B sites are blue.   	 	This state only has bonds going from  sites on sublattice A to sites on sublattice B.  
  }
 \label{covering}
 }
 \end{figure}
  
-A basis of valence bond coverings can be used to represent an arbitrary singlet state
-for an even number of spins, but in general that representation is not unique.
-
-The number of possible singlet states for a given number of spin 1/2 sites can be enumerated
+For system with an even number of spins, a basis of valence bond coverings can be used to represent an arbitrary singlet state, but in general that representation is not unique.
+The number of possible singlet states for a given number of spin-1/2 sites can be enumerated
 using the rule for the addition of angular momentum for each added spin,
 \begin{equation}
 	S\otimes \tfrac{1}{2}  = \left(S-\tfrac{1}{2}\right)\oplus\left(S+\tfrac{1}{2}\right),
 \end{equation}
-where S is the $(2S+1)$-degenerate state of spin $S$ \cite{Beach2006}.
+where $S$ is the $(2S+1)$-degenerate state of spin $S$ \cite{Beach2006}.
 \begin{eqnarray}
 	\tfrac{1}{2} \otimes \tfrac{1}{2}  &=& 0 \oplus 1\nonumber \\ 
 	\tfrac{1}{2} \otimes \tfrac{1}{2}  \otimes \tfrac{1}{2} &=& 
@@ -224,13 +218,11 @@ where S is the $(2S+1)$-degenerate state of spin $S$ \cite{Beach2006}.
 	\underbrace{2 \oplus \cdots \oplus 2}_{5 \rm{\; times}} 
 	\oplus 3 \nonumber
 \end{eqnarray}
-For and even number of spins, 2N, the number of singlet states is given by 
+And for an arbitrary number of spins, 2N, the number of singlet states is given by 
 \begin{equation}
 	C_{\rm{sing}}^N = \frac{1}{N+1}\binom{2N}{N}\ = \frac{(2N)!}{N!(N+1)!},
 \end{equation}  
-and each of these singlet states is linearly independent of the others.
-{\color{red} Can I figure out what the states actually look like?  Why is it 1/(n+1)(2n choose n)?}
-In contrast, the number of possible valence bond states is given by
+In contrast, the number of possible valence bond states (for 2N sites) is given by
 \begin{equation}
 	C_{\rm{VB}}^N =
 	\frac{(2N)!}{2^NN!},
@@ -239,13 +231,12 @@ since we choose sites at random ($2N!$ ways to choose them) pairing them, but th
 in which each member of the bond is chosen does not matter (divide by 2 for every bond), 
 nor does the order in which the $N$ bonds are chosen (divide by $N!$).
 For $N>1$ there are more valence bond coverings than singlet states, the excess increasing 
-drastically by increasing $N$.  
+drastically with increasing $N$ (\comment{see figure}).  
 
-The valence bond states are not orthogonal to each other, in fact every valence bond covering
-has some overlap with every other covering.
+The valence bond states are nonorthogonal and overcomplete.
 Because of this overcompleteness we can eliminate some of the valence bond states and still
 represent any singlet state.  
-In fact, this can be seen for a four-site system by again diagonalizing the $S^2$ matrix.
+In fact, this can be seen for a four-site system by again diagonalizing the $S^2$ matrix again.
 This time we will only look at the $S^z=0$ sector, since all the singlet states will be found there.
 With the same method used to get \eqref{diagon}, we find:
 \begin{eqnarray}
@@ -268,9 +259,9 @@ S^2_{\text{reduced}} =\left[
 \end{array} 
 \end{eqnarray}
 where $\mathbf{v_5}$ and $\mathbf{v_6}$ are the (so far unnormalized) singlet states.
-Note that there are only two linearly independent singlet states, while there are three valence bond states
+Note that there are only two singlet states, while there are three valence bond states
 for a four-site system.
-Also interesting is that the singlet states are composed of two-site valence bonds. 
+And, interestingly, singlet states are composed of two-site singlet states. 
 Expressing $\mathbf{v_5}$ and $\mathbf{v_6}$ in the spin and valence bond bases we get
 \begin{eqnarray}
 \mathbf{v_5} &=&\frac{1}{2}\bigg(\lvert \dw \up \dw \up \rangle - \lvert \dw \up \up \dw \rangle
@@ -286,40 +277,74 @@ $\mathbf{v_5} =$ &  \includegraphics [width=2in]{./figures/made/state5.pdf} &\;\
 & $\mathbf{v_5} =$ &  \includegraphics [width=2in]{./figures/made/state6.pdf} 
 \end{tabular}
 \end{center}
-
-\comment{note: also made up of vbs.
-Talk about how we can express the 3rd VB config in terms of the other two.}
-
+Since $\mathbf{v_5}$ and  $\mathbf{v_6}$ are degenerate eigenstates, we could have also chosen one of them to be the other valence bond state, $\lvert(a,c)(b,d)\rangle$, or some linear combination of any of the three valence bond states.
 
 It is convenient to define two sublattices, A and B, on a bipartite lattice, such that sites on 
-sublattice A are neighbored only by sublattice B sites and vice versa. (See Figure~\ref{covering}
-where the red sites belong to sublattice A and the blue sites belong to sublattice B.  Note that there are only A-B sublattice bonds present.)
-We can choose the valence bond coverings containing only bonds going from sublattice A
-to B.  (I say ``from A to B" because valence bonds are directional; the ordering of the
-sites matters, and reversing the order gives a factor of -1.)
-This restriction eliminates some, though not all, of the overcompleteness of the states.
-The, now reduced, number of valence bond states is simply $C_{\rm{AB}}^N = N!$ for a system of $2N$ spins.
+sublattice A are neighbored only by sublattice B sites and vice versa. (See Figure~\ref{covering}.)
+We can choose the valence bond coverings containing only bonds going between the two sublattices.
+This restriction eliminates some, though not all, of the overcompleteness of the valence bond states.
+The now reduced number of valence bond states is simply $C_{\rm{AB}}^N = N!$ for a system of $2N$ spins.
 
-One way to see the linear dependence of these valence bond states would be to again diagonalize
+One way to see the linear dependence of the remaining valence bond states would be to again diagonalize
 the $S^2$ matrix, for a six-site system this time (in which there are $3!=6$ A-B sublattice
 valence bond states, but only $6!/(3!4!) = 5$ singlet states).
 This, however, would require us to diagonalize a 64x64 matrix, or a 20x20 matrix if we only look at
 the $S^z=0$ sector.
 
-\comment{ Perhaps, show how even with the AB sublattice coverings only, it's still overcomplete.
-Though I do this using the *overlap* matrix, which I need to compute the overlap for... and I haven't
-said how the calculate the overlap.}
+Another way to see the linear dependence of the A-B sublattice states is to look at the overlap matrix, that is a matrix filled with the inner products between the different states, i.e.
 
+\begin{minipage}{0.0\textwidth} 
+\centering
+	\begin{align*}
+		\ket{\psi_1} &= \ket{(a,d)(c,f)(e,b)} \\
+		\ket{\psi_2} &= \ket{(a,d)(c,b)(e,f)} \\
+		\ket{\psi_3} &= \ket{(a,b)(c,f)(e,d)} \\
+		\ket{\psi_4} &= \ket{(a,f)(c,b)(e,d)} \\
+		\ket{\psi_5} &= \ket{(a,b)(c,d)(e,f)} \\
+		\ket{\psi_6} &= \ket{(a,f)(c,d)(e,b)} 
+	\end{align*}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[b]{0.0\linewidth}
+\centering 
+	\begin{equation}
+		\mathcal{O} = \left[\begin{array}{ccc}
+		\inn{\psi_1}{\psi_1} & \cdots & \inn{\psi_6}{\psi_1}\\
+		\vdots&\ddots&\vdots\\
+		\inn{\psi_1}{\psi_6}&\cdots&\inn{\psi_6}{\psi_6}\\
+		\end{array}\right] =
+		\frac{1}{4}
+		\left[\begin{array}{cccccc}
+		4&2&2&1&1&2\\
+		2&4&1&2&2&1\\
+		2&1&4&2&2&1\\
+		1&2&2&4&1&2\\
+		1&2&2&1&4&2\\
+		2&1&1&2&2&4
+		\end{array}\right] \nonumber
+	\end{equation}
+\end{minipage}
+
+\noindent If the overlap matrix $\mathcal{O}$ is put in reduced row echelon form we can see that it only takes five of the six vectors to span the space of six site singlet states.  
+\begin{equation}
+ \mathcal{O}_{rre} =
+ \left[\begin{array}{cccccc}
+		1&0&0&0&0&1\\
+		0&1&0&0&0&-1\\
+		0&0&1&0&0&-1\\
+		0&0&0&1&0&1\\
+		0&0&0&0&1&1\\
+		0&0&0&0&0&0
+		\end{array}\right] \hspace{1.2cm}
+		\ket{\psi_6} = \ket{\psi_1} -\ket{\psi_2} -\ket{\psi_3} +\ket{\psi_4} + \ket{\psi_5}
+\end{equation}
+Also the last state can be written as a linear combination of the other five states.
 
 \comment{ graph comparing the functions}
-\comment{ maybe show some of my awesome matrix calculations? \\ 
-the lack of linear independence for N=3.}
 
 \comment{
 - then actually go over the properties if they haven't already been mentioned.
 
-- VB basis can be used to represent any singlet state\\
-- spans the spin 0 sector\\
 ***- singlets have a lower energy that the classical N\'eel state\\
 }
 
