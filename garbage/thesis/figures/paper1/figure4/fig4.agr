@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Thu Jul  9 10:06:55 2009"
+@timestamp def "Mon Sep 20 16:45:32 2010"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -104,7 +104,7 @@
 @    world 1, 0.3, 21, 0.65
 @    stack world 0, 0, 0, 0
 @    znorm 1
-@    view 0.185243, 0.233909, 1.131868, 0.901099
+@    view 0.185243, 0.233909, 1.125000, 0.767157
 @    title ""
 @    title font 0
 @    title size 1.500000
@@ -123,7 +123,7 @@
 @    xaxis  bar on
 @    xaxis  bar color 1
 @    xaxis  bar linestyle 1
-@    xaxis  bar linewidth 1.0
+@    xaxis  bar linewidth 2.0
 @    xaxis  label ""
 @    xaxis  label layout para
 @    xaxis  label place auto
@@ -139,11 +139,11 @@
 @    xaxis  tick in
 @    xaxis  tick major size 1.000000
 @    xaxis  tick major color 1
-@    xaxis  tick major linewidth 1.0
+@    xaxis  tick major linewidth 2.0
 @    xaxis  tick major linestyle 1
 @    xaxis  tick major grid off
 @    xaxis  tick minor color 1
-@    xaxis  tick minor linewidth 1.0
+@    xaxis  tick minor linewidth 2.0
 @    xaxis  tick minor linestyle 1
 @    xaxis  tick minor grid off
 @    xaxis  tick minor size 0.500000
@@ -174,7 +174,7 @@
 @    yaxis  bar on
 @    yaxis  bar color 1
 @    yaxis  bar linestyle 1
-@    yaxis  bar linewidth 1.0
+@    yaxis  bar linewidth 2.0
 @    yaxis  label ""
 @    yaxis  label layout para
 @    yaxis  label place auto
@@ -190,11 +190,11 @@
 @    yaxis  tick in
 @    yaxis  tick major size 1.000000
 @    yaxis  tick major color 1
-@    yaxis  tick major linewidth 1.0
+@    yaxis  tick major linewidth 2.0
 @    yaxis  tick major linestyle 1
 @    yaxis  tick major grid off
 @    yaxis  tick minor color 1
-@    yaxis  tick minor linewidth 1.0
+@    yaxis  tick minor linewidth 2.0
 @    yaxis  tick minor linestyle 1
 @    yaxis  tick minor grid off
 @    yaxis  tick minor size 0.500000
@@ -223,7 +223,7 @@
 @    altyaxis  off
 @    legend on
 @    legend loctype view
-@    legend 0.23, 0.895
+@    legend 0.232, 0.765
 @    legend box color 1
 @    legend box pattern 1
 @    legend box linewidth 1.0
@@ -244,55 +244,6 @@
 @    frame pattern 1
 @    frame background color 0
 @    frame background pattern 0
-@    s0 hidden false
-@    s0 type xy
-@    s0 symbol 3
-@    s0 symbol size 1.000000
-@    s0 symbol color 1
-@    s0 symbol pattern 1
-@    s0 symbol fill color 1
-@    s0 symbol fill pattern 0
-@    s0 symbol linewidth 2.0
-@    s0 symbol linestyle 1
-@    s0 symbol char 65
-@    s0 symbol char font 0
-@    s0 symbol skip 0
-@    s0 line type 1
-@    s0 line linestyle 2
-@    s0 line linewidth 1.5
-@    s0 line color 1
-@    s0 line pattern 1
-@    s0 baseline type 0
-@    s0 baseline off
-@    s0 dropline off
-@    s0 fill type 0
-@    s0 fill rule 0
-@    s0 fill color 1
-@    s0 fill pattern 1
-@    s0 avalue off
-@    s0 avalue type 2
-@    s0 avalue char size 1.000000
-@    s0 avalue font 0
-@    s0 avalue color 1
-@    s0 avalue rot 0
-@    s0 avalue format general
-@    s0 avalue prec 3
-@    s0 avalue prepend ""
-@    s0 avalue append ""
-@    s0 avalue offset 0.000000 , 0.000000
-@    s0 errorbar on
-@    s0 errorbar place both
-@    s0 errorbar color 1
-@    s0 errorbar pattern 1
-@    s0 errorbar size 1.000000
-@    s0 errorbar linewidth 1.0
-@    s0 errorbar linestyle 1
-@    s0 errorbar riser linewidth 1.0
-@    s0 errorbar riser linestyle 1
-@    s0 errorbar riser clip off
-@    s0 errorbar riser clip length 0.100000
-@    s0 comment "/Users/rgmelko/Waterloo/VBbasis_QMC/VB_qmc/PAPERS/VB_VN_EE/figure4/matt_ffs.dat"
-@    s0 legend  "  "
 @    s1 hidden false
 @    s1 type xy
 @    s1 symbol 1
@@ -587,29 +538,6 @@
 @    s6 errorbar riser clip length 0.100000
 @    s6 comment "/Users/akallin/VB_qmc/PAPERS/VB_VN_EE/figure4/zig.dat"
 @    s6 legend  ""
-@target G0.S0
-@type xy
-1 0.235455
-2 0.3973
-3 0.46466667
-4 0.501075
-5 0.522388
-6 0.54520833
-7 0.56472714
-8 0.5782
-9 0.5938
-10 0.60258
-11 0.61574545
-12 0.62685
-13 0.63077692
-14 0.63998571
-15 0.64337333
-16 0.649525
-17 0.6562
-18 0.65708889
-19 0.65911053
-20 0.668085
-&
 @target G0.S1
 @type xy
 1 0.492507
