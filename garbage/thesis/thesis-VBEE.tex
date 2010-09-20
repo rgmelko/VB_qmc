@@ -50,79 +50,59 @@ belong to region B.
 As mentioned in section \ref{1dcft}, for a 1D critical system the scaling of the entanglement entropy is described by CFT results as in Eq.~\eqref{cft1d}. 
 \comment{Mention conformal mapping again?}
 
-Figure \ref{1dPBC} shows the \vb measurements for a periodic spin chain with 100 sites, plotted alongside \vn data.  The \vb seems to fit well to the CFT result, though it is lower than \vn.
-Linear regression fits of the \vb and \vn data for several system sizes, shown in Figure~\ref{c1}, ...
-
-
-
 \begin{figure} {
 \includegraphics[width=5.5in]{./figures/paper1/figure1/thesis_pbc.eps} 
 \centering
-\caption[1D PBC Results for VB EE and von Neumann EE]{
-\change{
-Entanglement entropies for a 1D Heisenberg chain with PBC. The entropies as a function of the conformal distance $x'  = (L/\pi)\sin (\pi x/L)$ for
-100-site chains.
+\caption[1D PBC Results for \vb with \vn]{
+Entanglement entropies for a 1D, 100-site Heisenberg chain with PBC, as a function of the conformal distance $x'  = (L/\pi)\sin (\pi x/L)$.
 \label{1dPBC}}
-} }
+} 
 \end{figure}
+
+Figure \ref{1dPBC} shows the \vb measurements for a periodic spin chain with 100 sites, plotted alongside \vn data.  \vb seems to fit well to the CFT result, though it is lower than \vn.
+Linear regression fits of the \vb and \vn data for several system sizes (Figure~\ref{c1}) shows $c^{\rm vN}$ approaching 1 as the system size increases, however $c^{\rm VB}$ gives a lower value of $c$.
+
 
 \begin{figure} {
 \includegraphics[width=6in]{./figures/paper1/figure1/thesis_c1.eps} 
-\centering
-\caption[1D Results for VB EE and von Neumann EE]{
-\comment{
-For PBC, $c$ is calculated with the two smallest $x'$ points
-removed.
-\label{c1}}
-} }
+	\centering
+	\caption[1D Results for VB EE and von Neumann EE]{
+	The central charge, $c$, found using linear regression fits of the entanglement entropy data 	for periodic Heisenberg chains for length L=64, 100, 128, 200, and 256.  Data for the two smallest 	points ($S(1)$ and $S(L-1)$) are removed for the calculation of $c$ \notsay{since the DMRG data 	do not include these region A sizes}.
+	\label{c1}}
+} 
 \end{figure}
 
+
 \begin{figure} {
-\includegraphics[width=5.5in]{./figures/paper1/figure1/thesis_obc.eps} 
-\centering
-\caption[1D OBC Results for VB EE and von Neumann EE]{
-\change{
-Entanglement entropies for a 1D Heisenberg chain with OBC. The entropies as a function of the conformal distance $x'  = (L/\pi)\sin (\pi x/L)$ for
-100-site chains.
-\label{1dOBC}}
-} }
+	\includegraphics[width=5.5in]{./figures/paper1/figure1/thesis_obc.eps} 
+	\centering
+	\caption[1D OBC Results for VB EE and von Neumann EE]{
+	Entanglement entropies for a 1D 100-site Heisenberg chain with OBC as a function of the conformal distance $x'  = (L/\pi)\sin (\pi x/L)$.
+	\label{1dOBC}}}
 \end{figure}
+
+\change{For the OBC case} (Figure~\ref{1dOBC}), we see entanglement entropies split into two branches, where the upper branch corresponds to an odd number of sites in region A, and the lower to an even number.
+\change{This branching is due to a ``dimerization" effect caused by the open boundary conditions \cite{Ian1}.}
+In contrast to the PBC case, \vb is now higher than \vn.
 
 \begin{figure} {
 \includegraphics[width=6.5in]{./figures/paper1/figure1/fig2_NEW.eps} 
 \centering
-\caption[things]{ 
-\comment{fdsfd}
-} 
-}
+\caption[caption]{ 
+	caption
+}}
 \end{figure}
-
-\begin{figure} {
-\includegraphics[width=6.5in]{./figures/paper1/figure1/4-panelFIG1.eps} 
-\centering
-\caption[1D Results for VB EE and von Neumann EE]{
-\comment{
-Entanglement entropies for a 1D Heisenberg chain with PBC and OBC. Upper
-panels show the entropies as a function of the conformal distance $x'  = (L/\pi)\sin (\pi x/L)$ for
-100-site chains.  Lower plots show the central
-charge $c$, obtained by fitting the numerical data to the CFT result, for
-several $L$.  For PBC, $c$ is calculated with the two smallest $x'$ points
-removed.  For OBC, the fits depend on the number of sites included, $z$,
-which we systematically decrease by removing $x'$ data points from the
-{\it outside} ends of the chain.  $c$ is shown for $S^{\rm vN}$
-(closed symbols) and $S^{\rm VB}$ (open symbols) for system sizes $L=64$
-(circles), $L=100$ (squares), $L=128$ (diamonds), and $L=200$ (triangles)
-\label{1D}}
-} }
-\end{figure}
-
 
 %------------------------------------------------------------------------------------------------------------------
 \section{Approaching Two Dimensions}
 
-\begin{figure} { \includegraphics[width=6.5in]{./figures/paper1/figure23new/fig23NEW.eps}
+\comment{make a diagram of the snaking pattern for the dmrg?}
+
+\begin{figure} { \includegraphics[width=6in]{./figures/paper1/figure23new/fig23NEW.eps}
 \caption[EEs for 3- \& 4-leg ladders]{
 {\color{red}
+Totally split this into many figures.
+
 Entanglement entropies for 3-leg (left)
 and 4-leg (right) ladder systems with OBC and 100 sites per leg.  For
 odd-leg ladders, $S(x)\propto\ln(x')$.  The left
@@ -136,7 +116,7 @@ bipartition A is shaded and labeled by $x=9$.
 %------------------------------------------------------------------------------------------------------------------
 \section{The Area Law}
 
-\begin{figure} { \includegraphics[width=6.5in]{./figures/paper1/figure4/fig4.eps}
+\begin{figure} { \includegraphics[width=5.5in]{./figures/paper1/figure4/fig4.eps}
  \caption[Area Law in 2D Heis model]{
  {\color{red} Entanglement entropies divided by $N$,  for $N$-leg Heisenberg
 (filled symbols) and free-fermion (open diamonds) ladders, taken such that
