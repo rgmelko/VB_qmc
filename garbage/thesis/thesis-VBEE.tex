@@ -93,31 +93,29 @@ In contrast to the PBC case, \vb is now higher than \vn.
 }}
 \end{figure}
 
+\comment{Totally talk about $c$ for the OBC case.}
+
 %------------------------------------------------------------------------------------------------------------------
 \section{Approaching Two Dimensions}
 
-\comment{make a diagram of the snaking pattern for the dmrg?}
-
-\begin{figure} { \includegraphics[width=6in]{./figures/paper1/figure23new/fig23NEW.eps}
-\caption[EEs for 3- \& 4-leg ladders]{
-{\color{red}
-Totally split this into many figures.
-
-Entanglement entropies for 3-leg (left)
-and 4-leg (right) ladder systems with OBC and 100 sites per leg.  For
-odd-leg ladders, $S(x)\propto\ln(x')$.  The left
-inset shows $S(x)$ as a function of the conformal distance, $x'$, on a log
-scale. For even-leg ladders, $S(x\gtrsim\xi)= {\rm const}.$
-The right inset shows the site indexing used for multi-leg ladders where the
-bipartition A is shaded and labeled by $x=9$. 
-}
- \label{ladder} }} 
+\comment{make a diagram of the snaking pattern for the dmrg!}
+ 
+\begin{figure} { \includegraphics[width=6in]{./figures/paper1/figure3/3-leg-ladder/fig3_final2.eps}
+\caption[EEs for 3-leg ladder]{
+caption
+ \label{ladder3} }} 
+ \end{figure}
+ 
+ \begin{figure} { \includegraphics[width=6in]{./figures/paper1/figure3/4-leg-ladder/4legfig.eps}
+\caption[EEs for 4-leg ladder]{
+caption
+ \label{ladder4} }} 
  \end{figure}
  
  We now move towards two dimensions by adding ``legs" to our one dimensional chains.
  Due to the constraints imposed by the DMRG on the geometry of region A the sites must be arranged in a snaking pattern. \comment{(See Figure)}
 The DMRG data, to which we compare \vb, are limited to ladders with $M=7$ legs because of the \change{poor scaling of the algorithm when approaching 2D}.
- The VB QMC algorithm \change{scales as $N^2$} for a system with N sites, and \change{ we measure up to $M=20$...}
+ The VB QMC algorithm \change{scales as $N^2$} for a system with N sites, so \change{ we measure up to $M=20$ with minimal CPU effort}.
 %------------------------------------------------------------------------------------------------------------------
 \section{The Area Law}
 
