@@ -29,7 +29,7 @@ are expected to follow an area law \comment {reference that paper (eisert)}, tho
 
 To \change{study/examine?} \change{this quantity} and check its \change{correspondence} to a known measure of entanglement we place our \vb data alongside measurements of \vn
 on the same system, calculated with density matrix renormalization group (DMRG) simulations by I. Gonzalez and R. Melko.
-\vb is calculated using valence bond quantum Monte Carlo (VB QMC) simulations.
+\vb is calculated using a single projector valence bond quantum Monte Carlo (VB QMC) scheme.
 
 \notsay{
 In 1D we fit the entanglement entropy results to the analytical results from CFT...}
@@ -113,6 +113,11 @@ bipartition A is shaded and labeled by $x=9$.
 }
  \label{ladder} }} 
  \end{figure}
+ 
+ We now move towards two dimensions by adding ``legs" to our one dimensional chains.
+ Due to the constraints imposed by the DMRG on the geometry of region A the sites must be arranged in a snaking pattern. \comment{(See Figure)}
+The DMRG data, to which we compare \vb, are limited to ladders with $N=7$ legs because of the \change{poor scaling of the algorithm when approaching 2D}.
+ 
 %------------------------------------------------------------------------------------------------------------------
 \section{The Area Law}
 
