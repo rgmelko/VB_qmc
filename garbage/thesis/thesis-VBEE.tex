@@ -3,33 +3,33 @@
 %======================================================================
 \comment{SUPERNOTE: Make sure it's clear that I only did the VB EE part, not the DMRG/vN part.}
 
-In \change{year that this happened} a new quantity called {\it{valence bond entanglement entropy}} ($\vb$) which seems to have properties
-similar to entanglement entropy was proposed by \change{Fabian and co, also affleck or something?}.  
-The main \change{draw, advantage} of this quantity is its \change{easy to measure -ableness,
+In \change{year that this happened} a new quantity called {\it{valence bond entanglement entropy}} (\vb) was proposed by \change{Fabian and co, also affleck or something?}.  
+This quantity seems to have properties similar to the von Neumann entanglement entropy (\vn).
+The main \change{draw, advantage} of \vb is its \change{easy to measure -ableness,
 ease of measurement?} when working in the valence bond basis.
-For a valence bond basis state $\vb$ between two regions, A and B, is defined as 
+For a valence bond basis state \vb between two regions, A and B, is defined as 
 \begin{equation}
-\vb_A = \ln({2})\mathcal{N}_{\text{A}},
+\VB_A = \ln({2})\mathcal{N}_{\text{A}},
 \end{equation} 
 where $\mathcal{N}_{\text{A}}$ is the number of valence bonds crossing the boundary between
 regions A and B.
 \comment{Add in a figure showing this!!}
 
 
-$\vb$ shares some properties with $\vn$; in particular, for both quantities: $S_{\text{A}} = S_{\text{B}}$.
-Also, $\vb = 0$ for systems with no entanglement between regions A and B.
-For any single valence bond basis state $\vb$ and $\vn$ agree exactly, and
-in one-dimensional Heisenberg spin-1/2 systems, $\vb$ seems to to be in good agreement with
-the conformal field theory (CFT) results for $\vn$.
-However, in two dimensions $\vb$ shows a multiplicative logarithmic correction to the area law
+\vb shares some properties with \vn; in particular, for both quantities: $S_{\text{A}} = S_{\text{B}}$.
+Also, $\VB = 0$ for systems with no entanglement between regions A and B.
+For any single valence bond basis state \vb and \vn agree exactly, and
+in one-dimensional Heisenberg spin-1/2 systems, \vb seems to to be in good agreement with
+the conformal field theory (CFT) results for \vn.
+However, in two dimensions \vb shows a multiplicative logarithmic correction to the area law
 for the isotropic Heisenberg model.  
 Ground states of unfrustrated 2D spin-1/2 systems with exclusively nearest-neighbour interactions
 are expected to follow an area law \comment {reference that paper (eisert)}, though for the 2D isotropic Heisenberg model the entanglement entropy had not yet been studied \change{explicitly}.
 
 
-To \change{study/examine?} \change{this quantity} and check its \change{correspondence} to a known measure of entanglement we place our $\vb$ data alongside measurements of $\vn$
-on the same system, calculated with density matrix renormalization group (DMRG) simulations. \comment{somehow say it wasn't done by me.} 
-$\vb$ is calculated using valence bond quantum Monte Carlo (VB QMC) simulations.
+To \change{study/examine?} \change{this quantity} and check its \change{correspondence} to a known measure of entanglement we place our \vb data alongside measurements of \vn
+on the same system, calculated with density matrix renormalization group (DMRG) simulations by I. Gonzalez and R. Melko.
+\vb is calculated using valence bond quantum Monte Carlo (VB QMC) simulations.
 
 \notsay{
 In 1D we fit the entanglement entropy results to the analytical results from CFT...}
@@ -40,12 +40,14 @@ In 1D we fit the entanglement entropy results to the analytical results from CFT
 
 \change{We begin by simulating one dimensional systems, examining both the cases of
 open and periodic boundary conditions.}
-The DMRG simulations require both of regions A and B to be topologically connected, and the 
-same \change{convention} is used in the VB QMC simulations.
+\notsay{The DMRG simulations require both of regions A and B to be topologically connected, so 
+the same \change{convention} is used in the VB QMC simulations.}
 
 It is convenient to denote the size of region A by the number of sites included in that region 
 (i.e. for a 1D system of length $L$, $S_{\text{A}} = S(x)$ is the entanglement entropy for a system where region A contains sites $\{1,2,\dots,x\}$ and the rest of the sites $\{x+1,x+2,\dots,L\}$
 belong to region B.
+
+\comment{OMG, gotta talk about CFT, but I was totally supposed to do that in chapter 1, but I haven't yet.  So I'll just pretend I know what I said....}
 
 
 

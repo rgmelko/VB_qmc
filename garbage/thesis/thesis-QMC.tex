@@ -340,10 +340,16 @@ Another way to see the linear dependence of the A-B sublattice states is to look
 \end{equation}
 Also the last state can be written as a linear combination of the other five states.
 
-\comment{ graph comparing the functions}
-
+\begin{figure} {  
+\centering
+\includegraphics [width=4.5in]{./figures/made/fact.eps} 
+\caption[Comparison of number of states]{
+The number of singlet states, valence bond states, and valence bond states restricted to A-B sublattice bonds.}
+ \label{statess}
+ }
+\end{figure}
 \comment{
-- then actually go over the properties if they haven't already been mentioned.
+- actually go over the properties if they haven't already been mentioned.
 
 ***- singlets have a lower energy that the classical N\'eel state\\
 }
@@ -360,7 +366,7 @@ but with math and stuff this time.}
 
 In the $S^z$ basis, to calculate the overlap between two states we simply take the inner products 
 between the various terms of the two states.  
-Since the $S^z$ basis states are all mutually orthonormal, the process is quite simple, e.g.
+Since the $S^z$ basis states are all mutually orthonormal, the process is quite simple, for example:
 \begin{equation*}
 \ket{\psi} = \frac{1}{2}\big(\sqrt{3}\ket{\up\up} + \ket{\dw\dw}\big) \hspace{1cm}
 \ket{\phi} = \frac{1}{\sqrt{2}} \big(\ket{\dw\up} + \ket{\dw\dw}\big) \nonumber
@@ -402,7 +408,6 @@ This method of calculating the inner product, however, quickly becomes \change{m
 A more intuitive way to calculate the overlap is to superimpose diagrams of the two valence bond states, as in Figure~\ref{overlap}.
 We can rewrite the valence bond states from the figure, keeping the bonds belonging to the same 
 look together.  Bonds from separate loops will have no overlap with each other.
-
 \begin{figure} {  
 \centering
 \includegraphics [width=5.5in]{./figures/made/overlap.pdf} 
@@ -423,8 +428,6 @@ look together.  Bonds from separate loops will have no overlap with each other.
  \label{overlap}
  }
 \end{figure}
-
-
 \begin{eqnarray}
 \ket{V_\text{L}} &=&  \ket{(1,4)(3,2)(6,5)(8,15)(9,12)(11,10)(14,13)(16,7)}\nonumber\\ 
 			&=&  \ket{(1,4)(16,7)(8,15)(14,13)(6,5)}\otimes\ket{(3,2)}\otimes\ket{(9,12)(11,10)}\\

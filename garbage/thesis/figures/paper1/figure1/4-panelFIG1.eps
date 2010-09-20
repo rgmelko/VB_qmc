@@ -1,14 +1,21 @@
 %!PS-Adobe-2.0 EPSF-2.0
-%%Creator: dvips(k) 5.95a Copyright 2005 Radical Eye Software
+%%Creator: dvips(k) 5.97 Copyright 2008 Radical Eye Software
 %%Title: 4-panelFIG1
-%%BoundingBox: 1191 215 1803 685
+%%CreationDate: Mon Sep 20 04:26:24 2010
 %%DocumentFonts: Symbol Times-Italic CMR10 Times-Roman CMMI10 CMSY10
+%%BoundingBox: 0 0 612 470
 %%EndComments
+%%BeginProcSet: epsffit 1 0
+gsave
+-1191.000 -215.000 translate
+1.000 1.000 scale
+%%EndProcSet
+
 %DVIPSWebPage: (www.radicaleye.com)
-%DVIPSCommandLine: dvips -Pwww -q -x 01000 -E fig2eps-79564.dvi -o
-%+ fig2eps-79564.eps
+%DVIPSCommandLine: dvips -Pwww -q -x 01000 -E fig2eps-24973.dvi -o
+%+ fig2eps-24973.eps
 %DVIPSParameters: dpi=600
-%DVIPSSource:  TeX output 2009.07.06:1520
+%DVIPSSource:  TeX output 2010.09.20:0426
 %%BeginProcSet: tex.pro 0 0
 %!
 /TeXDict 300 dict def TeXDict begin/N{def}def/B{bind def}N/S{exch}N/X{S
@@ -62,7 +69,7 @@ rmoveto}B/y{3 2 roll p a}B/bos{/SS save N}B/eos{SS restore}B end
 %   author    = "S. Rahtz, P. MacKay, Alan Jeffrey, B. Horn, K. Berry,
 %                W. Schmidt, P. Lehman",
 %   version   = "2.0",
-%   date      = "30 October 2002",
+%   date      = "27nov06",
 %   filename  = "8r.enc",
 %   email     = "tex-fonts@@tug.org",
 %   docstring = "This is the encoding vector for Type1 and TrueType
@@ -172,7 +179,7 @@ rmoveto}B/y{3 2 roll p a}B/bos{/SS save N}B/eos{SS restore}B end
  /currency /yen /brokenbar /section
  /dieresis /copyright /ordfeminine /guillemotleft
  /logicalnot /hyphen /registered /macron
-% 0xD0
+% 0xB0
  /degree /plusminus /twosuperior /threesuperior
  /acute /mu /paragraph /periodcentered
  /cedilla /onesuperior /ordmasculine /guillemotright
@@ -525,7 +532,7 @@ EFB9F665D2D22FA7E7CA520546591B5C1669B4F624F6EF35A097B3822D4166F2
 0000000000000000000000000000000000000000000000000000000000000000
 cleartomark
 %%EndFont 
-TeXDict begin 40258437 52099154 1000 600 600 (fig2eps-79564.dvi)
+TeXDict begin 40258437 52099154 1000 600 600 (fig2eps-24973.dvi)
 @start /Fa 207[40 48[{}1 145.288 /CMSY10 rf /Fb 137[73
 31[105 7[105 11[97 66[{TeXBase1Encoding ReEncodeFont}4
 145.288 /Times-Roman rf /Fd 175[134 174 11[161 161 66[{
@@ -547,15 +554,16 @@ TeXDict begin
 TeXDict begin 1 0 bop Black Black Black Black 9335 4200
 a @beginspecial 0 @llx 0 @lly 595 @urx 468 @ury 5950
 @rwi @setspecial
-%%BeginDocument: fig2eps-79564.pstex
+%%BeginDocument: fig2eps-24973.pstex
 %!PS-Adobe-2.0 EPSF-2.0
 %%Title: 4-panelFIG1
-%%Creator: fig2dev Version 3.2 Patchlevel 5
-%%CreationDate: Mon Jul  6 15:20:14 2009
-%%For: akallin@sisipuk.uwaterloo.ca (akallin)
+%%Creator: fig2dev Version 3.2 Patchlevel 5a
+%%CreationDate: Mon Sep 20 04:26:22 2010
+%%For: ann@akallin-probook-2.local (Ann Kallin)
 %%BoundingBox: 0 0 595 468
 %Magnification: 1.0000
 %%EndComments
+%%BeginProlog
 /$F2psDict 200 dict def
 $F2psDict begin
 $F2psDict /mtrx matrix put
@@ -594,10 +602,6 @@ $F2psDict /mtrx matrix put
 /col31 {1.000 0.840 0.000 srgb} bind def
 
 end
-save
-newpath 0 468 moveto 0 0 lineto 595 0 lineto 595 468 lineto closepath clip newpath
--89.8 498.4 translate
-1 -1 scale
 
 /cp {closepath} bind def
 /ef {eofill} bind def
@@ -633,10 +637,22 @@ newpath 0 468 moveto 0 0 lineto 595 0 lineto 595 468 lineto closepath clip newpa
 /$F2psBegin {$F2psDict begin /$F2psEnteredState save def} def
 /$F2psEnd {$F2psEnteredState restore end} def
 
+/pageheader {
+save
+newpath 0 468 moveto 0 0 lineto 595 0 lineto 595 468 lineto closepath clip newpath
+-89.8 498.4 translate
+1 -1 scale
 $F2psBegin
 10 setmiterlimit
 0 slj 0 slc
  0.06000 0.06000 sc
+} bind def
+/pagefooter {
+$F2psEnd
+restore
+} bind def
+%%EndProlog
+pageheader
 %
 % Fig objects follow
 %
@@ -12172,7 +12188,6 @@ s
 %%Trailer
 %%BoundingBox: 37 66 753 604
 %%DocumentNeededResources: font Times-Roman
-%%EOF
 
 cleartomark
 countdictstack exch sub { end } repeat
@@ -12182,8 +12197,7 @@ restore grestore
 %%EndDocument
 %
 % here ends figure;
-$F2psEnd
-rs
+pagefooter
 showpage
 %%Trailer
 %EOF
@@ -12232,3 +12246,4 @@ Fl(S)r Fi(\()p Fl(x)q Fi(\))p Black 9561 1696 a
 
 userdict /end-hook known{end-hook}if
 %%EOF
+grestore
