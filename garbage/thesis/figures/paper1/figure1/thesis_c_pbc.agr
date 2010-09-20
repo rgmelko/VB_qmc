@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Sat Sep 18 14:01:57 2010"
+@timestamp def "Mon Sep 20 08:35:40 2010"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -1105,7 +1105,7 @@
 @    world 0, 0.93, 0.017, 1.02
 @    stack world 0, 0, 0, 0
 @    znorm 1
-@    view 0.185049, 0.167892, 1.047794, 0.856618
+@    view 0.185049, 0.167892, 1.140931, 0.704657
 @    title ""
 @    title font 0
 @    title size 1.500000
@@ -1224,7 +1224,7 @@
 @    altyaxis  off
 @    legend on
 @    legend loctype view
-@    legend 0.3, 0.62
+@    legend 0.23, 0.52
 @    legend box color 0
 @    legend box pattern 1
 @    legend box linewidth 1.0
