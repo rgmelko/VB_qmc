@@ -86,7 +86,7 @@ Linear regression fits of the \vb and \vn data for several system sizes (Figure~
 In contrast to the PBC case, \vb is now higher than \vn.
 
 \begin{figure} {
-\includegraphics[width=6.5in]{./figures/paper1/figure1/fig2_NEW.eps} 
+\includegraphics[width=6in]{./figures/paper1/figure1/fig2_NEW.eps} 
 \centering
 \caption[caption]{ 
 	caption
@@ -111,7 +111,6 @@ The inset shows a close up view of the boxed region.
 \caption[Entanglement entropies for a four-leg ladder]{
 Entanglement entropies for a four-leg ladder with OBC and 100 sites per leg.  
 The inset shows a close up view of the boxed region.  
-For ladders with an even number of legs, away from the open boundaries $S = \text{const}$.
  \label{ladder4} }} 
  \end{figure}
  
@@ -119,21 +118,28 @@ For ladders with an even number of legs, away from the open boundaries $S = \tex
  Due to the constraints imposed by the DMRG on the geometry of region A the sites must be arranged in a snaking pattern. \comment{(See Figure)}
 The DMRG data, to which we compare \vb, are limited to ladders with $M=7$ legs because of the \change{poor scaling of the algorithm when approaching 2D}.
  The VB QMC algorithm \change{scales as $N^2$} for a system with N sites, so \change{ we measure up to $M=20$ with minimal CPU effort}.
+ 
+ Figures \ref{ladder3} and \ref{ladder4} show the entanglement entropies for three- and four-leg ladders respectively.
+ As with the 1D OBC spin chain, $\VB > \VN$ for these $M$-leg ladders.
+ \vn and \vb show different behavior depending on whether the number of legs is even or odd.
+ For odd-leg ladders
+ 
+ \notsay{
+ For ladders with an even number of legs, away from the open boundaries $S = \text{const}$.}
+ 
+ \comment{Say something about the ``spin gap"? White, Noack, Scalapino, 1994.}
+ 
 %------------------------------------------------------------------------------------------------------------------
 \section{The Area Law}
 
 \begin{figure} { \includegraphics[width=6in]{./figures/paper1/figure4/4fig.eps}
  \caption[Area Law in 2D Heis model]{
- {\color{red} Entanglement entropies divided by $N$,  for $N$-leg Heisenberg
-(filled symbols) and free-fermion (open diamonds) ladders, taken such that
-the region A includes $2N^2$ sites.  
-For the Heisenberg model and large $N$, $S^{\rm VB}\propto N \ln N$,
-whereas $S^{\rm vN}\propto N$.  
-Data for free fermions, $S^{\rm vN}_{\rm ff}\propto N \ln N$,  are shown for comparison.
-We show data for ladders with length (sites per leg) $L =100$ and
-%ladders with length proportional to the number of legs 
-$L=4N$.  
-}
+Entanglement entropies divided by $M$,  for $M$-leg ladders, taken such that
+the region A includes $2M^2$ sites.  
+Data from both ladders of  with $L=100$ sites per leg and ladders of length $L=4M$ 
+\notsay{(with length proportional to the number of legs)} are shown.
+For large $M$, $S^{\rm VB}\propto M \ln M$,
+whereas $S^{\rm vN}\propto M$.   
 \label{zigzag}}} 
 \end{figure}
 %------------------------------------------------------------------------------------------------------------------
