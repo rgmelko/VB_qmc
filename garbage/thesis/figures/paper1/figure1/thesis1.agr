@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.500000
-@timestamp def "Fri Sep 17 19:38:10 2010"
+@timestamp def "Mon Sep 20 04:51:28 2010"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -158,7 +158,7 @@
 @    world 0.9, 0.6, 40, 2
 @    stack world 0, 0, 0, 0
 @    znorm 1
-@    view 0.145000, 0.130000, 1.200000, 0.945000
+@    view 0.145000, 0.130000, 1.198529, 0.770833
 @    title ""
 @    title font 0
 @    title size 1.500000
@@ -217,7 +217,7 @@
 @    xaxis  ticklabel start 0.000000
 @    xaxis  ticklabel stop type auto
 @    xaxis  ticklabel stop 0.000000
-@    xaxis  ticklabel char size 2.500000
+@    xaxis  ticklabel char size 2.000000
 @    xaxis  ticklabel font 0
 @    xaxis  ticklabel color 1
 @    xaxis  tick place both
@@ -237,8 +237,8 @@
 @    yaxis  label color 1
 @    yaxis  label place normal
 @    yaxis  tick on
-@    yaxis  tick major 0.2
-@    yaxis  tick minor ticks 1
+@    yaxis  tick major 0.4
+@    yaxis  tick minor ticks 3
 @    yaxis  tick default 6
 @    yaxis  tick place rounded true
 @    yaxis  tick in
@@ -268,7 +268,7 @@
 @    yaxis  ticklabel start 0.000000
 @    yaxis  ticklabel stop type auto
 @    yaxis  ticklabel stop 0.000000
-@    yaxis  ticklabel char size 2.500000
+@    yaxis  ticklabel char size 2.000000
 @    yaxis  ticklabel font 0
 @    yaxis  ticklabel color 1
 @    yaxis  tick place both
@@ -277,7 +277,7 @@
 @    altyaxis  off
 @    legend on
 @    legend loctype view
-@    legend 0.29, 0.85
+@    legend 0.23, 0.75
 @    legend box color 1
 @    legend box pattern 1
 @    legend box linewidth 1.0
