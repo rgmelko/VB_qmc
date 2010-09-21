@@ -27,7 +27,11 @@ So they have more information together than just $S_1=\VN$. \cite{Spectrum}
 
 \change{ Field theory on $O(N)$ model... universal corrections to scaling of $S_n$ calculated.}
 
-The Renyi entropies have the property that successive entropies give a lower bound on the previous entropies.  I.e. if $n>m$ then $S_n<S_m$, so \re gives a lower bound on \vn, and \re will give the closest estimate of \vn.
+The Renyi entropies have the property that successive entropies give a lower bound on the previous entropies.  I.e. if $n>m$ then $S_n<S_m$, so \re gives a lower bound on \vN, and \re will give the closest estimate of \vN.
+
+We can use the expectation value of a unitary \sw operator on two copies of the system to be studied in order to obtain ${\rm Tr}(\rho_{\rm A}^2)$, a quantity necessary to compute \re.  
+This process can be generalized to calculate any $S_n$ with $n \ge 2$, by applying a generalized \sw operator to $n$ copies of the system. 
+
 %----------------------------------------------------------------------------------------------------------
 \section{The Swap Operator}
 %----------------------------------------------------------------------------------------------------------
@@ -37,7 +41,7 @@ The Renyi entropies have the property that successive entropies give a lower bou
 	\centering
 	\caption[Swap operator]{
 	\change{Make my own, much awesomer figure.}
-		\label{swap_2}
+		\label{swap}
 		\comment{
 		A six-site chain, with two non-interacting copies (top and bottom) before
 		(a) and after (b) the $Swap_A$ operation. % in the valence bond basis.  
@@ -49,6 +53,8 @@ The Renyi entropies have the property that successive entropies give a lower bou
 		}
 	}
 }\end{figure}
+
+The \swa operator acts on two copies of the system (see Figure \ref{swap}), where the copies are not necessarily in the same state.  The action of \swa is to exchange the configuration of region A, between the two copies of the system.  If region A has some entanglement with region B in one of both of the copies of the system, then the two copies will become entangled after the application of \swA.
 
 \begin{align}
 \end{align}

@@ -3,8 +3,8 @@
 %======================================================================
 \comment{SUPERNOTE: Make sure it's clear that I only did the VB EE part, not the DMRG/vN part.}
 
-In \change{year that this happened} a new quantity called {\it{valence bond entanglement entropy}} (\vb) was proposed by \change{Fabian and co, also affleck or something?}.  
-This quantity seems to have properties similar to the von Neumann entanglement entropy (\vn).
+In \change{year that this happened} a new quantity called {\it{valence bond entanglement entropy}} (\vB) was proposed by \change{Fabian and co, also affleck or something?}.  
+This quantity seems to have properties similar to the von Neumann entanglement entropy (\vN).
 The main \change{draw, advantage} of \vb is its \change{easy to measure -ableness,
 ease of measurement?} when working in the valence bond basis.
 For a valence bond basis state \vb between two regions, A and B, is defined as 
@@ -16,11 +16,11 @@ regions A and B.
 \comment{Add in a figure showing this!!}
 
 
-\vb shares some properties with \vn; in particular, for both quantities: $S_{\text{A}} = S_{\text{B}}$.
+\vb shares some properties with \vN; in particular, for both quantities: $S_{\text{A}} = S_{\text{B}}$.
 Also, $\VB = 0$ for systems with no entanglement between regions A and B.
 For any single valence bond basis state \vb and \vn agree exactly, and
 in one-dimensional Heisenberg spin-1/2 systems, \vb seems to to be in good agreement with
-the conformal field theory (CFT) results for \vn.
+the conformal field theory (CFT) results for \vN.
 However, in two dimensions \vb shows a multiplicative logarithmic correction to the area law
 for the isotropic Heisenberg model.  
 Ground states of unfrustrated 2D spin-1/2 systems with exclusively nearest-neighbour interactions
@@ -53,13 +53,13 @@ As mentioned in section \ref{1dcft}, for a 1D critical system the scaling of the
 \begin{figure} {
 \includegraphics[width=5.5in]{./figures/paper1/figure1/thesis_pbc.pdf} 
 \centering
-\caption[1D PBC Results for \vb with \vn]{
+\caption[1D PBC Results for \vb with \vN]{
 Entanglement entropies for a 1D, 100-site Heisenberg chain with PBC, as a function of the conformal distance $x'  = (L/\pi)\sin (\pi x/L)$.
 \label{1dPBC}}
 } 
 \end{figure}
 
-Figure \ref{1dPBC} shows the \vb measurements for a periodic spin chain with 100 sites, plotted alongside \vn data.  \vb seems to fit well to the CFT result, though it is lower than \vn.
+Figure \ref{1dPBC} shows the \vb measurements for a periodic spin chain with 100 sites, plotted alongside \vn data.  \vb seems to fit well to the CFT result, though it is lower than \vN.
 Linear regression fits of the \vb and \vn data for several system sizes (Figure~\ref{c1}) shows $c^{\rm vN}$ approaching 1 as the system size increases, however $c^{\rm VB}$ gives a lower value of $c$.
 
 
@@ -83,7 +83,7 @@ Linear regression fits of the \vb and \vn data for several system sizes (Figure~
 
 \change{For the OBC case} (Figure~\ref{1dOBC}), we see entanglement entropies split into two branches, where the upper branch corresponds to an odd number of sites in region A, and the lower to an even number.
 \change{This branching is due to a ``dimerization" effect caused by the open boundary conditions \cite{Ian1}.}
-In contrast to the PBC case, \vb is now higher than \vn.
+In contrast to the PBC case, \vb is now higher than \vN.
 
 \begin{figure} {
 \includegraphics[width=5in]{./figures/paper1/figure1/fig2_NEW.pdf} 
@@ -125,7 +125,7 @@ The inset shows a close up view of the boxed region.
  
  We now move towards two dimensions by adding ``legs" to our one dimensional OBC chains.
  Due to the constraints imposed by the DMRG on the geometry of region A the sites must be arranged in a snaking pattern. \comment{(See Figure)}
-The DMRG data, to which we compare \vb, are limited to ladders with $M=7$ legs because of the \change{poor scaling of the algorithm when approaching 2D}.
+The DMRG data, to which we compare \vB, are limited to ladders with $M=7$ legs because of the \change{poor scaling of the algorithm when approaching 2D}.
  The VB QMC algorithm \change{scales as $N^2$} for a system with N sites, so \change{ we measure up to $M=20$ with minimal CPU effort}.
  
  Figures \ref{ladder3} and \ref{ladder4} show the entanglement entropies for three- and four-leg ladders respectively.
@@ -150,7 +150,7 @@ This ensures that the boundary between regions A and B cuts cleanly across all t
 
 In Figure \ref{zigzag} we plot the entanglement entropies $S(x)/M$ versus M on a logarithmic scale, including both systems with 100 sites per leg, and systems with $4M$ sites per leg. 
 In the second case the size of region A is proportional to the size of the ladder, and the divide between regions A and B is always cutting the ladder through the middle.
-We observe a multiplicative logarithmic correction to the area law in \vb, as previously shown by \comment{reference (7 \& 8) in the paper.}
+We observe a multiplicative logarithmic correction to the area law in \vB, as previously shown by \comment{reference (7 \& 8) in the paper.}
 \comment{Morrrrrrrrrrrrrrrrrrrrrrre.}
 
 \begin{figure} { \includegraphics[width=6in]{./figures/paper1/figure4/4fig.pdf}
