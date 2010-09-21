@@ -74,7 +74,7 @@ Linear regression fits of the \vb and \vn data for several system sizes (Figure~
 
 
 \begin{figure} {
-	\includegraphics[width=5.5in]{./figures/paper1/figure1/thesis_obc.pdf} 
+	\includegraphics[width=5in]{./figures/paper1/figure1/thesis_obc.pdf} 
 	\centering
 	\caption[1D OBC Results for VB EE and von Neumann EE]{
 	Entanglement entropies for a 1D 100-site Heisenberg chain with OBC as a function of the conformal distance $x'  = (L/\pi)\sin (\pi x/L)$.
@@ -86,7 +86,7 @@ Linear regression fits of the \vb and \vn data for several system sizes (Figure~
 In contrast to the PBC case, \vb is now higher than \vn.
 
 \begin{figure} {
-\includegraphics[width=6in]{./figures/paper1/figure1/fig2_NEW.pdf} 
+\includegraphics[width=5in]{./figures/paper1/figure1/fig2_NEW.pdf} 
 \centering
 \caption[caption]{ 
 	caption
@@ -114,6 +114,8 @@ The inset shows a close up view of the boxed region.
  \label{ladder3} }} 
  \end{figure}
  
+ \comment{Add in the 3-leg ladder plotted with conformal mapping?}
+ 
  \begin{figure} { \includegraphics[width=6in]{./figures/paper1/figure3/4-leg-ladder/4legfig.pdf}
 \caption[Entanglement entropies for a four-leg ladder]{
 Entanglement entropies for a four-leg ladder with OBC and 100 sites per leg.  
@@ -121,7 +123,7 @@ The inset shows a close up view of the boxed region.
  \label{ladder4} }} 
  \end{figure}
  
- We now move towards two dimensions by adding ``legs" to our one dimensional chains.
+ We now move towards two dimensions by adding ``legs" to our one dimensional OBC chains.
  Due to the constraints imposed by the DMRG on the geometry of region A the sites must be arranged in a snaking pattern. \comment{(See Figure)}
 The DMRG data, to which we compare \vb, are limited to ladders with $M=7$ legs because of the \change{poor scaling of the algorithm when approaching 2D}.
  The VB QMC algorithm \change{scales as $N^2$} for a system with N sites, so \change{ we measure up to $M=20$ with minimal CPU effort}.
@@ -141,15 +143,26 @@ Both even- and odd-leg ladders split into branches, as shown in the figure inset
 %------------------------------------------------------------------------------------------------------------------
 \section{The Area Law}
 
+Using these multileg ladders we can examine the adherence of the ground state of the 2D isotropic Heisenberg model to the area law.
+To do this we use $M$-leg ladders with $2M^2$ sites with in region A.  
+This ensures that the boundary between regions A and B cuts cleanly across all the legs of the system so that the length of the boundary is proportional to $M$.
+\comment{Discuss the aspect ratio?}
+
+In Figure \ref{zigzag} we plot the entanglement entropies $S(x)/M$ versus M on a logarithmic scale, including both systems with 100 sites per leg, and systems with $4M$ sites per leg. 
+In the second case the size of region A is proportional to the size of the ladder, and the divide between regions A and B is always cutting the ladder through the middle.
+We observe a multiplicative logarithmic correction to the area law in \vb, as previously shown by \comment{reference (7 \& 8) in the paper.}
+
 \begin{figure} { \includegraphics[width=6in]{./figures/paper1/figure4/4fig.pdf}
  \caption[Area Law in 2D Heis model]{
 Entanglement entropies divided by $M$,  for $M$-leg ladders, taken such that
 the region A includes $2M^2$ sites.  
 Data from both ladders of  with $L=100$ sites per leg and ladders of length $L=4M$ 
-\notsay{(with length proportional to the number of legs)} are shown.
+(with length proportional to the number of legs) are shown.
 For large $M$, $S^{\rm VB}\propto M \ln M$,
 whereas $S^{\rm vN}\propto M$.   
 \label{zigzag}}} 
 \end{figure}
+
+
 %------------------------------------------------------------------------------------------------------------------
 \comment{\section{Analytical Calculations?}}
