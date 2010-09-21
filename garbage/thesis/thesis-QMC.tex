@@ -483,25 +483,18 @@ $\ket{\beta_i}$'s, however, because of the convention in which bonds go from sub
 %--------------------------------------------------------------------------------------------------------------------------
 \section{Ground State Projection} \label{gsp}
 %--------------------------------------------------------------------------------------------------------------------------
-{\color{red} maybe somewhere in this section do the whole "we can represent any singlet states in
-terms of valence bond states *EQUATION*, though that representation is not unique (even with just
-the AB sublattice VBs) for more than 4 sites.  How*ever* we can always represent a state uniquely 
-in terms of it's energy eigenstates..."}
 
 Quantum Monte Carlo in the valence bond basis is a ground state projection technique, 
-which means we start with a trial wave function apply high powers of the Hamiltonian until 
+which means we start with a trial wave function and apply high powers of the Hamiltonian until 
 we are left with the zero temperature ground state of the system. 
-\notsay{
-Though, being that it is a
-Monte Carlo technique, we are not actually left with the wave function, but we sample terms in
-the ground state wave function and we can then sample observable properties
- according to the statistics of the 
-ground state wave function.\\
-}
-{\color{red} explain GS projection real good now.}
 
-Though valence bond states are not necessarily represented uniquely, an arbitrary state can 
-always be represented as a unique combination of the energy eigenstates of a Hamiltonian,
+We can represent any singlet state as a linear combination of valence bond states:
+\begin{equation}
+	\ket{\psi} = \sum_r f_r \ket{(a_1^r,b_1^r),(a_2^r,b_2^r),\dots,(a_{N/2}^r,b_{N/2}^r)}
+	=  \sum_r f_r \ket{V^r},
+\end{equation}
+but due to the overcompleteness of even the A-B sublattice valence bond basis, this representation is not unique.
+However, we can represent this state uniquely in terms of energy eigenstates of a Hamiltonian,
 \begin{equation}
 \lvert \psi \rangle = \sum_n c_n \lvert n \rangle,
 \label{state}
@@ -537,7 +530,6 @@ the ground state term will vanish.
 		\approx E_0^m c_0 \lvert 0 \rangle
 \end{equation}
 
-{\color{red} Check the sign for this part.}
 If the ground state energy is not the largest in magnitude, as is the case with the Heisenberg
 model, we can manipulate the Hamiltonian slightly by adding or subtracting an
 appropriately chosen constant term, $x$, in which case we will have
