@@ -98,8 +98,13 @@ In contrast to the PBC case, \vb is now higher than \vn.
 %------------------------------------------------------------------------------------------------------------------
 \section{Approaching Two Dimensions}
 
-\comment{make a diagram of the snaking pattern for the dmrg!}
- 
+\begin{figure} { \includegraphics[width=6in]{./figures/made/stuff_covering.pdf}
+\caption[Entanglement entropies for a three-leg ladder]{
+Entanglement entropies for a three-leg ladder with OBC and 100 sites per leg.  
+The inset shows a close up view of the boxed region.
+ \label{ladder3} }} 
+ \end{figure}
+
 \begin{figure} { \includegraphics[width=6in]{./figures/paper1/figure3/3-leg-ladder/fig3_final2.eps}
 \caption[Entanglement entropies for a three-leg ladder]{
 Entanglement entropies for a three-leg ladder with OBC and 100 sites per leg.  
@@ -124,14 +129,12 @@ The DMRG data, to which we compare \vb, are limited to ladders with $M=7$ legs b
  \vn and \vb show different behavior depending on whether the number of legs is even or odd.
  Odd-leg ladders \notsay{are gapless, so all sites contribute to the entanglement, and so}
  $S(x) \propto \ln(x')$ as in the 1D case.
+ \comment{Say something about the ``spin gap"? White, Noack, Scalapino, 1994.}
  Even-leg ladders \notsay{have a spin gap \comment{(white 1994)}} and so only sites within the correlation length $\xi$ from the boundary between A and B contribute to the entanglement.
 So for even-leg ladders $S(x\gtrsim\xi) = \text{const}$.
-Both even- and odd-leg ladders split into branches, as shown in the figure insets.
+Both even- and odd-leg ladders split into branches, as shown in the figure insets, though the odd-leg ladders have a \change{pattern} with period $2M$ whereas the even-leg ladder entanglement entropies have a period $M$. 
+\comment{Explain this!}
   
- \notsay{
- For ladders with an even number of legs, away from the open boundaries $S = \text{const}$.}
- 
- \comment{Say something about the ``spin gap"? White, Noack, Scalapino, 1994.}
  
 %------------------------------------------------------------------------------------------------------------------
 \section{The Area Law}
