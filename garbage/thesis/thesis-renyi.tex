@@ -55,6 +55,21 @@ This process can be generalized to calculate any $S_n$ with $n \ge 2$, by applyi
 }\end{figure}
 
 The \swa operator acts on two copies of the system (see Figure \ref{swap}), where the copies are not necessarily in the same state.  The action of \swa is to exchange the configuration of region A, between the two copies of the system.  If region A has some entanglement with region B in one of both of the copies of the system, then the two copies will become entangled after the application of \swA.
+The \swa operator can be more clearly defined in a basis such as the $S^z$ basis, in which an arbitrary state can be represented as a weighted sum of states decomposed into the separate a region A and a region B configuration.  
+If we define $\{\ket{\alpha^i}\}$ as a complete basis of states spanning region A, and $\{\ket{\beta^j}\}$ as a complete basis of states spanning region B, then we can represent an arbitrary state as
+\begin{equation}
+	\ket{\psi} = \sum_i \sum_j C^{i,j}\ket{\alpha^i}\ket{\beta^j}
+\end{equation}
+for some set of coefficients $C^{i,j}$.  
+Then the effect of \swa on a two general states, $\ket{\psi_1}$ and $\ket{\psi_1}$ representing the two copies of the system, is
+\begin{align}
+	\SWA \ket{\psi_1} \otimes \ket{\psi_2}  &= 
+		\SWA \left(\sum_{i,j} C_1^{i,j}\ket{\alpha^{i}_1}\ket{\beta^{j}_1}\right) \otimes
+			\left(\sum_{k,l} C_2^{k,l}\ket{\alpha^{k}_2}\ket{\beta^{l}_2}\right) \\
+			&=\sum_{i,j}\sum_{k,l} C_1^{i,j}C_2^{k,l} 
+				\big(\ket{\alpha^{k}_2}\ket{\beta^{j}_1}\big) \otimes
+				\big(\ket{\alpha^{i}_1}\ket{\beta^{l}_2}\big)
+\end{align}
 
 \begin{align}
 \end{align}
