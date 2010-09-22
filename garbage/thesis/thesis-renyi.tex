@@ -29,7 +29,7 @@ So they have more information together than just $S_1=\VN$. \cite{Spectrum}
 
 The Renyi entropies have the property that successive entropies give a lower bound on the previous entropies.  I.e. if $n>m$ then $S_n<S_m$, so \re gives a lower bound on \vN, and \re will give the closest estimate of \vN.
 
-We can use the expectation value of a unitary \sw operator on two copies of the system to be studied in order to obtain ${\rm Tr}(\rho_{\rm A}^2)$, a quantity necessary to compute \re.  
+We can use the expectation value of a unitary \sw operator on two non-interacting copies of the system to be studied in order to obtain ${\rm Tr}(\rho_{\rm A}^2)$, a quantity necessary to compute \re.  
 This process can be generalized to calculate any $S_n$ with $n \ge 2$, by applying a generalized \sw operator to $n$ copies of the system. 
 
 %----------------------------------------------------------------------------------------------------------
@@ -56,22 +56,66 @@ This process can be generalized to calculate any $S_n$ with $n \ge 2$, by applyi
 
 The \swa operator acts on two copies of the system (see Figure \ref{swap}), where the copies are not necessarily in the same state.  The action of \swa is to exchange the configuration of region A, between the two copies of the system.  If region A has some entanglement with region B in one of both of the copies of the system, then the two copies will become entangled after the application of \swA.
 The \swa operator can be more clearly defined in a basis such as the $S^z$ basis, in which an arbitrary state can be represented as a weighted sum of states decomposed into the separate a region A and a region B configuration.  
-If we define $\{\ket{\alpha^i}\}$ as a complete basis of states spanning region A, and $\{\ket{\beta^j}\}$ as a complete basis of states spanning region B, then we can represent an arbitrary state as
+If we define $\{\ket{\alpha}\}$ as a complete basis of states spanning region A, and $\{\ket{\beta}\}$ as a complete basis of states spanning region B, then we can represent an arbitrary state as
 \begin{equation}
-	\ket{\psi} = \sum_i \sum_j C^{i,j}\ket{\alpha^i}\ket{\beta^j}
+	\ket{\psi} = \sum_{\alpha}\sum_{\beta} C_{\alpha,\beta}\ket{\alpha}\ket{\beta}
 \end{equation}
-for some set of coefficients $C^{i,j}$.  
-Then the effect of \swa on a two general states, $\ket{\psi_1}$ and $\ket{\psi_1}$ representing the two copies of the system, is
+for some set of coefficients $C_{\alpha,\beta}$.  
+Then the effect of \swa on a two general states, $\ket{\psi_1}$ and $\ket{\psi_2}$ representing the two copies of the system, is
 \begin{align}
 	\SWA \ket{\psi_1} \otimes \ket{\psi_2}  &= 
-		\SWA \left(\sum_{i,j} C_1^{i,j}\ket{\alpha^{i}_1}\ket{\beta^{j}_1}\right) \otimes
-			\left(\sum_{k,l} C_2^{k,l}\ket{\alpha^{k}_2}\ket{\beta^{l}_2}\right) \\
-			&=\sum_{i,j}\sum_{k,l} C_1^{i,j}C_2^{k,l} 
-				\big(\ket{\alpha^{k}_2}\ket{\beta^{j}_1}\big) \otimes
-				\big(\ket{\alpha^{i}_1}\ket{\beta^{l}_2}\big)
+		\SWA \left(\sum_{\alpha_1,\beta_1} 
+		C_{\alpha_1,\beta_1}\ket{\alpha_1}\ket{\beta_1}\right) \otimes
+			\left(\sum_{\alpha_2,\beta_2} 
+		C_{\alpha_2,\beta_2}\ket{\alpha_2}\ket{\beta_2}\right) \\
+			&=\sum_{\alpha_1,\beta_1}C_{\alpha_1,\beta_1}\sum_{\alpha_2,\beta_2} 
+			C_{\alpha_2,\beta_2}
+			\big(\ket{\alpha_2}\ket{\beta_1}\big)\otimes\big(\ket{\alpha_1}\ket{\beta_2}\big).
 \end{align}
-
+And the expectation value of \swa acting on two non-interacting copies of the ground state will be
 \begin{align}
+\langle \SWA \rangle &=
+\bra{\Psi_0\otimes\Psi_0}\SWA \ket{\Psi_0\otimes\Psi_0} \\ &= \nonumber
+	\left(\sum_{\alpha'_1,\beta'_1}
+		\overline{C}_{\alpha'_1,\beta'_1}\sum_{\alpha'_2,\beta'_2} 
+		\overline{C}_{\alpha'_2,\beta'_2}
+			\big(\bra{\alpha'_1}\bra{\beta'_1}\big)\otimes\big(\bra{\alpha'_2}\bra{\beta'_2}\big)
+			  \right) \times \\ 
+	& \hspace{4.2cm}
+		\left( \sum_{\alpha_1,\beta_1}C_{\alpha_1,\beta_1}\sum_{\alpha_2,\beta_2} 
+			C_{\alpha_2,\beta_2}
+			\big(\ket{\alpha_2}\ket{\beta_1}\big)\otimes
+			\big(\ket{\alpha_1}\ket{\beta_2}\big) \right) \\
+	&=\sum_{\alpha'_1,\beta'_1}\sum_{\alpha_1,\beta_1}
+		\overline{C}_{\alpha'_1,\beta'_1}C_{\alpha_1,\beta_1}
+		\sum_{\alpha'_2,\beta'_2}\sum_{\alpha_2,\beta_2} 
+		\overline{C}_{\alpha'_2,\beta'_2}C_{\alpha_2,\beta_2}
+		\inn{\alpha'_1}{\alpha_2}\inn{\beta'_1}{\beta_1}
+		\inn{\alpha'_2}{\alpha_1}\inn{\beta'_2}{\beta_2} \\
+	&=\sum_{\alpha_1,\beta_1} \sum_{\alpha_2,\beta_2}
+		\overline{C}_{\alpha_2,\beta_1}C_{\alpha_1,\beta_1}
+		\overline{C}_{\alpha_1,\beta_2}C_{\alpha_2,\beta_2}\\
+	&= \sum_{\alpha_1,\alpha_2} \left( \sum_{\beta_1}
+		 C_{\alpha_1,\beta_1} \overline{C}_{\alpha_2,\beta_1}\right) 
+		 \left( \sum_{\beta_2} C_{\alpha_2,\beta_2} \overline{C}_{\alpha_1,\beta_2}\right) \\
+	&= \sum_{\alpha_1,\alpha_2} \Bigg[ \left(  \nonumber
+		\sum_{\beta_1}  \left( \bra{\alpha_1}
+		\sum_{\alpha_1} \ket{\alpha_1}  C_{\alpha_1,\beta_1} \right)
+		\left( \sum_{\alpha_2}  \overline{C}_{\alpha_2,\beta_1}\bra{\alpha_2} \right)
+		\ket{\alpha_2}\right) \times\\
+		&\hspace{3cm}
+		 \left( \sum_{\beta_2} \left( \bra{\alpha_2} \sum_{\alpha_2} \ket{\alpha_2} 
+		 C_{\alpha_2,\beta_2} \right) \left( \sum_{\alpha_1} \overline{C}_{\alpha_1,\beta_2} 
+		 \bra{\alpha_1} \right) \ket{\alpha_2} \right) \Bigg] \\	
+	&= \sum_{\alpha_1,\alpha_2} \Bigg[ \left(  \nonumber
+		\sum_{\beta_1}  \left( \bra{\alpha_1}
+		\sum_{\alpha_1} \ket{\alpha_1}  C_{\alpha_1,\beta_1} \right)
+		\left( \sum_{\alpha_2}  \overline{C}_{\alpha_2,\beta_1}\bra{\alpha_2} \right)
+		\ket{\alpha_2}\right) \times\\
+		&\hspace{3cm}
+		 \left( \sum_{\beta_2} \left( \bra{\alpha_2} \sum_{\alpha_2} \ket{\alpha_2} 
+		 C_{\alpha_2,\beta_2} \right) \left( \sum_{\alpha_1} \overline{C}_{\alpha_1,\beta_2} 
+		 \bra{\alpha_1} \right) \ket{\alpha_2} \right) \Bigg] \\	
 \end{align}
 
 
