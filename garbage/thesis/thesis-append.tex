@@ -1,0 +1,48 @@
+\chapter{Expectation Value of the Swap Operator}
+\label{swaperator}
+%======================================================================
+
+\begin{align}
+\langle \SWA \rangle &=
+\bra{\Psi_0\otimes\Psi_0}\SWA \ket{\Psi_0\otimes\Psi_0} \\ &= \nonumber
+	\left(\sum_{\alpha'_1,\beta'_1}
+		\overline{C}_{\alpha'_1,\beta'_1}\sum_{\alpha'_2,\beta'_2} 
+		\overline{C}_{\alpha'_2,\beta'_2}
+			\big(\bra{\alpha'_1}\bra{\beta'_1}\big)\otimes\big(\bra{\alpha'_2}\bra{\beta'_2}\big)
+			  \right) \times \\ 
+	& \hspace{4.2cm}
+		\left( \sum_{\alpha_1,\beta_1}C_{\alpha_1,\beta_1}\sum_{\alpha_2,\beta_2} 
+			C_{\alpha_2,\beta_2}
+			\big(\ket{\alpha_2}\ket{\beta_1}\big)\otimes
+			\big(\ket{\alpha_1}\ket{\beta_2}\big) \right) \\
+	&=\sum_{\alpha'_1,\beta'_1}\sum_{\alpha_1,\beta_1}
+		\overline{C}_{\alpha'_1,\beta'_1}C_{\alpha_1,\beta_1}
+		\sum_{\alpha'_2,\beta'_2}\sum_{\alpha_2,\beta_2} 
+		\overline{C}_{\alpha'_2,\beta'_2}C_{\alpha_2,\beta_2}
+		\inn{\alpha'_1}{\alpha_2}\inn{\beta'_1}{\beta_1}
+		\inn{\alpha'_2}{\alpha_1}\inn{\beta'_2}{\beta_2} \\
+	&=\sum_{\alpha_1,\beta_1} \sum_{\alpha_2,\beta_2}
+		\overline{C}_{\alpha_2,\beta_1}C_{\alpha_1,\beta_1}
+		\overline{C}_{\alpha_1,\beta_2}C_{\alpha_2,\beta_2}\\
+	&= \sum_{\alpha_1,\alpha_2} \left( \sum_{\beta_1}
+		 C_{\alpha_1,\beta_1} \overline{C}_{\alpha_2,\beta_1}\right) 
+		 \left( \sum_{\beta_2} C_{\alpha_2,\beta_2} \overline{C}_{\alpha_1,\beta_2}\right) \\
+	&= \sum_{\alpha_1,\alpha_2} \Bigg[ \left(  \nonumber
+		\sum_{\beta_1}  \left( \bra{\alpha_1}
+		\sum_{\alpha_1} \ket{\alpha_1}  C_{\alpha_1,\beta_1} \right)
+		\left( \sum_{\alpha_2}  \overline{C}_{\alpha_2,\beta_1}\bra{\alpha_2} \right)
+		\ket{\alpha_2}\right) \times\\
+		&\hspace{3cm}
+		 \left( \sum_{\beta_2} \left( \bra{\alpha_2} \sum_{\alpha_2} \ket{\alpha_2} 
+		 C_{\alpha_2,\beta_2} \right) \left( \sum_{\alpha_1} \overline{C}_{\alpha_1,\beta_2} 
+		 \bra{\alpha_1} \right) \ket{\alpha_2} \right) \Bigg] \\	
+	&= \sum_{\alpha_1,\alpha_2} \Bigg[ \left(  \nonumber
+		\sum_{\beta_1}  \left( \bra{\alpha_1}
+		\sum_{\alpha_1} \ket{\alpha_1}  C_{\alpha_1,\beta_1} \right)
+		\left( \sum_{\alpha_2}  \overline{C}_{\alpha_2,\beta_1}\bra{\alpha_2} \right)
+		\ket{\alpha_2}\right) \times\\
+		&\hspace{3cm}
+		 \left( \sum_{\beta_2} \left( \bra{\alpha_2} \sum_{\alpha_2} \ket{\alpha_2} 
+		 C_{\alpha_2,\beta_2} \right) \left( \sum_{\alpha_1} \overline{C}_{\alpha_1,\beta_2} 
+		 \bra{\alpha_1} \right) \ket{\alpha_2} \right) \Bigg] \\	
+\end{align}
