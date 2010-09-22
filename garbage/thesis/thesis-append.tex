@@ -26,23 +26,40 @@
 		\overline{C}_{\alpha_1,\beta_2}C_{\alpha_2,\beta_2}\\
 	&= \sum_{\alpha_1,\alpha_2} \left( \sum_{\beta_1}
 		 C_{\alpha_1,\beta_1} \overline{C}_{\alpha_2,\beta_1}\right) 
-		 \left( \sum_{\beta_2} C_{\alpha_2,\beta_2} \overline{C}_{\alpha_1,\beta_2}\right) \\
-	&= \sum_{\alpha_1,\alpha_2} \Bigg[ \left(  \nonumber
-		\sum_{\beta_1}  \left( \bra{\alpha_1}
-		\sum_{\alpha_1} \ket{\alpha_1}  C_{\alpha_1,\beta_1} \right)
-		\left( \sum_{\alpha_2}  \overline{C}_{\alpha_2,\beta_1}\bra{\alpha_2} \right)
-		\ket{\alpha_2}\right) \times\\
-		&\hspace{3cm}
-		 \left( \sum_{\beta_2} \left( \bra{\alpha_2} \sum_{\alpha_2} \ket{\alpha_2} 
-		 C_{\alpha_2,\beta_2} \right) \left( \sum_{\alpha_1} \overline{C}_{\alpha_1,\beta_2} 
-		 \bra{\alpha_1} \right) \ket{\alpha_2} \right) \Bigg] \\	
-	&= \sum_{\alpha_1,\alpha_2} \Bigg[ \left(  \nonumber
-		\sum_{\beta_1}  \left( \bra{\alpha_1}
-		\sum_{\alpha_1} \ket{\alpha_1}  C_{\alpha_1,\beta_1} \right)
-		\left( \sum_{\alpha_2}  \overline{C}_{\alpha_2,\beta_1}\bra{\alpha_2} \right)
-		\ket{\alpha_2}\right) \times\\
-		&\hspace{3cm}
-		 \left( \sum_{\beta_2} \left( \bra{\alpha_2} \sum_{\alpha_2} \ket{\alpha_2} 
-		 C_{\alpha_2,\beta_2} \right) \left( \sum_{\alpha_1} \overline{C}_{\alpha_1,\beta_2} 
-		 \bra{\alpha_1} \right) \ket{\alpha_2} \right) \Bigg] \\	
+		 \left( \sum_{\beta_2} C_{\alpha_2,\beta_2} \overline{C}_{\alpha_1,\beta_2}\right)
+		\label{mmmm}	
+\end{align}
+We should pause here to work backwards for a bit.
+\begin{align}
+	\rho_{\rm A} &= {\rm Tr_B} \ket{\Psi_0} \bra{\Psi_0} \\
+	&={\rm Tr_B} \left[ \left(\sum_{\alpha_1,\beta_1} 
+		C_{\alpha_1,\beta_1}\ket{\alpha_1}\ket{\beta_1}\right)
+		\left(\sum_{\alpha_2,\beta_2} 
+		\overline{C}_{\alpha_2,\beta_2}\bra{\alpha_2}\bra{\beta_2}\right) \right] \\
+	&=   \sum_{\beta_3} \bra{\beta_3} \left[ \left(\sum_{\alpha_1,\beta_1} 
+		C_{\alpha_1,\beta_1}\ket{\alpha_1}\ket{\beta_1}\right)
+		\left(\sum_{\alpha_2,\beta_2} 
+		\overline{C}_{\alpha_2,\beta_2}\bra{\alpha_2}\bra{\beta_2}\right) \right] \ket{\beta_3} \\
+	&=   \sum_{\beta_3}  \left[ \left(\sum_{\alpha_1} 
+		C_{\alpha_1,\beta_3}\ket{\alpha_1}\right)
+		\left(\sum_{\alpha_2} 
+		\overline{C}_{\alpha_2,\beta_3}\bra{\alpha_2}\right) \right] 
+\end{align}
+If we relabel $\beta_3 \rightarrow \beta_1$ and computer a matrix element:
+\begin{align}
+	\bra{\alpha_1}\rho_{\rm A} \ket{\alpha_2}
+	&=   \bra{\alpha_1}\sum_{\beta_1}  \left[ \left(\sum_{\alpha_1} 
+		C_{\alpha_1,\beta_1}\ket{\alpha_1}\right)
+		\left(\sum_{\alpha_2} 
+		\overline{C}_{\alpha_2,\beta_1}\bra{\alpha_2}\right) \right] \ket{\alpha_2} \\
+	&= \sum_{\beta_1} C_{\alpha_1,\beta_1} \overline{C}_{\alpha_2,\beta_1} \label{nnnn},
+\end{align}
+you may notice that \eqref{nnnn} is one of the expressions found in \eqref{mmmm}.
+Now we can continue the calculation of $\langle \SWA \rangle$.
+\begin{align}
+\langle \SWA \rangle &= \sum_{\alpha_1,\alpha_2} \big( \bra{\alpha_1}\rho_{\rm A} \ket{\alpha_2} 
+					\bra{\alpha_2}\rho_{\rm A} \ket{\alpha_1}\big) \\
+	&= \sum_{\alpha_1} \big( \bra{\alpha_1}\rho_{\rm A} 
+				\underbrace{\sum_{\alpha_2} \ket{\alpha_2}\bra{\alpha_2}}_{\mathds{1}}
+				\rho_{\rm A} \ket{\alpha_1}\big)
 \end{align}
