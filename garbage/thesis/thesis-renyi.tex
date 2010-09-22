@@ -12,7 +12,7 @@
  - maybe follows same area law and still has universal terms? (check)\\
  
 The generalized Renyi entanglement entropies, again defined as:
-\begin{equation}
+\begin{equation} \label{renyis}
  	S_n(\rho_{\rm A}) = \frac{1}{1-n}\ln\left[{\rm Tr}\left( \rho_{\rm A}^n \right) \right],
 \end{equation}
 where $\rho_{\rm{A}}=\rm{Tr}_B\ket{\psi}\bra{\psi}$ is the reduced density matrix of region A, and $n>0$.
@@ -75,49 +75,18 @@ Then the effect of \swa on a two general states, $\ket{\psi_1}$ and $\ket{\psi_2
 And the expectation value of \swa acting on two non-interacting copies of the ground state will be
 \begin{align}
 \langle \SWA \rangle &=
-\bra{\Psi_0\otimes\Psi_0}\SWA \ket{\Psi_0\otimes\Psi_0} \\ &= \nonumber
-	\left(\sum_{\alpha'_1,\beta'_1}
-		\overline{C}_{\alpha'_1,\beta'_1}\sum_{\alpha'_2,\beta'_2} 
-		\overline{C}_{\alpha'_2,\beta'_2}
-			\big(\bra{\alpha'_1}\bra{\beta'_1}\big)\otimes\big(\bra{\alpha'_2}\bra{\beta'_2}\big)
-			  \right) \times \\ 
-	& \hspace{4.2cm}
-		\left( \sum_{\alpha_1,\beta_1}C_{\alpha_1,\beta_1}\sum_{\alpha_2,\beta_2} 
-			C_{\alpha_2,\beta_2}
-			\big(\ket{\alpha_2}\ket{\beta_1}\big)\otimes
-			\big(\ket{\alpha_1}\ket{\beta_2}\big) \right) \\
-	&=\sum_{\alpha'_1,\beta'_1}\sum_{\alpha_1,\beta_1}
-		\overline{C}_{\alpha'_1,\beta'_1}C_{\alpha_1,\beta_1}
-		\sum_{\alpha'_2,\beta'_2}\sum_{\alpha_2,\beta_2} 
-		\overline{C}_{\alpha'_2,\beta'_2}C_{\alpha_2,\beta_2}
-		\inn{\alpha'_1}{\alpha_2}\inn{\beta'_1}{\beta_1}
-		\inn{\alpha'_2}{\alpha_1}\inn{\beta'_2}{\beta_2} \\
+\bra{\Psi_0\otimes\Psi_0}\SWA \ket{\Psi_0\otimes\Psi_0} \\ 
 	&=\sum_{\alpha_1,\beta_1} \sum_{\alpha_2,\beta_2}
 		\overline{C}_{\alpha_2,\beta_1}C_{\alpha_1,\beta_1}
 		\overline{C}_{\alpha_1,\beta_2}C_{\alpha_2,\beta_2}\\
-	&= \sum_{\alpha_1,\alpha_2} \left( \sum_{\beta_1}
-		 C_{\alpha_1,\beta_1} \overline{C}_{\alpha_2,\beta_1}\right) 
-		 \left( \sum_{\beta_2} C_{\alpha_2,\beta_2} \overline{C}_{\alpha_1,\beta_2}\right) \\
-	&= \sum_{\alpha_1,\alpha_2} \Bigg[ \left(  \nonumber
-		\sum_{\beta_1}  \left( \bra{\alpha_1}
-		\sum_{\alpha_1} \ket{\alpha_1}  C_{\alpha_1,\beta_1} \right)
-		\left( \sum_{\alpha_2}  \overline{C}_{\alpha_2,\beta_1}\bra{\alpha_2} \right)
-		\ket{\alpha_2}\right) \times\\
-		&\hspace{3cm}
-		 \left( \sum_{\beta_2} \left( \bra{\alpha_2} \sum_{\alpha_2} \ket{\alpha_2} 
-		 C_{\alpha_2,\beta_2} \right) \left( \sum_{\alpha_1} \overline{C}_{\alpha_1,\beta_2} 
-		 \bra{\alpha_1} \right) \ket{\alpha_2} \right) \Bigg] \\	
-	&= \sum_{\alpha_1,\alpha_2} \Bigg[ \left(  \nonumber
-		\sum_{\beta_1}  \left( \bra{\alpha_1}
-		\sum_{\alpha_1} \ket{\alpha_1}  C_{\alpha_1,\beta_1} \right)
-		\left( \sum_{\alpha_2}  \overline{C}_{\alpha_2,\beta_1}\bra{\alpha_2} \right)
-		\ket{\alpha_2}\right) \times\\
-		&\hspace{3cm}
-		 \left( \sum_{\beta_2} \left( \bra{\alpha_2} \sum_{\alpha_2} \ket{\alpha_2} 
-		 C_{\alpha_2,\beta_2} \right) \left( \sum_{\alpha_1} \overline{C}_{\alpha_1,\beta_2} 
-		 \bra{\alpha_1} \right) \ket{\alpha_2} \right) \Bigg] \\	
+	&=\sum_{\alpha_1,\alpha_2} \bra{\alpha_1}\rho_{\rm A} \ket{\alpha_2} 
+					\bra{\alpha_2}\rho_{\rm A} \ket{\alpha_1}\\
+	&={\rm Tr (\rho_A^2)}.
 \end{align}
-
+For more detail see Appendix \ref{swaperator}.  From Equation \eqref{renyis} the second Renyi entanglement entropy is
+\begin{equation}
+	S_2(\rho_{\rm A}) = -\ln\!\left[{\rm Tr}(\rho_{\rm A}^2)\right] = -\ln\left( \langle \SWA \rangle \right)
+\end{equation}
 
 %----------------------------------------------------------------------------------------------------------
 \section{1D Results}
