@@ -155,7 +155,7 @@ Since electrons are fermionic (have half integer spin) their total
 wave function must be antisymmetric (an exchange of the identical particles in the wave function
 gives a factor of -1, i.e. $\Psi(a,b) = -\Psi(b,a)$).
 The total wave function is a product of the spatial and spin wave functions, so one of those wave functions must be antisymmetric and the other symmetric (an exchange of particles yields the same wave function, i.e. $\Psi(a,b) = \Psi(b,a)$).
-As part of the same valence bond, two electrons will have a spatially symmetric wave function {\color{red} true?}, so their spin state must be antisymmetric.  For two spin 1/2 particles the only antisymmetric spin state is the singlet state.  
+As part of the same valence bond, two electrons will have a spatially symmetric wave function, so their spin state must be antisymmetric.  For two spin 1/2 particles the only antisymmetric spin state is the singlet state.  
 Hence, in the case of two spin 1/2 particles, a valence bond is equivalent to the spin-1/2 singlet state.}}
 
 %--------------------------------------------------------------------------------------------------------------------------
@@ -164,11 +164,38 @@ We represent these valence bonds, or singlet states, in three ways:
 \item{in the $S^z$ basis using up spins and down spins, 
 i.e. $\tfrac{1}{\sqrt{2}}\big(\lvert \uparrow_a \downarrow_b \rangle - \lvert \downarrow_a \uparrow_b \rangle\big)$,}
 \item{ as a list of the bonded sites, i.e. $\lvert(a,b)\rangle$,}
+\vspace{-3mm}
 \item{
 or pictorially as a bond joining two sites.\; \includegraphics[width=1in]{./figures/made/bond2.pdf}}
 \end{itemize}
 
-{\color{red} anything about it being maximally entangled?}
+A valence bonds is a maximally entangled state; the entanglement between sites $a$ and $b$ is $S^{\rm vN}_a = \ln(2)$.  To illustrate this point, we can calculate the \change{von Neumann entanglement entropy} of the state 
+$\ket{\psi}=\cos(\alpha)\ket{\up_a \dw_b} + \sin(\alpha)\ket{\dw_a \up_b} $.
+\begin{align}
+\rho &= \ket{\psi}\bra{\psi} \\
+&= \cos^2(\alpha)\ket{\up_a \dw_b}\bra{\up_a \dw_b} + \nonumber
+	\cos(\alpha)\sin(\alpha)\ket{\up_a \dw_b}\bra{\dw_a \up_b}  \\ 
+	& \hspace{2cm}+\sin(\alpha)\cos(\alpha)\ket{\dw_a \up_b}\bra{\up_a \dw_b} + 
+	\sin^2(\alpha)\ket{\dw_a \up_b}\bra{\dw_a \up_b} \\ \nonumber \\ 
+\rho_b &={\rm Tr}_b(\rho) = \bra{\up_b} \rho \ket{\up_b} +  \bra{\dw_b} \rho \ket{\dw_b}  \\
+	&= \cos^2(\alpha)\ket{\up_a}\bra{\up_a} + 
+	\sin^2(\alpha)\ket{\dw_a}\bra{\dw_a} \\ \nonumber \\ 
+S^{\rm vN}_a &= -{\rm Tr}(\rho_a \ln \rho_a) = -  \cos^2(\alpha) \ln \left( \cos^2(\alpha) \right)
+			 -  \sin^2(\alpha) \ln \left( \sin^2(\alpha) \right)
+\end{align}
+The resulting entanglement entropy for $\alpha$ from 0 to $\pi$ is shown in Figure \ref{tent}.
+\begin{figure}
+	\centering
+	 \includegraphics[width=5in]{./figures/made/tent.pdf}
+	 \caption[von Neumann entanglement entropy for a two-site state]{
+	 	The von Neumann entanglement entropy for a two-site state
+		$\ket{\psi}=\cos(\alpha)\ket{\up \dw} + \sin(\alpha)\ket{\dw \up}$.
+		$\ket{\psi}$ is maximally entangled in the singlet state and one of the triplet states, 
+		and unentangled when the state is separable.
+	 }
+	 \label{tent}
+\end{figure}
+
 
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Basis Properties}
