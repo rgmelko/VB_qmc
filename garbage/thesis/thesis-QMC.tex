@@ -183,7 +183,7 @@ $\ket{\psi}=\cos(\alpha)\ket{\up_a \dw_b} + \sin(\alpha)\ket{\dw_a \up_b} $.
 S^{\rm vN}_a &= -{\rm Tr}(\rho_a \ln \rho_a) = -  \cos^2(\alpha) \ln \left( \cos^2(\alpha) \right)
 			 -  \sin^2(\alpha) \ln \left( \sin^2(\alpha) \right)
 \end{align}
-The resulting entanglement entropy for $\alpha$ from 0 to $\pi$ is shown in Figure \ref{tent}.
+The resulting entanglement entropy in Figure \ref{tent}.
 \begin{figure}
 	\centering
 	 \includegraphics[width=5in]{./figures/made/tent.pdf}
@@ -222,7 +222,7 @@ $i$, $j$ will change the sign of the state.
 }
 \end{figure}
  
-For system with an even number of spins, a basis of valence bond coverings can be used to represent an arbitrary singlet state, but in general that representation is not unique.
+For system with an even number of spins, a basis of valence bond coverings can be used to represent an arbitrary singlet state (an eigenstate of the total spin operator $S^2$ with eigenvalue $\lambda=0$), but in general that representation is not unique.
 The number of possible singlet states for a given number of spin-1/2 sites can be enumerated
 using the rule for the addition of angular momentum for each added spin,
 \begin{equation}
@@ -259,7 +259,7 @@ since we choose sites at random ($2N!$ ways to choose them) pairing them, but th
 in which each member of the bond is chosen does not matter (divide by 2 for every bond), 
 nor does the order in which the $N$ bonds are chosen (divide by $N!$).
 For $N>1$ there are more valence bond coverings than singlet states, the excess increasing 
-drastically with increasing $N$ (\comment{see figure}).  
+drastically with increasing $N$ (see Figure \ref{statess}).  
 
 The valence bond states are nonorthogonal and overcomplete.
 Because of this overcompleteness we can eliminate some of the valence bond states and still
@@ -372,7 +372,7 @@ Also the last state can be written as a linear combination of the other five sta
 \centering
 \includegraphics [width=4.5in]{./figures/made/fact.pdf} 
 \caption[Comparison of number of states]{
-The number of singlet states, valence bond states, and valence bond states restricted to A-B sublattice bonds, for a system of $2N$ spins.}
+The number of singlet states $C^N_{\rm sing}$, valence bond states $C^N_{\rm VB}$, and valence bond states restricted to A-B sublattice bonds $C^N_{\rm AB}$, for a system of $2N$ spins.}
  \label{statess}
  }
 \end{figure}
@@ -432,7 +432,7 @@ $S^z$ basis.  From \eqref{state5} and \eqref{state6} we have:
 	 = \frac{1}{2}.\nonumber
 \end{eqnarray}
 since all other terms will vanish.  
-This method of calculating the inner product, however, quickly becomes \change{messy} even with a small number of spins.
+This method of calculating the inner product, however, quickly becomes intractable even with a small number of spins.
 A more intuitive way to calculate the overlap is to superimpose diagrams of the two valence bond states, as in Figure~\ref{overlap}.
 We can rewrite the valence bond states from the figure, keeping the bonds belonging to the same 
 look together.  Bonds from separate loops will have no overlap with each other.
@@ -471,7 +471,7 @@ Examining the third loop, which contains four sites, for the state of $\ket{V_\t
 {./figures/made/spinstate.pdf}
 \centering
  \caption[A possible spin state]{
-	A possible spin state satisfying the loop configuration from Figure \ref{overlap}.  There are two \change{acceptable} spin states for each loop. }
+	A possible spin state satisfying the loop configuration from Figure \ref{overlap}.  There are two compatible spin states for each loop. }
 \label{spinstate}
 }
 \end{figure}
@@ -513,7 +513,7 @@ $\ket{\beta_i}$'s, however, because of the convention in which bonds go from sub
 
 Quantum Monte Carlo in the valence bond basis is a ground state projection technique, 
 which means we start with a trial wave function and apply high powers of the Hamiltonian until 
-we are left with the zero temperature ground state of the system. 
+we are left with the ground state of the system. 
 
 We can represent any singlet state as a linear combination of valence bond states:
 \begin{equation}
@@ -545,9 +545,9 @@ We can then take out a factor of $E_0$ to get
 		c_2\frac{ E_2}{E_0} \lvert 2 \rangle + \cdots \right).
 \end{equation}
 
-If $E_0$ is the energy largest in magnitude, then all the coefficients
-of the excited states are fractions less (in magnitude) than 1.  
-In that case, if we apply the Hamiltonian a large number of times, denoted by m, all terms excluding
+If $E_0$ is the energy largest in magnitude, then the magnitude of the coefficients
+of the excited states are fractions less than 1.  
+In that case, if we apply the Hamiltonian a large number of times, denoted by $m$, all terms excluding
 the ground state term will vanish.
 \begin{equation}
 \mathcal{H}^m\lvert \psi \rangle =
@@ -597,7 +597,7 @@ We slightly modify the Hamiltonian for use in the ground state projection scheme
 	\left(\mathbf{S}_i\cdot \mathbf{S}_j - \tfrac{1}{4}\right)
 	= - \sum_{\langle i,j \rangle} H_{ij}.
 \end{equation}
-Here the coupling constant $J$ is set to 1, and rewrite the Hamiltonian in terms of a list of
+Here the coupling constant $J$ is set to 1, and we rewrite the Hamiltonian in terms of a list of
 \it{bond operators}, \rm $H_{ij}$, where 
 $H_{ij}=-\left(\mathbf{S}_i\cdot \mathbf{S}_j - \tfrac{1}{4}\right)$.
 
@@ -752,7 +752,7 @@ from the sum, with sampling proportional to their weight $W(r)$ in the sum.
 \subsection{Single Projector}
 %--------------------------------------------------------------------------------------------------------------------------
 The single projector valence bond quantum Monte Carlo algorithm projects only one state \change{into}
-the Heisenberg ground state.
+the ground state.
 
 \begin{enumerate}
 \item \fbox{\parbox{410pt}{Choose or generate an initial valence bond state $\ket{V}$.}}
@@ -872,6 +872,7 @@ in the Hamiltonian, and $n_{\text{diag}}$ is the number of diagonal bond operato
 \end{enumerate}
 
 
+\subsubsection{Measurements}
 
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Loop Moves}
