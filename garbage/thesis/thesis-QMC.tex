@@ -588,6 +588,7 @@ We slightly modify the Hamiltonian for use in the ground state projection scheme
 \mathcal{H}= \left(\mathcal{H}_{\rm{Heis}} - \tfrac{1}{4} \right)= \sum_{\langle i,j \rangle} 
 	\left(\mathbf{S}_i\cdot \mathbf{S}_j - \tfrac{1}{4}\right)
 	= - \sum_{\langle i,j \rangle} H_{ij}.
+\label{hammm}
 \end{equation}
 Here the coupling constant $J$ is set to 1, and we rewrite the Hamiltonian in terms of a list of
 \it{bond operators}, \rm $H_{ij}$, where 
@@ -713,8 +714,9 @@ H_{cb}\lvert(a,b)(c,d)\rangle &=&
 	     \big)\right] \\
 	     &=& \tfrac{1}{2} \lvert(a,d)(c,b)\rangle \nonumber
 \end{eqnarray}
-As was asserted earlier, the operator acts to rearrange to bonds, and the state gains a factor of $\frac{1}{2}$.
-\comment{only 1 vb state, no branching}
+As was asserted earlier, the operator acts to rearrange the bonds, and the state gains a factor of $\frac{1}{2}$.  
+If not for the subtraction of $\frac{1}{4}$ from the Hamiltonian \eqref{hammm}, applying the bond operators would be much more complicated, yielding superpositions of valence bond states, causing a ``branching'' in the algorithm.  Additionally, we would be left with non-singlet states, due to the change in Equation \eqref{bop}.
+
 
 %--------------------------------------------------------------------------------------------------------------------------
 \section{The Monte Carlo Algorithm}
