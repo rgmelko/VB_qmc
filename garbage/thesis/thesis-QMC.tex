@@ -471,7 +471,7 @@ Examining the third loop, which contains four sites, for the state of $\ket{V_\t
 \begin{figure} { \includegraphics [width=3.5in]
 {./figures/made/spinstate.pdf}
 \centering
- \caption[A possible spin state]{
+ \caption[A possible spin state for a given set of valence bonds]{
 	A possible spin state satisfying the loop configuration from Figure \ref{overlap}.  There are two compatible spin states for each loop. }
 \label{spinstate}
 }
@@ -566,8 +566,7 @@ appropriately chosen constant term, $x$, in which case we will have
 		\approx (E_0-x)^m c_0 \lvert 0 \rangle.
 \end{equation}
 We are left with a state proportional to the ground state of the system, provided the initial state $\ket{\psi}$ has some non-zero overlap with the ground state.
-Ground state projection is used in valence bond quantum Monte Carlo, but it is also the basis of many other numerical algorithms such as Lanczos, and diffusion quantum Monte Carlo. 
-\comment{References for this!!!!}
+Ground state projection is used in valence bond quantum Monte Carlo, but it is also the basis of many other numerical algorithms such as Lanczos \cite{Lanczos}, diffusion quantum Monte Carlo, and Green's function Monte Carlo \cite{Ceperley1986}. 
 
 %--------------------------------------------------------------------------------------------------------------------------
 \section{The Hamiltonian and Bond Operators}
@@ -582,15 +581,9 @@ Hamiltonian:
 \end{equation}
 where the coupling constant $J$ is always positive, and $\sum_{\langle i,j \rangle}$ 
 represents a sum over all nearest-neighbor pairs of sites.  
-\notsay{
-If we apply this Hamiltonian to states in the $S^z$ basis, 
-the first term will assign lower energy to pairs of sites with antiparallel spins,
-while the remainder of the Hamiltonian will act to flip pairs of spins that are already 
-antiparallel or annihilate states with parallel spins. 
-}
+This Hamiltonian favors antiparallel spins and will flip antiparallel pairs of spins.
 
 We slightly modify the Hamiltonian for use in the ground state projection scheme:
-
 \begin{equation}
 \mathcal{H}= \left(\mathcal{H}_{\rm{Heis}} - \tfrac{1}{4} \right)= \sum_{\langle i,j \rangle} 
 	\left(\mathbf{S}_i\cdot \mathbf{S}_j - \tfrac{1}{4}\right)
@@ -604,10 +597,18 @@ The effect of these bond operators acting on a valence bond basis state is
 surprisingly simple.  If a bond operator acts on two sites already joined by a valence
 bond, it acts as the identity and does not changed the state.  If the two sites acted upon are 
 not joined in a valence bond, the operator joins those two sites, and as a byproduct the 
-two sites that were once joined to those sites form a valence bond themselves.
-This is depicted in {\color{red} picture of VBs and bond ops acting on them and stuff.}
-It can also be shown mathematically, but first let's examine the effect of bond operators
-on a general spin 1/2 state.
+two sites that were once joined to those sites form a valence bond themselves, depicted in Figure \ref{bopfig}.
+It can also be shown mathematically, but first let us examine the effect of bond operators
+on a general spin-1/2 state.
+\begin{figure}
+\includegraphics[width=6.3in]{./figures/made/bop.pdf}
+\caption[Bond operator acting of four-site states]{
+	Bond operator $H_{cb}$ acting of four-site states.
+	(a) The sites $c$ and $b$ are already joined by a valence bond, so the bond operator does nothing.
+	(b) Sites $c$ and $b$ are not joined, so $H_{cb}$ acts to join them.  The new valence bond state gets multiplied by a factor of $\frac{1}{2}$. 
+ \label{bopfig}
+}
+\end{figure}
 
 We can rewrite the dot product of spin operators:
 \begin{eqnarray}
@@ -712,10 +713,8 @@ H_{cb}\lvert(a,b)(c,d)\rangle &=&
 	     \big)\right] \\
 	     &=& \tfrac{1}{2} \lvert(a,d)(c,b)\rangle \nonumber
 \end{eqnarray}
-As was asserted earlier, the operator acts to rearrange to bonds.
-Also the state gains a factor of $\frac{1}{2}$.
-{\color{red} And of course I need to write a bit more for this section... but about what?}
-
+As was asserted earlier, the operator acts to rearrange to bonds, and the state gains a factor of $\frac{1}{2}$.
+\comment{only 1 vb state, no branching}
 
 %--------------------------------------------------------------------------------------------------------------------------
 \section{The Monte Carlo Algorithm}
