@@ -6,8 +6,7 @@
 
 \comment{REFERENCES!!}
 
-{\color{red} - VB QMC is a T=0, GS projection technique (redundant? Yes)}
-\\
+\comment{Summarize chapter.}
 %======================================================================
 %======================================================================
 \section{The Valence Bond Basis}
@@ -16,7 +15,9 @@
 %Representing multiple VBs\\
 %VB basis properties\\
 
-{\color{red} The valence bond basis, like the $S^z$ basis, can be used to represent spin states.}
+\comment{Mini summary}
+
+\change{The valence bond basis, like the $S^z$ basis, can be used to represent spin states.}
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{The Spin-1/2 Singlet State}
 %--------------------------------------------------------------------------------------------------------------------------
@@ -169,7 +170,7 @@ i.e. $\tfrac{1}{\sqrt{2}}\big(\lvert \uparrow_a \downarrow_b \rangle - \lvert \d
 or pictorially as a bond joining two sites.\; \includegraphics[width=1in]{./figures/made/bond2.pdf}}
 \end{itemize}
 
-A valence bonds is a maximally entangled state; the entanglement between sites $a$ and $b$ is $S^{\rm vN}_a = \ln(2)$.  To illustrate this point, we can calculate the \change{von Neumann entanglement entropy} of the state 
+A valence bonds is a maximally entangled state; the entanglement between sites $a$ and $b$ is $S^{\rm vN}_a = \ln(2)$.  To illustrate this point, we can calculate the von Neumann entanglement entropy of the state 
 $\ket{\psi}=\cos(\alpha)\ket{\up_a \dw_b} + \sin(\alpha)\ket{\dw_a \up_b} $.
 \begin{align}
 \rho &= \ket{\psi}\bra{\psi} \\
@@ -476,17 +477,17 @@ Examining the third loop, which contains four sites, for the state of $\ket{V_\t
 }
 \end{figure}
 
-The number of terms needed to express a valence bond state for a group of $N$ spins is $2^{N/2}$, so the normalization factor for that group of spins will be $1/\sqrt{2^{N/2}}$.
+The number of $S^z$ spin states needed to express a valence bond state for a group of $N$ spins is $2^{N/2}$, since $\big(\ket{\up\dw}-\ket{\dw\up} \big)^{\otimes N/2}$ gives in $2^{N/2}$ terms. 
 The inner product can be expressed as a product of the inner products for each of the loops:
 \begin{eqnarray}
 \inn{V^\text{L}}{V^\text{R}} &= &
 				\prod^{N_{\text{loops}}}_{k=1}
 				\frac{1}
 				{\sqrt{2^{N^s_k/2}}}
-				\Big( \bra{\alpha_1} + \bra{\alpha_2} + \cdots \bra{\alpha_{N^s_k/2}}\Big)
+				\Big( \bra{\alpha_1} + \bra{\alpha_2} + \cdots \bra{\alpha_{2^{N^s_k/2}}}\Big)
 				\frac{1}
 				{\sqrt{2^{N^s_k/2}}} \nonumber
-				\Big( \ket{\beta_1} + \ket{\beta_2} + \cdots \ket{\beta_{N^s_k/2}}\Big)\\
+				\Big( \ket{\beta_1} + \ket{\beta_2} + \cdots \ket{\beta_{2^{N^s_k/2}}}\Big)\\
 				&=&\prod^{N_{\text{loops}}}_{k=1}
 				\frac{1}
 				{2^{N^s_k/2}}
@@ -498,14 +499,12 @@ The inner product can be expressed as a product of the inner products for each o
 \end{eqnarray}
 where $N^s_k$ is the number of spins contained in loop $k$, and the $\ket{\alpha_i}$'s and 
 $\ket{\beta_i}$'s are the spin states used to represent $\ket{V^\text{L}}$ and $\ket{V^\text{R}}$ respectively.
-More accurately, the first line should have some negative signs in the sums of the 
-$\ket{\alpha_i}$'s and 
-$\ket{\beta_i}$'s, however, because of the convention in which bonds go from sublattice A to B, the signs of the two terms that do not vanish are always the same.
+There are exactly two non-vanishing terms in the inner product for each loop.
+If not for the A-B sublattice convention (see Figure \ref{covering}) it would be possible to get negative overlaps between states.
+A maximal value of the overlap can be obtained through the inner product of a state with itself.
+Then there are $N/2$ loops, one for every two sites.  There are $2^{N/2}$ compatible spin configurations, and the overlap is exactly its maximal value: 1.
 
-
-\comment{discuss how you would get a maximal inner product maybe.}
-\comment{and talk about things the inner product is useful for perhaps?}
-
+The inner product can be used to calculate the expectation values of observables, normalize states, and as a factor in the Monte Carlo weights, all necessary for quantum Monte Carlo algorithms in the valence bond basis. \comment{add page refs}
 
 %--------------------------------------------------------------------------------------------------------------------------
 \section{Ground State Projection} \label{gsp}
@@ -566,9 +565,9 @@ appropriately chosen constant term, $x$, in which case we will have
 		c_1 \left(\frac{E_1-x}{E_0-x}\right)^m \lvert 1 \rangle  + \cdots \right)
 		\approx (E_0-x)^m c_0 \lvert 0 \rangle.
 \end{equation}
-
-{\color{red} Comments to totally conclude up this section.}
-
+We are left with a state proportional to the ground state of the system, provided the initial state $\ket{\psi}$ has some non-zero overlap with the ground state.
+Ground state projection is used in valence bond quantum Monte Carlo, but it is also the basis of many other numerical algorithms such as Lanczos, and diffusion quantum Monte Carlo. 
+\comment{References for this!!!!}
 
 %--------------------------------------------------------------------------------------------------------------------------
 \section{The Hamiltonian and Bond Operators}
