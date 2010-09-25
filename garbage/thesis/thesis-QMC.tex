@@ -826,14 +826,15 @@ Then we can rewrite \ref{energyy} as:
 	 \label{energyyy}
 \end{equation}
 
-To measure the energy in our single projector algorithm we 
+Now, since we do not at any point have the entire ground state of the system, and we are only sampling the ground state wavefunction, to get the ground state energy we sample terms in the expectation value of the Heisenberg Hamiltonian, and this measure $-\frac{1}{2}\langle n_{nn} + N_{nn} \rangle$.  That is, at each step we count the number of nearest neighbor bonds in the configuration we measure.  
+This is added to a running tally that is then normalized (when the algorithm is finished) by the number of states that were measure.  
+Since we are sampling the terms proportional to their weight in the ground state wavefunction we do not need to include the weights in the expectation value.
 
-\comment{this isn't finished... i'm pretty sure}
+This algorithm is not limited to measuring the ground state energy;
+It is possible to add in one triplet state and measure the singlet-triplet gap \cite{Sandvik_vbqmc}.
+We can also measure properties of the valence bonds, like the bond length distribution or the valence bond entanglement entropy, introduced in the next chapter.
+\comment{Add singlet-triplet gap if I have *tonnes* of extra time.}
 
-\change{
-- is there anything else we can measure? properties of the valence bonds.\\
-- singlet-triplet gap? check sandvik's papers.
-}
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Double Projector}
 %--------------------------------------------------------------------------------------------------------------------------
