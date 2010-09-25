@@ -3,18 +3,25 @@
 %======================================================================
 
 \chapter{Quantum Monte Carlo in the Valence Bond Basis}
-
-\comment{REFERENCES!!}
-
-\comment{Summarize chapter.}
 %======================================================================
 %======================================================================
-\section{The Valence Bond Basis}
+\comment{REFERENCES!!}\\
+\comment{ref sandvik}\\
+The numerical technique used in this research is valence bond quantum Monte Carlo (VB QMC).
+Other commonly used techniques such as \change{SSE, DMC (refs)} use the $S^z$ basis, but VB QMC takes advantage of the unique properties of the valence bond basis.  
+
+In this chapter we introduce the valence bond basis, showing how it is used to represent singlet states.  
+We then explain ground state projection, the method employed my VB QMC get from a trial state to the ground state of our system.
+Next we discuss the Hamiltonian of our system, writing it in terms of ``bond operators'' that act on valence bond states.
+Finally we go over three different VB QMC algorithms: the single projector method, the double projector method, and the loop algorithm.
+
+\section{The Valence Bond Basis} \label{sec:basis}
 %--------------------------------------------------------------------------------------------------------------------------
 %What is a VB and how can it be represented?\\
 %Representing multiple VBs\\
 %VB basis properties\\
 
+%comment on why it's an awesome basis choice...
 \comment{Mini summary}
 
 \change{The valence bond basis, like the $S^z$ basis, can be used to represent spin states.}
@@ -379,8 +386,6 @@ The number of singlet states $C^N_{\rm sing}$, valence bond states $C^N_{\rm VB}
 \end{figure}
 \comment{
 - actually go over the properties if they haven't already been mentioned.
-
-***- singlets have a lower energy that the classical N\'eel state\\
 }
 
 {\color{red} Fazekas and Anderson said it's a good choice for the heis s=1/2 antiferro GS
@@ -941,6 +946,7 @@ We are already sampling states according to the weight from \eqref{supaweight}, 
 
 The double projector method is much more versatile in the range of observables that can be measured.  
 In addition to anything that can be measured with the single projector method we can also measure the $Swap$ operator, spin correlations functions, and by adding triplet states into the mix: staggered magnetization, and spin stiffness, among other things \cite{Beach2006}.
+
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Loop Moves}
 %--------------------------------------------------------------------------------------------------------------------------
