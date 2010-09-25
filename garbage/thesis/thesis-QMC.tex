@@ -838,11 +838,21 @@ We can also measure properties of the valence bonds, like the bond length distri
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Double Projector}
 %--------------------------------------------------------------------------------------------------------------------------
-\change{
-- similar to single projector, but two states are projected separately and the weights are different\\
-- mention that single projector is not variational and double projector is\\
-- can measure many other (non-energy) quantities 
-}
+The main difference between the double and single projector methods is in the double projector method, as the name implies, we project two states into the ground state.  
+That is, we are propagating two different lists of bond operators;
+though the trial state for each list of bond operators is the same.
+(We refer to these as the left and right lists of bond operators.)
+This allows us to measure the expectation value of any operator that can act on a valence bond state, not just the Hamiltonian.
+
+The sampling weights in this scheme are also different, including the overlap between the two projected states.  The weight for each pair of states is:
+\begin{equation}
+W_{\rm total} = W^LW^R\bra{V^L}V^R\rangle,
+\end{equation}
+where $W^L$ and $W^R$ are $2^{-m_{off}}$ (the factors of $\frac{1}{2}$ accrued by applying off-diagonal bond operators) for the left and right operators lists respectively.  
+
+In the double projector algorithm only one of the lists of bond operators, left or right, is updated at a time, alternating between the two lists.
+
+The algorithm is as follows:
 
 \begin{enumerate}
 \item \fbox{\parbox{410pt}{Choose or generate an initial valence bond state $\ket{V}$.}}
@@ -895,8 +905,12 @@ We can also measure properties of the valence bonds, like the bond length distri
 		}}	
 \end{enumerate}
 
-
 \subsubsection{Measurements}
+
+\change{
+- mention that single projector is not variational and double projector is (maybe in measurement section?)\\
+- what else can we measure quantities (put in measurement section) 
+}
 
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Loop Moves}
