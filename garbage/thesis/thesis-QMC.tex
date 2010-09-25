@@ -716,42 +716,45 @@ H_{cb}\lvert(a,b)(c,d)\rangle &=&
 \end{eqnarray}
 As was asserted earlier, the operator acts to rearrange the bonds, and the state gains a factor of $\frac{1}{2}$.  
 If not for the subtraction of $\frac{1}{4}$ from the Hamiltonian \eqref{hammm}, applying the bond operators would be much more complicated, yielding superpositions of valence bond states, causing a ``branching'' in the algorithm.  Additionally, we would be left with non-singlet states, due to the change in Equation \eqref{bop}.
-
+That the application of bond operators to a valence bond basis state yields another basis state state with finite overlap between those states, and all other basis states, makes these operators ideal for use in a  Monte Carlo algorithm.
 
 %--------------------------------------------------------------------------------------------------------------------------
 \section{The Monte Carlo Algorithm}
 %--------------------------------------------------------------------------------------------------------------------------
-In section \ref{gsp} we saw that repeated application of the Hamiltonian to any initial state will
-give us (\change{in the limit of a large power of the Hamiltonian}) a state proportional to the
+In section \ref{gsp} we saw that repeated application of the Hamiltonian to any initial state possessing some overlap with the ground state will
+give us (in the limit of a large power of the Hamiltonian) a state proportional to the
 ground state of the system.
-However, computing this exactly would be \change{extremely computationally expensive}.
+However, computing this exactly would be extremely computationally expensive.
 The Hamiltonian has $N_{nn}$ terms, one for each possible nearest-neighbor bond.  
-Raising it to the even power $m$ would give us $N_{nn}^m$ terms each containing $m$ bond operators,
+Raising it to the even power $m$ would give us $(N_{nn})^m$ terms each containing $m$ bond operators,
 \begin{equation} \label{bopss}  
 	\ham^m=\left(\sum_{r=1}^{N_{nn}}H_r\right)^m=
 	\sum_{r_1=1}^{N_{nn}}\sum_{r_2=1}^{N_{nn}}\cdots \sum_{r_m=1}^{N_{nn}}
 	\bigg( H_{r_1} H_{r_2} \cdots H_{r_m} \bigg) 
-	=\sum_{r=1}^{N_{nn}^m} P_r,
+	=\sum_{r=1}^{(N_{nn})^m} P_r,
 \end{equation}
-where $r$ goes over each of the possible nearest neighbor bonds.  
+where $r$ goes over each of the possible nearest neighbor bonds, and $P_r$ is the $r^{\rm th}$ possible list of $m$ bond operators.  
 Applying $\ham^m$ to a trial state $\ket{V}$ gives us
 \begin{equation} \label{hamapp}
-	\ham^m \ket{V} = \sum_{r=1}^{N_{nn}^m} P_r \ket{V} = \sum_{r=1}^{N_{nn}^m} W(r)\ket{V(r)}
-	= \sum_{r=1}^{N_{nn}^m} 2^{-m_r^{\text{off}}}\ket{V(P_r)},
+	\ham^m \ket{V} = \sum_{r=1}^{(N_{nn})^m} P_r \ket{V} = \sum_{r=1}^{(N_{nn})^m} W(r)\ket{V(r)}
+	= \sum_{r=1}^{(N_{nn})^m} 2^{-m_r^{\text{off}}}\ket{V(P_r)},
 \end{equation}
-where $W(r)$ is the weight resulting from applying the $r^{\text{th}}$ term from \eqref{bopss} to 
-the trial state, which is equivalent to the $1/2$ raised to the power of number of
- off-diagonal bond operators (bond operators
-acting on sites that are not already joined by a valence bond) in $P_r$.
+where $W(r)$, the weight, is the product of the factors of $\frac{1}{2}$ gained by applying the off-diagonal bond operators to the trial state.
+The ratio of weights is used in Monte Carlo sampling to determine whether to keep a certain configuration.
+
+\comment{ \noindent Main goal is to get value of some observable.}
 
 Instead of computing the full sum from \eqref{hamapp}, we stochastically sample terms
-from the sum, with sampling proportional to their weight $W(r)$ in the sum.
+from the sum, with sampling proportional to their weight $W(r)$ in the sum.  
+In the single projector method we project only one state, but are limit in the observables we can then calculate.
+The double projector method projects two separate states, which can then be used to find expectation values of various operators.
+The loop algorithm is an improvement on the double projector algorithm....
 
 
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Single Projector}
 %--------------------------------------------------------------------------------------------------------------------------
-The single projector valence bond quantum Monte Carlo algorithm projects only one state \change{into}
+The single projector valence bond quantum Monte Carlo algorithm projects only one state into
 the ground state.
 
 \begin{enumerate}
