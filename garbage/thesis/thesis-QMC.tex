@@ -6,9 +6,8 @@
 %======================================================================
 %======================================================================
 \comment{REFERENCES!!}\\
-\comment{ref sandvik}\\
 The numerical technique used in this research is valence bond quantum Monte Carlo (VB QMC).
-Other commonly used techniques such as \change{SSE, DMC (refs)} use the $S^z$ basis, but VB QMC takes advantage of the unique properties of the valence bond basis.  
+Other commonly used lattice Monte Carlo techniques, such as the stochastic series expansion\cite{Sylji2002} or world line \cite{Evertz2003} methods, use the $S^z$ basis, but VB QMC takes advantage of the unique properties of the valence bond basis.  
 
 In this chapter we introduce the valence bond basis, showing how it is used to represent singlet states.  
 We then explain ground state projection, the method employed by VB QMC get from a trial state to the ground state of our system.
@@ -17,6 +16,7 @@ Finally we go over three different VB QMC algorithms: the single projector metho
 
 \section{The Valence Bond Basis} \label{sec:basis}
 %--------------------------------------------------------------------------------------------------------------------------
+%\comment{Dates back to the 1930's pauling etc, }
 The valence bond basis is a basis of states in which all sites are paired into valence bonds.  
 This basis can be used to represent any singlet state: a state with total spin equal to zero.
 %comment on why it's an awesome basis choice... 
@@ -373,7 +373,8 @@ Another way to see the linear dependence of the A-B sublattice states is to look
 		\ket{\psi_6} = \ket{\psi_1} -\ket{\psi_2} -\ket{\psi_3} +\ket{\psi_4} + \ket{\psi_5}
 \end{equation}
 Also the last state can be written as a linear combination of the other five states.
-
+It is possible to choose a set of states linearly independent states by putting the sites in a circular configuration and eliminating any state with valence bonds crossing each other.  
+In fact, this linearly independent exactly corresponds to the singlet basis \cite{Beach2006}.
 \begin{figure} {  
 \centering
 \includegraphics [width=4.5in]{./figures/made/fact.pdf} 
@@ -382,15 +383,19 @@ The number of singlet states $C^N_{\rm sing}$, valence bond states $C^N_{\rm VB}
  \label{statess}
  }
 \end{figure}
-\comment{
-- actually go over the properties if they haven't already been mentioned.
-}
 
-{\color{red} Fazekas and Anderson said it's a good choice for the heis s=1/2 antiferro GS
-because it has total spin zero, and lower energy than the N\'eel state.  check if this is true.}
-
-{\color{red} Thing from Anderson 1973 about energy per NN VB vs energy per 2 antiparallel sites,
-but with math and stuff this time.}
+%\comment{
+%- actually go over the properties if they haven't already been mentioned. \\
+%- spans singlet sector \\
+%- extremely overcomplete \\
+%- highly non-orthogonal (every state has some overlap with every other state
+%}
+%
+%{\color{red} Fazekas and Anderson said it's a good choice for the heis s=1/2 antiferro GS
+%because it has total spin zero, and lower energy than the N\'eel state.  check if this is true.}
+%
+%{\color{red} Thing from Anderson 1973 about energy per NN VB vs energy per 2 antiparallel sites,
+%but with math and stuff this time.}
 
 %----------------------------------------------------------------------------------------------------
 \subsection{The Inner Product}
@@ -745,14 +750,11 @@ Applying $\ham^m$ to a trial state $\ket{V}$ gives us
 where $W_r$, the weight, is the product of the factors of $\frac{1}{2}$ gained by applying the off-diagonal bond operators to the trial state.
 The ratio of weights is used in Monte Carlo sampling to determine whether to keep a certain configuration.
 
-\comment{ \noindent Main goal is to get value of some observable.}
-
 Instead of computing the full sum from \eqref{hamapp}, we stochastically sample terms
 from the sum, with sampling proportional to their weight $W_r$ in the sum.  
 In the single projector method we project only one state, but are limit in the observables we can then calculate.
 The double projector method projects two separate states, which can then be used to find expectation values of various operators.
-The loop algorithm is an improvement on the double projector algorithm. \comment{One more sentence...}
-
+The loop algorithm is an improvement on the double projector algorithm. 
 
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Single Projector}
@@ -849,7 +851,6 @@ It is important to note that this energy measurement is not variational, and as 
 This algorithm is not limited to measuring the ground state energy; we can measure other operators for which the ground state is an eigenstate.
 It also is possible to add in one triplet state and measure the singlet-triplet gap \cite{Sandvik_vbqmc}.
 And we can measure properties of the valence bonds, like the bond length distribution or the valence bond entanglement entropy, introduced in the next chapter.\\
-\comment{Add singlet-triplet gap if I have *tonnes* of extra time.}
 
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Double Projector}
@@ -948,9 +949,8 @@ In addition to anything that can be measured with the single projector method we
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Loop Moves}
 %--------------------------------------------------------------------------------------------------------------------------
-\comment{ do this section last... if there's time\\}
-\change{
-- sooooooooooooo fast \\
+\comment{ do this section last... if there's time}\\
+\change{- it's faster, better scaling \\
 - drawbacks (can't change weight, like for renyi sampling thing)
 }
 
