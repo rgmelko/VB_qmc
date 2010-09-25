@@ -585,7 +585,7 @@ This Hamiltonian favors antiparallel spins and will flip antiparallel pairs of s
 
 We slightly modify the Hamiltonian for use in the ground state projection scheme:
 \begin{equation}
-\mathcal{H}= \left(\mathcal{H}_{\rm{Heis}} - \tfrac{1}{4} \right)= \sum_{\langle i,j \rangle} 
+\mathcal{H}= \left(\mathcal{H}_{\rm{Heis}} - \sum_{\langle i,j \rangle} \tfrac{1}{4} \right)= \sum_{\langle i,j \rangle} 
 	\left(\mathbf{S}_i\cdot \mathbf{S}_j - \tfrac{1}{4}\right)
 	= - \sum_{\langle i,j \rangle} H_{ij}.
 \label{hammm}
@@ -802,22 +802,31 @@ The full algorithm is shown below:
 %--------------------------------------------------------------------------------------------------------------------------
 \subsubsection{Measurements}
 
-\change{energy measurement}
-
+In the single projector method we can measure the ground state energy using a reference state $\ket{R}$:
 \begin{equation}
-	E_0 = \frac{\bra{R}\ham\ket{0}}{\bra{R}0\rangle} = 
-	\frac{\bra{R}\left(-\sum_{r=1}^{N_{nn}}H_r\right)\ket{0}}{\bra{R}0\rangle} = 
-	-\sum_{r=1}^{N_{nn}} \frac{\bra{R}H_r\ket{0}}{\bra{R}0\rangle}
+	E_0 = \frac{\bra{R}\ham_{\rm Heis}\ket{0}}{\bra{R}0\rangle} = 
+	\frac{\bra{R}\left(-\sum_{r=1}^{N_{nn}}(H_r + \frac{1}{4})\right)\ket{0}}{\bra{R}0\rangle} = 
+	-\sum_{r=1}^{N_{nn}} \frac{\bra{R}H_r + \frac{1}{4}\ket{0}}{\bra{R}0\rangle}
 \end{equation}
-\change{If we choose the reference state $\ket{R}$ to be a classical N\'eel state, 
+(See \eqref{hammm} for correspondence between the Heisenberg Hamiltonian and the one used in the algorithm.)
+If we choose the reference state to be a classical N\'eel state (the spins alternate over the sites, i.e. $\ket{\up\dw\up\dw\cdots\up\dw\up\dw}$) 
 which has equal overlap with every valence bond state, 
-we can further simplify this formula.}
+we can further simplify this formula.
 \begin{equation}
-	E_0 = -\sum_{r=1}^{N_{nn}} \frac{W(r)\bra{R}S_r\rangle}{\bra{R}0\rangle} =
-	 -\sum_{r=1}^{N_{nn}} W(r) = -\left(\frac{n_{\text{off}}}{2} + n_{\text{diag}}\right),
+	E_0 = -\sum_{r=1}^{N_{nn}} \frac{(W(r)+\frac{1}{4})\bra{R}S_r\rangle}{\bra{R}0\rangle} =
+	 -\sum_{r=1}^{N_{nn}} (W(r) + \tfrac{1}{4})= -\left(\frac{n_{\text{off}}}{2} + n_{\text{diag}} + \frac{N_{nn}}{4}\right),
+	 \label{energyy}
 \end{equation}
 where $W(r)$ and $\ket{S_r}$ are the weight and the state gained by applying the $r^{\text{th}}$ bond operator to the ground state, $n_{\text{off}}$ is the number of off-diagonal bond operators 
 in the Hamiltonian, and $n_{\text{diag}}$ is the number of diagonal bond operators in the Hamiltonian.
+We know that $n_{\rm off} + n_{\rm diag} = N_{nn}$, since all the terms in the Hamiltonian must either be diagonal or off-diagonal.  We can also say $n_{\rm diag} = n_{nn}$; the number of diagonal terms in the Hamiltonian is equal to the number of nearest neighbor bonds in the state on which we apply the Hamiltonian, distinct from $N_{nn}$: the number of {\it possible} nearest neighbor bonds.
+Then we can rewrite \ref{energyy} as:
+\begin{equation}
+	E_0 = -\frac{1}{2}\left(n_{nn} +N_{nn}\right),
+	 \label{energyyy}
+\end{equation}
+
+To measure the energy in our single projector algorithm we 
 
 \comment{this isn't finished... i'm pretty sure}
 
