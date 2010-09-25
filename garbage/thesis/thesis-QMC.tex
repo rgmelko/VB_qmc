@@ -736,16 +736,16 @@ Raising it to the even power $m$ would give us $(N_{nn})^m$ terms each containin
 where $r$ goes over each of the possible nearest neighbor bonds, and $P_r$ is the $r^{\rm th}$ possible list of $m$ bond operators.  
 Applying $\ham^m$ to a trial state $\ket{V}$ gives us
 \begin{equation} \label{hamapp}
-	\ham^m \ket{V} = \sum_{r=1}^{(N_{nn})^m} P_r \ket{V} = \sum_{r=1}^{(N_{nn})^m} W(r)\ket{V(r)}
-	= \sum_{r=1}^{(N_{nn})^m} 2^{-m_r^{\text{off}}}\ket{V(P_r)},
+	\ham^m \ket{V} = \sum_{r=1}^{(N_{nn})^m} P_r \ket{V} = \sum_{r=1}^{(N_{nn})^m} W_r\ket{V_r}
+	= \sum_{r=1}^{(N_{nn})^m} 2^{-m_r^{\text{off}}}\ket{V_r},
 \end{equation}
-where $W(r)$, the weight, is the product of the factors of $\frac{1}{2}$ gained by applying the off-diagonal bond operators to the trial state.
+where $W_r$, the weight, is the product of the factors of $\frac{1}{2}$ gained by applying the off-diagonal bond operators to the trial state.
 The ratio of weights is used in Monte Carlo sampling to determine whether to keep a certain configuration.
 
 \comment{ \noindent Main goal is to get value of some observable.}
 
 Instead of computing the full sum from \eqref{hamapp}, we stochastically sample terms
-from the sum, with sampling proportional to their weight $W(r)$ in the sum.  
+from the sum, with sampling proportional to their weight $W_r$ in the sum.  
 In the single projector method we project only one state, but are limit in the observables we can then calculate.
 The double projector method projects two separate states, which can then be used to find expectation values of various operators.
 The loop algorithm is an improvement on the double projector algorithm. \comment{One more sentence...}
@@ -802,37 +802,50 @@ The full algorithm is shown below:
 %--------------------------------------------------------------------------------------------------------------------------
 \subsubsection{Measurements}
 
-In the single projector method we can measure the ground state energy using a reference state $\ket{R}$:
+In the single projector method we can measure the ground state energy using a reference state $\ket{\Psi}$:
 \begin{equation}
-	E_0 = \frac{\bra{R}\ham_{\rm Heis}\ket{0}}{\bra{R}0\rangle} = 
-	\frac{\bra{R}\left(-\sum_{r=1}^{N_{nn}}(H_r + \frac{1}{4})\right)\ket{0}}{\bra{R}0\rangle} = 
-	-\sum_{r=1}^{N_{nn}} \frac{\bra{R}H_r + \frac{1}{4}\ket{0}}{\bra{R}0\rangle}
+	E_0 = \frac{\bra{\Psi}\ham_{\rm Heis}\ket{0}}{\bra{\Psi}0\rangle} = 
+	\frac{\sum_{r} \bra{\Psi}\ham_{\rm Heis} P_r \ket{V}}
+	{\sum_{r}  \bra{\Psi} P_r \ket{V}}= 
+	\frac{\sum_{r} W_r \bra{\Psi}\ham_{\rm Heis}  \ket{V_r}}
+	{\sum_{r} W_r \bra{\Psi}V_r\rangle}
 \end{equation}
 (See \eqref{hammm} for correspondence between the Heisenberg Hamiltonian and the one used in the algorithm.)
-If we choose the reference state to be a classical N\'eel state (the spins alternate over the sites, i.e. $\ket{\up\dw\up\dw\cdots\up\dw\up\dw}$) 
-which has equal overlap with every valence bond state, 
-we can further simplify this formula.
+At this point we can put in our expression the Heisenberg Hamiltonian from \eqref{hammm}.
 \begin{equation}
-	E_0 = -\sum_{r=1}^{N_{nn}} \frac{(W(r)+\frac{1}{4})\bra{R}S_r\rangle}{\bra{R}0\rangle} =
-	 -\sum_{r=1}^{N_{nn}} (W(r) + \tfrac{1}{4})= -\left(\frac{n_{\text{off}}}{2} + n_{\text{diag}} + \frac{N_{nn}}{4}\right),
+	E_0 =
+	\frac{\sum_{r} W_r \bra{\Psi} \left(-\sum_{k=1}^{N_{nn}} (H_k+ \frac{1}{4})\right) \ket{V_r}}
+	{\sum_{r} W_r \bra{\Psi} V_r\rangle}
+\end{equation}
+If we choose the reference state to be a classical N\'eel state (the spins alternate over the sites, i.e. $\ket{\up\dw\up\dw\cdots\up\dw\up\dw}$) 
+which has equal overlap with every valence bond state ($\bra{\Psi_{\rm N\acute{e}el} } V_r\rangle =  2^{-N/2}$ for a system of $N$ sites) 
+we can further simplify this formula,
+\begin{equation}
+	E_0 = 
+	-\sum_{k=1}^{N_{nn}}\frac{\sum_{r} W_r \bra{\Psi_{\rm N\acute{e}el} } H_k \ket{V_{r}} + 
+	\sum_{r} W_r  \bra{\Psi_{\rm N\acute{e}el} }\frac{1}{4} \ket{V_{r}}}
+	{\sum_{r} W_r \bra{\Psi_{\rm N\acute{e}el}} V_{r}\rangle}
+	=
+	-\left<\sum_{k=1}^{N_{nn}} 2^{o_k}\right> -  \frac{N_{nn}}{4},	
 	 \label{energyy}
 \end{equation}
-where $W(r)$ and $\ket{S_r}$ are the weight and the state gained by applying the $r^{\text{th}}$ bond operator to the ground state, $n_{\text{off}}$ is the number of off-diagonal bond operators 
-in the Hamiltonian, and $n_{\text{diag}}$ is the number of diagonal bond operators in the Hamiltonian.
-We know that $n_{\rm off} + n_{\rm diag} = N_{nn}$, since all the terms in the Hamiltonian must either be diagonal or off-diagonal.  We can also say $n_{\rm diag} = n_{nn}$; the number of diagonal terms in the Hamiltonian is equal to the number of nearest neighbor bonds in the state on which we apply the Hamiltonian, distinct from $N_{nn}$: the number of {\it possible} nearest neighbor bonds.
-Then we can rewrite \ref{energyy} as:
+where $o_k$ is 1 for an off-diagonal operator and 0 otherwise.  
+We can rewrite this in terms of the number of diagonal  $n_{\rm diag}$ and off-diagonal $n_{\rm off}$ operators in the Hamiltonian and use the fact that  $ n_{\rm diag} + n_{\rm off}= N_{nn}$,
 \begin{equation}
-	E_0 = -\frac{1}{2}\left(n_{nn} +N_{nn}\right),
-	 \label{energyyy}
+	E_0
+	= 
+	-\left< \frac{n_{\text{off}}}{2} + n_{\text{diag}}\right> - \frac{N_{nn}}{4}
+	 \label{energyyy} 
+	 = -\frac{1}{2}\bigg(\left<n_{\rm diag} \right>+N_{nn}\bigg)
 \end{equation}
+One way to measure this is to count the number of nearest neighbor bonds in every state we measure, since there will be a diagonal term in the Hamiltonian for every nearest neighbor bond.  This method is exact in the limits $m \rightarrow \infty$ and the number of states sampled $ \rightarrow \infty$.
+It is also possible to measure $\left<n_{\rm diag} \right>$ by counting the number of diagonal bond operators in the operator list $P_r$ at each step, and it is exact in the limit $m \rightarrow \infty$.
 
-Now, since we do not at any point have the entire ground state of the system, and we are only sampling the ground state wavefunction, to get the ground state energy we sample terms in the expectation value of the Heisenberg Hamiltonian, and this measure $-\frac{1}{2}\langle n_{nn} + N_{nn} \rangle$.  That is, at each step we count the number of nearest neighbor bonds in the configuration we measure.  
-This is added to a running tally that is then normalized (when the algorithm is finished) by the number of states that were measure.  
-Since we are sampling the terms proportional to their weight in the ground state wavefunction we do not need to include the weights in the expectation value.
+It is important to note that this energy measurement is not variational, and as such can give results lower than the ground state energy.  The energy measurement with the double projector algorithm, however, is variational and approaches the ground state energy from above.
 
-This algorithm is not limited to measuring the ground state energy;
-It is possible to add in one triplet state and measure the singlet-triplet gap \cite{Sandvik_vbqmc}.
-We can also measure properties of the valence bonds, like the bond length distribution or the valence bond entanglement entropy, introduced in the next chapter.\\
+This algorithm is not limited to measuring the ground state energy; we can measure other operators for which the ground state is an eigenstate.
+It also is possible to add in one triplet state and measure the singlet-triplet gap \cite{Sandvik_vbqmc}.
+And we can measure properties of the valence bonds, like the bond length distribution or the valence bond entanglement entropy, introduced in the next chapter.\\
 \comment{Add singlet-triplet gap if I have *tonnes* of extra time.}
 
 %--------------------------------------------------------------------------------------------------------------------------
@@ -849,7 +862,7 @@ The sampling weights in this scheme are also different, including the overlap be
 \begin{equation} \label{supaweight}
 W_{\rm total} = W^LW^R\bra{V^L}V^R\rangle,
 \end{equation}
-where $W^L$ and $W^R$ are $2^{-m_{off}}$ (the factors of $\frac{1}{2}$ accrued by applying off-diagonal bond operators) for the left and right operators lists respectively.  
+where $W^L$ and $W^R$ are $2^{-m_{\rm off}}$ (the factors of $\frac{1}{2}$ accrued by applying off-diagonal bond operators) for the left and right operators lists respectively.  
 
 In the double projector algorithm only one of the lists of bond operators, left or right, is updated at a time, alternating between the two lists.
 
@@ -926,11 +939,8 @@ We are already sampling states according to the weight from \eqref{supaweight}, 
 						\right>.
 \end{equation}
 
-\change{
-- mention that single projector is not variational and double projector is (maybe in measurement section?)\\
-- what else can we measure quantities (put in measurement section) 
-}
-
+The double projector method is much more versatile in the range of observables that can be measured.  
+In addition to anything that can be measured with the single projector method we can also measure the $Swap$ operator, spin correlations functions, and by adding triplet states into the mix: staggered magnetization, and spin stiffness, among other things \cite{Beach2006}.
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Loop Moves}
 %--------------------------------------------------------------------------------------------------------------------------
