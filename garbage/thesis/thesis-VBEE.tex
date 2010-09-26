@@ -58,7 +58,7 @@ Entanglement entropies for a 1D, 100-site Heisenberg chain with PBC, as a functi
 } 
 \end{figure}
 
-Figure \ref{1dPBC} shows the \vb measurements for a periodic spin chain with 100 sites, plotted alongside \vn data.  \vb seems to fit well to the CFT result, though it is lower than \vN.
+Figure \ref{1dPBC} shows the \vb measurements for a periodic spin chain of length $L=100$ sites, plotted alongside \vn data.  \vb seems to fit well to the CFT result, though it is lower than \vN.
 We use linear regression to fit the \vb and \vn data for several system sizes to $S_{\rm PBC}^{\rm vN}$ from Eq. \eqref{cft1d}. Figure~\ref{c1} shows $c^{\rm vN}$ approaching 1 (the expected value for this system \comment{REFERENCE}) as the system size increases, however $c^{\rm VB}$ seems to approach a lower value. 
 
 \begin{figure} {
@@ -84,7 +84,7 @@ This branching is due to a ``dimerization" effect caused by the open boundary co
 In contrast to the PBC case, \vb is now higher than \vN{} implying that, unlike the successive Renyi entropies \comment{eqref}, \vb does not give a bound on \vn.
 Figure \ref{c2} shows the linear regression fits of the lower branch of OBC data for several different system sizes to $\VN_{\text{OBC}}$ from Equation \eqref{cft1d}.  As the number of points included is decreased (until we are only using data where the division between regions A and B is ``far'' from the open boundaries of the system) we see $c^{\rm vN}$ approach a constant value for all system sizes.  As the system size increases $c^{\rm vN}$ approaches the expected value \comment{REF} of 1.  On the other hand, from the $S^{\rm VB}$ data, it is not clear whether $c^{\rm VB}$ approaches a constant value for large system sizes.  We see only that $c^{\rm VB}$ is lower than the expected value of 1, and that it is lower than the $c^{\rm VB}$ value given by the PBC data.
 
-\comment{talk more about c?}
+\comment{mini-conclusion}
 
 \begin{figure} {
 \includegraphics[width=6in]{./figures/paper1/figure1/newfig2.pdf} 
@@ -124,7 +124,7 @@ The inset shows a close up view of the boxed region.
  \end{figure}
  
  We now move towards two dimensions by adding ``legs" to our one dimensional OBC chains.
- Due to the constraints imposed by the DMRG on the geometry of region A the sites must be arranged in a snaking pattern. \comment{(See Figure)}
+ Due to the constraints imposed by the DMRG on the geometry of region A the sites must be arranged in a snaking pattern (Fig \ref{laddersnake}).
 The DMRG data, to which we compare \vB, are limited to ladders with $M=7$ legs because of the \change{poor scaling of the algorithm when approaching 2D}.
  The VB QMC algorithm \change{scales as $N^2$} for a system with N sites, so \change{ we measure up to $M=20$ with minimal CPU effort}.
  
