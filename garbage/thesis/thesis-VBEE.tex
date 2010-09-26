@@ -60,7 +60,7 @@ Entanglement entropies for a 1D, 100-site Heisenberg chain with PBC, as a functi
 \end{figure}
 
 Figure \ref{1dPBC} shows the \vb measurements for a periodic spin chain with 100 sites, plotted alongside \vn data.  \vb seems to fit well to the CFT result, though it is lower than \vN.
-Linear regression fits of the \vb and \vn data for several system sizes (Figure~\ref{c1}) shows $c^{\rm vN}$ approaching 1 as the system size increases, however $c^{\rm VB}$ gives a lower value of $c$.
+Linear regression fits of the \vb and \vn data for several system sizes (Figure~\ref{c1}) shows $c^{\rm vN}$ approaching 1 as the system size increases, however $c^{\rm VB}$ seems to approach a lower value.
 
 
 \begin{figure} {
@@ -81,21 +81,21 @@ Linear regression fits of the \vb and \vn data for several system sizes (Figure~
 	\label{1dOBC}}}
 \end{figure}
 
-\change{For the OBC case} (Figure~\ref{1dOBC}), we see entanglement entropies split into two branches, where the upper branch corresponds to an odd number of sites in region A, and the lower to an even number.
-\change{This branching is due to a ``dimerization" effect caused by the open boundary conditions \cite{Ian1}.}
-In contrast to the PBC case, \vb is now higher than \vN.
-Thus, unlike the successive Renyi entropies \comment{eqref}, \vb does not give any bound on \vn.
+For the OBC case (Figure~\ref{1dOBC}), we see both \vn and \vb split into two branches, where the upper branch corresponds to an odd number of sites in region A, and the lower to an even number.
+This branching is due to a ``dimerization" effect caused by the open boundary conditions \cite{Ian1}.
+In contrast to the PBC case, \vb is now higher than \vN implying that, unlike the successive Renyi entropies \comment{eqref}, \vb does not give a bound on \vn.
+Figure \ref{c2} shows the linear regression fits of the lower branches of OBC data for several different system sizes to $\VN_{\text{OBC}}$ from Equation \eqref{cft1d}.
 
 \begin{figure} {
-\includegraphics[width=5in]{./figures/paper1/figure1/newfig2.pdf} 
+\includegraphics[width=6in]{./figures/paper1/figure1/newfig2.pdf} 
 \centering
-\label{Cobc}
-\caption[caption]{ 
-	caption
+\label{c2}
+\caption[Central charge for 1D OBC chains]{ The central charge, $c$, for 1D OBC chains of lengths $L=64$, 100, 128, and 200.
+The slope of the data depends on the number of points $z$ included in the linear regression fit, as can be seen looking at \ref{1dOBC}.
+We fit the lower branch of the data, systematically decreasing $z$ until there are too few points left to get an accurate fit.
 }}
 \end{figure}
 
-\comment{Totally talk about $c$ for the OBC case.}
 
 %------------------------------------------------------------------------------------------------------------------
 \section{Approaching Two Dimensions}
