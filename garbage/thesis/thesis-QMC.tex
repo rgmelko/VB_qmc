@@ -10,24 +10,24 @@ The numerical technique used in this research is valence bond quantum Monte Carl
 Other commonly used lattice Monte Carlo techniques, such as the stochastic series expansion\cite{Sylji2002} or world line \cite{Evertz2003} methods, use the $S^z$ basis, but VB QMC takes advantage of the unique properties of the valence bond basis.  
 
 In this chapter we introduce the valence bond basis, showing how it is used to represent singlet states.  
-We then explain ground state projection, the method employed by VB QMC get from a trial state to the ground state of our system.
+We then explain ground state projection, the method employed by VB QMC to get from a trial state to the ground state of our system.
 Next we discuss the Hamiltonian of our system, writing it in terms of ``bond operators'' that act on valence bond states.
-Finally we go over three different VB QMC algorithms: the single projector method, the double projector method, and the loop algorithm.
+Finally we describe three different VB QMC algorithms: the single projector method, the double projector method, and the loop algorithm.
 
 \section{The Valence Bond Basis} \label{sec:basis}
 %--------------------------------------------------------------------------------------------------------------------------
 %\comment{Dates back to the 1930's pauling etc, }
 The valence bond basis is a basis of states in which all sites are paired into valence bonds.  
-This basis can be used to represent any singlet state: a state with total spin equal to zero.
+This basis can be used to represent any singlet state, i.e., any state with total spin equal to zero.
 %comment on why it's an awesome basis choice... 
 In this section we introduce the spin-1/2 singlet state and its representation in terms of valence bonds.
-We then discuss some of the properties of the valence bond basis.  
-And we conclude by examining the measurement of the inner product in the valence bond basis.
+We then discuss some of the properties of the valence bond basis,
+and we conclude by examining the measurement of the inner product in the valence bond basis.
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{The Spin-1/2 Singlet State}
 %--------------------------------------------------------------------------------------------------------------------------
 
-Typically the states of spin-1/2 particles are represented in the $S^z$ basis: the basis of eigenstates of the $S^z$ operator ($\{\ket{\up},\ket{\dw}\}$ for one spin).  
+Typically the states of spin-1/2 particles are represented in the $S^z$ basis, the basis of eigenstates of the $S^z$ operator ($\{\ket{\up},\ket{\dw}\}$ for one spin).  
 \begin{equation}
  	  S^z\lvert \uparrow \rangle = +\frac{1}{2} \lvert \uparrow \rangle
  	 \:\:\:    \:\:\:    \:\:\:    \:\:\:    \:\:\:    \:\:\: 
@@ -48,8 +48,8 @@ $  \frac{1}{\sqrt{2}}\big( \lvert \uparrow_a \downarrow_b \rangle - \lvert \down
 \end{tabular}
 \end{center}
 
-We can see this explicitly by finding the eigenstates of the $S^2$ operator for 
-two spin 1/2 particles.  We begin by expressing the $S^2$ operator in terms of its different
+To establish notation which will be used later, we can go through the process of finding the eigenstates of the $S^2$ operator explicitly for 
+two spin-1/2 particles.  We begin by expressing the $S^2$ operator in terms of its different
 spin components:
 \begin{eqnarray}
 S^2 &=& (S^x)^2 + (S^y)^2 + (S^z)^2 \\
@@ -206,8 +206,8 @@ The resulting entanglement entropy in Figure \ref{tent}.
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Basis Properties}
 %--------------------------------------------------------------------------------------------------------------------------
-A collection of sites on a lattice can be paired into a valence bonds such that each site
-belongs to exactly one bond (see in Figure~\ref{covering}).  
+A collection of sites on a lattice can be paired into valence bonds such that each site
+belongs to exactly one bond. (See Fig.~\ref{covering}.)  
 We call this a valence bond covering or valence bond state, and it is most conveniently represented as a list of 
 sites that are paired in valence bonds:
 \begin{equation}
@@ -228,7 +228,9 @@ $i$, $j$ will change the sign of the state.
 }
 \end{figure}
  
-For system with an even number of spins, a basis of valence bond coverings can be used to represent an arbitrary singlet state (an eigenstate of the total spin operator $S^2$ with eigenvalue $\lambda=0$), but in general that representation is not unique.
+For a system with an even number of spins, a basis of valence bond coverings can be used to represent an arbitrary singlet state, 
+%(an eigenstate of the total spin operator $S^2$ with eigenvalue $\lambda=0$)
+ but in general that representation is not unique.
 The number of possible singlet states for a given number of spin-1/2 sites can be enumerated
 using the rule for the addition of angular momentum for each added spin,
 \begin{equation}
@@ -252,7 +254,7 @@ where $S$ is the $(2S+1)$-degenerate state of spin $S$ \cite{Beach2006}.
 	\underbrace{2 \oplus \cdots \oplus 2}_{5 \rm{\; times}} 
 	\oplus 3 \nonumber
 \end{eqnarray}
-And for an arbitrary number of spins, 2N, the number of singlet states is given by 
+And for an arbitrary number of spins, 2N, the number of singlet states is given by \cite{Beach2006}
 \begin{equation}
 	C_{\rm{sing}}^N = \frac{1}{N+1}\binom{2N}{N}\ = \frac{(2N)!}{N!(N+1)!},
 \end{equation}  
@@ -474,7 +476,7 @@ look together.  Bonds from separate loops will have no overlap with each other.
 Before we superimpose $\ket{V_\text{L}}$ and $\ket{V_\text{R}}$, the state of each set of sites
 is a sum (including negative terms) of a subset of all possible combinations of spins such that there is an equal number of up and down spins.  This set is restricted by the valence bonds; if there is a bond going between sites $a$ and $b$ then the spin on site $a$ must always be opposite of the spin on site $b$.  
 
-Examining the third loop, which contains four sites, for the state of $\ket{V_\text{L}}$ sites 9 and 12 must always have opposite spins, as much sites 10 and 11.  There are six $S^z=0$ states, four of which satisfy these restrictions.  For the state of $\ket{V_\text{R}}$ there are also four spin states that satisfy its restrictions, but since the restrictions are different (spins 11 and 12 are opposite and spins 9 and 10 are opposite) it turns out that when we overlap $\ket{V_\text{L}}$ and $\ket{V_\text{R}}$ there are only two spin states that satisfy both sets of restrictions.  This is true for all loops: there are only two possible spin states.  These states correspond to alternating up and down spins around the loop, or equivalently, the state in which all the sublattice A sites in the loop have a given spin (either up or down) and the sublattice B sites have the opposite spin.  
+Examining the third loop, which contains four sites, for the state of $\ket{V_\text{L}}$ sites 9 and 12 must always have opposite spins, as much sites 10 and 11.  There are six $S^z=0$ states, four of which satisfy these restrictions.  For the state of $\ket{V_\text{R}}$ there are also four spin states that satisfy its restrictions, but since the restrictions are different (spins 11 and 12 are opposite and spins 9 and 10 are opposite) it turns out that when we overlap $\ket{V_\text{L}}$ and $\ket{V_\text{R}}$ there are only two spin states that satisfy both sets of restrictions.  This is true for all loops, there are only two possible spin states.  These states correspond to alternating up and down spins around the loop, or equivalently, the state in which all the sublattice A sites in the loop have a given spin (either up or down) and the sublattice B sites have the opposite spin.  
 
 \begin{figure} { \includegraphics [width=3.5in]
 {./figures/made/spinstate.pdf}
@@ -510,7 +512,7 @@ $\ket{\beta_i}$'s are the spin states used to represent $\ket{V^\text{L}}$ and $
 There are exactly two non-vanishing terms in the inner product for each loop.
 If not for the A-B sublattice convention (see Figure \ref{covering}) it would be possible to get negative overlaps between states.
 A maximal value of the overlap can be obtained through the inner product of a state with itself.
-Then there are $N/2$ loops, one for every two sites.  There are $2^{N/2}$ compatible spin configurations, and the overlap is exactly its maximal value: 1.
+Then there are $N/2$ loops, one for every two sites.  There are $2^{N/2}$ compatible spin configurations, and the overlap is exactly its maximal value, 1.
 
 The inner product can be used to calculate the expectation values of observables, normalize states, and as a factor in the Monte Carlo weights, all necessary for quantum Monte Carlo algorithms in the valence bond basis. \comment{add page refs}
 
@@ -769,7 +771,7 @@ Otherwise, the new state is kept with the probability equal to the ratio of the 
 \begin{equation}
 {\rm Prob(keep)} = \frac{W_{\rm new}}{W_{\rm old}}.
 \end{equation}
-If the new state is not kept the changes to the bond operator list are undone, and a measurement can be made, but the measurement is on the old state: the state generated by the previous bond operator list.
+If the new state is not kept the changes to the bond operator list are undone, and a measurement can be made, but the measurement is on the old state, the state generated by the previous bond operator list.
 In this way, the states are sampled according to their weight in the sum of the ground state wavefunction.
 The process of changing the bond operator list and deciding whether to keep the changes is continued.  Each repetition is considered one Monte Carlo step.  
 The full algorithm is shown below:
@@ -944,7 +946,7 @@ We are already sampling states according to the weight from \eqref{supaweight}, 
 \end{equation}
 
 The double projector method is much more versatile in the range of observables that can be measured.  
-In addition to anything that can be measured with the single projector method we can also measure the $Swap$ operator, spin correlations functions, and by adding triplet states into the mix: staggered magnetization, and spin stiffness, among other things \cite{Beach2006}.
+In addition to anything that can be measured with the single projector method we can also measure the $Swap$ operator, spin correlations functions, and, by adding triplet states into the mix, staggered magnetization, and spin stiffness, among other things \cite{Beach2006}.
 
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Loop Moves}
