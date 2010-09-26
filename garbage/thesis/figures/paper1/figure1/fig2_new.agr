@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Sat Sep 18 14:19:28 2010"
+@timestamp def "Sat Sep 25 23:57:33 2010"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -101,17 +101,17 @@
 @g0 fixedpoint format general general
 @g0 fixedpoint prec 6, 6
 @with g0
-@    world 0, 0.114, 50, 0.182
+@    world 0, 0.75, 50, 1.1
 @    stack world 0, 0, 0, 0
 @    znorm 1
 @    view 0.150000, 0.214461, 1.198529, 0.928922
 @    title ""
 @    title font 0
-@    title size 1.500000
+@    title size 1.750000
 @    title color 1
 @    subtitle ""
 @    subtitle font 0
-@    subtitle size 1.000000
+@    subtitle size 1.500000
 @    subtitle color 1
 @    xaxes scale Normal
 @    yaxes scale Normal
@@ -123,7 +123,7 @@
 @    xaxis  bar on
 @    xaxis  bar color 1
 @    xaxis  bar linestyle 1
-@    xaxis  bar linewidth 1.0
+@    xaxis  bar linewidth 2.0
 @    xaxis  label ""
 @    xaxis  label layout para
 @    xaxis  label place auto
@@ -139,11 +139,11 @@
 @    xaxis  tick in
 @    xaxis  tick major size 1.000000
 @    xaxis  tick major color 1
-@    xaxis  tick major linewidth 1.0
+@    xaxis  tick major linewidth 2.0
 @    xaxis  tick major linestyle 1
 @    xaxis  tick major grid off
 @    xaxis  tick minor color 1
-@    xaxis  tick minor linewidth 1.0
+@    xaxis  tick minor linewidth 2.0
 @    xaxis  tick minor linestyle 1
 @    xaxis  tick minor grid off
 @    xaxis  tick minor size 0.500000
@@ -163,7 +163,7 @@
 @    xaxis  ticklabel start 0.000000
 @    xaxis  ticklabel stop type auto
 @    xaxis  ticklabel stop 0.000000
-@    xaxis  ticklabel char size 1.250000
+@    xaxis  ticklabel char size 1.750000
 @    xaxis  ticklabel font 0
 @    xaxis  ticklabel color 1
 @    xaxis  tick place both
@@ -174,7 +174,7 @@
 @    yaxis  bar on
 @    yaxis  bar color 1
 @    yaxis  bar linestyle 1
-@    yaxis  bar linewidth 1.0
+@    yaxis  bar linewidth 2.0
 @    yaxis  label ""
 @    yaxis  label layout para
 @    yaxis  label place auto
@@ -183,18 +183,18 @@
 @    yaxis  label color 1
 @    yaxis  label place normal
 @    yaxis  tick on
-@    yaxis  tick major 0.01
-@    yaxis  tick minor ticks 4
+@    yaxis  tick major 0.1
+@    yaxis  tick minor ticks 1
 @    yaxis  tick default 6
 @    yaxis  tick place rounded true
 @    yaxis  tick in
 @    yaxis  tick major size 1.000000
 @    yaxis  tick major color 1
-@    yaxis  tick major linewidth 1.0
+@    yaxis  tick major linewidth 2.0
 @    yaxis  tick major linestyle 1
 @    yaxis  tick major grid off
 @    yaxis  tick minor color 1
-@    yaxis  tick minor linewidth 1.0
+@    yaxis  tick minor linewidth 2.0
 @    yaxis  tick minor linestyle 1
 @    yaxis  tick minor grid off
 @    yaxis  tick minor size 0.500000
@@ -214,7 +214,7 @@
 @    yaxis  ticklabel start 0.000000
 @    yaxis  ticklabel stop type auto
 @    yaxis  ticklabel stop 0.000000
-@    yaxis  ticklabel char size 1.250000
+@    yaxis  ticklabel char size 1.750000
 @    yaxis  ticklabel font 0
 @    yaxis  ticklabel color 1
 @    yaxis  tick place both
@@ -223,16 +223,16 @@
 @    altyaxis  off
 @    legend on
 @    legend loctype view
-@    legend 0.15, 0.54
-@    legend box color 1
-@    legend box pattern 1
+@    legend 0.16, 0.585
+@    legend box color 0
+@    legend box pattern 0
 @    legend box linewidth 1.0
 @    legend box linestyle 1
 @    legend box fill color 0
-@    legend box fill pattern 1
+@    legend box fill pattern 0
 @    legend font 0
-@    legend char size 1.250000
-@    legend color 1
+@    legend char size 1.440000
+@    legend color 0
 @    legend length 4
 @    legend vgap 1
 @    legend hgap 2
@@ -638,202 +638,202 @@
 @    s7 legend  "VB, L=200"
 @target G0.S0
 @type xy
-16 0.178322
-15 0.176495
-14 0.175095
-13 0.174075
-12 0.173298
-11 0.172687
-10 0.172196
-9 0.171797
-8 0.171471
-7 0.171204
-6 0.170988
-5 0.170821
-4 0.17069
-3 0.170595
-2 0.17071
+16 1.069932
+15 1.05897
+14 1.05057
+13 1.04445
+12 1.039788
+11 1.036122
+10 1.033176
+9 1.030782
+8 1.028826
+7 1.027224
+6 1.025928
+5 1.024926
+4 1.02414
+3 1.02357
+2 1.02426
 &
 @target G0.S1
 @type xy
-16 0.180027
-15 0.174099
-14 0.170554
-13 0.168459
-12 0.166738
-11 0.165383
-10 0.16389
-9 0.163409
-8 0.1624
-7 0.161129
+16 1.080162
+15 1.044594
+14 1.023324
+13 1.010754
+12 1.000428
+11 0.992298
+10 0.98334
+9 0.980454
+8 0.9744
+7 0.966774
 &
 @target G0.S2
 @type xy
-25 0.176741
-24 0.17503
-23 0.173807
-22 0.172924
-21 0.172249
-20 0.171709
-19 0.171266
-18 0.170894
-17 0.170577
-16 0.170303
-15 0.170065
-14 0.169857
-13 0.169676
-12 0.169516
-11 0.169377
-10 0.169254
-9 0.169149
-8 0.169059
-7 0.168975
-6 0.168914
-5 0.168846
-4 0.1688
+25 1.060446
+24 1.05018
+23 1.042842
+22 1.037544
+21 1.033494
+20 1.030254
+19 1.027596
+18 1.025364
+17 1.023462
+16 1.021818
+15 1.02039
+14 1.019142
+13 1.018056
+12 1.017096
+11 1.016262
+10 1.015524
+9 1.014894
+8 1.014354
+7 1.01385
+6 1.013484
+5 1.013076
+4 1.0128
 &
 @target G0.S3
 @type xy
-25 0.174814
-24 0.169465
-23 0.166345
-22 0.164165
-21 0.162742
-20 0.161697
-19 0.16091
-18 0.160693
-17 0.159876
-16 0.158674
-15 0.158107
-14 0.156698
-13 0.156271
-12 0.154942
+25 1.048884
+24 1.01679
+23 0.99807
+22 0.98499
+21 0.976452
+20 0.970182
+19 0.96546
+18 0.964158
+17 0.959256
+16 0.952044
+15 0.948642
+14 0.940188
+13 0.937626
+12 0.929652
 &
 @target G0.S4
 @type xy
-32 0.1758
-31 0.174186
-30 0.173066
-29 0.172262
-28 0.171647
-27 0.171155
-26 0.170748
-25 0.170405
-24 0.17011
-23 0.169853
-22 0.169627
-21 0.169426
-20 0.169248
-19 0.169088
-18 0.168944
-17 0.168814
-16 0.168698
-15 0.168593
-14 0.168499
-13 0.168413
-12 0.168337
-11 0.168267
-10 0.168203
-9 0.168149
-8 0.168102
-7 0.16806
-6 0.168035
-5 0.167984
-4 0.167997
-3 0.168049
+32 1.0548
+31 1.045116
+30 1.038396
+29 1.033572
+28 1.029882
+27 1.02693
+26 1.024488
+25 1.02243
+24 1.02066
+23 1.019118
+22 1.017762
+21 1.016556
+20 1.015488
+19 1.014528
+18 1.013664
+17 1.012884
+16 1.012188
+15 1.011558
+14 1.010994
+13 1.010478
+12 1.010022
+11 1.009602
+10 1.009218
+9 1.008894
+8 1.008612
+7 1.00836
+6 1.00821
+5 1.007904
+4 1.007982
+3 1.008294
 &
 @target G0.S5
 @type xy
-32 0.171781
-31 0.16688
-30 0.164026
-29 0.162162
-28 0.160672
-27 0.159632
-26 0.15858
-25 0.157414
-24 0.156083
-23 0.155003
-22 0.154439
-21 0.153594
-20 0.152597
-19 0.151907
-18 0.151517
-17 0.150546
+32 1.030686
+31 1.00128
+30 0.984156
+29 0.972972
+28 0.964032
+27 0.957792
+26 0.95148
+25 0.944484
+24 0.936498
+23 0.930018
+22 0.926634
+21 0.921564
+20 0.915582
+19 0.911442
+18 0.909102
+17 0.903276
 &
 @target G0.S6
 @type xy
-50 0.174021
-49 0.172602
-48 0.171657
-47 0.170982
-46 0.170466
-45 0.170051
-44 0.169706
-43 0.169413
-42 0.169158
-41 0.168935
-40 0.168736
-39 0.168558
-38 0.168396
-37 0.16825
-36 0.168116
-35 0.167992
-34 0.167879
-33 0.167774
-32 0.167677
-31 0.167587
-30 0.167503
-29 0.167425
-28 0.167353
-27 0.167286
-26 0.167224
-25 0.167167
-24 0.167115
-23 0.167066
-22 0.167022
-21 0.166974
-20 0.166943
-19 0.166903
-18 0.166882
-17 0.16687
-16 0.166849
-15 0.166832
-14 0.166816
-13 0.166813
-12 0.166798
-11 0.16676
-10 0.166794
-9 0.166821
-8 0.166733
-7 0.166599
-6 0.166749
+50 1.044126
+49 1.035612
+48 1.029942
+47 1.025892
+46 1.022796
+45 1.020306
+44 1.018236
+43 1.016478
+42 1.014948
+41 1.01361
+40 1.012416
+39 1.011348
+38 1.010376
+37 1.0095
+36 1.008696
+35 1.007952
+34 1.007274
+33 1.006644
+32 1.006062
+31 1.005522
+30 1.005018
+29 1.00455
+28 1.004118
+27 1.003716
+26 1.003344
+25 1.003002
+24 1.00269
+23 1.002396
+22 1.002132
+21 1.001844
+20 1.001658
+19 1.001418
+18 1.001292
+17 1.00122
+16 1.001094
+15 1.000992
+14 1.000896
+13 1.000878
+12 1.000788
+11 1.00056
+10 1.000764
+9 1.000926
+8 1.000398
+7 0.999594
+6 1.000494
 &
 @target G0.S7
 @type xy
-50 0.164829
-49 0.160186
-48 0.157467
-47 0.1555
-46 0.153784
-45 0.152242
-44 0.150832
-43 0.149427
-42 0.148071
-41 0.146992
-40 0.145626
-39 0.144312
-38 0.143373
-37 0.142474
-36 0.14152
-35 0.140487
-34 0.139878
-33 0.139085
-32 0.138434
-31 0.137668
-30 0.136841
-29 0.136081
-28 0.135364
-27 0.134395
-26 0.133612
+50 0.988974
+49 0.961116
+48 0.944802
+47 0.933
+46 0.922704
+45 0.913452
+44 0.904992
+43 0.896562
+42 0.888426
+41 0.881952
+40 0.873756
+39 0.865872
+38 0.860238
+37 0.854844
+36 0.84912
+35 0.842922
+34 0.839268
+33 0.83451
+32 0.830604
+31 0.826008
+30 0.821046
+29 0.816486
+28 0.812184
+27 0.80637
+26 0.801672
 &
