@@ -324,7 +324,7 @@ The now reduced number of valence bond states is simply $C_{\rm{AB}}^N = N!$ for
 One way to see the linear dependence of the remaining valence bond states would be to again diagonalize
 the $S^2$ matrix, for a six-site system this time (in which there are $3!=6$ A-B sublattice
 valence bond states, but only $6!/(3!4!) = 5$ singlet states).
-This, however, would require us to diagonalize a 64x64 matrix, or a 20x20 matrix if we only look at
+This, however, would require us to diagonalize a 20x20 matrix if we only look at
 the $S^z=0$ sector.
 
 Another way to see the linear dependence of the A-B sublattice states is to look at the overlap matrix, that is a matrix filled with the inner products between the different states, i.e.
@@ -376,7 +376,7 @@ Another way to see the linear dependence of the A-B sublattice states is to look
 \end{equation}
 Also the last state can be written as a linear combination of the other five states.
 It is possible to choose a set of states linearly independent states by putting the sites in a circular configuration and eliminating any state with valence bonds crossing each other.  
-In fact, this linearly independent exactly corresponds to the singlet basis \cite{Beach2006}.
+The resulting set of linearly independent states corresponds exactly to the singlet basis \cite{Beach2006}.
 \begin{figure} {  
 \centering
 \includegraphics [width=4.5in]{./figures/made/fact.pdf} 
@@ -446,7 +446,7 @@ since all other terms will vanish.
 This method of calculating the inner product, however, quickly becomes intractable even with a small number of spins.
 A more intuitive way to calculate the overlap is to superimpose diagrams of the two valence bond states, as in Figure~\ref{overlap}.
 We can rewrite the valence bond states from the figure, keeping the bonds belonging to the same 
-look together.  Bonds from separate loops will have no overlap with each other.
+loop together.  Bonds from separate loops will have no overlap with each other.
 \begin{figure} {  
 \centering
 \includegraphics [width=5.5in]{./figures/made/overlap.pdf} 
@@ -476,7 +476,7 @@ look together.  Bonds from separate loops will have no overlap with each other.
 Before we superimpose $\ket{V_\text{L}}$ and $\ket{V_\text{R}}$, the state of each set of sites
 is a sum (including negative terms) of a subset of all possible combinations of spins such that there is an equal number of up and down spins.  This set is restricted by the valence bonds; if there is a bond going between sites $a$ and $b$ then the spin on site $a$ must always be opposite of the spin on site $b$.  
 
-Examining the third loop, which contains four sites, for the state of $\ket{V_\text{L}}$ sites 9 and 12 must always have opposite spins, as much sites 10 and 11.  There are six $S^z=0$ states, four of which satisfy these restrictions.  For the state of $\ket{V_\text{R}}$ there are also four spin states that satisfy its restrictions, but since the restrictions are different (spins 11 and 12 are opposite and spins 9 and 10 are opposite) it turns out that when we overlap $\ket{V_\text{L}}$ and $\ket{V_\text{R}}$ there are only two spin states that satisfy both sets of restrictions.  This is true for all loops, there are only two possible spin states.  These states correspond to alternating up and down spins around the loop, or equivalently, the state in which all the sublattice A sites in the loop have a given spin (either up or down) and the sublattice B sites have the opposite spin.  
+Examining the third loop, which contains four sites, for the state of $\ket{V_\text{L}}$ sites 9 and 12 must always have opposite spins, as must sites 10 and 11.  There are six $S^z=0$ states, four of which satisfy these restrictions.  For the state of $\ket{V_\text{R}}$ there are also four spin states that satisfy its restrictions, but since the restrictions are different (spins 11 and 12 are opposite and spins 9 and 10 are opposite) it turns out that when we overlap $\ket{V_\text{L}}$ and $\ket{V_\text{R}}$ there are only two spin states that satisfy both sets of restrictions.  This is true for all loops, there are only two possible spin states.  These states correspond to alternating up and down spins around the loop, or equivalently, the state in which all the sublattice A sites in the loop have a given spin (either up or down) and the sublattice B sites have the opposite spin.  
 
 \begin{figure} { \includegraphics [width=3.5in]
 {./figures/made/spinstate.pdf}
@@ -487,7 +487,7 @@ Examining the third loop, which contains four sites, for the state of $\ket{V_\t
 }
 \end{figure}
 
-The number of $S^z$ spin states needed to express a valence bond state for a group of $N$ spins is $2^{N/2}$, since $\big(\ket{\up\dw}-\ket{\dw\up} \big)^{\otimes N/2}$ gives in $2^{N/2}$ terms. 
+The number of $S^z$ spin states needed to express a valence bond state (for a system of $N$ spins) is $2^{N/2}$, since $\big(\ket{\up\dw}-\ket{\dw\up} \big)^{\otimes N/2}$ gives in $2^{N/2}$ distinct $N$-spin states. 
 The inner product can be expressed as a product of the inner products for each of the loops:
 \begin{eqnarray}
 \inn{V^\text{L}}{V^\text{R}} &= &
@@ -570,7 +570,7 @@ If the ground state energy is not the largest in magnitude, as is the case with 
 model, we can manipulate the Hamiltonian slightly by adding or subtracting an
 appropriately chosen constant term, $x$, in which case we will have
 \begin{equation}
-(x-\mathcal{H)}^m\lvert \psi \rangle =
+(\mathcal{H}-x)^m\lvert \psi \rangle =
 		(E_0-x)^m \left(c_0 \lvert 0 \rangle + 
 		c_1 \left(\frac{E_1-x}{E_0-x}\right)^m \lvert 1 \rangle  + \cdots \right)
 		\approx (E_0-x)^m c_0 \lvert 0 \rangle.
@@ -581,9 +581,8 @@ Ground state projection is used in valence bond quantum Monte Carlo, but it is a
 %--------------------------------------------------------------------------------------------------------------------------
 \section{The Hamiltonian and Bond Operators}
 %--------------------------------------------------------------------------------------------------------------------------
-Throughout this thesis we will be looking at the Heisenberg model in one and two dimensions,
-and so the Hamiltonian used will be the isotropic, antiferromagnetic Heisenberg 
-Hamiltonian:
+Throughout this thesis we study the Heisenberg model in one and two dimensions, which is
+described by the isotropic, antiferromagnetic Heisenberg Hamiltonian,
 \begin{equation}
 \mathcal{H}_{\rm{Heis}}=J\sum_{\langle i,j \rangle} \mathbf{S}_i\cdot \mathbf{S}_j
 = J\sum_{\langle i,j \rangle}
@@ -606,10 +605,10 @@ $H_{ij}=-\left(\mathbf{S}_i\cdot \mathbf{S}_j - \tfrac{1}{4}\right)$.
 
 The effect of these bond operators acting on a valence bond basis state is 
 surprisingly simple.  If a bond operator acts on two sites already joined by a valence
-bond, it acts as the identity and does not changed the state.  If the two sites acted upon are 
+bond, it acts as the identity and does not change the state.  If the two sites acted upon are 
 not joined in a valence bond, the operator joins those two sites, and as a byproduct the 
 two sites that were once joined to those sites form a valence bond themselves, depicted in Figure \ref{bopfig}.
-It can also be shown mathematically, but first let us examine the effect of bond operators
+This can be shown mathematically, but first let us examine the effect of bond operators
 on a general spin-1/2 state.
 \begin{figure}
 \includegraphics[width=6.3in]{./figures/made/bop.pdf}
@@ -623,19 +622,13 @@ on a general spin-1/2 state.
 
 We can rewrite the dot product of spin operators:
 \begin{eqnarray}
-\mathbf{S}_i\cdot \mathbf{S}_j = \tfrac{1}{2}\left[ \left(S_i + S_j\right)^2 -S_i^2-S_i^2 \right],
+\mathbf{S}_i\cdot \mathbf{S}_j = \tfrac{1}{2}\left[ \left(S_i + S_j\right)^2 -S_i^2-S_j^2 \right],
 \end{eqnarray}
-and since we are dealing with spin 1/2 particles, applying the $S^2$ operators to any state will
-give 
-\begin{equation}
-S^2\lvert \psi\rangle = s(s+1)\lvert \psi \rangle = \tfrac{1}{2}(\tfrac{1}{2} + 1)\lvert \psi \rangle
-	= \tfrac{3}{4}\lvert\psi\rangle
-\end{equation}
-for an arbitrary spin 1/2 state, $\lvert \psi\rangle$.  However, the $\left(S_i + S_j\right)^2$ 
+However, the $\left(S_i + S_j\right)^2$ 
 operator has two different eigenvalues, or it could change the state
 if the initial state is not one of the four total spin eigenstates.
 
-Acting on an eigenstate of the total spin operator for two spins with a bond operator yields:
+Acting with a bond operator on an eigenstate of total spin for two spins yields:
 \begin{equation}
 H_{ij}\lvert \psi \rangle = \begin{cases}
 	-\left(\tfrac{1}{2} \left[(0) - \tfrac{3}{4} - \tfrac{3}{4}\right] -\tfrac{1}{4}\right)\lvert\psi\rangle 
@@ -645,11 +638,11 @@ H_{ij}\lvert \psi \rangle = \begin{cases}
 	 \end{cases}
 	 \label{bop}
 \end{equation}
-If we want to use the bond operators on valence bond basis states Eq.~(\ref{bop}) tells
+If we want to use the bond operators on valence bond basis states, Eq.~(\ref{bop}) tells
 us what happens when sites $i$ and $j$ are already joined in a valence bond, but we still
 need to look at the case in which the sites are initially part of two different valence bonds.
 For four sites $a$, $b$, $c$, and $d$, with sites a and c on sublattice A 
-and the other on sublattice B,
+and the others on sublattice B,
 apply the operator $H_{cb}$
 \begin{eqnarray}
 H_{cb}\lvert(a,b)(c,d)\rangle &=& H_{cb}
@@ -754,7 +747,7 @@ The ratio of weights is used in Monte Carlo sampling to determine whether to kee
 
 Instead of computing the full sum from \eqref{hamapp}, we stochastically sample terms
 from the sum, with sampling proportional to their weight $W_r$ in the sum.  
-In the single projector method we project only one state, but are limit in the observables we can then calculate.
+In the single projector method we project only one state, but are limited in the observables we can then calculate.
 The double projector method projects two separate states, which can then be used to find expectation values of various operators.
 The loop algorithm is an improvement on the double projector algorithm. 
 
@@ -771,7 +764,7 @@ Otherwise, the new state is kept with the probability equal to the ratio of the 
 \begin{equation}
 {\rm Prob(keep)} = \frac{W_{\rm new}}{W_{\rm old}}.
 \end{equation}
-If the new state is not kept the changes to the bond operator list are undone, and a measurement can be made, but the measurement is on the old state, the state generated by the previous bond operator list.
+If the new state is not kept, the changes to the bond operator list are undone, and a measurement can be made, but the measurement is on the old state, the state generated by the previous bond operator list.
 In this way, the states are sampled according to their weight in the sum of the ground state wavefunction.
 The process of changing the bond operator list and deciding whether to keep the changes is continued.  Each repetition is considered one Monte Carlo step.  
 The full algorithm is shown below:
@@ -817,8 +810,8 @@ In the single projector method we can measure the ground state energy using a re
 	\frac{\sum_{r} W_r \bra{\Psi}\ham_{\rm Heis}  \ket{V_r}}
 	{\sum_{r} W_r \bra{\Psi}V_r\rangle}
 \end{equation}
-(See \eqref{hammm} for correspondence between the Heisenberg Hamiltonian and the one used in the algorithm.)
-At this point we can put in our expression the Heisenberg Hamiltonian from \eqref{hammm}.
+(See \eqref{hammm} for the correspondence between the Heisenberg Hamiltonian and the one used in the algorithm.)
+At this point we can put in our expression for the Heisenberg Hamiltonian from \eqref{hammm}.
 \begin{equation}
 	E_0 =
 	\frac{\sum_{r} W_r \bra{\Psi} \left(-\sum_{k=1}^{N_{nn}} (H_k+ \frac{1}{4})\right) \ket{V_r}}
@@ -848,7 +841,7 @@ We can rewrite this in terms of the number of diagonal  $n_{\rm diag}$ and off-d
 One way to measure this is to count the number of nearest neighbor bonds in every state we measure, since there will be a diagonal term in the Hamiltonian for every nearest neighbor bond.  This method is exact in the limits $m \rightarrow \infty$ and the number of states sampled $ \rightarrow \infty$.
 It is also possible to measure $\left<n_{\rm diag} \right>$ by counting the number of diagonal bond operators in the operator list $P_r$ at each step, and it is exact in the limit $m \rightarrow \infty$.
 
-It is important to note that this energy measurement is not variational, and as such can give results lower than the ground state energy.  The energy measurement with the double projector algorithm, however, is variational and approaches the ground state energy from above.
+It is important to note that this energy measurement is not variational, and as such can give results lower than the ground state energy. However, the energy measurement with the double projector method, described below, is variational and approaches the ground state energy from above.
 
 This algorithm is not limited to measuring the ground state energy; we can measure other operators for which the ground state is an eigenstate.
 It also is possible to add in one triplet state and measure the singlet-triplet gap \cite{Sandvik_vbqmc}.
@@ -858,7 +851,7 @@ And we can measure properties of the valence bonds, like the bond length distrib
 \subsection{Double Projector}
 %--------------------------------------------------------------------------------------------------------------------------
 The double projector method was also included in the original valence bond quantum Monte Carlo paper by Anders Sandvik \cite{Sandvik_vbqmc}.
-The main difference between the double and single projector methods is in the double projector method, as the name implies, we project two states into the ground state.  
+The main difference between the double and single projector methods is that in the double projector method, as the name implies, we project two states into the ground state.  
 That is, we are propagating two different lists of bond operators;
 though the trial state for each list of bond operators is the same.
 (We refer to these as the left and right lists of bond operators.)
