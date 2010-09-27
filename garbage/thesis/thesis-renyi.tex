@@ -100,15 +100,19 @@ Since we are using the double projector algorithm for these measurements (Sectio
 	= \left<
 		\frac{   \bra{V^L} \SWA \ket{V^R}  }{   \bra{V^L} V^R\rangle  }
 						\right>,
+\label{swapmeas}
 \end{equation}
-though in this case $\ket{V^{\rm L}}$ and $\ket{V^{\rm R}}$ contain two non-interacting copies of the system we want to study.
+though in this case $\ket{V^{\rm L}}$ and $\ket{V^{\rm R}}$ each contain two non-interacting copies of the system we want to study, depicted in Fig.~\ref{swap}.
 
 
 %----------------------------------------------------------------------------------------------------------
 \section{1D Results}
 %----------------------------------------------------------------------------------------------------------
-We begin by measuring $S_2$ for a 1D OBC chain of length $L=100$, using the expectation value of the \swa operator to find $S_2$ in VB QMC, and using the standard method of finding $S_2$ with DMRG (using the eigenvalues of the reduced density matrix). 
+We begin by measuring $S_2$ for a 1D OBC chain of length $L=100$, using the expectation value of the $Swap_x$ operator to find $S_2$ in VB QMC, where $x$ is the number of sites included in region A. 
+The trial state $\ket{V}$ used is a simple dimerized state with only nearest neighbor valence bonds.
 Results are shown in Figure \ref{swapfig}.
+In the DMRG simulations, $S_2$ is calculated in the standard way, using the eigenvalues of the reduced density matrix. 
+One can immediately see that the calculation of $S_2$ via the expectation value $\langle \SWA \rangle$ gives very large statistical errors, especially for a large number of sites inside region A.
 
 
 \begin{figure} {
@@ -117,7 +121,7 @@ Results are shown in Figure \ref{swapfig}.
 	\caption[Renyi for 100 site chain]{ 
 	\label{swapfig}
 	The Renyi entropy $S_2$ as a function of site index $x \in $ A, for a 100-site Heisenberg chain with open boundaries, 
-		calculated with DMRG and QMC.  Data labeled ``Swap'' was calculated with Eq.~eqref{Swap} with one QMC simulation	
+		calculated with DMRG and VB QMC.  Data labeled ``Swap'' was calculated with Eq.~\eqref{swapmeas} with one VB QMC simulation.	
 	}
 }\end{figure}
 
