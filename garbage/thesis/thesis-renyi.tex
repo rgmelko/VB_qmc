@@ -171,15 +171,19 @@ where $j=1,\dots,j_{\rm max}$ is the difference between the region sizes for the
 To get to the entanglement entropy from here we take the negative logarithm of \eqref{eqratio} to get
 \begin{equation}
 -\ln\left( \frac{\langle Swap_{x+j}\rangle}{\langle Swap_{x}\rangle} \right) = 
--ln \langle Swap_{x+j}\rangle + \ln\langle Swap_{x}\rangle   =   S_2(x+j) - S_2(x),
+-\ln \langle Swap_{x+j}\rangle + \ln\langle Swap_{x}\rangle   =   S_2(x+j) - S_2(x),
 \end{equation}
 so we can extract $S_2(x+j)$ if we have $S_2(x)$ from a previous measurement.
 The sampling weight from \eqref{supaweight} is modified with this new measurement, to be
 \begin{equation}
 W_{\rm total} = W^LW^R\bra{V^L} Swap_x \ket{V^R}.
 \end{equation}
-However, modifying the sampling weight in this way means we can only measure \eqref{eqratio} for one value of $x$ per simulation.
-
+However, modifying the sampling weight in this way means we can only measure the ratio \eqref{eqratio} for one value of $x$ per simulation.
+To get $S_2$ for all region sizes we first choose a value for $j_{\rm max}$.
+A small $j_{\rm max}$ means more improvement due to the ratio, but also more simulations are required.
+We then measure the bare $\langle Swap_{j}\rangle$ for $j=1,\dots,j_{\rm max}$ in our first simulation.
+The second simulation measures the ratio $\langle Swap_{x+j}\rangle / \langle Swap_{x}\rangle$ with $x=j_{\rm max}$.  The following simulations use $x=2j_{\rm max}, 3j_{\rm max}, 4j_{\rm max}, \dots$ until we reach the maximum size of region A.
+The number of simulations need for a 1D system is $(L/j_{\rm max})$.
 
 \comment{build up to large region sizes}
 
@@ -188,6 +192,9 @@ We start with $x=0$, equivalence to measuring $\langle Swap_x \rangle$ without a
 Choosing $j_{\rm max}$ determines 
 
 \comment{make a diagram for this part of how the ratio stuff works.}
+
+\comment{The idea behind this reweighting...}
+
 
 \begin{figure} {
 	\includegraphics[width=6in]{./figures/paper2/fig_1D/ratiofig.pdf} 
