@@ -139,7 +139,7 @@ One way to improve upon the poor sampling of  $\langle \SWA \rangle$ is using th
 Measurements taken using the loop algorithm are added into Figure \ref{loopfig}; they show a significant improvement over the double projector $\langle \SWA \rangle$ measurement, 
 though there is still noticeable statistical error for large region A.
 If our goal was simply the measurement of $S_2$ instead of the demonstration of the most effective way to measure $S_2$, we could simply note that $S_2(A) = S_2(B)$ and reflect the data about the midway point resulting in almost perfect correspondence with the DMRG data.
-However, when we begin to measure larger system sizes and move to 2D the deficiencies in measuring the bare \swa operator will become even more apparent; it is necessary to improve upon this measurement technique, which we have done using a ``ratio trick''.
+However, when we begin to measure larger system sizes and move to 2D the deficiencies in measuring the bare \swa operator will become even more apparent; it is necessary to improve upon this measurement technique, which we have done using an ``improved ratio'' sampling scheme.
 
 
 
@@ -157,19 +157,35 @@ calculated with DMRG, VB QMC double projector algorithm (labelled Swap), and the
 	
 
 %----------------------------------------------------------------------------------------------------------
-\section{The ``Ratio Trick"}
+\section{``Improved Ratio'' Sampling}
 %----------------------------------------------------------------------------------------------------------
 
+Instead of measuring  $\langle Swap_x \rangle$ for a region A including $x$ sites, we measure a ratio of different $Swap_x$ operators,
 \begin{equation}
-\frac{\langle Swap_{i+j}\rangle}{\langle Swap_{i}\rangle} = 
-\frac{ \sum_{l,r} W^L_l W^R_r \bra{V^L_l}Swap_{i+j} \ket{V^R_r}}
-							{\sum_{l,r} W^L_l W_r^R \bra{V^L_l} Swap_i \ket{ V^R_r}}
+\label{eqratio}
+\frac{\langle Swap_{x+j}\rangle}{\langle Swap_{x}\rangle} = 
+\frac{ \sum_{l,r} W^L_l W^R_r \bra{V^L_l}Swap_{x+j} \ket{V^R_r}}
+							{\sum_{l,r} W^L_l W_r^R \bra{V^L_l} Swap_x \ket{ V^R_r}},
 \end{equation}
+where $j=1,\dots,j_{\rm max}$ is the difference between the region sizes for the two $Swap$ operators.
+To get to the entanglement entropy from here we take the negative logarithm of \eqref{eqratio} to get
+\begin{equation}
+-\ln\left( \frac{\langle Swap_{x+j}\rangle}{\langle Swap_{x}\rangle} \right) = 
+-ln \langle Swap_{x+j}\rangle + \ln\langle Swap_{x}\rangle   =   S_2(x+j) - S_2(x),
+\end{equation}
+so we can extract $S_2(x+j)$ if we have $S_2(x)$ from a previous measurement.
+The sampling weight from \eqref{supaweight} is modified with this new measurement, to be
+\begin{equation}
+W_{\rm total} = W^LW^R\bra{V^L} Swap_x \ket{V^R}.
+\end{equation}
+However, modifying the sampling weight in this way means we can only measure \eqref{eqratio} for one value of $x$ per simulation.
 
-Instead of the weight from \eqref{supaweight}, the new weight is given by
-\begin{equation}
-W_{\rm total} = W^LW^R\bra{V^L} Swap_i \ket{V^R}
-\end{equation}
+
+\comment{build up to large region sizes}
+
+
+We start with $x=0$, equivalence to measuring $\langle Swap_x \rangle$ without any ratio involved.
+Choosing $j_{\rm max}$ determines 
 
 \comment{make a diagram for this part of how the ratio stuff works.}
 
