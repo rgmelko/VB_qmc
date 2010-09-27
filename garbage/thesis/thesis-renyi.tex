@@ -1,7 +1,8 @@
 %======================================================================
 \chapter{Measuring Renyi Entanglement Entropy}
 %======================================================================
-\comment{Totally why do we measure this?  Y'know?}
+\comment{Totally why do we measure this?  Y'know?}\\
+\comment{Mention we're using double projector}
 
 \noindent
 - we can't measure \vn with vb qmc\\
@@ -41,7 +42,7 @@ This process can be generalized to calculate any $S_n$ with $n \ge 2$, by applyi
 	\includegraphics[width=6.2 in]{./figures/made/swp.pdf} 
 	\caption[Application of the Swap operator]{
 		\label{swap}
-		(a) A six-site chain with two non-interacting copies, $\ket{\psi_1}$ and  $\ket{\psi_2}$
+		(a) Two non-interacting copies, $\ket{\psi_1}$ and  $\ket{\psi_2}$, of a six-site chain
 		where the left three sites of each copy belong to region A, and the other sites are in
 		region B.
 		
@@ -86,13 +87,27 @@ For more detail see Appendix \ref{swaperator}.  From Equation \eqref{renyi} the 
 \end{equation}
 independent of basis.  Specifically, we can use \eqref{swapspectation} in the valence bond basis, where the \swa operator acts to swap the endpoints of valence bonds within region A between copies of the system, as in Figure \ref{swap}.
 
-\change{
-\subsection{Measuring the Swap Operator}}
+%----------------------------------------------------------------------------------------------------------
+\subsection{Measuring the Swap Operator}
+%----------------------------------------------------------------------------------------------------------
+
+Since we are using the double projector algorithm for these measurements (Section \ref{sec:dubproj}) we use equations \eqref{generalop1} and \eqref{generalop2} to measure the \swa operator,
+\begin{equation}
+\langle \SWA \rangle = 
+ \frac{   \sum_{l,r} W^L_l W^R_r  \bra{V^L_l} V^R_r\rangle    
+		\frac{   \bra{V^L_l} \SWA  \ket{V^R_r}  }{   \bra{V^L_l} V^R_r\rangle  }}
+							{\sum_{l,r} W^L_l W_r^R \bra{V^L_l} V^R_r\rangle}
+	= \left<
+		\frac{   \bra{V^L} \SWA \ket{V^R}  }{   \bra{V^L} V^R\rangle  }
+						\right>,
+\end{equation}
+though in this case $\ket{V^{\rm L}}$ and $\ket{V^{\rm R}}$ contain two non-interacting copies of the system we want to study.
+
 
 %----------------------------------------------------------------------------------------------------------
 \section{1D Results}
 %----------------------------------------------------------------------------------------------------------
-We begin with $S_2$ results for a 1D OBC chain of length L=100, illustrated in Figure \ref{1Dfig}.
+We begin with $S_2$ results for a 1D OBC chain of length $L=100$, illustrated in Figure \ref{swapfig}.
 The plot shows results from DMRG, and results from VB QMC using the expectation value of the \swa operator.
 
 \begin{figure} {
@@ -100,13 +115,9 @@ The plot shows results from DMRG, and results from VB QMC using the expectation 
 	\centering
 	\caption[Renyi for 100 site chain]{ 
 	\label{swapfig}
-	
-	
-	
-		\change{	The Renyi entropy $S_2$ as a function of site index $i \in A$, for a 100-site Heisenberg chain with open boundaries, 
-		calculated with DMRG and QMC.  Data labeled ``Swap'' was calculated with Eq.~eqref{Swap} with one QMC simulation, while
-		data labeled $j_{\rm max}=5$ was calculated with Eq.~eqref{Ratio} using 20 separate QMC simulations with a range of  $j \in [1,5]$.  The inset shows the convergence of $S_2$ to the exact value (dashed line) for $i=6$ with up to $m=4000$.		
-	}}
+	The Renyi entropy $S_2$ as a function of site index $x \in $ A, for a 100-site Heisenberg chain with open boundaries, 
+		calculated with DMRG and QMC.  Data labeled ``Swap'' was calculated with Eq.~eqref{Swap} with one QMC simulation	
+	}
 }\end{figure}
 
 \begin{figure} {
@@ -143,7 +154,8 @@ W_{\rm total} = W^LW^R\bra{V^L} Swap_i \ket{V^R}
 	\centering
 	\caption[Renyi for 100 site chain]{ 
 	\label{ratiofig}
-		hjk	
+		, while
+		data labeled $j_{\rm max}=5$ was calculated with Eq.~eqref{Ratio} using 20 separate QMC simulations with a range of  $j \in [1,5]$.  The inset shows the convergence of $S_2$ to the exact value (dashed line) for $i=6$ with up to $m=4000$.	
 	}
 }\end{figure}
 

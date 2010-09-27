@@ -849,6 +849,7 @@ And we can measure properties of the valence bonds, like the bond length distrib
 
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Double Projector}
+\label{sec:dubproj}
 %--------------------------------------------------------------------------------------------------------------------------
 The double projector method was also included in the original valence bond quantum Monte Carlo paper by Anders Sandvik \cite{Sandvik_vbqmc}.
 The main difference between the double and single projector methods is that in the double projector method, as the name implies, we project two states into the ground state.  
@@ -922,6 +923,7 @@ The algorithm is as follows:
 Using this double projector method the general expectation value an observable $\mathcal{O}$ is given by
 
 \begin{equation}
+\label{generalop1}
 \langle \mathcal{O} \rangle = \frac{ \sum_{l,r} \bra{V}L_l^\dagger \mathcal{O} R_r \ket{V}}
 							{\sum_{l,r} \bra{V}L_l^\dagger R_r \ket{V}}
 		=\frac{ \sum_{l,r} W^L_l W^R_r \bra{V^L_l}\mathcal{O}  \ket{V^R_r}}
@@ -929,6 +931,7 @@ Using this double projector method the general expectation value an observable $
 \end{equation}
 We are already sampling states according to the weight from \eqref{supaweight}, so in this scheme we need to measure
 \begin{equation}
+\label{generalop2}
 \langle \mathcal{O} \rangle = 
  \frac{   \sum_{l,r} W^L_l W^R_r  \bra{V^L_l} V^R_r\rangle    
 		\frac{   \bra{V^L_l}\mathcal{O}  \ket{V^R_r}  }{   \bra{V^L_l} V^R_r\rangle  }}
