@@ -161,9 +161,15 @@ calculated with DMRG, VB QMC double projector algorithm (labelled Swap), and the
 %----------------------------------------------------------------------------------------------------------
 
 
-
-
-
+\begin{figure} {
+	\includegraphics[width=6in]{./figures/paper2/fig_1D/ratiofig.pdf} 
+	\centering
+	\caption[Renyi for 100 site chain with ratio data]{ 
+	\label{ratiofig}
+	DMRG and ``improved ratio'' data for a 100-site Heisenberg chain with open boundaries.
+The ratio data uses $j_{\rm max}=5$ and required 20 separate simulations.
+	}
+}\end{figure}
 
 Instead of measuring  $\langle Swap_x \rangle$ for a region A including $x$ sites, we measure a ratio of different $Swap_x$ operators,
 \begin{equation}
@@ -195,16 +201,6 @@ The number of simulations need for a 1D system is $(L/j_{\rm max})$.
 
 \comment{The idea behind this reweighting...}
 
-\begin{figure} {
-	\includegraphics[width=6in]{./figures/paper2/fig_1D/ratiofig.pdf} 
-	\centering
-	\caption[Renyi for 100 site chain with ratio data]{ 
-	\label{ratiofig}
-	DMRG and ``improved ratio'' data for a 100-site Heisenberg chain with open boundaries.
-The ratio data uses $j_{\rm max}=5$ and required 20 separate simulations.
-	}
-}\end{figure}
-
 
 Figure \ref{ratiofig} shows the ratio data using $j_{\rm max} = 5$, along with the DMRG data, for the same 100-site system as in Figs. \ref{loopfig} and \ref{swapfig}. 
 The data no longer show the large statistical error bars for large region A sizes, though the results are systematically lower than the DMRG $S_2$ results for a region A-B boundary near the middle of the 100-site system.  
@@ -216,16 +212,23 @@ This can be improved by choosing a smaller value of $j_{\rm max}$.
 \section{2D Results}
 %----------------------------------------------------------------------------------------------------------
 
+\begin{figure} {
+	\includegraphics[width=6in]{./figures/paper2/fig_2DA/L8n12_ratio.pdf} 
+	\caption[$S_2$ in an $8 \times 8$ and $12 \times 12$ system]{ 
+	Measurements of $S_2/\ell$ for $8 \times 8$ and $12 \times 12$ PBC systems with a region A of size $\ell \time \ell$.
+	The bare $\langle Swap_\ell \rangle$ results are shown along with the ``improved ratio'' results for different values of $r_{\rm max}$.
+	\label{2Dfig}
+	}
+} \end{figure}
+
 We now look at 2D $L\times L$ systems with PBC, where region A is an $\ell \times \ell$ and region B is the remainder of the system.
 For this system we must slightly change the definition of our ``improved ratio'' estimator to fit the different geometry.
 Instead of $j$ and $j_{\rm max}$ from \eqref{eqratio} and \eqref{eqratio2} we now use $r$ and $r_{\rm max}$, and measure $\langle Swap_{\ell+r}\rangle / \langle Swap_{\ell}\rangle$ where $\ell +r$ is the linear dimension of a square region A, and $r=1,\dots,r_{\rm max}$.
 We increase the size of region A such that it is always a square, adding a row and column of sites simultaneously.
-\begin{figure} {
-\hspace{3mm}	\includegraphics[width=5.5in]{./figures/paper2/fig_2DA/L8n12_ratio.pdf} 
-	\caption[fds]{ fds
-	\label{2Dfig}
-	}
-} \end{figure}
+
+Figure \ref{2Dfig} shows the $Swap$ and ratio results for 2D PBC systems of size $8 \times 8$ and $12 \times 12$.
+For the $8\times 8$ system the results are already almost entirely converged with the $Swap$ measurement, and the ratio measurements only offer a very slight improvement.
+	When the system size is increased to $12 \times 12$ the ratio results significantly improve the measurement, though the $r_{\max} = 2$ and $r_{\max} = 1$ results almost exactly overlap.
 
 %----------------------------------------------------------------------------------------------------------
 \section{The Area Law}
@@ -235,7 +238,7 @@ We increase the size of region A such that it is always a square, adding a row a
 	\includegraphics[width=5in]{./figures/paper2/fig_AreaL/fig4.pdf} 
 	\centering
 	\caption[fds]{ fds
-	\label{2Dfig}
+	\label{2Darea}
 	}
 } \end{figure}
 
@@ -246,3 +249,8 @@ We increase the size of region A such that it is always a square, adding a row a
 	\label{2Dbetter}
 	}
 } \end{figure}
+
+
+%----------------------------------------------------------------------------------------------------------
+\section{Conclusions}
+%----------------------------------------------------------------------------------------------------------
