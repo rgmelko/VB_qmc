@@ -175,6 +175,7 @@ Instead of measuring  $\langle Swap_x \rangle$ for a region A including $x$ site
 where $j=1,\dots,j_{\rm max}$ is the difference between the region sizes for the two $Swap$ operators.
 To get to the entanglement entropy from here we take the negative logarithm of \eqref{eqratio} to get
 \begin{equation}
+\label{eqratio2}
 -\ln\left( \frac{\langle Swap_{x+j}\rangle}{\langle Swap_{x}\rangle} \right) = 
 -\ln \langle Swap_{x+j}\rangle + \ln\langle Swap_{x}\rangle   =   S_2(x+j) - S_2(x),
 \end{equation}
@@ -217,9 +218,10 @@ This can be improved by choosing a smaller value of $j_{\rm max}$.
 
 We now look at 2D $L\times L$ systems with PBC, where region A is an $\ell \times \ell$ and region B is the remainder of the system.
 For this system we must slightly change the definition of our ``improved ratio'' estimator to fit the different geometry.
-We 
+Instead of $j$ and $j_{\rm max}$ from \eqref{eqratio} and \eqref{eqratio2} we now use $r$ and $r_{\rm max}$, and measure $\langle Swap_{\ell+r}\rangle / \langle Swap_{\ell}\rangle$ where $\ell +r$ is the linear dimension of a square region A, and $r=1,\dots,r_{\rm max}$.
+We increase the size of region A such that it is always a square, adding a row and column of sites simultaneously.
 \begin{figure} {
-	\includegraphics[width=5.5in]{./figures/paper2/fig_2DA/L8n12_ratio.pdf} 
+\hspace{3mm}	\includegraphics[width=5.5in]{./figures/paper2/fig_2DA/L8n12_ratio.pdf} 
 	\caption[fds]{ fds
 	\label{2Dfig}
 	}
