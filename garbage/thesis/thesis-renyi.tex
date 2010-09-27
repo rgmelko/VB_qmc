@@ -160,6 +160,11 @@ calculated with DMRG, VB QMC double projector algorithm (labelled Swap), and the
 \section{``Improved Ratio'' Sampling}
 %----------------------------------------------------------------------------------------------------------
 
+
+
+
+
+
 Instead of measuring  $\langle Swap_x \rangle$ for a region A including $x$ sites, we measure a ratio of different $Swap_x$ operators,
 \begin{equation}
 \label{eqratio}
@@ -185,26 +190,24 @@ We then measure the bare $\langle Swap_{j}\rangle$ for $j=1,\dots,j_{\rm max}$ i
 The second simulation measures the ratio $\langle Swap_{x+j}\rangle / \langle Swap_{x}\rangle$ with $x=j_{\rm max}$.  The following simulations use $x=2j_{\rm max}, 3j_{\rm max}, 4j_{\rm max}, \dots$ until we reach the maximum size of region A.
 The number of simulations need for a 1D system is $(L/j_{\rm max})$.
 
-\comment{build up to large region sizes}
-
-
-We start with $x=0$, equivalence to measuring $\langle Swap_x \rangle$ without any ratio involved.
-Choosing $j_{\rm max}$ determines 
-
 \comment{make a diagram for this part of how the ratio stuff works.}
 
 \comment{The idea behind this reweighting...}
-
 
 \begin{figure} {
 	\includegraphics[width=6in]{./figures/paper2/fig_1D/ratiofig.pdf} 
 	\centering
 	\caption[Renyi for 100 site chain with ratio data]{ 
 	\label{ratiofig}
-		\change{
-		data labeled $j_{\rm max}=5$ was calculated with Eq.~eqref{Ratio} using 20 separate QMC simulations with a range of  $j \in [1,5]$.  The inset shows the convergence of $S_2$ to the exact value (dashed line) for $i=6$ with up to $m=4000$.	}
+	DMRG and ``improved ratio'' data for a 100-site Heisenberg chain with open boundaries.
+The ratio data uses $j_{\rm max}=5$ and required 20 separate simulations.
 	}
 }\end{figure}
+
+
+Figure \ref{ratiofig} shows the ratio data using $j_{\rm max} = 5$, along with the DMRG data, for the same 100-site system as in Figs. \ref{loopfig} and \ref{swapfig}. 
+
+
 
 
 %----------------------------------------------------------------------------------------------------------
