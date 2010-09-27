@@ -136,18 +136,20 @@ For two sites in region A, the difference in the number of loops can be $-2$ or 
 Another way to look at it is that we are sampling terms in the trace of a much larger matrix for a large region A.}
 
 One way to improve upon the poor sampling of  $\langle \SWA \rangle$ is using the loop algorithm (Section \ref{sec:loop}), which \change{has much better scaling?} than the double projector method.
-Measurements taken using the loop algorithm are added into Figure \ref{loopfig}
+Measurements taken using the loop algorithm are added into Figure \ref{loopfig}; they show a significant improvement over the double projector $\langle \SWA \rangle$ measurement, 
+though there is still noticeable statistical error for large region A.
+If our goal was simply the measurement of $S_2$ instead of the demonstration of the most effective way to measure $S_2$, we could simply note that $S_2(A) = S_2(B)$ and reflect the data about the midway point resulting in almost perfect correspondence with the DMRG data.
+However, when we begin to measure larger system sizes and move to 2D the deficiencies in measuring the bare \swa operator will become even more apparent; it is necessary to improve upon this measurement technique, which we have done using a ``ratio trick''.
 
 
 
 
 \begin{figure} {
 	\includegraphics[width=6in]{./figures/paper2/fig_1D/loopfig.pdf} 
-	\centering
 	\caption[Renyi for 100 site chain with loop algorithm data]{ 
 	\label{loopfig}
 The Renyi entropy $S_2$ as a function of site index $x \in $ A, for a 100-site Heisenberg chain with open boundaries, 
-calculated with DMRG, VB QMC double projector algorithm (labelled Swap), and the VB QMC loop algorithm (labelled Loop). 
+calculated with DMRG, VB QMC double projector algorithm (labelled Swap), and the VB QMC loop algorithm (labelled Loop).
 }
 }\end{figure}
 
@@ -176,8 +178,8 @@ W_{\rm total} = W^LW^R\bra{V^L} Swap_i \ket{V^R}
 	\centering
 	\caption[Renyi for 100 site chain with ratio data]{ 
 	\label{ratiofig}
-		, while
-		data labeled $j_{\rm max}=5$ was calculated with Eq.~eqref{Ratio} using 20 separate QMC simulations with a range of  $j \in [1,5]$.  The inset shows the convergence of $S_2$ to the exact value (dashed line) for $i=6$ with up to $m=4000$.	
+		\change{
+		data labeled $j_{\rm max}=5$ was calculated with Eq.~eqref{Ratio} using 20 separate QMC simulations with a range of  $j \in [1,5]$.  The inset shows the convergence of $S_2$ to the exact value (dashed line) for $i=6$ with up to $m=4000$.	}
 	}
 }\end{figure}
 
