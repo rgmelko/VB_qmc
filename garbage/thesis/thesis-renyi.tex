@@ -228,7 +228,8 @@ We increase the size of region A such that it is always a square, adding a row a
 
 Figure \ref{2Dfig} shows the $Swap$ and ratio results for 2D PBC systems of size $8 \times 8$ and $12 \times 12$.
 For the $8\times 8$ system the results are already almost entirely converged with the $Swap$ measurement, and the ratio measurements only offer a very slight improvement.
-	When the system size is increased to $12 \times 12$ the ratio results significantly improve the measurement, though the $r_{\max} = 2$ and $r_{\max} = 1$ results almost exactly overlap.
+	When the system size is increased to $12 \times 12$ the ratio results significantly improve the measurement, though the $r_{\max} = 2$ and $r_{\max} = 1$ results almost exactly overlap, implying that the results have converged to the correct answer at that point.
+	It is possible to improve the sampling even further adding one site at a time to the region size, instead of only increasing the linear dimension of region A.
 
 %----------------------------------------------------------------------------------------------------------
 \section{The Area Law}
@@ -241,6 +242,8 @@ For the $8\times 8$ system the results are already almost entirely converged wit
 	\label{2Darea}
 	}
 } \end{figure}
+
+We now examine larger regions of the same geometry as used in the previous section (PBC $L \times L$ systems with an $\ell \times\ell$ region A).
 
 \begin{figure} {
 	\centering
