@@ -129,7 +129,7 @@ Since the overlap (Eq. \eqref{innprod}) is $2^{N_{\rm loop} - N_{\rm sites}/2}$,
 The quantity we measure depends entirely of the change in the number of loops after applying a swap operator to one of our states. 
 For a large region A we are swapping a larger number of sites, and the difference in the number of loops can change by a large number, or a small number. 
 We have to sample states for much longer to converge on the average change in the number of loops.
-In contrast, swapping only one site ($x=1$) will always decrease the number of loops by 1, so $S(1)=\ln(2)$ always.
+In contrast, swapping only one site ($x=1$) will always decrease the number of loops by 1, so $S_2(1)=\ln(2)$ always.
 For two sites in region A, the difference in the number of loops can be $-2$ or 0. \comment{Check the numbers, and maybe extend or find a formula.} 
 \comment{Cram some diagrams of this up in here.}
 \change{
@@ -146,8 +146,9 @@ Measurements taken using the loop algorithm are added into Figure \ref{loopfig}
 	\centering
 	\caption[Renyi for 100 site chain with loop algorithm data]{ 
 	\label{loopfig}
-			
-	}
+The Renyi entropy $S_2$ as a function of site index $x \in $ A, for a 100-site Heisenberg chain with open boundaries, 
+calculated with DMRG, VB QMC double projector algorithm (labelled Swap), and the VB QMC loop algorithm (labelled Loop). 
+}
 }\end{figure}
 
 
