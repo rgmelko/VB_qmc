@@ -18,7 +18,7 @@ The generalized Renyi entanglement entropies, again defined as:
 where $\rho_{\rm{A}}=\rm{Tr}_B\ket{\psi}\bra{\psi}$ is the reduced density matrix of region A, and $n>0$.
 
 \change{
-"Encode information about the whole entanglement spectrum of $\rho_{\rm A}$."
+``Encode information about the whole entanglement spectrum of $\rho_{\rm A}$."
 (But that's just because if you know all of them you pretty much know all the eigenvalues of $\rho_{\rm A}$.)
 So they have more information together than just $S_1=\VN$. \cite{Spectrum}
 }
@@ -32,8 +32,9 @@ The Renyi entropies have the property that successive entropies give a lower bou
 We can use the expectation value of a unitary \sw operator on two non-interacting copies of the system to be studied in order to obtain ${\rm Tr}(\rho_{\rm A}^2)$, a quantity necessary to compute \re.  
 This process can be generalized to calculate any $S_n$ with $n \ge 2$, by applying a generalized \sw operator to $n$ copies of the system. 
 
+\section{The ``Replica Trick''}
 %----------------------------------------------------------------------------------------------------------
-\section{The Swap Operator}
+\subsection{The Swap Operator}
 %----------------------------------------------------------------------------------------------------------
 
 \begin{figure} {
@@ -86,7 +87,7 @@ For more detail see Appendix \ref{swaperator}.  From Equation \eqref{renyi} the 
 independent of basis.  Specifically, we can use \eqref{swapspectation} in the valence bond basis, where the \swa operator acts to swap the endpoints of valence bonds within region A between copies of the system, as in Figure \ref{swap}.
 
 \change{
-\section{Measuring the Swap Operator}}
+\subsection{Measuring the Swap Operator}}
 
 %----------------------------------------------------------------------------------------------------------
 \section{1D Results}
@@ -99,6 +100,9 @@ The plot shows results from DMRG, and results from VB QMC using the expectation 
 	\centering
 	\caption[Renyi for 100 site chain]{ 
 	\label{swapfig}
+	
+	
+	
 		\change{	The Renyi entropy $S_2$ as a function of site index $i \in A$, for a 100-site Heisenberg chain with open boundaries, 
 		calculated with DMRG and QMC.  Data labeled ``Swap'' was calculated with Eq.~eqref{Swap} with one QMC simulation, while
 		data labeled $j_{\rm max}=5$ was calculated with Eq.~eqref{Ratio} using 20 separate QMC simulations with a range of  $j \in [1,5]$.  The inset shows the convergence of $S_2$ to the exact value (dashed line) for $i=6$ with up to $m=4000$.		
@@ -121,6 +125,17 @@ The plot shows results from DMRG, and results from VB QMC using the expectation 
 \section{The ``Ratio Trick"}
 %----------------------------------------------------------------------------------------------------------
 
+\begin{equation}
+\frac{\langle Swap_{i+j}\rangle}{\langle Swap_{i}\rangle} = 
+\frac{ \sum_{l,r} W^L_l W^R_r \bra{V^L_l}Swap_{i+j} \ket{V^R_r}}
+							{\sum_{l,r} W^L_l W_r^R \bra{V^L_l} Swap_i \ket{ V^R_r}}
+\end{equation}
+
+Instead of the weight from \eqref{supaweight}, the new weight is given by
+\begin{equation}
+W_{\rm total} = W^LW^R\bra{V^L} Swap_i \ket{V^R}
+\end{equation}
+
 \comment{make a diagram for this part of how the ratio stuff works.}
 
 \begin{figure} {
@@ -131,6 +146,7 @@ The plot shows results from DMRG, and results from VB QMC using the expectation 
 		hjk	
 	}
 }\end{figure}
+
 
 %----------------------------------------------------------------------------------------------------------
 \section{2D Results}
