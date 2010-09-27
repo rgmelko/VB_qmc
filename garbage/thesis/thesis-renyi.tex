@@ -108,16 +108,8 @@ though in this case $\ket{V^{\rm L}}$ and $\ket{V^{\rm R}}$ each contain two non
 %----------------------------------------------------------------------------------------------------------
 \section{1D Results}
 %----------------------------------------------------------------------------------------------------------
-We begin by measuring $S_2$ for a 1D OBC chain of length $L=100$, using the expectation value of the $Swap_x$ operator to find $S_2$ in VB QMC, where $x$ is the number of sites included in region A. 
-The trial state $\ket{V}$ used is a simple dimerized state with only nearest neighbor valence bonds.
-Results are shown in Figure \ref{swapfig}.
-In the DMRG simulations, $S_2$ is calculated in the standard way, using the eigenvalues of the reduced density matrix. 
-One can immediately see that the calculation of $S_2$ via the expectation value $\langle \SWA \rangle$ gives very large statistical errors, especially for a large number of sites inside region A.
-
-
 \begin{figure} {
 	\includegraphics[width=6in]{./figures/paper2/fig_1D/swapfig.pdf} 
-	\centering
 	\caption[Renyi for 100 site chain]{ 
 	\label{swapfig}
 	The Renyi entropy $S_2$ as a function of site index $x \in $ A, for a 100-site Heisenberg chain with open boundaries, 
@@ -125,12 +117,36 @@ One can immediately see that the calculation of $S_2$ via the expectation value 
 	}
 }\end{figure}
 
+We begin by measuring $S_2$ for a 1D OBC chain of length $L=100$, using the expectation value of the $Swap_x$ operator to find $S_2$ in VB QMC, where sites 1 through $x$ are included in region A. 
+The trial state $\ket{V}$ used is a simple dimerized state with only nearest neighbor valence bonds.
+Results are shown in Figure \ref{swapfig}.
+In the DMRG simulations, $S_2$ is calculated in the standard way, using the eigenvalues of the reduced density matrix. 
+One can immediately see that the calculation of $S_2$ with the expectation value $\langle \SWA \rangle$ gives very large statistical errors, especially for a large number of sites inside region A.
+
+One way to understand to consider what we are actually measuring.
+From Eq. \eqref{swapmeas} one can see we are measuring the ratio of two inner products.
+Since the overlap (Eq. \eqref{innprod}) is $2^{N_{\rm loop} - N_{\rm sites}/2}$, this ratio of inner products is $2^{N_{\rm swaploops} - N_{\rm loops}}$.
+The quantity we measure depends entirely of the change in the number of loops after applying a swap operator to one of our states. 
+For a large region A we are swapping a larger number of sites, and the difference in the number of loops can change by a large number, or a small number. 
+We have to sample states for much longer to converge on the average change in the number of loops.
+In contrast, swapping only one site ($x=1$) will always decrease the number of loops by 1, so $S(1)=\ln(2)$ always.
+For two sites in region A, the difference in the number of loops can be $-2$ or 0. \comment{Check the numbers, and maybe extend or find a formula.} 
+\comment{Cram some diagrams of this up in here.}
+\change{
+Another way to look at it is that we are sampling terms in the trace of a much larger matrix for a large region A.}
+
+One way to improve upon the poor sampling of  $\langle \SWA \rangle$ is using the loop algorithm (Section \ref{sec:loop}), which \change{has much better scaling?} than the double projector method.
+Measurements taken using the loop algorithm are added into Figure \ref{loopfig}
+
+
+
+
 \begin{figure} {
 	\includegraphics[width=6in]{./figures/paper2/fig_1D/loopfig.pdf} 
 	\centering
-	\caption[Renyi for 100 site chain]{ 
+	\caption[Renyi for 100 site chain with loop algorithm data]{ 
 	\label{loopfig}
-		hjk	
+			
 	}
 }\end{figure}
 
@@ -157,7 +173,7 @@ W_{\rm total} = W^LW^R\bra{V^L} Swap_i \ket{V^R}
 \begin{figure} {
 	\includegraphics[width=6in]{./figures/paper2/fig_1D/ratiofig.pdf} 
 	\centering
-	\caption[Renyi for 100 site chain]{ 
+	\caption[Renyi for 100 site chain with ratio data]{ 
 	\label{ratiofig}
 		, while
 		data labeled $j_{\rm max}=5$ was calculated with Eq.~eqref{Ratio} using 20 separate QMC simulations with a range of  $j \in [1,5]$.  The inset shows the convergence of $S_2$ to the exact value (dashed line) for $i=6$ with up to $m=4000$.	

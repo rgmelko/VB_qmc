@@ -490,6 +490,7 @@ Examining the third loop, which contains four sites, for the state of $\ket{V_\t
 The number of $S^z$ spin states needed to express a valence bond state (for a system of $N$ spins) is $2^{N/2}$, since $\big(\ket{\up\dw}-\ket{\dw\up} \big)^{\otimes N/2}$ gives in $2^{N/2}$ distinct $N$-spin states. 
 The inner product can be expressed as a product of the inner products for each of the loops:
 \begin{eqnarray}
+\label{innprod}
 \inn{V^\text{L}}{V^\text{R}} &= &
 				\prod^{N_{\text{loops}}}_{k=1}
 				\frac{1}
@@ -946,9 +947,11 @@ In addition to anything that can be measured with the single projector method we
 
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Loop Moves}
+\label{sec:loop}
 %--------------------------------------------------------------------------------------------------------------------------
 \comment{ do this section last... if there's time}\\
 \change{- it's faster, better scaling \\
-- drawbacks (can't change weight, like for renyi sampling thing)
+- drawbacks (can't change weight, like for renyi sampling thing)\\
+- make sure the mention to scaling
 }
 
