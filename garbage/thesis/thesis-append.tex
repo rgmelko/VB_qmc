@@ -150,13 +150,15 @@ None of the bonds cross the boundary between subsystems A and B.
 	     		\left(\ket{\up_5\dw_6\up_7\dw_8} - \ket{\up_5\dw_6\dw_7\up_8} -
 	              	\ket{\dw_5\up_6\up_7\dw_8} + \ket{\dw_5\up_6\dw_7\up_8}\right)  \\
 		&& \: + \ket{\up_1\dw_2\dw_3\up_4} \ox
-			\left(-\ket{\up_5\dw_6\up_7\dw_8} + 2\ket{\up_5\dw_6\dw_7\up_8} +
-	             	 2\ket{\dw_5\up_6\up_7\dw_8} - \ket{\dw_5\up_6\dw_7\up_8}
-		 	-\ket{\up_5\up_6\dw_7\dw_8} - \ket{\dw_5\dw_6\up_7\up_8}\right) \\
+			(-\ket{\up_5\dw_6\up_7\dw_8} + 2\ket{\up_5\dw_6\dw_7\up_8} +
+	             	 2\ket{\dw_5\up_6\up_7\dw_8} - \ket{\dw_5\up_6\dw_7\up_8} \\
+		 && \hspace{3.5in}
+		 	-\ket{\up_5\up_6\dw_7\dw_8} - \ket{\dw_5\dw_6\up_7\up_8}) \\
 		&& \: + \ket{\dw_1\up_2\up_3\dw_4} \ox
-			\left(-\ket{\up_5\dw_6\up_7\dw_8} + 2\ket{\up_5\dw_6\dw_7\up_8} +
-	             	 2\ket{\dw_5\up_6\up_7\dw_8} - \ket{\dw_5\up_6\dw_7\up_8}
-		 	-\ket{\up_5\up_6\dw_7\dw_8} - \ket{\dw_5\dw_6\up_7\up_8}\right) \\
+			(-\ket{\up_5\dw_6\up_7\dw_8} + 2\ket{\up_5\dw_6\dw_7\up_8} +
+	             	 2\ket{\dw_5\up_6\up_7\dw_8} - \ket{\dw_5\up_6\dw_7\up_8} \\
+		 &&\hspace{3.5in}
+		 	-\ket{\up_5\up_6\dw_7\dw_8} - \ket{\dw_5\dw_6\up_7\up_8}) \\
 		&& \: + \ket{\dw_1\up_2\dw_3\up_4} \ox
 			\left(\ket{\up_5\dw_6\up_7\dw_8} - \ket{\up_5\dw_6\dw_7\up_8} -
 			\ket{\dw_5\up_6\up_7\dw_8} + \ket{\dw_5\up_6\dw_7\up_8}\right) \\
@@ -166,31 +168,34 @@ None of the bonds cross the boundary between subsystems A and B.
 		&& \: + \ket{\dw_1\dw_2\up_3\up_4} \ox
 			\left(\ket{\up_5\up_6\dw_7\dw_8} - \ket{\up_5\dw_6\dw_7\up_8} -
 			\ket{\dw_5\up_6\up_7\dw_8} + \ket{\dw_5\dw_6\up_7\up_8}\right)\:] \\ \\
-\bra{\psi} \psi \, \ra & = & C^2 \: \: \: = \quad 4 \times ( 1 + 1 + 1 + 1 ) \quad+  
+\bra{\psi} \psi \ra & = & C^2 \: \: \: = \quad 4 \times ( 1 + 1 + 1 + 1 ) \quad+  
 								\quad 2 \times (1 + 4 + 4 + 1 + 1+ 1) \\
 				& = & 40
 \end{eqnarray*}
-For simplicity rename the states.
+For simplicity we rename the states.
 \begin{eqnarray*}
 	\ket{a} &=& \ket{\up_5\dw_6\up_7\dw_8}  \qquad  \ket{c} \: \: \: = \quad \ket{\dw_5\up_6\up_7\dw_8} \qquad  \,\ket{e} \: \: \: = \quad\ket{\up_5\up_6\dw_7\dw_8} \\
 	\ket{b} &=& \ket{\up_5\dw_6\dw_7\up_8}  \qquad  \ket{d} \: \: \: = \quad \ket{\dw_5\up_6\dw_7\up_8} \qquad  \ket{f} \: \: \: = \quad \ket{\dw_5\dw_6\up_7\up_8} 
 \end{eqnarray*}
 \begin{eqnarray*}
 	\rho_B &=& {\rm Tr}_A \ket{\psi}\bra{\psi} \\
-		&=& \frac{1}{40}[ \:2\times \left( \ket{a} - \ket{b} -\ket{c} + \ket{d} \right)\left(\bra{a}-\bra{b}-\bra{c}+\bra{d}\right)\quad + \quad
-			2\times\left( \ket{e} - \ket{b} -\ket{c} + \ket{f} \right)\left(\bra{e}-\bra{b}-\bra{c}+\bra{f}\right) \\
-		&&  \qquad\qquad\qquad\qquad\qquad\quad\:\:+ \quad 2\times \left(\ket{a}-2\ket{b}-2\ket{c}+\ket{d}+\ket{e}+\ket{f}\right)
-			\left(\bra{a}-2\bra{b}-2\bra{c}+\bra{d}+\bra{e}+\bra{f}\right)\:]
+		&=& \frac{1}{40}\Bigg[ \:2\times \bigg( \ket{a} - \ket{b} -\ket{c} + \ket{d} \bigg)\bigg(\bra{a}-\bra{b}-\bra{c}+\bra{d}\bigg) \\
+		&&\quad + \quad
+			2\times\bigg( \ket{e} - \ket{b} -\ket{c} + \ket{f} \bigg)\bigg(\bra{e}-\bra{b}-\bra{c}+\bra{f}\bigg) \\
+		&&  \quad + \quad 2\times \bigg(\ket{a}-2\ket{b}-2\ket{c}+\ket{d}+\ket{e}+\ket{f}\bigg)
+			\bigg(\bra{a}-2\bra{b}-2\bra{c}+\bra{d}+\bra{e}+\bra{f}\bigg)\:\Bigg]
 \end{eqnarray*}
-\newpage
 \begin{eqnarray*}
-	\rho_B&=& \frac{1}{20}[\quad\kb{a}{a}-\kb{a}{b}-\kb{a}{c}+\kb{a}{d}\quad-\quad\kb{b}{a}+\,\kb{b}{b}+\,\kb{b}{c}-\,\kb{b}{d} \\
+	\rho_B&=& \frac{1}{20}\Big[\quad\kb{a}{a}-\kb{a}{b}-\kb{a}{c}+\kb{a}{d}\quad-\quad\kb{b}{a}+\,\kb{b}{b}+\,\kb{b}{c}-\,\kb{b}{d} \\
 		&&    \quad\:\:\,-\,\kb{c}{a}+\kb{c}{b}+\kb{c}{c}-\,\kb{c}{d} \quad+ \quad \kb{d}{a}-\kb{d}{b}-\kb{d}{c}+\kb{d}{d} \\
 		&&    \quad\:\:\,+\,\kb{e}{e}-\kb{e}{b}-\kb{e}{c}+\kb{e}{f} \quad-\quad \kb{b}{e}+\,\kb{b}{b}+\,\kb{b}{c}-\kb{b}{f} \\
 		&&    \quad\:\:\,-\kb{c}{e}+\,\kb{c}{b}+\,\kb{c}{c}-\kb{c}{f}\quad+\quad\kb{e}{e}-\,\kb{e}{b}-\kb{e}{c}+\kb{e}{f} \\
-		&& 	\:\: +\kb{a}{a}-2\kb{a}{b}-2\kb{a}{c}+\kb{a}{d}+\kb{a}{e}+\kb{a}{f}\quad-\quad 2\kb{b}{a}+4\kb{b}{b}+4\kb{b}{c}-2\kb{b}{d}-2\kb{b}{e}-2\kb{b}{f} \\
-		&&    \:\: -2\kb{c}{a}+4\kb{c}{b}+4\kb{c}{c}-2\kb{c}{d}-2\kb{c}{e}-2\kb{c}{f}\quad+\quad\kb{d}{a}-2\kb{d}{b}-2\kb{d}{c}+\kb{d}{d}+\kb{d}{e}+\kb{d}{f} \\
-		&&  	\:\quad\:\:\, +\kb{e}{a}-2\kb{e}{b}-2\kb{e}{c}+\kb{e}{d}+\kb{e}{e}+\kb{e}{f}\quad+\quad\kb{f}{a}-2\kb{f}{b}-2\kb{f}{c}+\kb{f}{d}+\kb{f}{e}+\kb{f}{f} \:\:] \\ \\
+		&&    \quad\:\:\,+\kb{a}{a}-2\kb{a}{b}-2\kb{a}{c}+\kb{a}{d}+\kb{a}{e}+\kb{a}{f}   
+		\\ &&  \quad\:\:\,- 2\kb{b}{a}+4\kb{b}{b}+4\kb{b}{c}-2\kb{b}{d}-2\kb{b}{e}-2\kb{b}{f} \\
+		&&    \quad\:\:\,-2\kb{c}{a}+4\kb{c}{b}+4\kb{c}{c}-2\kb{c}{d}-2\kb{c}{e}-2\kb{c}{f}\\
+		&& \quad\:\:\,+\kb{d}{a}-2\kb{d}{b}-2\kb{d}{c}+\kb{d}{d}+\kb{d}{e}+\kb{d}{f} \\
+		&&  	\:\quad\:\:\, +\kb{e}{a}-2\kb{e}{b}-2\kb{e}{c}+\kb{e}{d}+\kb{e}{e}+\kb{e}{f}
+		\\ && 	\:\quad\:\:\, +\kb{f}{a}-2\kb{f}{b}-2\kb{f}{c}+\kb{f}{d}+\kb{f}{e}+\kb{f}{f} \:\:\Big]
 \end{eqnarray*}
 \begin{eqnarray*}
 \rho_B &=& \frac{1}{20}[\qquad 2\kb{a}{a} - 3\kb{a}{b} - 3\kb{a}{c} + 2\kb{a}{d} \,\;+\kb{a}{e}\;\, + \kb{a}{f} \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad 
@@ -210,8 +215,10 @@ For simplicity rename the states.
 			1&-3&-3&1&2&2 \\ \noalign{\medskip}
 			1&-3&-3&1&2&2
 			\end {array}
-			\right]\\ \\
-			{\rm Through} &&\! \! \! \! \! \!\!\!\!\!\!\!\!\!\!{\rm the\; magic\; of\; matlab} \\ \\
+			\right]
+\end{eqnarray*}
+Diagonalized in MATLAB.
+\begin{eqnarray*}
 \rho^{diag}_B &=& \frac{1}{10}\left[ \begin {array}{cccccc}
 			9&0&0&0&0&0\\
 			\noalign{\medskip}
