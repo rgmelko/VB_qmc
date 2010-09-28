@@ -138,8 +138,8 @@ Another way to look at it is that we are sampling terms in the trace of a much l
 One way to improve upon the poor sampling of  $\langle \SWA \rangle$ is using the loop algorithm (Section \ref{sec:loop}), which \change{has much better scaling?} than the double projector method.
 Measurements taken using the loop algorithm are added into Figure \ref{loopfig}; they show a significant improvement over the double projector $\langle \SWA \rangle$ measurement, 
 though there is still noticeable statistical error for large region A.
-If our goal was simply the measurement of $S_2$ instead of the demonstration of the most effective way to measure $S_2$, we could simply note that $S_2(A) = S_2(B)$ and reflect the data about the midway point resulting in almost perfect correspondence with the DMRG data.
-However, when we begin to measure larger system sizes and move to 2D the deficiencies in measuring the bare \swa operator will become even more apparent; it is necessary to improve upon this measurement technique, which we have done using an ``improved ratio'' sampling scheme.
+If our goal was simply the measurement of $S_2$ instead of the demonstration of the most effective way to measure $S_2$, we could note that $S_2(A) = S_2(B)$ and reflect the data about the midpoint, resulting in almost perfect correspondence with the DMRG data.
+However, when we begin to measure larger system sizes and move to 2D the deficiencies in measuring the bare \swa operator will become increasingly apparent; it is necessary to improve upon this measurement technique, which we have done using an ``improved ratio'' sampling scheme.
 
 
 
@@ -197,11 +197,6 @@ We then measure the bare $\langle Swap_{j}\rangle$ for $j=1,\dots,j_{\rm max}$ i
 The second simulation measures the ratio $\langle Swap_{x+j}\rangle / \langle Swap_{x}\rangle$ with $x=j_{\rm max}$.  The following simulations use $x=2j_{\rm max}, 3j_{\rm max}, 4j_{\rm max}, \dots$ until we reach the maximum size of region A.
 The number of simulations need for a 1D system is $(L/j_{\rm max})$.
 
-\comment{make a diagram for this part of how the ratio stuff works.}
-
-\comment{The idea behind this reweighting...}
-
-
 Figure \ref{ratiofig} shows the ratio data using $j_{\rm max} = 5$, along with the DMRG data, for the same 100-site system as in Figs. \ref{loopfig} and \ref{swapfig}. 
 The data no longer show the large statistical error bars for large region A sizes, though the results are systematically lower than the DMRG $S_2$ results for a region A-B boundary near the middle of the 100-site system.  
 This can be improved by choosing a smaller value of $j_{\rm max}$.
@@ -253,7 +248,11 @@ The data in Fig. \ref{2Darea} appears consistent with the area law $S_2/\ell \si
 
 Next we examine entanglement entropy scaling for the ladder geometry studied in Section \ref{vbAlaw} and Ref. \cite{PRL1}.
 The results are shown in Figure \ref{2Dbetter1}, including both DMRG and ratio estimator VB QMC data.  
-From the 
+From the DMRG data alone it is not immediately apparent that $S_2/M \sim$ const., especially considering the trend in the first few data points. 
+Fortunately, the range system sizes we can study is extended by the \swa measurement with VB QMC, and the added points make it clear that $S_2$ does in fact follow an area law for the N\'eel state.
+
+In Figure \ref{2Dbetter2} we examine the same systems with only $M^2$ sites in region A.
+For the small system sizes we see much larger even-odd oscillations, as we go to larger system sizes both Figs. \ref{2Dbetter1} and \ref{2Dbetter2} follow the same area law scaling.
 
 
 \begin{figure} {
