@@ -963,6 +963,7 @@ In addition to anything that can be measured with the single projector method we
 	The dark (light) sites represent up (down) spins, and there black (blue) vertical bars are diagonal (off-diagonal) operators.
 	The valence bond states and compatible spin states ($\ket{V_\text{left}}$, $\ket{Z_\text{left}}$) and ($\ket{V_\text{right}}$, $\ket{Z_\text{right}}$) are shown on the left and right edges of the diagram respectively.
 	The dashed line down the middle is the point in between the two operators lists, where expectation values can be evaluated.
+	\label{fig:loopalg}
 }
 \end{figure}
 
@@ -980,47 +981,25 @@ Bond operators can only act on antiparallel spins.
 					Assign a spin to each of the sites such that the spin states $\ket{Z_{\rm 					left}}$ and $\ket{Z_{\rm right}}$ are compatible with the valence bonds.
 }}
 \item \fbox{\parbox{410pt}{
-					Generate two lists of m diagonal bond operators $L$
+					Generate two lists of $m$ diagonal bond operators $L$
 					and  $R$, ensuring operators only act on nearest neighbor pairs of antiparallel spins.
 		}}
-\item \fbox{\parbox{410pt}{Copy $L_{\text{old}}$ to $L_{\text{new}}$ 
-		and randomly change a predetermined number, 
-		$q$, of the bond operators 
-		in $L_{\text{new}}$.}}
-\item \fbox{\parbox{410pt}{Apply the new left list of bond operators to the original initial state. 
-		\begin{equation} 
-			\bra{V}L^\dagger_{\text{new}}=W^L_{\text{new}}\bra{V^L_{\text{new}}} \nonumber			\end{equation}
+\item \fbox{\parbox{410pt}{
+		Generate loops from the operator configuration, as illustrated in Figure \ref{fig:loopalg}.
 		}}
 \item \fbox{\parbox{410pt}{
-		Generate a random number $A \in [0,1)$.	
+		For each loop, flip all of the spins in that loop with probability $\frac{1}{2}$.
+		This may cause some of the diagonal operators to become off-diagonal.
 		}}
 \item \fbox{\parbox{410pt}{
-		 If $A < W^L_{\text{new}}W^R_{\text{old}}\bra{V^L_{\text{new}}}V^R_{\text{old}}\rangle/
-		 W^L_{\text{old}}W^R_{\text{old}}\bra{V^L_{\text{old}}}V^R_{\text{old}}\rangle$, 
-		 relabel all ``new" left quantities as ``old".		
+		Take measurements.
 		 }}
-\item \fbox{\parbox{410pt}{Randomly change a predetermined number, 
-		$q$, of the bond operators 
-		in $R_{\text{old}}$ and relabel it as $R_{\text{new}}$.}}
-\item \fbox{\parbox{410pt}{Apply the new right list of bond operators to the original initial state. 
-		\begin{equation} 
-			R_{\text{new}}\ket{V}=W^R_{\text{new}}\ket{V^R_{\text{new}}}  \nonumber					\end{equation}
+\item \fbox{\parbox{410pt}{
+		Update each diagonal bond operator, placing it on a random antiparallel pair of nearest neighbor spins.
 		}}
 \item \fbox{\parbox{410pt}{
-		Generate a random number $A \in [0,1)$.	
+		Go to step 4.
 		}}
-\item \fbox{\parbox{410pt}{
-		 If $A < W^L_{\text{old}}W^R_{\text{new}}\bra{V^L_{\text{old}}}V^R_{\text{new}}\rangle/
-		 W^L_{\text{old}}W^R_{\text{old}}\bra{V^L_{\text{old}}}V^R_{\text{old}}\rangle$, 
-		 relabel all ``new" right quantities as ``old".		
-		 }}
-\item \fbox{\parbox{410pt}{		
-		Take a measurement using the states $\bra{V^L_{\text{old}}}$ and
-		$\ket{V^R_{\text{old}}}$. 			
-		}}		
-\item \fbox{\parbox{410pt}{
-		Go to Step 4.	
-		}}	
 \end{enumerate}
 
 \subsubsection{Measurements}
