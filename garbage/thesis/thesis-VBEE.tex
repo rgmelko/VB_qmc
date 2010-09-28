@@ -186,8 +186,7 @@ It is possible to relate \vb to the bond length distribution as
 %------------------------------------------------------------------------------------------------------------------
 \section{Analytical Calculations}
 %------------------------------------------------------------------------------------------------------------------
-\comment{Totally do these, (and talk about how it's wrong because it's not normalized properly)?
-Why even is it wrong?  }
+
 %\comment{
 %There are \change{two} reasons why \vb fails to properly measure entanglement.
 %First, linear combinations of valence bond states are not properly normalized, and second, it is possible to have entanglement between two regions even when no valence bond crosses between those regions.
@@ -255,13 +254,15 @@ and a subscript A specifies that the state belongs spins 1 and 3, B refers to sp
 		0& 0& 0&2
 		\end{array} \right]
  \end{align}
-Diagonalizing $\rho_{\rm A}$ gives three identical eigenvalues of $\tfrac{1}{3}$.
+Diagonalizing $\rho_{\rm A}$ gives three identical eigenvalues of $\tfrac{1}{3}$, which we use to calculate \vN,
 \begin{align}
 \VN_{\rm A} = - {\rm Tr} \left(\rho_{\rm A} \ln \rho_{\rm A} \right)= -3\left( \frac{1}{3} \ln \left( \frac{1}{3}\right)\right)
-		= \ln(3) \approx 1.0986
+		= \ln(3) \approx 1.0986.
 \end{align}
-
-
+For this system (Fig.~\ref{example1}) $\VB =2\ln(2) > \VN \approx 1.0986$.
+Though $\VB=\VN$ for valence bond basis states, \vb does not give the correct result for some linear combinations of states.  
+The \vb measurement does not even properly normalize the state in Fig. \ref{example1}.
+In Figure \ref{example2} we have another linear combination of states, this time a superposition of two eight-site states, where region A includes the four sites on the left-hand side.  In this case we find that \vb underestimates \vn since there are no valence bonds crossing between regions A and B, but the two regions are still entangled.  The calculation of \vn for this state can be seen in Appendix~\ref{small}, where we find $\VN\approx 0.3251$.
 
 
 \begin{figure}
