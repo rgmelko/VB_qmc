@@ -195,7 +195,41 @@ Why even is it wrong?  }
 
 From the 1D results (Figs.~\ref{1dOBC} and \ref{1dPBC}) we saw that \vb can be either greater or less than \vN.
 This can be understood through some simple examples, shown in figures \ref{example1} and \ref{example2}.
-The first example, Fig. \ref{example1} is an equal superposition 
+The first example, Fig. \ref{example1} is an equal superposition of two four-site valence bond states. 
+ \vb is easily calculated as maximal the maximal $\VB = 2\ln(2)$, since there are four bonds cross between regions A and B, but we divide by the number of states we have examined (two in this case).
+ \change{This corresponds to the way \vb would be measured in the single projector VB QMC algorithm.}
+ For such a small system, it is not difficult to calculate \vn explicitly, and we will do so here.
+ We begin by writing out and normalizing the wavefunction in the $S^z$ basis.
+ \begin{align}
+\hspace{-2mm}
+ \ket{\psi} &= C \big[ \left( \ket{\up_1\dw_2} - \ket{\dw_1\up_2}\right) \otimes 
+ 		\left( \ket{\up_3\dw_4} - \ket{\dw_3\up_4}\right) + 
+		\left( \ket{\up_1\dw_4} - \ket{\dw_1\up_4}\right) \otimes 
+ 		\left( \ket{\up_3\dw_2} - \ket{\dw_3\up_2}\right) \big] \\
+		&= C \big[ 2\ket{\up\dw\up\dw} + 2 \ket{\dw\up\dw\up} -
+			\ket{\up\dw\dw\up} -\ket{\dw\up\up\dw} - \ket{\up\up\dw\dw} - \ket{\dw\dw\up\up}
+			\big] \label{yknow}\\
+C &= \frac{1}{\sqrt{\bra{\psi}\psi\rangle}} = \frac{1}{\sqrt{4+4+1+1+1+1}} = \frac{1}{\sqrt{12}}
+ \end{align}
+ Note that in \eqref{yknow} the spins are in numerical order $\ket{1,2,3,4}$.
+ To simplify the process of finding the reduced density matrix $\rho_{\rm A}$ we relabel the states such that
+ \begin{eqnarray} \nonumber
+ \ket{\up\up} \rightarrow \ket{a} \hspace{1cm} \ket{\up\dw} \rightarrow \ket{b}  \hspace{1cm} 
+ \ket{\dw\up} \rightarrow \ket{c}  \hspace{1cm} \ket{\dw\dw} \rightarrow \ket{d} \nonumber
+ \end{eqnarray}
+ 
+
+\begin{figure}
+\centering
+\includegraphics[width=4in]{./figures/made/example1.pdf}
+\caption[A superposition of two four-site valence bond states]{An equal superposition of two four-site valence bond states.  
+Region A is the shaded region including sites 1 and 4.
+Region B contains sites 2 and 3.
+For this state $\VB_{\rm A}=2\ln(2)\approx1.386$ and $\VN_{\rm A}=\ln(3)\approx 1.099$.
+ \label{example1}
+}
+\end{figure}
+
 
 
 \begin{figure}
@@ -205,21 +239,11 @@ The first example, Fig. \ref{example1} is an equal superposition
 Region A is the shaded region including sites $1-4$.  
 Region B contains the remainder of the sites, $5-8$.
 For this state $\VB_{\rm A}=0$ and $\VN_{\rm A}\approx 0.325$.
-\label{example1}
+\label{example2}
 }
 \end{figure}
 
 
-\begin{figure}
-\centering
-\includegraphics[width=4in]{./figures/made/example1.pdf}
-\caption[A superposition of two four-site valence bond states]{An equal superposition of two four-site valence bond states.  
-Region A is the shaded region including sites 1 and 4.
-Region B contains sites 2 and 3.
-For this state $\VB_{\rm A}=2\ln(2)\approx1.386$ and $\VN_{\rm A}=\ln(3)\approx 1.099$.
- \label{example2}
-}
-\end{figure}
 
 
 
