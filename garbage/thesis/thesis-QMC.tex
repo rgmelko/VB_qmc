@@ -946,12 +946,70 @@ The double projector method is much more versatile in the range of observables t
 In addition to anything that can be measured with the single projector method we can also measure the $Swap$ operator, spin correlations functions, and, by adding triplet states into the mix, staggered magnetization, and spin stiffness, among other things \cite{Beach2006}.
 
 %--------------------------------------------------------------------------------------------------------------------------
-\subsection{Loop Moves}
+\subsection{Loop Algorithm}
 \label{sec:loop}
 %--------------------------------------------------------------------------------------------------------------------------
-\comment{ do this section last... if there's time}\\
 \change{- it's faster, better scaling \\
 - drawbacks (can't change weight, like for renyi sampling thing)\\
-- make sure the mention to scaling
+- make sure the mention the scaling
 }
+
+bond operators are separated into their diagonal $H(1)$ and off-diagonal $H(2)$ parts,
+\begin{align}
+H_{ab}(1)&= \tfrac{1}{4} - S_a^zS^z_b \\
+H_{ab}(2)&= -\tfrac{1}{2}( S_a^+S^1_b + S_a^-S^+_b)
+\end{align}
+Bond operators can only act on antiparallel spins.
+
+
+\begin{enumerate}
+\item \fbox{\parbox{410pt}{Choose or generate initial valence bond states $\ket{V_{\rm left}}$ and  $\ket{V_{\rm right}}$.  (These can be chosen as the same state.)}}
+\item \fbox{\parbox{410pt}{
+					Assign a spin to each of the sites such that the spin states $\ket{Z_{\rm 					left}}$ and $\ket{Z_{\rm right}}$ are compatible with the valence bonds.
+}}
+\item \fbox{\parbox{410pt}{
+					Generate two lists of m diagonal bond operators $L$
+					and  $R$, ensuring operators only act on nearest neighbor pairs of antiparallel spins.
+		}}
+\item \fbox{\parbox{410pt}{Copy $L_{\text{old}}$ to $L_{\text{new}}$ 
+		and randomly change a predetermined number, 
+		$q$, of the bond operators 
+		in $L_{\text{new}}$.}}
+\item \fbox{\parbox{410pt}{Apply the new left list of bond operators to the original initial state. 
+		\begin{equation} 
+			\bra{V}L^\dagger_{\text{new}}=W^L_{\text{new}}\bra{V^L_{\text{new}}} \nonumber			\end{equation}
+		}}
+\item \fbox{\parbox{410pt}{
+		Generate a random number $A \in [0,1)$.	
+		}}
+\item \fbox{\parbox{410pt}{
+		 If $A < W^L_{\text{new}}W^R_{\text{old}}\bra{V^L_{\text{new}}}V^R_{\text{old}}\rangle/
+		 W^L_{\text{old}}W^R_{\text{old}}\bra{V^L_{\text{old}}}V^R_{\text{old}}\rangle$, 
+		 relabel all ``new" left quantities as ``old".		
+		 }}
+\item \fbox{\parbox{410pt}{Randomly change a predetermined number, 
+		$q$, of the bond operators 
+		in $R_{\text{old}}$ and relabel it as $R_{\text{new}}$.}}
+\item \fbox{\parbox{410pt}{Apply the new right list of bond operators to the original initial state. 
+		\begin{equation} 
+			R_{\text{new}}\ket{V}=W^R_{\text{new}}\ket{V^R_{\text{new}}}  \nonumber					\end{equation}
+		}}
+\item \fbox{\parbox{410pt}{
+		Generate a random number $A \in [0,1)$.	
+		}}
+\item \fbox{\parbox{410pt}{
+		 If $A < W^L_{\text{old}}W^R_{\text{new}}\bra{V^L_{\text{old}}}V^R_{\text{new}}\rangle/
+		 W^L_{\text{old}}W^R_{\text{old}}\bra{V^L_{\text{old}}}V^R_{\text{old}}\rangle$, 
+		 relabel all ``new" right quantities as ``old".		
+		 }}
+\item \fbox{\parbox{410pt}{		
+		Take a measurement using the states $\bra{V^L_{\text{old}}}$ and
+		$\ket{V^R_{\text{old}}}$. 			
+		}}		
+\item \fbox{\parbox{410pt}{
+		Go to Step 4.	
+		}}	
+\end{enumerate}
+
+\subsubsection{Measurements}
 
