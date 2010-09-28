@@ -193,6 +193,18 @@ Why even is it wrong?  }
 %First, linear combinations of valence bond states are not properly normalized, and second, it is possible to have entanglement between two regions even when no valence bond crosses between those regions.
 %}
 
+
+\begin{figure}
+\centering
+\includegraphics[width=4in]{./figures/made/example1.pdf}
+\caption[A superposition of two four-site valence bond states]{An equal superposition of two four-site valence bond states.  
+Region A is the shaded region including sites 1 and 4.
+Region B contains sites 2 and 3.
+For this state $\VB_{\rm A}=2\ln(2)\approx1.386$ and $\VN_{\rm A}=\ln(3)\approx 1.099$.
+ \label{example1}
+}
+\end{figure}
+
 From the 1D results (Figs.~\ref{1dOBC} and \ref{1dPBC}) we saw that \vb can be either greater or less than \vN.
 This can be understood through some simple examples, shown in figures \ref{example1} and \ref{example2}.
 The first example, Fig. \ref{example1} is an equal superposition of two four-site valence bond states. 
@@ -213,22 +225,31 @@ C &= \frac{1}{\sqrt{\bra{\psi}\psi\rangle}} = \frac{1}{\sqrt{4+4+1+1+1+1}} = \fr
  \end{align}
  Note that in \eqref{yknow} the spins are in numerical order $\ket{1,2,3,4}$.
  To simplify the process of finding the reduced density matrix $\rho_{\rm A}$ we relabel the states such that
- \begin{eqnarray} \nonumber
- \ket{\up\up} \rightarrow \ket{a} \hspace{1cm} \ket{\up\dw} \rightarrow \ket{b}  \hspace{1cm} 
- \ket{\dw\up} \rightarrow \ket{c}  \hspace{1cm} \ket{\dw\dw} \rightarrow \ket{d} \nonumber
+ \begin{eqnarray}
+ \ket{\up\up} \rightarrow \ket{a} \hspace{15mm} \ket{\up\dw} \rightarrow \ket{b}  \hspace{15mm} 
+ \ket{\dw\up} \rightarrow \ket{c}  \hspace{15mm} \ket{\dw\dw} \rightarrow \ket{d},
  \end{eqnarray}
- 
+and a subscript A specifies that the state belongs spins 1 and 3, B refers to spins 2 and 4. 
+ \begin{eqnarray}
+\ket{\psi} = \frac{1}{\sqrt{12}} \big[ 
+		2\ket{a}_{\rm A}\otimes \ket{d}_{\rm B} + 
+		2\ket{d}_{\rm A}\otimes \ket{a}_{\rm B} 
+		- \big(\ket{b} +\ket{c}\big)_{\rm A} \otimes  \ket{c}_{\rm B} 
+		 -\big(\ket{c} +\ket{b}\big)_{\rm A} \otimes \ket{b}_{\rm B}
+		\big]
+ \end{eqnarray}
+ When we trace out region B, only the terms that are diagonal in region B will survive. 
+  We can avoid writing out the full density matrix and skip straight to the reduced density matrix.
+  Now all the states refer to region A, spins 1 and 3.
+  \begin{align}
+\rho_{\rm A} &=  {\rm Tr_B} \ket{\psi}\bra{\psi} \\ 
+		&= \frac{1}{12} \big[ 
+		4\ket{a} \bra{a} + 4 \ket{d}\bra{d}
+		+ 2\big(\ket{b} +\ket{c}\big)\big(\bra{b} +\bra{c}\big)
+		\big]
+ \end{align}
 
-\begin{figure}
-\centering
-\includegraphics[width=4in]{./figures/made/example1.pdf}
-\caption[A superposition of two four-site valence bond states]{An equal superposition of two four-site valence bond states.  
-Region A is the shaded region including sites 1 and 4.
-Region B contains sites 2 and 3.
-For this state $\VB_{\rm A}=2\ln(2)\approx1.386$ and $\VN_{\rm A}=\ln(3)\approx 1.099$.
- \label{example1}
-}
-\end{figure}
+
 
 
 
