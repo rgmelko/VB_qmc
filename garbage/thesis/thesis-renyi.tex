@@ -166,7 +166,7 @@ calculated with DMRG, VB QMC double projector algorithm (labelled Swap), and the
 	\centering
 	\caption[Renyi for 100 site chain with ratio data]{ 
 	\label{ratiofig}
-	DMRG and ``improved ratio'' data for a 100-site Heisenberg chain with open boundaries.
+	DMRG and improved ratio data for a 100-site Heisenberg chain with open boundaries.
 The ratio data uses $j_{\rm max}=5$ and required 20 separate simulations.
 	}
 }\end{figure}
@@ -216,13 +216,13 @@ This can be improved by choosing a smaller value of $j_{\rm max}$.
 	\includegraphics[width=6in]{./figures/paper2/fig_2DA/L8n12_ratio.pdf} 
 	\caption[$S_2$ in an $8 \times 8$ and $12 \times 12$ system]{ 
 	Measurements of $S_2/\ell$ for $8 \times 8$ and $12 \times 12$ PBC systems with a region A of size $\ell \time \ell$.
-	The bare $\langle Swap_\ell \rangle$ results are shown along with the ``improved ratio'' results for different values of $r_{\rm max}$.
+	The bare $\langle Swap_\ell \rangle$ results are shown along with the improved ratio results for different values of $r_{\rm max}$.
 	\label{2Dfig}
 	}
 } \end{figure}
 
 We now look at 2D $L\times L$ systems with PBC, where region A is an $\ell \times \ell$ and region B is the remainder of the system.
-For this system we must slightly change the definition of our ``improved ratio'' estimator to fit the different geometry.
+For this system we must slightly change the definition of our improved ratio estimator to fit the different geometry.
 Instead of $j$ and $j_{\rm max}$ from \eqref{eqratio} and \eqref{eqratio2} we now use $r$ and $r_{\rm max}$, and measure $\langle Swap_{\ell+r}\rangle / \langle Swap_{\ell}\rangle$ where $\ell +r$ is the linear dimension of a square region A, and $r=1,\dots,r_{\rm max}$.
 We increase the size of region A such that it is always a square, adding a row and column of sites simultaneously.
 
@@ -244,7 +244,9 @@ For the $8\times 8$ system the results are already almost entirely converged wit
 	}
 } \end{figure}
 
-We now examine larger regions of the same geometry as used in the previous section (PBC $L \times L$ systems with an $\ell \times\ell$ region A) in an attempt to extract area law scaling of the entanglement entropy.
+Using the improved ratio estimator we now examine larger regions of the same geometry as used in the previous section (PBC $L \times L$ systems with an $\ell \times\ell$ region A) in an attempt to extract area law scaling of the entanglement entropy.
+Figure \ref{2Darea} show $S_2/\ell$ results for systems from $L=4$ to $L=32$.
+
 
 \begin{figure} {
 	\centering
