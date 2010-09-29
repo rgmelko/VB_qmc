@@ -5,8 +5,7 @@
 \chapter{Quantum Monte Carlo in the Valence Bond Basis}
 %======================================================================
 %======================================================================
-\comment{REFERENCES!!}\\
-The numerical technique used in this research is valence bond quantum Monte Carlo (VB QMC).
+The numerical technique used in this research is valence bond quantum Monte Carlo (VB QMC) \cite{Sandvik_vbqmc,Sandvik2007}.
 Other commonly used lattice Monte Carlo techniques, such as the stochastic series expansion\cite{Sylji2002} or world line \cite{Evertz2003} methods, use the $S^z$ basis, but VB QMC takes advantage of the unique properties of the valence bond basis.  
 
 In this chapter we introduce the valence bond basis, showing how it is used to represent singlet states.  
@@ -515,7 +514,7 @@ If not for the A-B sublattice convention (see Figure \ref{covering}) it would be
 A maximal value of the overlap can be obtained through the inner product of a state with itself.
 Then there are $N/2$ loops, one for every two sites.  There are $2^{N/2}$ compatible spin configurations, and the overlap is exactly its maximal value, 1.
 
-The inner product can be used to calculate the expectation values of observables, normalize states, and as a factor in the Monte Carlo weights, all necessary for quantum Monte Carlo algorithms in the valence bond basis. \comment{add page refs}
+The inner product can be used to calculate the expectation values of observables, normalize states, and as a factor in the Monte Carlo weights, all necessary for quantum Monte Carlo algorithms in the valence bond basis. 
 
 %--------------------------------------------------------------------------------------------------------------------------
 \section{Ground State Projection} \label{gsp}
@@ -949,11 +948,10 @@ In addition to anything that can be measured with the single projector method we
 \subsection{Loop Algorithm}
 \label{sec:loop}
 %--------------------------------------------------------------------------------------------------------------------------
-\change{
-- drawbacks (can't change weight, like for renyi sampling thing)}\\
+
 The double projector algorithm scales as $ \max(m^2, Nm)$ for a list of $m$ bond operators acting on an $N$-site system.  
 Normally we use $m = cN$ for some $c > 1$.  If we have $c<\frac{1}{2}$ it would not be possible to get a valence bond configuration entirely independent of the initial state.
-So \change{generally, more often, traditionally, usually?} the double projector algorithm scales as $m^2$.
+So most often the double projector algorithm scales as $m^2$.
 A significant improvement was on this scaling was made in the loop algorithm, developed by Sandvik and Evertz in 2008 \cite{Sandvik2008, Loops}, which scales like $\max(m,N)$.
 
 
@@ -1017,5 +1015,3 @@ The loop algorithm is as follows:
 We can return to the loop representation and take measurements using \eqref{generalop2}.  
 Constructing the VB-loop-operator diagram in Step 4 of the algorithm gives us the projected valence bond configurations $\bra{V^L_{\text{left}}} = \bra{V_{\text{left}}}L^\dagger$ and $\ket{V^R_{\text{right}}} = R\ket{V_{\text{right}}}$.
 And the number of loops in the overlap $\bra{V^L_{\text{left}}} V^R_{\text{right}}\rangle$ is easily counted, as the number of distinct loops crossing the dividing line in the middle of the loop-operator diagram. (See Fig. \ref{fig:loopalg}.)
-
-\comment{Maybe add more about what we can measure (see what sandvik says)}
