@@ -34,6 +34,13 @@ We can use the expectation value of a unitary \sw operator on two non-interactin
 This process can be generalized to calculate any $S_n$ with $n \ge 2$, by applying a generalized \sw operator to $n$ copies of the system. 
 
 \section{The ``Replica Trick''}
+
+Has been used before in lots of stuff (more refs)\cite{Cardy, Callan, Fradkin}
+But this is its first use with QMC.  mention $\kappa$?
+
+We can compute ${\rm Tr} \rho^n_{\rm A}$ using n, non-interacting copies of the system.
+
+Below we show a method for measuring $S_2$.
 %----------------------------------------------------------------------------------------------------------
 \subsection{The Swap Operator}
 %----------------------------------------------------------------------------------------------------------
@@ -277,6 +284,22 @@ The data were measured using the 2D improved ratio estimator using $j_{\rm max} 
 
 } \end{figure}
 
+
 %----------------------------------------------------------------------------------------------------------
-\section{Conclusions}
+\section{Discussion}
 %----------------------------------------------------------------------------------------------------------
+
+
+
+We have presented a method which can be used to measure the Renyi entropies \comment{eqref} for $n>1$, with quantum Monte Carlo simulations in the valence bond basis, employing the "replica trick".
+We demonstrate this method by measuring the second Renyi entropy $S_2$ using the expectation value of a \swa operator acting on two copies of the system.
+With the use of an improved ratio estimator we improve the sampling of our algorithm and our results for $S_2$ converge to the exact results for a 1D Heisenberg chain with open boundaries.
+Using this same method we present the first measurements of $S_2$ on 2D periodic $L \times L$ and open boundary ladder systems, confirming the area law for the N\'eel ground state of the Heisenberg model.
+ 
+
+
+\comment{talk about scaling and improving the algorithm}
+
+
+
+
