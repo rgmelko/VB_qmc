@@ -112,34 +112,38 @@ This geometry is imposed by the DMRG, but we use the same configuration in the V
  \label{laddersnake} }} 
  \end{figure}
 
-\begin{figure} { \includegraphics[width=6in]{./figures/paper1/figure3/3-leg-ladder/fig3_final2.pdf}
+\begin{figure} { 
+\vspace{-1cm}
+\includegraphics[width=6in]{./figures/paper1/figure3/3-leg-ladder/fig3_final2.pdf}
 \caption[Entanglement entropies for a three-leg ladder]{
 Entanglement entropies for a three-leg ladder with OBC and 100 sites per leg.  
 The inset shows a close up view of the boxed region.
- \label{ladder3} }} 
- \end{figure}
-  
- \begin{figure} { \includegraphics[width=6in]{./figures/paper1/figure3/4-leg-ladder/4legfig.pdf}
+ \label{ladder3} }
+ \vspace{1cm}
+ \includegraphics[width=6in]{./figures/paper1/figure3/4-leg-ladder/4legfig.pdf}
 \caption[Entanglement entropies for a four-leg ladder]{
 Entanglement entropies for a four-leg ladder with OBC and 100 sites per leg.  
 The inset shows a close up view of the boxed region.  
- \label{ladder4} }} 
+ \label{ladder4}}
+ 
+ } 
  \end{figure}
+  
+
  
  We now move towards two dimensions by adding ``legs" to our one dimensional OBC chains.
  Due to the constraints imposed by the DMRG on the geometry of region A the sites must be arranged in a snaking pattern (Fig \ref{laddersnake}).
-The DMRG data, to which we compare \vB, are limited to ladders with $M=7$ legs because of the \change{poor scaling of the algorithm when approaching 2D}.
- The VB QMC algorithm \change{scales as $N^2$} for a system with N sites, so \change{ we measure up to $M=20$ with minimal CPU effort}.
+The DMRG data, to which we compare \vB, are limited to ladders with $M=7$ legs because of the poor scaling of the algorithm when approaching 2D.
+ The VB QMC algorithm scales as $Nm$ for a system with N sites \cite{Loops}, so we measure up to $M=20$ with minimal CPU effort.
  
  Figures \ref{ladder3} and \ref{ladder4} show the entanglement entropies for three- and four-leg ladders respectively.
  As with the 1D OBC spin chain, $\VB > \VN$ for these $M$-leg ladders.
  The entanglement entropies show different behavior depending on whether the number of legs is even or odd.
- Odd-leg ladders \notsay{are gapless, so all sites contribute to the entanglement, and so}
- $S(x) \propto \ln(x')$ as in the 1D case.
- \comment{Say something about the ``spin gap"! White, Noack, Scalapino, 1994.}
- Even-leg ladders \notsay{have a spin gap \comment{(white 1994)}} and so only sites within the correlation length $\xi$ from the boundary between A and B contribute to the entanglement,
-so for even-leg ladders $S(x\gtrsim\xi) = \text{const}$.
-Both even- and odd-leg ladders split into branches, as shown in the figure insets, though the even-leg ladders have a \change{pattern} with period $M$ whereas the odd-leg ladder entanglement entropies have a period of $2M$.  
+ Odd-leg ladders are gapless, and so case all sites contribute to the entanglement, thus
+ $S(x) \propto \ln(x')$ as in the 1D case \cite{White1994}.
+ Even-leg ladders have a spin gap and so only sites within the correlation length $\xi$ from the boundary between A and B contribute to the entanglement,
+so for even-leg ladders $S(x\gtrsim\xi) = \text{const}$. 
+Both even- and odd-leg ladders split into branches, as shown in the figure insets, though the even-leg ladders have a pattern with period $M$ whereas the odd-leg ladder entanglement entropies have a period of $2M$.  
  
 %------------------------------------------------------------------------------------------------------------------
 \section{The Area Law}
