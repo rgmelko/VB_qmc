@@ -268,7 +268,9 @@ Diagonalizing $\rho_{\rm A}$ gives three identical eigenvalues of $\tfrac{1}{3}$
 \end{align}
 For this system (Fig.~\ref{example1}) $\VB =2\ln(2) > \VN \approx 1.0986$.
 Though $\VB=\VN$ for valence bond basis states, \vb does not give the correct result for some linear combinations of states.  
-The \vb measurement does not even properly normalize the state in Fig. \ref{example1}.
+\change{
+The \vb measurement does not properly normalize the state in Fig. \ref{example1}.
+Thing about how this is the N\'eel state...}
 
 \begin{figure}
 \centering 
@@ -292,10 +294,15 @@ In Figure \ref{example2} we have another linear combination of states, this time
 We have compared the scaling properties of the valence bond entanglement entropy \vb \cite{Alet,Chh}, to the von Neumann entanglement entropy \vn in the spin-1/2 Heisenberg model in 1D and on multi-leg ladder systems, using both VB QMC and DMRG simulations methods.
 In 1D, we find that \vb closely follows the behavior of \vN, though it is less than \vn for periodic chains, and greater than  \vn for chains with open boundaries.
 
-We also fit both entanglement entropies to the 1D conformal field theory results (Eqs.\eqref{cftPBC} and \eqref{cftPBC}), which show excellent agreement for \vn, but show significant deviation from the expected value of $c$ for \vb in the large chain length limit, approaching $c<1$ for both open and periodic boundary conditions \cite{XXX}.
+We also fit both entanglement entropies to the 1D conformal field theory results (Eqs.\eqref{cftPBC} and \eqref{cftPBC}), which show excellent agreement for \vN, but show significant deviation from the expected value of $c$ for \vb in the large chain length limit, approaching $c<1$ for both open and periodic boundary conditions \cite{XXX}.
 
-We then examined $M$-leg ladder systems, cutting across all legs such that the boundary size scales with the number of legs.
-(small examples)
+We then examined $M$-leg ladder systems, cutting across all legs such that the boundary size scales with the number of legs, where we see from the DMRG results that \vn obeys the area law in the many-leg limit.  
+On the other hand, \vb has a multiplicative logarithmic correction to the area law for the N\'eel ground state.
+
+%To help understand the discrepancy between these two measures of entanglement, we show simple examples of a system with $\VB > \VN$ (Fig. \ref{example1}) and a system with $\VB > \VN$ (Fig. \ref{example2}).  
+%\comment{say something else.}
+
+While it is clear that \vb is a reasonable measure of entanglement, easily accessible to scalable numerical simulations, the inability of this quantity to provide a bound on \vN, unlike other measures of of entanglement entropy, together with its multiplicative logarithmic correction to the area law in 2D make \vb less suitable for characterizing topological phases, or studying universal quantities at quantum phase transitions.
 
 
 
