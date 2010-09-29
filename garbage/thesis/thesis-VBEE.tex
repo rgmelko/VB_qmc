@@ -40,34 +40,35 @@ on the same system, calculated with density matrix renormalization group (DMRG) 
 \section{One Dimensional Systems}
 %-----------------------------------------------------------------------------------------------------------------------
 
-\change{We begin by simulating one dimensional systems, examining both the cases of
-open and periodic boundary conditions.}
-\notsay{The DMRG simulations require both of regions A and B to be topologically connected, so 
-the same \change{convention} is used in the VB QMC simulations.}
-
+We begin by simulating one dimensional systems, examining both the cases of
+open (OBC) and periodic boundary conditions (PBC).
 It is convenient to denote the size of region A by the number of sites included in that region 
 (i.e. for a 1D system of length $L$, $S_{\text{A}} = S(x)$ is the entanglement entropy for a system where region A contains sites $\{1,2,\dots,x\}$ and the rest of the sites $\{x+1,x+2,\dots,L\}$
 belong to region B.
 
-As mentioned in section \ref{1dcft}, for a 1D critical system the scaling of the entanglement entropy is described by Eq.~\eqref{cft1d}. 
+As mentioned in section \ref{1dcft}, for a 1D critical system, such as the 1D Heisenberg spin chain, the scaling of the entanglement entropy is described by
+\begin{align}
+	\VN_{\text{PBC}} &= \frac{c}{3}\ln(x') + S_1 \label{cftPBC}\\
+	\VN_{\text{OBC}} &= \frac{c}{6}\ln(2x') + \ln(g)+ S_1 \label{cftOBC}
+\end{align}
 
 \begin{figure} {
 \includegraphics[width=5.5in]{./figures/paper1/figure1/thesis_pbc.pdf} 
 \centering
 \caption[1D PBC Results for \vb with \vN]{
-Entanglement entropies for a 1D, 100-site Heisenberg chain with PBC, as a function of the conformal distance $x'  = (L/\pi)\sin (\pi x/L)$.
+Entanglement entropies for a 1D Heisenberg chain with PBC and L=100 sites, as a function of the conformal distance $x'  = (L/\pi)\sin (\pi x/L)$.
 \label{1dPBC}}
 } 
 \end{figure}
 
 Figure \ref{1dPBC} shows the \vb measurements for a periodic spin chain of length $L=100$ sites, plotted alongside \vn data.  \vb seems to fit well to the CFT result, though it is lower than \vN.
-We use linear regression to fit the \vb and \vn data for several system sizes to $S_{\rm PBC}^{\rm vN}$ from Eq. \eqref{cft1d}. Figure~\ref{c1} shows $c^{\rm vN}$ approaching 1 (the expected value for this system \comment{REFERENCE}) as the system size increases, however $c^{\rm VB}$ seems to approach a lower value. 
+We use linear regression to fit the \vb and \vn data for several system sizes to Equation \eqref{cftOBC}, and Figure~\ref{c1} shows the results for the central charge $c^{\rm vN}$ from \eqref{cftOBC} approaching 1 (the expected value for this system \cite{c_is_1}) as the system size increases, however $c^{\rm VB}$ approaches a lower value. 
 
 \begin{figure} {
 \includegraphics[width=6in]{./figures/paper1/figure1/thesis_c1.pdf} 
 	\centering
 	\caption[1D Results for VB EE and von Neumann EE]{
-	The central charge, $c$, found using linear regression fits of the entanglement entropy data 	for periodic Heisenberg chains for length L=64, 100, 128, 200, and 256.  Data for the two smallest 	points ($S(1)$ and $S(L-1)$) are removed for the calculation of $c$ \notsay{since the DMRG data 	do not include these region A sizes}.
+	The central charge, $c$, found using linear regression fits of the entanglement entropy data 	for periodic Heisenberg chains for length L=64, 100, 128, 200, and 256.  Data for the two smallest 	points ($S(1)$ and $S(L-1)$) are removed for the calculation of $c$.
 	\label{c1}}
 } 
 \end{figure}
@@ -81,20 +82,18 @@ We use linear regression to fit the \vb and \vn data for several system sizes to
 	\label{1dOBC}}}
 \end{figure}
 
-For the OBC case (Figure~\ref{1dOBC}), we see both \vn and \vb split into two branches, where the upper branch corresponds to an odd number of sites in region A, and the lower to an even number.
+For the 100-site OBC system (Figure~\ref{1dOBC}), we see both \vn and \vb split into two branches, where the upper branch corresponds to an odd number of sites in region A, and the lower branch to an even number of sites.
 This branching is due to a ``dimerization" effect caused by the open boundary conditions \cite{Ian1}.
-In contrast to the PBC case, \vb is now higher than \vN{} implying that, unlike the successive Renyi entropies \comment{eqref}, \vb does not give a bound on \vn.
-Figure \ref{c2} shows the linear regression fits of the lower branch of OBC data for several different system sizes to $\VN_{\text{OBC}}$ from Equation \eqref{cft1d}.  As the number of points included is decreased (until we are only using data where the division between regions A and B is ``far'' from the open boundaries of the system) we see $c^{\rm vN}$ approach a constant value for all system sizes.  As the system size increases $c^{\rm vN}$ approaches the expected value \comment{REF} of 1.  On the other hand, from the $S^{\rm VB}$ data, it is not clear whether $c^{\rm VB}$ approaches a constant value for large system sizes.  We see only that $c^{\rm VB}$ is lower than the expected value of 1, and that it is lower than the $c^{\rm VB}$ value given by the PBC data.
-
-\comment{mini-conclusion}
+In contrast to the PBC case, \vb is now higher than \vN{} implying that, unlike the successive Renyi entropies, \vb does not give a bound on \vn.
+Figure \ref{c2} shows the linear regression fits of the lower branch of OBC data for several different system sizes to Equation \eqref{cftOBC}.  As the number of points included is decreased (until we are only using data where the division between regions A and B is ``far'' from the open boundaries of the system) we see $c^{\rm vN}$ approach a constant value for all system sizes.  As the system size increases $c^{\rm vN}$ approaches the expected value of 1 \cite{c_is_1}.  On the other hand, from the $S^{\rm VB}$ data, it is not clear whether $c^{\rm VB}$ approaches a constant value for large system sizes.  We see only that $c^{\rm VB}$ is lower than the expected value of 1 \cite{Chh}, and that it is lower than the $c^{\rm VB}$ value given by the PBC data.
 
 \begin{figure} {
 \includegraphics[width=6in]{./figures/paper1/figure1/newfig2.pdf} 
 \centering
-\label{c2}
 \caption[Central charge for 1D OBC chains]{ The central charge, $c$, for 1D OBC chains of lengths $L=64$, 100, 128, and 200.
 The slope of the data depends on the number of points $z$ included in the linear regression fit, as can be seen looking at \ref{1dOBC}.
 We fit the lower branch of the data, systematically decreasing $z$ until there are too few points left to get an accurate fit.
+\label{c2}
 }}
 \end{figure}
 
