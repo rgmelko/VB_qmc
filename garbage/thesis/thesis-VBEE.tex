@@ -1,6 +1,7 @@
 %======================================================================
 \chapter{Valence Bond Entanglement Entropy}
 %======================================================================
+\comment{Cite *our* paper somewhere in here.}
 Recently a new quantity called {\it{valence bond entanglement entropy}} (\vB) was proposed \cite{Ian1, Alet, Chh},  
 which seems to have properties similar to the von Neumann entanglement entropy (\vN).
 The main advantage of \vb the simplicity of its measurement when working in the valence bond basis.
@@ -176,19 +177,18 @@ This correction, however, is not present in the \vn results from DMRG.
 These results also imply that the multiplicative logarithmic correction to the area law is present only in \vB, and not necessarily in all measures of entropy.
 
 
-\comment{
-%------------------------------------------------------------------------------------------------------------------
-\section{Bond Length Distribution}
-%------------------------------------------------------------------------------------------------------------------
-
-We can relate \vb to the bond length distribution $P(x,y)$, defined by Sandvik as the probability of finding a bond between sites $x$ and $y$. 
- Sandvik found that for $P(x,y) \sim \lvert x-y \rvert^{-p}$ with $p \approx 3$ for the \change{2D Heisenberg ground state / N\'eel state}.
-It is possible to relate \vb to the bond length distribution as
-\begin{equation}
-\VB_{\text{A}} = \sum_{x\in \text{A}}\sum_{y\in \text{B}} P(x,y) \ln{(2)}.
-\end{equation}
-\comment{Explain why this gives multiplicative log correction...}
- } 
+%\comment{
+%%------------------------------------------------------------------------------------------------------------------
+%\section{Bond Length Distribution}
+%%------------------------------------------------------------------------------------------------------------------
+%We can relate \vb to the bond length distribution $P(x,y)$, defined by Sandvik as the probability of finding a bond between sites $x$ and $y$. 
+% Sandvik found that for $P(x,y) \sim \lvert x-y \rvert^{-p}$ with $p \approx 3$ for the \change{2D Heisenberg ground state / N\'eel state}.
+%It is possible to relate \vb to the bond length distribution as
+%\begin{equation}
+%\VB_{\text{A}} = \sum_{x\in \text{A}}\sum_{y\in \text{B}} P(x,y) \ln{(2)}.
+%\end{equation}
+%\comment{Explain why this gives multiplicative log correction...}
+% } 
  
 %------------------------------------------------------------------------------------------------------------------
 \section{Analytical Calculations}
@@ -215,7 +215,7 @@ From the 1D results (Figs.~\ref{1dOBC} and \ref{1dPBC}) we saw that \vb can be e
 This can be understood through some simple examples, shown in figures \ref{example1} and \ref{example2}.
 The first example, Fig. \ref{example1} is an equal superposition of two four-site valence bond states. 
  \vb is easily calculated as maximal the maximal $\VB = 2\ln(2)$, since there are four bonds cross between regions A and B, but we divide by the number of states we have examined (two in this case).
- \change{This corresponds to the way \vb would be measured in the single projector VB QMC algorithm.}
+This corresponds to the way \vb would be measured in the single projector VB QMC algorithm.
  For such a small system, it is not difficult to calculate \vn explicitly, and we will do so here.
  We begin by writing out and normalizing the wavefunction in the $S^z$ basis.
  \begin{align}
@@ -269,8 +269,6 @@ Diagonalizing $\rho_{\rm A}$ gives three identical eigenvalues of $\tfrac{1}{3}$
 For this system (Fig.~\ref{example1}) $\VB =2\ln(2) > \VN \approx 1.0986$.
 Though $\VB=\VN$ for valence bond basis states, \vb does not give the correct result for some linear combinations of states.  
 The \vb measurement does not even properly normalize the state in Fig. \ref{example1}.
-In Figure \ref{example2} we have another linear combination of states, this time a superposition of two eight-site states, where region A includes the four sites on the left-hand side.  In this case we find that \vb underestimates \vn since there are no valence bonds crossing between regions A and B, but the two regions are still entangled.  The calculation of \vn for this state can be seen in Appendix~\ref{small}, where we find $\VN\approx 0.3251$.
-
 
 \begin{figure}
 \centering 
@@ -283,15 +281,7 @@ For this state $\VB_{\rm A}=0$ and $\VN_{\rm A}\approx 0.325$.
 }
 \end{figure}
 
-
-
-
-
-
-
-
-
-
+In Figure \ref{example2} we have another linear combination of states, this time a superposition of two eight-site states, where region A includes the four sites on the left-hand side.  In this case we find that \vb underestimates \vn since there are no valence bonds crossing between regions A and B, but the two regions are still entangled.  The calculation of \vn for this state can be seen in Appendix~\ref{small}, where we find $\VN\approx 0.3251$.
 
 
 

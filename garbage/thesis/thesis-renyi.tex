@@ -231,6 +231,11 @@ For the $8\times 8$ system the results are already almost entirely converged wit
 \section{The Area Law}
 %----------------------------------------------------------------------------------------------------------
 
+Using the improved ratio estimator we now examine larger regions of the same geometry as used in the previous section (PBC $L \times L$ systems with an $\ell \times\ell$ region A) in an attempt to extract area law scaling of the entanglement entropy.
+Figure \ref{2Darea} show $S_2/\ell$ results for systems from $L=4$ to $L=32$.
+From Section \ref{vbAlaw} and Ref. \cite{PRL1} one expects the scaling of $S_1 = \VN$ in the N\'eel state to follow the area law, and from \comment{some equation} we know that $S_2 \le \VN$.
+The data in Fig. \ref{2Darea} appears consistent with the area law $S_2/\ell \sim \text{const.}$ for $\ell \ll L$, in particular we do not see a multiplicative log correction that was present in the scaling of \vb \cite{Alet, Chh}. 
+
 \begin{figure} {
 	\includegraphics[width=5in]{./figures/paper2/fig_AreaL/fig4.pdf} 
 	\centering
@@ -240,11 +245,6 @@ The data are calculated using the 2D improved ratio estimator \comment{eqref} wi
 	\label{2Darea}
 	}
 } \end{figure}
-
-Using the improved ratio estimator we now examine larger regions of the same geometry as used in the previous section (PBC $L \times L$ systems with an $\ell \times\ell$ region A) in an attempt to extract area law scaling of the entanglement entropy.
-Figure \ref{2Darea} show $S_2/\ell$ results for systems from $L=4$ to $L=32$.
-From Section \ref{vbAlaw} and Ref. \cite{PRL1} one expects the scaling of $S_1 = \VN$ in the N\'eel state to follow the area law, and from \comment{some equation} we know that $S_2 \le \VN$.
-The data in Fig. \ref{2Darea} appears consistent with the area law $S_2/\ell \sim \text{const.}$ for $\ell \ll L$, in particular we do not see a multiplicative log correction that was present in the scaling of \vb \cite{Alet, Chh}. 
 
 Next we examine entanglement entropy scaling for the ladder geometry studied in Section \ref{vbAlaw} and Ref. \cite{PRL1}.
 The results are shown in Figure \ref{2Dbetter1}, including both DMRG and ratio estimator VB QMC data.  
@@ -256,6 +256,7 @@ For the small system sizes we see much larger even-odd oscillations, as we go to
 
 
 \begin{figure} {
+	\vspace{-1cm}
 	\hspace{1cm}
 	\includegraphics[width=5in]{./figures/made/awesomeplot/marea2.pdf} 
 	\caption[Entanglement entropy $S_2/M$ vs. $M$ for $M$-leg ladders of length $4M$ cut in half]{ 
@@ -264,8 +265,7 @@ Region A contains $2M^2$ sites, dividing the ladders in half with the cut is acr
 The data were measured using the 2D improved ratio estimator using $j_{\rm max} = M$.
 	\label{2Dbetter1}
 	}
-} \end{figure}
-\begin{figure} {
+\vspace{1cm}
 \hspace{1cm}
 	\includegraphics[width=5in]{./figures/made/awesomeplot/marea.pdf} 
 	\caption[Entanglement entropy $S_2/M$ vs. $M$ for $M$-leg ladders of length $4M$ with a different cut]{ 
@@ -274,6 +274,7 @@ Region A contains $M^2$ sites, dividing the ladders into segments one-quarter an
 The data were measured using the 2D improved ratio estimator using $j_{\rm max} = M$.
 		\label{2Dbetter2}
 	}
+
 } \end{figure}
 
 %----------------------------------------------------------------------------------------------------------
