@@ -23,42 +23,69 @@ In Chapter 4 we develop a method of measuring the Renyi entanglement entropies, 
 In the final chapter we summarize the results of this research.
 
 %---------------------------------------------------------------------------------------------------------
-\section{Entanglement}
+\section{Quantum Entanglement}
 %---------------------------------------------------------------------------------------------------------
-\comment{What *is* entanglement?  What even is it?}
-
 Entanglement is what differentiates quantum mechanical systems from classical systems.
 In a pair of entangled spins/particles/photons/states the members of the system have information about the other member, even if they are spatially separated.
 Two, let's go with spins, are considered entangled if their joint state can not be written as the product of their individual states.  For example, of these states,
 \begin{equation}
-\ket{\Psi_{1,2}} = \frac{1}{\sqrt{2}} \big( \ket{\up_1\up_2} + \ket{\dw_1\dw_2}\big) 
-\hspace{1cm} \text{and} \hspace{1cm}
-\ket{\Phi_{1,2}} = \frac{1}{\sqrt{2}} \big( \ket{\up_1\dw_2} - \ket{\dw_1\dw_2}\big), 
+	\ket{\Psi_{1,2}} = \frac{1}{\sqrt{2}} \big( \ket{\up_1\up_2} + \ket{\dw_1\dw_2}\big) 
+	\hspace{1cm} \text{and} \hspace{1cm}
+	\ket{\Phi_{1,2}} = \frac{1}{\sqrt{2}} \big( \ket{\up_1\dw_2} - \ket{\dw_1\dw_2}\big), 
 \end{equation}
 only $\ket{\Phi_{1,2}}$ is separable, and can be rewritten as
- \begin{equation}
-\ket{\Phi_{1,2}} = \frac{1}{\sqrt{2}}  \big( \ket{\up_1} - \ket{\dw_1}\big) \otimes \ket{\dw_2}.
+\begin{equation}
+	\ket{\Phi_{1,2}} = \frac{1}{\sqrt{2}}  \big( \ket{\up_1} - \ket{\dw_1}\big) \otimes \ket{\dw_2}.
 \end{equation}
 In the case of only two spins it is easy to see that states are separable (unentangled), but adding more spins it becomes less apparent which spin states are entangled.
+Of course, I have said nothing of the degree of entanglement, only that separable states are entangled, and non-separable states are unentangled.
+
 %---------------------------------------------------------------------------------------------------------
 \section{Measures of Entanglement}
 %---------------------------------------------------------------------------------------------------------
-\comment{Talk about a few maybe?  Concurrence, Fidelity, Renyi Entanglement Entropies!}
+
+There are many different quantities that can be used to measure entanglement: concurrence, logarithmic negativity, squashed entanglement, entropy of entanglement, to name a few.
+Three properties are shared by all measures of entanglement \cite{Plenio2005},
+\begin{enumerate}
+\item A bipartite entanglement measure $E(\rho)$ (measuring the entanglement between two qubits) is a mapping from density matrices to positive real numbers defined for states of arbitrary bipartite systems.
+Usually a normalization factor is included such that the maximally entangled state,
+\begin{equation}
+\ket{\psi_{\rm max}}  = \frac{\ket{0,0} + \ket{1,1}}{\sqrt{2}},
+\end{equation}
+ of two qubits has $E(\ket{\psi_{\rm max}}\bra{\psi_{\rm max}}) = \ln(2)$.
+ \item  $E(\rho)=0$ if the state $\rho$ is separable.
+ \item $E(\rho)$ does not increase under local operators on either of the qubits.  That is, if we have an operator acting on only {\it one} of the qubit, the entanglement between the two qubits will never increase.
+% \item For a pure state $\ket{\psi}\bra{\psi}$ the measure reduces to the von Neumann entanglement entropy.
+\end{enumerate}
+There is also a fourth condition, not satisfied by all measures of entanglement, requiring the measure to reduce to the von Neumann entanglement entropy for a system in a pure state.
+
+
+%---------------------------------------------------------------------------------------------------------
+\section{The von Neumann Entanglement Entropy}
+%---------------------------------------------------------------------------------------------------------
+For a system partitioned into two regions, A and B, the von Neumann entanglement entropy \vn is defined as
+\begin{equation}
+	\VN_\text{A} = -\rm{Tr}\left({\rho_A \ln \rho_A}\right),
+\end{equation}
+where $\rho_{\rm{A}}=\rm{Tr}_B\ket{\psi}\bra{\psi}$ is the reduced density matrix, the density matrix of the entire system with the degrees of freedom from region B traced out.
+\vn is only suited to measure the entanglement of a pure state, as is the case for all the entanglement measures we will discuss in this thesis.
+This is due to the way \vn measures entanglement; we begin with a pure state and trace out the degrees of freedom for some subregion B.  
+We are left with $\rho_{\rm A}$ representing a, possibly mixed, state.
+\vn can be rewritten in terms of the eigenvalues of the density matrix,
+\begin{equation}
+\VN_\text{A} = -\sum_i \left(\lambda_i \ln \lambda_i\right),
+\end{equation}
+which, you may notice, is quite similar to the thermodynamic entropy, or alternatively the Shannon information entropy.
+Basically, we measure the uncertainty of the state.  If $\rho_{\rm A}$ represents a pure state we {\bf know} what state of region A is in, and $\rho_{\rm A}$ will have one non-zero eigenvalue equal to 1 (so $\VN = 0$).
+If $\rho_{\rm A}$ represents a mixed state, we will have some probability distribution of the possible states, and the entropy of that distribution is used to quantify the entanglement between regions A and B.
+In the maximally entangled case all eigenvalues are equal to $1/d$, where $d$ is the dimension of $\rho_{\rm A}$ ($2^N$ for $N$ spins), leading to the entanglement entropy of $\VN= d\ln (d)$.
+
 
 \begin{equation} \label{renyi}
  	S_n(\rho_{\rm A}) = \frac{1}{1-n}\ln\left[{\rm Tr}\left( \rho_{\rm A}^n \right) \right]
 \end{equation}
 
 
-%---------------------------------------------------------------------------------------------------------
-\section{The von Neumann Entanglement Entropy}
-%---------------------------------------------------------------------------------------------------------
-
-For a system divided into two regions, A and B, the von Neumann entanglement entropy is defined as
-\begin{equation}
-	\VN_\text{A} = -\rm{Tr}\left({\rho_A \ln \rho_A}\right),
-\end{equation}
-where $\rho_{\rm{A}}=\rm{Tr}_B\ket{\psi}\bra{\psi}$ is the reduced density matrix, that is, the density matrix of the entire system, with the degrees of freedom from region B traced out.
 %---------------------------------------------------------------------------------------------------------
 \section{Entanglement in Condensed Matter Systems}
 %---------------------------------------------------------------------------------------------------------
