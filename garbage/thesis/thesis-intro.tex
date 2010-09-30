@@ -98,46 +98,33 @@ Taking the limit $n\to1$ gives us $S_1 = \VN$.  These entanglement entropies hav
 \section{Entanglement in Condensed Matter Systems}
 %---------------------------------------------------------------------------------------------------------
 
-Entanglement can be used to study quantum correlations and measure universal quantities in interacting quantum many-body systems.
-In systems such as spin liquids, where two-point correlation functions decay at large length-scales, the ``topological entanglement entropy'' can be used to quantify topological order \cite{KP}.
-
-quantum correlations, universal corrections to the area law, study QCPs, 
-
-may affect PEPS MPS whatevs
-
-measurement is independent of basis, don't need to know symmetry of whatever?
-
-
-
-Exact analytical results are known for the scaling of entanglement in one dimensional quantum systems \comment{reference} which state that away from critical points the entanglement entropy between two regions A and B scales as the size of the boundary between those regions
-
-study qcp's
-
-
-
-
-Using measures of entanglement from quantum information to study interacting quantum many-body systems is a rapidly growing interdisciplinary topic \cite{Amico, ALreview, intro}.
+Using measures of entanglement from quantum information to study interacting quantum many-body systems is a rapidly growing interdisciplinary topic \cite{Amico, intro}.
 Entanglement provides information on ``hidden'' correlations \cite{wolf}.
 In systems that exhibit topological order, entanglement measures can be used to quantify that order \cite{Bbob, KP, LW, Spectrum}, which is missed by standard measurements like two-point correlation functions.
-
-
-
+Entanglement has the added benefit of being independent of the basis used to represent the condensed matter system.
 
 %---------------------------------------------------------------------------------------------------------
-\section{Scaling of Entanglement Entropy}
+\subsection{Scaling of Entanglement Entropy}
 %---------------------------------------------------------------------------------------------------------
+
+The scaling of entanglement in condensed matter systems has potential ramifications for the rapidly advancing field of computational quantum many-body theory, where it is known that states obeying an {\it area law} \cite{Shredder} scaling  (entanglement scales as the size of the boundary between regions A and B) scaling can be accurately represented with matrix product states \cite{MPS_DMRG}, but faster than area law scaling presents difficulties.
+
+
+
+
+
+
+The scaling of \vn is well understood in 1D systems \cite{ALreview} were, away from special critical points, entanglement between two regions scales as the size of the boundary between those regions.
+This ``area law'' \cite{Shredder} is expected to hold in the ground states many 2D interacting quantum systems, though there are few exact results available.
+
 In one dimensional interacting quantum systems, there are exact analytical results for the scaling of the von Neumann entanglement entropy know from Conformal field theory (CFT).
 These results show that away from critical points $\VN_\text{A}$ scales like the size of the boundary between regions A and B.  This scaling of entanglement entropy is called the {\it area law} \cite{Shredder}, and it is expected to hold for the ground states of two dimensional unfrustrated spin systems \cite{DeBeaudrap2010} \comment{another ref?}.
 
-\comment{Should I put the area law stuff *in* the CFT section?  That's what happens in the paper.  It says that CFT results give the area law for 1D and it's believed to hold in 2D too.}
 
 \comment{Don't forget about corrections to the area law.}
 
-\comment{Also, consequences of things not following the area law.  
-(harder to simulate if entanglement scales faster than the area law).}
-
 %---------------------------------------------------------------------------------------------------------
-\subsection{1D Critical Systems}
+%\subsection{1D Critical Systems}
 \label{1dcft}
 
 \cite{Cardy} \cite{Zhou2006}
@@ -146,9 +133,9 @@ described by CFT in the limit of the length of the chain, $L \rightarrow \infty$
 \comment{Something about the "conformal mapping" $x \rightarrow x' = (L/\pi)\sin(\pi x/L)$ for PBC
 and $x \rightarrow 2x'$ for OBC.}
 \begin{equation} \label{cft1d}
-	\VN_{\text{PBC}} = \frac{c}{3}\ln(x') + S_1
+	\VN_{\text{PBC}} = \frac{c}{3}\ln(x') + s_1
 	\hspace{1cm}
-	\VN_{\text{OBC}} = \frac{c}{6}\ln(2x') + \ln(g)+ S_1
+	\VN_{\text{OBC}} = \frac{c}{6}\ln(2x') + \ln(g)+ s_1
 \end{equation}
 \comment{Change $S_1$ to some other variable name!!!}
 \change{where $c$ is the central charge of the CFT, $S_1$ is a model-dependent constant, and $g$ is Affleck and Ludwig's universal boundary term \cite{AffleckAndLudwig}.} 
