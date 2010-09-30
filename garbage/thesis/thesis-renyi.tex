@@ -37,7 +37,22 @@ For this project I measured \re with the bare \swa operator using both a double 
 
 \section{The ``Replica Trick''}
 
-The replica trick is not new to physics, it has been used many times before in analytical calculations of entanglement entropy \cite{Cardy, Callan, Fradkin}.
+The replica trick is not new to physics, it has been used for many years in statistical mechanics to study systems with quenched randomness \comment{REFERENCE}.
+In these systems the state will not equilibrate because it is "stuck" in a certain configuration that is not necessarily the lowest energy state. 
+The expectation values of quantities need to be calculated over all possible configurations of the system.
+
+The replica trick was created to help calculate the configurational average of the free energy $F = -k_B T \langle\ln(Z) \rangle $, where $\langle\ln(Z) \rangle $ is difficult to calculate.
+
+We can express  $ \ln(Z) $ in terms of the Taylor expansion for $Z^n$ for small n,
+\begin{align}
+	Z^n &= 1+ n\ln(Z) + \frac{n^2}{2!}\left( \ln (Z)\right)^2 + \cdots \\
+	&\;\;\; \langle \ln(Z) \rangle = \lim_{n\to0} \frac {\langle Z^n\rangle -1}{n},
+\end{align} 
+where $\langle Z^n \rangle$ is simpler to calculate.
+To get  $\langle Z^n \rangle$ $n$ replicas of the original spins on the systems are introduced, so that the new partition function becomes $Z^n$ instead of just $Z$.
+This procedure has the advantage that it is much easier to average the partition function over all of the configurations than it is to average its logarithm.
+
+This trick has also been applied to analytical calculations of entanglement entropy \cite{Cardy, Callan, Fradkin}.
 However, this is the first time it has been employed to measure entanglement entropy in a quantum Monte Carlo simulation.  In fact it can even be used in finite temperature stochastic series expansion quantum Monte Carlo \cite{kappa}.
 This method uses $n$ copies of the system, to simulate  ${\rm Tr} (\rho^n_{\rm A})$.
 Below we show a method using two non-interacting copies of a system, and a \swa operator, to measure ${\rm Tr} (\rho^2_{\rm A})$, which is necessary for the calculation of \re.
