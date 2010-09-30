@@ -1,44 +1,48 @@
 %======================================================================
 \chapter{Measuring Renyi Entanglement Entropy}
 %======================================================================
-\comment{Totally why do we measure this?  Y'know?}\\
-\comment{Mention we're using double projector}
 
-\noindent
-- we can't measure \vn with vb qmc\\
-- \vb isn't a good measure of entropy\\
-- can measure \re\\
- - closest entropy to \vn\\
- - gives a lower bound on \vn\\
- - maybe follows same area law and still has universal terms? (check)\\
- 
-The generalized Renyi entanglement entropies, again defined as:
+Though we are not able to measure \vn in VB QMC simulations, due to the inaccessiblity of the wavefunction of the system, using something called the "replica trick" we are able to measure ${\rm Tr}(\rho_{\rm A}^n)$ in our algorithm for $n>1$, which allows us to measure the Renyi entanglement entropies 
 \begin{equation} \label{renyi2}
  	S_n(\rho_{\rm A}) = \frac{1}{1-n}\ln\left[{\rm Tr}\left( \rho_{\rm A}^n \right) \right],
 \end{equation}
-where $\rho_{\rm{A}}=\rm{Tr}_B\ket{\psi}\bra{\psi}$ is the reduced density matrix of region A, and $n>0$.
+for $n>1$.  For $n>m$ these entropies have the property that $S_n<S_m$, so the second Renyi entropy, $S_2$ will give the largest lower bound on \vn.
+The Renyi entropies are expected to follow the same area laws obeyed by \vn \cite{Bbob}, making them equally useful for extracting universal quantities.
+The Renyi entropies together also encode information about the whole entanglement spectrum of the system, and thus contain more information that \vn alone \cite{Bbob}.
 
-\change{
-``Encode information about the whole entanglement spectrum of $\rho_{\rm A}$."
-(But that's just because if you know all of them you pretty much know all the eigenvalues of $\rho_{\rm A}$.)
-So they have more information together than just $S_1=\VN$. \cite{Spectrum}
-}
+In this chapter we begin by demonstrating the measurement of ${\rm Tr}(\rho_{\rm A}^n)$ using the replica trick, and we show the specific case for $n=2$ using a \sw operator on two copies of a system.
+We measure $S_2$ in 1D first, comparing the results to DMRG results for $S_2$.  
+A double projector VB QMC algorithm is used this time, and we also show results measured using the loop algorithm.
+We develop a method to improve the sampling of our $S_2$ measurement using a different Monte Carlo weight, and measuring the ratio of \swa operators for different sizes of region A.
+We then move to 2D, beyond the scope of DMRG simulations, and look at both $L\times L$ systems with periodic boundary conditions, and $M$-leg ladders, as in the previous chapter, with open boundary conditions.  
+We find area law scaling of the entanglement entropy in both of these systems.
+We conclude with a discussion of methods to further improve the measurement of \re in VB QMC.
 
-\change{ Something about topological entanglement entropy and quantum dimension \cite{Bbob}.}
+For this project I measured \re with the bare \swa operator using both a double projector VB QMC program, and a loop algorithm VB QMC program.  I also measured a ratio of \swa operators using a double projector code.
 
-\change{ Field theory on $O(N)$ model... universal corrections to scaling of $S_n$ calculated.}
-
-The Renyi entropies have the property that successive entropies give a lower bound on the previous entropies.  I.e. if $n>m$ then $S_n<S_m$, so \re gives a lower bound on \vN, and \re will give the closest estimate of \vN.
-
-We can use the expectation value of a unitary \sw operator on two non-interacting copies of the system to be studied in order to obtain ${\rm Tr}(\rho_{\rm A}^2)$, a quantity necessary to compute \re.  
-This process can be generalized to calculate any $S_n$ with $n \ge 2$, by applying a generalized \sw operator to $n$ copies of the system. 
+%\change{
+%``Encode information about the whole entanglement spectrum of $\rho_{\rm A}$."
+%(But that's just because if you know all of them you pretty much know all the eigenvalues of $\rho_{\rm A}$.)
+%So they have more information together than just $S_1=\VN$. \cite{Spectrum}
+%}
+%
+%\change{ Something about topological entanglement entropy and quantum dimension \cite{Bbob}.}
+%
+%\change{ Field theory on $O(N)$ model... universal corrections to scaling of $S_n$ calculated.}
+%
+%The Renyi entropies have the property that successive entropies give a lower bound on the previous entropies.  I.e. if $n>m$ then $S_n<S_m$, so \re gives a lower bound on \vN, and \re will give the closest estimate of \vN.
+%
+%We can use the expectation value of a unitary \sw operator on two non-interacting copies of the system to be studied in order to obtain ${\rm Tr}(\rho_{\rm A}^2)$, a quantity necessary to compute \re.  
+%This process can be generalized to calculate any $S_n$ with $n \ge 2$, by applying a generalized \sw operator to $n$ copies of the system. 
 
 \section{The ``Replica Trick''}
 
-\change{Has been used before in lots of stuff (more refs)\cite{Cardy, Callan, Fradkin}
-But this is its first use with QMC.  mention $\kappa$?}
+The replica trick is not new to physics, it has been used many times before in analytical calculations of entanglement entropy \cite{Cardy, Callan, Fradkin}.
+However, this is the first time it has been employed to measure entanglement entropy in a quantum Monte Carlo simulation.  In fact it can even be used in finite temperature stochastic series expansion quantum Monte Carlo \cite{kappa}.
+This trick uses $n$ non-interacting copies of the system, to simulate  ${\rm Tr} \rho^n_{\rm A}$.
 
-We can compute ${\rm Tr} \rho^n_{\rm A}$ using n, non-interacting copies of the system.
+
+We can compute ${\rm Tr} \rho^n_{\rm A}$ using 
 
 Below we show a method for measuring $S_2$.
 %----------------------------------------------------------------------------------------------------------
@@ -137,12 +141,11 @@ The quantity we measure depends entirely of the change in the number of loops af
 For a large region A we are swapping a larger number of sites, and the difference in the number of loops can change by a large number, or a small number. 
 We have to sample states for much longer to converge on the average change in the number of loops.
 In contrast, swapping only one site ($x=1$) will always decrease the number of loops by 1, so $S_2(1)=\ln(2)$ always.
-For two sites in region A, the difference in the number of loops can be $-2$ or 0. \comment{Check the numbers, and maybe extend or find a formula.} 
-\comment{Cram some diagrams of this up in here.}
-\change{
-Another way to look at it is that we are sampling terms in the trace of a much larger matrix for a large region A.}
+For two sites in region A, the difference in the number of loops can be $-2$ or 0.
 
-One way to improve upon the poor sampling of  $\langle \SWA \rangle$ is using the loop algorithm (Section \ref{sec:loop}), which \change{has much better scaling?} than the double projector method.
+%\change{Another way to look at it is that we are sampling terms in the trace of a much larger matrix for a large region A.}
+
+One way to improve upon the poor sampling of  $\langle \SWA \rangle$ is using the loop algorithm (Section \ref{sec:loop}), which scales as $m$ while the double projector method scales like $Nm$.
 Measurements taken using the loop algorithm are added into Figure \ref{loopfig}; they show a significant improvement over the double projector $\langle \SWA \rangle$ measurement, 
 though there is still noticeable statistical error for large region A.
 If our goal was simply the measurement of $S_2$ instead of the demonstration of the most effective way to measure $S_2$, we could note that $S_2(A) = S_2(B)$ and reflect the data about the midpoint, resulting in almost perfect correspondence with the DMRG data.
@@ -240,7 +243,7 @@ For the $8\times 8$ system the results are already almost entirely converged wit
 
 Using the improved ratio estimator we now examine larger regions of the same geometry as used in the previous section (PBC $L \times L$ systems with an $\ell \times\ell$ region A) in an attempt to extract area law scaling of the entanglement entropy.
 Figure \ref{2Darea} show $S_2/\ell$ results for systems from $L=4$ to $L=32$.
-From Section \ref{vbAlaw} and Ref. \cite{PRL1} one expects the scaling of $S_1 = \VN$ in the N\'eel state to follow the area law, and from \comment{some equation} we know that $S_2 \le \VN$.
+From Section \ref{vbAlaw} and Ref. \cite{PRL1} one expects the scaling of $S_1 = \VN$ in the N\'eel state to follow the area law, we know that $S_2 \le \VN$.
 The data in Fig. \ref{2Darea} appears consistent with the area law $S_2/\ell \sim \text{const.}$ for $\ell \ll L$, in particular we do not see a multiplicative log correction that was present in the scaling of \vb \cite{Alet, Chh}. 
 
 \begin{figure} {
@@ -291,7 +294,7 @@ The data were measured using the 2D improved ratio estimator using $j_{\rm max} 
 
 
 
-We have presented a method which can be used to measure the Renyi entropies \comment{eqref} for $n>1$, with quantum Monte Carlo simulations in the valence bond basis, employing the "replica trick".
+We have presented a method which can be used to measure the Renyi entropies for $n>1$, with quantum Monte Carlo simulations in the valence bond basis, employing the "replica trick".
 We demonstrate this method by measuring the second Renyi entropy $S_2$ using the expectation value of a \swa operator acting on two copies of the system.
 With the use of an improved ratio estimator we improve the sampling of our algorithm and our results for $S_2$ converge to the exact results for a 1D Heisenberg chain with open boundaries.
 Using this same method we present the first measurements of $S_2$ on 2D periodic $L \times L$ and open boundary ladder systems, confirming the area law for the N\'eel ground state of the Heisenberg model.
