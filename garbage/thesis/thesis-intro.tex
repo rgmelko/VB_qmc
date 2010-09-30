@@ -78,18 +78,49 @@ We are left with $\rho_{\rm A}$ representing a, possibly mixed, state.
 which, you may notice, is quite similar to the thermodynamic entropy, or alternatively the Shannon information entropy.
 Basically, we measure the uncertainty of the state.  If $\rho_{\rm A}$ represents a pure state we {\bf know} what state of region A is in, and $\rho_{\rm A}$ will have one non-zero eigenvalue equal to 1 (so $\VN = 0$).
 If $\rho_{\rm A}$ represents a mixed state, we will have some probability distribution of the possible states, and the entropy of that distribution is used to quantify the entanglement between regions A and B.
-In the maximally entangled case all eigenvalues are equal to $1/d$, where $d$ is the dimension of $\rho_{\rm A}$ ($2^N$ for $N$ spins), leading to the entanglement entropy of $\VN= d\ln (d)$.  
-However, returning to my previous point, if the initial state was already mixed instead of pure, the state would already have some entropy not due to tracing out region B; added to our measurement would be the initially present classical uncertainty in the state.
+In the maximally entangled case all eigenvalues are equal to $1/d$, where $d$ is the dimension of $\rho_{\rm A}$ ($2^N$ for $N$ spins), leading to the entanglement entropy of $\VN= \ln (d) = N \ln(2)§$.  
+However, returning to my previous point, if the initial state starts off mixed instead of pure, the state would already have some entropy not due to tracing out region B; added to our entanglement measurement would be the initially present classical uncertainty in the state.
 
-
+The von Neumann entanglement entropy is part of a larger class of entanglement entropies called the generalized Renyi entanglement entropies.
+The $n^\text{th}$ Renyi entanglement entropy $S_n$ is defined as
 \begin{equation} \label{renyi}
- 	S_n(\rho_{\rm A}) = \frac{1}{1-n}\ln\left[{\rm Tr}\left( \rho_{\rm A}^n \right) \right]
+ 	S_n(\rho_{\rm A}) = \frac{1}{1-n}\ln\left[{\rm Tr}\left( \rho_{\rm A}^n \right) \right].
 \end{equation}
+%It may not be immediately apparent that $\VN = S_1$, but if we take the limit as $n\to 1$,
+%\begin{equation}
+%S_1(\rho_{\rm A}) = \lim_{n\to1}\frac{\ln\left[{\rm Tr}\left( \rho_{\rm A}^n \right) \right]}{1-n}
+%	=\lim_{n\to1}\frac{\frac{d}{dn}\ln\left[{\rm Tr}\left( \rho_{\rm A}^n \right) \right]}{\frac{d}{dn}(1-n)}
+%\end{equation}
+Taking the limit $n\to1$ gives us $S_1 = \VN$.  These entanglement entropies have the property that for $n>m$, $S_n\ge S_m$; successive Renyi entropies give a lower bound on the previous entropies \comment{cite some quantum information textbook}.
 
 
 %---------------------------------------------------------------------------------------------------------
 \section{Entanglement in Condensed Matter Systems}
 %---------------------------------------------------------------------------------------------------------
+
+Entanglement can be used to study quantum correlations and measure universal quantities in interacting quantum many-body systems.
+In systems such as spin liquids, where two-point correlation functions decay at large length-scales, the ``topological entanglement entropy'' can be used to quantify topological order \cite{KP}.
+
+quantum correlations, universal corrections to the area law, study QCPs, 
+
+may affect PEPS MPS whatevs
+
+measurement is independent of basis, don't need to know symmetry of whatever?
+
+
+
+Exact analytical results are known for the scaling of entanglement in one dimensional quantum systems \comment{reference} which state that away from critical points the entanglement entropy between two regions A and B scales as the size of the boundary between those regions
+
+study qcp's
+
+
+
+
+Using measures of entanglement from quantum information to study interacting quantum many-body systems is a rapidly growing interdisciplinary topic \cite{Amico, ALreview, intro}.
+Entanglement provides information on ``hidden'' correlations \cite{wolf}.
+In systems that exhibit topological order, entanglement measures can be used to quantify that order \cite{Bbob, KP, LW, Spectrum}, which is missed by standard measurements like two-point correlation functions.
+
+
 
 
 %---------------------------------------------------------------------------------------------------------
