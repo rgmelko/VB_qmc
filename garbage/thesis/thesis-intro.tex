@@ -2,8 +2,6 @@
 %---------------------------
 \chapter{Introduction}
 
-\comment{Find somewhere to cram in how we can't measure \vn with QMC because we don't have the wavefunction.}
-
 %scaling\\
 %universal quantities...\\
 %The search for topological order\\
@@ -91,7 +89,9 @@ The $n^\text{th}$ Renyi entanglement entropy $S_n$ is defined as
 %S_1(\rho_{\rm A}) = \lim_{n\to1}\frac{\ln\left[{\rm Tr}\left( \rho_{\rm A}^n \right) \right]}{1-n}
 %	=\lim_{n\to1}\frac{\frac{d}{dn}\ln\left[{\rm Tr}\left( \rho_{\rm A}^n \right) \right]}{\frac{d}{dn}(1-n)}
 %\end{equation}
-Taking the limit $n\to1$ gives us $S_1 = \VN$.  These entanglement entropies have the property that for $n>m$, $S_n\ge S_m$; successive Renyi entropies give a lower bound on the previous entropies \comment{cite some quantum information textbook}.
+Taking the limit $n\to1$ gives us $S_1 = \VN$.  These entanglement entropies have the property that for $n>m$, $S_n\ge S_m$; successive Renyi entropies give a lower bound on the previous entropies.
+
+% \comment{cite some quantum information textbook}.
 
 
 %---------------------------------------------------------------------------------------------------------
@@ -105,44 +105,37 @@ Entanglement has the added benefit of being independent of the basis used to rep
 
 %---------------------------------------------------------------------------------------------------------
 \subsection{Scaling of Entanglement Entropy}
+\label{1dcft}
 %---------------------------------------------------------------------------------------------------------
 
-The scaling of entanglement in condensed matter systems has potential ramifications for the rapidly advancing field of computational quantum many-body theory, where it is known that states obeying an {\it area law} \cite{Shredder} scaling  (entanglement scales as the size of the boundary between regions A and B) scaling can be accurately represented with matrix product states \cite{MPS_DMRG}, but faster than area law scaling presents difficulties.
-
-
-
-
-
-
-The scaling of \vn is well understood in 1D systems \cite{ALreview} were, away from special critical points, entanglement between two regions scales as the size of the boundary between those regions.
+The scaling of \vn is well understood in 1D systems \cite{ALreview} where, away from special critical points, entanglement between two regions scales as the size of the boundary between those regions.
 This ``area law'' \cite{Shredder} is expected to hold in the ground states many 2D interacting quantum systems, though there are few exact results available.
 
-In one dimensional interacting quantum systems, there are exact analytical results for the scaling of the von Neumann entanglement entropy know from Conformal field theory (CFT).
-These results show that away from critical points $\VN_\text{A}$ scales like the size of the boundary between regions A and B.  This scaling of entanglement entropy is called the {\it area law} \cite{Shredder}, and it is expected to hold for the ground states of two dimensional unfrustrated spin systems \cite{DeBeaudrap2010} \comment{another ref?}.
+The scaling of entanglement has potential ramifications for the rapidly advancing field of computational quantum many-body theory, where it is known that states obeying area law scaling    can be accurately represented with matrix product states \cite{MPS_DMRG}, while faster than area law scaling presents difficulties.
+Some new classes of algorithms, Tensor-network states and projected entangled pair states, rely on states that are explicitly constructed to obey an area law \cite{PEPS1,PEPS2}.
 
+The scaling of entanglement entropy in 2D is also known to hold information about universal quantities.
+In critical systems the area law scaling has universal additive logarithmic corrections \cite{Casini2007,Ryu}, and for topologically ordered systems there are universal additive constant corrections \cite{KP,LW}.
 
-\comment{Don't forget about corrections to the area law.}
-
-%---------------------------------------------------------------------------------------------------------
-%\subsection{1D Critical Systems}
-\label{1dcft}
-
-\cite{Cardy} \cite{Zhou2006}
-
-described by CFT in the limit of the length of the chain, $L \rightarrow \infty$.
-\comment{Something about the "conformal mapping" $x \rightarrow x' = (L/\pi)\sin(\pi x/L)$ for PBC
-and $x \rightarrow 2x'$ for OBC.}
-\begin{equation} \label{cft1d}
+The 1D Heisenberg spin chain is critical, and the entanglement entropy is known to scale as \cite{Cardy} \cite{Zhou2006}
+\begin{equation} \label{cft1d} 
 	\VN_{\text{PBC}} = \frac{c}{3}\ln(x') + s_1
 	\hspace{1cm}
 	\VN_{\text{OBC}} = \frac{c}{6}\ln(2x') + \ln(g)+ s_1
 \end{equation}
-\comment{Change $S_1$ to some other variable name!!!}
-\change{where $c$ is the central charge of the CFT, $S_1$ is a model-dependent constant, and $g$ is Affleck and Ludwig's universal boundary term \cite{AffleckAndLudwig}.} 
-\comment{$\leftarrow$ the {\bf most} plagiarized? }
+for systems with open and periodic boundary conditions, where $c$ is the central charge from conformal field theory, $g$ is a universal boundary term \cite{AffleckAndLudwig}, and $s_1$ is a model dependent constant. $x'$ is the conformal mapping for the number of sites included in region A, used to account for the finite size of the Heisenberg chains, when \eqref{cft1d} applies in the long chain-length limit.  $x \rightarrow x' = (L/\pi)\sin(\pi x/L)$ for PBC and $x \rightarrow 2x'$ for OBC, where L is the length of the chain.
 
-\comment{Talk about what values $c$ can take.  From Cardy and Zhou it seems like $c=1/2,1$, but in our case it's 1.} 
+For 2D Heisenberg spin systems with topological order, the entanglement entropy is known to scale as \cite{intro}
+\begin{equation} \label{AL}
+S_{\rm A} = \alpha \ell - n \gamma + \mathcal{O}(1/\ell),
+\end{equation}
+where $\ell$ is the length of the boundary, $\gamma$ is the topological entanglement entropy\cite{KP,LW}, and $n$ is related to the shape of the boundary.
 
+\section{Measurement of Entanglement Entropy}
 
+To study and extract these universal quantities it is necessary to be able to measure entanglement entropy in a scalable type of simulation, such as quantum Monte Carlo where we can go to large system sizes.
+Unfortunately, the entanglement entropy is a property of the wavefunction of a system, which is not readily accessible in quantum Monte Carlo simulations.  
+Though we can measure entropy directly in simulations that give us the wavefunction or density matrix of the system, such as density matrix renormalization group simulations (DMRG), these types of algorithms have poor scaling in the system size, and DMRG specifically works well in 1D, but fails when approaching two dimensions.
+In this thesis we explore methods of measuring entanglement entropy in quantum Monte Carlo simulations.
 
 
