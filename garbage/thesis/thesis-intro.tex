@@ -26,6 +26,20 @@ In the final chapter we summarize the results of this research.
 \section{Entanglement}
 %---------------------------------------------------------------------------------------------------------
 \comment{What *is* entanglement?  What even is it?}
+
+Entanglement is what differentiates quantum mechanical systems from classical systems.
+In a pair of entangled spins/particles/photons/states the members of the system have information about the other member, even if they are spatially separated.
+Two, let's go with spins, are considered entangled if their joint state can not be written as the product of their individual states.  For example, of these states,
+\begin{equation}
+\ket{\Psi_{1,2}} = \frac{1}{\sqrt{2}} \big( \ket{\up_1\up_2} + \ket{\dw_1\dw_2}\big) 
+\hspace{1cm} \text{and} \hspace{1cm}
+\ket{\Phi_{1,2}} = \frac{1}{\sqrt{2}} \big( \ket{\up_1\dw_2} - \ket{\dw_1\dw_2}\big), 
+\end{equation}
+only $\ket{\Phi_{1,2}}$ is separable, and can be rewritten as
+ \begin{equation}
+\ket{\Phi_{1,2}} = \frac{1}{\sqrt{2}}  \big( \ket{\up_1} - \ket{\dw_1}\big) \otimes \ket{\dw_2}.
+\end{equation}
+In the case of only two spins it is easy to see that states are separable (unentangled), but adding more spins it becomes less apparent which spin states are entangled.
 %---------------------------------------------------------------------------------------------------------
 \section{Measures of Entanglement}
 %---------------------------------------------------------------------------------------------------------
@@ -45,6 +59,11 @@ For a system divided into two regions, A and B, the von Neumann entanglement ent
 	\VN_\text{A} = -\rm{Tr}\left({\rho_A \ln \rho_A}\right),
 \end{equation}
 where $\rho_{\rm{A}}=\rm{Tr}_B\ket{\psi}\bra{\psi}$ is the reduced density matrix, that is, the density matrix of the entire system, with the degrees of freedom from region B traced out.
+%---------------------------------------------------------------------------------------------------------
+\section{Entanglement in Condensed Matter Systems}
+%---------------------------------------------------------------------------------------------------------
+
+
 %---------------------------------------------------------------------------------------------------------
 \section{Scaling of Entanglement Entropy}
 %---------------------------------------------------------------------------------------------------------
