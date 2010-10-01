@@ -340,20 +340,16 @@ We found the Monte Carlo results converged to the exact (DMRG) results for one d
 chains.
 We also saw, using both an $M$ leg ladder geometry and a torus geometry, that the scaling of the second Renyi entropy follows an area law in the two dimensional Heisenberg ground state.
 
-In future work I will... 
 
-\comment{Now Roger says I'm supposed to talk about how measuring EE with revolutionize physics. ``Razzle dazzle" he says.
+In the future we hope to improve the sampling of our Renyi measurement to the point where it is possible to extract subleading corrections to the area law.  
+One way we may accomplish this is by experimenting with different reweighting schemes for the measurement of the $Swap$ operator. 
+There is a technique called {\it multicanonical sampling} which allows the simulation to reach every point in the space of values of $\langle Swap \rangle$ with equal probability with the help of a weighting function.
 
-I guess we could measure some of the subleading corrections to the area law and get some of those universal quantities if we can look at a system with topological order.
-Maybe I can talk more about the PRB (finite T measurement of EE), though it's a little ridiculous to measure EE at finite T because then you're starting off with a mixed state instead of a pure state, but I guess we actually measured mutual information, instead of entropy.
+The measurement of Renyi entropy has already been extended to use in finite temperature stochastic series expansion quantum Monte Carlo simulations \cite{kappa}, where it was found that the mutual information (a quantity related to the difference on Renyi entropies) converges to a limiting function of temperature, with apparently nontrivial corrections near critical points.
+Further measurements in systems near critical points could allow the extraction of a suspected universal critical exponent present in the scaling of mutual information.
 
-Oh, and I'm supposed to stress how the neel state is the *first* interacting 2D model shown to obey the area law.  *first*
-}
-
-
-
-
-
+We have developed the first method used to measure entanglement in condensed matter systems with a scalable simulation method.
+There are countless models to be studied and an untold number of questions can be answered  only now that we are able to measure entropy in these systems.
 
 % The \appendix statement indicates the beginning of the appendices.
 \appendix
