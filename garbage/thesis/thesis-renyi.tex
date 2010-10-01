@@ -2,7 +2,7 @@
 \chapter{Measuring Renyi Entanglement Entropy}
 %======================================================================
 
-Though we are not able to measure \vn in VB QMC simulations, due to the inaccessiblity of the wavefunction of the system, using something called the ``replica trick''{\color{red}{cite}} we are able to measure ${\rm Tr}(\rho_{\rm A}^n)$ in our algorithm for $n>1$, which allows us to measure the Renyi entanglement entropies 
+Though we are not able to measure \vn in VB QMC simulations, due to the inaccessiblity of the wavefunction of the system, using something called the ``replica trick'' \cite{dad} we are able to measure ${\rm Tr}(\rho_{\rm A}^n)$ in our algorithm for $n>1$, which allows us to measure the Renyi entanglement entropies 
 \begin{equation} \label{renyi2}
  	S_n(\rho_{\rm A}) = \frac{1}{1-n}\ln\left[{\rm Tr}\left( \rho_{\rm A}^n \right) \right],
 \end{equation}
@@ -37,7 +37,7 @@ For this project I measured \re with the bare \swa operator using both a double 
 
 \section{The ``Replica Trick''}
 
-The replica trick is not new to physics, it has been used for many years in statistical mechanics to study systems with quenched randomness \comment{REFERENCE}.
+The replica trick is not new to physics, it has been used for many years in statistical mechanics to study systems with quenched randomness \cite{dad}.
 In these systems the state will not equilibrate because it is "stuck" in a certain configuration that is not necessarily the lowest energy state. 
 The expectation values of quantities need to be calculated over all possible configurations of the system.
 
@@ -62,7 +62,7 @@ Below we show a method using two non-interacting copies of a system, and a \swa 
 
 \begin{figure} {
 	\includegraphics[width=6.2 in]{./figures/made/swp.pdf} 
-	\caption[Application of the Swap operator]{
+	\caption[Application of the Swap operator to two copies of a 6-site system]{
 		\label{swap}
 		(a) Two non-interacting copies, $\ket{\psi_1}$ and  $\ket{\psi_2}$, of a six-site chain
 		where the left three sites of each copy belong to region A, and the other sites are in
@@ -132,7 +132,7 @@ though in this case $\ket{V^{\rm L}}$ and $\ket{V^{\rm R}}$ each contain two non
 %----------------------------------------------------------------------------------------------------------
 \begin{figure} {
 	\includegraphics[width=6in]{./figures/paper2/fig_1D/swapfig.pdf} 
-	\caption[Renyi for a 100-site chain]{ 
+	\caption[$S_2$ for a 100-site chain using double projector VB QMC and DMRG]{ 
 	\label{swapfig}
 	The Renyi entropy $S_2$ as a function of site index $x \in $ A, for a 100-site Heisenberg chain with open boundaries, 
 		calculated with DMRG and VB QMC.  Data labeled ``Swap'' was calculated with Eq.~\eqref{swapmeas} with one VB QMC simulation.	
@@ -145,10 +145,10 @@ Results are shown in Figure \ref{swapfig}.
 In the DMRG simulations, $S_2$ is calculated in the standard way, using the eigenvalues of the reduced density matrix. 
 One can immediately see that the calculation of $S_2$ with the expectation value $\langle \SWA \rangle$ gives very large statistical errors, especially for a large number of sites inside region A.
 
-One way to understand to consider what we are actually measuring.
+One way to understand this result is to consider what we are actually measuring.
 From Eq. \eqref{swapmeas} one can see we are measuring the ratio of two inner products.
 Since the overlap (Eq. \eqref{innprod}) is $2^{N_{\rm loop} - N_{\rm sites}/2}$, this ratio of inner products is $2^{N_{\rm swaploops} - N_{\rm loops}}$.
-The quantity we measure depends entirely of the change in the number of loops after applying a swap operator to one of our states. 
+The quantity we measure depends entirely on the change in the number of loops after applying a swap operator to one of our states. 
 For a large region A we are swapping a larger number of sites, and the difference in the number of loops can change by a large number, or a small number. 
 We have to sample states for much longer to converge on the average change in the number of loops.
 In contrast, swapping only one site ($x=1$) will always decrease the number of loops by 1, so $S_2(1)=\ln(2)$ always.
@@ -167,7 +167,7 @@ However, when we begin to measure larger system sizes and move to 2D the deficie
 
 \begin{figure} {
 	\includegraphics[width=6in]{./figures/paper2/fig_1D/loopfig.pdf} 
-	\caption[Renyi for a 100-site chain with loop algorithm data]{ 
+	\caption[$S_2$ for a 100-site chain using double projector VB QMC, loop algorithm VB QMC and DMRG]{ 
 	\label{loopfig}
 The Renyi entropy $S_2$ as a function of site index $x \in $ A, for a 100-site Heisenberg chain with open boundaries, 
 calculated with DMRG, VB QMC double projector algorithm (labelled Swap), and the VB QMC loop algorithm (labelled Loop).
@@ -185,7 +185,7 @@ calculated with DMRG, VB QMC double projector algorithm (labelled Swap), and the
 \begin{figure} {
 	\includegraphics[width=6in]{./figures/paper2/fig_1D/ratiofig.pdf} 
 	\centering
-	\caption[Renyi for a 100-site chain with ratio data]{ 
+	\caption[$S_2$ for a 100-site chain using double projector VB QMC ration data and DMRG]{ 
 	\label{ratiofig}
 	DMRG and improved ratio data for a 100-site Heisenberg chain with open boundaries.
 The ratio data uses $j_{\rm max}=5$ and required 20 separate simulations.
@@ -230,7 +230,7 @@ This can be improved by choosing a smaller value of $j_{\rm max}$.
 
 \begin{figure} {
 	\includegraphics[width=6in]{./figures/paper2/fig_2DA/L8n12_ratio.pdf} 
-	\caption[$S_2$ in an $8 \times 8$ and a $12 \times 12$ system]{ 
+	\caption[$S_2$ in an $8 \times 8$ and a $12 \times 12$ system for different values of $r$]{ 
 	Measurements of $S_2/\ell$ for $8 \times 8$ and $12 \times 12$ PBC systems with a region A of size $\ell \time \ell$.
 	The bare $\langle Swap_\ell \rangle$ results are shown along with the improved ratio results for different values of $r_{\rm max}$.
 	\label{2Dfig}
@@ -260,9 +260,9 @@ The data in Fig. \ref{2Darea} appears consistent with the area law $S_2/\ell \si
 \begin{figure} {
 	\includegraphics[width=5in]{./figures/paper2/fig_AreaL/fig4.pdf} 
 	\centering
-	\caption[Area law for $S_2$ in the N\'eel state]{
-Scaling of the entanglement entropy $S_2/\ell$ plotted for versus $\ell$ for different sizes of the $\ell \times \ell$ region A and different $L \times L$ system sizes. 
-The data are calculated using the 2D improved ratio estimator \comment{eqref} with $r_{\rm max} = 1$.
+	\caption[Area law for $S_2$ in the N\'eel state using $L \times L$ systems with periodic boundaries]{
+Scaling of the entanglement entropy $S_2/\ell$ plotted versus $\ell$ for different sizes of the $\ell \times \ell$ region A and different $L \times L$ system sizes. 
+The data are calculated using the 2D improved ratio estimator \eqref{eqratio} with $r_{\rm max} = 1$.
 	\label{2Darea}
 	}
 } \end{figure}
@@ -270,7 +270,7 @@ The data are calculated using the 2D improved ratio estimator \comment{eqref} wi
 Next we examine entanglement entropy scaling for the ladder geometry studied in Section \ref{vbAlaw} and Ref. \cite{PRL1}.
 The results are shown in Figure \ref{2Dbetter1}, including both DMRG and ratio estimator VB QMC data.  
 From the DMRG data alone it is not immediately apparent that $S_2/M \sim$ const., especially considering the trend in the first few data points. 
-Fortunately, the range system sizes we can study is extended by the \swa measurement with VB QMC, and the added points make it clear that $S_2$ does in fact follow an area law for the N\'eel state.
+Fortunately, the range of system sizes we can study is extended by the \swa measurement with VB QMC, and the added points make it clear that $S_2$ does in fact follow an area law for the N\'eel state.
 
 In Figure \ref{2Dbetter2} we examine the same systems with only $M^2$ sites in region A.
 For the small system sizes we see much larger even-odd oscillations, as we go to larger system sizes both Figs. \ref{2Dbetter1} and \ref{2Dbetter2} follow the same area law scaling.
@@ -281,7 +281,7 @@ For the small system sizes we see much larger even-odd oscillations, as we go to
 	\hspace{1cm}
 	\includegraphics[width=5in]{./figures/made/awesomeplot/marea2.pdf} 
 	\caption[Entanglement entropy $S_2/M$ vs. $M$ for $M$-leg ladders of length $4M$ cut in half]{ 
-Scaling of the entanglement entropy $S_2/M$ plotted for versus $M$, for $M$-leg ladders of length $4M$.  
+Scaling of the entanglement entropy $S_2/M$ plotted versus $M$, for $M$-leg ladders of length $4M$.  
 Region A contains $2M^2$ sites, dividing the ladders in half with the cut is across the $M$ legs, using one of the same geometries as is found in Fig. \ref{zigzag}.
 The data were measured using the 2D improved ratio estimator using $j_{\rm max} = M$.
 	\label{2Dbetter1}
@@ -290,8 +290,8 @@ The data were measured using the 2D improved ratio estimator using $j_{\rm max} 
 \hspace{1cm}
 	\includegraphics[width=5in]{./figures/made/awesomeplot/marea.pdf} 
 	\caption[Entanglement entropy $S_2/M$ vs. $M$ for $M$-leg ladders of length $4M$ with a different cut]{ 
-	Scaling of the entanglement entropy $S_2/M$ plotted for versus $M$, for $M$-leg ladders of length $4M$.  
-Region A contains $M^2$ sites, dividing the ladders into segments one-quarter and three-quarters of its length, where cut is across the $M$ legs.  This geometry is quite similar to one of the geometries used in Fig \ref{zigzag}.
+	Scaling of the entanglement entropy $S_2/M$ plotted versus $M$, for $M$-leg ladders of length $4M$.  
+Region A contains $M^2$ sites, dividing the ladders into segments one-quarter and three-quarters of its length, where the cut is across the $M$ legs.  This geometry is quite similar to one of the geometries used in Fig \ref{zigzag}.
 The data were measured using the 2D improved ratio estimator using $j_{\rm max} = M$.
 		\label{2Dbetter2}
 	}

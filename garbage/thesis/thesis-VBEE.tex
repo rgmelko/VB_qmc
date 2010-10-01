@@ -3,7 +3,7 @@
 %======================================================================
 Recently a new quantity called {\it{valence bond entanglement entropy}} (\vB) was proposed \cite{Ian1, Alet, Chh},  
 which seems to have properties similar to the von Neumann entanglement entropy (\vN).
-The main advantage of \vb the simplicity of its measurement when working in the valence bond basis.
+The main advantage of \vb is the simplicity of its measurement when working in the valence bond basis.
 For a valence bond basis state \vb between two regions, A and B, it is defined as 
 \begin{equation}
 \VB_A = \ln({2})\mathcal{N}_{\text{A}},
@@ -24,7 +24,7 @@ are expected to follow an area law \cite{ALreview, DeBeaudrap2010}, though until
 
 To examine the correspondence of \vb to a known measure of entanglement  \cite{PRL1} we place our \vb data alongside measurements of \vn
 on the same system, calculated with density matrix renormalization group (DMRG) simulations by I. Gonzalez and R. Melko.
-\vb is calculated using a single projector valence bond quantum Monte Carlo (VB QMC) scheme.
+\vb is calculated using a single projector valence bond quantum Monte Carlo (VB QMC) scheme \cite{Sandvik2007, Sandvik_vbqmc}.
 
 In this chapter we begin by looking at the scaling of \vb and \vn for 1D systems with OBC and with PBC, and we compare the value of the conformal charge $c$ to the expected value for this system.
 We then move to 2D, looking at $M$-leg ladder systems to determine the scaling of these entanglement entropies.  
@@ -39,7 +39,7 @@ My contribution to this project was the measurement of all of the \vb data using
 \begin{figure} {
 \includegraphics[width=5.5in]{./figures/paper1/figure1/thesis_pbc.pdf} 
 \centering
-\caption[1D PBC Results for \vb with \vN]{
+\caption[1D Results for \vb with \vn using periodic boundaries]{
 Entanglement entropies for a 1D Heisenberg chain with PBC and L=100 sites, as a function of the conformal distance $x'  = (L/\pi)\sin (\pi x/L)$.
 \label{1dPBC}}
 } 
@@ -50,13 +50,13 @@ Entanglement entropies for a 1D Heisenberg chain with PBC and L=100 sites, as a 
 \hspace{3mm}
 \includegraphics[width=6in]{./figures/paper1/figure1/thesis_c1.pdf} 
 \vspace{-4mm}
-	\caption[1D Results for VB EE and von Neumann EE]{
+	\caption[Values of the conformal charge from the 1D periodic boundary results]{
 	The central charge, $c$, found using linear regression fits of the entanglement entropy data 	for periodic Heisenberg chains for length L=64, 100, 128, 200, and 256.  Data for the two smallest 	points ($S(1)$ and $S(L-1)$) are removed for the calculation of $c$.
 	\label{c1}}
 \vspace{1cm}
 \hspace{1cm}
 \includegraphics[width=5.1in]{./figures/paper1/figure1/thesis_obc.pdf} 
-\caption[1D OBC Results for VB EE and von Neumann EE]{
+\caption[1D Results for \vb and \vn using open boundaries]{
 	Entanglement entropies for a 1D 100-site Heisenberg chain with OBC as a function of the conformal distance $x'  = (L/\pi)\sin (\pi x/L)$.
 	\label{1dOBC}}
 \end{figure}
@@ -90,7 +90,7 @@ Figure \ref{c2} shows the linear regression fits of the lower branch of OBC data
 \begin{figure} {
 \includegraphics[width=6in]{./figures/paper1/figure1/newfig2.pdf} 
 \centering
-\caption[Central charge for 1D OBC chains]{ The central charge, $c$, for 1D OBC chains of lengths $L=64$, 100, 128, and 200.
+	\caption[Values of the conformal charge from the 1D open boundary results]{ The central charge, $c$, for 1D OBC chains of lengths $L=64$, 100, 128, and 200.
 The slope of the data depends on the number of points $z$ included in the linear regression fit, as can be seen looking at \ref{1dOBC}.
 We fit the lower branch of the data, systematically decreasing $z$ until there are too few points left to get an accurate fit.
 \label{c2}
@@ -137,7 +137,7 @@ The DMRG data, to which we compare \vB, are limited to ladders with $M=7$ legs b
  Figures \ref{ladder3} and \ref{ladder4} show the entanglement entropies for three- and four-leg ladders respectively.
  As with the 1D OBC spin chain, $\VB > \VN$ for these $M$-leg ladders.
  The entanglement entropies show different behavior depending on whether the number of legs is even or odd.
- Odd-leg ladders are gapless, and so case all sites contribute to the entanglement, thus
+ Odd-leg ladders are gapless, and so all sites contribute to the entanglement, thus
  $S(x) \propto \ln(x')$ as in the 1D case \cite{White1994}.
  Even-leg ladders have a spin gap and so only sites within the correlation length $\xi$ from the boundary between A and B contribute to the entanglement,
 so for even-leg ladders $S(x\gtrsim\xi) = \text{const}$. 
@@ -148,7 +148,7 @@ Both even- and odd-leg ladders split into branches, as shown in the figure inset
 \label{vbAlaw}
 
 \begin{figure} { \includegraphics[width=6in]{./figures/paper1/figure4/4fig.pdf}
- \caption[Area Law in 2D Heis model]{
+ \caption[Area law for \vn in 2D Heisenberg ground state, \vb shows a multiplicative logarithmic correction]{
 Entanglement entropies divided by $M$,  for $M$-leg ladders, taken such that
 the region A includes $2M^2$ sites.  
 Data from both ladders of  with $L=100$ sites per leg and ladders of length $L=4M$ 
@@ -211,7 +211,7 @@ For this state $\VB_{\rm A}=2\ln(2)\approx1.386$ and $\VN_{\rm A}=\ln(3)\approx 
 From the 1D results (Figs.~\ref{1dOBC} and \ref{1dPBC}) we saw that \vb can be either greater or less than \vN.
 This can be understood through some simple examples, shown in figures \ref{example1} and \ref{example2}.
 The first example, Fig. \ref{example1} is an equal superposition of two four-site valence bond states. 
- \vb is easily calculated as maximal the maximal $\VB = 2\ln(2)$, since there are four bonds cross between regions A and B, but we divide by the number of states we have examined (two in this case).
+ \vb is easily calculated as the maximal value, $\VB = 2\ln(2)$, since there are four bonds crossing between regions A and B, and we divide by the number of states (two in this case).
 This corresponds to the way \vb would be measured in the single projector VB QMC algorithm.
  For such a small system, it is not difficult to calculate \vn explicitly, and we will do so here.
  We begin by writing out and normalizing the wavefunction in the $S^z$ basis.
@@ -232,7 +232,7 @@ C &= \frac{1}{\sqrt{\bra{\psi}\psi\rangle}} = \frac{1}{\sqrt{4+4+1+1+1+1}} = \fr
  \ket{\up\up} \rightarrow \ket{a} \hspace{15mm} \ket{\up\dw} \rightarrow \ket{b}  \hspace{15mm} 
  \ket{\dw\up} \rightarrow \ket{c}  \hspace{15mm} \ket{\dw\dw} \rightarrow \ket{d},
  \end{eqnarray}
-and a subscript A specifies that the state belongs spins 1 and 3, B refers to spins 2 and 4. 
+and a subscript A specifies that the state belongs to spins 1 and 3, while B refers to spins 2 and 4. 
  \begin{eqnarray}
 \ket{\psi} = \frac{1}{\sqrt{12}} \big[ 
 		2\ket{a}_{\rm A}\otimes \ket{d}_{\rm B} + 
