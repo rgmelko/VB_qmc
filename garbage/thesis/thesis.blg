@@ -2,44 +2,44 @@ This is BibTeX, Version 0.99c (Web2C 7.5.7)
 The top-level auxiliary file: thesis.aux
 The style file: plain.bst
 Database file #1: thesis.bib
-You've used 50 entries,
+You've used 47 entries,
             2118 wiz_defined-function locations,
-            838 strings with 11149 characters,
-and the built_in function-call counts, 16476 in all, are:
-= -- 1593
-> -- 746
+            822 strings with 10689 characters,
+and the built_in function-call counts, 15322 in all, are:
+= -- 1485
+> -- 682
 < -- 3
-+ -- 295
-- -- 242
-* -- 1366
-:= -- 2798
-add.period$ -- 150
-call.type$ -- 50
-change.case$ -- 271
++ -- 270
+- -- 220
+* -- 1252
+:= -- 2600
+add.period$ -- 141
+call.type$ -- 47
+change.case$ -- 250
 chr.to.int$ -- 0
-cite$ -- 50
-duplicate$ -- 561
-empty$ -- 1296
-format.name$ -- 242
-if$ -- 3350
+cite$ -- 47
+duplicate$ -- 529
+empty$ -- 1214
+format.name$ -- 220
+if$ -- 3122
 int.to.chr$ -- 0
-int.to.str$ -- 50
-missing$ -- 50
-newline$ -- 253
-num.names$ -- 100
-pop$ -- 184
+int.to.str$ -- 47
+missing$ -- 48
+newline$ -- 238
+num.names$ -- 94
+pop$ -- 176
 preamble$ -- 1
-purify$ -- 221
+purify$ -- 204
 quote$ -- 0
-skip$ -- 382
+skip$ -- 361
 stack$ -- 0
-substring$ -- 1195
-swap$ -- 63
+substring$ -- 1108
+swap$ -- 60
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 200
+type$ -- 186
 warning$ -- 0
-while$ -- 159
-width$ -- 52
-write$ -- 550
+while$ -- 149
+width$ -- 49
+write$ -- 516
