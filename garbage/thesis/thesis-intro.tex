@@ -15,17 +15,17 @@
 %- the way tensor network states are constructed they can't have entropy scaling faster than area law\\
 
 In this chapter we discuss different measures of entanglement and their scaling.
-Then in Chapter 2 we describe quantum Monte Carlo algorithms in the valence bond basis.
+In Chapter 2 we describe quantum Monte Carlo algorithms in the valence bond basis.
 Chapter 3 contains measurements of valence bond entanglement entropy as compared to standard von Neumann entanglement entropy.
 In Chapter 4 we develop a method of measuring all Renyi entanglement entropies, excluding the von Neuman entanglement entropy, using valence bond quantum Monte Carlo.
-In the final chapter we summarize the results of this research.
+In the final chapter we summarize the results of this research and provide a discussion.
 
 %---------------------------------------------------------------------------------------------------------
 \section{Quantum Entanglement}
 %---------------------------------------------------------------------------------------------------------
 Entanglement is one important and interesting feature that differentiates quantum mechanical systems from classical systems.
 In a pair of entangled spins/particles/photons/states the members of the system have information about each other, even if they are spatially separated.
-Two spins, for instance, are considered entangled if their joint state can not be written as the product of their individual states.  Of the following two states,
+Two spin-1/2 spins, for instance, are considered entangled if their joint state can not be written as the product of their individual states.  Of the following two states,
 \begin{equation}
 	\ket{\Psi_{1,2}} = \frac{1}{\sqrt{2}} \big( \ket{\up_1\up_2} + \ket{\dw_1\dw_2}\big) 
 	\hspace{1cm} \text{and} \hspace{1cm}
@@ -35,6 +35,7 @@ only $\ket{\Phi_{1,2}}$ is separable, and can be rewritten as
 \begin{equation}
 	\ket{\Phi_{1,2}} = \frac{1}{\sqrt{2}}  \big( \ket{\up_1} - \ket{\dw_1}\big) \otimes \ket{\dw_2}.
 \end{equation}
+Therefore $\ket{\Phi_{1,2}}$ is unentangled, while $\ket{\Psi_{1,2}}$, which cannot be written as a product state, is an entangled state.
 In the case of only two spins it is easy to see that states are separable (unentangled). As we add more spins to the system it becomes less apparent which  states are entangled. Furthermore, we can quantify the degree to which they are entangled beyond being either separable states, or non-separable states (entangled).
 
 %---------------------------------------------------------------------------------------------------------
@@ -72,7 +73,7 @@ We are left with $\rho_{\rm A}$ representing a, possibly mixed, state.
 \begin{equation}
 \VN_\text{A} = -\sum_i \left(\lambda_i \ln \lambda_i\right),
 \end{equation}
-which is quite similar to the form of thermodynamic entropy or Shannon information entropy. If $\rho_{\rm A}$ represents a pure state we {\bf know} what state of region A is in, and $\rho_{\rm A}$ will have one non-zero eigenvalue equal to 1 (so $\VN = 0$).
+which is quite similar to the form of thermodynamic entropy or Shannon information entropy. If $\rho_{\rm A}$ represents a pure state, then we {\it know} what state of region A is in, and $\rho_{\rm A}$ will have one non-zero eigenvalue equal to 1 (so $\VN = 0$).
 If $\rho_{\rm A}$ represents a mixed state, we will have some probability distribution of the possible states (so $\VN > 0$). The entropy of that distribution is used to quantify the entanglement between regions A and B.
 In the maximally entangled case all eigenvalues are equal to $1/d$ (representing an equal probability of encountering each spin state), where $d$ is the dimension of the Hilbert space for region A ($2^N$ for a system of $N$ spin-1/2 particles). Thus the maximum entanglement entropy for a spin-$1/2$ system is $\VN= \ln (d) = N \ln(2)$. 
 If the initial state starts off mixed instead of pure, the state would already have some entropy. The entanglement entropy would contain both the initially present classical uncertainty in the state as well as that due to tracing out region B.
