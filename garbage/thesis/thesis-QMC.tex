@@ -6,7 +6,7 @@
 %======================================================================
 %======================================================================
 The numerical technique used in this research is valence bond quantum Monte Carlo (VB QMC) \cite{Sandvik_vbqmc,Sandvik2007}.
-Other commonly used lattice Monte Carlo techniques, such as the stochastic series expansion\cite{Sylji2002} or world line \cite{Evertz2003} methods, use the $S^z$ basis, but VB QMC takes advantage of the unique properties of the valence bond basis.  
+Other commonly used lattice Monte Carlo techniques, such as the Stochastic Series Expansion  \cite{Sylji2002} or world line \cite{Evertz2003} methods typically use the $S^z$ basis, but VB QMC takes advantage of the unique properties of the valence bond basis.  
 
 In this chapter we introduce the valence bond basis, showing how it is used to represent singlet states.  
 We then explain ground state projection, the method employed by VB QMC to get from a trial state to the ground state of our system.
@@ -136,16 +136,16 @@ Switching to matrix notation now, we have
 \end{eqnarray}
 where the eigenvalues and eigenvectors of \eqref{diagon} are:
 \begin{eqnarray}
-\lambda_1 = 2,  &\mathbf{v}_1 = \left[ \begin{array}{cccc}1&0&0&0\end{array}  \right] ^\top
+\lambda_1 = 2,  &\mathbf{v}_1 = \left[ \begin{array}{cccc}1&0&0&0\end{array}  \right] ^\dagger
 	 &= \lvert \uparrow \uparrow \rangle \nonumber\\
-	 \lambda_2 = 2,  &\mathbf{v}_2 = \left[ \begin{array}{cccc}0&0&0&1\end{array}  \right] ^\top
+	 \lambda_2 = 2,  &\mathbf{v}_2 = \left[ \begin{array}{cccc}0&0&0&1\end{array}  \right] ^\dagger
 	 &= \lvert \downarrow \downarrow \rangle \nonumber\\
 	 \lambda_3 = 2,  &\;\;\;\;\,\mathbf{v}_3 =\tfrac{1}{\sqrt{2}}
-	  \left[ \begin{array}{cccc}0&1&1&0\end{array}  \right]^\top
+	  \left[ \begin{array}{cccc}0&1&1&0\end{array}  \right]^\dagger
 	 &= \tfrac{1}{\sqrt{2}} \big(
 	 \lvert \uparrow \downarrow \rangle + \lvert \downarrow \uparrow \rangle \big) \nonumber\\
 	  \lambda_4 = 0,  &\;\;\;\;\;\;\;\;\mathbf{v}_4 =\tfrac{1}{\sqrt{2}}
-	  \left[ \begin{array}{cccc}0&1&-1&0\end{array}  \right]^\top
+	  \left[ \begin{array}{cccc}0&1&-1&0\end{array}  \right]^\dagger
 	 &= \tfrac{1}{\sqrt{2}} \big(
 	 \lvert \uparrow \downarrow \rangle - \lvert \downarrow \uparrow \rangle \big).
 \end{eqnarray}
@@ -153,9 +153,9 @@ There is only one state with total spin equal to zero.  The other three states h
 (If $\lvert \psi\rangle$ is a total spin eigenstate then 
 $S^2\lvert\psi\rangle = s(s+1)\lvert\psi\rangle$, where $s$ is the total spin.)
 %--------------------------------------------------------------------------------------------------------------------------
-\subsubsection{Aside: Equivalence of the valence bond and the singlet state}
+\subsubsection{Equivalence of the valence bond and the singlet state}
 %--------------------------------------------------------------------------------------------------------------------------
-{\it{A bond between two atoms created by sharing valence electrons in the outer orbitals is called a valence bond, or a covalent bond \cite{Slater1931,Pauling1933}.
+{{A bond between two atoms created by sharing valence electrons in the outer orbitals is called a valence bond, or a covalent bond \cite{Slater1931,Pauling1933}.
 Since electrons are fermionic (have half integer spin) their total
 wave function must be antisymmetric (an exchange of the identical particles in the wave function
 gives a factor of -1, i.e. $\Psi(a,b) = -\Psi(b,a)$).

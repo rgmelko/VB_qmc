@@ -43,16 +43,16 @@ In the case of only two spins it is easy to see that states are separable (unent
 %---------------------------------------------------------------------------------------------------------
 
 There are many different quantities that can be used to measure entanglement. Though not exhaustive a few measures include concurrence, logarithmic negativity, squashed entanglement, and entropy of entanglement.
-All measures of entanglement share three properties\cite{Plenio2005}:
+Measures of entanglement share three properties \cite{Plenio2005}:
 \begin{enumerate}
-\item A bipartite entanglement measure $E(\rho)$ (measuring the entanglement between two qubits) is a mapping from density matrices to positive real numbers defined for states of arbitrary bipartite systems.
+\item An entanglement measure $E(\rho)$, measuring the entanglement between two spins, is a mapping from density matrices to positive real numbers defined for states of arbitrary bipartite systems.
 Usually a normalization factor is included such that the maximally entangled state,
 \begin{equation}
-\ket{\psi_{\rm max}}  = \frac{\ket{0,0} + \ket{1,1}}{\sqrt{2}},
+\ket{\psi_{\rm max}}  = \frac{\ket{\up\up} + \ket{\dw\dw}}{\sqrt{2}},
 \end{equation}
  of two qubits has $E(\ket{\psi_{\rm max}}\bra{\psi_{\rm max}}) = \ln(2)$.
  \item  $E(\rho)=0$ if the state $\rho$ is separable.
- \item $E(\rho)$ does not increase under local operators on either of the qubits.  That is, if we have an operator acting on only {\it one} of the qubit, the entanglement between the two qubits will never increase.
+ \item $E(\rho)$ does not increase under local operators on either of the spins.  That is, if we have an operator acting on only {\it one} of the spins, the entanglement between the two spins will not increase.
 % \item For a pure state $\ket{\psi}\bra{\psi}$ the measure reduces to the von Neumann entanglement entropy.
 \end{enumerate}
 There is also a fourth condition, not satisfied by all measures of entanglement, requiring the measure to reduce to the von Neumann entanglement entropy for a system in a pure state.
@@ -68,7 +68,7 @@ For a system partitioned into two regions, A and B, the von Neumann entanglement
 where $\rho_{\rm{A}}=\rm{Tr}_B\ket{\psi}\bra{\psi}$ is the reduced density matrix, the density matrix of the entire system with the degrees of freedom from region B traced out.
 \vn is only suited to measure the entanglement of a pure state, as is the case for all the entanglement measures we will discuss in this thesis.
 This is due to the way \vn measures entanglement; we begin with a pure state and trace out the degrees of freedom for some subregion B.  
-We are left with $\rho_{\rm A}$ representing a, possibly mixed, state.
+We are left with $\rho_{\rm A}$ representing a (possibly mixed) state.
 \vn can be rewritten in terms of the eigenvalues of the density matrix,
 \begin{equation}
 \VN_\text{A} = -\sum_i \left(\lambda_i \ln \lambda_i\right),
@@ -109,22 +109,22 @@ Entanglement has the added benefit of being independent of the basis used to rep
 The scaling of \vn is well understood in 1D systems \cite{ALreview} where, away from special critical points, entanglement between two regions scales as the size of the boundary between those regions.
 This corresponds to systems with mainly short range entanglement, where only sites ``near'' the boundary contribute to the entanglement between regions.  
 If we had a system with extremely long-range entanglement it would be expected that the entire region A is entangled with region B, and one would see a ``volume law'' scaling of entanglement. 
-This ``area law'' \cite{Shredder} is expected to hold for the ground states of many interacting 2D quantum systems.
+In contrast, this ``area law'' or ``boundary law" \cite{Shredder} is expected to hold for the ground states of many interacting 2D quantum systems.
 
 
 
 The scaling of entanglement entropy in 2D is also known to hold information about universal quantities.
 In critical systems the area law scaling has universal additive logarithmic corrections \cite{Casini2007,Ryu}, and for topologically ordered systems there are universal additive constant corrections \cite{KP,LW}.
 
-The 1D Heisenberg spin chain is critical, and the entanglement entropy is known to scale as \cite{Cardy} \cite{Zhou2006}
+For example, the 1D Heisenberg spin chain is critical, and the entanglement entropy is known to scale as \cite{Cardy} \cite{Zhou2006}
 \begin{equation} \label{cft1d} 
 	\VN_{\text{PBC}} = \frac{c}{3}\ln(x') + s_1
 	\hspace{1cm}
 	\VN_{\text{OBC}} = \frac{c}{6}\ln(2x') + \ln(g)+ \frac{s_1}{2}
 \end{equation}
-for systems with open and periodic boundary conditions, where $c$ is the central charge from conformal field theory, $g$ is a universal boundary term \cite{AffleckAndLudwig}, and $s_1$ is a model dependent constant. $x'$ is the conformal mapping for the number of sites included in region A, used to account for the finite size of the Heisenberg chains, when \eqref{cft1d} applies in the long chain-length limit.  $x \rightarrow x' = (L/\pi)\sin(\pi x/L)$ for PBC and $x \rightarrow 2x'$ for OBC, where L is the length of the chain.
+for systems with open (OBC) and periodic boundary conditions (PBC), where $c$ is the central charge from conformal field theory, $g$ is a universal boundary term \cite{AffleckAndLudwig}, and $s_1$ is a model dependent constant. $x'$ is the conformal mapping for the number of sites included in region A, used to account for the finite size of the Heisenberg chains, when \eqref{cft1d} applies in the long chain-length limit.  $x \rightarrow x' = (L/\pi)\sin(\pi x/L)$ for PBC and $x \rightarrow 2x'$ for OBC, where $L$ is the length of the chain.
 
-For 2D Heisenberg spin systems with topological order, the entanglement entropy is known to scale as \cite{intro}
+For 2D systems with topological order, the entanglement entropy is known to scale as \cite{intro}
 \begin{equation} \label{AL}
 S_{\rm A} = \alpha \ell - n \gamma + \mathcal{O}(1/\ell),
 \end{equation}
@@ -132,6 +132,7 @@ where $\ell$ is the length of the boundary, $\gamma$ is the topological entangle
 
 \section{Measurement of Entanglement Entropy}
 
-Many methods have been developed that are capable of measuring the entanglement entropy. In 1D DMRG and exact diagonalization are particularly powerful tools. They provide direct access to the density matrix and wavefunction. However exact diagonalization scales exponentially poorly as a function of system size and DMRG is primarily a tool useful for 1D and multi-leg ladders. To study and extract these universal quantities in 2D it is necessary to be able to measure entanglement entropy in a scalable type of simulation. New algorithms such as tensor-network states and projected entangled pair states, rely on states that are explicitly constructed to obey an area law \cite{MERA,PEPS1,PEPS2} but can scale to large system sizes. States scaling no faster than this area law can be accurately represented with matrix product states \cite{MPS_DMRG}. Quantum Monte Carlo is a method which scales well in any dimension and allows a choice of basis which is not constructed to obey any particular entanglement scaling relationships. In this thesis we explore methods of measuring entanglement entropy in quantum Monte Carlo simulations in the valence bond basis.
+Many methods have been developed that are capable of measuring the entanglement entropy. In 1D DMRG and exact diagonalization are particularly powerful tools. They provide direct access to the density matrix and wavefunction. However exact diagonalization scales exponentially poorly as a function of system size and DMRG is primarily a tool useful for 1D and multi-leg ladders. To study and extract these universal quantities in 2D and higher it is necessary to be able to measure entanglement entropy in a scalable type of simulation. 
+New algorithms, such as tensor-network states and projected entangled pair states, rely on ansatz wavefunctions that are explicitly constructed to obey an area law \cite{MERA,PEPS1,PEPS2} but can scale to large system sizes. States scaling no faster than this area law can be accurately represented with matrix product states \cite{MPS_DMRG}. Quantum Monte Carlo is a method which scales well in any dimension and allows a choice of basis which is not constructed to obey any particular entanglement scaling relationships. In this thesis we explore methods of measuring entanglement entropy in quantum Monte Carlo simulations in the valence bond basis.
 
 
