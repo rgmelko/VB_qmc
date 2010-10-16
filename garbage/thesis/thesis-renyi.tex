@@ -2,7 +2,7 @@
 \chapter{Measuring Renyi Entanglement Entropy}
 %======================================================================
 
-Though we are not able to measure \vn in VB QMC simulations, due to the inaccessiblity of the wavefunction of the system, using something called the ``replica trick'' \cite{dad} we are able to measure ${\rm Tr}(\rho_{\rm A}^n)$ in our algorithm for $n>1$, which allows us to measure the Renyi entanglement entropies 
+Though we are not able to measure \vn in VB QMC simulations, due to the inaccessiblity of the wavefunction of the system, using something we call the ``replica trick'' \cite{dad} we are able to measure ${\rm Tr}(\rho_{\rm A}^n)$ in our algorithm for $n>1$, which allows us to measure the Renyi entanglement entropies 
 \begin{equation} \label{renyi2}
  	S_n(\rho_{\rm A}) = \frac{1}{1-n}\ln\left[{\rm Tr}\left( \rho_{\rm A}^n \right) \right],
 \end{equation}
@@ -12,10 +12,10 @@ The Renyi entropies together also encode information about the whole entanglemen
 
 In this chapter we begin by demonstrating the measurement of ${\rm Tr}(\rho_{\rm A}^n)$ using the replica trick, and we show the specific case for $n=2$ using a \sw operator on two copies of a system.
 We measure $S_2$ in 1D first, comparing the results to DMRG results for $S_2$.  
-A double projector VB QMC algorithm is used this time, and we also show results measured using the loop algorithm.
+A double projector VB QMC algorithm is used, and we also show results measured using the loop algorithm.
 We develop a method to improve the sampling of our $S_2$ measurement using a different Monte Carlo weight, and measuring the ratio of \swa operators for different sizes of region A.
 We then move to 2D, beyond the scope of DMRG simulations, and look at both $L\times L$ systems with periodic boundary conditions, and $M$-leg ladders, as in the previous chapter, with open boundary conditions.  
-We find area law scaling of the entanglement entropy in both of these systems. \cite{PRL2}
+We find area law scaling of the entanglement entropy in both of these systems \cite{PRL2}.
 %We conclude with a discussion of methods to further improve the measurement of \re in VB QMC.
 
 For this project I measured \re with the bare \swa operator using both a double projector VB QMC program, and a loop algorithm VB QMC program.  I also measured a ratio of \swa operators using a double projector code.
@@ -75,7 +75,7 @@ Below we show a method using two non-interacting copies of a system, and a \swa 
 }\end{figure}
 
 The \swa operator acts on two copies of the system (see Figure \ref{swap}), where the copies are not necessarily in the same state.  The action of \swa is to exchange the configuration of region A, between the two copies of the system.  If region A has some entanglement with region B in one of both of the copies of the system, then the two copies will become entangled after the application of \swA.
-The \swa operator can be more clearly defined in a basis such as the $S^z$ basis, in which an arbitrary state can be represented as a weighted sum of states decomposed into the separate a region A and a region B configuration.  
+The \swa operator can be more clearly defined in a product basis such as the $S^z$ basis, in which an arbitrary state can be represented as a weighted sum of states decomposed into the separate a region A and a region B configuration.  
 If we define $\{\ket{\alpha}\}$ as a complete basis of states spanning region A, and $\{\ket{\beta}\}$ as a complete basis of states spanning region B, then we can represent an arbitrary state as
 \begin{equation}
 	\ket{\psi} = \sum_{\alpha}\sum_{\beta} C_{\alpha,\beta}\ket{\alpha}\ket{\beta}
@@ -305,7 +305,7 @@ The data were measured using the 2D improved ratio estimator using $j_{\rm max} 
 
 
 
-We have presented a method which can be used to measure the Renyi entropies for $n>1$, with quantum Monte Carlo simulations in the valence bond basis, employing the "replica trick".
+We have presented a method which can be used to measure the Renyi entropies for $n>1$, with quantum Monte Carlo simulations in the valence bond basis, employing a ``replica trick".
 We demonstrate this method by measuring the second Renyi entropy $S_2$ using the expectation value of a \swa operator acting on two copies of the system.
 With the use of an improved ratio estimator we improve the sampling of our algorithm and our results for $S_2$ converge to the exact results for a 1D Heisenberg chain with open boundaries.
 Using this same method we present the first measurements of $S_2$ on 2D periodic $L \times L$ and open boundary ladder systems, confirming the area law for the N\'eel ground state of the Heisenberg model.

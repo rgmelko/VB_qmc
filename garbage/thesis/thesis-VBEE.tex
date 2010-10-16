@@ -14,9 +14,9 @@ regions A and B.
 
 \vb shares some properties with \vN; in particular, for both quantities: $S_{\text{A}} = S_{\text{B}}$.
 Also, $\VB = 0$ for systems with no entanglement between regions A and B.
-For any single valence bond basis state \vb and \vn agree exactly, and
-in one-dimensional Heisenberg spin-1/2 systems, \vb seems to to be in good agreement with
-results from conformal field theory (CFT) for \vN.
+For any single valence bond basis state (not a superposition of valence bond states) \vb and \vn agree exactly.
+In one-dimensional Heisenberg spin-1/2 systems \vb seems to to be in good agreement with
+results from conformal field theory (CFT) for \vN{} \cite{Alet}.
 However, in two dimensions \vb shows a multiplicative logarithmic correction to the area law
 for the isotropic Heisenberg model.  
 Ground states of unfrustrated 2D spin-1/2 systems with exclusively nearest neighbour interactions
@@ -27,7 +27,7 @@ on the same system, calculated with density matrix renormalization group (DMRG) 
 \vb is calculated using a single projector valence bond quantum Monte Carlo (VB QMC) scheme \cite{Sandvik2007, Sandvik_vbqmc}.
 
 In this chapter we begin by looking at the scaling of \vb and \vn for 1D systems with OBC and with PBC, and we compare the value of the conformal charge $c$ to the expected value for this system.
-We then move to 2D, looking at $M$-leg ladder systems to determine the scaling of these entanglement entropies.  
+We then attempt to move to 2D, looking at $M$-leg ladder systems to determine the scaling of these entanglement entropies.  
 
 My contribution to this project was the measurement of all of the \vb data using a single projector quantum Monte Carlo program, and I did the linear regression  for the \vb data as well.
 
@@ -160,13 +160,13 @@ whereas $S^{\rm vN}\propto M$.
 
 Using these multileg ladders we can examine the adherence of the ground state of the 2D isotropic Heisenberg model to the area law.
 To do this we use $M$-leg ladders, including $2M^2$ sites within region A.  
-This ensures that the boundary between regions A and B cuts cleanly across all the legs of the system so that the length of the boundary is proportional to $M$, while also keeping keeping the divide between the two regions far enough from the open boundaries of the system to avoid boundary effects.
+This ensures that the boundary between regions A and B cuts cleanly across all the legs of the system so that the length of the boundary is proportional to $M$, while also keeping keeping the dividing line between the two regions far enough from the open boundaries of the system to avoid boundary effects.
 Additionally, the 2:1 aspect ratio ensures that, even for odd-leg ladders, an even number of sites is included in region A, reducing the odd-even oscillations in the entanglement entropies.
 
 In Figure \ref{zigzag} we plot the entanglement entropies $S(x)/M$ versus M, for $M$-leg ladders,  on a logarithmic scale.
 If the scaling of the entanglement entropy follows an area law we should see $S(x)/M$ approach a constant value for large $M$.
 We include both systems with 100 sites per leg, and systems with $4M$ sites per leg. 
-In the second case the size of region A is proportional to the size of the ladder, and the divide between regions A and B is always cutting the ladder through the middle.
+In the second case the size of region A is proportional to the size of the ladder, and the dividing line between regions A and B is always cutting the ladder through the middle.
 
 We observe a multiplicative logarithmic correction to the area law in \vB, as previously shown by Refs.\cite{Alet,Chh}.
 This correction, however, is not present in the \vn results from DMRG.
@@ -210,7 +210,7 @@ For this state $\VB_{\rm A}=2\ln(2)\approx1.386$ and $\VN_{\rm A}=\ln(3)\approx 
 
 From the 1D results (Figs.~\ref{1dOBC} and \ref{1dPBC}) we saw that \vb can be either greater or less than \vN.
 This can be understood through some simple examples, shown in figures \ref{example1} and \ref{example2}.
-The first example, Fig. \ref{example1} is an equal superposition of two four-site valence bond states. 
+The first example, Fig.~\ref{example1} is an equal superposition of two four-site valence bond states. 
  \vb is easily calculated as the maximal value, $\VB = 2\ln(2)$, since there are four bonds crossing between regions A and B, and we divide by the number of states (two in this case).
 This corresponds to the way \vb would be measured in the single projector VB QMC algorithm.
  For such a small system, it is not difficult to calculate \vn explicitly, and we will do so here.
@@ -264,7 +264,7 @@ Diagonalizing $\rho_{\rm A}$ gives three identical eigenvalues of $\tfrac{1}{3}$
 		= \ln(3) \approx 1.0986.
 \end{align}
 For this system (Fig.~\ref{example1}) $\VB =2\ln(2) > \VN \approx 1.0986$.
-Though $\VB=\VN$ for valence bond basis states, \vb does not give the correct result for some linear combinations of states.  
+Though $\VB=\VN$ for non-superpositional valence bond basis states, \vb does not give the correct result for some linear combinations of such states.  
 
 \begin{figure}
 \centering 

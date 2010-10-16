@@ -271,7 +271,7 @@ drastically with increasing $N$ (see Figure \ref{statess}).
 The valence bond states are nonorthogonal and overcomplete.
 Because of this overcompleteness we can eliminate some of the valence bond states and still
 represent any singlet state.  
-In fact, this can be seen for a four-site system by again diagonalizing the $S^2$ matrix again.
+In fact, this can be seen for a four-site system by again diagonalizing the $S^2$ matrix.
 This time we will only look at the $S^z=0$ sector, since all the singlet states will be found there.
 With the same method used to get \eqref{diagon}, we find:
 \begin{eqnarray}
@@ -318,7 +318,7 @@ It is convenient to define two sublattices, A and B, on a bipartite lattice, suc
 sublattice A are neighbored only by sublattice B sites and vice versa. (See Figure~\ref{covering}.)
 We can choose the valence bond coverings containing only bonds going between the two sublattices.
 This restriction eliminates some, though not all, of the overcompleteness of the valence bond states.
-The now reduced number of valence bond states is simply $C_{\rm{AB}}^N = N!$ for a system of $2N$ spins.
+The now-reduced number of valence bond states is simply $C_{\rm{AB}}^N = N!$ for a system of $2N$ spins.
 
 One way to see the linear dependence of the remaining valence bond states would be to again diagonalize
 the $S^2$ matrix, for a six-site system this time (in which there are $3!=6$ A-B sublattice
@@ -475,7 +475,7 @@ loop together.  Bonds from separate loops will have no overlap with each other.
 Before we superimpose $\ket{V_\text{L}}$ and $\ket{V_\text{R}}$, the state of each set of sites
 is a sum (including negative terms) of a subset of all possible combinations of spins such that there is an equal number of up and down spins.  This set is restricted by the valence bonds; if there is a bond going between sites $a$ and $b$ then the spin on site $a$ must always be opposite of the spin on site $b$.  
 
-Examining the third loop, which contains four sites, for the state of $\ket{V_\text{L}}$ sites 9 and 12 must always have opposite spins, as must sites 10 and 11.  There are six $S^z=0$ states, four of which satisfy these restrictions.  For the state of $\ket{V_\text{R}}$ there are also four spin states that satisfy its restrictions, but since the restrictions are different (spins 11 and 12 are opposite and spins 9 and 10 are opposite) it turns out that when we overlap $\ket{V_\text{L}}$ and $\ket{V_\text{R}}$ there are only two spin states that satisfy both sets of restrictions.  This is true for all loops, there are only two possible spin states.  These states correspond to alternating up and down spins around the loop, or equivalently, the state in which all the sublattice A sites in the loop have a given spin (either up or down) and the sublattice B sites have the opposite spin.  
+Examining the third loop, which contains four sites, for the state of $\ket{V_\text{L}}$ sites 9 and 12 must always have opposite spins, as must sites 10 and 11.  There are six $S^z=0$ states, four of which satisfy these restrictions.  For the state of $\ket{V_\text{R}}$ there are also four spin states that satisfy its restrictions, but since the restrictions are different (spins 11 and 12 are opposite and spins 9 and 10 are opposite) it turns out that when we overlap $\ket{V_\text{L}}$ and $\ket{V_\text{R}}$ there are only two spin states that satisfy both sets of restrictions.  This is true for all loops; there are only two possible spin states.  These states correspond to alternating up and down spins around the loop, or equivalently, the state in which all the sublattice A sites in the loop have a given spin (either up or down) and the sublattice B sites have the opposite spin.  
 
 \begin{figure} { \includegraphics [width=3.5in]
 {./figures/made/spinstate.pdf}
@@ -514,7 +514,7 @@ If not for the A-B sublattice convention (see Figure \ref{covering}) it would be
 A maximal value of the overlap can be obtained through the inner product of a state with itself.
 Then there are $N/2$ loops, one for every two sites.  There are $2^{N/2}$ compatible spin configurations, and the overlap is exactly its maximal value, 1.
 
-The inner product can be used to calculate the expectation values of observables, normalize states, and as a factor in the Monte Carlo weights, all necessary for quantum Monte Carlo algorithms in the valence bond basis. 
+The inner product can be used to calculate the expectation values of observables, normalize states, and as a factor in the Monte Carlo weights, all necessary for quantum Monte Carlo algorithms in the valence bond basis, as we discuss in upcoming sections.
 
 %--------------------------------------------------------------------------------------------------------------------------
 \section{Ground State Projection} \label{gsp}
@@ -608,7 +608,7 @@ surprisingly simple.  If a bond operator acts on two sites already joined by a v
 bond, it acts as the identity and does not change the state.  If the two sites acted upon are 
 not joined in a valence bond, the operator joins those two sites, and as a byproduct the 
 two sites that were once joined to those sites form a valence bond themselves, depicted in Figure \ref{bopfig}.
-This can be shown mathematically, but first let us examine the effect of bond operators
+This will be shown mathematically, but first let us examine the effect of bond operators
 on a general spin-1/2 state.
 \begin{figure}
 \includegraphics[width=6.3in]{./figures/made/bop.pdf}
@@ -724,7 +724,7 @@ That the application of bond operators to a valence bond basis state yields anot
 %--------------------------------------------------------------------------------------------------------------------------
 \section{The Monte Carlo Algorithm}
 %--------------------------------------------------------------------------------------------------------------------------
-In section \ref{gsp} we saw that repeated application of the Hamiltonian to any initial state possessing some overlap with the ground state will
+In Section \ref{gsp} we saw that repeated application of the Hamiltonian to any initial state possessing some overlap with the ground state will
 give us (in the limit of a large power of the Hamiltonian) a state proportional to the
 ground state of the system.
 However, computing this exactly would be extremely computationally expensive.
@@ -747,17 +747,18 @@ The ratio of weights is used in Monte Carlo sampling to determine whether to kee
 
 Instead of computing the full sum from \eqref{hamapp}, we stochastically sample terms
 from the sum, with sampling proportional to their weight $W_r$ in the sum.  
-In the single projector method we project only one state, but are limited in the observables we can then calculate.
-The double projector method projects two separate states, which can then be used to find expectation values of various operators.
-The loop algorithm is an improvement on the double projector algorithm. 
+In the ``single projector'' method (Section \ref{single}) we project only one valence bond state, but are limited in the observables we can then calculate.
+The ``double projector'' method (Section \ref{sec:dubproj}) projects two separate states, which can then be used to find expectation values of various operators.
+The loop algorithm (Section \ref{sec:loop}) is an improvement on the double projector algorithm. 
 
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Single Projector}
+\label{single}
 %--------------------------------------------------------------------------------------------------------------------------
 The first of the valence bond quantum Monte Carlo algorithms, the single projector method was conceived by Anders Sandvik in 2005 \cite{Sandvik_vbqmc}. 
 This algorithm projects one trial state into the ground state of the system by applying a list of $m$ bond operators to that state.
 The result of applying the bond operators is a new state and a weight, as in \eqref{hamapp}.
-Every Monte Carlo step a few of the bond operators in the list are changed randomly.  (We change three bond operators at each step.)
+Every Monte Carlo step a few ($q$) of the bond operators in the list are changed randomly.  (We change $q=3$ bond operators at each step.)
 The new list of bond operators is applied to the trial state and the weights are compared. 
 If the new weight is larger than the weight from the previous step, the changes in the bond operator list are kept and a measurement can be made.  
 Otherwise, the new state is kept with the probability equal to the ratio of the new and old weights:
@@ -765,7 +766,7 @@ Otherwise, the new state is kept with the probability equal to the ratio of the 
 {\rm Prob(keep)} = \frac{W_{\rm new}}{W_{\rm old}}.
 \end{equation}
 If the new state is not kept, the changes to the bond operator list are undone, and a measurement can be made, but the measurement is on the old state, the state generated by the previous bond operator list.
-In this way, the states are sampled according to their weight in the sum of the ground state wavefunction.
+In this way, the states are sampled according to their relative weight in the sum of the ground state wavefunction.
 The process of changing the bond operator list and deciding whether to keep the changes is continued.  Each repetition is considered one Monte Carlo step.  
 The full algorithm is shown below:
 \begin{enumerate}
@@ -1014,4 +1015,4 @@ The loop algorithm is as follows:
 
 We can return to the loop representation and take measurements using \eqref{generalop2}.  
 Constructing the VB-loop-operator diagram in Step 4 of the algorithm gives us the projected valence bond configurations $\bra{V^L_{\text{left}}} = \bra{V_{\text{left}}}L^\dagger$ and $\ket{V^R_{\text{right}}} = R\ket{V_{\text{right}}}$.
-And the number of loops in the overlap $\bra{V^L_{\text{left}}} V^R_{\text{right}}\rangle$ is easily counted, as the number of distinct loops crossing the dividing line in the middle of the loop-operator diagram. (See Fig. \ref{fig:loopalg}.)
+The number of loops in the overlap $\bra{V^L_{\text{left}}} V^R_{\text{right}}\rangle$ is easily counted, as the number of distinct loops crossing the dividing line in the middle of the loop-operator diagram. (See Figure \ref{fig:loopalg}.)
