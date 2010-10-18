@@ -1,9 +1,36 @@
 \begin{thebibliography}{10}
 
+\bibitem{concurrence}
+Scott Hill and William~K. Wootters.
+\newblock Entanglement of a pair of quantum bits.
+\newblock {\em Phys. Rev. Lett.}, 78(26):5022--5025, Jun 1987.
+
+\bibitem{negativity}
+M.~B. Plenio.
+\newblock Logarithmic negativity: A full entanglement monotone that is not
+  convex.
+\newblock {\em Phys. Rev. Lett.}, 95(9):090503, Aug 2005.
+
+\bibitem{squashed}
+Matthias Christandl and Andreas Winter.
+\newblock ``squashed entanglement'': An additive entanglement measure.
+\newblock {\em Journal of Mathematical Physics}, 45(3):829--840, 2004.
+
+\bibitem{EE}
+Charles~H. Bennett, Herbert~J. Bernstein, Sandu Popescu, and Benjamin
+  Schumacher.
+\newblock Concentrating partial entanglement by local operations.
+\newblock {\em Phys. Rev. A}, 53(4):2046--2052, Apr 1996.
+
 \bibitem{Plenio2005}
 Martin~B. Plenio and S.~Virmani.
 \newblock {An introduction to entanglement measures}.
 \newblock {\em ArXiv Quantum Physics e-prints}, page~25, April 2005.
+
+\bibitem{renyiproof}
+Christian Beck and Friedrich Schogl.
+\newblock {\em Thermodynamics of Chaotic Systems}.
+\newblock Cambridge University Press, 1995.
 
 \bibitem{Amico}
 Luigi Amico, Rosario Fazio, Andreas Osterloh, and Vlatko Vedral.

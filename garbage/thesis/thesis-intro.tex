@@ -1,18 +1,7 @@
 % INTRODUCTION
 %---------------------------
 \chapter{Introduction}
-
-%scaling\\
-%universal quantities...\\
-%The search for topological order\\
-%looking at quantum critical points\\
-%area law\\
-%new attempts at entropies:\\
-%- 
-%\\
-
-%According to G. Vidal: \\
-%- the way tensor network states are constructed they can't have entropy scaling faster than area law\\
+This thesis is an exploration of methods used for the measurement of entanglement in large-scale simulations suitable for condensed matter theory.
 
 In this chapter we discuss different measures of entanglement and their scaling.
 In Chapter 2 we describe quantum Monte Carlo algorithms in the valence bond basis.
@@ -42,7 +31,7 @@ In the case of only two spins it is easy to see that states are separable (unent
 \section{Measures of Entanglement}
 %---------------------------------------------------------------------------------------------------------
 
-There are many different quantities that can be used to measure entanglement. Though not exhaustive a few measures include concurrence, logarithmic negativity, squashed entanglement, and entropy of entanglement.
+There are many different quantities that can be used to measure entanglement . Though not exhaustive a few measures include concurrence \cite{concurrence}, logarithmic negativity \cite{negativity}, squashed entanglement \cite{squashed}, and entropy of entanglement \cite{EE}.
 Measures of entanglement share three properties \cite{Plenio2005}:
 \begin{enumerate}
 \item An entanglement measure $E(\rho)$, measuring the entanglement between two spins, is a mapping from density matrices to positive real numbers defined for states of arbitrary bipartite systems.
@@ -88,7 +77,7 @@ The $n^\text{th}$ Renyi entanglement entropy $S_n$ is defined as
 %S_1(\rho_{\rm A}) = \lim_{n\to1}\frac{\ln\left[{\rm Tr}\left( \rho_{\rm A}^n \right) \right]}{1-n}
 %	=\lim_{n\to1}\frac{\frac{d}{dn}\ln\left[{\rm Tr}\left( \rho_{\rm A}^n \right) \right]}{\frac{d}{dn}(1-n)}
 %\end{equation}
-Taking the limit $n\to1$ gives us $S_1 = \VN$.  These entanglement entropies have the property that for $n>m$, $S_n\le S_m$; successive Renyi entropies give a lower bound on the previous entropies. They are useful measures to fully characterize the entanglement entropy of the system.
+Taking the limit $n\to1$ gives us $S_1 = \VN$.  These entanglement entropies have the property that for $n>m$, $S_n\le S_m$; successive Renyi entropies give a lower bound on the previous entropies \cite{renyiproof}. They are useful measures which fully characterize the entanglement entropy of the system.
 
 % \comment{cite some quantum information textbook}.
 
@@ -106,10 +95,10 @@ Entanglement has the added benefit of being independent of the basis used to rep
 \label{1dcft}
 %---------------------------------------------------------------------------------------------------------
 
-The scaling of \vn is well understood in 1D systems \cite{ALreview} where, away from special critical points, entanglement between two regions scales as the size of the boundary between those regions.
+The scaling of \vn is well understood in one-dimensional (1D) systems \cite{ALreview} where, away from special critical points, entanglement between two regions scales as the size of the boundary between those regions.
 This corresponds to systems with mainly short range entanglement, where only sites ``near'' the boundary contribute to the entanglement between regions.  
 If we had a system with extremely long-range entanglement it would be expected that the entire region A is entangled with region B, and one would see a ``volume law'' scaling of entanglement. 
-In contrast, this ``area law'' or ``boundary law" \cite{Shredder} is expected to hold for the ground states of many interacting 2D quantum systems.
+In contrast, this ``area law'' or ``boundary law" \cite{Shredder} is expected to hold for the ground states of many interacting two-dimensional (2D) quantum systems.
 
 
 
@@ -128,11 +117,11 @@ For 2D systems with topological order, the entanglement entropy is known to scal
 \begin{equation} \label{AL}
 S_{\rm A} = \alpha \ell - n \gamma + \mathcal{O}(1/\ell),
 \end{equation}
-where $\ell$ is the length of the boundary, $\gamma$ is the topological entanglement entropy\cite{KP,LW}, and $n$ is related to the shape of the boundary.
+where $\ell$ is the length of the boundary, $\gamma$ is the topological entanglement entropy, and $n$ is related to the shape of the boundary.
 
 \section{Measurement of Entanglement Entropy}
 
-Many methods have been developed that are capable of measuring the entanglement entropy. In 1D DMRG and exact diagonalization are particularly powerful tools. They provide direct access to the density matrix and wavefunction. However exact diagonalization scales exponentially poorly as a function of system size and DMRG is primarily a tool useful for 1D and multi-leg ladders. To study and extract these universal quantities in 2D and higher it is necessary to be able to measure entanglement entropy in a scalable type of simulation. 
+Many methods have been developed that are capable of measuring the entanglement entropy. In 1D density matrix renormalization group (DMRG) simulations and exact diagonalization are particularly powerful tools. They provide direct access to the density matrix and wavefunction. However exact diagonalization scales exponentially poorly as a function of system size and DMRG is primarily a tool useful for 1D and multi-leg ladders. To study and extract these universal quantities in 2D and higher it is necessary to be able to measure entanglement entropy in a scalable type of simulation. 
 New algorithms, such as tensor-network states and projected entangled pair states, rely on ansatz wavefunctions that are explicitly constructed to obey an area law \cite{MERA,PEPS1,PEPS2} but can scale to large system sizes. States scaling no faster than this area law can be accurately represented with matrix product states \cite{MPS_DMRG}. Quantum Monte Carlo is a method which scales well in any dimension and allows a choice of basis which is not constructed to obey any particular entanglement scaling relationships. In this thesis we explore methods of measuring entanglement entropy in quantum Monte Carlo simulations in the valence bond basis.
 
 
