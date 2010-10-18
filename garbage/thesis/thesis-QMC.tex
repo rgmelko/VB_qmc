@@ -16,7 +16,7 @@ Finally we describe three different VB QMC algorithms: the single projector meth
 \section{The Valence Bond Basis} \label{sec:basis}
 %--------------------------------------------------------------------------------------------------------------------------
 %\comment{Dates back to the 1930's pauling etc, }
-The valence bond basis is a basis of states in which all sites are paired into valence bonds.  
+The valence bond basis is a basis of states in which all sites are paired up into ``valence bonds'' (discussed further in Section \ref{vbequivalence}).  
 This basis can be used to represent any singlet state, i.e., any state with total spin equal to zero \cite{Anderson1973, Anderson1974}.
 %comment on why it's an awesome basis choice... 
 In this section we introduce the spin-1/2 singlet state and its representation in terms of valence bonds.
@@ -153,7 +153,8 @@ There is only one state with total spin equal to zero.  The other three states h
 (If $\lvert \psi\rangle$ is a total spin eigenstate then 
 $S^2\lvert\psi\rangle = s(s+1)\lvert\psi\rangle$, where $s$ is the total spin.)
 %--------------------------------------------------------------------------------------------------------------------------
-\subsubsection{Equivalence of the valence bond and the singlet state}
+\subsection{Equivalence of the valence bond and the singlet state}
+\label{vbequivalence}
 %--------------------------------------------------------------------------------------------------------------------------
 {{A bond between two atoms created by sharing valence electrons in the outer orbitals is called a valence bond, or a covalent bond \cite{Slater1931,Pauling1933}.
 Since electrons are fermionic (have half integer spin) their total
@@ -191,14 +192,22 @@ S^{\rm vN}_a &= -{\rm Tr}(\rho_a \ln \rho_a) = -  \cos^2(\alpha) \ln \left( \cos
 The resulting entanglement entropy in Figure \ref{tent}.
 \begin{figure}
 	\centering
-	 \includegraphics[width=5in]{./figures/made/tent.pdf}
+	 \includegraphics[width=4.6in]{./figures/made/tent.pdf}
 	 \caption[von Neumann entanglement entropy for a two-site state]{
 	 	The von Neumann entanglement entropy for a two-site state
 		$\ket{\psi}=\cos(\alpha)\ket{\up \dw} + \sin(\alpha)\ket{\dw \up}$.
 		$\ket{\psi}$ is maximally entangled in the singlet state and one of the triplet states, 
 		and unentangled when the state is separable.
 	 }
+	 \vspace{8mm}
 	 \label{tent}
+	 \includegraphics[width=4.6in]{./figures/made/presentation/tent.pdf}
+	 \caption[von Neumann entanglement entropy for a two-site state]{
+	 	The von Neumann entanglement entropy ($S_1$), the $2^{\text{nd}}$ and the $1000^{\text{th}}$ Renyi entropies for a two-site state
+		$\ket{\psi}=\cos(\alpha)\ket{\up \dw} + \sin(\alpha)\ket{\dw \up}$.
+		All Renyi entropies take the same value for maximally and minimally entangled states.
+	 }
+	 \label{tent2}
 \end{figure}
 
 
@@ -472,8 +481,7 @@ loop together.  Bonds from separate loops will have no overlap with each other.
 \ket{V_\text{R}} &=& \ket{(1,5)(3,2)(6,13)(8,7)(9,10)(11,12)(14,15)(16,4)}\nonumber\\
 			&=& \ket{(16,4)(8,7)(14,15)(6,13)(1,5)}\otimes\ket{(3,2)}\otimes\ket{(11,12)(9,10)}
 \end{eqnarray}
-Before we superimpose $\ket{V_\text{L}}$ and $\ket{V_\text{R}}$, the state of each set of sites
-is a sum (including negative terms) of a subset of all possible combinations of spins such that there is an equal number of up and down spins.  This set is restricted by the valence bonds; if there is a bond going between sites $a$ and $b$ then the spin on site $a$ must always be opposite of the spin on site $b$.  
+Before we superimpose $\ket{V_\text{L}}$ and $\ket{V_\text{R}}$, each set of sites is in a state consisting of a sum (including some negative terms) over a subset of all possible combinations of spins, such that there is an equal number of up and down spins in each state.  This set is restricted by the valence bonds; if there is a bond going between sites $a$ and $b$ then the spin on site $a$ must always be opposite of the spin on site $b$.  
 
 Examining the third loop, which contains four sites, for the state of $\ket{V_\text{L}}$ sites 9 and 12 must always have opposite spins, as must sites 10 and 11.  There are six $S^z=0$ states, four of which satisfy these restrictions.  For the state of $\ket{V_\text{R}}$ there are also four spin states that satisfy its restrictions, but since the restrictions are different (spins 11 and 12 are opposite and spins 9 and 10 are opposite) it turns out that when we overlap $\ket{V_\text{L}}$ and $\ket{V_\text{R}}$ there are only two spin states that satisfy both sets of restrictions.  This is true for all loops; there are only two possible spin states.  These states correspond to alternating up and down spins around the loop, or equivalently, the state in which all the sublattice A sites in the loop have a given spin (either up or down) and the sublattice B sites have the opposite spin.  
 
@@ -592,7 +600,7 @@ where the coupling constant $J$ is always positive, and $\sum_{\langle i,j \rang
 represents a sum over all nearest-neighbor pairs of sites.  
 This Hamiltonian favors antiparallel spins and will flip antiparallel pairs of spins.
 
-We slightly modify the Hamiltonian for use in the ground state projection scheme:
+We slightly modify the Hamiltonian in order to facilitate the ground state projection scheme:
 \begin{equation}
 \mathcal{H}= \left(\mathcal{H}_{\rm{Heis}} - \sum_{\langle i,j \rangle} \tfrac{1}{4} \right)= \sum_{\langle i,j \rangle} 
 	\left(\mathbf{S}_i\cdot \mathbf{S}_j - \tfrac{1}{4}\right)
@@ -625,8 +633,7 @@ We can rewrite the dot product of spin operators:
 \mathbf{S}_i\cdot \mathbf{S}_j = \tfrac{1}{2}\left[ \left(S_i + S_j\right)^2 -S_i^2-S_j^2 \right],
 \end{eqnarray}
 However, the $\left(S_i + S_j\right)^2$ 
-operator has two different eigenvalues, or it could change the state
-if the initial state is not one of the four total spin eigenstates.
+operator has two different eigenvalues (0 and 2), or if the initial state is not one of the four total spin eigenstates applying this operator will change the state.
 
 Acting with a bond operator on an eigenstate of total spin for two spins yields:
 \begin{equation}
@@ -830,7 +837,7 @@ we can further simplify this formula,
 	-\left<\sum_{k=1}^{N_{nn}} 2^{o_k}\right> -  \frac{N_{nn}}{4},	
 	 \label{energyy}
 \end{equation}
-where $o_k$ is 1 for an off-diagonal operator and 0 otherwise.  
+where $o_k$ is 1 for an off-diagonal operator (acting on sites not already joined by a valence bond) and 0 otherwise.  
 We can rewrite this in terms of the number of diagonal  $n_{\rm diag}$ and off-diagonal $n_{\rm off}$ operators in the Hamiltonian and use the fact that  $ n_{\rm diag} + n_{\rm off}= N_{nn}$,
 \begin{equation}
 	E_0
@@ -865,8 +872,6 @@ W_{\rm total} = W^LW^R\bra{V^L}V^R\rangle,
 \end{equation}
 where $W^L$ and $W^R$ are $2^{-m_{\rm off}}$ (the factors of $\frac{1}{2}$ accrued by applying off-diagonal bond operators) for the left and right operators lists respectively.  
 
-In the double projector algorithm only one of the lists of bond operators, left or right, is updated at a time, alternating between the two lists.
-
 The algorithm is as follows:
 
 \begin{enumerate}
@@ -896,9 +901,10 @@ The algorithm is as follows:
 		 W^L_{\text{old}}W^R_{\text{old}}\bra{V^L_{\text{old}}}V^R_{\text{old}}\rangle$, 
 		 relabel all ``new" left quantities as ``old".		
 		 }}
-\item \fbox{\parbox{410pt}{Randomly change a predetermined number, 
+\item \fbox{\parbox{410pt}{Copy $R_{\text{old}}$ to $R_{\text{new}}$ 
+		and randomly change a predetermined number, 
 		$q$, of the bond operators 
-		in $R_{\text{old}}$ and relabel it as $R_{\text{new}}$.}}
+		in $R_{\text{new}}$.}}
 \item \fbox{\parbox{410pt}{Apply the new right list of bond operators to the original initial state. 
 		\begin{equation} 
 			R_{\text{new}}\ket{V}=W^R_{\text{new}}\ket{V^R_{\text{new}}}  \nonumber					\end{equation}
@@ -925,18 +931,18 @@ Using this double projector method the general expectation value an observable $
 
 \begin{equation}
 \label{generalop1}
-\langle \mathcal{O} \rangle = \frac{ \sum_{l,r} \bra{V}L_l^\dagger \mathcal{O} R_r \ket{V}}
-							{\sum_{l,r} \bra{V}L_l^\dagger R_r \ket{V}}
-		=\frac{ \sum_{l,r} W^L_l W^R_r \bra{V^L_l}\mathcal{O}  \ket{V^R_r}}
-							{\sum_{l,r} W^L_l W_r^R \bra{V^L_l} V^R_r\rangle}.
+\langle \mathcal{O} \rangle = \frac{ \sum_{i,j} \bra{V}L_i^\dagger \mathcal{O} R_j \ket{V}}
+							{\sum_{i,j} \bra{V}L_i^\dagger R_j \ket{V}}
+		=\frac{ \sum_{i,j} W^L_i W^R_j \bra{V^L_i}\mathcal{O}  \ket{V^R_j}}
+							{\sum_{i,j} W^L_i W_j^R \bra{V^L_i} V^R_j\rangle}.
 \end{equation}
 We are already sampling states according to the weight from \eqref{supaweight}, so in this scheme we need to measure
 \begin{equation}
 \label{generalop2}
 \langle \mathcal{O} \rangle = 
- \frac{   \sum_{l,r} W^L_l W^R_r  \bra{V^L_l} V^R_r\rangle    
-		\frac{   \bra{V^L_l}\mathcal{O}  \ket{V^R_r}  }{   \bra{V^L_l} V^R_r\rangle  }}
-							{\sum_{l,r} W^L_l W_r^R \bra{V^L_l} V^R_r\rangle}
+ \frac{   \sum_{i,j} W^L_i W^R_j  \bra{V^L_i} V^R_j\rangle    
+		\frac{   \bra{V^L_i}\mathcal{O}  \ket{V^R_j}  }{   \bra{V^L_i} V^R_j\rangle  }}
+							{\sum_{i,j} W^L_i W_j^R \bra{V^L_i} V^R_j\rangle}
 	= \left<
 		\frac{   \bra{V^L}\mathcal{O}  \ket{V^R}  }{   \bra{V^L} V^R\rangle  }
 						\right>.
@@ -944,6 +950,7 @@ We are already sampling states according to the weight from \eqref{supaweight}, 
 
 The double projector method is much more versatile in the range of observables that can be measured.  
 In addition to anything that can be measured with the single projector method we can also measure the $Swap$ operator, spin correlations functions, and, by adding triplet states into the mix, staggered magnetization, and spin stiffness, among other things \cite{Beach2006}.
+In Chapter \ref{chap:renyi} this double projector algorithm is used the measure the expectation value of a {\it Swap} operator which enables the measurement of entanglement entropy.
 
 %--------------------------------------------------------------------------------------------------------------------------
 \subsection{Loop Algorithm}
@@ -977,7 +984,7 @@ The loop algorithm is as follows:
 	A valence bond-spin-operator configuration for the loop algorithm for 6-site system.
 	There are $m=3$ operators per operator list $L$ and $R$.
 	The dark (light) sites represent up (down) spins, and there black (blue) vertical bars are diagonal (off-diagonal) operators.
-	The valence bond states and compatible spin states ($\bra{V_\text{left}}$, $\bra{Z_\text{left}}$) and ($\ket{V_\text{right}}$, $\ket{Z_\text{right}}$) are shown on the left and right edges of the diagram respectively.
+	The valence bond states and compatible spin states ($\bra{V^L}$, $\bra{Z^L}$) and ($\ket{V^R}$, $\ket{Z^R}$) are shown on the left and right edges of the diagram respectively.
 	The dashed line down the middle is the point in between the two operators lists, where expectation values can be evaluated.
 	\label{fig:loopalg}
 }
@@ -985,9 +992,9 @@ The loop algorithm is as follows:
 
 
 \begin{enumerate}
-\item \fbox{\parbox{410pt}{Choose or generate initial valence bond states $\ket{V_{\rm left}}$ and  $\ket{V_{\rm right}}$.  (These can be chosen as the same state.)}}
+\item \fbox{\parbox{410pt}{Choose or generate initial valence bond states $\ket{V^L}$ and  $\ket{V^R}$.  (These can be chosen as the same state.)}}
 \item \fbox{\parbox{410pt}{
-					Assign a spin to each of the sites such that the spin states $\ket{Z_{\rm 					left}}$ and $\ket{Z_{\rm right}}$ are compatible with the valence bonds.
+					Assign a spin to each of the sites such that the spin states $\ket{Z^L}$ 					and $\ket{Z^R}$ are compatible with the valence bonds.
 }}
 \item \fbox{\parbox{410pt}{
 					Generate two lists of $m$ diagonal bond operators $L$
@@ -1014,5 +1021,5 @@ The loop algorithm is as follows:
 \subsubsection{Measurements}
 
 We can return to the loop representation and take measurements using \eqref{generalop2}.  
-Constructing the VB-loop-operator diagram in Step 4 of the algorithm gives us the projected valence bond configurations $\bra{V^L_{\text{left}}} = \bra{V_{\text{left}}}L^\dagger$ and $\ket{V^R_{\text{right}}} = R\ket{V_{\text{right}}}$.
-The number of loops in the overlap $\bra{V^L_{\text{left}}} V^R_{\text{right}}\rangle$ is easily counted, as the number of distinct loops crossing the dividing line in the middle of the loop-operator diagram. (See Figure \ref{fig:loopalg}.)
+Constructing the VB-loop-operator diagram in Step 4 of the algorithm gives us the projected valence bond configurations $\bra{V^L} = \bra{V}L^\dagger$ and $\ket{V^R} = R\ket{V}$.
+The number of loops in the overlap $\bra{V^L} V^R\rangle$ is easily counted, as the number of distinct loops crossing the dividing line in the middle of the loop-operator diagram. (See Figure \ref{fig:loopalg}.)
