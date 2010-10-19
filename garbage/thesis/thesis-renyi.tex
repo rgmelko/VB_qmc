@@ -19,7 +19,7 @@ We then move to 2D, beyond the scope of DMRG simulations, and look at both $L\ti
 We find area law scaling of the entanglement entropy in both of these systems \cite{PRL2}.
 %We conclude with a discussion of methods to further improve the measurement of \re in VB QMC.
 
-For this project I measured \re with the bare \swa operator using both a double projector VB QMC program, and a loop algorithm VB QMC program.  I also measured a ratio of \swa operators using a double projector code.
+For this project I measured \re with the bare \swa operator using both a double projector VB QMC program, and a loop algorithm VB QMC program.  I also measured a ratio of \swa operators using a double projector code.  DMRG measurements were performed by I. Gonz\'alez and R. Melko.
 
 %\change{
 %``Encode information about the whole entanglement spectrum of $\rho_{\rm A}$."
@@ -221,9 +221,8 @@ The number of simulations need for a 1D system is $(L/j_{\rm max})$.
 
 Figure \ref{ratiofig} shows the ratio data using $j_{\rm max} = 5$, along with the DMRG data, for the same 100-site system as in Figs. \ref{loopfig} and \ref{swapfig}. 
 The data no longer show the large statistical error bars for large region A sizes, though the results are systematically lower than the DMRG $S_2$ results for a region A-B boundary near the middle of the 100-site system.  
-This can be improved by choosing a smaller value of $j_{\rm max}$.
-
-
+The improved ratio sampling unfortunately introduces a new source of systematic error not accounted for by our error bars.  
+$S_2$ measurements for larger region sizes depend on the previous measurements, thus if a measurement for a small region A has some error, that will carry through to all other measurements, as one can see when comparing the regions of size $x=1$ and $x=99$ in Figure \ref{swapfig}.
 
 %----------------------------------------------------------------------------------------------------------
 \section{2D Results}
