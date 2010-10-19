@@ -106,31 +106,37 @@ However, this area law is expected to hold for the ground states of many interac
 \label{1dcft}
 %---------------------------------------------------------------------------------------------------------
 
-\change{
-The 1D Heisenberg spin chain is critical, and the entanglement entropy is known to scale as \cite{Cardy, Ian1, Zhou2006}
+The 1D Heisenberg spin chain is critical; in this and other such systems the entanglement entropy is known to scale as \cite{Cardy, Ian1, Zhou2006}
 \begin{equation} \label{cft1d} 
 	\VN_{\text{PBC}} = \frac{c}{3}\ln(x') + s_1
 	\hspace{1cm}
 	\VN_{\text{OBC}} = \frac{c}{6}\ln(2x') + \ln(g)+ \frac{s_1}{2}
 \end{equation}
 for systems with open (OBC) and periodic boundary conditions (PBC), where $c$ is the central charge from conformal field theory, $g$ is a universal boundary term \cite{AffleckAndLudwig}, and $s_1$ is a model dependent constant. $x'$ is the conformal mapping for the number of sites included in region A, used to account for the finite size of the Heisenberg chains, since \eqref{cft1d} applies in the long chain-length limit.  $x \rightarrow x' = (L/\pi)\sin(\pi x/L)$ for PBC and $x \rightarrow 2x'$ for OBC, where $L$ is the length of the chain.
-}
+This known scaling is used to verify the accuracy of our entanglement measurements in Chapter 3.
 
 \subsection{Subleading Corrections to the Area Law}
 \subsubsection{Topological Entanglement Entropy}
+
+In systems exhibiting topological order -- a type of order not characterized by local order parameters in which the degeneracy of the ground state depends on the topology of the system -- there exists a universal subleading correction to the area law scaling of entanglement entropy called the {\it topological entanglement entropy}.
+For 2D systems with topological order, the entanglement entropy is known to scale as  \cite{Bbob, KP}
+\begin{equation} \label{AL}
+S_{\rm A} = \alpha \ell - n \gamma + \mathcal{O}(1/\ell),
+\end{equation}
+where $\ell$ is the length of the boundary, $\gamma$ is the topological entanglement entropy, and $n$ is related to the shape of the boundary.
+This topological entanglement entropy is zero when the system is not topologically ordered, and  otherwise takes a value related to the degeneracy of the ground state.
+Thus it can be thought of as a type of topological order parameter.
+By measuring the entanglement entropy of regions of a system with certain geometries which are chosen to cancel out other terms of the entanglement scaling, it is possible to measure the topological entanglement entropy of a system \cite{LW}.
+
 \subsubsection{At Quantum Critical Points}
 
 
 \change{
 The scaling of entanglement entropy in 2D is also known to hold information about universal quantities.
-In critical systems the area law scaling has universal additive logarithmic corrections \cite{Casini2007,Ryu}, and for topologically ordered systems there are universal additive constant corrections \cite{KP,LW}.
+In critical systems the area law scaling has universal additive logarithmic corrections \cite{Casini2007,Ryu,max}.
 
 
-For 2D systems with topological order, the entanglement entropy is known to scale as \cite{intro}
-\begin{equation} \label{AL}
-S_{\rm A} = \alpha \ell - n \gamma + \mathcal{O}(1/\ell),
-\end{equation}
-where $\ell$ is the length of the boundary, $\gamma$ is the topological entanglement entropy, and $n$ is related to the shape of the boundary.
+
 }
 
 \section{Measurement of Entanglement Entropy}
