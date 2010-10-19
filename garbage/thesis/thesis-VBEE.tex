@@ -6,10 +6,22 @@ which seems to have properties similar to the von Neumann entanglement entropy (
 The main advantage of \vb is the simplicity of its measurement when working in the valence bond basis.
 For a valence bond basis state \vb between two regions, A and B, it is defined as 
 \begin{equation}
-\VB_A = \ln({2})\mathcal{N}_{\text{A}},
+\VB_{\rm A} = \ln({2})\mathcal{N}_{\text{A}},
+\label{vbeeeq}
 \end{equation} 
 where $\mathcal{N}_{\text{A}}$ is the number of valence bonds crossing the boundary between
-regions A and B.
+regions A and B.  (See Figure \ref{vbeepic}.)
+
+
+\begin{figure} {
+\includegraphics[width=5in]{./figures/made/presentation/vbee.pdf} 
+\centering
+\caption[1D Results for \vb with \vn using periodic boundaries]{
+The valence bond entanglement entropy \eqref{vbeeeq} between regions A and B of a valence bond basis state is defined as the number of valence bonds crossing between the two regions multiplied by a factor of $\ln(2)$.
+This diagram shows a state with $S^{\text{VB}}_{\rm A}= 7 \ln(2)$.
+\label{vbeepic}}
+} 
+\end{figure}
 
 
 \vb shares some properties with \vN; in particular, for both quantities: $S_{\text{A}} = S_{\text{B}}$.
@@ -78,7 +90,7 @@ As mentioned in section \ref{1dcft}, for a 1D critical system, such as the 1D He
 
 Figure \ref{1dPBC} shows the \vb measurements for a periodic spin chain of length $L=100$ sites, plotted alongside \vn data.  \vb seems to fit well to the expected scaling, though it is lower than \vN.
 We use linear regression to fit the \vb and \vn data for several system sizes to Equation \eqref{cftOBC}, and Figure~\ref{c1} shows the results for the central charge $c^{\rm vN}$ from \eqref{cftOBC} approaching 1 (the expected value for this system \cite{c_is_1}) as the system size increases, however $c^{\rm VB}$ approaches a lower value. 
-
+It has been shown analytically \cite{XXX}, using the probability distribution for valence bonds connecting subsystems of a given length, that $c^{\rm VB} = \tfrac{12\ln2}{\pi^2}\approx 0.84 < c^{\rm vN}$. 
 
 
 
