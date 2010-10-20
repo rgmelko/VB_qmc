@@ -245,17 +245,6 @@ Matthew~B. Hastings, Iv\'an Gonz\'alez, Ann~B. Kallin, and Roger~G. Melko.
   simulations.
 \newblock {\em Phys. Rev. Lett.}, 104(15):157201, Apr 2010.
 
-\bibitem{Callan}
-Curtis Callan and Frank Wilczek.
-\newblock On geometric entropy.
-\newblock {\em Physics Letters B}, 333(1-2):55 -- 61, 1994.
-
-\bibitem{Fradkin}
-Eduardo Fradkin and Joel~E. Moore.
-\newblock Entanglement entropy of 2d conformal quantum critical points: Hearing
-  the shape of a quantum drum.
-\newblock {\em Phys. Rev. Lett.}, 97(5):050404, Aug 2006.
-
 \bibitem{kappa}
 Roger~G. Melko, Ann~B. Kallin, and Matthew~B. Hastings.
 \newblock Finite-size scaling of mutual information in monte carlo simulations:
@@ -306,5 +295,16 @@ Hui Li and F.~D.~M. Haldane.
   Identification of topological order in non-abelian fractional quantum hall
   effect states.
 \newblock {\em Phys. Rev. Lett.}, 101(1):010504, Jul 2008.
+
+\bibitem{Fradkin}
+Eduardo Fradkin and Joel~E. Moore.
+\newblock Entanglement entropy of 2d conformal quantum critical points: Hearing
+  the shape of a quantum drum.
+\newblock {\em Phys. Rev. Lett.}, 97(5):050404, Aug 2006.
+
+\bibitem{Callan}
+Curtis Callan and Frank Wilczek.
+\newblock On geometric entropy.
+\newblock {\em Physics Letters B}, 333(1-2):55 -- 61, 1994.
 
 \end{thebibliography}

@@ -7,15 +7,16 @@ Though we are not able to measure \vn in VB QMC simulations, due to the inaccess
 \begin{equation} \label{renyi2}
  	S_n(\rho_{\rm A}) = \frac{1}{1-n}\ln\left[{\rm Tr}\left( \rho_{\rm A}^n \right) \right],
 \end{equation}
-for $n>1$.  For $n>m$ these entropies have the property that $S_n<S_m$, so the second Renyi entropy, $S_2$ will give the largest lower bound on \vn.
-The Renyi entropies are expected to follow the same area laws obeyed by \vn \cite{Bbob}, making them equally useful for extracting universal quantities.
+for $n>1$.  For $n>m$ these entropies have the property that $S_n<S_m$, so the second Renyi entropy, $S_2$ will give the largest lower bound on \vN.
+The Renyi entropies are expected to follow the same area laws obeyed by \vn \cite{Bbob}, making them equally useful in the study of universal quantities.
 The Renyi entropies together also encode information about the whole entanglement spectrum of the system, and thus contain more information that \vn alone \cite{Bbob}.
 
-In this chapter we begin by demonstrating the measurement of ${\rm Tr}(\rho_{\rm A}^n)$ using the replica trick, and we show the specific case for $n=2$ using a \sw operator on two copies of a system.
+In this chapter we begin by demonstrating the measurement of ${\rm Tr}(\rho_{\rm A}^n)$ using a replica trick, and we show the specific case for $n=2$ using a \sw operator on two copies of a system.
 We measure $S_2$ in 1D first, comparing the results to DMRG results for $S_2$.  
-A double projector VB QMC algorithm is used, and we also show results measured using the loop algorithm.
+A double projector VB QMC algorithm is used. 
+We also show results generated using the loop algorithm.
 We develop a method to improve the sampling of our $S_2$ measurement using a different Monte Carlo weight, and measuring the ratio of \swa operators for different sizes of region A.
-We then move to 2D, beyond the scope of DMRG simulations, and look at both $L\times L$ systems with periodic boundary conditions, and $M$-leg ladders, as in the previous chapter, with open boundary conditions.  
+We then move to 2D, approaching the limit of DMRG simulations, and look at both $L\times L$ systems with periodic boundary conditions, and $M$-leg ladders, as in the previous chapter, with open boundary conditions.  
 We find area law scaling of the entanglement entropy in both of these systems \cite{PRL2}.
 %We conclude with a discussion of methods to further improve the measurement of \re in VB QMC.
 
@@ -38,24 +39,14 @@ For this project I measured \re with the bare \swa operator using both a double 
 
 \section{The ``Replica Trick''}
 
-The replica trick is not new to physics, it has been used for many years in statistical mechanics to study systems with quenched randomness \cite{dad}.
-In these systems the state will not equilibrate because it is ``stuck" in a certain configuration that is not necessarily the lowest energy state. 
-The expectation values of quantities need to be calculated over all possible configurations of the system.
-
-The replica trick was created to help calculate the configurational average of the free energy $F = -k_B T \langle\ln(Z) \rangle $, where $\langle\ln(Z) \rangle $ is difficult to calculate.
-
-We can express  $ \ln(Z) $ in terms of the Taylor expansion for $Z^n$ for small n,
-\begin{align}
-	Z^n &= 1+ n\ln(Z) + \frac{n^2}{2!}\left( \ln (Z)\right)^2 + \cdots \\
-	&\;\;\; \langle \ln(Z) \rangle = \lim_{n\to0} \frac {\langle Z^n\rangle -1}{n},
-\end{align} 
-where $\langle Z^n \rangle$ is simpler to calculate.
-To get  $\langle Z^n \rangle$ $n$ replicas of the original spins on the systems are introduced, so that the new partition function becomes $Z^n$ instead of just $Z$.
-This procedure has the advantage that it is much easier to average the partition function over all of the configurations than it is to average its logarithm.
-
-This trick has also been applied to analytical calculations of entanglement entropy \cite{Cardy, Callan, Fradkin}.
-However, this is the first time it has been employed to measure entanglement entropy in a quantum Monte Carlo simulation.  In fact it can even be used in finite temperature stochastic series expansion quantum Monte Carlo \cite{kappa}.
-This method uses $n$ copies of the system, to simulate  ${\rm Tr} (\rho^n_{\rm A})$.
+In order to calculate ${\rm Tr}(\rho_{\rm A}^n)$, a quantity necessary to measure the $n^{\rm th}$ Renyi entanglement entropy for $n\ge2$, we use a trick involving replicas of the system to be studied, $\Psi_0$.
+The trick involves simulating $n$ non-interacting replicas of the system.  
+The expectation value of a swap operator is measured. 
+The purpose of the swap operator is to swap the state of the system in region A between the non-interacting replicas.
+Calculating the expectation value of this operator accomplished two things: it (1) reorganizes the replicas $\bra{\Psi_0 \otimes \Psi_0 \otimes \cdots \otimes \Psi_0}$ and $\ket{\Psi_0 \otimes \Psi_0 \otimes \cdots \otimes \Psi_0}$ into the density matrix $\rho^n$ while simultaneously (2) tracing out region B of the system.
+In the end we are left with the $n^{\rm th}$ power of the reduced density matrix, traced out over region B.
+This process is independent of the basis used, as the swap operator can be defined in any basis.
+We using this method in the valence bond basis, but it has since been employed in finite temperature stochastic series expansion quantum Monte Carlo \cite{kappa}, which uses the $S^z$ basis.
 Below we show a method using two non-interacting copies of a system, and a \swa operator, to measure ${\rm Tr} (\rho^2_{\rm A})$, which is necessary for the calculation of \re.
 %----------------------------------------------------------------------------------------------------------
 \subsection{The Swap Operator}
