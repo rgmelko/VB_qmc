@@ -84,12 +84,9 @@ Taking the limit $n\to1$ gives us $S_1 = \VN$.  These entanglement entropies hav
 %---------------------------------------------------------------------------------------------------------
 
 Using measures of entanglement from quantum information to study interacting quantum many-body systems is a rapidly growing interdisciplinary topic \cite{Amico, intro}.
+Entanglement has the advantage of measuring ``hidden'' correlations which can occur in states where correlation lengths diverge or decay exponentially.
+Additionally, measurement of entanglement is independent of the basis chosen to represent the condensed matter system.
 
-\change{Entanglement has the added benefit of being independent of the basis used to represent the condensed matter system.}
-
-\change{In systems that exhibit topological order, entanglement measures can be used to quantify ``hidden'' correlations \cite{wolf} and that order which is missed by standard measurements such as two-point correlation functions \cite{Spectrum}.}
-
-\change{Can be used to detect and characterize transitions.}
 
 \subsection{Area Law Scaling}
 
@@ -132,20 +129,17 @@ By measuring the entanglement entropy of regions of a system with certain geomet
 
 \subsubsection{At Quantum Critical Points}
 
+The scaling of entanglement entropy at quantum critical points is also known to hold information about universal quantities.
+In critical systems the area law scaling has universal additive logarithmic corrections \cite{Casini2007,Ryu, max}.
+By extracting these corrections, entanglement entropy can be used to to detect and characterize phase transitions.
 
-\change{
-The scaling of entanglement entropy in 2D is also known to hold information about universal quantities.
-In critical systems the area law scaling has universal additive logarithmic corrections \cite{Casini2007,Ryu,max}.
-
-
-
-}
+%\change{New algorithms, such as tensor-network states and projected entangled pair states, rely on ansatz wavefunctions that are explicitly constructed to obey an area law \cite{MERA,PEPS1,PEPS2} but can scale to large system sizes. States scaling no faster than this area law can be accurately represented with matrix product states \cite{MPS_DMRG}. }
 
 \section{Measurement of Entanglement Entropy}
 
 Many methods have been developed that are capable of measuring the entanglement entropy. In 1D density matrix renormalization group (DMRG) simulations and exact diagonalization are particularly powerful tools. They provide direct access to the density matrix and wavefunction. However exact diagonalization scales exponentially poorly as a function of system size and DMRG is primarily a tool useful for 1D and multi-leg ladders. To study and extract these universal quantities in 2D and higher it is necessary to be able to measure entanglement entropy in a scalable type of simulation. 
-\change{New algorithms, such as tensor-network states and projected entangled pair states, rely on ansatz wavefunctions that are explicitly constructed to obey an area law \cite{MERA,PEPS1,PEPS2} but can scale to large system sizes. States scaling no faster than this area law can be accurately represented with matrix product states \cite{MPS_DMRG}. 
-}
-Quantum Monte Carlo is a method which scales well in any dimension and allows a choice of basis \change{which is not constructed to obey any particular entanglement scaling relationships}. In this thesis we explore methods of measuring entanglement entropy in quantum Monte Carlo simulations in the valence bond basis.
+Quantum Monte Carlo simulations scale well in any dimension and allow a choice of basis. 
+%\change{which is not constructed to obey any particular entanglement scaling relationships}.
+In this thesis we explore methods of measuring entanglement entropy in quantum Monte Carlo simulations in the valence bond basis.
 
 
