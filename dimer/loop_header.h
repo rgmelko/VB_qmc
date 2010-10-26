@@ -781,18 +781,18 @@ void LOOPS::dimerdimer()
 	    if(site==1){break;}
 	    else if((site==kl)||(site==kl+1)){
 	      check++; 
-	      if(check==2){Dxx[kl-2]+=3; break;}
+	      if(check==2){break;}
 	    }
 	    site = VR[site];
 	    if(site==1){break;}
 	    else if((site==kl)||(site==kl+1)){
 	      check++; 
-	      if(check==2){Dxx[kl-2]+=3; break;}
+	      if(check==2){break;}
 	    }
 	  }
 	  //-------------------------
 	  //ADD -1 or 3
-	  if(check==0){Dxx[kl-2]+=3;}
+	    if((check==0)||(check==2)){Dxx[kl-2]+=3;}
 	  else{ Dxx[kl-2]-=1;}
 	}
 
