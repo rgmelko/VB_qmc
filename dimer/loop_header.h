@@ -39,6 +39,8 @@ class LOOPS
   vector <int> whichloop; /* stores which loop number each site is in. used
 			     in the energy measurement */
   vector <double> entropy, entropy_final;
+  vector <int> Dxx;
+  vector <double> Dxx_double;
 
   iMatrix nnbonds;//list of all possible nnbonds.  Index is the bond number
   iMatrix nn_mat; /*matrix of the nnbonds. indices are sites
@@ -61,6 +63,7 @@ class LOOPS
   void change__operators(); //changes the diagonal operators randomly
 
   void swaperator(); //the swap operator
+  void dimerdimer(); //dimer-dimer correlation function
 
   void calculate_stuff(); //calculates energy at the moment
   void print_bops(); //prints the bond operators after every loop of iterations
@@ -90,6 +93,9 @@ LOOPS::LOOPS(int xsites, int ysites, int bondops, bool ob, long long its,
 
   entropy.assign(xsites-1,0);
   entropy_final = entropy;
+
+  Dxx.assign(xsites-3,0);
+  Dxx_double.assign(xsites-3,0);
 
   Vlinks.assign(vlegs, -99); //set size and initialize
   Hlinks.assign(vlegs, -99); 
@@ -719,6 +725,96 @@ void LOOPS::swaperator()
     entropy[lint] += pow(2,loopdiff);
   }
 }
+
+/************ dimerdimer() ****************************************************
+Global:
+   whichloop[#sites]____get filled. stores the loop number for each site
+   dim1
+   dim2
+
+******************************************************************************/
+void LOOPS::dimerdimer()
+{
+  //  for(int row=0; row<dim2; row++){ //there are dim2 rows
+  //   for(int bond_ij=0; bond_ij<dim1; bond_ij++){ //and dim1 bonds per row
+  //    for(int bond_kl=bond_ij+2; bond_kl<dim1-1; bondkl++){ //-1 to avoid overlapping bonds
+  //	int x=0;	
+  //	int site_i=bond_ij+dim1*row;
+  //int site_j=site_i+1;
+  //int site_k=bond_kl+dim1*row;
+  //int site_l=site_k+1;
+  //int loop_i=whichloop[site_i];
+  //int loop_j=whichloop[site_j];
+  //int loop_k=whichloop[site_k];
+  //int loop_l=whichloop[site_l];
+  //if((loop_i==loop_j)&&(loop_k==loop_l)){
+  //  if(loop_i==loop_k){
+  //CHECK LOOP ORDER
+  //  }
+  //  else{ x=3; }
+  //	}
+  //else if((loop_i==loop_k)&&(loop_j==loop_l)){ x=1; }
+  //else if((loop_i==loop_l)&&(loop_j==loop_k)){ x=1; }
+  //   }
+  //  }
+  //  }
+
+  int loop_i=whichloop[0];
+  int loop_j=whichloop[1];
+  int loop_k, loop_l;
+
+  int check=0;
+  int site=0;
+
+  if(loop_i==loop_j){
+    for(int kl=2; kl<dim1-1; kl++){
+      loop_k=whichloop[kl];
+      loop_l=whichloop[kl+1];
+      
+      if(loop_k==loop_l){
+
+	if(loop_i==loop_k){
+
+	  //CHECKLOOP ORDER---------------
+	  while(site!=1){
+	    site = VL[site];
+	    if(site==1){break;}
+	    else if((site==kl)||(site==kl+1)){
+	      check++; 
+	      if(check==2){Dxx[kl-2]+=3; break;}
+	    }
+	    site = VR[site];
+	    if(site==1){break;}
+	    else if((site==kl)||(site==kl+1)){
+	      check++; 
+	      if(check==2){Dxx[kl-2]+=3; break;}
+	    }
+	  }
+	  //-------------------------
+	  //ADD -1 or 3
+	  if(check==0){Dxx[kl-2]+=3;}
+	  else{ Dxx[kl-2]-=1;}
+	}
+
+	else{ Dxx[kl-2]+=3;} //ADD 3
+      }
+    }
+  }
+  else{
+    for(int kl=2; kl<dim1; kl++){
+      loop_k=whichloop[kl];
+      loop_l=whichloop[kl+1];
+      
+      if((loop_i==loop_k)&&(loop_j==loop_l)){
+	Dxx[kl-2]+=1; //ADD 1
+      }
+      else if((loop_i==loop_l)&&(loop_j==loop_k)){
+	Dxx[kl-2]+=1; //ADD 1
+      }
+    }
+  }
+}
+
 /************ calculate_stuff() ***********************************************
 ******************************************************************************/
 void LOOPS::calculate_stuff()
@@ -726,6 +822,14 @@ void LOOPS::calculate_stuff()
   energy = 0.5*(energyint*0.75)/iterations;
   energyint = 0;
 
+  for(int i=0; i<Dxx.size(); i++){
+    Dxx_double[i]=Dxx[i]*((3.0/16.0)/(iterations*1.0));
+    Dxx[i]=0;
+  }
+  for(int i=0;i<dim1/2-2; i++){
+    Dxx_double[i]+=Dxx_double[Dxx_double.size()-1-i];
+    Dxx_double[i]*=0.5;
+  }
   for(int i=0; i<entropy.size(); i++){
     //  entropy_final[i] = -log(entropy[i]/(1.0*iterations));
     entropy_final[i] = (entropy[i]/(1.0*iterations));

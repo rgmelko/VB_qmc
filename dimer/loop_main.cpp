@@ -15,10 +15,13 @@ int main(){
   double bops_per_site=10;
   bool OBC=0;
   long long ranseed=43289841;
-  string enerfilename, entrofilename, bondopfilename;
+  string enerfilename, entrofilename, bondopfilename, dimerfilename;
 
-  ifstream fin("param.dat");
-  fin >> enerfilename >> entrofilename >> bondopfilename
+  ifstream fin("param.txt");
+  fin >> enerfilename 
+    //>> entrofilename 
+      >> dimerfilename
+      >> bondopfilename
       >> dim1 >> dim2
       >> its_per_loop >> loops
       >> bops_per_site >> OBC
@@ -50,25 +53,23 @@ int main(){
   }
   for(int kk=0; kk<loops; kk++){
     for(int jk=0; jk<its_per_loop; jk++){
-      //        cout << "1" << endl;
       system.create_Vlinks();    //build vertical LL from init VBs and operators
-      //     cout << "2" << endl;
       system.create__Hlinks();   //build horizontal linked list from operators
-      //     cout << "3" << endl;
       system.make_flip_loops();  //generate loops and flip w/ prob 0.5
-      //      cout << "4" << endl;
       system.take_measurement();
-      system.swaperator();
-      //      cout << "5" << endl;
+      //  system.swaperator();
+      system.dimerdimer();
       system.change__operators(); //Change the diagonal operators
     }
 
     system.calculate_stuff();
 
     ofstream energy_out(enerfilename.c_str(),ios::app);
-    ofstream entrpy_out(entrofilename.c_str(),ios::app);
+    //    ofstream entrpy_out(entrofilename.c_str(),ios::app);
+    ofstream dimerd_out(dimerfilename.c_str(),ios::app);
     energy_out.precision(10);
-    entrpy_out.precision(10);
+    //    entrpy_out.precision(10);
+    dimerd_out.precision(10);
 
     cout << left << setw(12) << system.energy << "    ";
     energy_out << system.energy << endl;
@@ -77,12 +78,18 @@ int main(){
     energy_out.close();
     
     
-    for(int i=0; i<system.entropy_final.size(); i++){
-      entrpy_out << setw(18) << system.entropy_final[i];
+    //    for(int i=0; i<system.entropy_final.size(); i++){
+    //      entrpy_out << setw(18) << system.entropy_final[i];
+    //    }
+    //    entrpy_out << endl;
+
+    for(int i=0; i<=dim1/2-2; i++){
+      dimerd_out << setw(20) << system.Dxx_double[i];
     }
-    entrpy_out << endl;
+    dimerd_out << endl;
+    dimerd_out.close();
     
-    entrpy_out.close();
+    //    entrpy_out.close();
     system.print_bops();
   }
 
