@@ -801,7 +801,7 @@ void LOOPS::dimerdimer()
     }
   }
   else{
-    for(int kl=2; kl<dim1; kl++){
+    for(int kl=2; kl<dim1-1; kl++){
       loop_k=whichloop[kl];
       loop_l=whichloop[kl+1];
       
