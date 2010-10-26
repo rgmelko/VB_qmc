@@ -830,11 +830,11 @@ void LOOPS::calculate_stuff()
     Dxx_double[i]+=Dxx_double[Dxx_double.size()-1-i];
     Dxx_double[i]*=0.5;
   }
-  for(int i=0; i<entropy.size(); i++){
-    //  entropy_final[i] = -log(entropy[i]/(1.0*iterations));
-    entropy_final[i] = (entropy[i]/(1.0*iterations));
-    entropy[i]=0;
-  }
+  //  for(int i=0; i<entropy.size(); i++){
+  //  entropy_final[i] = -log(entropy[i]/(1.0*iterations));
+  //    entropy_final[i] = (entropy[i]/(1.0*iterations));
+  //    entropy[i]=0;
+  //  }
 }
 
 /************ print_bops() ****************************************************
