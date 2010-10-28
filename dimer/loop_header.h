@@ -40,6 +40,8 @@ class LOOPS
 			     in the energy measurement */
   vector <double> entropy, entropy_final;
   vector <int> Dxx;
+  int Dx0;
+  vector <int> Dxj;
   vector <double> Dxx_double;
 
   iMatrix nnbonds;//list of all possible nnbonds.  Index is the bond number
@@ -94,8 +96,10 @@ LOOPS::LOOPS(int xsites, int ysites, int bondops, bool ob, long long its,
   entropy.assign(xsites-1,0);
   entropy_final = entropy;
 
-  Dxx.assign(xsites-3,0);
-  Dxx_double.assign(xsites-3,0);
+  Dxx.assign(xsites/2-1,0);
+  Dxj.assign(xsites/2-1,0);
+  Dx0=0;
+  Dxx_double.assign(xsites/2-1,0);
 
   Vlinks.assign(vlegs, -99); //set size and initialize
   Hlinks.assign(vlegs, -99); 
@@ -767,12 +771,13 @@ void LOOPS::dimerdimer()
   int site=0;
 
   if(loop_i==loop_j){
-    for(int kl=2; kl<dim1-1; kl++){
+    Dx0++;
+    for(int kl=2; kl<=dim1/2; kl++){
       loop_k=whichloop[kl];
       loop_l=whichloop[kl+1];
       
       if(loop_k==loop_l){
-
+	Dxj[kl-2]++;
 	if(loop_i==loop_k){
 
 	  //CHECKLOOP ORDER---------------
@@ -801,7 +806,7 @@ void LOOPS::dimerdimer()
     }
   }
   else{
-    for(int kl=2; kl<dim1-1; kl++){
+    for(int kl=2; kl<=dim1/2; kl++){
       loop_k=whichloop[kl];
       loop_l=whichloop[kl+1];
       
@@ -823,13 +828,12 @@ void LOOPS::calculate_stuff()
   energyint = 0;
 
   for(int i=0; i<Dxx.size(); i++){
-    Dxx_double[i]=Dxx[i]*((3.0/16.0)/(iterations*1.0));
+    Dxx_double[i]=Dxx[i]*((3.0/16.0)/(iterations*1.0))-Dx0*Dxj[i]*(3.0/4.0)/(iterations*1.0);
     Dxx[i]=0;
+    Dxj[i]=0;
   }
-  for(int i=0;i<dim1/2-2; i++){
-    Dxx_double[i]+=Dxx_double[Dxx_double.size()-1-i];
-    Dxx_double[i]*=0.5;
-  }
+  Dx0=0;
+
   //  for(int i=0; i<entropy.size(); i++){
   //  entropy_final[i] = -log(entropy[i]/(1.0*iterations));
   //    entropy_final[i] = (entropy[i]/(1.0*iterations));
