@@ -801,7 +801,7 @@ void LOOPS::dimerdimer()
       loop_l=whichloop[kl+1];
       
       if(loop_k==loop_l){
-	Dyj[kl]++;
+	Dyj[k]++;
 
 	//(i,j,k,l)
 	if(loop_i==loop_k){
@@ -825,14 +825,14 @@ void LOOPS::dimerdimer()
 	  //-------------------------
 
 	  //(i,j,k,l)
-	  if((check==0)||(check==2)){ Dyy[kl]+=3;}
+	  if((check==0)||(check==2)){ Dyy[k]+=3;}
 
 	  //(i,j,k,l)before split after
-	  else{Dyy[kl]-=1;}
+	  else{Dyy[k]-=1;}
 	}
 
 	//(i,j)(k,l)
-	else{ Dyy[kl]+=3;} //ADD 3
+	else{ Dyy[k]+=3;} //ADD 3
       }
     }//--------------------------------------end of DYY--------------
 
@@ -866,15 +866,15 @@ void LOOPS::dimerdimer()
       loop_k=whichloop[kl];
       loop_l=whichloop[kl+1];
 
-      if(loop_k==loop_l){Dyj[kl]++;}
+      if(loop_k==loop_l){Dyj[k]++;}
       
       //(i,k)(j,l)
       if((loop_i==loop_k)&&(loop_j==loop_l)){
-	Dyy[kl]+=1; //ADD 1
+	Dyy[k]+=1; //ADD 1
       }
       //(i,l)(j,k)
       else if((loop_i==loop_l)&&(loop_j==loop_k)){
-	Dyy[kl]+=1; //ADD 1
+	Dyy[k]+=1; //ADD 1
       }
     }
     //---------------------------end of DYY---------
