@@ -828,7 +828,7 @@ void LOOPS::calculate_stuff()
   energyint = 0;
 
   for(int i=0; i<Dxx.size(); i++){
-    Dxx_double[i]=Dxx[i]*((3.0/16.0)/(iterations*1.0))-Dx0*Dxj[i]*(3.0/4.0)/(iterations*1.0);
+    Dxx_double[i]=Dxx[i]*((3.0/16.0)/(iterations*1.0))-Dx0*Dxj[i]*(3.0/4.0)/((iterations*1.0)*iterations);
     Dxx[i]=0;
     Dxj[i]=0;
   }
