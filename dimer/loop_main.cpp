@@ -28,6 +28,9 @@ int main(){
       >> ranseed
       >> initialization;
   fin.close();
+
+  string dimerxx = "xx"+dimerfilename;
+  string dimeryy = "yy"+dimerfilename;
   
   int total_bops = dim1*dim2*bops_per_site;
 
@@ -66,10 +69,13 @@ int main(){
 
     ofstream energy_out(enerfilename.c_str(),ios::app);
     //    ofstream entrpy_out(entrofilename.c_str(),ios::app);
-    ofstream dimerd_out(dimerfilename.c_str(),ios::app);
+    ofstream dimerx_out(dimerxx.c_str(),ios::app);
+    ofstream dimery_out(dimeryy.c_str(),ios::app);
+
     energy_out.precision(10);
     //    entrpy_out.precision(10);
-    dimerd_out.precision(10);
+    dimerx_out.precision(10);
+    dimery_out.precision(10);
 
     cout << left << setw(12) << system.energy << "    ";
     energy_out << system.energy << endl;
@@ -84,10 +90,13 @@ int main(){
     //    entrpy_out << endl;
 
     for(int i=0; i<=dim1/2-2; i++){
-      dimerd_out << setw(20) << system.Dxx_double[i];
+      dimerx_out << setw(20) << system.Dxx_double[i];
+      dimery_out << setw(20) << system.Dyy_double[i];
     }
-    dimerd_out << endl;
-    dimerd_out.close();
+    dimery_out << setw(20) << system.Dyy_double[dim1/2-1] << endl;
+    dimerx_out << endl;
+    dimerx_out.close();
+    dimery_out.close();
     
     //    entrpy_out.close();
     system.print_bops();

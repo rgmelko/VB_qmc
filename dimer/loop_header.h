@@ -752,6 +752,8 @@ void LOOPS::dimerdimer()
 
   if(loop_i==loop_j){
     Dx0++;
+
+    //__________D X X_______________________________________________
     for(int kl=2; kl<=dim1/2; kl++){
       loop_k=whichloop[kl];
       loop_l=whichloop[kl+1];
@@ -790,11 +792,57 @@ void LOOPS::dimerdimer()
 	//(i,j)(k,l)
 	else{ Dxx[kl-2]+=3;} //ADD 3
       }
-    }
+    }//--------------------------------------end of DXX--------------
+    //__________D Y Y_______________________________________________
+    for(int k=0; k<dim2/2; k++){
+      
+      int kl = dim1*(k+1); 
+      loop_k=whichloop[kl];
+      loop_l=whichloop[kl+1];
+      
+      if(loop_k==loop_l){
+	Dyj[kl]++;
+
+	//(i,j,k,l)
+	if(loop_i==loop_k){
+	  check=0;
+
+	  //CHECKLOOP ORDER---------------
+	  while(site!=1){
+	    site = VL[site];
+	    if(site==1){break;}
+	    else if((site==kl)||(site==kl+1)){
+	      check++; 
+	      if(check==2){break;}
+	    }
+	    site = VR[site];
+	    if(site==1){break;}
+	    else if((site==kl)||(site==kl+1)){
+	      check++; 
+	      if(check==2){break;}
+	    }
+	  }
+	  //-------------------------
+
+	  //(i,j,k,l)
+	  if((check==0)||(check==2)){ Dyy[kl]+=3;}
+
+	  //(i,j,k,l)before split after
+	  else{Dyy[kl]-=1;}
+	}
+
+	//(i,j)(k,l)
+	else{ Dyy[kl]+=3;} //ADD 3
+      }
+    }//--------------------------------------end of DYY--------------
+
+
   }
 
   //(i)(j)
   else{
+
+    //___________D X X______________________________________
     for(int kl=2; kl<=dim1/2; kl++){
       loop_k=whichloop[kl];
       loop_l=whichloop[kl+1];
@@ -810,6 +858,26 @@ void LOOPS::dimerdimer()
 	Dxx[kl-2]+=1; //ADD 1
       }
     }
+    //---------------------------end of DXX---------
+    //___________D Y Y _____________________________________
+    for(int k=0; k<dim2/2; k++){
+      int kl= dim1*(k+1);
+
+      loop_k=whichloop[kl];
+      loop_l=whichloop[kl+1];
+
+      if(loop_k==loop_l){Dyj[kl]++;}
+      
+      //(i,k)(j,l)
+      if((loop_i==loop_k)&&(loop_j==loop_l)){
+	Dyy[kl]+=1; //ADD 1
+      }
+      //(i,l)(j,k)
+      else if((loop_i==loop_l)&&(loop_j==loop_k)){
+	Dyy[kl]+=1; //ADD 1
+      }
+    }
+    //---------------------------end of DYY---------
   }
 }
 
@@ -825,6 +893,11 @@ void LOOPS::calculate_stuff()
     // cout << i <<"    "<< Dxx[i] <<"    "<< Dx0 <<"    "<< Dxj[i] <<  endl;
     Dxx[i]=0;
     Dxj[i]=0;
+  }
+  for(int i=0; i<Dyy.size(); i++){
+    Dyy_double[i]=Dyy[i]*((3.0/16.0)/(iterations*1.0))-Dx0*Dyj[i]*(9.0/16.0)/((iterations*1.0)*iterations);
+    Dyy[i]=0;
+    Dyj[i]=0;
   }
   Dx0=0;
 
