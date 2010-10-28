@@ -739,30 +739,6 @@ Global:
 ******************************************************************************/
 void LOOPS::dimerdimer()
 {
-  //  for(int row=0; row<dim2; row++){ //there are dim2 rows
-  //   for(int bond_ij=0; bond_ij<dim1; bond_ij++){ //and dim1 bonds per row
-  //    for(int bond_kl=bond_ij+2; bond_kl<dim1-1; bondkl++){ //-1 to avoid overlapping bonds
-  //	int x=0;	
-  //	int site_i=bond_ij+dim1*row;
-  //int site_j=site_i+1;
-  //int site_k=bond_kl+dim1*row;
-  //int site_l=site_k+1;
-  //int loop_i=whichloop[site_i];
-  //int loop_j=whichloop[site_j];
-  //int loop_k=whichloop[site_k];
-  //int loop_l=whichloop[site_l];
-  //if((loop_i==loop_j)&&(loop_k==loop_l)){
-  //  if(loop_i==loop_k){
-  //CHECK LOOP ORDER
-  //  }
-  //  else{ x=3; }
-  //	}
-  //else if((loop_i==loop_k)&&(loop_j==loop_l)){ x=1; }
-  //else if((loop_i==loop_l)&&(loop_j==loop_k)){ x=1; }
-  //   }
-  //  }
-  //  }
-
   int loop_i=whichloop[0];
   int loop_j=whichloop[1];
   int loop_k, loop_l;
@@ -778,6 +754,8 @@ void LOOPS::dimerdimer()
       
       if(loop_k==loop_l){
 	Dxj[kl-2]++;
+
+	//(i,j,k,l)
 	if(loop_i==loop_k){
 	  check=0;
 
@@ -797,15 +775,21 @@ void LOOPS::dimerdimer()
 	    }
 	  }
 	  //-------------------------
-	  //ADD -1 or 3
-	    if((check==0)||(check==2)){Dxx[kl-2]+=3;}
-	  else{ Dxx[kl-2]-=1;}
+
+	  //(i,j,k,l)
+	  if((check==0)||(check==2)){ Dxx[kl-2]+=3;}
+
+	  //(i,j,k,l)before split after
+	  else{Dxx[kl-2]-=1;}
 	}
 
+	//(i,j)(k,l)
 	else{ Dxx[kl-2]+=3;} //ADD 3
       }
     }
   }
+
+  //(i)(j)
   else{
     for(int kl=2; kl<=dim1/2; kl++){
       loop_k=whichloop[kl];
@@ -813,9 +797,11 @@ void LOOPS::dimerdimer()
 
       if(loop_k==loop_l){Dxj[kl-2]++;}
       
+      //(i,k)(j,l)
       if((loop_i==loop_k)&&(loop_j==loop_l)){
 	Dxx[kl-2]+=1; //ADD 1
       }
+      //(i,l)(j,k)
       else if((loop_i==loop_l)&&(loop_j==loop_k)){
 	Dxx[kl-2]+=1; //ADD 1
       }
@@ -831,7 +817,8 @@ void LOOPS::calculate_stuff()
   energyint = 0;
 
   for(int i=0; i<Dxx.size(); i++){
-    Dxx_double[i]=Dxx[i]*((3.0/16.0)/(iterations*1.0))-Dx0*Dxj[i]*(3.0/4.0)/((iterations*1.0)*iterations);
+    Dxx_double[i]=Dxx[i]*((3.0/16.0)/(iterations*1.0))-Dx0*Dxj[i]*(9.0/16.0)/((iterations*1.0)*iterations);
+    cout << i <<"    "<< Dxx[i] <<"    "<< Dx0 <<"    "<< Dxj[i] <<  endl;
     Dxx[i]=0;
     Dxj[i]=0;
   }
