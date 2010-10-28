@@ -799,10 +799,10 @@ void LOOPS::dimerdimer()
 	  //-------------------------
 	  //ADD -1 or 3
 	    if((check==0)||(check==2)){Dxx[kl-2]+=3;}
-	  else{ Dxx[kl-2]+=3;}
+	  else{ Dxx[kl-2]-=1;}
 	}
 
-	else{ Dxx[kl-2]-=1;} //ADD 3
+	else{ Dxx[kl-2]+=3;} //ADD 3
       }
     }
   }
