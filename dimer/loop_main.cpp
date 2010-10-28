@@ -89,7 +89,7 @@ int main(){
     //    }
     //    entrpy_out << endl;
 
-    for(int i=0; i<=dim1/2-2; i++){
+    for(int i=0; i<dim1/2-1; i++){
       dimerx_out << setw(20) << system.Dxx_double[i];
       dimery_out << setw(20) << system.Dyy_double[i];
     }
