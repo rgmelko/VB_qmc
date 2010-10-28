@@ -779,6 +779,7 @@ void LOOPS::dimerdimer()
       if(loop_k==loop_l){
 	Dxj[kl-2]++;
 	if(loop_i==loop_k){
+	  check=0;
 
 	  //CHECKLOOP ORDER---------------
 	  while(site!=1){
@@ -809,6 +810,8 @@ void LOOPS::dimerdimer()
     for(int kl=2; kl<=dim1/2; kl++){
       loop_k=whichloop[kl];
       loop_l=whichloop[kl+1];
+
+      if(loop_k==loop_l){Dxj[kl-2]++;}
       
       if((loop_i==loop_k)&&(loop_j==loop_l)){
 	Dxx[kl-2]+=1; //ADD 1
