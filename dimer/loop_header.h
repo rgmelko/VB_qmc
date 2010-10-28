@@ -39,10 +39,10 @@ class LOOPS
   vector <int> whichloop; /* stores which loop number each site is in. used
 			     in the energy measurement */
   vector <double> entropy, entropy_final;
-  vector <int> Dxx;
+  vector <int> Dxx, Dyy;
   int Dx0;
-  vector <int> Dxj;
-  vector <double> Dxx_double;
+  vector <int> Dxj, Dyj;
+  vector <double> Dxx_double, Dyy_double;
 
   iMatrix nnbonds;//list of all possible nnbonds.  Index is the bond number
   iMatrix nn_mat; /*matrix of the nnbonds. indices are sites
@@ -100,6 +100,10 @@ LOOPS::LOOPS(int xsites, int ysites, int bondops, bool ob, long long its,
   Dxj.assign(xsites/2-1,0);
   Dx0=0;
   Dxx_double.assign(xsites/2-1,0);
+
+  Dyy.assign(xsites/2,0);
+  Dyj.assign(xsites/2,0);
+  Dyy_double.assign(xsites/2,0);
 
   Vlinks.assign(vlegs, -99); //set size and initialize
   Hlinks.assign(vlegs, -99); 
@@ -818,7 +822,7 @@ void LOOPS::calculate_stuff()
 
   for(int i=0; i<Dxx.size(); i++){
     Dxx_double[i]=Dxx[i]*((3.0/16.0)/(iterations*1.0))-Dx0*Dxj[i]*(9.0/16.0)/((iterations*1.0)*iterations);
-    cout << i <<"    "<< Dxx[i] <<"    "<< Dx0 <<"    "<< Dxj[i] <<  endl;
+    // cout << i <<"    "<< Dxx[i] <<"    "<< Dx0 <<"    "<< Dxj[i] <<  endl;
     Dxx[i]=0;
     Dxj[i]=0;
   }
