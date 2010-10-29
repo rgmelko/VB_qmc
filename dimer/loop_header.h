@@ -764,7 +764,8 @@ void LOOPS::dimerdimer()
 	//(i,j,k,l)
 	if(loop_i==loop_k){
 	  check=0;
-
+	  
+	  site=0;
 	  //CHECKLOOP ORDER---------------
 	  while(site!=1){
 	    site = VL[site];
@@ -807,6 +808,7 @@ void LOOPS::dimerdimer()
 	if(loop_i==loop_k){
 	  check=0;
 
+	  site=0;
 	  //CHECKLOOP ORDER---------------
 	  while(site!=1){
 	    site = VL[site];
