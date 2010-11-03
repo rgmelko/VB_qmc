@@ -1,0 +1,35 @@
+energy.dat
+entrpy.dat
+bondop.dat
+
+6
+6
+
+1
+10
+
+50
+
+0
+
+43294329
+
+0
+
+energy filename
+entropy filename
+bondops filename
+
+dimension 1
+dimension 2
+
+iterations per loop
+number of loops
+
+bondops per site
+
+OBC? 0 no, 1 yes
+
+random seed
+
+initialization time
