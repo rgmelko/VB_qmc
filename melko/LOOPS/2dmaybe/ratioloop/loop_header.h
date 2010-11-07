@@ -46,6 +46,8 @@ class LOOPS
   iMatrix Nnnbonds;//list of all nearest nnbonds
   iMatrix bops; // list of bond operators
   iMatrix superbops; //list of bond operators plus edges simulated via bops
+                     //superbops(:,0) is the bond the operator acts on 
+                     //         (:,1) is 0 for diag, 1 for offdiag???
 
   //CONSTRUCTOR
   LOOPS::LOOPS(int xsites, int ysites, int bondops, bool ob, long long its,
@@ -387,10 +389,19 @@ void LOOPS::create__Hlinks()
   
   long long legnum = 0;
   // iterate through bond operators and create horizontal links
+
+  // the first N/2 bondops are actually the initial VB configuration
   long long bopnum = number_of_sites/2;
+
+  // create Hlinks for the operators after the init VB config.. 
+  // but also include the bondops for the other initial VB config 
+  // (on the right side) ... 
   for(bopnum; bopnum<number_of_bondops+number_of_sites; bopnum++){
+
+    //the top left (first) leg of the bond op
     legnum = 4*bopnum;
 
+    //join the first leg to the 
     Hlinks[legnum] = last[nnbonds(superbops(bopnum,0),0)];//does it matter if
     Hlinks[last[nnbonds(superbops(bopnum,0),0)]] = legnum;//I screw up the order
     last[nnbonds(superbops(bopnum,0),0)] = legnum + 2; //? because I am
