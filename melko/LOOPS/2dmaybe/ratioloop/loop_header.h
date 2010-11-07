@@ -387,7 +387,6 @@ void LOOPS::create__Hlinks()
   
   long long legnum = 0;
   // iterate through bond operators and create horizontal links
-  // ******definitely fix the *order* problem if the probabilities change******
   long long bopnum = number_of_sites/2;
   for(bopnum; bopnum<number_of_bondops+number_of_sites; bopnum++){
     legnum = 4*bopnum;
