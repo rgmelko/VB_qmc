@@ -102,7 +102,7 @@ LOOPS::LOOPS(int xsites, int ysites, int bondops, bool ob, long long its,
   //create "sides"
   sides.assign(vlegs,0); 
   for(long long i=vlegs/2; i<vlegs; i++){sides[i]=1;}
-  VL.assign(number_of_sites, -99); //set size of VL and VR
+  VL.assign(number_of_sites*2, -99); //set size of VL and VR
   VR=VL;
 }
 
