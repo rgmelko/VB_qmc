@@ -404,6 +404,9 @@ void LOOPS::create__Hlinks()
     //the top left (first) leg of the bond op
     legnum = 4*bopnum;
 
+    cout << "bondop " << bopnum << " = " << nnbonds(superbops(bopnum,0),0) << "," <<
+      nnbonds(superbops(bopnum,0),1) << endl;
+
     //join the first leg to the 
     Hlinks[legnum] = last[nnbonds(superbops(bopnum,0),0)];//does it matter if
     Hlinks[last[nnbonds(superbops(bopnum,0),0)]] = legnum;//I screw up the order
@@ -423,7 +426,7 @@ of course this doesn't work at the program gets stuck (i assume in some infinite
   long long a,b,c;
   int THING = 0;
 
-  for(int iz=0; iz<THING; iz++){
+  for(int iz=0; iz<=THING; iz++){
     c = iz;
     a = last[c];
     b = last[c+number_of_sites/2];
@@ -451,10 +454,13 @@ of course this doesn't work at the program gets stuck (i assume in some infinite
 
   //now the RHS bondops
   for(bopnum; bopnum<number_of_bondops+number_of_sites; bopnum++){
-    cout << "&&&&" << bopnum << endl;
+    //    cout << "&&&&" << bopnum << endl;
 
     //the top left (first) leg of the bond op
     legnum = 4*bopnum;
+
+    cout << "bondop " << bopnum << " = " << nnbonds(superbops(bopnum,0),0) << "," <<
+      nnbonds(superbops(bopnum,0),1) << endl;
 
     //join the first leg to the 
     Hlinks[legnum] = last[nnbonds(superbops(bopnum,0),0)];//does it matter if
@@ -527,8 +533,8 @@ void LOOPS::make_flip_loops()
 
     startsite = counter;        // set the initial site (startsite)
     site = Hlinks[counter];     // the site connected to startsite horizontally
-    //    cout << "startsite = " << startsite << endl;
-    //    cout << site << endl;
+        cout << "startsite = " << startsite << endl;
+        cout << site << endl;
 
     //making sure site isn't bonded to itself (edges are bonded to themselves)
     //and checking that the startsite isn't already in a loop
@@ -536,8 +542,8 @@ void LOOPS::make_flip_loops()
       counter++;  //changing startsite
       site = Hlinks[counter]; //site connected to new startsite
       startsite = counter;    //setting new startsite
-      //      cout << "startsite = " << startsite << endl;
-      //      cout << site << endl;  
+            cout << "new startsite = " << startsite << endl;
+            cout << site << endl;  
     }
     //breaks if we get to the last or 2nd last site
     if(counter > vlegs-2){break;} 
@@ -562,7 +568,7 @@ void LOOPS::make_flip_loops()
       //VERTICAL LINKS
       if(!which){                
 	site = Vlinks[site];
-	//	cout << site << endl;
+		cout << site << endl;
   
 	if(flip){superbops(site/4,1) = (superbops(site/4,1)+1)%2;}
       }
@@ -595,7 +601,7 @@ void LOOPS::make_flip_loops()
 	}
 	
 	site = Hlinks[site];
-	//	cout << site << endl; 
+		cout << site << endl; 
 
       }
       which = !which; //changes from horiz(1) to vert(0) or vice versa
@@ -613,6 +619,7 @@ void LOOPS::make_flip_loops()
     while(loopnums[counter]>0){counter++; if(counter>vlegs){break;}}
   }
 
+  for(int i=0; i<number_of_sites; i++){ cout << "VL[" << i << "] = " << VL[i] << endl;}
 }   
 /************ take_measurement() *********************************************
  Global:
@@ -781,6 +788,8 @@ void LOOPS::swaperator()
       which=0;
       
       while(mite!=startsite){
+
+	cout << "mite = " << mite << endl;
 	
 	if(mite==-99){cout << "SUPER ERROR" << endl; exit(1); }
 	site[mite]=1;
