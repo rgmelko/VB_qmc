@@ -58,6 +58,7 @@ int main(){
       system.make_flip_loops();  //generate loops and flip w/ prob 0.5
       //      cout << "4" << endl;
       system.take_measurement();
+      // cout << "measure" << endl;
       system.swaperator();
       //      cout << "5" << endl;
       system.change__operators(); //Change the diagonal operators

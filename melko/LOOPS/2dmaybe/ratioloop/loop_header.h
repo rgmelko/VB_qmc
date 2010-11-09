@@ -384,7 +384,8 @@ void LOOPS::create__Hlinks()
   vector <long long> last (number_of_sites,-99);
   for(int i=0; i<number_of_sites; i+=2){ 
     last[i]=i+2*(i/2+1); 
-    last[i+1]=i+1+2*(i/2+1); 
+    last[i+1]=i+1+2*(i/2+1);
+    cout << "*********************************** last[" << i << "] = " << last[i] << endl;
   }
   
   long long legnum = 0;
@@ -396,7 +397,61 @@ void LOOPS::create__Hlinks()
   // create Hlinks for the operators after the init VB config.. 
   // but also include the bondops for the other initial VB config 
   // (on the right side) ... 
+
+  //for the LHS of the bondops
+  for(bopnum; bopnum<(number_of_bondops+number_of_sites)/2; bopnum++){
+
+    //the top left (first) leg of the bond op
+    legnum = 4*bopnum;
+
+    //join the first leg to the 
+    Hlinks[legnum] = last[nnbonds(superbops(bopnum,0),0)];//does it matter if
+    Hlinks[last[nnbonds(superbops(bopnum,0),0)]] = legnum;//I screw up the order
+    last[nnbonds(superbops(bopnum,0),0)] = legnum + 2; //? because I am
+
+    Hlinks[legnum+1] = last[nnbonds(superbops(bopnum,0),1)]; 
+    Hlinks[last[nnbonds(superbops(bopnum,0),1)]] = legnum+1;
+    last[nnbonds(superbops(bopnum,0),1)] = legnum + 3;
+    cout << bopnum << endl;
+  }
+
+  /*************************************************************
+    NOW stop to switch the connections within region A
+of course this doesn't work at the program gets stuck (i assume in some infinite loop....)
+
+   *************************************************************/
+  long long a,b,c;
+  int THING = 0;
+
+  for(int iz=0; iz<THING; iz++){
+    c = iz;
+    a = last[c];
+    b = last[c+number_of_sites/2];
+  
+    last[c+number_of_sites/2] = a;
+    last[c] = b;
+
+    for(int jz=1; jz<=iz; jz++){
+      c = iz+dim1*jz;
+      a = last[c];
+      b = last[c + number_of_sites/2];
+      last[c] = b;
+      last[c+number_of_sites/2]=a;
+
+      c = iz*dim1 + jz - 1;
+      a = last[c];
+      b = last[c + number_of_sites/2];
+      last[c] = b;
+      last[c+number_of_sites/2]=a;   
+    }
+  }
+  /*************************************************************
+    End of switching the connections within region A
+   *************************************************************/
+
+  //now the RHS bondops
   for(bopnum; bopnum<number_of_bondops+number_of_sites; bopnum++){
+    cout << "&&&&" << bopnum << endl;
 
     //the top left (first) leg of the bond op
     legnum = 4*bopnum;
@@ -410,7 +465,11 @@ void LOOPS::create__Hlinks()
     Hlinks[last[nnbonds(superbops(bopnum,0),1)]] = legnum+1;
     last[nnbonds(superbops(bopnum,0),1)] = legnum + 3;
   }
+
+  for(int i=0; i<number_of_sites; i++){cout << "LAST[" << i << "] = " <<last[i] << endl;}
 }
+
+
 
 /************ make_flip_loops() **********************************************
  Creates loops and flips them with probability 1/2
@@ -468,6 +527,8 @@ void LOOPS::make_flip_loops()
 
     startsite = counter;        // set the initial site (startsite)
     site = Hlinks[counter];     // the site connected to startsite horizontally
+    //    cout << "startsite = " << startsite << endl;
+    //    cout << site << endl;
 
     //making sure site isn't bonded to itself (edges are bonded to themselves)
     //and checking that the startsite isn't already in a loop
@@ -475,12 +536,15 @@ void LOOPS::make_flip_loops()
       counter++;  //changing startsite
       site = Hlinks[counter]; //site connected to new startsite
       startsite = counter;    //setting new startsite
+      //      cout << "startsite = " << startsite << endl;
+      //      cout << site << endl;  
     }
     //breaks if we get to the last or 2nd last site
     if(counter > vlegs-2){break;} 
     loopnums[counter] = loopnum; //including startsite in new loop
     loopnums[site] = loopnum;    //adding the next site to the loop
-    which = 0;      //"which" checks if we're on horiz(1) or vert(0)     
+    which = 0;      //"which" checks if we're on horiz(1) or vert(0) 
+    
 
     if(sides[startsite]!=sides[site]){
    
@@ -498,6 +562,8 @@ void LOOPS::make_flip_loops()
       //VERTICAL LINKS
       if(!which){                
 	site = Vlinks[site];
+	//	cout << site << endl;
+  
 	if(flip){superbops(site/4,1) = (superbops(site/4,1)+1)%2;}
       }
       //HORIZONTAL LINKS
@@ -529,6 +595,8 @@ void LOOPS::make_flip_loops()
 	}
 	
 	site = Hlinks[site];
+	//	cout << site << endl; 
+
       }
       which = !which; //changes from horiz(1) to vert(0) or vice versa
       loopnums[site] = loopnum; //adds next site to loop
@@ -636,33 +704,38 @@ void LOOPS::change__operators()
   }
 }
 /************ swaperator() ****************************************************
+what geometry does this even use?  squares?
+
+i should change it to ladder geometry... but of course... bus error.
 ******************************************************************************/
 void LOOPS::swaperator()
 {
   vector <int> tempbonds;
   tempbonds = VR;
   int a,b,c,d;
-  int superflip(1);
+  int superflip(0); //what even is this?
 
   for(int lint=0; lint<dim1-1; lint++){
 
+    
     if(superflip&&((lint+1)*(lint+1)>(dim1*dim2)/2.0)){
       for(int oint=0; oint<dim1; oint++){
 	for(int pint=0; pint<dim2; pint++){
 	  
-	  a = oint+pint*dim1;
-	  d = a+number_of_sites/2;
-	  b = tempbonds[d];
-	  c = tempbonds[a];
+	  a = oint+pint*dim1;  
+	  d = a+number_of_sites/2;  //swap site a with it's replica counterpart 
+	  b = tempbonds[d];         // b was bonded to d
+	  c = tempbonds[a];         // c was bonded to a
 	  
-	  tempbonds[a] = b;
-	  tempbonds[b] = a;
-	  tempbonds[d] = c;
+	  tempbonds[a] = b;         // now b is bonded to a
+	  tempbonds[b] = a;        
+	  tempbonds[d] = c;         // and c is bonded to d
 	  tempbonds[c] = d;
-	  superflip=0;
+	  superflip=0;              // i still don't know what superflip does...
 	}
       }
     }
+
 	  
     a = lint;
     d = lint+number_of_sites/2;
@@ -696,7 +769,6 @@ void LOOPS::swaperator()
       tempbonds[c] = d;
     }
   
-   
     int counter(0), temploopnum(0), startsite(0), mite(-99), which(0);
     vector <int> site(number_of_sites+2,0);
  
@@ -709,24 +781,25 @@ void LOOPS::swaperator()
       which=0;
       
       while(mite!=startsite){
-
-          if(mite==-99){exit(1);}
-          site[mite]=1;
-
-          if(which==0){
-              mite = tempbonds[mite];
-              which++;
-          }
-          else{
-              mite = VL[mite];
-              which--;
-          }
+	
+	if(mite==-99){cout << "SUPER ERROR" << endl; exit(1); }
+	site[mite]=1;
+	
+	if(which==0){
+	  mite = tempbonds[mite];
+	  which++;
+	}
+	else{
+	  mite = VL[mite];
+	  which--;
+	}
       }
       temploopnum++;
       while(site[counter]==1){counter++;}
     }
     int loopdiff = temploopnum - cross;
     entropy[lint] += pow(2,loopdiff);
+    
   }
 }
 /************ calculate_stuff() ***********************************************
