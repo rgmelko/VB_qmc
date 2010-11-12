@@ -15,6 +15,8 @@ class LOOPS
   MTRand drand; //drand() gives you a random double precision number
   MTRand_int32 irand; // irand() gives you a random integer
 
+  int THING;
+
   int dim1, dim2,  number_of_sites; //the dimensions and number of sites
   int cross; /*the number of loops crossing the boundary i.e. the number of 
 	       loops created by overlapping the propagated |VL> and |VR> */
@@ -50,7 +52,7 @@ class LOOPS
                      //         (:,1) is 0 for diag, 1 for offdiag???
 
   //CONSTRUCTOR
-  LOOPS::LOOPS(int xsites, int ysites, int bondops, bool ob, long long its,
+  LOOPS::LOOPS(int xsites, int ysites, int flip, int bondops, bool ob, long long its,
 	       long long rseed, string bondopfile);
 
   void nnbondlist(); //creates list of nnbonds
@@ -71,7 +73,7 @@ class LOOPS
 };
 
 //*************** CONSTRUCTOR ******************************************
-LOOPS::LOOPS(int xsites, int ysites, int bondops, bool ob, long long its, 
+LOOPS::LOOPS(int xsites, int ysites, int flip, int bondops, bool ob, long long its, 
 	     long long rseed, string bondopfile)
 {
   irand.seed(rseed); //uses the random seed from the parameter file
@@ -79,6 +81,7 @@ LOOPS::LOOPS(int xsites, int ysites, int bondops, bool ob, long long its,
   
   dim1 = xsites; 
   dim2 = ysites;
+  THING = flip;
   OBC = ob;
   number_of_sites = dim1*dim2; //calculates total number of sites
   //****changed**** multiplied by 2
@@ -385,7 +388,6 @@ void LOOPS::create__Hlinks()
   for(int i=0; i<number_of_sites; i+=2){ 
     last[i]=i+2*(i/2+1); 
     last[i+1]=i+1+2*(i/2+1);
-    cout << "*********************************** last[" << i << "] = " << last[i] << endl;
   }
   
   long long legnum = 0;
@@ -404,8 +406,6 @@ void LOOPS::create__Hlinks()
     //the top left (first) leg of the bond op
     legnum = 4*bopnum;
 
-    cout << "bondop " << bopnum << " = " << nnbonds(superbops(bopnum,0),0) << "," <<
-      nnbonds(superbops(bopnum,0),1) << endl;
 
     //join the first leg to the 
     Hlinks[legnum] = last[nnbonds(superbops(bopnum,0),0)];//does it matter if
@@ -415,7 +415,6 @@ void LOOPS::create__Hlinks()
     Hlinks[legnum+1] = last[nnbonds(superbops(bopnum,0),1)]; 
     Hlinks[last[nnbonds(superbops(bopnum,0),1)]] = legnum+1;
     last[nnbonds(superbops(bopnum,0),1)] = legnum + 3;
-    cout << bopnum << endl;
   }
 
   /*************************************************************
@@ -424,8 +423,7 @@ of course this doesn't work at the program gets stuck (i assume in some infinite
 
    *************************************************************/
   long long a,b,c;
-  int THING = 0;
-
+  
   for(int iz=0; iz<=THING; iz++){
     c = iz;
     a = last[c];
@@ -459,9 +457,6 @@ of course this doesn't work at the program gets stuck (i assume in some infinite
     //the top left (first) leg of the bond op
     legnum = 4*bopnum;
 
-    cout << "bondop " << bopnum << " = " << nnbonds(superbops(bopnum,0),0) << "," <<
-      nnbonds(superbops(bopnum,0),1) << endl;
-
     //join the first leg to the 
     Hlinks[legnum] = last[nnbonds(superbops(bopnum,0),0)];//does it matter if
     Hlinks[last[nnbonds(superbops(bopnum,0),0)]] = legnum;//I screw up the order
@@ -472,7 +467,6 @@ of course this doesn't work at the program gets stuck (i assume in some infinite
     last[nnbonds(superbops(bopnum,0),1)] = legnum + 3;
   }
 
-  for(int i=0; i<number_of_sites; i++){cout << "LAST[" << i << "] = " <<last[i] << endl;}
 }
 
 
@@ -517,7 +511,7 @@ void LOOPS::make_flip_loops()
   int loopnum(1), startsite(0); 
   long long counter(0), site(0);
   bool which(0), flip=0;
-  int firstcross(-99),lastcross(-99), current(0); 
+  int rfirstcross(-99),rlastcross(-99), rcurrent(0); 
   int right=-99;
   bool boolcross=0;
 
@@ -533,8 +527,6 @@ void LOOPS::make_flip_loops()
 
     startsite = counter;        // set the initial site (startsite)
     site = Hlinks[counter];     // the site connected to startsite horizontally
-        cout << "startsite = " << startsite << endl;
-        cout << site << endl;
 
     //making sure site isn't bonded to itself (edges are bonded to themselves)
     //and checking that the startsite isn't already in a loop
@@ -542,84 +534,102 @@ void LOOPS::make_flip_loops()
       counter++;  //changing startsite
       site = Hlinks[counter]; //site connected to new startsite
       startsite = counter;    //setting new startsite
-            cout << "new startsite = " << startsite << endl;
-            cout << site << endl;  
     }
     //breaks if we get to the last or 2nd last site
     if(counter > vlegs-2){break;} 
-    loopnums[counter] = loopnum; //including startsite in new loop
+    loopnums[startsite] = loopnum; //including startsite in new loop
     loopnums[site] = loopnum;    //adding the next site to the loop
     which = 0;      //"which" checks if we're on horiz(1) or vert(0) 
     
 
-    if(sides[startsite]!=sides[site]){
-   
-      firstcross =  nnbonds(superbops(site/4,0),site%2);
-      lastcross = firstcross;
-      if(sides[startsite]<sides[site]){right=1;}
-      else{right=0;}
+    /*    if(sides[startsite]!=sides[site]){ 
+	  cout << "cross!!!\n";
+	  firstcross =  nnbonds(superbops(site/4,0),site%2);//************
+	  lastcross = firstcross;
+	  cout << "firstcross = " << firstcross << endl;
+	  right = sides[site];
+	  boolcross++;
+	  whichloop[firstcross]=loopnum;  
+      }*/
+
+    if(sides[startsite]<sides[site]){
+      rfirstcross = nnbonds(superbops(site/4,0),site%2);
+      right = 1;
       boolcross++;
-      whichloop[firstcross]=loopnum;
+      whichloop[rfirstcross]=loopnum;
+      rlastcross = rfirstcross;
     }
-    
+    if(sides[startsite]>sides[site]){
+      rfirstcross = nnbonds(superbops(startsite/4,0),startsite%2);
+      right = 0;
+      boolcross++;
+      whichloop[rfirstcross]=loopnum;
+      rlastcross = rfirstcross;
+    }
+  
     //while loops ends when we get back to the startsite
     while(site!=startsite){
       
       //VERTICAL LINKS
       if(!which){                
 	site = Vlinks[site];
-		cout << site << endl;
-  
+
 	if(flip){superbops(site/4,1) = (superbops(site/4,1)+1)%2;}
       }
       //HORIZONTAL LINKS
+      //*******************************CHANGE to have rcross and lcross, y'know?
       else{
     
 	if(sides[site]!=sides[Hlinks[site]]){  //if it crosses the boundary
-	  current = nnbonds(superbops(site/4,0),site%2);
+	  if(sides[site]<sides[Hlinks[site]]){
+	    rcurrent = nnbonds(superbops(Hlinks[site]/4,0),Hlinks[site]%2);
+	  }
+	  else{
+	    rcurrent = nnbonds(superbops(site/4,0),site%2);
+	  }
 	  boolcross++;
+
 	  //if this is the first crossing for this loop set firstcross
-	  if(lastcross<0){//and set right to show if it's crossing left or right
-	    firstcross =  current;
+	  if(rlastcross<0){//and set right to show if it's crossing left or right
+	    rfirstcross = rcurrent;
 	    if (sides[site]<sides[Hlinks[site]]){right=1;}
 	    else {right=0;}
 	  }
+
 	  //if it's not the first crossing
 	  else{
 	    if(right){
-	      VR[current] = lastcross;
-	      VR[lastcross] = current;
+	      VR[rcurrent] = rlastcross;
+	      VR[rlastcross] = rcurrent;
 	    }
 	    else{
-	      VL[current] = lastcross;
-	      VL[lastcross] = current;
+	      VL[rcurrent] = rlastcross;
+	      VL[rlastcross] = rcurrent;
 	    }
 	    right = (right+1)%2;  //change cross direction
 	  }
-	  lastcross = current;
-	  whichloop[current]=loopnum;
+	  rlastcross = rcurrent;
+	  whichloop[rcurrent]=loopnum;
 	}
 	
 	site = Hlinks[site];
-		cout << site << endl; 
-
+	
       }
       which = !which; //changes from horiz(1) to vert(0) or vice versa
       loopnums[site] = loopnum; //adds next site to loop
     }
-    if(lastcross>-1){
-      if(right){ VR[firstcross]=lastcross; VR[lastcross]=firstcross;}
-      else{ VL[firstcross]=lastcross; VL[lastcross]=firstcross;}
+    if(rlastcross>-1){
+      if(right){ VR[rfirstcross]=rlastcross; VR[rlastcross]=rfirstcross;}
+      else{ VL[rfirstcross]=rlastcross; VL[rlastcross]=rfirstcross;}
     }
     if(boolcross){cross++;}
     boolcross = 0;
     loopnum++; //loop is finished, go to next loop
-    lastcross = -99; right = -99;
+    rlastcross = -99;  right = -99;
     //if counter is already in a loop increase counter
     while(loopnums[counter]>0){counter++; if(counter>vlegs){break;}}
   }
 
-  for(int i=0; i<number_of_sites; i++){ cout << "VL[" << i << "] = " << VL[i] << endl;}
 }   
 /************ take_measurement() *********************************************
  Global:
@@ -722,27 +732,27 @@ void LOOPS::swaperator()
   int a,b,c,d;
   int superflip(0); //what even is this?
 
-  for(int lint=0; lint<dim1-1; lint++){
+  for(int lint=(THING+1); lint<dim1-1; lint++){
 
     
-    if(superflip&&((lint+1)*(lint+1)>(dim1*dim2)/2.0)){
-      for(int oint=0; oint<dim1; oint++){
-	for(int pint=0; pint<dim2; pint++){
-	  
-	  a = oint+pint*dim1;  
-	  d = a+number_of_sites/2;  //swap site a with it's replica counterpart 
-	  b = tempbonds[d];         // b was bonded to d
-	  c = tempbonds[a];         // c was bonded to a
-	  
-	  tempbonds[a] = b;         // now b is bonded to a
-	  tempbonds[b] = a;        
-	  tempbonds[d] = c;         // and c is bonded to d
-	  tempbonds[c] = d;
-	  superflip=0;              // i still don't know what superflip does...
-	}
-      }
-    }
-
+    /*   if(superflip&&((lint+1)*(lint+1)>(dim1*dim2)/2.0)){
+	 for(int oint=0; oint<dim1; oint++){
+	 for(int pint=0; pint<dim2; pint++){
+	 
+	 a = oint+pint*dim1;  
+	 d = a+number_of_sites/2;  //swap site a with it's replica counterpart 
+	 b = tempbonds[d];         // b was bonded to d
+	 c = tempbonds[a];         // c was bonded to a
+	 
+	 tempbonds[a] = b;         // now b is bonded to a
+	 tempbonds[b] = a;        
+	 tempbonds[d] = c;         // and c is bonded to d
+	 tempbonds[c] = d;
+	 superflip=0;              // i still don't know what superflip does...
+	 }
+	 }
+	 } */
+    
 	  
     a = lint;
     d = lint+number_of_sites/2;
@@ -789,8 +799,6 @@ void LOOPS::swaperator()
       
       while(mite!=startsite){
 
-	cout << "mite = " << mite << endl;
-	
 	if(mite==-99){cout << "SUPER ERROR" << endl; exit(1); }
 	site[mite]=1;
 	
