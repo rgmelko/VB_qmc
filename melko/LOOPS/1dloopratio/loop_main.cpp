@@ -1,12 +1,7 @@
-/**
-@file newloop_main.cpp
-*/
-
 //Jan 18, 2010 --- starting loop code
 
 #include "header.h"
-#include "newloop_header.h"
-
+#include "loop_header.h"
 
 int main(){
 
@@ -92,5 +87,4 @@ int main(){
   }
 
   return 0;
-};
-
+}
