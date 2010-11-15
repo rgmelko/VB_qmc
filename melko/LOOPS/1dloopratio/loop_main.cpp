@@ -9,7 +9,7 @@ int main(){
   //  read in parameters: system dimensions, number of bond operators, 
   //   filenames, iterations per loop, number of loops, a random seed
 
-  int dim1, dim2;
+  int dim1, dim2, flip;
   long long its_per_loop=10000, loops=100;
   long long initialization;
   double bops_per_site=10;
@@ -19,7 +19,7 @@ int main(){
 
   ifstream fin("param.txt");
   fin >> enerfilename >> entrofilename >> bondopfilename
-      >> dim1 >> dim2
+      >> dim1 >> dim2 >> flip
       >> its_per_loop >> loops
       >> bops_per_site >> OBC
       >> ranseed
@@ -34,7 +34,7 @@ int main(){
   cout << "------------------------------------------------ \n"; 
 
   if(dim1==2|dim2==2){cout<<"warning! nnbonds get screwed up for a x 2 \n";}
-  LOOPS system (dim1, dim2, total_bops, OBC, its_per_loop, ranseed, 
+  LOOPS system (dim1, dim2, flip, total_bops, OBC, its_per_loop, ranseed, 
 		bondopfilename);
  
   // create initial VB config and initial spin config
