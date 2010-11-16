@@ -29,7 +29,7 @@ class LOOPS
   string bopfile; //the name of the file in which the bondops are stored
   
   vector <long long> Vlinks, Hlinks;//the vert and horizontal links for the LL
-  vector <bool> spins, init_spins;
+  vector <int> spins, init_spins;
   vector <int> antipar, init_antipar; //keeps track of antiparallelness
   vector <int> isgood, init_isgood; //keeps track of 'good'ness
   vector <int> sides; /*store which side of the boundary a leg is on
@@ -106,8 +106,8 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, bool ob, long long 
   VR=VL;
   
   init_spins.assign(number_of_sites*2,0);
-  for(int i=0; i<number_of_sites; i+=2){
-    init_spins[i] = ~init_spins[i];
+  for(int i=0; i<number_of_sites*2; i+=2){
+    init_spins[i] = 1;
   }
   spins = init_spins;
 }
@@ -389,29 +389,17 @@ void LOOPS::create__Hlinks()
 {
   vector <long long> last (number_of_sites,-99);
 
-  for(int i=0; i<number_of_nnbonds; i++){
-    cout << nnbonds(i,0) <<"," << nnbonds(i,1) <<"  antiparallel? = " << antipar[i] << endl;
-  }
   for(int i=0; i<number_of_sites; i+=2){ 
     last[i]=i+2*(i/2+1); 
     last[i+1]=i+1+2*(i/2+1); 
-    cout << "("<<nnbonds(superbops(i/2,0),0) << "," 
-	 << nnbonds(superbops(i/2,0),1) <<")   offdiag =  "
-	 << superbops(i/2,1) << endl;
-    
-
 
   }
   
-  cout << "---------\n";
   long long legnum = 0;
   // iterate through bond operators and create horizontal links
   // ******definitely fix the *order* problem if the probabilities change******
   long long bopnum = number_of_sites/2;
   for(bopnum; bopnum<(number_of_bondops+number_of_sites)/2; bopnum++){
-    cout << "("<<nnbonds(superbops(bopnum,0),0) << "," 
-	 << nnbonds(superbops(bopnum,0),1) <<")   offdiag =  "
-	 << superbops(bopnum,1) << endl;
 
     legnum = 4*bopnum;
 
@@ -442,10 +430,6 @@ void LOOPS::create__Hlinks()
    *************************************************************/
 
   for(bopnum; bopnum<number_of_bondops+number_of_sites; bopnum++){
-    cout <<"("<< nnbonds(superbops(bopnum,0),0) << "," 
-	 << nnbonds(superbops(bopnum,0),1) << ")   offdiag =  "
-	 << superbops(bopnum,1) << endl;
-
     
     legnum = 4*bopnum;
 
@@ -516,16 +500,13 @@ void LOOPS::make_flip_loops()
     else{flip=0;}
 
     startsite = counter;        // set the initial site (startsite)
-    cout << "startsite = " << startsite << "    flip = " << flip << endl;
     site = Hlinks[counter];     // the site connected to startsite horizontally
-    cout << "H " << site << endl;
 
     //making sure site isn't bonded to itself (edges are bonded to themselves)
     //and checking that the startsite isn't already in a loop
     while(((site == Hlinks[site])|(loopnums[counter]>0))&&(counter<vlegs-2)){ 
       counter++;  //changing startsite
       site = Hlinks[counter]; //site connected to new startsite
-      cout << "H "<< site << endl;
       startsite = counter;    //setting new startsite
     }
     //breaks if we get to the last or 2nd last site
@@ -566,7 +547,6 @@ void LOOPS::make_flip_loops()
       //VERTICAL LINKS
       if(!which){                
 	site = Vlinks[site];
-	cout << "V " << site << endl;
 	if(flip){superbops(site/4,1) = (superbops(site/4,1)+1)%2;}
       }
       //HORIZONTAL LINKS
@@ -604,7 +584,6 @@ void LOOPS::make_flip_loops()
 	}
 	
 	site = Hlinks[site];
-	cout << "H " << site << endl;
       }
       which = !which; //changes from horiz(1) to vert(0) or vice versa
       loopnums[site] = loopnum; //adds next site to loop
@@ -619,12 +598,6 @@ void LOOPS::make_flip_loops()
     lastcross = -99; right = -99;
     //if counter is already in a loop increase counter
     while(loopnums[counter]>0){counter++; if(counter>vlegs){break;}}
-  }
-
-  for(int bopnum=0; bopnum<number_of_bondops+number_of_sites; bopnum++){
-    cout <<"("<< nnbonds(superbops(bopnum,0),0) << "," 
-	 << nnbonds(superbops(bopnum,0),1) << ")   offdiag =  "
-	 << superbops(bopnum,1) << endl;
   }
 
 }   
@@ -666,6 +639,7 @@ void LOOPS::change__operators()
   antipar = init_antipar;
   isgood = init_isgood;
   spins = init_spins;
+
   int neighbs(0);
   if(dim2==1){neighbs=2;}
   else{neighbs=6;}
@@ -673,8 +647,9 @@ void LOOPS::change__operators()
   //for the first N/2 operators (i.e. the edge)
   for(int op=0; op<number_of_sites/2; op++){ 
     if(superbops(op,1)==1){                   //if operator is offdiagonal
-      spins[nnbonds(superbops(op,0),0)] = ~spins[nnbonds(superbops(op,0),0)];//update spins
-      spins[nnbonds(superbops(op,0),1)] = ~spins[nnbonds(superbops(op,0),1)];
+      spins[nnbonds(superbops(op,0),0)] = (spins[nnbonds(superbops(op,0),0)]+1)%2;//update spins
+      spins[nnbonds(superbops(op,0),1)] = (spins[nnbonds(superbops(op,0),1)]+1)%2;
+
 
       for(int i=0;i<neighbs;i++){//change antiparallelness of neighboring bonds
 
@@ -695,15 +670,16 @@ void LOOPS::change__operators()
 	  isgood.push_back(loc);
 	}                                        
       }
-    }                       //otherwise (if diagonal) do nothing
+    }                     //otherwise (if diagonal) do nothing
+
   }
   
   // Now look at the first half of the  *real* operators
   long long op = number_of_sites/2;
   for(op; op<number_of_bondops/2+number_of_sites/2; op++){
     if(superbops(op,1)==1){                         //if operator is offdiagonal
-      spins[nnbonds(superbops(op,0),0)] = ~spins[nnbonds(superbops(op,0),0)];//update spins
-      spins[nnbonds(superbops(op,0),1)] = ~spins[nnbonds(superbops(op,0),1)];
+      spins[nnbonds(superbops(op,0),0)] = (spins[nnbonds(superbops(op,0),0)]+1)%2;//update spins
+      spins[nnbonds(superbops(op,0),1)] = (spins[nnbonds(superbops(op,0),1)]+1)%2;
 
       for(int i=0;i<neighbs; i++){//change antiparallelness of neighboring bonds
 	int loc = Nnnbonds(superbops(op,0),i);
@@ -737,6 +713,7 @@ void LOOPS::change__operators()
   ********************************************************************/
   //swap the spins
   bool a,b,c;
+
   for(int iz=0; iz<=THING; iz++){
     c = iz;
     a = spins[c];
@@ -748,8 +725,8 @@ void LOOPS::change__operators()
   //find the new antiparallelness
   isgood.clear();
   for(int i=0; i<number_of_nnbonds; i++){
-    antipar[i]=(spins[nnbonds(i,0)]^spins[nnbonds(i,1)]); //exclusive or (if they're different it's 1, otherwise 0)
-    if(antipar[i]){isgood.push_back(i);} //if it's antiparallel add it to the list
+    antipar[i]=(spins[nnbonds(i,0)]+spins[nnbonds(i,1)])%2; //if they're different it's 1, otherwise 0)
+    if(antipar[i]==1){isgood.push_back(i);} //if it's antiparallel add it to the list
   }
   /*******************************************************************
                                end of that
@@ -758,8 +735,6 @@ void LOOPS::change__operators()
   //second half of the real operators
   for(op; op<number_of_bondops+number_of_sites/2; op++){
     if(superbops(op,1)==1){                         //if operator is offdiagonal
-      spins[nnbonds(superbops(op,0),0)] = ~spins[nnbonds(superbops(op,0),0)];//update spins
-      spins[nnbonds(superbops(op,0),1)] = ~spins[nnbonds(superbops(op,0),1)];
 
       for(int i=0;i<neighbs; i++){//change antiparallelness of neighboring bonds
 	int loc = Nnnbonds(superbops(op,0),i);
