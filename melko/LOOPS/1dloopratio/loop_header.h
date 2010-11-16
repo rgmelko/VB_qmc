@@ -29,6 +29,7 @@ class LOOPS
   string bopfile; //the name of the file in which the bondops are stored
   
   vector <long long> Vlinks, Hlinks;//the vert and horizontal links for the LL
+  vector <bool> spins, init_spins;
   vector <int> antipar, init_antipar; //keeps track of antiparallelness
   vector <int> isgood, init_isgood; //keeps track of 'good'ness
   vector <int> sides; /*store which side of the boundary a leg is on
@@ -103,6 +104,12 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, bool ob, long long 
   for(long long i=vlegs/2; i<vlegs; i++){sides[i]=1;}
   VL.assign(number_of_sites, -99); //set size of VL and VR
   VR=VL;
+  
+  init_spins.assign(number_of_sites*2,0);
+  for(int i=0; i<number_of_sites; i+=2){
+    init_spins[i] = ~init_spins[i];
+  }
+  spins = init_spins;
 }
 
 /********** nnbondlist() ***********************************************
@@ -658,6 +665,7 @@ void LOOPS::change__operators()
 {
   antipar = init_antipar;
   isgood = init_isgood;
+  spins = init_spins;
   int neighbs(0);
   if(dim2==1){neighbs=2;}
   else{neighbs=6;}
@@ -665,6 +673,9 @@ void LOOPS::change__operators()
   //for the first N/2 operators (i.e. the edge)
   for(int op=0; op<number_of_sites/2; op++){ 
     if(superbops(op,1)==1){                   //if operator is offdiagonal
+      spins[nnbonds(superbops(op,0),0)] = ~spins[nnbonds(superbops(op,0),0)];//update spins
+      spins[nnbonds(superbops(op,0),1)] = ~spins[nnbonds(superbops(op,0),1)];
+
       for(int i=0;i<neighbs;i++){//change antiparallelness of neighboring bonds
 
 	int loc = Nnnbonds(superbops(op,0),i);
