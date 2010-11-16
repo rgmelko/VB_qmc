@@ -650,6 +650,9 @@ void LOOPS::take_measurement()
   energyint += mdiff - number_of_nnbonds;
 }
 /************ change__operators() ********************************************
+antipar[number_of_nnbonds] is 1 for antiparallel spins and 0 otherwise
+isgood is a vector with a list of the antiparallel bonds where diagonal operators
+       can be placed
 *****************************************************************************/
 void LOOPS::change__operators()
 {
@@ -709,9 +712,8 @@ void LOOPS::change__operators()
 	}      
       }
     }      //if the operator is diagonal we need to change it randomly
-    else{       //using whichbond..  
+    else{        
       superbops(op,0) = isgood[irand()%isgood.size()];
-      
     }
   }
 
