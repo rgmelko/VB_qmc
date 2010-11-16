@@ -697,10 +697,14 @@ void LOOPS::change__operators()
       }
     }                       //otherwise (if diagonal) do nothing
   }
-  // Now look at the *real* operators
+  
+  // Now look at the first half of the  *real* operators
   long long op = number_of_sites/2;
-  for(op; op<number_of_bondops+number_of_sites/2; op++){
+  for(op; op<number_of_bondops/2+number_of_sites/2; op++){
     if(superbops(op,1)==1){                         //if operator is offdiagonal
+      spins[nnbonds(superbops(op,0),0)] = ~spins[nnbonds(superbops(op,0),0)];//update spins
+      spins[nnbonds(superbops(op,0),1)] = ~spins[nnbonds(superbops(op,0),1)];
+
       for(int i=0;i<neighbs; i++){//change antiparallelness of neighboring bonds
 	int loc = Nnnbonds(superbops(op,0),i);
 
@@ -727,6 +731,42 @@ void LOOPS::change__operators()
       superbops(op,0) = isgood[irand()%isgood.size()];
     }
   }
+
+  //Swap some of the spins and stuff, y'know?
+
+  //second half of the real operators
+  for(op; op<number_of_bondops+number_of_sites/2; op++){
+    if(superbops(op,1)==1){                         //if operator is offdiagonal
+      spins[nnbonds(superbops(op,0),0)] = ~spins[nnbonds(superbops(op,0),0)];//update spins
+      spins[nnbonds(superbops(op,0),1)] = ~spins[nnbonds(superbops(op,0),1)];
+
+      for(int i=0;i<neighbs; i++){//change antiparallelness of neighboring bonds
+	int loc = Nnnbonds(superbops(op,0),i);
+
+	if(loc<0){continue;}//goto start of loop ifOBC&that nn doesnt exist
+	if(antipar[loc]==1){//if bond's already antiparallel change to parallel
+
+	  int j=-1;
+	  do{ j++; }
+	  while(isgood[j]!=loc);
+	  
+	  isgood.erase(isgood.begin()+j);
+	  
+	  antipar[loc]--;
+	}
+	else{
+	  
+	  antipar[loc]++;   //if bond is parallel change to antiparalle;
+	  isgood.push_back(loc);
+	  
+	}      
+      }
+    }      //if the operator is diagonal we need to change it randomly
+    else{        
+      superbops(op,0) = isgood[irand()%isgood.size()];
+    }
+  }
+
 
 }
 /************ swaperator() ****************************************************
