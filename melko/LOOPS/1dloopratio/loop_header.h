@@ -732,7 +732,28 @@ void LOOPS::change__operators()
     }
   }
 
-  //Swap some of the spins and stuff, y'know?
+  /*******************************************************************
+               Swap some of the spins and stuff, y'know?
+  ********************************************************************/
+  //swap the spins
+  bool a,b,c;
+  for(int iz=0; iz<=THING; iz++){
+    c = iz;
+    a = spins[c];
+    b = spins[c+number_of_sites/2];
+   
+    spins[c+number_of_sites/2] = a;
+    spins[c] = b;
+  }
+  //find the new antiparallelness
+  isgood.clear();
+  for(int i=0; i<number_of_nnbonds; i++){
+    antipar[i]=(spins[nnbonds(i,0)]^spins[nnbonds(i,1)]); //exclusive or (if they're different it's 1, otherwise 0)
+    if(antipar[i]){isgood.push_back(i);} //if it's antiparallel add it to the list
+  }
+  /*******************************************************************
+                               end of that
+  ********************************************************************/
 
   //second half of the real operators
   for(op; op<number_of_bondops+number_of_sites/2; op++){
