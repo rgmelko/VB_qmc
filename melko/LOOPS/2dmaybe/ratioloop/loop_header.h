@@ -55,7 +55,7 @@ class LOOPS
                      //         (:,1) is 0 for diag, 1 for offdiag???
 
   //CONSTRUCTOR
-  LOOPS::LOOPS(int xsites, int ysites, int rflip1, rflip2, int bondops, 
+  LOOPS::LOOPS(int xsites, int ysites, int rflip1, int rflip2, int bondops, 
 	       bool ob, long long its,
 	       long long rseed, string bondopfile);
 
@@ -77,7 +77,7 @@ class LOOPS
 };
 
 //*************** CONSTRUCTOR ******************************************
-LOOPS::LOOPS(int xsites, int ysites, int rflip1, rflip2, int bondops, 
+LOOPS::LOOPS(int xsites, int ysites, int rflip1, int rflip2, int bondops, 
 	     bool ob, long long its, 
 	     long long rseed, string bondopfile)
 {
