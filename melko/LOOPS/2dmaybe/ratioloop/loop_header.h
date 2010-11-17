@@ -17,7 +17,7 @@ class LOOPS
   MTRand drand; //drand() gives you a random double precision number
   MTRand_int32 irand; // irand() gives you a random integer
 
-  int THING;
+  int flip1, flip2;
 
   int dim1, dim2,  number_of_sites; //the dimensions and number of sites
   int cross; /*the number of loops crossing the boundary i.e. the number of 
@@ -55,7 +55,8 @@ class LOOPS
                      //         (:,1) is 0 for diag, 1 for offdiag???
 
   //CONSTRUCTOR
-  LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, bool ob, long long its,
+  LOOPS::LOOPS(int xsites, int ysites, int rflip1, rflip2, int bondops, 
+	       bool ob, long long its,
 	       long long rseed, string bondopfile);
 
   void nnbondlist(); //creates list of nnbonds
@@ -76,7 +77,8 @@ class LOOPS
 };
 
 //*************** CONSTRUCTOR ******************************************
-LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, bool ob, long long its, 
+LOOPS::LOOPS(int xsites, int ysites, int rflip1, rflip2, int bondops, 
+	     bool ob, long long its, 
 	     long long rseed, string bondopfile)
 {
   irand.seed(rseed); //uses the random seed from the parameter file
@@ -84,7 +86,8 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, bool ob, long long 
   
   dim1 = xsites; 
   dim2 = ysites;
-  THING = flips;
+  flip1 = rflip1;
+  flip2 = rflip2;
   OBC = ob;
   number_of_sites = dim1*dim2; //calculates total number of sites
   //****changed**** multiplied by 2
@@ -442,28 +445,18 @@ void LOOPS::create__Hlinks()
    *************************************************************/
   long long a,b,c;
   
-  for(int iz=0; iz<=THING; iz++){
-    c = iz;
-    a = last[c];
-    b = last[c+number_of_sites/2];
+  for(int iz=0; iz<flip1; iz++){
+    for(int jz=0; jz<flip2; jz++){
+
+      c = iz + dim1*jz;
+      a = last[c];
+      b = last[c+number_of_sites/2];
   
-    last[c+number_of_sites/2] = a;
-    last[c] = b;
-
-    for(int jz=1; jz<=iz; jz++){
-      c = iz+dim1*jz;
-      a = last[c];
-      b = last[c + number_of_sites/2];
+      last[c+number_of_sites/2] = a;
       last[c] = b;
-      last[c+number_of_sites/2]=a;
-
-      c = iz*dim1 + jz - 1;
-      a = last[c];
-      b = last[c + number_of_sites/2];
-      last[c] = b;
-      last[c+number_of_sites/2]=a;   
     }
   }
+  
   /*************************************************************
     End of switching the connections within region A
    *************************************************************/
@@ -750,32 +743,20 @@ void LOOPS::change__operators()
                Swap some of the spins and stuff, y'know?
   ********************************************************************/
   //swap the spins
-  int a,b,c;
+  long long a,b,c;
   
-  for(int iz=0; iz<=THING; iz++){
-    c = iz;
-    a = spins[c];
-    b = spins[c+number_of_sites/2];
+  for(int iz=0; iz<flip1; iz++){
+    for(int jz=0; jz<flip2; jz++){
+
+      c = iz + dim1*jz;
+      a = spins[c];
+      b = spins[c+number_of_sites/2];
   
-    spins[c+number_of_sites/2] = a;
-    spins[c] = b;
-
-    for(int jz=1; jz<=iz; jz++){
-      c = iz+dim1*jz;
-      a = spins[c];
-      b = spins[c + number_of_sites/2];
+      spins[c+number_of_sites/2] = a;
       spins[c] = b;
-      spins[c+number_of_sites/2]=a;
-
-      c = iz*dim1 + jz - 1;
-      a = spins[c];
-      b = spins[c + number_of_sites/2];
-      spins[c] = b;
-      spins[c+number_of_sites/2]=a;   
     }
   }
-  /*************************************************************
-   *************************************************************/
+  //*************************************************************
   
   //find the new antiparallelness
   isgood.clear();
@@ -825,32 +806,12 @@ void LOOPS::swaperator()
   vector <int> tempbonds;
   tempbonds = VR;
   int a,b,c,d;
-  int superflip(0); //what even is this?
 
-  for(int lint=(THING+1); lint<dim1-1; lint++){
+  for(int lint=flip1; lint<dim1-1; lint++){
 
-    
-    /*   if(superflip&&((lint+1)*(lint+1)>(dim1*dim2)/2.0)){
-	 for(int oint=0; oint<dim1; oint++){
-	 for(int pint=0; pint<dim2; pint++){
-	 
-	 a = oint+pint*dim1;  
-	 d = a+number_of_sites/2;  //swap site a with it's replica counterpart 
-	 b = tempbonds[d];         // b was bonded to d
-	 c = tempbonds[a];         // c was bonded to a
-	 
-	 tempbonds[a] = b;         // now b is bonded to a
-	 tempbonds[b] = a;        
-	 tempbonds[d] = c;         // and c is bonded to d
-	 tempbonds[c] = d;
-	 superflip=0;              // i still don't know what superflip does...
-	 }
-	 }
-	 } */
-    
-	  
-    a = lint;
-    d = lint+number_of_sites/2;
+    for(int mint=0; mint<flip2; mint++){    
+    a = lint + dim1*mint;
+    d = lint + number_of_sites/2;
     b = tempbonds[d];
     c = tempbonds[a];
     
@@ -858,27 +819,6 @@ void LOOPS::swaperator()
     tempbonds[b] = a;
     tempbonds[d] = c;
     tempbonds[c] = d;
-
-    for(int mint=1; mint<=lint; mint++){
-      a = lint+(mint*dim1); 
-      d = lint+(mint*dim1)+number_of_sites/2;
-      b = tempbonds[d];
-      c = tempbonds[a];
-      
-      tempbonds[a] = b;
-      tempbonds[b] = a;
-      tempbonds[d] = c;
-      tempbonds[c] = d;
-
-      a = lint*dim1+mint-1;  
-      d = lint*dim1+(mint-1)+number_of_sites/2;
-      b = tempbonds[d];
-      c = tempbonds[a];
-      
-      tempbonds[a] = b;
-      tempbonds[b] = a;
-      tempbonds[d] = c;
-      tempbonds[c] = d;
     }
   
     int counter(0), temploopnum(0), startsite(0), mite(-99), which(0);
