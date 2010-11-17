@@ -10,7 +10,7 @@ int main(){
   //   filenames, iterations per loop, number of loops, a random seed
 
   int dim1, dim2;
-  int ratioflip1, ratioflip2;
+  int ratioflip;
   long long its_per_loop=10000, loops=100;
   long long initialization;
   double bops_per_site=10;
@@ -21,7 +21,7 @@ int main(){
   ifstream fin("param.txt");
   fin >> enerfilename >> entrofilename >> bondopfilename
       >> dim1 >> dim2
-      >> ratioflip1 >> ratioflip2
+      >> ratioflip
       >> its_per_loop >> loops
       >> bops_per_site >> OBC
       >> ranseed
@@ -36,8 +36,7 @@ int main(){
   cout << "------------------------------------------------ \n"; 
 
   if(dim1==2|dim2==2){cout<<"warning! nnbonds get screwed up for a x 2 \n";}
-  LOOPS system (dim1, dim2, ratioflip1, ratioflip2, total_bops, 
-		OBC, its_per_loop, ranseed, 
+  LOOPS system (dim1, dim2, ratioflip, total_bops, OBC, its_per_loop, ranseed, 
 		bondopfilename);
  
   // create initial VB config and initial spin config
