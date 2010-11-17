@@ -5,7 +5,7 @@ bondop.dat
 6
 6
 
-2
+0
 2
 
 10000
@@ -26,8 +26,8 @@ bondops filename
 dimension 1
 dimension 2
 
-flipdim1
-flipdim2
+flip xdim1
+flip ydim2
 
 iterations per loop
 number of loops

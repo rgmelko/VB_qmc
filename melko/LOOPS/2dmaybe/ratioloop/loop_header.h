@@ -747,7 +747,6 @@ void LOOPS::change__operators()
   
   for(int iz=0; iz<flip1; iz++){
     for(int jz=0; jz<flip2; jz++){
-
       c = iz + dim1*jz;
       a = spins[c];
       b = spins[c+number_of_sites/2];
@@ -807,7 +806,7 @@ void LOOPS::swaperator()
   tempbonds = VR;
   int a,b,c,d;
 
-  for(int lint=flip1; lint<dim1-1; lint++){
+  for(int lint=flip1; lint<dim1; lint++){
 
     for(int mint=0; mint<flip2; mint++){    
     a = lint + dim1*mint;
@@ -820,7 +819,6 @@ void LOOPS::swaperator()
     tempbonds[d] = c;
     tempbonds[c] = d;
     }
-  
     int counter(0), temploopnum(0), startsite(0), mite(-99), which(0);
     vector <int> site(number_of_sites+2,0);
  
