@@ -499,8 +499,10 @@ void LOOPS::make_flip_loops()
     if(drand()<0.5){flip=1;}
     else{flip=0;}
 
+
     startsite = counter;        // set the initial site (startsite)
     site = Hlinks[counter];     // the site connected to startsite horizontally
+
 
     //making sure site isn't bonded to itself (edges are bonded to themselves)
     //and checking that the startsite isn't already in a loop
@@ -508,6 +510,7 @@ void LOOPS::make_flip_loops()
       counter++;  //changing startsite
       site = Hlinks[counter]; //site connected to new startsite
       startsite = counter;    //setting new startsite
+
     }
     //breaks if we get to the last or 2nd last site
     if(counter > vlegs-2){break;} 
@@ -584,6 +587,7 @@ void LOOPS::make_flip_loops()
 	}
 	
 	site = Hlinks[site];
+
       }
       which = !which; //changes from horiz(1) to vert(0) or vice versa
       loopnums[site] = loopnum; //adds next site to loop
@@ -707,17 +711,19 @@ void LOOPS::change__operators()
       superbops(op,0) = isgood[irand()%isgood.size()];
     }
   }
-
   /*******************************************************************
                Swap some of the spins and stuff, y'know?
   ********************************************************************/
   //swap the spins
-  bool a,b,c;
+  int a,b,c;
 
   for(int iz=0; iz<=THING; iz++){
     c = iz;
     a = spins[c];
+
     b = spins[c+number_of_sites/2];
+
+    
    
     spins[c+number_of_sites/2] = a;
     spins[c] = b;
@@ -728,6 +734,7 @@ void LOOPS::change__operators()
     antipar[i]=(spins[nnbonds(i,0)]+spins[nnbonds(i,1)])%2; //if they're different it's 1, otherwise 0)
     if(antipar[i]==1){isgood.push_back(i);} //if it's antiparallel add it to the list
   }
+
   /*******************************************************************
                                end of that
   ********************************************************************/
@@ -762,7 +769,6 @@ void LOOPS::change__operators()
       superbops(op,0) = isgood[irand()%isgood.size()];
     }
   }
-
 
 }
 /************ swaperator() ****************************************************
