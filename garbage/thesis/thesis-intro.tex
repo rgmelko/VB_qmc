@@ -5,7 +5,7 @@ This thesis is an exploration of methods used for the measurement of entanglemen
 
 In this chapter we discuss different measures of entanglement and their scaling.
 In Chapter 2 we describe quantum Monte Carlo algorithms in the valence bond basis.
-Chapter 3 contains measurements of valence bond entanglement entropy as compared to standard von Neumann entanglement entropy.
+Chapter 3 contains measurements of valence bond entanglement entropy compared to the standard von Neumann entanglement entropy.
 In Chapter 4 we develop a method of measuring all Renyi entanglement entropies, excluding the von Neuman entanglement entropy, using valence bond quantum Monte Carlo.
 In the final chapter we summarize the results of this research and provide a discussion.
 
@@ -25,7 +25,7 @@ only $\ket{\Phi_{1,2}}$ is separable, and can be rewritten as
 	\ket{\Phi_{1,2}} = \frac{1}{\sqrt{2}}  \big( \ket{\up_1} - \ket{\dw_1}\big) \otimes \ket{\dw_2}.
 \end{equation}
 Therefore $\ket{\Phi_{1,2}}$ is unentangled, while $\ket{\Psi_{1,2}}$, which cannot be written as a product state, is an entangled state.
-In the case of only two spins it is easy to see that states are separable (unentangled). As we add more spins to the system it becomes less apparent which  states are entangled. Furthermore, we can quantify the degree to which they are entangled beyond being either separable states, or non-separable states (entangled).
+In the case of two spins it is easy to determine if states are separable (unentangled). As we add more spins to the system it becomes less apparent which  states are entangled. Furthermore, we can quantify the degree to which they are entangled beyond being either separable states, or non-separable states (entangled).
 
 %---------------------------------------------------------------------------------------------------------
 \section{Measures of Entanglement}
@@ -34,12 +34,12 @@ In the case of only two spins it is easy to see that states are separable (unent
 There are many different quantities that can be used to measure entanglement . Though not exhaustive a few measures include concurrence \cite{concurrence}, logarithmic negativity \cite{negativity}, squashed entanglement \cite{squashed}, and entropy of entanglement \cite{EE}.
 Measures of entanglement share three properties \cite{Plenio2005}:
 \begin{enumerate}
-\item An entanglement measure $E(\rho)$, measuring the entanglement between two spins, is a mapping from density matrices to positive real numbers defined for states of arbitrary bipartite systems.
+\item An entanglement measure $E(\rho)$, measuring the entanglement between two spins, is a mapping from density matrices $\rho$ to positive real numbers defined for states of arbitrary bipartite systems.
 Usually a normalization factor is included such that the maximally entangled state,
 \begin{equation}
 \ket{\psi_{\rm max}}  = \frac{\ket{\up\up} + \ket{\dw\dw}}{\sqrt{2}},
 \end{equation}
- of two qubits has $E(\ket{\psi_{\rm max}}\bra{\psi_{\rm max}}) = \ln(2)$.
+ of two spins has $E(\ket{\psi_{\rm max}}\bra{\psi_{\rm max}}) = \ln(2)$.
  \item  $E(\rho)=0$ if the state $\rho$ is separable.
  \item $E(\rho)$ does not increase under local operators on either of the spins.  That is, if we have an operator acting on only {\it one} of the spins, the entanglement between the two spins will not increase.
 % \item For a pure state $\ket{\psi}\bra{\psi}$ the measure reduces to the von Neumann entanglement entropy.
@@ -55,7 +55,7 @@ For a system partitioned into two regions, A and B, the von Neumann entanglement
 	\VN_\text{A} = -\rm{Tr}\left({\rho_A \ln \rho_A}\right),
 \end{equation}
 where $\rho_{\rm{A}}=\rm{Tr}_B\ket{\psi}\bra{\psi}$ is the reduced density matrix, the density matrix of the entire system with the degrees of freedom from region B traced out.
-\vn is only suited to measure the entanglement of a pure state, as is the case for all the entanglement measures we will discuss in this thesis.
+\vn is only suited to measure the entanglement of a pure state, as is the case for all entanglement measures we will discuss in this thesis.
 This is due to the way \vn measures entanglement; we begin with a pure state and trace out the degrees of freedom for some subregion B.  
 We are left with $\rho_{\rm A}$ representing a (possibly mixed) state.
 \vn can be rewritten in terms of the eigenvalues of the density matrix,
@@ -85,7 +85,7 @@ Taking the limit $n\to1$ gives us $S_1 = \VN$.  These entanglement entropies hav
 
 Using measures of entanglement from quantum information to study interacting quantum many-body systems is a rapidly growing interdisciplinary topic \cite{Amico, intro}.
 Entanglement has the advantage of measuring ``hidden'' correlations which can occur in states where correlation lengths diverge or decay exponentially.
-Additionally, measurement of entanglement is independent of the basis chosen to represent the condensed matter system.
+Additionally, measurement of entanglement is independent of the basis chosen to represent the system.
 
 
 \subsection{Area Law Scaling}
@@ -117,7 +117,7 @@ This known scaling is used to verify the accuracy of our entanglement measuremen
 \subsection{Subleading Corrections to the Area Law}
 \subsubsection{Topological Entanglement Entropy}
 
-In systems exhibiting topological order -- a type of order not characterized by local order parameters in which the degeneracy of the ground state depends on the topology of the system -- there exists a universal subleading correction to the area law scaling of entanglement entropy called the {\it topological entanglement entropy}.
+In systems exhibiting topological order -- a type of order not, characterized by local order parameters, in which the degeneracy of the ground state depends on the topology of the system -- there exists a universal subleading correction to the area law scaling of entanglement entropy called the {\it topological entanglement entropy}.
 For 2D systems with topological order, the entanglement entropy is known to scale as  \cite{Bbob, KP}
 \begin{equation} \label{AL}
 S_{\rm A} = \alpha \ell - n \gamma + \mathcal{O}(1/\ell),
@@ -137,9 +137,9 @@ By extracting these corrections, entanglement entropy can be used to to detect a
 
 \section{Measurement of Entanglement Entropy}
 
-Many methods have been developed that are capable of measuring the entanglement entropy. In 1D density matrix renormalization group (DMRG) simulations and exact diagonalization are particularly powerful tools. They provide direct access to the density matrix and wavefunction. However exact diagonalization scales exponentially poorly as a function of system size and DMRG is primarily a tool useful for 1D and multi-leg ladders. To study and extract these universal quantities in 2D and higher it is necessary to be able to measure entanglement entropy in a scalable type of simulation. 
+Many methods have been developed that are capable of measuring the entanglement entropy. In 1D density matrix renormalization group (DMRG) simulations and exact diagonalization are particularly powerful tools. They provide direct access to the wavefunction of a system. However exact diagonalization scales exponentially poorly as a function of system size and DMRG is primarily useful for 1D and multi-leg ladders. To study and extract these universal quantities in 2D and higher it is necessary to be able to measure entanglement entropy in a scalable type of simulation. 
 Quantum Monte Carlo simulations scale well in any dimension and allow a choice of basis. 
 %\change{which is not constructed to obey any particular entanglement scaling relationships}.
-In this thesis we explore methods of measuring entanglement entropy in quantum Monte Carlo simulations in the valence bond basis.
+In this thesis we explore methods of measuring entanglement entropy using quantum Monte Carlo simulations in the valence bond basis.
 
 

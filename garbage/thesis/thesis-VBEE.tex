@@ -16,7 +16,7 @@ regions A and B.  (See Figure \ref{vbeepic}.)
 \begin{figure} {
 \includegraphics[width=5in]{./figures/made/presentation/vbee.pdf} 
 \centering
-\caption[1D Results for \vb with \vn using periodic boundaries]{
+\caption[Visual example of the \vb measurement.]{
 The valence bond entanglement entropy \eqref{vbeeeq} between regions A and B of a valence bond basis state is defined as the number of valence bonds crossing between the two regions multiplied by a factor of $\ln(2)$.
 This diagram shows a state with $S^{\text{VB}}_{\rm A}= 7 \ln(2)$.
 \label{vbeepic}}
@@ -24,10 +24,10 @@ This diagram shows a state with $S^{\text{VB}}_{\rm A}= 7 \ln(2)$.
 \end{figure}
 
 
-\vb shares some properties with \vN; in particular, for both quantities: $S_{\text{A}} = S_{\text{B}}$.
-Also, $\VB = 0$ for systems with no entanglement between regions A and B.
+\vb shares some properties with \vN; in particular, for both quantities $S_{\text{A}} = S_{\text{B}}$.
+Also, as with \vN, $\VB = 0$ for systems with no entanglement between regions A and B.
 For any single valence bond basis state (not a superposition of valence bond states) \vb and \vn agree exactly.
-In one-dimensional Heisenberg spin-1/2 systems \vb seems to to be in good agreement with
+In one-dimensional Heisenberg spin-1/2 systems \vb seems to be in good agreement with
 results from conformal field theory (CFT) for \vN{} \cite{Alet}.
 However, in two dimensions \vb shows a multiplicative logarithmic correction to the area law
 for the isotropic Heisenberg model.  
@@ -38,10 +38,10 @@ To examine the correspondence of \vb to a known measure of entanglement  \cite{P
 on the same system, calculated with density matrix renormalization group (DMRG) \cite{Scholl05,White92} simulations by I. Gonzalez and R. Melko.
 \vb is calculated using a single projector valence bond quantum Monte Carlo (VB QMC) scheme \cite{Sandvik2007, Sandvik_vbqmc}.
 
-In this chapter we begin by looking at the scaling of \vb and \vn for 1D systems with OBC and with PBC, and we compare the value of the conformal charge $c$ to the expected value for this system.
-We then attempt to move to 2D, looking at $M$-leg ladder systems to determine the scaling of these entanglement entropies.  
+In this chapter we begin by looking at the scaling of \vb and \vn for 1D systems with open (OBC) and with periodic boundary conditions (PBC), and we compare the value of the conformal charge $c$ to the expected value for this system.
+We then approach 2D, looking at $M$-leg ladder systems to determine the scaling of these entanglement entropies.  
 
-My contribution to this project was the measurement of all of the \vb data using a single projector quantum Monte Carlo program, and I did the linear regression  for the \vb data as well.
+My contribution to this project was the measurement of all of the \vb data using a single projector quantum Monte Carlo program, and the linear regression  for the \vb data.
 
 
 %-----------------------------------------------------------------------------------------------------------------------
@@ -74,10 +74,9 @@ Entanglement entropies for a 1D Heisenberg chain with PBC and L=100 sites, as a 
 \end{figure}
 
 
-We begin by simulating one dimensional systems, examining both the cases of
-open (OBC) and periodic boundary conditions (PBC).
+We begin by simulating one dimensional systems, examining both the OBC and PBC cases.
 It is convenient to denote the size of region A by the number of sites included in that region 
-(i.e. for a 1D system of length $L$, $S_{\text{A}} = S(x)$ is the entanglement entropy for a system where region A contains sites $\{1,2,\dots,x\}$ and the rest of the sites $\{x+1,x+2,\dots,L\}$
+(i.e. for a 1D system of length $L$, $S_{\text{A}} = S(x)$ is the entanglement entropy for a system where region A contains sites $\{1,2,\dots,x\}$ and the remainder of the sites $\{x+1,x+2,\dots,L\}$
 belong to region B.
 
 As mentioned in section \ref{1dcft}, for a 1D critical system, such as the 1D Heisenberg spin chain, the scaling of the entanglement entropy is described by  \cite{Cardy, Ian1, Zhou2006}
@@ -89,7 +88,7 @@ As mentioned in section \ref{1dcft}, for a 1D critical system, such as the 1D He
 
 
 Figure \ref{1dPBC} shows the \vb measurements for a periodic spin chain of length $L=100$ sites, plotted alongside \vn data.  \vb seems to fit well to the expected scaling, though it is lower than \vN.
-We use linear regression to fit the \vb and \vn data for several system sizes to Equation \eqref{cftOBC}, and Figure~\ref{c1} shows the results for the central charge $c^{\rm vN}$ from \eqref{cftOBC} approaching 1 (the expected value for this system \cite{c_is_1}) as the system size increases, however $c^{\rm VB}$ approaches a lower value. 
+We use linear regression to fit the \vb and \vn data for several system sizes to Equation \eqref{cftPBC}, and Figure~\ref{c1} shows the results for the central charge $c^{\rm vN}$ approaching 1 (the expected value for this system \cite{c_is_1}) as the system size increases, however $c^{\rm VB}$ approaches a lower value. 
 It has been shown analytically \cite{XXX}, using the probability distribution for valence bonds connecting subsystems of a given length, that $c^{\rm VB} = \tfrac{12\ln2}{\pi^2}\approx 0.84 < c^{\rm vN}$. 
 
 
@@ -97,7 +96,7 @@ It has been shown analytically \cite{XXX}, using the probability distribution fo
 For the 100-site OBC system (Figure~\ref{1dOBC}), we see both \vn and \vb split into two branches, where the upper branch corresponds to an odd number of sites in region A, and the lower branch to an even number of sites.
 This branching is due to a ``dimerization" effect caused by the open boundary conditions \cite{Ian1}.
 In contrast to the PBC case, \vb is now higher than \vN{} implying that, unlike the successive Renyi entropies, \vb does not give a bound on \vn.
-Figure \ref{c2} shows the linear regression fits of the lower branch of OBC data for several different system sizes to Equation \eqref{cftOBC}.  As the number of points included is decreased (until we are only using data where the division between regions A and B is ``far'' from the open boundaries of the system) we see $c^{\rm vN}$ approach a constant value for all system sizes.  As the system size increases $c^{\rm vN}$ approaches the expected value of 1 \cite{c_is_1}.  On the other hand, from the $S^{\rm VB}$ data, it is not clear whether $c^{\rm VB}$ approaches a constant value for large system sizes.  We see only that $c^{\rm VB}$ is lower than the expected value of 1 \cite{Chh}, and that it is lower than the $c^{\rm VB}$ value given by the PBC data.
+Figure \ref{c2} shows the linear regression fits of the lower branch of OBC data for several different system sizes to the first term of Equation \eqref{cftOBC}.  As the number of points included is decreased (until we are only using data where the division between regions A and B is ``far'' from the open boundaries of the system) we see $c^{\rm vN}$ approach a constant value for all system sizes.  As the system size increases $c^{\rm vN}$ approaches the expected value of 1 \cite{c_is_1}.  On the other hand, from the $S^{\rm VB}$ data, it is not clear whether $c^{\rm VB}$ approaches a constant value for large system sizes.  We see only that $c^{\rm VB}$ is lower than the expected value of 1 \cite{Chh}, and that it is lower than the $c^{\rm VB}$ value given by the PBC data.
 
 \begin{figure} {
 \includegraphics[width=6in]{./figures/paper1/figure1/newfig2.pdf} 
@@ -152,7 +151,7 @@ The DMRG data, to which we compare \vB, are limited to ladders with $M=7$ legs b
  Odd-leg ladders are gapless, and so all sites contribute to the entanglement, thus
  $S(x) \propto \ln(x')$ as in the 1D case \cite{White1994}.
  Even-leg ladders have a spin gap and so only sites within the correlation length $\xi$ from the boundary between A and B contribute to the entanglement,
-so for even-leg ladders $S(x\gtrsim\xi) = \text{const}$. 
+thus for even-leg ladders $S(x\gtrsim\xi) = \text{const}$. 
 Both even- and odd-leg ladders split into branches, as shown in the figure insets, though the even-leg ladders have a pattern with period $M$ whereas the odd-leg ladder entanglement entropies have a period of $2M$.  
  
 %------------------------------------------------------------------------------------------------------------------
@@ -172,10 +171,10 @@ whereas $S^{\rm vN}\propto M$.
 
 Using these multileg ladders we can examine the adherence of the ground state of the 2D isotropic Heisenberg model to the area law.
 To do this we use $M$-leg ladders, including $2M^2$ sites within region A.  
-This ensures that the boundary between regions A and B cuts cleanly across all the legs of the system so that the length of the boundary is proportional to $M$, while also keeping keeping the dividing line between the two regions far enough from the open boundaries of the system to avoid boundary effects.
+This ensures that the boundary between regions A and B cuts cleanly across all the legs of the system so that the length of the boundary is proportional to $M$, while also keeping the dividing line between the two regions far enough from the open boundaries of the system to avoid boundary effects.
 Additionally, the 2:1 aspect ratio ensures that, even for odd-leg ladders, an even number of sites is included in region A, reducing the odd-even oscillations in the entanglement entropies.
 
-In Figure \ref{zigzag} we plot the entanglement entropies $S(x)/M$ versus M, for $M$-leg ladders,  on a logarithmic scale.
+In Figure \ref{zigzag} we plot the entanglement entropies $S(x)/M$ versus $M$, for $M$-leg ladders,  on a logarithmic scale.
 If the scaling of the entanglement entropy follows an area law we should see $S(x)/M$ approach a constant value for large $M$.
 We include both systems with 100 sites per leg, and systems with $4M$ sites per leg. 
 In the second case the size of region A is proportional to the size of the ladder, and the dividing line between regions A and B is always cutting the ladder through the middle.
@@ -183,7 +182,7 @@ In the second case the size of region A is proportional to the size of the ladde
 We observe a multiplicative logarithmic correction to the area law in \vB, as previously shown by Refs.\cite{Alet,Chh}.
 This correction, however, is not present in the \vn results from DMRG.
 \vn convincingly approaches a constant value for large $M$, suggesting that the area law is valid for \vn in the $M \rightarrow \infty$ limit. 
-These results also imply that the multiplicative logarithmic correction to the area law (also observed by Alet {\it et al.} \cite{Alet}) is present only in \vB, and not necessarily in all measures of entropy.
+These results also imply that the multiplicative logarithmic correction to the area law is present only in \vB, and not necessarily in all measures of entanglement entropy.
 
 
 %\comment{
@@ -220,7 +219,7 @@ For this state $\VB_{\rm A}=2\ln(2)\approx1.386$ and $\VN_{\rm A}=\ln(3)\approx 
 }
 \end{figure}
 
-From the 1D results (Figs.~\ref{1dOBC} and \ref{1dPBC}) we saw that \vb can be either greater or less than \vN.
+From the 1D results (Figs.~\ref{1dPBC} and \ref{1dOBC}) we saw that \vb can be either greater or less than \vN.
 This can be understood through some simple examples, shown in figures \ref{example1} and \ref{example2}.
 The first example, Fig.~\ref{example1} is an equal superposition of two four-site valence bond states. 
  \vb is easily calculated as the maximal value, $\VB = 2\ln(2)$, since there are four bonds crossing between regions A and B, and we divide by the number of states (two in this case).
@@ -270,7 +269,7 @@ and a subscript A specifies that the state belongs to spins 1 and 3, while B ref
 		0& 0& 0&2
 		\end{array} \right]
  \end{align}
-Diagonalizing $\rho_{\rm A}$ gives three identical eigenvalues of $\tfrac{1}{3}$, which we use to calculate \vN,
+Diagonalizing $\rho_{\rm A}$ gives three non-zero eigenvalues all equal to $\tfrac{1}{3}$, which we use to calculate \vN,
 \begin{align}
 \VN_{\rm A} = - {\rm Tr} \left(\rho_{\rm A} \ln \rho_{\rm A} \right)= -3\left( \frac{1}{3} \ln \left( \frac{1}{3}\right)\right)
 		= \ln(3) \approx 1.0986.
@@ -300,16 +299,17 @@ In Figure \ref{example2} we have another linear combination of states, this time
 We have compared the scaling properties of the valence bond entanglement entropy \vb \cite{Alet,Chh}, to the von Neumann entanglement entropy \vn in the spin-1/2 Heisenberg model in 1D and on multi-leg ladder systems, using both VB QMC and DMRG simulations methods.
 In 1D, we find that \vb closely follows the behavior of \vN, though it is less than \vn for periodic chains, and greater than  \vn for chains with open boundaries.
 
-We also fit both entanglement entropies to the 1D conformal field theory results (Eqs.\eqref{cftPBC} and \eqref{cftPBC}), which show excellent agreement for \vN, but show significant deviation from the expected value of $c$ for \vb in the large chain length limit, approaching $c<1$ for both open and periodic boundary conditions \cite{XXX}.
+We also fit both entanglement entropies to the 1D conformal field theory results (Eqs.\eqref{cftPBC} and \eqref{cftOBC}), which show excellent agreement for \vN, but show significant deviation from the expected value of $c$ for \vb in the large chain length limit, approaching $c<1$ for both open and periodic boundary conditions \cite{XXX}.
 
 We then examined $M$-leg ladder systems, cutting across all legs such that the boundary size scales with the number of legs, where we see from the DMRG results that \vn obeys the area law in the many-leg limit.  
 On the other hand, \vb has a multiplicative logarithmic correction to the area law for the N\'eel ground state.
-This correction may be due to the fact that \vb is not well-defined for a superposition of valence bond basis states.  In general, for some valence bond basis states $\psi_1$ and $\psi_2$, $\VN(\psi_1 + \psi_2) \ne \VN(\psi_1) + \VN(\psi_2)$, however we use  $\VB(\psi_1 + \psi_2) = \VB(\psi_1) + \VB(\psi_2)$ to get the valence bond entanglement entropy
+This correction may be due to the fact that the valence bond basis is massively overcomplete.  In general, for some valence bond basis states $\psi_1$ and $\psi_2$, $\VN(\psi_1 + \psi_2) \ne \VN(\psi_1) + \VN(\psi_2)$, however we use  $\VB(\psi_1 + \psi_2) = \VB(\psi_1) + \VB(\psi_2)$ to get the valence bond entanglement entropy
 
 %To help understand the discrepancy between these two measures of entanglement, we show simple examples of a system with $\VB > \VN$ (Fig. \ref{example1}) and a system with $\VB > \VN$ (Fig. \ref{example2}).  
 %\comment{say something else.}
 
-While it is clear that \vb is a reasonable measure of entanglement, easily accessible to scalable numerical simulations, the inability of this quantity to provide a bound on \vN{}, unlike other measures of of entanglement entropy, together with its multiplicative logarithmic correction to the area law in 2D make \vb less suitable for characterizing topological phases, or studying universal quantities at quantum phase transitions.
+The \vb is a reasonable measure of entanglement, that is easily accessible to scalable numerical simulations.
+Our demonstration that \vb is unable to give a bound on \vN, an in particular its multiplicative log correction to the area law in 2D, make it unsuitable to characterize e.g. topologcal phases using measurements based on additive subleading corrections to area law scaling in vN, such as the topological entanglement entropy.
 
 In the next chapter we explore an alternative method for measuring entanglement in large-scale quantum Monte Carlo simulations.
 

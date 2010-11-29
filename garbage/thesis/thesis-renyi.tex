@@ -3,21 +3,20 @@
 \label{chap:renyi}
 %======================================================================
 
-Though we are not able to measure \vn in VB QMC simulations, due to the inaccessiblity of the wavefunction of the system, using something we call the ``replica trick'' \cite{dad} we are able to measure ${\rm Tr}(\rho_{\rm A}^n)$ in our algorithm for $n>1$, which allows us to measure the Renyi entanglement entropies 
+Though we are not able to measure \vn in VB QMC simulations, due to the inaccessiblity of the wavefunction of the system, using a ``replica trick'' we are able to measure ${\rm Tr}(\rho_{\rm A}^n)$ in our algorithm for $n>1$, which allows us to measure the Renyi entanglement entropies 
 \begin{equation} \label{renyi2}
  	S_n(\rho_{\rm A}) = \frac{1}{1-n}\ln\left[{\rm Tr}\left( \rho_{\rm A}^n \right) \right],
 \end{equation}
-for $n>1$.  For $n>m$ these entropies have the property that $S_n<S_m$, so the second Renyi entropy, $S_2$ will give the largest lower bound on \vN.
+for $n>1$.  For $n>m$ these entropies have the property that $S_n \le S_m$, so the second Renyi entropy, $S_2$ will give the largest lower bound on \vN.
 The Renyi entropies are expected to follow the same area laws obeyed by \vn \cite{Bbob}, making them equally useful in the study of universal quantities.
 The Renyi entropies together also encode information about the whole entanglement spectrum of the system, and thus contain more information that \vn alone \cite{Bbob}.
 
 In this chapter we begin by demonstrating the measurement of ${\rm Tr}(\rho_{\rm A}^n)$ using a replica trick, and we show the specific case for $n=2$ using a \sw operator on two copies of a system.
-We measure $S_2$ in 1D first, comparing the results to DMRG results for $S_2$.  
-A double projector VB QMC algorithm is used. 
+We measure $S_2$ in 1D first, using a double projector VB QMC algorithm and comparing the results to DMRG results for $S_2$.  
 We also show results generated using the loop algorithm.
 We develop a method to improve the sampling of our $S_2$ measurement using a different Monte Carlo weight, and measuring the ratio of \swa operators for different sizes of region A.
 We then move to 2D, approaching the limit of DMRG simulations, and look at both $L\times L$ systems with periodic boundary conditions, and $M$-leg ladders, as in the previous chapter, with open boundary conditions.  
-We find area law scaling of the entanglement entropy in both of these systems \cite{PRL2}.
+We find area law scaling of the entanglement entropy in both of these geometries \cite{PRL2}.
 %We conclude with a discussion of methods to further improve the measurement of \re in VB QMC.
 
 For this project I measured \re with the bare \swa operator using both a double projector VB QMC program, and a loop algorithm VB QMC program.  I also measured a ratio of \swa operators using a double projector code.  DMRG measurements were performed by I. Gonz\'alez and R. Melko.
@@ -40,11 +39,10 @@ For this project I measured \re with the bare \swa operator using both a double 
 \section{The ``Replica Trick''}
 
 In order to calculate ${\rm Tr}(\rho_{\rm A}^n)$, a quantity necessary to measure the $n^{\rm th}$ Renyi entanglement entropy for $n\ge2$, we use a trick involving replicas of the system to be studied, $\Psi_0$.
-The trick involves simulating $n$ non-interacting replicas of the system.  
+We simulate $n$ non-interacting replicas of the system.  
 The expectation value of a swap operator is measured. 
 The purpose of the swap operator is to swap the state of the system in region A between the non-interacting replicas.
-Calculating the expectation value of this operator accomplished two things: it (1) reorganizes the replicas $\bra{\Psi_0 \otimes \Psi_0 \otimes \cdots \otimes \Psi_0}$ and $\ket{\Psi_0 \otimes \Psi_0 \otimes \cdots \otimes \Psi_0}$ into the density matrix $\rho^n$ while simultaneously (2) tracing out region B of the system.
-In the end we are left with the $n^{\rm th}$ power of the reduced density matrix, traced out over region B.
+Calculating the expectation value of this operator accomplishes two things: it (1) reorganizes the replicas $\bra{\Psi_0 \otimes \Psi_0 \otimes \cdots \otimes \Psi_0}$ and $\ket{\Psi_0 \otimes \Psi_0 \otimes \cdots \otimes \Psi_0}$ into the density matrix $\rho^n$ while simultaneously (2) tracing out region B of the system.
 This process is independent of the basis used, as the swap operator can be defined in any basis.
 We using this method in the valence bond basis, but it has since been employed in finite temperature stochastic series expansion quantum Monte Carlo \cite{kappa}, which uses the $S^z$ basis.
 Below we show a method using two non-interacting copies of a system, and a \swa operator, to measure ${\rm Tr} (\rho^2_{\rm A})$, which is necessary for the calculation of \re.
@@ -61,12 +59,12 @@ Below we show a method using two non-interacting copies of a system, and a \swa 
 		region B.
 		
 		(b) The same system from (a) after the $Swap_{\rm A}$ operator is applied.
-		The endpoints of the valence bonds in region A are switched between copies 
+		The endpoints of the valence bonds in region A are swapped between copies 
 		of the system.  Region B remains unswapped.
 	}
 }\end{figure}
 
-The \swa operator acts on two copies of the system (see Figure \ref{swap}), where the copies are not necessarily in the same state.  The action of \swa is to exchange the configuration of region A, between the two copies of the system.  If region A has some entanglement with region B in one of both of the copies of the system, then the two copies will become entangled after the application of \swA.
+The \swa operator acts on two copies of the system (see Figure \ref{swap}), where the copies are not necessarily in the same state.  The action of \swa is to exchange the configuration of region A, between the two copies of the system.  If region A has some entanglement with region B in one or both of the copies of the system, then the two copies will become entangled after the application of \swA.
 The \swa operator can be more clearly defined in a product basis such as the $S^z$ basis, in which an arbitrary state can be represented as a weighted sum of states decomposed into the separate a region A and a region B configuration.  
 If we define $\{\ket{\alpha}\}$ as a complete basis of states spanning region A, and $\{\ket{\beta}\}$ as a complete basis of states spanning region B, then we can represent an arbitrary state as
 \begin{equation}
@@ -141,15 +139,16 @@ One way to understand this result is to consider what we are actually measuring.
 From Eq. \eqref{swapmeas} one can see we are measuring the ratio of two inner products.
 Since the overlap (Eq. \eqref{innprod}) is $2^{N_{\rm loop} - N_{\rm sites}/2}$, this ratio of inner products is $2^{N_{\rm swaploops} - N_{\rm loops}}$.
 The quantity we measure depends entirely on the change in the number of loops after applying a swap operator to one of our states. 
-For a large region A we are swapping a larger number of sites, and the difference in the number of loops can change by a large number, or a small number. 
+For a large region A we are swapping a larger number of sites, and the difference in the number of loops can change by a large range of values.
 We have to sample states for much longer to converge on the average change in the number of loops.
 In contrast, swapping only one site ($x=1$) will always decrease the number of loops by 1, so $S_2(1)=\ln(2)$ always.
 For two sites in region A, the difference in the number of loops can be $-2$ or 0.
+So for a small region A, the change in the number of loops has fewer possible values.
 
 %\change{Another way to look at it is that we are sampling terms in the trace of a much larger matrix for a large region A.}
 
 One way to improve upon the poor sampling of  $\langle \SWA \rangle$ is using the loop algorithm (Section \ref{sec:loop}), which scales as $m$ while the double projector method scales like $Nm$.
-Measurements taken using the loop algorithm are added into Figure \ref{loopfig}; they show a significant improvement over the double projector $\langle \SWA \rangle$ measurement, 
+Measurements taken using the loop algorithm are added in Figure \ref{loopfig}; they show a significant improvement over the double projector $\langle \SWA \rangle$ measurement, 
 though there is still noticeable statistical error for large region A.
 If our goal was simply the measurement of $S_2$ instead of the demonstration of the most effective way to measure $S_2$, we could note that $S_2(A) = S_2(B)$ and reflect the data about the midpoint, resulting in almost perfect correspondence with the DMRG data.
 However, when we begin to measure larger system sizes and move to 2D the deficiencies in measuring the bare \swa operator will become increasingly apparent; it is necessary to improve upon this measurement technique, which we have done using an ``improved ratio'' sampling scheme.
@@ -177,10 +176,10 @@ calculated with DMRG, VB QMC double projector algorithm (labelled Swap), and the
 \begin{figure} {
 	\includegraphics[width=6in]{./figures/paper2/fig_1D/ratiofig.pdf} 
 	\centering
-	\caption[$S_2$ for a 100-site chain using double projector VB QMC ration data and DMRG]{ 
+	\caption[$S_2$ for a 100-site chain using double projector VB QMC ratio data and DMRG]{ 
 	\label{ratiofig}
 	DMRG and improved ratio data for a 100-site Heisenberg chain with open boundaries.
-The ratio data uses $j_{\rm max}=5$ and required 20 separate simulations.
+The ratio data uses $j_{\rm max}=5$ and requires 20 separate simulations.
 	}
 }\end{figure}
 
@@ -213,7 +212,7 @@ The number of simulations need for a 1D system is $(L/j_{\rm max})$.
 Figure \ref{ratiofig} shows the ratio data using $j_{\rm max} = 5$, along with the DMRG data, for the same 100-site system as in Figs. \ref{loopfig} and \ref{swapfig}. 
 The data no longer show the large statistical error bars for large region A sizes, though the results are systematically lower than the DMRG $S_2$ results for a region A-B boundary near the middle of the 100-site system.  
 The improved ratio sampling unfortunately introduces a new source of systematic error not accounted for by our error bars.  
-$S_2$ measurements for larger region sizes depend on the previous measurements, thus if a measurement for a small region A has some error, that will carry through to all other measurements, as one can see when comparing the regions of size $x=1$ and $x=99$ in Figure \ref{swapfig}.
+$S_2$ measurements for larger region sizes depend on the previous measurements, thus if a measurement for a small region A has some error, that will carry through to all other measurements, as one can see when comparing the regions of size $x=1$ and $x=99$ in Figure \ref{ratiofig}.
 
 %----------------------------------------------------------------------------------------------------------
 \section{2D Results}
@@ -221,7 +220,7 @@ $S_2$ measurements for larger region sizes depend on the previous measurements, 
 
 \begin{figure} {
 	\includegraphics[width=6in]{./figures/paper2/fig_2DA/L8n12_ratio.pdf} 
-	\caption[$S_2$ in an $8 \times 8$ and a $12 \times 12$ system for different values of $r$]{ 
+	\caption[$S_2$ in an $8 \times 8$ and a $12 \times 12$ system for different values of $r_{\rm max}$]{ 
 	Measurements of $S_2/\ell$ for $8 \times 8$ and $12 \times 12$ PBC systems with a region A of size $\ell \time \ell$.
 	The bare $\langle Swap_\ell \rangle$ results are shown along with the improved ratio results for different values of $r_{\rm max}$.
 	\label{2Dfig}
@@ -243,9 +242,9 @@ For the $8\times 8$ system the results are already almost entirely converged wit
 \section{The Area Law}
 %----------------------------------------------------------------------------------------------------------
 
-Using the improved ratio estimator we now examine larger regions of the same geometry as used in the previous section (PBC $L \times L$ systems with an $\ell \times\ell$ region A) in an attempt to extract area law scaling of the entanglement entropy.
+Using the improved ratio estimator we now examine larger systems of the same geometry as was used in the previous section (PBC $L \times L$ systems with an $\ell \times\ell$ region A) in an attempt to extract area law scaling of the entanglement entropy.
 Figure \ref{2Darea} show $S_2/\ell$ results for systems from $L=4$ to $L=32$.
-From Section \ref{vbAlaw} and Ref. \cite{PRL1} one expects the scaling of $S_1 = \VN$ in the N\'eel state to follow the area law, we know that $S_2 \le \VN$.
+From Section \ref{vbAlaw} and Ref. \cite{PRL1} one expects the scaling of $S_1 = \VN$ in the N\'eel state to follow the area law, and we know that $S_2 \le \VN$.
 The data in Fig. \ref{2Darea} appears consistent with the area law $S_2/\ell \sim \text{const.}$ for $\ell \ll L$, in particular we do not see a multiplicative log correction that was present in the scaling of \vb \cite{Alet, Chh}. 
 
 \begin{figure} {
@@ -300,7 +299,7 @@ For the small system sizes we see much larger even-odd oscillations, as we go to
 
 We have presented a method which can be used to measure the Renyi entropies for $n>1$, with quantum Monte Carlo simulations in the valence bond basis, employing a ``replica trick".
 We demonstrate this method by measuring the second Renyi entropy $S_2$ using the expectation value of a \swa operator acting on two copies of the system.
-With the use of an improved ratio estimator we improve the sampling of our algorithm and our results for $S_2$ converge to the exact results for a 1D Heisenberg chain with open boundaries.
+With the use of a ratio estimator we improve the sampling of our algorithm and our results for $S_2$ converge to the exact results for a 1D Heisenberg chain with open boundaries.
 Using this same method we present the first measurements of $S_2$ on 2D periodic $L \times L$ and open boundary ladder systems, confirming the area law for the N\'eel ground state of the Heisenberg model.
  
 
