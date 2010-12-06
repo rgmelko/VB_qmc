@@ -442,7 +442,7 @@ void LOOPS::create__Hlinks()
    *************************************************************/
   long long a,b,c;
   
-  for(int iz=0; iz<=THING; iz++){
+  for(int iz=0; iz<THING*dim1; iz++){
     c = iz;
     a = last[c];
     b = last[c+number_of_sites/2];
@@ -450,19 +450,6 @@ void LOOPS::create__Hlinks()
     last[c+number_of_sites/2] = a;
     last[c] = b;
 
-    for(int jz=1; jz<=iz; jz++){
-      c = iz+dim1*jz;
-      a = last[c];
-      b = last[c + number_of_sites/2];
-      last[c] = b;
-      last[c+number_of_sites/2]=a;
-
-      c = iz*dim1 + jz - 1;
-      a = last[c];
-      b = last[c + number_of_sites/2];
-      last[c] = b;
-      last[c+number_of_sites/2]=a;   
-    }
   }
   /*************************************************************
     End of switching the connections within region A
@@ -752,27 +739,13 @@ void LOOPS::change__operators()
   //swap the spins
   int a,b,c;
   
-  for(int iz=0; iz<=THING; iz++){
+  for(int iz=0; iz<THING*dim1; iz++){
     c = iz;
     a = spins[c];
     b = spins[c+number_of_sites/2];
   
     spins[c+number_of_sites/2] = a;
     spins[c] = b;
-
-    for(int jz=1; jz<=iz; jz++){
-      c = iz+dim1*jz;
-      a = spins[c];
-      b = spins[c + number_of_sites/2];
-      spins[c] = b;
-      spins[c+number_of_sites/2]=a;
-
-      c = iz*dim1 + jz - 1;
-      a = spins[c];
-      b = spins[c + number_of_sites/2];
-      spins[c] = b;
-      spins[c+number_of_sites/2]=a;   
-    }
   }
   /*************************************************************
    *************************************************************/
@@ -827,51 +800,11 @@ void LOOPS::swaperator()
   int a,b,c,d;
   int superflip(0); //what even is this?
 
-  for(int lint=(THING+1); lint<dim1-1; lint++){
+  for(int lint=THING; lint<dim1; lint++){
 
-    
-    /*   if(superflip&&((lint+1)*(lint+1)>(dim1*dim2)/2.0)){
-	 for(int oint=0; oint<dim1; oint++){
-	 for(int pint=0; pint<dim2; pint++){
-	 
-	 a = oint+pint*dim1;  
-	 d = a+number_of_sites/2;  //swap site a with it's replica counterpart 
-	 b = tempbonds[d];         // b was bonded to d
-	 c = tempbonds[a];         // c was bonded to a
-	 
-	 tempbonds[a] = b;         // now b is bonded to a
-	 tempbonds[b] = a;        
-	 tempbonds[d] = c;         // and c is bonded to d
-	 tempbonds[c] = d;
-	 superflip=0;              // i still don't know what superflip does...
-	 }
-	 }
-	 } */
-    
-	  
-    a = lint;
-    d = lint+number_of_sites/2;
-    b = tempbonds[d];
-    c = tempbonds[a];
-    
-    tempbonds[a] = b;
-    tempbonds[b] = a;
-    tempbonds[d] = c;
-    tempbonds[c] = d;
-
-    for(int mint=1; mint<=lint; mint++){
-      a = lint+(mint*dim1); 
-      d = lint+(mint*dim1)+number_of_sites/2;
-      b = tempbonds[d];
-      c = tempbonds[a];
-      
-      tempbonds[a] = b;
-      tempbonds[b] = a;
-      tempbonds[d] = c;
-      tempbonds[c] = d;
-
-      a = lint*dim1+mint-1;  
-      d = lint*dim1+(mint-1)+number_of_sites/2;
+    for(int mint=lint*dim1; mint<((lint+1)*dim1); mint++){
+      a = mint; 
+      d = mint+number_of_sites/2;
       b = tempbonds[d];
       c = tempbonds[a];
       

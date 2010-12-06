@@ -827,7 +827,7 @@ void LOOPS::swaperator()
   int a,b,c,d;
   int superflip(0); //what even is this?
 
-  for(int lint=(THING+1); lint<dim1-1; lint++){
+  for(int lint=(THING+1); lint<dim1; lint++){
 
     
     /*   if(superflip&&((lint+1)*(lint+1)>(dim1*dim2)/2.0)){
