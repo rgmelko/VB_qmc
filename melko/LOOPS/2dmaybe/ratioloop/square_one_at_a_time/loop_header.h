@@ -44,6 +44,7 @@ class LOOPS
   vector <int> whichloop; /* stores which loop number each site is in. used
 			     in the energy measurement */
   vector <double> entropy, entropy_final;
+  vector <int> squaresites;
 
   iMatrix nnbonds;//list of all possible nnbonds.  Index is the bond number
   iMatrix nn_mat; /*matrix of the nnbonds. indices are sites
@@ -96,7 +97,7 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, bool ob, long long 
   iterations = its; 
   bopfile = bondopfile; //name of the bond operator file
 
-  entropy.assign(xsites,0);
+  entropy.assign(xsites-1,0);
   entropy_final = entropy;
 
   Vlinks.assign(vlegs, -99); //set size and initialize
@@ -127,6 +128,18 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, bool ob, long long 
     init_spins[i+number_of_sites]=init_spins[i];
   }
   spins = init_spins; 
+
+  squaresites.assign(dim1-1,0);
+  int counter1=0;
+  int var=dim1/2-1;
+  for(int j=0; j<=var; j++){squaresites[counter1]=var+dim1*j; counter1++;}
+  for(int j=var; j>0; j--){squaresites[counter1]=var*dim1+j-1; counter1++;}
+  
+  if(counter1!=squaresites.size()){
+    cout << "ERROR!!! didn't build region A properly!!" << endl; exit(1);
+  }
+
+
 }
 
 /********** nnbondlist() ***********************************************
@@ -437,12 +450,13 @@ void LOOPS::create__Hlinks()
     last[nnbonds(superbops(bopnum,0),1)] = legnum + 3;
   }
 
+
   /*************************************************************
     NOW stop to switch the connections within region A
    *************************************************************/
   long long a,b,c;
   
-  for(int iz=0; iz<=THING; iz++){
+  for(int iz=0; iz<dim1/2-1; iz++){
     c = iz;
     a = last[c];
     b = last[c+number_of_sites/2];
@@ -464,6 +478,16 @@ void LOOPS::create__Hlinks()
       last[c+number_of_sites/2]=a;   
     }
   }
+
+  for(int iz=0; iz<THING; iz++){
+    c = squaresites[iz];
+    a = last[c];
+    b = last[c+number_of_sites/2];
+  
+    last[c+number_of_sites/2] = a;
+    last[c] = b;
+  }
+  
   /*************************************************************
     End of switching the connections within region A
    *************************************************************/
@@ -752,7 +776,7 @@ void LOOPS::change__operators()
   //swap the spins
   int a,b,c;
   
-  for(int iz=0; iz<=THING; iz++){
+  for(int iz=0; iz<dim1/2-1; iz++){
     c = iz;
     a = spins[c];
     b = spins[c+number_of_sites/2];
@@ -773,6 +797,15 @@ void LOOPS::change__operators()
       spins[c] = b;
       spins[c+number_of_sites/2]=a;   
     }
+  }
+
+  for(int iz=0; iz<THING; iz++){
+    c = squaresites[iz];
+    a = spins[c];
+    b = spins[c+number_of_sites/2];
+  
+    spins[c+number_of_sites/2] = a;
+    spins[c] = b;
   }
   /*************************************************************
    *************************************************************/
@@ -827,7 +860,7 @@ void LOOPS::swaperator()
   int a,b,c,d;
   int superflip(0); //what even is this?
 
-  for(int lint=(THING+1); lint<dim1; lint++){
+  for(int lint=THING; lint<dim1; lint++){
 
     
     /*   if(superflip&&((lint+1)*(lint+1)>(dim1*dim2)/2.0)){
@@ -849,8 +882,8 @@ void LOOPS::swaperator()
 	 } */
     
 	  
-    a = lint;
-    d = lint+number_of_sites/2;
+    a = squaresites[lint];
+    d = a+number_of_sites/2;
     b = tempbonds[d];
     c = tempbonds[a];
     
@@ -858,28 +891,6 @@ void LOOPS::swaperator()
     tempbonds[b] = a;
     tempbonds[d] = c;
     tempbonds[c] = d;
-
-    for(int mint=1; mint<=lint; mint++){
-      a = lint+(mint*dim1); 
-      d = lint+(mint*dim1)+number_of_sites/2;
-      b = tempbonds[d];
-      c = tempbonds[a];
-      
-      tempbonds[a] = b;
-      tempbonds[b] = a;
-      tempbonds[d] = c;
-      tempbonds[c] = d;
-
-      a = lint*dim1+mint-1;  
-      d = lint*dim1+(mint-1)+number_of_sites/2;
-      b = tempbonds[d];
-      c = tempbonds[a];
-      
-      tempbonds[a] = b;
-      tempbonds[b] = a;
-      tempbonds[d] = c;
-      tempbonds[c] = d;
-    }
   
     int counter(0), temploopnum(0), startsite(0), mite(-99), which(0);
     vector <int> site(number_of_sites+2,0);
