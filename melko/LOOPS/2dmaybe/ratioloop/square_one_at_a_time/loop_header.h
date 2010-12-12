@@ -858,29 +858,8 @@ void LOOPS::swaperator()
   vector <int> tempbonds;
   tempbonds = VR;
   int a,b,c,d;
-  int superflip(0); //what even is this?
 
-  for(int lint=THING; lint<dim1; lint++){
-
-    
-    /*   if(superflip&&((lint+1)*(lint+1)>(dim1*dim2)/2.0)){
-	 for(int oint=0; oint<dim1; oint++){
-	 for(int pint=0; pint<dim2; pint++){
-	 
-	 a = oint+pint*dim1;  
-	 d = a+number_of_sites/2;  //swap site a with it's replica counterpart 
-	 b = tempbonds[d];         // b was bonded to d
-	 c = tempbonds[a];         // c was bonded to a
-	 
-	 tempbonds[a] = b;         // now b is bonded to a
-	 tempbonds[b] = a;        
-	 tempbonds[d] = c;         // and c is bonded to d
-	 tempbonds[c] = d;
-	 superflip=0;              // i still don't know what superflip does...
-	 }
-	 }
-	 } */
-    
+  for(int lint=THING; lint<dim1-1; lint++){
 	  
     a = squaresites[lint];
     d = a+number_of_sites/2;
