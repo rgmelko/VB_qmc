@@ -1,12 +1,7 @@
-/**
-@file newloop_main.cpp
-*/
-
 //Jan 18, 2010 --- starting loop code
 
 #include "header.h"
 #include "newloop_header.h"
-
 
 int main(){
 
@@ -22,7 +17,7 @@ int main(){
   long long ranseed=43289841;
   string enerfilename, entrofilename, bondopfilename;
 
-  ifstream fin("param.txt");
+  ifstream fin("param.dat");
   fin >> enerfilename >> entrofilename >> bondopfilename
       >> dim1 >> dim2
       >> its_per_loop >> loops
@@ -92,5 +87,4 @@ int main(){
   }
 
   return 0;
-};
-
+}
