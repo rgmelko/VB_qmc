@@ -17,7 +17,7 @@ class LOOPS
   MTRand drand; //drand() gives you a random double precision number
   MTRand_int32 irand; // irand() gives you a random integer
 
-  int THING;
+  int THING; //number of sites that are swapped for the whole ratio deal
 
   int dim1, dim2,  number_of_sites; //the dimensions and number of sites
   int cross; /*the number of loops crossing the boundary i.e. the number of 
