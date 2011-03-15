@@ -740,6 +740,7 @@ void LOOPS::change__operators()
   int a,b,c;
   
   for(int iz=0; iz<THING*dim1; iz++){
+    cout << "iz = " << iz << endl;
     c = iz;
     a = spins[c];
     b = spins[c+number_of_sites/2];
@@ -801,8 +802,7 @@ void LOOPS::swaperator()
   int superflip(0); //what even is this?
 
   for(int lint=THING; lint<dim1; lint++){
-
-    for(int mint=lint*dim1; mint<((lint+1)*dim1); mint++){
+    for(int mint=lint*dim2; mint<((lint+1)*dim2); mint++){
       a = mint; 
       d = mint+number_of_sites/2;
       b = tempbonds[d];
