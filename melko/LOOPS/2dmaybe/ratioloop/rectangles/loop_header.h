@@ -740,7 +740,6 @@ void LOOPS::change__operators()
   int a,b,c;
   
   for(int iz=0; iz<THING*dim1; iz++){
-    cout << "iz = " << iz << endl;
     c = iz;
     a = spins[c];
     b = spins[c+number_of_sites/2];
