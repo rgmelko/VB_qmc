@@ -6,23 +6,25 @@
 #include "head_proj.h"
 #include "simparam.h"
 #include "basis.h"
-//#include "measure.h"
-//#include "renyi.h"
+#include "spinstate.h"
 
 int main(){
 
     PARAMS param;
     MTRand mrand(param.SEED_); //random number for metropolis
 
-    Basis Vbeta(param); 
-    Basis Valpha(param); 
+    Basis Vbeta(param);   //bra
+    Basis Valpha(param);  //ket
 
     Vbeta.print();
     Valpha.print();
 
-    int temp;
-    temp = Vbeta|Valpha;
-    cout<<temp<<endl;
+    SpinState Z1(param); //the Sz basis state
+    Z1.print();
+
+    //int temp;
+    //temp = Vbeta|Valpha;
+    //cout<<temp<<endl;
 
 
 
