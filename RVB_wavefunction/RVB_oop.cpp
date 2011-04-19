@@ -20,12 +20,13 @@ int main(){
     Valpha.print();
 
     SpinState Z1(param); //the Sz basis state
-    Z1.print();
 
-    //int temp;
+    int temp;
     //temp = Vbeta|Valpha;
-    //cout<<temp<<endl;
+    temp = Z1.SampleRandomState(Valpha,Vbeta);
+    cout<<temp<<endl;
 
+    Z1.print();
 
 
 
