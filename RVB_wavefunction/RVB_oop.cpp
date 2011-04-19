@@ -13,11 +13,14 @@ int main(){
     PARAMS param;
     MTRand mrand(param.SEED_); //random number for metropolis
 
+    param.printBst();
+    param.printPst();
+
     Basis Vbeta(param);   //bra
     Basis Valpha(param);  //ket
 
-    Vbeta.print();
-    Valpha.print();
+    //Vbeta.print();
+    //Valpha.print();
 
     SpinState Z1(param); //the Sz basis state
 
@@ -25,7 +28,7 @@ int main(){
     //temp = Vbeta|Valpha;
     temp = Z1.SampleRandomState(mrand,Valpha,Vbeta);
     //cout<<temp<<endl;
-    Z1.print();
+    //Z1.print();
 
 
 	return 0;

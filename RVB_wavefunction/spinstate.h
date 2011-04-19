@@ -48,7 +48,7 @@ int SpinState::SampleRandomState(MTRand& ran, const Basis& alpha, const Basis & 
         if (is_in_loop.at(i) == 0){
 
             spinval = ran.randInt(1); //random spin state 0 or 1
-            cout<<"ran "<<spinval<<endl;
+            //cout<<"ran "<<spinval<<endl;
             Sstate.at(i) = spinval;
 
             is_in_loop.at(i) = 1;

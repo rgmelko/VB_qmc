@@ -22,7 +22,11 @@ class PARAMS
         //lattice spin coordination numbers
         vector <index2> Bst;
 
+        //lattice plaquette coordination numbers (square)
+        vector <index4> Pst;
+
         void printBst();
+        void printPst();
 		
         //derived constants
         int numVB; //number of valence bonds = N/2
@@ -52,10 +56,11 @@ PARAMS::PARAMS(){
     numVB= numSpin/2;
     numLattB= 2*numSpin;
     //initialize lattice bond array: 2D square
-    int a, b;
+    int a, b, c, d;
     int x,y;
     index2 temp;
-    for (int i=0; i<numSpin/2; i++){  //REAL SYSTEM (LAYER 1)
+    index4 temp4;
+    for (int i=0; i<numSpin; i++){  //REAL SYSTEM (LAYER 1)
         //horizontal bond
         a = i;
         b = i+1;
@@ -66,40 +71,35 @@ PARAMS::PARAMS(){
         Bst.push_back(temp);
         //vertical bond
         a = i;
-        b = i+nX_;
-        if (b>= LinX*LinX) b -= LinX*LinX;
+        d = i+nX_;
+        if (d>= LinX*LinX) d -= LinX*LinX;
         x = a%nX_; y = a/nX_;
-        if ((x+y)%2==0) temp.set(a,b);  //order (A,B) sublattice
-        else temp.set(b,a);
+        if ((x+y)%2==0) temp.set(a,d);  //order (A,B) sublattice
+        else temp.set(d,a);
         Bst.push_back(temp);
+
+        //diagonal bond (for Pst)
+        c = i+nX_ + 1;
+        if ( c%nX_ == 0) c -= nX_;
+        if (c>= LinX*LinX) c -= LinX*LinX;
+        temp4.set(a,b,c,d);
+        Pst.push_back(temp4);
+
     }//layer 1
 
-    //for (int i=numSpin/2; i<numSpin; i++){  //ANCILLARY SYSTEM (LAYER 2)
-    //    //horizontal bond
-    //    a = i;
-    //    b = i+1;
-    //    if ( b%nX_ == 0) b -= nX_;
-    //    x = a%nX_; y = a/nX_;
-    //    if ((x+y)%2==0) temp.set(a,b);  //order (A,B) sublattice
-    //    else temp.set(b,a);
-    //    Bst.push_back(temp);
-    //    //vertical bond
-    //    a = i;
-    //    b = i+nX_;
-    //    if (b>= numSpin) b -= LinX*LinX;
-    //    x = a%nX_; y = a/nX_;
-    //    if ((x+y)%2==0) temp.set(a,b);  //order (A,B) sublattice
-    //    else temp.set(b,a);
-    //    Bst.push_back(temp);
-    //}//layer2
 
 }//constructor
 
 void PARAMS::printBst(){
-
+    cout<<"Bst "<<endl;
     for (int i=0; i<Bst.size(); i++)
         Bst[i].print();
+}
 
+void PARAMS::printPst(){
+    cout<<"Pst "<<endl;
+    for (int i=0; i<Pst.size(); i++)
+        Pst[i].print();
 }
 
 #endif
