@@ -16,7 +16,7 @@ class SpinState
 
         SpinState(const PARAMS &);
 
-        int SampleRandomState(const Basis&, const Basis&);
+        int SampleRandomState(MTRand& ,const Basis&, const Basis&);
         void print();
 
 		//void filewrite(const int & num);
@@ -35,7 +35,7 @@ SpinState::SpinState(const PARAMS &p){
 
 //A function which chooses a random spin state compatible with 
 //the two input VB basis states.  See also Basis::operator|
-int SpinState::SampleRandomState(const Basis& alpha, const Basis & beta){
+int SpinState::SampleRandomState(MTRand& ran, const Basis& alpha, const Basis & beta){
 
     vector<int> is_in_loop;  //records whether a spin is counted in a loop 
     is_in_loop.assign(beta.VBasis.size(),0);
@@ -45,9 +45,11 @@ int SpinState::SampleRandomState(const Basis& alpha, const Basis & beta){
 
     int spinval;
     for (int i=0; i<beta.VBasis.size(); i++){
-        spinval = i%2; //change to random
-        Sstate.at(i) = spinval;
         if (is_in_loop.at(i) == 0){
+
+            spinval = ran.randInt(1); //random spin state 0 or 1
+            cout<<"ran "<<spinval<<endl;
+            Sstate.at(i) = spinval;
 
             is_in_loop.at(i) = 1;
             next = alpha.VBasis.at(i); //V_A basis

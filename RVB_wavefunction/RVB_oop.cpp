@@ -23,11 +23,9 @@ int main(){
 
     int temp;
     //temp = Vbeta|Valpha;
-    temp = Z1.SampleRandomState(Valpha,Vbeta);
-    cout<<temp<<endl;
-
+    temp = Z1.SampleRandomState(mrand,Valpha,Vbeta);
+    //cout<<temp<<endl;
     Z1.print();
-
 
 
 	return 0;
