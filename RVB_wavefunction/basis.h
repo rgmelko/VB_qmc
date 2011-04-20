@@ -19,7 +19,7 @@ class Basis//: public PARAMS
         Basis(const PARAMS &);
         Basis(const Basis &);  //copy constructor
 
-        void TwoBondUpdate(MTRand &, const PARAMS &);
+        void TwoBondUpdate(MTRand &, const PARAMS &, const vector<int> &);
 
         void print(); //print
 
@@ -124,30 +124,40 @@ int Basis::operator|(const Basis & B){
 //   |   |
 //   A - B
 //
-void Basis::TwoBondUpdate(MTRand& ran, const PARAMS & p){
+void Basis::TwoBondUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 
     int plaq;
 
     //plaq = ran.randInt(p.Pst.size() - 1); //random spin state 0 or 1
-    plaq = 14;
-    cout<<plaq<<endl;
+    plaq = 2;
+    cout<<"Plaq: "<<plaq<<endl;
 
     if (VBasis.at(p.Pst.at(plaq).A) == p.Pst.at(plaq).B && //bond connects A-B
             VBasis.at(p.Pst.at(plaq).C) == p.Pst.at(plaq).D){   //bond connects C-D
+
+        //check to make sure spins are compatible on new bonds
+        if ( (SS.at(p.Pst.at(plaq).A) != SS.at(p.Pst.at(plaq).D)) &&
+                (SS.at(p.Pst.at(plaq).B) != SS.at(p.Pst.at(plaq).C)) ) { 
 
             VBasis.at(p.Pst.at(plaq).A) = p.Pst.at(plaq).D;
             VBasis.at(p.Pst.at(plaq).D) = p.Pst.at(plaq).A;
             VBasis.at(p.Pst.at(plaq).B) = p.Pst.at(plaq).C;
             VBasis.at(p.Pst.at(plaq).C) = p.Pst.at(plaq).B;
+        }
 
     }
     else if (VBasis.at(p.Pst.at(plaq).A) == p.Pst.at(plaq).D && //bond connects A-D
             VBasis.at(p.Pst.at(plaq).C) == p.Pst.at(plaq).B){   //bond connects C-B
 
+        //check to make sure spins are compatible on new bonds
+        if ( (SS.at(p.Pst.at(plaq).A) != SS.at(p.Pst.at(plaq).B)) &&
+                (SS.at(p.Pst.at(plaq).D) != SS.at(p.Pst.at(plaq).C)) ) { 
+
             VBasis.at(p.Pst.at(plaq).A) = p.Pst.at(plaq).B;
             VBasis.at(p.Pst.at(plaq).B) = p.Pst.at(plaq).A;
             VBasis.at(p.Pst.at(plaq).D) = p.Pst.at(plaq).C;
             VBasis.at(p.Pst.at(plaq).C) = p.Pst.at(plaq).D;
+        }
 
     }
 

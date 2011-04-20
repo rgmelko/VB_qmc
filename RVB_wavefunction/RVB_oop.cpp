@@ -28,14 +28,16 @@ int main(){
     //temp = Vbeta|Valpha;
     temp = Z1.SampleRandomState(mrand,Valpha,Vbeta);
     //cout<<temp<<endl;
-    //Z1.print();
+    Z1.print();
  
  
-    Vbeta.print();
+    //Vbeta.print();
     //for (int i=0; i<100; i++)
-    Vbeta.TwoBondUpdate(mrand,param);
+    Vbeta.TwoBondUpdate(mrand,param,Z1.Sstate);
     Vbeta.print();
-    Vbeta.TwoBondUpdate(mrand,param);
+    temp = Z1.SampleRandomState(mrand,Valpha,Vbeta);
+    Z1.print();
+    Vbeta.TwoBondUpdate(mrand,param,Z1.Sstate);
     Vbeta.print();
 
 
