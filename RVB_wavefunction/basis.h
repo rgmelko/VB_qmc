@@ -128,9 +128,8 @@ void Basis::TwoBondUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS)
 
     int plaq;
 
-    //plaq = ran.randInt(p.Pst.size() - 1); //random spin state 0 or 1
-    plaq = 2;
-    cout<<"Plaq: "<<plaq<<endl;
+    plaq = ran.randInt(p.Pst.size() - 1); //random spin state 0 or 1
+    //cout<<"Plaq: "<<plaq<<endl;
 
     if (VBasis.at(p.Pst.at(plaq).A) == p.Pst.at(plaq).B && //bond connects A-B
             VBasis.at(p.Pst.at(plaq).C) == p.Pst.at(plaq).D){   //bond connects C-D

@@ -25,20 +25,24 @@ int main(){
     SpinState Z1(param); //the Sz basis state
 
     int temp;
-    //temp = Vbeta|Valpha;
+
+	//initialize the spin state
     temp = Z1.SampleRandomState(mrand,Valpha,Vbeta);
-    //cout<<temp<<endl;
-    Z1.print();
  
- 
-    //Vbeta.print();
-    //for (int i=0; i<100; i++)
-    Vbeta.TwoBondUpdate(mrand,param,Z1.Sstate);
+	for (int i=0; i<10000; i++){
+		for (int j=0; j<param.numSpin/2; j++){  //sample VB bonds
+			Valpha.TwoBondUpdate(mrand,param,Z1.Sstate);
+			Vbeta.TwoBondUpdate(mrand,param,Z1.Sstate);
+		}
+		temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
+	}
+
+	Z1.print();
     Vbeta.print();
-    temp = Z1.SampleRandomState(mrand,Valpha,Vbeta);
-    Z1.print();
-    Vbeta.TwoBondUpdate(mrand,param,Z1.Sstate);
-    Vbeta.print();
+    Valpha.print();
+
+	temp = Valpha|Vbeta;
+	cout<<temp<<endl;
 
 
 	return 0;
