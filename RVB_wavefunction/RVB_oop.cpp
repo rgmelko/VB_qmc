@@ -22,7 +22,7 @@ int main(){
     int temp;
 
     Measure Observ; //create measurement object
-	Observ.zero();
+	Observ.zero(param);
 
 	//initialize the spin state
     temp = Z1.SampleRandomState(mrand,Valpha,Vbeta);
@@ -37,7 +37,7 @@ int main(){
 		temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
 
         //measurements
-		Observ.measure_CL2L2(Vbeta, Valpha);
+		Observ.measure_Cx(Vbeta, Valpha);
 		Observ.record();
 	}
 
