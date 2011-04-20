@@ -18,7 +18,10 @@ class Basis//: public PARAMS
 
         Basis(const PARAMS &);
         Basis(const Basis &);  //copy constructor
-        void print();
+
+        void TwoBondUpdate(MTRand &, const PARAMS &);
+
+        void print(); //print
 
 		//Basis operator=(const Basis & );
 		int operator|(const Basis & ); //returns number of loops in overlap
@@ -69,7 +72,7 @@ void Basis::print(){
     cout<<"VB basis: \n";
     for (int i=0;  i<VBasis.size(); i++)
         //VBasis[i].print();
-        cout<<VBasis[i]<<endl;
+        cout<<i<<"->"<<VBasis[i]<<endl;
 
     //cout<<"Is neighbor \n";
     //for(int i=0; i<numSpin; i++){
@@ -113,7 +116,46 @@ int Basis::operator|(const Basis & B){
     return Nloop;
 
 } //operator |
-    
+
+
+//This function performs the two-bond update
+//
+//   D - C
+//   |   |
+//   A - B
+//
+void Basis::TwoBondUpdate(MTRand& ran, const PARAMS & p){
+
+    int plaq;
+
+    //plaq = ran.randInt(p.Pst.size() - 1); //random spin state 0 or 1
+    plaq = 14;
+    cout<<plaq<<endl;
+
+    if (VBasis.at(p.Pst.at(plaq).A) == p.Pst.at(plaq).B && //bond connects A-B
+            VBasis.at(p.Pst.at(plaq).C) == p.Pst.at(plaq).D){   //bond connects C-D
+
+            VBasis.at(p.Pst.at(plaq).A) = p.Pst.at(plaq).D;
+            VBasis.at(p.Pst.at(plaq).D) = p.Pst.at(plaq).A;
+            VBasis.at(p.Pst.at(plaq).B) = p.Pst.at(plaq).C;
+            VBasis.at(p.Pst.at(plaq).C) = p.Pst.at(plaq).B;
+
+    }
+    else if (VBasis.at(p.Pst.at(plaq).A) == p.Pst.at(plaq).D && //bond connects A-D
+            VBasis.at(p.Pst.at(plaq).C) == p.Pst.at(plaq).B){   //bond connects C-B
+
+            VBasis.at(p.Pst.at(plaq).A) = p.Pst.at(plaq).B;
+            VBasis.at(p.Pst.at(plaq).B) = p.Pst.at(plaq).A;
+            VBasis.at(p.Pst.at(plaq).D) = p.Pst.at(plaq).C;
+            VBasis.at(p.Pst.at(plaq).C) = p.Pst.at(plaq).D;
+
+    }
+
+       //cout<<p.Pst.at(plaq).A<<" "<<p.Pst.at(plaq).B
+        //    <<" "<<p.Pst.at(plaq).C<<" "<<p.Pst.at(plaq).D<<endl;
+
+}
+   
 
 void Basis::filewrite(const int & num){
 

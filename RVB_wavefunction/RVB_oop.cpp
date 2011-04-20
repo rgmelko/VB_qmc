@@ -13,8 +13,8 @@ int main(){
     PARAMS param;
     MTRand mrand(param.SEED_); //random number for metropolis
 
-    param.printBst();
-    param.printPst();
+    //param.printBst();
+    //param.printPst();
 
     Basis Vbeta(param);   //bra
     Basis Valpha(param);  //ket
@@ -29,6 +29,14 @@ int main(){
     temp = Z1.SampleRandomState(mrand,Valpha,Vbeta);
     //cout<<temp<<endl;
     //Z1.print();
+ 
+ 
+    Vbeta.print();
+    //for (int i=0; i<100; i++)
+    Vbeta.TwoBondUpdate(mrand,param);
+    Vbeta.print();
+    Vbeta.TwoBondUpdate(mrand,param);
+    Vbeta.print();
 
 
 	return 0;
