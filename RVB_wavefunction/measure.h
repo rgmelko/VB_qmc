@@ -3,6 +3,7 @@
 
 #include "head_proj.h"
 #include "basis.h"
+#include <fstream>
 
 class Measure
 {
@@ -31,6 +32,7 @@ void Measure::zero(const PARAMS & p){
     C_old=0;
     TOT_cL_2 = 0.0;
 
+    C_x.clear();
     for (int i = 0; i<p.nX_; i++)
         C_x.push_back(0.0);
 }
@@ -117,7 +119,10 @@ void Measure::output(const PARAMS & p){
     //cfout<<TOT_cL_2/(1.0*p.MCS_)<<endl; 
 
     for (int i=0; i<p.nX_/2; i++)
-        cfout<<i<<" "<<C_x.at(i)/(1.0*p.MCS_)<<endl;
+        //cfout<<i<<" "<<C_x.at(i)/(1.0*p.MCS_)<<endl;
+        cfout<<C_x.at(i)/(1.0*p.MCS_)<<" ";
+
+    cfout<<endl;
 
 	cfout.close();
 

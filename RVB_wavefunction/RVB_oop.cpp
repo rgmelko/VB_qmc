@@ -22,26 +22,30 @@ int main(){
     int temp;
 
     Measure Observ; //create measurement object
-	Observ.zero(param);
 
 	//initialize the spin state
     temp = Z1.SampleRandomState(mrand,Valpha,Vbeta);
- 
-    //MC sampling
-	for (int i=0; i<param.MCS_; i++){
 
-		for (int j=0; j<param.numSpin/2; j++){  //sample VB bonds
-			Valpha.TwoBondUpdate(mrand,param,Z1.Sstate);
-			Vbeta.TwoBondUpdate(mrand,param,Z1.Sstate);
-		}
-		temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
+	for (int j=0; j<param.nBin_; j++){
 
-        //measurements
-		Observ.measure_Cx(Vbeta, Valpha);
-		Observ.record();
-	}
+		Observ.zero(param);
 
-	Observ.output(param);
+		for (int i=0; i<param.MCS_; i++){ //MC sampling steps
+
+			for (int j=0; j<param.numSpin/2; j++){  //sample VB bonds
+				Valpha.TwoBondUpdate(mrand,param,Z1.Sstate);
+				Vbeta.TwoBondUpdate(mrand,param,Z1.Sstate);
+			}
+			temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
+
+			//measurements
+			Observ.measure_Cx(Vbeta, Valpha);
+			Observ.record();
+		}//i
+
+		Observ.output(param);
+
+	}//j
 
 	//Z1.print();
     //Vbeta.print();

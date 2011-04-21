@@ -4,6 +4,7 @@
 #include <iostream>
 using namespace std;
 
+#include <iomanip>
 #include <vector>
 #include "MersenneTwister.h"
 #include "matrix.h"
