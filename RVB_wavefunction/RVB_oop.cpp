@@ -18,6 +18,7 @@ int main(){
     Basis Valpha(param);  //ket
 
 	//Vbeta.print();
+    //cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
 	//return 1;
 
     SpinState Z1(param); //the Sz basis state

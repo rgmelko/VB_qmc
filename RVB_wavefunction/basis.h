@@ -19,9 +19,13 @@ class Basis//: public PARAMS
         Basis(const PARAMS &);
         Basis(const Basis &);  //copy constructor
 
+        //The non-winding number fluctuating update
         void TwoBondUpdate(MTRand &, const PARAMS &, const vector<int> &);
 
         void print(); //print
+
+        int TopoX(); //measures the X-topological sector of the VB wavefunction
+        int TopoY(); //measures the Y-topological sector of the VB wavefunction
 
 		//Basis operator=(const Basis & );
 		int operator|(const Basis & ); //returns number of loops in overlap
@@ -92,6 +96,34 @@ void Basis::print(){
 
 };//print
 
+
+//This measures the X-topolgical sector
+int Basis::TopoX(){
+
+    int topo=0;
+    for (int i=0; i<LinX; i+=2){
+        if (VBasis.at(i) == i+LinX)       //sublattice A->B
+            topo += 1;
+         if (VBasis.at(i+1) == i+1+LinX)  //sublattice B->A
+            topo -= 1;
+    }
+    return topo;
+}
+
+//This measures the Y-topolgical sector
+int Basis::TopoY(){
+
+    int j;
+    int topo=0;
+    for (int i=0; i<LinX; i+=2){
+        j = i*LinX;
+        if (VBasis.at(j) == j+1)       //sublattice A->B
+            topo += 1;
+        if (VBasis.at(j+LinX) == j+1+LinX)  //sublattice B->A
+            topo -= 1;
+    }
+    return topo;
+}
 
 int Basis::operator|(const Basis & B){
 
