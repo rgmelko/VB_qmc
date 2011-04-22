@@ -41,7 +41,7 @@ Basis::Basis(const PARAMS &p){//Square lattice constructor
 	int a, b;
 	//int x,y;
     index2 temp;
-    for (int i=0; i<numSpin; i+=2){
+    for (int i=0; i<numSpin; i+=2){  //winding # (0.0)
         a = i;
         b = i+1;
         if ((i+1)%LinX == 0)
@@ -49,6 +49,16 @@ Basis::Basis(const PARAMS &p){//Square lattice constructor
         VBasis.push_back(b);  //0 connected to 1
         VBasis.push_back(a);  //1 connected to 0
     }
+
+	//winding # (1,0)
+	for (int i=0; i<LinX; i+=2){
+        a = i;
+        b = i-1;
+		if (i == 0)
+			b = LinX-1;
+		VBasis.at(a) = b;
+		VBasis.at(b) = a;
+	}
 
 };
 

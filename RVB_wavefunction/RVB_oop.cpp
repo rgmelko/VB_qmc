@@ -17,6 +17,9 @@ int main(){
     Basis Vbeta(param);   //bra
     Basis Valpha(param);  //ket
 
+	//Vbeta.print();
+	//return 1;
+
     SpinState Z1(param); //the Sz basis state
 
     int temp;
