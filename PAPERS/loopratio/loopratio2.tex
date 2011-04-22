@@ -63,12 +63,6 @@ Check notation consistency.  can use psi for a general state and V for a VB stat
 
 \subsection{The loop algorithm for valence bond quantum Monte Carlo}
 
-looooooop algorithm \\
-- \sout{ diagonal and offdiagonal operators}\\
-- \sout{building the loops} \\
-- \sout{updating operators} \\
-- \sout{measurements} \\
-
 {\it Introduction to loop algorithm:}
 Improvement on standard VB QMC.  Similar to SSE.  Each MC step gives a state that is hardly correlated with the previous state, unlike standard VB QMC.  Also there's no rejection step.  (Note: I didn't talk about acceptance/rejection.  Add a sentence in about sampling operators according to some weight)
 
@@ -129,11 +123,11 @@ where $\rho_A = {\rm Tr}_B (\rho_{AB})$ is the reduced density matrix of the tot
 ---------------------------------------------------------------\\
 
 
-In addition to the standard measurements ({\it examples}) we can use VB QMC to measure the Renyi entropies (Eq. \eqref{renyi}) for $\alpha \ge 2$.  
-The method for measure $S_2$ using the double projector algorithm is describe in Ref \cite{our paper}.
+In addition to the standard measurements ({\it examples}) we can use VB QMC to measure the Renyi entanglement entropies (Eq. \eqref{renyi}) for integer values of $\alpha \ge 2$.  
+The method for measuring $S_2$ using the double projector algorithm is describe in Ref \cite{our paper}.
 
 To measure $S_{\alpha}$ we need to $\alpha$-tuple the system that is simulated,
-i.e. instead of simulating two copies of the initial system we need to simulate $2\alpha$ non-interacting copies of that system.
+so for the double projector algorithm $2\alpha$ non-interacting copies of that system are required.  
 
 We are then able to take the expectation value of a $Swap$ operator in the case of $\alpha = 2$ or a cyclical ({\it cyclic or cyclical?}) permutation operator for $\alpha > 2$. 
 ({\it Permutation operator can also be a combination of $(\alpha - 1)$ Swap operators}.)
@@ -144,8 +138,10 @@ We are then able to take the expectation value of a $Swap$ operator in the case 
 \subsubsection{Swap in double projector VBQMC}
 A pictorial example of what the $Swap$ operator for $\alpha = 4$ does to regions $A$ and $B$ of the system is shown in figure \ref{dubprojswap}. {\it Omg explain this so much better.  Might need a different diagram for the double projector algorithm.}
 
-\subsubsection{Swap in  loop VBQMC}
+\subsubsection{Swap in  loop VB QMC}
 Figures \ref{oplist} and \ref{swap_4}.
+
+Same as double projector... just extract states to swap.
 
 \subsection{Ratio weighting}
 
