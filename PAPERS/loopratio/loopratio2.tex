@@ -110,46 +110,48 @@ Without extracting the states first, the number of loops crossing the dotted lin
 
 \noindent
 \begin{itemize}
-\item{Intro to Renyi entropies {\it if not here it'll be *somewhere* at least}}
-\item{Swap/Permuatation operator}
-	\begin{itemize}
-	\item{define $\Pi_A$}
-		\begin{itemize}
-		\item{generally... like for a general state}
-		\item{with a diagram}
-		\item{for VBs}
-		\end{itemize}
-	\item{Proof that $\langle\Pi_A\rangle =$ Tr$(\rho_A^{\alpha})$}
-	\end{itemize}
-	\item{Measuring in VB QMC???}
-\end{itemize}
-
-
-We can use the Schmidt decomposition of our ground state
-\begin{equation}
-	\lvert 0 \rangle = \sum_{\alpha,\beta} C_{\alpha,\beta}\lvert \alpha \rangle \lvert \beta \rangle 
-\end{equation}
-{\bf Aaah I don't understand what cardy does.  You can *choose* the Schmidt decomp. so the eigs of the *reduced DM* are the coefficients squared? } \\
-where $\alpha$ and $\beta$ run over the states in regions $A$ and $B$ respectively and $C_{\alpha,\beta}$ is ... {\bf does $C_{\alpha,\beta}$ *need* to depend on *both* $\alpha$ and $\beta$?}\\
-
-Anyway\\
-
-We define a permutation operator $\Pi_{\alpha}$ (as in Cardy's quench paper) acting on $\alpha$ copies of the system to cyclically permute region A of the copies. 
-
-{\it Are the Renyi entropies introduced before this?}\\ 
-{\it Let's say we'll say something like:}\\
+\item{Intro to Renyi entropies {\it if not here it'll be *somewhere* at least}}\\
 ---------------------------------------------------------------\\
 The Renyi entropies are defined as 
 \begin{equation} \label{renyi}
 S_{\alpha}(A) = \frac{1}{1-\alpha}\ln \left[ {\rm Tr}(\rho_A^{\alpha}) \right],
 \end{equation}
 where $\rho_A = {\rm Tr}_B (\rho_{AB})$ is the reduced density matrix of the total system traced out over region $B$.\\
+---------------------------------------------------------------
+\item{Swap/Permuatation operator}
+	\begin{itemize}
+	\item{define $\Pi_A$}\\\\
+	We define a permutation operator $\Pi_{\alpha}$ (as in Cardy's quench paper) acting on $\alpha$ copies of the system to cyclically permute the copies of region $A$ between the systems. 
+For $\alpha = 2$ this reduces to the $Swap$ operator of (our renyi paper).\\
+		\begin{itemize}
+		\item{generally... like for a general state}
+		\item{with a diagram}
+		\item{for VBs}
+		\end{itemize}
+	\item{Proof that $\langle\Pi_A\rangle =$ Tr$(\rho_A^{\alpha})$ (prolly in an appendix? short version here anyway)} \\
+	---------------------------------------------------------\\
+
+Using a Schmidt decomposition we can write the ground state (or any pure state) as
+\begin{equation}
+\lvert 0 \rangle = \sum_i \lambda_i \lvert i \rangle_A \lvert i \rangle_B,
+\end{equation}
+where $i$ runs from 1 to the dimension of the smaller of the two Hilbert spaces of region $A$ or $B$, and $\lambda_i^2$ are the eigenvalues of the reduced density matrices $\rho_A$ and $\rho_B$, which have the same eigenvalues.
+
+Using the permutation operator on $\alpha$ copies of the system we can obtain the value Tr$(\rho_A^{\alpha})$, necessary to measure the Renyi entropies. \\
+------------------------------------------------------
+	\end{itemize}
+	\item{Measuring in VB QMC???}
+\end{itemize}
 ---------------------------------------------------------------\\
+---------------------------------------------------------------\\
+---------------------------------------------------------------\\
+
 \noindent
 - {double (or $\alpha$-tuple) the system}\\
 - {use the swap (or permutation) operator}\\
 - {other measurements will be screwed up} \\
----------------------------------------------------------------\\
+
+
 
 
 In addition to the standard measurements ({\it examples}) we can use VB QMC to measure the Renyi entanglement entropies (Eq. \eqref{renyi}) for integer values of $\alpha \ge 2$.  
