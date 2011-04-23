@@ -12,6 +12,8 @@
 int main(){
 
     PARAMS param;
+	param.printNeighbors();
+	return 1;
     MTRand mrand(param.SEED_); //random number for metropolis
 
     Basis Vbeta(param);   //bra

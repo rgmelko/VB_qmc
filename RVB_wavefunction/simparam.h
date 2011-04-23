@@ -25,9 +25,13 @@ class PARAMS
         //lattice plaquette coordination numbers (square)
         vector <index4> Pst;
 
+        //list of all 4 nearest neighbor bonds (for the loop update)
+        vector <index4> Neighbor;
+
         void printBst();
         void printPst();
-		
+	    void printNeighbors();
+	
         //derived constants
         int numVB; //number of valence bonds = N/2
 
@@ -48,18 +52,23 @@ PARAMS::PARAMS(){
 
 //	NN_ *= 2*nX_*nX_;  // multiply by number of spins (in 2D)
 
-
     //2D square
     LinX = nX_;
     //numSpin = 2* nX_ * nX_;
     numSpin = nX_ * nX_;
     numVB= numSpin/2;
     numLattB= 2*numSpin;
+
+    //initialize Neighbor array
+    index4 temp4;
+    temp4.set(-1,-1,-1,-1);
+    for (int i=0; i<numSpin; i++)
+        Neighbor.push_back(temp4);
+
     //initialize lattice bond array: 2D square
     int a, b, c, d;
     int x,y;
     index2 temp;
-    index4 temp4;
     for (int i=0; i<numSpin; i++){  //REAL SYSTEM (LAYER 1)
         //horizontal bond
         a = i;
@@ -85,6 +94,12 @@ PARAMS::PARAMS(){
         temp4.set(a,b,c,d);
         Pst.push_back(temp4);
 
+        //Neighbor array for loop update
+        Neighbor.at(i).A = b;
+        Neighbor.at(i).B = d;
+        Neighbor.at(b).C = i;
+        Neighbor.at(d).D = i; 
+
     }//layer 1
 
 
@@ -100,6 +115,14 @@ void PARAMS::printPst(){
     cout<<"Pst "<<endl;
     for (int i=0; i<Pst.size(); i++)
         Pst[i].print();
+}
+
+void PARAMS::printNeighbors(){
+    cout<<"Nearest Neighbors"<<endl;
+    for (int i=0; i<numSpin; i++){
+        cout<<i<<" ";
+        Neighbor.at(i).print();
+    }
 }
 
 #endif
