@@ -12,15 +12,15 @@
 int main(){
 
     PARAMS param;
-	param.printNeighbors();
-	return 1;
+	//param.printNeighbors();
+	//return 1;
     MTRand mrand(param.SEED_); //random number for metropolis
 
     Basis Vbeta(param);   //bra
     Basis Valpha(param);  //ket
 
 	//Vbeta.print();
-    //cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
+    cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
 	//return 1;
 
     SpinState Z1(param); //the Sz basis state
@@ -31,6 +31,8 @@ int main(){
 
 	//initialize the spin state
     temp = Z1.SampleRandomState(mrand,Valpha,Vbeta);
+	Z1.print();
+	Vbeta.LoopUpdate(mrand,param,Z1.Sstate);
 
 	for (int j=0; j<param.nBin_; j++){
 

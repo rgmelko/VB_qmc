@@ -22,6 +22,9 @@ class Basis//: public PARAMS
         //The non-winding number fluctuating update
         void TwoBondUpdate(MTRand &, const PARAMS &, const vector<int> &);
 
+		//The winding# fluctuating loop update
+        void LoopUpdate(MTRand& , const PARAMS & , const vector<int> & );
+
         void print(); //print
 
         int TopoX(); //measures the X-topological sector of the VB wavefunction
@@ -55,14 +58,14 @@ Basis::Basis(const PARAMS &p){//Square lattice constructor
     }
 
 	//winding # (1,0)
-	for (int i=0; i<LinX; i+=2){
-        a = i;
-        b = i-1;
-		if (i == 0)
-			b = LinX-1;
-		VBasis.at(a) = b;
-		VBasis.at(b) = a;
-	}
+	//for (int i=0; i<LinX; i+=2){
+    //    a = i;
+    //    b = i-1;
+	//	if (i == 0)
+	//		b = LinX-1;
+	//	VBasis.at(a) = b;
+	//	VBasis.at(b) = a;
+	//}
 
 };
 
@@ -206,7 +209,52 @@ void Basis::TwoBondUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS)
         //    <<" "<<p.Pst.at(plaq).C<<" "<<p.Pst.at(plaq).D<<endl;
 
 }
-   
+ 
+ 
+//This function performs the Loop Update
+void Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
+
+	int origSite;
+    origSite = ran.randInt(numSpin - 1); //random site to start
+
+	cout<<"old : "<<origSite<<endl;
+	int link = VBasis[origSite];
+	cout<<"link: "<<link<<" "<<VBasis[link]<<endl;
+
+    int oldsite;
+    //int trial = ran.randInt(3); //choose one of 4 other nearest neighbors
+	int nextSpin[3]; //pack an array with the 3 
+
+    oldsite = origSite;
+    int index=0;
+	if (p.Neighbor[link].A!= oldsite){ 
+		nextSpin[index] = p.Neighbor[link].A; index++;}
+	if (p.Neighbor[link].B!= oldsite){ 
+		nextSpin[index] = p.Neighbor[link].B; index++;}
+	if (p.Neighbor[link].C!= oldsite){ 
+		nextSpin[index] = p.Neighbor[link].C; index++;}
+	if (p.Neighbor[link].D!= oldsite){ 
+		nextSpin[index] = p.Neighbor[link].D; index++;}
+
+	for (int i=0; i<3; i++)
+		cout<<nextSpin[i]<<" "; 
+	cout<<endl;
+
+	int linkSpin = SS.at(link);
+	cout<<"linkSpin: "<<linkSpin<<endl;
+
+    int head;
+	if (SS[nextSpin[0]] != linkSpin) head = nextSpin[0];
+	else if (SS[nextSpin[1]] != linkSpin) head = nextSpin[1];
+	else if (SS[nextSpin[2]] != linkSpin) head = nextSpin[2];
+	else head = oldsite;
+
+    cout<<head<<endl;
+
+
+
+}//LoopUpdate
+  
 
 void Basis::filewrite(const int & num){
 
