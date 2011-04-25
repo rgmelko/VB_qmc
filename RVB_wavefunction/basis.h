@@ -227,6 +227,7 @@ void Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 
     oldsite = origSite;
     int index=0;
+	//pack the three new possible dimer positions onto an array
 	if (p.Neighbor[link].A!= oldsite){ 
 		nextSpin[index] = p.Neighbor[link].A; index++;}
 	if (p.Neighbor[link].B!= oldsite){ 
@@ -235,6 +236,23 @@ void Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 		nextSpin[index] = p.Neighbor[link].C; index++;}
 	if (p.Neighbor[link].D!= oldsite){ 
 		nextSpin[index] = p.Neighbor[link].D; index++;}
+
+    int n0, n1, n2;
+	n0 = nextSpin[0]; n1 = nextSpin[1]; n2 = nextSpin[2];
+
+	for (int i=0; i<3; i++)
+		cout<<nextSpin[i]<<" "; 
+	cout<<endl;
+
+	int temp = ran.randInt(5);
+	//randomly reorder the array
+	if (temp == 0) {nextSpin[0] = n0; nextSpin[1] = n1; nextSpin[2] = n2;}
+	else if (temp == 1) {nextSpin[0] = n0; nextSpin[1] = n2; nextSpin[2] = n1;} 
+	else if (temp == 2) {nextSpin[0] = n1; nextSpin[1] = n0; nextSpin[2] = n2;} 
+	else if (temp == 3) {nextSpin[0] = n1; nextSpin[1] = n2; nextSpin[2] = n0;} 
+	else if (temp == 4) {nextSpin[0] = n2; nextSpin[1] = n0; nextSpin[2] = n1;} 
+	else if (temp == 5) {nextSpin[0] = n2; nextSpin[1] = n1; nextSpin[2] = n0;} 
+	else cout<<"Reorder error \n";
 
 	for (int i=0; i<3; i++)
 		cout<<nextSpin[i]<<" "; 
