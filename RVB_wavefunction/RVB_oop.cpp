@@ -38,7 +38,7 @@ int main(){
 		Vbeta.LoopUpdate(mrand,param,Z1.Sstate);
 		Valpha.LoopUpdate(mrand,param,Z1.Sstate);
 		temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
-		if( (Vbeta.TopoX() == 1) && (Vbeta.TopoY() ==1)) break;
+		if( (Vbeta.TopoX() == param.Wx_) && (Vbeta.TopoY() == param.Wy_)) break;
 	}
     cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
 
