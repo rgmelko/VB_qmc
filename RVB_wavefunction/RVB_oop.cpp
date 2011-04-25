@@ -31,21 +31,27 @@ int main(){
 
 	//initialize the spin state
     temp = Z1.SampleRandomState(mrand,Valpha,Vbeta);
-	Z1.print();
-	Vbeta.LoopUpdate(mrand,param,Z1.Sstate);
+	//Z1.print();
 
-	Vbeta.print();
+    //choose your topological sector
+	for (int i=0; i<10000; i++){
+		Vbeta.LoopUpdate(mrand,param,Z1.Sstate);
+		Valpha.LoopUpdate(mrand,param,Z1.Sstate);
+		temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
+		if( (Vbeta.TopoX() == 1) && (Vbeta.TopoY() ==1)) break;
+	}
     cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
 
 	for (int j=0; j<param.nBin_; j++){
 
 		Observ.zero(param);
-
 		for (int i=0; i<param.MCS_; i++){ //MC sampling steps
 
 			for (int j=0; j<param.numSpin/2; j++){  //sample VB bonds
 				Valpha.TwoBondUpdate(mrand,param,Z1.Sstate);
 				Vbeta.TwoBondUpdate(mrand,param,Z1.Sstate);
+				//Vbeta.LoopUpdate(mrand,param,Z1.Sstate);
+				//Valpha.LoopUpdate(mrand,param,Z1.Sstate);
 			}
 			temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
 
@@ -55,8 +61,10 @@ int main(){
 		}//i
 
 		Observ.output(param);
-
 	}//j
+
+	//Vbeta.print();
+    cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
 
 	//Z1.print();
     //Vbeta.print();

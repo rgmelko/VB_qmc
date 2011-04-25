@@ -221,7 +221,7 @@ void Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 	int n0, n1, n2;
 
     origSite = ran.randInt(numSpin - 1); //random site to start
-	//cout<<"old : "<<origSite<<endl;
+	//cout<<"orig: "<<origSite<<endl;
 	link = VBasis[origSite];
 	//cout<<"link: "<<link<<" "<<VBasis[link]<<endl;
 
@@ -238,12 +238,11 @@ void Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 		if (p.Neighbor[link].D!= tail){ 
 			nextSpin[index] = p.Neighbor[link].D; index++;}
 
-		
 		n0 = nextSpin[0]; n1 = nextSpin[1]; n2 = nextSpin[2];
 
-		for (int i=0; i<3; i++)
-			cout<<nextSpin[i]<<" "; 
-		cout<<endl;
+		//for (int i=0; i<3; i++)
+		//	cout<<nextSpin[i]<<" "; 
+		//cout<<endl;
 
 		temp = ran.randInt(5);
 		//randomly reorder the array
@@ -255,22 +254,21 @@ void Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 		else if (temp == 5) {nextSpin[0] = n2; nextSpin[1] = n1; nextSpin[2] = n0;} 
 		else cout<<"Reorder error \n";
 
-		for (int i=0; i<3; i++)
-			cout<<nextSpin[i]<<" "; 
-		cout<<endl;
+		//for (int i=0; i<3; i++)
+		//	cout<<nextSpin[i]<<" "; 
+		//cout<<endl;
 
 		linkSpin = SS.at(link);
-		cout<<"linkSpin: "<<linkSpin<<endl;
+		//cout<<"linkSpin: "<<linkSpin<<endl;
 
-		head;
 		if (SS[nextSpin[0]] != linkSpin) head = nextSpin[0];
 		else if (SS[nextSpin[1]] != linkSpin) head = nextSpin[1];
 		else if (SS[nextSpin[2]] != linkSpin) head = nextSpin[2];
 		else head = tail;
 
-		cout<<head<<endl;
+		//cout<<"head "<<head<<endl;
 
-		oldlink = link; 
+		oldlink = link;  //just so we don't reassign this one
 
 		tail = head;  //for next iteration
 		link = VBasis.at(head);
@@ -278,11 +276,9 @@ void Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 		VBasis.at(oldlink) = head;
 		VBasis.at(head) = oldlink;
 
-		cout<<tail<<" "<<link<<endl;
+		//cout<<tail<<" "<<link<<endl;
 
 	}while(head != origSite);
-
-
 
 
 }//LoopUpdate
