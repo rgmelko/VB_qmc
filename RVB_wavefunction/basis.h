@@ -218,7 +218,7 @@ void Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 	int tail, link, oldlink, head, linkSpin; //used in the loop
 	int nextSpin[3]; //pack an array with the 3 
 	int index, temp;
-	int n0, n1, n2l
+	int n0, n1, n2;
 
     origSite = ran.randInt(numSpin - 1); //random site to start
 	//cout<<"old : "<<origSite<<endl;

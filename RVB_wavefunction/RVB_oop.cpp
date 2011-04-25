@@ -34,6 +34,9 @@ int main(){
 	Z1.print();
 	Vbeta.LoopUpdate(mrand,param,Z1.Sstate);
 
+	Vbeta.print();
+    cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
+
 	for (int j=0; j<param.nBin_; j++){
 
 		Observ.zero(param);
