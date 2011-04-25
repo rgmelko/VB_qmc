@@ -215,59 +215,73 @@ void Basis::TwoBondUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS)
 void Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 
 	int origSite;
-    origSite = ran.randInt(numSpin - 1); //random site to start
-
-	cout<<"old : "<<origSite<<endl;
-	int link = VBasis[origSite];
-	cout<<"link: "<<link<<" "<<VBasis[link]<<endl;
-
-    int oldsite;
-    //int trial = ran.randInt(3); //choose one of 4 other nearest neighbors
+	int tail, link, oldlink, head, linkSpin; //used in the loop
 	int nextSpin[3]; //pack an array with the 3 
+	int index, temp;
+	int n0, n1, n2l
 
-    oldsite = origSite;
-    int index=0;
-	//pack the three new possible dimer positions onto an array
-	if (p.Neighbor[link].A!= oldsite){ 
-		nextSpin[index] = p.Neighbor[link].A; index++;}
-	if (p.Neighbor[link].B!= oldsite){ 
-		nextSpin[index] = p.Neighbor[link].B; index++;}
-	if (p.Neighbor[link].C!= oldsite){ 
-		nextSpin[index] = p.Neighbor[link].C; index++;}
-	if (p.Neighbor[link].D!= oldsite){ 
-		nextSpin[index] = p.Neighbor[link].D; index++;}
+    origSite = ran.randInt(numSpin - 1); //random site to start
+	//cout<<"old : "<<origSite<<endl;
+	link = VBasis[origSite];
+	//cout<<"link: "<<link<<" "<<VBasis[link]<<endl;
 
-    int n0, n1, n2;
-	n0 = nextSpin[0]; n1 = nextSpin[1]; n2 = nextSpin[2];
+	tail = origSite;
+	do{
+		index=0;
+		//pack the three new possible dimer positions onto an array
+		if (p.Neighbor[link].A!= tail){ 
+			nextSpin[index] = p.Neighbor[link].A; index++;}
+		if (p.Neighbor[link].B!= tail){ 
+			nextSpin[index] = p.Neighbor[link].B; index++;}
+		if (p.Neighbor[link].C!= tail){ 
+			nextSpin[index] = p.Neighbor[link].C; index++;}
+		if (p.Neighbor[link].D!= tail){ 
+			nextSpin[index] = p.Neighbor[link].D; index++;}
 
-	for (int i=0; i<3; i++)
-		cout<<nextSpin[i]<<" "; 
-	cout<<endl;
+		
+		n0 = nextSpin[0]; n1 = nextSpin[1]; n2 = nextSpin[2];
 
-	int temp = ran.randInt(5);
-	//randomly reorder the array
-	if (temp == 0) {nextSpin[0] = n0; nextSpin[1] = n1; nextSpin[2] = n2;}
-	else if (temp == 1) {nextSpin[0] = n0; nextSpin[1] = n2; nextSpin[2] = n1;} 
-	else if (temp == 2) {nextSpin[0] = n1; nextSpin[1] = n0; nextSpin[2] = n2;} 
-	else if (temp == 3) {nextSpin[0] = n1; nextSpin[1] = n2; nextSpin[2] = n0;} 
-	else if (temp == 4) {nextSpin[0] = n2; nextSpin[1] = n0; nextSpin[2] = n1;} 
-	else if (temp == 5) {nextSpin[0] = n2; nextSpin[1] = n1; nextSpin[2] = n0;} 
-	else cout<<"Reorder error \n";
+		for (int i=0; i<3; i++)
+			cout<<nextSpin[i]<<" "; 
+		cout<<endl;
 
-	for (int i=0; i<3; i++)
-		cout<<nextSpin[i]<<" "; 
-	cout<<endl;
+		temp = ran.randInt(5);
+		//randomly reorder the array
+		if (temp == 0) {nextSpin[0] = n0; nextSpin[1] = n1; nextSpin[2] = n2;}
+		else if (temp == 1) {nextSpin[0] = n0; nextSpin[1] = n2; nextSpin[2] = n1;} 
+		else if (temp == 2) {nextSpin[0] = n1; nextSpin[1] = n0; nextSpin[2] = n2;} 
+		else if (temp == 3) {nextSpin[0] = n1; nextSpin[1] = n2; nextSpin[2] = n0;} 
+		else if (temp == 4) {nextSpin[0] = n2; nextSpin[1] = n0; nextSpin[2] = n1;} 
+		else if (temp == 5) {nextSpin[0] = n2; nextSpin[1] = n1; nextSpin[2] = n0;} 
+		else cout<<"Reorder error \n";
 
-	int linkSpin = SS.at(link);
-	cout<<"linkSpin: "<<linkSpin<<endl;
+		for (int i=0; i<3; i++)
+			cout<<nextSpin[i]<<" "; 
+		cout<<endl;
 
-    int head;
-	if (SS[nextSpin[0]] != linkSpin) head = nextSpin[0];
-	else if (SS[nextSpin[1]] != linkSpin) head = nextSpin[1];
-	else if (SS[nextSpin[2]] != linkSpin) head = nextSpin[2];
-	else head = oldsite;
+		linkSpin = SS.at(link);
+		cout<<"linkSpin: "<<linkSpin<<endl;
 
-    cout<<head<<endl;
+		head;
+		if (SS[nextSpin[0]] != linkSpin) head = nextSpin[0];
+		else if (SS[nextSpin[1]] != linkSpin) head = nextSpin[1];
+		else if (SS[nextSpin[2]] != linkSpin) head = nextSpin[2];
+		else head = tail;
+
+		cout<<head<<endl;
+
+		oldlink = link; 
+
+		tail = head;  //for next iteration
+		link = VBasis.at(head);
+
+		VBasis.at(oldlink) = head;
+		VBasis.at(head) = oldlink;
+
+		cout<<tail<<" "<<link<<endl;
+
+	}while(head != origSite);
+
 
 
 
