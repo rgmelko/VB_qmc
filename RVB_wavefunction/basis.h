@@ -321,9 +321,14 @@ void Basis::filewrite(const int & num){
 	fname[6] = 'e';
 	fname[7] = '\0';
 
+    int Wx, Wy;  //record the topological sector
+	Wx = TopoX();
+	Wy = TopoY();
 
 	ofstream cfout;
 	cfout.open(fname);
+
+	cfout<<Wx<<" "<<Wy<<endl;
 
     for (int i=0;  i<VBasis.size(); i++)
         cfout<<VBasis[i]<<endl;
@@ -355,9 +360,17 @@ void Basis::fileread(const int & num){
 	fname[6] = 'e';
 	fname[7] = '\0';
 
+    int Wx, Wy;  //record the topological sector
 
 	ifstream cfin;
 	cfin.open(fname);
+   
+	if (cfin.fail() ) { //check for errors
+		cout<<"Could not open a basis input file "<<endl;
+	}
+
+	cfin>>Wx;
+	cfin>>Wy;
 
 	int temp=0;
     for (int i=0;  i<VBasis.size(); i++){
