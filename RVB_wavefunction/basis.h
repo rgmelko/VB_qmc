@@ -239,6 +239,7 @@ void Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 	link = VBasis[origSite];
 	//cout<<"link: "<<link<<" "<<VBasis[link]<<endl;
 
+	int Wx=0, Wy=0;  //winding numbers of the loop update
 	tail = origSite;
 	do{
 		index=0;
@@ -280,8 +281,23 @@ void Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 		else if (SS[nextSpin[2]] != linkSpin) head = nextSpin[2];
 		else head = tail;
 
-		//cout<<"head "<<head<<endl;
+		//cout<<tail<<" "<<link<<" "<<head<<endl;
 
+		if (head != tail){
+			//measure loop winding Y
+			if ( (head - link) ==  (LinX - 1)) Wy += 1;
+			else if ( (link - tail) ==  (LinX - 1)) Wy += 1;
+			else if ( (head - link) ==  (1- LinX) ) Wy -= 1;
+			else if ( (link - tail) ==  (1- LinX) ) Wy -= 1;
+			//measure loop winding X
+			if ( (head - link) ==  (numSpin - LinX) ) Wx += 1;
+			else if ( (link - tail) ==  (numSpin - LinX) ) Wx += 1;
+			else if ( (head - link) ==  (LinX - numSpin) ) Wx -= 1;
+			else if ( (link - tail) ==  (LinX - numSpin) ) Wx -= 1;
+		}
+
+        //cout<<"| "<<Wx<<" "<<Wy<<endl;
+   
 		oldlink = link;  //just so we don't reassign this one
 
 		tail = head;  //for next iteration
@@ -294,6 +310,8 @@ void Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 
 	}while(head != origSite);
 
+	if (Wx != 0 || Wy != 0)
+		cout<<"["<<Wx<<" "<<Wy<<"]"<<endl;
 
 }//LoopUpdate
   

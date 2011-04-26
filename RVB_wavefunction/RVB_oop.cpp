@@ -23,19 +23,36 @@ int main(){
     SpinState Z1(param); //the Sz basis state
     temp = Z1.SampleRandomState(mrand,Valpha,Vbeta);
 
-    Measure Observ; //create measurement object
+	Measure Observ; //create measurement object
+
+	cout<<"("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<endl;
+	cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
 
 	//choose your topological sector
-	for (int i=0; i<10000; i++){
-		Vbeta.LoopUpdate(mrand,param,Z1.Sstate);
+	for (int i=0; i<100; i++){
 		Valpha.LoopUpdate(mrand,param,Z1.Sstate);
+		Vbeta.LoopUpdate(mrand,param,Z1.Sstate);
 		temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
-		if( (Vbeta.TopoX() == param.Wx_) && (Vbeta.TopoY() == param.Wy_)) break;
+		//if( (Vbeta.TopoX() == param.Wx_) && (Vbeta.TopoY() == param.Wy_)) break;
+		cout<<"("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<endl;
+		cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
 	}
-	cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
-	Valpha = Vbeta;
-	cout<<"("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<endl;
+	//Valpha.print();
+	//Vbeta.print();
+	Valpha.LoopUpdate(mrand,param,Z1.Sstate);
+	Vbeta.LoopUpdate(mrand,param,Z1.Sstate);
 	temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
+	//if( (Vbeta.TopoX() == param.Wx_) && (Vbeta.TopoY() == param.Wy_)) break;
+	cout<<"("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<endl;
+	cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
+	//Valpha.print();
+	//Vbeta.print();
+
+	//cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
+	//Valpha = Vbeta;
+	//cout<<"("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<endl;
+	//temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
+	return 1;
 
     //Monte Carlo binning loop
 	for (int j=0; j<param.nBin_; j++){
