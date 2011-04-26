@@ -8,11 +8,14 @@
 class Basis//: public PARAMS
 {
 
-	public:
-		int LinX;
+	private:
 		int numSpin;
 		int numVB;
 		int numLattB;
+
+	public:
+		int LinX;  //linear system size
+		int Scount;  //site count: how many sites does a loop encounter
 
 		vector<int>  VBasis;   //VB basis
 
@@ -47,6 +50,7 @@ Basis::Basis(const PARAMS &p){//Square lattice constructor
 	numLattB = p.numLattB;
 	numSpin = p.numSpin;
 	numVB = p.numVB;
+	Scount = 0;
 
 	int a, b;
 	//int x,y;
@@ -234,12 +238,11 @@ int Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 	int index, temp;
 	int n0, n1, n2;
 
-    origSite = ran.randInt(numSpin - 1); //random site to start
-	//cout<<"orig: "<<origSite<<endl;
-	link = VBasis[origSite];
-	//cout<<"link: "<<link<<" "<<VBasis[link]<<endl;
-
 	int Wx=0, Wy=0;  //winding numbers of the loop update
+
+    origSite = ran.randInt(numSpin - 1); //random site to start
+	link = VBasis[origSite];
+
 	tail = origSite;
 	do{
 		index=0;
@@ -307,6 +310,7 @@ int Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 		VBasis.at(head) = oldlink;
 
 		//cout<<tail<<" "<<link<<endl;
+		Scount += 2;
 
 	}while(head != origSite);
 
