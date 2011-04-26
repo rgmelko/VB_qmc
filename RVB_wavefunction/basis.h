@@ -23,7 +23,7 @@ class Basis//: public PARAMS
         void TwoBondUpdate(MTRand &, const PARAMS &, const vector<int> &);
 
 		//The winding# fluctuating loop update
-        void LoopUpdate(MTRand& , const PARAMS & , const vector<int> & );
+        int LoopUpdate(MTRand& , const PARAMS & , const vector<int> & );
 
         void print(); //print
 
@@ -226,7 +226,7 @@ void Basis::TwoBondUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS)
  
  
 //This function performs the Loop Update
-void Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
+int Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 
 	int origSite;
 	int tail, link, oldlink, head, linkSpin; //used in the loop
@@ -310,8 +310,8 @@ void Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 
 	}while(head != origSite);
 
-	if (Wx != 0 || Wy != 0)
-		cout<<"["<<Wx<<" "<<Wy<<"]"<<endl;
+    if (Wx == 0 && Wy == 0) return 0;
+	else return 1;
 
 }//LoopUpdate
   
