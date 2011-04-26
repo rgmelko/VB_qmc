@@ -49,7 +49,7 @@ int main(){
 	Valpha_old = Valpha;
 
 	int Walpha, Wbeta;  //detects winding number changes in the loop
-	int i;
+	int i,k;
 
 	i = 0;
 	//********Equilibriation
@@ -81,20 +81,23 @@ int main(){
 
 		Observ.zero(param);
 		i = 0;
-		while (i<param.MCS_){
+		for (i=0; i<param.MCS_; i++){
 
 			//for (int j=0; j<param.numSpin/2; j++){  //sample VB bonds
 			//	Valpha.TwoBondUpdate(mrand,param,Z1.Sstate);
 			//	Vbeta.TwoBondUpdate(mrand,param,Z1.Sstate);
 			//}
 
-			for (int k=0; k<numLoops; k++){
+        
+		    k=0;
+			while (k<numLoops){
 				Wbeta = Vbeta.LoopUpdate(mrand,param,Z1.Sstate);
 				Walpha = Valpha.LoopUpdate(mrand,param,Z1.Sstate);
 
 				if (Walpha == 0 && Wbeta == 0){ //no winding number change
 					Valpha_old = Valpha;
 					Vbeta_old= Vbeta;
+					k++;
 				}
 				else{  //rejection based on winding number change
 					if (Walpha != 0) Valpha = Valpha_old;
@@ -102,7 +105,6 @@ int main(){
 				}
 			}//k
 
-			i++;
 			Observ.measure_Cx(Vbeta, Valpha);
 			Observ.record();
 
