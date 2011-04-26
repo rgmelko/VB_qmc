@@ -33,6 +33,9 @@ class Basis//: public PARAMS
 		//Basis operator=(const Basis & );
 		int operator|(const Basis & ); //returns number of loops in overlap
 
+        //Equates two bases
+		Basis operator=(const Basis & ); //returns number of loops in overlap
+
 		void filewrite(const int & num);
 		void fileread(const int & num);
 
@@ -128,6 +131,7 @@ int Basis::TopoY(){
     return topo;
 }
 
+//Operator to return the overlap
 int Basis::operator|(const Basis & B){
 
     vector<int> is_in_loop;  //records whether a spin is counted in a loop 
@@ -161,6 +165,16 @@ int Basis::operator|(const Basis & B){
     return Nloop;
 
 } //operator |
+
+
+//this operator equates two VB basis states
+Basis Basis::operator=(const Basis & B){ 
+
+	for (int i=0; i<B.VBasis.size(); i++)
+		VBasis.at(i) = B.VBasis.at(i);
+
+    return *this;
+}//=
 
 
 //This function performs the two-bond update
