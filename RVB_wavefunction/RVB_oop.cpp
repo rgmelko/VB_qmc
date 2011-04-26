@@ -44,6 +44,8 @@ int main(){
 	cout<<"("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<endl;
 	temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
 	//---------------------------------------
+	Valpha.filewrite(0);
+	Vbeta.filewrite(1); //save configuration file
 
 	Vbeta_old = Vbeta;
 	Valpha_old = Valpha;
@@ -80,14 +82,12 @@ int main(){
 	for (int j=0; j<param.nBin_; j++){ 
 
 		Observ.zero(param);
-		i = 0;
 		for (i=0; i<param.MCS_; i++){
 
 			//for (int j=0; j<param.numSpin/2; j++){  //sample VB bonds
 			//	Valpha.TwoBondUpdate(mrand,param,Z1.Sstate);
 			//	Vbeta.TwoBondUpdate(mrand,param,Z1.Sstate);
 			//}
-
         
 		    k=0;
 			while (k<numLoops){
@@ -119,17 +119,8 @@ int main(){
 	}//j
 	//------------------------------------
 
-	//Vbeta.print();
-    //cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
    	cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
 	cout<<"("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<endl;
-
-
-	//Z1.print();
-    //Vbeta.print();
-    //Valpha.print();
-	//temp = Valpha|Vbeta;
-	//cout<<temp<<endl;
 
 	return 0;
 };
