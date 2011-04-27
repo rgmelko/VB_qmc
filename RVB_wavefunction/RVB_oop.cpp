@@ -39,15 +39,14 @@ int main(){
 		temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
 		if( (Vbeta.TopoX() == param.Wx_) && (Vbeta.TopoY() == param.Wy_)) break;
 	}
-	cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<", ";
+	cout<<"beta("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<", ";
 	cout<<"("<<Vbeta.TopoXanc()<<","<<Vbeta.TopoYanc()<<")"<<endl;
 	Vbeta.CopyTop();
-	cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<", ";
+	cout<<"beta("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<", ";
 	cout<<"("<<Vbeta.TopoXanc()<<","<<Vbeta.TopoYanc()<<")"<<endl;
-	return 1;
-
 	Valpha = Vbeta;
-	cout<<"("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<endl;
+	cout<<"alpha("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<", ";
+	cout<<"("<<Valpha.TopoXanc()<<","<<Valpha.TopoYanc()<<")"<<endl;
 	temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
 	//---------------------------------------
 	Valpha.filewrite(0);
@@ -60,25 +59,33 @@ int main(){
 	int i,k;
 
 	i = 0;
-//	//********Equilibriation
-//	while (i<param.EQL_){ 
-//
-//		Wbeta = Vbeta.LoopUpdate(mrand,param,Z1.Sstate); //oop update
-//		Walpha = Valpha.LoopUpdate(mrand,param,Z1.Sstate);
-//
-//		if (Walpha == 0 && Wbeta == 0){ //no winding number change
-//			temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
-//			i++;
-//			Valpha_old = Valpha;
-//			Vbeta_old= Vbeta;
-//		}//no Wnum change
-//		else{
-//			if (Walpha != 0) Valpha = Valpha_old;
-//			if (Wbeta != 0)  Vbeta = Vbeta_old;
-//		}//rejection based on winding number change
-//
-//	}
-//	//*********End equilibriation
+	//********Equilibriation
+	while (i<param.EQL_){ 
+
+		for (int j=0; j<param.numSpin/2; j++){  //sample VB bonds
+			Valpha.TwoBondUpdate(mrand,param,Z1.Sstate);
+			Vbeta.TwoBondUpdate(mrand,param,Z1.Sstate);
+		}
+		temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
+		i++;
+
+		//Wbeta = Vbeta.LoopUpdate(mrand,param,Z1.Sstate); //oop update
+		//Walpha = Valpha.LoopUpdate(mrand,param,Z1.Sstate);
+
+		//if (Walpha == 0 && Wbeta == 0){ //no winding number change
+		//	temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
+		//	i++;
+		//	Valpha_old = Valpha;
+		//	Vbeta_old= Vbeta;
+		//}//no Wnum change
+		//else{
+		//	if (Walpha != 0) Valpha = Valpha_old;
+		//	if (Wbeta != 0)  Vbeta = Vbeta_old;
+		//}//rejection based on winding number change
+
+	}
+	//*********End equilibriation
+	//cout<<"end eq \n";
 
 	//temp = (Valpha.Scount + Vbeta.Scount)/(2*param.EQL_);
 	//numLoops = param.numSpin/temp;
@@ -126,8 +133,10 @@ int main(){
 	}//j
 	//------------------------------------
 
-   	cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
-	cout<<"("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<endl;
+	cout<<"beta("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<", ";
+	cout<<"("<<Vbeta.TopoXanc()<<","<<Vbeta.TopoYanc()<<")"<<endl;
+	cout<<"alpha("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<", ";
+	cout<<"("<<Valpha.TopoXanc()<<","<<Valpha.TopoYanc()<<")"<<endl;
 
 	return 0;
 };
