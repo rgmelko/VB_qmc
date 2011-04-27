@@ -57,8 +57,8 @@ PARAMS::PARAMS(){
 
     //2D square
     LinX = nX_;
-    //numSpin = 2* nX_ * nX_;
-    numSpin = nX_ * nX_;
+    numSpin = 2* nX_ * nX_;
+    //numSpin = nX_ * nX_;
     numVB= numSpin/2;
     numLattB= 2*numSpin;
 
@@ -72,7 +72,7 @@ PARAMS::PARAMS(){
     int a, b, c, d;
     int x,y;
     index2 temp;
-    for (int i=0; i<numSpin; i++){  //REAL SYSTEM (LAYER 1)
+    for (int i=0; i<numSpin/2; i++){  //REAL SYSTEM (LAYER 1)
         //horizontal bond
         a = i;
         b = i+1;
@@ -104,6 +104,38 @@ PARAMS::PARAMS(){
         Neighbor.at(d).D = i; 
 
     }//layer 1
+    for (int i=numSpin/2; i<numSpin; i++){  //ANCILLARY SYSTEM (LAYER 2)
+        //horizontal bond
+        a = i;
+        b = i+1;
+        if ( b%nX_ == 0) b -= nX_;
+        x = a%nX_; y = a/nX_;
+        if ((x+y)%2==0) temp.set(a,b);  //order (A,B) sublattice
+        else temp.set(b,a);
+        Bst.push_back(temp);
+        //vertical bond
+        a = i;
+        d = i+nX_;
+        if (d>= numSpin) d -= LinX*LinX;
+        x = a%nX_; y = a/nX_;
+        if ((x+y)%2==0) temp.set(a,d);  //order (A,B) sublattice
+        else temp.set(d,a);
+        Bst.push_back(temp);
+		
+		//diagonal bond (for Pst)
+        c = i+nX_ + 1;
+        if ( c%nX_ == 0) c -= nX_;
+        if (c>= numSpin) c -= LinX*LinX;
+        temp4.set(a,b,c,d);
+        Pst.push_back(temp4);
+
+        //Neighbor array for loop update
+        Neighbor.at(i).A = b;
+        Neighbor.at(i).B = d;
+        Neighbor.at(b).C = i;
+        Neighbor.at(d).D = i; 
+
+    }//layer2
 
 
 }//constructor

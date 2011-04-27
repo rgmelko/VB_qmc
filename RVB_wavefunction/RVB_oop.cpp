@@ -15,6 +15,10 @@ int main(){
 	int numLoops; //number of loops to perform
 
     PARAMS param; //read parameter file
+	param.printBst();
+	param.printPst();
+	param.printNeighbors();
+	return 1;
     MTRand mrand(param.SEED_); //random number for metropolis
 
     //initialize your VB basis states
@@ -74,9 +78,10 @@ int main(){
 	}
 	//*********End equilibriation
 
-	temp = (Valpha.Scount + Vbeta.Scount)/(2*param.EQL_);
-	numLoops = param.numSpin/temp;
-	if (numLoops < 1) numLoops = 1; //adjust the number of loops
+	//temp = (Valpha.Scount + Vbeta.Scount)/(2*param.EQL_);
+	//numLoops = param.numSpin/temp;
+	//if (numLoops < 1) numLoops = 1; //adjust the number of loops
+	numLoops = 5;
 
     //--------------Main Monte Carlo data binning loop
 	for (int j=0; j<param.nBin_; j++){ 
