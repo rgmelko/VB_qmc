@@ -39,6 +39,9 @@ class Basis//: public PARAMS
         //Equates two bases
 		Basis operator=(const Basis & ); //returns number of loops in overlap
 
+		//Copies the real basis to the ancillary basis (for wnum purposes)
+		void CopyTop();
+
 		void filewrite(const int & num);
 		void fileread(const int & num);
 
@@ -134,6 +137,15 @@ int Basis::TopoY(){
     }
     return topo;
 }
+
+//Copies the real basis to the ancillary basis
+void Basis::CopyTop(){
+
+    int half = VBasis.size()/2;
+	for (int i=0; i<half; i++)
+		VBasis.at(i+half) = VBasis.at(i);
+
+}//CopyTop
 
 //Operator to return the overlap
 int Basis::operator|(const Basis & B){
