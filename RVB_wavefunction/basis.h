@@ -31,7 +31,9 @@ class Basis//: public PARAMS
         void print(); //print
 
         int TopoX(); //measures the X-topological sector of the VB wavefunction
+        int TopoXanc(); //and of the ancillary
         int TopoY(); //measures the Y-topological sector of the VB wavefunction
+        int TopoYanc(); //and of the ancillary
 
 		//Basis operator=(const Basis & );
 		int operator|(const Basis & ); //returns number of loops in overlap
@@ -123,6 +125,21 @@ int Basis::TopoX(){
     return topo;
 }
 
+//This measures the X-topolgical sector of the ANCILLARY
+int Basis::TopoXanc(){
+
+    int topo=0;
+	int j = LinX*LinX;
+	for (int i=0; i<LinX; i+=2){
+		if (VBasis.at(j) == j+LinX)       //sublattice A->B
+			topo += 1;
+		if (VBasis.at(j+1) == j+1+LinX)  //sublattice B->A
+			topo -= 1;
+		j+=2;
+	}
+	return topo;
+}
+
 //This measures the Y-topolgical sector
 int Basis::TopoY(){
 
@@ -138,12 +155,27 @@ int Basis::TopoY(){
     return topo;
 }
 
+//This measures the Y-topolgical sector of the ANCILLARY
+int Basis::TopoYanc(){
+
+    int j;
+    int topo=0;
+    for (int i=0; i<LinX; i+=2){
+        j = i*LinX + LinX*LinX;
+        if (VBasis.at(j) == j+1)       //sublattice A->B
+            topo += 1;
+        if (VBasis.at(j+LinX) == j+1+LinX)  //sublattice B->A
+            topo -= 1;
+    }
+    return topo;
+}
+
 //Copies the real basis to the ancillary basis
 void Basis::CopyTop(){
 
     int half = VBasis.size()/2;
 	for (int i=0; i<half; i++)
-		VBasis.at(i+half) = VBasis.at(i);
+		VBasis.at(i+half) = VBasis.at(i)+half;
 
 }//CopyTop
 

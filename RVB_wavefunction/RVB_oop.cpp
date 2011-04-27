@@ -39,8 +39,13 @@ int main(){
 		temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
 		if( (Vbeta.TopoX() == param.Wx_) && (Vbeta.TopoY() == param.Wy_)) break;
 	}
-	cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
+	cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<", ";
+	cout<<"("<<Vbeta.TopoXanc()<<","<<Vbeta.TopoYanc()<<")"<<endl;
 	Vbeta.CopyTop();
+	cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<", ";
+	cout<<"("<<Vbeta.TopoXanc()<<","<<Vbeta.TopoYanc()<<")"<<endl;
+	return 1;
+
 	Valpha = Vbeta;
 	cout<<"("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<endl;
 	temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
