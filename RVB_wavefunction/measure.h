@@ -11,6 +11,7 @@ class Measure
       //observables here
       double C_old; //C(L/2,L/2)
       vector<double> C_x;
+      vector<double> C_x_anc; //the ancilary
 
       void MapLoops(const Basis &, const Basis &, vector<int> & temp); //creates overlap map of numbered loops
 
@@ -33,9 +34,12 @@ void Measure::zero(const PARAMS & p){
     TOT_cL_2 = 0.0;
 
     C_x.clear();
-    for (int i = 0; i<p.nX_; i++)
+    C_x_anc.clear();
+    for (int i = 0; i<p.nX_; i++){
         C_x.push_back(0.0);
-}
+        C_x_anc.push_back(0.0);
+    }
+}//zero
 
 void Measure::measure_Cx(const Basis & A, const Basis & B){
 //********************C(0,x)*********************	
@@ -43,13 +47,25 @@ void Measure::measure_Cx(const Basis & A, const Basis & B){
     vector<int> is_in_loop;  //records whether a spin is counted in a loop 
 	MapLoops(A,B,is_in_loop);
 
-    for (int i = 0; i<A.LinX; i++)
+    int half = A.LinX * A.LinX;
+    int j;
+    for (int i = 0; i<A.LinX; i++){
         if (is_in_loop.at(0) == is_in_loop.at(i) ) {
             if (i%2 == 0) //same sublattice
                 C_x.at(i) += 0.75;
             else
                 C_x.at(i) -= 0.75; //different sublattice
-        }
+        }//real lattice
+
+        j = i+half;
+        if (is_in_loop.at(half) == is_in_loop.at(j) ) {
+            if (i%2 == 0) //same sublattice
+                C_x_anc.at(i) += 0.75;
+            else
+                C_x_anc.at(i) -= 0.75; //different sublattice
+        }//ancillary
+
+    }
 
 }//measure_Cx
 
@@ -121,6 +137,19 @@ void Measure::output(const PARAMS & p){
     for (int i=0; i<p.nX_/2; i++)
         //cfout<<i<<" "<<C_x.at(i)/(1.0*p.MCS_)<<endl;
         cfout<<C_x.at(i)/(1.0*p.MCS_)<<" ";
+
+    cfout<<endl;
+
+	cfout.close();
+
+	cfout.open("01.data",ios::app);
+
+    //cfout<<p.MCS_<<endl;
+    //cfout<<TOT_cL_2/(1.0*p.MCS_)<<endl; 
+
+    for (int i=0; i<p.nX_/2; i++)
+        //cfout<<i<<" "<<C_x.at(i)/(1.0*p.MCS_)<<endl;
+        cfout<<C_x_anc.at(i)/(1.0*p.MCS_)<<" ";
 
     cfout<<endl;
 
