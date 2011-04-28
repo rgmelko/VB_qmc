@@ -330,18 +330,19 @@ int Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 
 		//cout<<tail<<" "<<link<<" "<<head<<endl;
 
-		if (head != tail){
-			//measure loop winding Y
-			if ( (head - link) ==  (LinX - 1)) Wy += 1;
-			else if ( (link - tail) ==  (LinX - 1)) Wy += 1;
-			else if ( (head - link) ==  (1- LinX) ) Wy -= 1;
-			else if ( (link - tail) ==  (1- LinX) ) Wy -= 1;
-			//measure loop winding X
-			if ( (head - link) ==  (numSpin - LinX) ) Wx += 1;
-			else if ( (link - tail) ==  (numSpin - LinX) ) Wx += 1;
-			else if ( (head - link) ==  (LinX - numSpin) ) Wx -= 1;
-			else if ( (link - tail) ==  (LinX - numSpin) ) Wx -= 1;
-		}
+        //-----This detects topological sector changes: but in the real copy only
+		//if (head != tail){
+		//	//measure loop winding Y
+		//	if ( (head - link) ==  (LinX - 1)) Wy += 1;
+		//	else if ( (link - tail) ==  (LinX - 1)) Wy += 1;
+		//	else if ( (head - link) ==  (1- LinX) ) Wy -= 1;
+		//	else if ( (link - tail) ==  (1- LinX) ) Wy -= 1;
+		//	//measure loop winding X
+		//	if ( (head - link) ==  (numSpin - LinX) ) Wx += 1;
+		//	else if ( (link - tail) ==  (numSpin - LinX) ) Wx += 1;
+		//	else if ( (head - link) ==  (LinX - numSpin) ) Wx -= 1;
+		//	else if ( (link - tail) ==  (LinX - numSpin) ) Wx -= 1;
+		//}//----------------------------------------------------------------------
 
         //cout<<"| "<<Wx<<" "<<Wy<<endl;
    
@@ -358,8 +359,14 @@ int Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 
 	}while(head != origSite);
 
-    if (Wx == 0 && Wy == 0) return 0;
-	else return 1;
+    //if (Wx == 0 && Wy == 0) return 0;
+	//else return 1;
+
+    if ((*this).TopoX() != p.Wx_) return 1;   //topo sector has changed
+    else if ((*this).TopoXanc() != p.Wx_) return 1;
+    else if ((*this).TopoY() != p.Wy_) return 1;
+    else if ((*this).TopoYanc() != p.Wy_) return 1;
+    else return 0;  //no topo sector change
 
 }//LoopUpdate
   

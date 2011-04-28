@@ -64,26 +64,26 @@ int main(){
 	//********Equilibriation
 	while (i<param.EQL_){ 
 
-		for (int j=0; j<param.numSpin/2; j++){  //sample VB bonds
-			Valpha.TwoBondUpdate(mrand,param,Z1.Sstate);
-			Vbeta.TwoBondUpdate(mrand,param,Z1.Sstate);
-		}
-		temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
-		i++;
+		//for (int j=0; j<param.numSpin/2; j++){  //sample VB bonds
+		//	Valpha.TwoBondUpdate(mrand,param,Z1.Sstate);
+		//	Vbeta.TwoBondUpdate(mrand,param,Z1.Sstate);
+		//}
+		//temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
+		//i++;
 
-		//Wbeta = Vbeta.LoopUpdate(mrand,param,Z1.Sstate); //oop update
-		//Walpha = Valpha.LoopUpdate(mrand,param,Z1.Sstate);
+		Wbeta = Vbeta.LoopUpdate(mrand,param,Z1.Sstate); //oop update
+		Walpha = Valpha.LoopUpdate(mrand,param,Z1.Sstate);
 
-		//if (Walpha == 0 && Wbeta == 0){ //no winding number change
-		//	temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
-		//	i++;
-		//	Valpha_old = Valpha;
-		//	Vbeta_old= Vbeta;
-		//}//no Wnum change
-		//else{
-		//	if (Walpha != 0) Valpha = Valpha_old;
-		//	if (Wbeta != 0)  Vbeta = Vbeta_old;
-		//}//rejection based on winding number change
+		if (Walpha == 0 && Wbeta == 0){ //no winding number change
+			temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
+			i++;
+			Valpha_old = Valpha;
+			Vbeta_old= Vbeta;
+		}//no Wnum change
+		else{
+			if (Walpha != 0) Valpha = Valpha_old;
+			if (Wbeta != 0)  Vbeta = Vbeta_old;
+		}//rejection based on winding number change
 
 	}
 	//*********End equilibriation
@@ -102,26 +102,26 @@ int main(){
 
 		for (i=0; i<param.MCS_; i++){
 
-			for (int j=0; j<param.numSpin/2; j++){  //sample VB bonds
-				Valpha.TwoBondUpdate(mrand,param,Z1.Sstate);
-				Vbeta.TwoBondUpdate(mrand,param,Z1.Sstate);
-			}
+			//for (int j=0; j<param.numSpin/2; j++){  //sample VB bonds
+			//	Valpha.TwoBondUpdate(mrand,param,Z1.Sstate);
+			//	Vbeta.TwoBondUpdate(mrand,param,Z1.Sstate);
+			//}
         
-		    //k=0;
-			//while (k<numLoops){
-			//	Wbeta = Vbeta.LoopUpdate(mrand,param,Z1.Sstate);
-			//	Walpha = Valpha.LoopUpdate(mrand,param,Z1.Sstate);
+		    k=0;
+			while (k<numLoops){
+				Wbeta = Vbeta.LoopUpdate(mrand,param,Z1.Sstate);
+				Walpha = Valpha.LoopUpdate(mrand,param,Z1.Sstate);
 
-			//	if (Walpha == 0 && Wbeta == 0){ //no winding number change
-			//		Valpha_old = Valpha;
-			//		Vbeta_old= Vbeta;
-			//		k++;
-			//	}
-			//	else{  //rejection based on winding number change
-			//		if (Walpha != 0) Valpha = Valpha_old;
-			//		if (Wbeta != 0)  Vbeta = Vbeta_old;
-			//	}
-			//}//k
+				if (Walpha == 0 && Wbeta == 0){ //no winding number change
+					Valpha_old = Valpha;
+					Vbeta_old= Vbeta;
+					k++;
+				}
+				else{  //rejection based on winding number change
+					if (Walpha != 0) Valpha = Valpha_old;
+					if (Wbeta != 0)  Vbeta = Vbeta_old;
+				}
+			}//k
 
 			renyi.measure_H2(Vbeta,Valpha);      // for ratio
             renyi.record();
