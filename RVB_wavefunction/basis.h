@@ -9,11 +9,11 @@ class Basis//: public PARAMS
 {
 
 	private:
-		int numSpin;
 		int numVB;
 		int numLattB;
 
 	public:
+		int numSpin;
 		int LinX;  //linear system size
 		int Scount;  //site count: how many sites does a loop encounter
 

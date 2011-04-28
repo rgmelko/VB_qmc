@@ -8,6 +8,7 @@
 #include "basis.h"
 #include "spinstate.h"
 #include "measure.h"
+#include "renyi.h"
 
 int main(){
 
@@ -28,6 +29,7 @@ int main(){
     temp = Z1.SampleRandomState(mrand,Valpha,Vbeta);
 
 	Measure Observ; //create measurement object
+	Renyi renyi(param.nX_);
 
 	//cout<<"("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<endl;
 	//cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
@@ -96,6 +98,8 @@ int main(){
 	for (int j=0; j<param.nBin_; j++){ 
 
 		Observ.zero(param);
+        renyi.zero();
+
 		for (i=0; i<param.MCS_; i++){
 
 			for (int j=0; j<param.numSpin/2; j++){  //sample VB bonds
@@ -119,6 +123,9 @@ int main(){
 			//	}
 			//}//k
 
+			renyi.measure_H2(Vbeta,Valpha);      // for ratio
+            renyi.record();
+
 			Observ.measure_Cx(Vbeta, Valpha);
 			Observ.record();
 
@@ -126,6 +133,7 @@ int main(){
 		}//i
 		//cout<<i<<endl;
 
+		renyi.output(param);
 		Observ.output(param);
 		Valpha.filewrite(0);
 		Vbeta.filewrite(1);
