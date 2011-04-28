@@ -157,10 +157,12 @@ void Renyi::record(){
 void Renyi::output(PARAMS & p){
 
 	ofstream cfout;
+    cfout<<setprecision(8);
 	cfout.open("00.renyi",ios::app);
 
     for (int i=0; i<TOTAL_H2.size(); i++)
-	  cfout<<-log(TOTAL_H2.at(i)/(1.0*p.MCS_))<<" ";
+	  //cfout<<-log(TOTAL_H2.at(i)/(1.0*p.MCS_))<<" "; //careful with averaging logs
+	  cfout<<TOTAL_H2.at(i)/(1.0*p.MCS_)<<" "; //careful with averaging logs
 	cfout<<endl;
 
 	cfout.close();
