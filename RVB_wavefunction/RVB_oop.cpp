@@ -6,7 +6,6 @@
 #include "head_proj.h"
 #include "simparam.h"
 #include "basis.h"
-#include "spinstate.h"
 #include "measure.h"
 #include "renyi.h"
 
@@ -25,8 +24,7 @@ int main(){
     Basis Valpha_old(param);  //old ket for rejection
 
 	//initialize the spin state
-    SpinState Z1(param); //the Sz basis state
-    temp = Z1.SampleRandomState(mrand,Valpha,Vbeta);
+    Valpha.SampleSpinState(mrand,Vbeta);
 
 	Measure Observ; //create measurement object
 	Renyi renyi(param.nX_);
@@ -36,9 +34,9 @@ int main(){
 
 	//-----choose your topological sector
 	for (int i=0; i<100000; i++){
-		temp = Valpha.LoopUpdate(mrand,param,Z1.Sstate);
-		temp = Vbeta.LoopUpdate(mrand,param,Z1.Sstate);
-		temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
+		temp = Valpha.LoopUpdate(mrand,param);
+		temp = Vbeta.LoopUpdate(mrand,param);
+		Valpha.SampleSpinState(mrand,Vbeta);
 		if( (Vbeta.TopoX() == param.Wx_) && (Vbeta.TopoY() == param.Wy_)) break;
 	}
 	cout<<"beta("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<", ";
@@ -49,7 +47,7 @@ int main(){
 	Valpha = Vbeta;
 	cout<<"alpha("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<", ";
 	cout<<"("<<Valpha.TopoXanc()<<","<<Valpha.TopoYanc()<<")"<<endl;
-	temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
+    Valpha.SampleSpinState(mrand,Vbeta);
 	//---------------------------------------
 	Valpha.filewrite(0);
 	Vbeta.filewrite(1); //save configuration file
@@ -71,11 +69,11 @@ int main(){
 		//temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
 		//i++;
 
-		Wbeta = Vbeta.LoopUpdate(mrand,param,Z1.Sstate); //oop update
-		Walpha = Valpha.LoopUpdate(mrand,param,Z1.Sstate);
+		Wbeta = Vbeta.LoopUpdate(mrand,param); //oop update
+		Walpha = Valpha.LoopUpdate(mrand,param);
 
 		if (Walpha == 0 && Wbeta == 0){ //no winding number change
-			temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
+			Valpha.SampleSpinState(mrand,Vbeta);
 			i++;
 			Valpha_old = Valpha;
 			Vbeta_old= Vbeta;
@@ -109,8 +107,8 @@ int main(){
         
 		    k=0;
 			while (k<numLoops){
-				Wbeta = Vbeta.LoopUpdate(mrand,param,Z1.Sstate);
-				Walpha = Valpha.LoopUpdate(mrand,param,Z1.Sstate);
+				Wbeta = Vbeta.LoopUpdate(mrand,param);
+				Walpha = Valpha.LoopUpdate(mrand,param);
 
 				if (Walpha == 0 && Wbeta == 0){ //no winding number change
 					Valpha_old = Valpha;
@@ -129,7 +127,7 @@ int main(){
 			Observ.measure_Cx(Vbeta, Valpha);
 			Observ.record();
 
-			temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
+			Valpha.SampleSpinState(mrand,Vbeta); //sample spin state
 		}//i
 		//cout<<i<<endl;
 

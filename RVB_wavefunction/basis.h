@@ -17,16 +17,21 @@ class Basis//: public PARAMS
 		int LinX;  //linear system size
 		int Scount;  //site count: how many sites does a loop encounter
 
-		vector<int>  VBasis;   //VB basis
+		int NumOverlapLoop;  //the number of loops in the transition graph
+
+		vector<int>  VBasis;   //VB basis state
+		vector<int>  Sstate;   //Sz basis state
 
         Basis(const PARAMS &);
         Basis(const Basis &);  //copy constructor
 
         //The non-winding number fluctuating update
-        void TwoBondUpdate(MTRand &, const PARAMS &, const vector<int> &);
+        void TwoBondUpdate(MTRand &, const PARAMS &);
 
 		//The winding# fluctuating loop update
-        int LoopUpdate(MTRand& , const PARAMS & , const vector<int> & );
+        int LoopUpdate(MTRand& , const PARAMS &);
+
+		void SampleSpinState(MTRand& , Basis&);
 
         void print(); //print
 
@@ -79,6 +84,9 @@ Basis::Basis(const PARAMS &p){//Square lattice constructor
 	//	VBasis.at(b) = a;
 	//}
 
+    for (int i=0; i<numSpin; i++) //initialize the Sz basis to null
+        Sstate.push_back(-1);
+
 };
 
 Basis::Basis(const Basis & B){//Copy constructor
@@ -94,6 +102,12 @@ Basis::Basis(const Basis & B){//Copy constructor
         (*this).VBasis.push_back(temp);  //0 connected to 1
     }
 
+	for (int i=0; i<numSpin; i++){ //initialize the Sz basis with a copy
+		temp = B.Sstate.at(i);
+        Sstate.push_back(temp);
+	}
+
+
 };
 
 void Basis::print(){
@@ -102,6 +116,11 @@ void Basis::print(){
     for (int i=0;  i<VBasis.size(); i++)
         //VBasis[i].print();
         cout<<i<<"->"<<VBasis[i]<<endl;
+
+    cout<<"Spins \n";
+	for (int i=0; i<numSpin; i++){ 
+        cout<<Sstate.at(i)<<endl;
+	}
 
     //cout<<"Is neighbor \n";
     //for(int i=0; i<numSpin; i++){
@@ -179,6 +198,60 @@ void Basis::CopyTop(){
 
 }//CopyTop
 
+
+//A function which chooses a random spin state compatible with 
+//the two input VB basis states.  See also Basis::operator|
+void Basis::SampleSpinState(MTRand& ran, Basis & beta){
+
+    vector<int> is_in_loop;  //records whether a spin is counted in a loop 
+    is_in_loop.assign(beta.VBasis.size(),0);
+
+    int next;
+    int Nloop = 0;
+
+    int spinval;
+    for (int i=0; i<beta.VBasis.size(); i++){
+        if (is_in_loop.at(i) == 0){
+
+            spinval = ran.randInt(1); //random spin state 0 or 1
+            //cout<<"ran "<<spinval<<endl;
+            Sstate.at(i) = spinval;
+
+            is_in_loop.at(i) = 1;
+            next = (*this).VBasis.at(i); //V_A basis
+            while (is_in_loop.at(next) == 0){
+                if  (is_in_loop.at(next) == 1) cout<<"loop error 1 \n";
+                else is_in_loop.at(next) = 1;
+
+                spinval = spinval^1;  //bit flip
+                Sstate.at(next) = spinval;
+
+                next = beta.VBasis.at(next);      //V_B basis
+                if  (is_in_loop.at(next) != 1) is_in_loop.at(next) = 1; 
+                else break;
+
+                spinval = spinval^1;  //bit flip
+                Sstate.at(next) = spinval;
+
+                next = (*this).VBasis.at(next); //V_A basis 
+            }//while
+
+            Nloop ++;
+
+        }//if
+    }//i
+
+	for (int i=0; i<Sstate.size(); i++)
+		beta.Sstate.at(i) = Sstate.at(i); //Copy the SAME spin state to Vl
+
+
+    NumOverlapLoop = Nloop; //this is the number of loops in the transition graph
+	beta.NumOverlapLoop = Nloop;
+
+
+}//SampleSstate
+
+
 //Operator to return the overlap
 int Basis::operator|(const Basis & B){
 
@@ -221,6 +294,9 @@ Basis Basis::operator=(const Basis & B){
 	for (int i=0; i<B.VBasis.size(); i++)
 		VBasis.at(i) = B.VBasis.at(i);
 
+	for (int i=0; i<numSpin; i++)
+        Sstate.at(i) = B.Sstate.at(i);
+	
     return *this;
 }//=
 
@@ -231,7 +307,7 @@ Basis Basis::operator=(const Basis & B){
 //   |   |
 //   A - B
 //
-void Basis::TwoBondUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
+void Basis::TwoBondUpdate(MTRand& ran, const PARAMS & p){
 
     int plaq;
 
@@ -242,8 +318,8 @@ void Basis::TwoBondUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS)
             VBasis.at(p.Pst.at(plaq).C) == p.Pst.at(plaq).D){   //bond connects C-D
 
         //check to make sure spins are compatible on new bonds
-        if ( (SS.at(p.Pst.at(plaq).A) != SS.at(p.Pst.at(plaq).D)) &&
-                (SS.at(p.Pst.at(plaq).B) != SS.at(p.Pst.at(plaq).C)) ) { 
+        if ( (Sstate.at(p.Pst.at(plaq).A) != Sstate.at(p.Pst.at(plaq).D)) &&
+                (Sstate.at(p.Pst.at(plaq).B) != Sstate.at(p.Pst.at(plaq).C)) ) { 
 
             VBasis.at(p.Pst.at(plaq).A) = p.Pst.at(plaq).D;
             VBasis.at(p.Pst.at(plaq).D) = p.Pst.at(plaq).A;
@@ -256,8 +332,8 @@ void Basis::TwoBondUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS)
             VBasis.at(p.Pst.at(plaq).C) == p.Pst.at(plaq).B){   //bond connects C-B
 
         //check to make sure spins are compatible on new bonds
-        if ( (SS.at(p.Pst.at(plaq).A) != SS.at(p.Pst.at(plaq).B)) &&
-                (SS.at(p.Pst.at(plaq).D) != SS.at(p.Pst.at(plaq).C)) ) { 
+        if ( (Sstate.at(p.Pst.at(plaq).A) != Sstate.at(p.Pst.at(plaq).B)) &&
+                (Sstate.at(p.Pst.at(plaq).D) != Sstate.at(p.Pst.at(plaq).C)) ) { 
 
             VBasis.at(p.Pst.at(plaq).A) = p.Pst.at(plaq).B;
             VBasis.at(p.Pst.at(plaq).B) = p.Pst.at(plaq).A;
@@ -274,7 +350,7 @@ void Basis::TwoBondUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS)
  
  
 //This function performs the Loop Update
-int Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
+int Basis::LoopUpdate(MTRand& ran, const PARAMS & p){
 
 	int origSite;
 	int tail, link, oldlink, head, linkSpin; //used in the loop
@@ -320,12 +396,12 @@ int Basis::LoopUpdate(MTRand& ran, const PARAMS & p, const vector<int> & SS){
 		//	cout<<nextSpin[i]<<" "; 
 		//cout<<endl;
 
-		linkSpin = SS.at(link);
+		linkSpin = Sstate.at(link);
 		//cout<<"linkSpin: "<<linkSpin<<endl;
 
-		if (SS[nextSpin[0]] != linkSpin) head = nextSpin[0];
-		else if (SS[nextSpin[1]] != linkSpin) head = nextSpin[1];
-		else if (SS[nextSpin[2]] != linkSpin) head = nextSpin[2];
+		if (Sstate[nextSpin[0]] != linkSpin) head = nextSpin[0];
+		else if (Sstate[nextSpin[1]] != linkSpin) head = nextSpin[1];
+		else if (Sstate[nextSpin[2]] != linkSpin) head = nextSpin[2];
 		else head = tail;
 
 		//cout<<tail<<" "<<link<<" "<<head<<endl;
