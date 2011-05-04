@@ -24,15 +24,12 @@ int main(){
     Basis Valpha_old(param);  //old ket for rejection
 
 	//initialize the spin state
+	Vbeta.SWAP(1);
     Valpha.SampleSpinState(mrand,Vbeta);
-
-	Vbeta.print();
-	Vbeta.SWAP(3);
-	Vbeta.print();
-	return 1;
+	Vbeta.SWAP(1);
 
 	Measure Observ; //create measurement object
-	Renyi renyi(param.nX_);
+	Renyi renyi(param.nX_,1);
 
 	//cout<<"("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<endl;
 	//cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
@@ -41,7 +38,9 @@ int main(){
 	for (int i=0; i<100000; i++){
 		temp = Valpha.LoopUpdate(mrand,param);
 		temp = Vbeta.LoopUpdate(mrand,param);
+		Vbeta.SWAP(1);
 		Valpha.SampleSpinState(mrand,Vbeta);
+		Vbeta.SWAP(1);
 		if( (Vbeta.TopoX() == param.Wx_) && (Vbeta.TopoY() == param.Wy_)) break;
 	}
 	cout<<"beta("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<", ";
@@ -52,7 +51,9 @@ int main(){
 	Valpha = Vbeta;
 	cout<<"alpha("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<", ";
 	cout<<"("<<Valpha.TopoXanc()<<","<<Valpha.TopoYanc()<<")"<<endl;
-    Valpha.SampleSpinState(mrand,Vbeta);
+	Vbeta.SWAP(1);
+	Valpha.SampleSpinState(mrand,Vbeta);
+	Vbeta.SWAP(1);
 	//---------------------------------------
 	Valpha.filewrite(0);
 	Vbeta.filewrite(1); //save configuration file
@@ -78,7 +79,9 @@ int main(){
 		Walpha = Valpha.LoopUpdate(mrand,param);
 
 		if (Walpha == 0 && Wbeta == 0){ //no winding number change
+			Vbeta.SWAP(1);
 			Valpha.SampleSpinState(mrand,Vbeta);
+			Vbeta.SWAP(1);
 			i++;
 			Valpha_old = Valpha;
 			Vbeta_old= Vbeta;
@@ -126,13 +129,15 @@ int main(){
 				}
 			}//k
 
-			renyi.measure_H2(Vbeta,Valpha);      // for ratio
+			renyi.measure_ratio(Valpha,Vbeta,1);      // for ratio
             renyi.record();
 
 			Observ.measure_Cx(Vbeta, Valpha);
 			Observ.record();
 
+			Vbeta.SWAP(1);
 			Valpha.SampleSpinState(mrand,Vbeta); //sample spin state
+			Vbeta.SWAP(1);
 		}//i
 		//cout<<i<<endl;
 
