@@ -18,7 +18,7 @@ This algorithm, pioneered by Sandvik \cite{papers} in 2005, is a ground state pr
 A high power of the Hamiltonian $\mathcal{H}^m$ 
 is applied to a trial state, projecting out the ground state of the system.
 We use the Heisenberg Hamiltonian, which is rewritten in terms of bond operators $(H_{ab} = \tfrac{1}{4} - {\bf S}_a \cdot {\bf S}_b)$ acting on pairs of sites.
-The Hamiltonian can be written as a sum of all possible {\color{red}permutations (with repetition)} of these bond operators.
+The Hamiltonian can be written as a sum of all possible {permutations (with repetition)} of these bond operators.
 The Monte Carlo algorithm samples terms proportional to their weight in the sum, where the weight depends on the number of off-diagonal operators in the term.
 
 This scheme can be used to project out one copy of the groundstate wavefunction (single projector) or simultaneously project two copies (double projector) which can be used to measure expectation values of observables in the simulation. 
@@ -26,8 +26,8 @@ This scheme can be used to project out one copy of the groundstate wavefunction 
 \subsubsection{Loop Algorithm}
 
 \begin{figure} {
-\includegraphics[width=3 in]{loopalg.png} \caption{ A possible VB-spin-operator diagram for a 4-site system.
-Up (down) spins are shown in red (black). 
+\includegraphics[width=3 in]{loopalg.pdf} \caption{ A possible VB-spin-operator diagram for a 6-site system.
+Up (down) spins are shown in grey (black). (Off-)diagonal operators are shown in (blue) black.
 \label{loop1} }
 } \end{figure}
 
@@ -68,7 +68,7 @@ Measurements can be computed as usual using the propagated valence bond states, 
 \subsection{Measuring the Renyi Entanglement Entropies using VB QMC}
 %mention measurement in SSE too!
 Entanglement entropy is difficult to measure in QMC because we do not have direction access to the groundstate wavefunction of the system.
-However, methods to measure entanglement have been developed and implemented in {\color{red} several} types of Monte Carlo simulations ({\color{red} references: PR2, PR3, PR4}).
+However, methods to measure entanglement have been developed and implemented in {\color{red} several} types of Monte Carlo simulations ({\color{red} references: PR2, PRB, PR4}).
 
 \subsubsection{The Renyi Entropies}
 The Renyi entropies are used to quantify entanglement between a system subdivided into two regions, $A$ and $B$.
@@ -130,257 +130,27 @@ Though we can measure any region $A$ within a simulation, we can only use one si
 
 
 \subsection{The Loop Ratio Algorithm for VB QMC}
+
+\begin{figure} {
+\includegraphics[width=2.8 in]{loopalgratio.pdf} \caption{ 
+\label{lratio} %A possible VB-spin-operator diagram for a 4-site system with m=2 operators per copy of the system, {\bf (something about ratio and used to calculate the 2nd renyi entropy)
+%(also, make sure the two copies have *different* operators and loops, but still compatible spin configurations)}
+The VB-spin-operator diagram for to loop ratio algorithm on a 6-site system where $\alpha =2$ and region $A'$ contains the first 2 sites of the system.
+Spins between the usually non-interacting copies are connected through loops via the $Swap$ operator.
+}
+} \end{figure}
+
 The same principles apply when modifying the loop algorithm to use the ratio trick, however the sampling weight is less apparent in this scheme because we instead sample over spin states whose overlap is always 1.
 
-\newpage
-\section{Loop algorithm with ratio weighting}
+The main modification to the algorithm is a reconnection of the links in the VB-spin-operator list as if there were a $Swap$ operator permanently applied to the projected state $\lvert V_r \rangle$, shown for $\alpha = 2$ in figure \ref{lratio}.
+This causes spins from different non-interacting copies of the system to be connected via loops, which means they can be flipped together, and thus the spin states are sampled according to the swapped system $\langle V_l  \lvert Swap_{A'} \lvert V_r\rangle$.
+The measurement of  $\langle V_l  \lvert Swap_{A} \lvert V_r\rangle/\langle V_l  \lvert Swap_{A'} \lvert V_r\rangle$ is then accomplished by measuring an operator which swaps the states of the sites in region $A$ that were not already swapped in region $A'$, assuming $A' \subset A$.
 
-We present a modification to the recently proposed algorithm using loop updates with quantum Monte Carlo in the valence bond basis.  This improvement aids in the measurement of the Renyi entanglement entropies.
-
-%{\it The {\bf ?topology?} of the loop-operator list is modified.
-%Differences:  links are changed across boundary between system copies, measurements values must be multiplied by $\langle Swap_x \rangle$ to get the value unmodified by the weight.}
-
-\subsection{Valence bond quantum Monte Carlo}
-
-Quantum Monte Carlo in the valence bond basis (VB QMC) is a ground state projection technique which, for the given Hamiltonian, yeilds a state proportional to the ground state wavefunction by applying a high power of that Hamiltonian to a  trial state, $\lvert \psi \rangle = \sum_i c_i \lvert i \rangle$,
-\begin{eqnarray}
-	\lvert 0 \rangle \propto \mathcal{H}^m \lvert \psi \rangle &=& \sum_{i=0} E_i^m c_i\lvert i \rangle  \\
-	&=& E_0^m \left[ c_0 \lvert 0 \rangle + \sum_{i=1} \left(\frac{E_i}{E_0}\right) ^m c_i\lvert i \rangle \right] \label{gsproj},
-\end{eqnarray}
-where all but the first term of \eqref{gsproj} vanishes as $m \rightarrow \infty$ when $E_0$ is the energy with the largest magnitude.
-
-In the case of the Heisenberg model, the Hamiltonian is modified by a constant shift and rewritten in terms of {\it bond operators} $H_{ij}$ which act on nearest-neighbour pairs of sites,
-\begin{equation}
-	 \mathcal{H} = \sum_{\langle i,j \rangle} \left({\bf S}_i \cdot {\bf S}_j - \tfrac{1}{4}\right) =  -\sum_{\langle i,j \rangle} H_{ij}.
-\end{equation}
-This allows us to sample terms in the ground state wavefunction by applying strings of $m$ bond operators to a trial state.
-
-So far nothing we have done is basis specific, however, when these bond operators give a very simple results when applied to a valence bond state.  A bond operator acting on two sites already joined by a valence bond will not change the state.  In the other case, when the sites are not joined, the operator will join those sites and the resulting state will have a weight of $1/2$,
-\begin{eqnarray}
-	&&H_{ab}\lvert (a,b) \rangle=  \lvert (a,b) \rangle \label{bondop2}\\ 
-	&&H_{ab}\lvert (a,d)(c,b) \rangle =  \tfrac{1}{2}\lvert (a,b)(c,d) \rangle, \label{bondop}
-\end{eqnarray}
-where $(a,b)$ represents a valence bond between sites $a$ and $b$.  
-For non-bipartite lattices \eqref{bondop} could pick up a negative depending on the sublattice of the sites involved.  In this algorithm we only use valence bonds including one site from each sublattice.
-
-MEASURING OBSERVABLES!!!!  
-
-To simplify matters the list of $m$ bond operators can be rewritten as just one operator $P_i$ such that $\lvert 0 \rangle \propto \sum_i P_i \lvert \psi\rangle$.
-
-From \eqref{bondop2} and \eqref{bondop}, we can generalize the action of $P_i$ on some state as $P_i \lvert \psi\rangle = W^i  \lvert \psi^i\rangle$, where $ \psi^i$ is the new state acquired from the application of the $m$ operators in $P_i$ and $W^i = 2^{-n_{\rm i}}$ contains all of the factors of 1/2 from applying operators which change the valence bond state as in \eqref{bondop}.
-
-We can then measure observables...
-\begin{eqnarray}
-%\langle \mathcal{O}\rangle  &=& \frac{ \langle 0 \rvert \mathcal{O} \lvert 0 \rangle}{\langle 0 \lvert 0 \rangle}
-\langle \mathcal{O}\rangle  &=& \frac{ \langle \psi_L \rvert (-\mathcal{H})^m\mathcal{O}(-\mathcal{H})^m \lvert \psi_R \rangle}{ \langle \psi_L \rvert (-\mathcal{H})^m(-\mathcal{H})^m \lvert \psi_R \rangle}  \label{measure}\\
-&=& \frac{\sum_i (\langle \psi_L \rvert P_i^{\dagger})\mathcal{O}\sum_j(P_j \lvert \psi_R \rangle)}{\sum_i\sum_j \langle \psi_L \rvert P_i^{\dagger}P_j \lvert \psi_R \rangle} \\
-&=&  \frac{\sum_{ij} W_L^iW_R^j\langle \psi_L^i \rvert \mathcal{O}\lvert \psi_R^j \rangle}{\sum_{ij} W_L^iW_R^j\langle \psi_L^i \rvert \psi_R^j \rangle} 
-\end{eqnarray}
-
-{\it We need to simulate two copies of the system to do these measurements.  
-Come back to this section!!!!  I think I forgot to explain a lot. }
-
-{\it For seriouslies add a definition of the innerproduct, but don't explain it.  
-$\langle \psi_L \rvert \psi_R \rangle = 2^{n_{\rm loops} - N/2}$ where $n_{\rm loops}$ is the number
-of loops and N is the number of sites  (or use $n_{\rm max}$ the max number of loops)
-
-Check notation consistency.  can use psi for a general state and V for a VB state.. Z for a spin state... just like sandvik
-}
-
-\subsection{The loop algorithm for valence bond quantum Monte Carlo}
-
-{\it Introduction to loop algorithm:}
-Improvement on standard VB QMC.  Similar to SSE.  Each MC step gives a state that is hardly correlated with the previous state, unlike standard VB QMC.  Also there's no rejection step.  (Note: I didn't talk about acceptance/rejection.  Add a sentence in about sampling operators according to some weight)
-
-\subsubsection{Bond Operators}
-
-In this method the bond operators of the previous section are split into two types of  operators, diagonal operators $H_{ab}(1)$ and off-diagonal operators $H_{ab}(2)$, which act on interacting pairs of sites (labelled $a$ and $b$ here)
-\begin{eqnarray}
-	H_{ab}(1) &=&(\tfrac{1}{4} - S^z_aS^z_b) \\
-	H_{ab}(2) &=& %-(S_a^xS_b^x + S_a^yS_b^y). 
-		        -\tfrac{1}{2}(S_a^+S_b^- + S_a^-S_b^+)
-\end{eqnarray}
-%where $S^x_i$, $S^y_i$, $S^z_i$ are the quantum spin operators acting on the $i^{\rm th}$ site.
-
-Bond operators are chosen such that they only act on sites with antiparallel spins, in which case the diagonal operator does not change the spin state, while the off-diagonal operator  flips both spins.
-\\\\{\it More on bondops? How do they compare to bondops from the last section?}
-\\
-
-\subsubsection{Initialization}
-We begin with two copies of the of the system, as in the last section, however, in this case we need to specify both the initial valence bond state and a compatible spin state.
-Compatible spin states have antiparallel spins on each site of a valence bond, as shown in Fig ({\bf \!vb-spin-loop diagram}).  There are, of course, many compatible spin states for a given valence bond configuration (two per bond) but different spin configurations are sampled over the simulation.
-
-After the two initial trial valence bond states and spin states are chosen, $2m$ diagonal operators are randomly chosen such that they are always acting on pairs of antiparallel spins, and on nearest-neighbour sites in the case of the Heisenberg model.
-It is simpler to begin with the same initial spin states on the left and right, otherwise some off-diagonal operators need to be placed initially.
-The trial states can, however, be modified later in the simulation.
-
-\subsubsection{the next thing... build/flip loops .. update operators}
-
-The next step, after choosing the initial states and operators is building the loops, as shown in figure ({\bf \!vb-spin-loop diagram}). 
-These loops connect sites and operators, similar to the SSE algorithm except, instead of having loops which are periodic in imaginary time, the loops connect along the edges according to the valence bonds in the chosen trial states.
-
-Once the loops are built each loop is given a chance to ``flip" with probability $1/2$.  That is, every spin in the loop will flip, causeing some diagonal operators to become off-diagonal operators and vice versa.  
-
-Next, all the remaining diagonal operators are changed to act on randomly selected pairs of compatible sites.
-The off-diagonal operators remain unchanged.
-Through this process of loop flipping and choosing new operators we sample the necessary valence bond and spin states.
-
-\subsubsection{Measurements}
-
-To perform measurements of observables, as in \eqref{measure}, we can extract the two projected valence bond states (or even the spin states) from our simulation.  
-This  is accomplished by using at the states in the ``middle" of the vb-loop-operator diagram ($m$ operators from the edge states), denoted by the dotted line in figure ({\bf \!vb-spin-loop diagram}).
-Follow the loops on the left site of the dotted line will give the valence bond state $\lvert V_L \rangle$ and the right side will give $\lvert V_R \rangle$.
-Without extracting the states first, the number of loops crossing the dotted line gives the overlap $\langle V_L \lvert V_R \rangle $.
-
-\subsection{Measuring the Renyi entropies}
-
-\noindent
-\begin{itemize}
-\item{Intro to Renyi entropies {\it if not here it'll be *somewhere* at least}}\\
----------------------------------------------------------------\\
-The Renyi entropies are defined as 
-\begin{equation} \label{renyi}
-S_{\alpha}(A) = \frac{1}{1-\alpha}\ln \left[ {\rm Tr}(\rho_A^{\alpha}) \right],
-\end{equation}
-where $\rho_A = {\rm Tr}_B (\rho_{AB})$ is the reduced density matrix of the total system traced out over region $B$.\\
----------------------------------------------------------------
-\item{Swap/Permuatation operator}
-	\begin{itemize}
-	\item{define $\Pi_A$}\\\\
-	We define a permutation operator $\Pi_{\alpha}$ (as in Cardy's quench paper) acting on $\alpha$ copies of the system to cyclically permute the copies of region $A$ between the systems. 
-For $\alpha = 2$ this reduces to the $Swap$ operator of (our renyi paper).\\
-		\begin{itemize}
-		\item{generally... like for a general state}
-		\item{with a diagram}
-		\item{for VBs}
-		\end{itemize}
-	\item{Proof that $\langle\Pi_A\rangle =$ Tr$(\rho_A^{\alpha})$ (prolly in an appendix? short version here anyway)} \\
-	---------------------------------------------------------\\
-
-Using a Schmidt decomposition we can write the ground state (or any pure state) as
-\begin{equation}
-\lvert 0 \rangle = \sum_i \lambda_i \lvert i \rangle_A \lvert i \rangle_B,
-\end{equation}
-where $i$ runs from 1 to the dimension of the smaller of the two Hilbert spaces of region $A$ or $B$, and $\lambda_i^2$ are the eigenvalues of the reduced density matrices $\rho_A$ and $\rho_B$, which have the same eigenvalues.
-
-Using the permutation operator on $\alpha$ copies of the system we can obtain the value Tr$(\rho_A^{\alpha})$, necessary to measure the Renyi entropies. \\
-------------------------------------------------------
-	\end{itemize}
-	\item{Measuring in VB QMC???}
-\end{itemize}
----------------------------------------------------------------\\
----------------------------------------------------------------\\
----------------------------------------------------------------\\
-
-\noindent
-- {double (or $\alpha$-tuple) the system}\\
-- {use the swap (or permutation) operator}\\
-- {other measurements will be screwed up} \\
+This method possesses the same limitation of the double projector ratio trick, that only one value of $A'$ can be used per simulation, so the region measure must be built up from a small region $A$.
 
 
-
-
-In addition to the standard measurements ({\it examples}) we can use VB QMC to measure the Renyi entanglement entropies (Eq. \eqref{renyi}) for integer values of $\alpha \ge 2$.  
-The method for measuring $S_2$ using the double projector algorithm is described in Ref \cite{our paper}.
-
-To measure $S_{\alpha}$ we need to $\alpha$-tuple the system that is simulated,
-so for the double projector algorithm $2\alpha$ non-interacting copies of that system are required.  
-
-We are then able to take the expectation value of a $Swap$ operator in the case of $\alpha = 2$ or a cyclical ({\it cyclic or cyclical?}) permutation operator for $\alpha > 2$. 
-({\it Permutation operator can also be a combination of $(\alpha - 1)$ Swap operators}.)
-\\\\
-- Define the swap operator in: product basis, vb basis, etc?\\
-- Explain how it gives ${\rm Tr} (\rho_A^{\alpha})$
-
-\subsubsection{Swap in double projector VBQMC}
-A pictorial example of what the $Swap$ operator for $\alpha = 4$ does to regions $A$ and $B$ of the system is shown in figure \ref{dubprojswap}. {\it Omg explain this so much better.  Might need a different diagram for the double projector algorithm.}
-
-\subsubsection{Swap in  loop VB QMC}
-Figures \ref{oplist} and \ref{swap_4}.
-
-Same as double projector... just extract states to swap.
-
-\subsection{Ratio weighting}
-
-\subsubsection{In double projector VBQMC}
-\subsubsection{in the loop VBQMC}
-
-\section{----------- O - L - D -- S - T - U - F - F -----------}
-\subsection{Pre-initialization? Set-up? }
- 
-\subsubsection{Lattice}
-%Possible types of lattices (bipartite, non-frustrated, BCs don't matter, interactions only btwn the two different sublattices)... nothing with the sign problem\\
-	
-%How many copies of the system?\\
-The standard loop algorithm simulation contains two independent copies of the system to be studied, amounting to one VB-spin-operator list. 
-%(they're not *really* independent.. they're connected by the loop-operator list.)
-To measure $S_2$ an additional VB-spin-operator list is required, amounting to four copies of the original system.
-In general we will have $2\alpha$ copies of the system, resulting in $\alpha$ VB-spin-operator structures.
-	
-We mush choose and initial VB state for each copy of the system (not necessarily all different) with bonds only between different sublattices. 
-%(reference? or explain sublattices? don't want to introduce sublattice A \& B notation as it'll be confused with region A \& B.)
-For each of these initial VB states a compatible initial spin state must also be chosen such that each valence bond has one site with spin up $\uparrow$ and the other with spin down $\downarrow$.
-
-It is simplest to begin with the same spin states for both initial states within a single VB-spin-operator list, though the VB states on either side may be different.	
-	
-	
-\subsubsection{Bond Operators}
-
-Valence bond quantum Monte Carlo simulations are a type of ground state projection technique, and as such, we must decide how many times to apply the Hamiltonian to our trial state(s) in each step.  
-This value $m$ is a convergence parameter for the simulation.
-{\bf ((Something about the balance between large and small m.. need convergence.. don't want to waste simulations time.  Doesn't scale properly per site...   (((seems like you need less than a number of operators per site... like the number of ops/site that works for small systems is more than enough for large systems.. PLOTS)))   )) }
-
-
-
-\noindent
-{\bf
-- talk about convergence in the number of bond operators (plot prolly, eh?)\\
-}
-
-\subsection{Main Program}
-\subsubsection{Building the loops}
-
-\begin{figure} {
-\includegraphics[width=2.4 in]{fig_loop_alg.png} \caption{ 
-\label{loops} }
-} \end{figure}
-
-
-\begin{figure} {
-\includegraphics[width=2.4 in]{oplist.png} \caption{ 
-\label{oplist} A possible VB-spin-operator diagram for a 4-site system with m=2 operators per copy of the system, {\bf (something about ratio and used to calculate the 2nd renyi entropy)
-(also, make sure the two copies have *different* operators and loops, but still compatible spin configurations)}
-}
-} \end{figure}
-
-
-
-\subsubsection{Flip...?}
-\noindent 
-{\bf
-- keep the loops the same, flip all the spins.\\
-- causes some diagonal operators to become off-diagonal and vice versa
-}
-\subsubsection{$\langle Swap_A \rangle$ measurement}
-\noindent
-{\bf 
-- renyi measurement \\
-- need to multiply by weight factor to get the actual measurement values\\
-- energy (and other measurements) could be doubled (or alpha-ed) because we have multiple copies of the system
-}
-\subsubsection{Updating the operator list}
-\noindent
-{\bf- keep off-diagonal bond operators, move diagonal bond operators to a random, compatible spot.}
-	
-\subsection{Swap operator for $\alpha > 2$}
-
-\begin{figure} {
-\includegraphics[width=2.4 in]{swap.png} \caption{ 
-\label{swap_4} 
-The cyclical permutation of states in region $A$ for four copies of a system.
-}
-} \end{figure}
-
-\bibliography{}
+%- multiple copies... 
+%- reconnection of the links as if a swap operator was applied
+%- affects the sampling of the spin states...
 
 \end{document}
