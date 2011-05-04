@@ -26,6 +26,11 @@ int main(){
 	//initialize the spin state
     Valpha.SampleSpinState(mrand,Vbeta);
 
+	Vbeta.print();
+	Vbeta.SWAP(3);
+	Vbeta.print();
+	return 1;
+
 	Measure Observ; //create measurement object
 	Renyi renyi(param.nX_);
 

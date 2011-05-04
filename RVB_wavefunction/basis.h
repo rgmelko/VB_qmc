@@ -33,6 +33,8 @@ class Basis//: public PARAMS
 
 		void SampleSpinState(MTRand& , Basis&);
 
+		void SWAP(const int &); //this swaps basis states in A 
+
         void print(); //print
 
         int TopoX(); //measures the X-topological sector of the VB wavefunction
@@ -119,7 +121,7 @@ void Basis::print(){
 
     cout<<"Spins \n";
 	for (int i=0; i<numSpin; i++){ 
-        cout<<Sstate.at(i)<<endl;
+        cout<<i<<" "<<Sstate.at(i)<<endl;
 	}
 
     //cout<<"Is neighbor \n";
@@ -250,6 +252,60 @@ void Basis::SampleSpinState(MTRand& ran, Basis & beta){
 
 
 }//SampleSstate
+
+//this swaps basis states in A : see renyi.h calc_SWAP_2D
+void Basis::SWAP(const int & X){
+
+	vector<int> inAreg; //inside the "A region
+
+	//2D
+ 	inAreg.assign(numSpin,0);
+ 	for (int i=0; i<X; i++){
+ 		for (int j=0; j<X; j++){
+ 			inAreg.at(i+j*LinX)=1;
+ 			inAreg.at(i+j*LinX+numSpin/2)=1;
+ 		}
+ 	}
+
+	int a,b, bond1, bond2;
+	int old1, old2, old3, old4;
+	int tempspin;
+
+    int sA; //spin in region "A"
+	for (int i=0; i<X; i++){ //X is the maximum *linear* distance to take region "A"
+		for (int j=0; j<X; j++){ 
+
+			sA = i+j*LinX;
+			if (inAreg.at(sA) != 1) cout<<"Renyi error: A reg\n";
+
+			a = sA;
+			b = sA + numSpin/2; //b in the other layer
+
+			tempspin = Sstate.at(a); //Swap spin states in region A
+			Sstate.at(a) = Sstate.at(b);
+			Sstate.at(b) = tempspin;
+
+			bond1 = VBasis[a];  //now swap valence bond endpoints
+			bond2 = VBasis[b];
+
+			if (inAreg.at(bond2) == 1 )
+				VBasis[a] = bond2 - numSpin/2;
+			else{
+				VBasis[a] = bond2;
+				VBasis[bond2] = a;
+			}
+
+			if (inAreg.at(bond1) == 1 )
+				VBasis[b] = bond1 + numSpin/2;
+			else{
+				VBasis[b] = bond1;
+				VBasis[bond1] = b;
+			}
+
+		}//j
+	}//i
+
+}//SWAP
 
 
 //Operator to return the overlap
