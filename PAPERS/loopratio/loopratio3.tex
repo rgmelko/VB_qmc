@@ -9,8 +9,6 @@
 \newcommand{\ee}{\end{equation}}
 \begin{document}
 
-\section{Take 3}
-
 \subsection{Valence Bond Quantum Monte Carlo}
 
 This algorithm, pioneered by Sandvik \cite{papers} in 2005, is a ground state projection monte carlo technique performed in the valence bond basis.
@@ -26,7 +24,7 @@ This scheme can be used to project out one copy of the groundstate wavefunction 
 \subsubsection{Loop Algorithm}
 
 \begin{figure} {
-\includegraphics[width=3 in]{loopalg.pdf} \caption{ A possible VB-spin-operator diagram for a 6-site system.
+\includegraphics[width=3.2 in]{loopalg.pdf} \caption{ A possible VB-spin-operator diagram for a 6-site system.
 Up (down) spins are shown in grey (black). (Off-)diagonal operators are shown in (blue) black.
 \label{loop1} }
 } \end{figure}
@@ -68,7 +66,7 @@ Measurements can be computed as usual using the propagated valence bond states, 
 \subsection{Measuring the Renyi Entanglement Entropies using VB QMC}
 %mention measurement in SSE too!
 Entanglement entropy is difficult to measure in QMC because we do not have direction access to the groundstate wavefunction of the system.
-However, methods to measure entanglement have been developed and implemented in {\color{red} several} types of Monte Carlo simulations ({\color{red} references: PR2, PRB, PR4}).
+However, methods to measure entanglement have been developed and implemented in {\color{red} several} types of Monte Carlo simulations ({\color{red} refs}).
 
 \subsubsection{The Renyi Entropies}
 The Renyi entropies are used to quantify entanglement between a system subdivided into two regions, $A$ and $B$.
@@ -132,7 +130,7 @@ Though we can measure any region $A$ within a simulation, we can only use one si
 \subsection{The Loop Ratio Algorithm for VB QMC}
 
 \begin{figure} {
-\includegraphics[width=2.8 in]{loopalgratio.pdf} \caption{ 
+\includegraphics[width=3.2 in]{loopalgratio.pdf} \caption{ 
 \label{lratio} %A possible VB-spin-operator diagram for a 4-site system with m=2 operators per copy of the system, {\bf (something about ratio and used to calculate the 2nd renyi entropy)
 %(also, make sure the two copies have *different* operators and loops, but still compatible spin configurations)}
 The VB-spin-operator diagram for to loop ratio algorithm on a 6-site system where $\alpha =2$ and region $A'$ contains the first 2 sites of the system.
