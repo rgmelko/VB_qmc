@@ -108,6 +108,20 @@ where $\lvert V_l \rangle, \lvert V_r \rangle$ are the states obtained by applyi
 Terms are sampled proportional to the total weight $W = w_l w_r \langle V_l  \lvert V_r\rangle$, by accepting a new configuration with probability $W^{\rm new}/W^{\rm old}$.
 Thus we can simply measure $\tfrac{  \langle V_l  \lvert \mathcal{O} \lvert V_r\rangle}{ \langle V_l  \lvert V_r\rangle}$ periodically, and the average value will give us $\langle \mathcal{O} \rangle$.
 
+%make this all for permutation operator instead?
+For the {\it ratio trick}, we modify the weight to include the expectation value of a $Swap$ operator for a region $A$ that is close in size to the region we intend to measure.  
+We then measure the ratio of these two operators, e.g.
+\be
+\frac{\langle {Swap_{A}} \rangle}{\langle {Swap_{A'}} \rangle} =\frac {\sum_{lr} w_r w_r\langle V_l \lvert Swap_{A'} \lvert V_r\rangle\frac{  \langle V_l  \lvert Swap_A \lvert V_r\rangle}{ \langle V_l \lvert Swap_{A'} \lvert V_r\rangle}}
+		{\sum_{lr} w_l w_r \langle V_l \lvert Swap_{A'} \lvert V_r\rangle}.
+\ee
+This improves the sampling because, if regions $A$ and $A'$ are similar in size, the measurement $\tfrac{  \langle V_l  \lvert Swap_A \lvert V_r\rangle}{ \langle V_l \lvert Swap_{A'} \lvert V_r\rangle}$ will have fewer possible values than $\tfrac{  \langle V_l  \lvert Swap_A \lvert V_r\rangle}{ \langle V_l \lvert V_r\rangle}$, and those values will be in a smaller range.
+
+We are, however, only measuring a {\it ratio} of expectation values.
+To obtain $ \langle Swap_A \rangle $ we must know the value of $ \langle Swap_{A'} \rangle $.
+So, to measure the entropies for a range of sizes of region $A$ we can begin with a measurement of the bare $Swap$ for a small region size and increase the size of regions $A$ and $A'$ over several simulations.
+Though we can measure any region $A$ within a simulation, we can only use one size of  $A'$ per simulation because it affect the sampling of the valence bond states.
+
 
 %- normally sampled with weight including overlap <vL | vR> \\
 %- modified so it's <vL | Swap | vR>
@@ -116,8 +130,7 @@ Thus we can simply measure $\tfrac{  \langle V_l  \lvert \mathcal{O} \lvert V_r\
 
 
 \subsection{The Loop Ratio Algorithm for VB QMC}
-\subsubsection{Modification}
-
+The same principles apply when modifying the loop algorithm to use the ratio trick, however the sampling weight is less apparent in this scheme because we instead sample over spin states whose overlap is always 1.
 
 \newpage
 \section{Loop algorithm with ratio weighting}
