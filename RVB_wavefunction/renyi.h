@@ -28,17 +28,34 @@ class Renyi
 
 Renyi::Renyi(const int & nSpin){
 
-    vector<int> temp;
-    temp.assign(nSpin,0);
-    temp.at(0) = 1;
-    temp.at(16) = 1;
-    inAreg.push_back(temp); //the 1 spin region
-    temp.assign(nSpin,0);
-    temp.at(0) = 1; temp.at(1) = 1; temp.at(4) = 1; temp.at(5) = 1;
-    temp.at(16) = 1; temp.at(17) = 1; temp.at(20) = 1; temp.at(21) = 1;
-    inAreg.push_back(temp); //the 4 spinregion
-   
-	nSwap = inAreg.size();
+    vector<int> Atemp;  //vector to be pushed back
+    Atemp.assign(nSpin,0);
+
+	ifstream fin;
+	fin.open("regionA.dat");
+
+	if (fin.fail() ) { //check for errors
+		cout<<"Could not open a regionA.dat file"<<endl;
+	}
+
+    fin>>nSwap;
+    if (nSwap < 1) cout<<"regionA.dat error 1 \n";
+
+    int temp;
+
+    for (int j=0; j<nSwap; j++){
+        for (int i=0; i<nSpin/2; i++){
+            fin>>temp;
+            if (temp != 0 && temp != 1)  cout<<"regionA.dat error 2 \n";
+            Atemp.at(i) = temp; //base layer
+            Atemp.at(i+nSpin/2) = temp; //ancillary layer
+        }
+        fin>>temp;
+        if (temp != -99) cout<<"regionA.dat error 3 \n";
+        inAreg.push_back(Atemp); //the 1 spin region
+    }//j
+
+    fin.close();
 
 	entropy.assign(nSwap,0);  //resize and initialize entropy
 	TOTAL_H2.assign(nSwap,0);  //resize and initialize entropy total
