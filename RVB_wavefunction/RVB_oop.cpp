@@ -124,8 +124,8 @@ int main(){
 				}
 			}//k
 
-			renyi.measure_H2(Valpha,Vbeta);      // for SWAP
-			//renyi.measure_ratio(Valpha,Vbeta,param.ratio_);      // for ratio
+			//renyi.measure_H2(Valpha,Vbeta);      // for SWAP
+			renyi.measure_ratio(Valpha,Vbeta);      // for ratio
             renyi.record();
 
 			Observ.measure_Cx(Vbeta, Valpha);

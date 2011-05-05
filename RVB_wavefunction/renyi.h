@@ -18,7 +18,7 @@ class Renyi
 	  Renyi(const int &, const int &); //ratio 
       void zero();
       void measure_H2(const Basis &, const Basis &);
-	  void measure_ratio(const Basis & , const Basis & , const int & );
+	  void measure_ratio(const Basis & , const Basis & );
       int calc_SWAP_2D(const Basis &, const Basis &, const int &);
       void record();
       void output(PARAMS &);
@@ -60,6 +60,25 @@ Renyi::Renyi(const int & nSpin){
 	entropy.assign(nSwap,0);  //resize and initialize entropy
 	TOTAL_H2.assign(nSwap,0);  //resize and initialize entropy total
 
+	//--if there is a regionX.dat file, push this back as the last
+	//--vector element in inAreg<>
+	fin.open("regionX.dat");
+	if (fin.fail() )  //check for errors
+		cout<<"Could not open a regionX.dat file : renyi"<<endl;
+	else{
+		for (int i=0; i<nSpin/2; i++){
+			fin>>temp;
+			if (temp != 0 && temp != 1)  cout<<"regionX.dat error 3  \n";
+			Atemp.at(i) = temp; //base layer
+			Atemp.at(i+nSpin/2) = temp; //ancillary layer
+		}
+		fin>>temp;
+		if (temp != -99) cout<<"regionX.dat error 4  BASIS\n";
+		inAreg.push_back(Atemp); //the 1 spin region
+	}
+
+	fin.close();
+
 };//constructor
 
 
@@ -94,18 +113,16 @@ void Renyi::measure_H2(const Basis & A, const Basis & B){
 }//measure_H2
 
 
-void Renyi::measure_ratio(const Basis & A, const Basis & B, const int & x_num){
+void Renyi::measure_ratio(const Basis & A, const Basis & B){
 
 	Basis Vl(A);   //copy constructors
 	Basis Vr(B);
-	Nloop_den = calc_SWAP_2D(Vl,Vr,x_num);  //1D or 2D: careful
+	Nloop_den = calc_SWAP_2D(Vl,Vr,nSwap);  //the last element in inAreg
 
     int Nloop_num;
-	int r=x_num+1;
 	for (int i=0; i<entropy.size(); i++){
-        Nloop_num = calc_SWAP_2D(A,B,r);
+        Nloop_num = calc_SWAP_2D(A,B,i);
 		entropy.at(i) = 1.0*pow(2,Nloop_num - Nloop_den);
-        r++; //CHECK
 	}
 
 }//measure_ratio

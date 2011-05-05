@@ -9,8 +9,10 @@ class Basis//: public PARAMS
 {
 
 	private:
-		int numVB;
-		int numLattB;
+        int numVB;
+        int numLattB;
+        vector<int> inXreg; //inside the X region (ratio SWAP weight)
+		void SWAP(); //this swaps basis states in X 
 
 	public:
 		int numSpin;
@@ -33,7 +35,6 @@ class Basis//: public PARAMS
 
 		void SampleSpinState(MTRand& , Basis&);
 
-		void SWAP(const int &); //this swaps basis states in A 
 
         void print(); //print
         void printTOPO(); //print topological sectors
@@ -90,6 +91,26 @@ Basis::Basis(const PARAMS &p){//Square lattice constructor
     for (int i=0; i<numSpin; i++) //initialize the Sz basis to null
         Sstate.push_back(-1);
 
+    int innum;
+    ifstream fin;
+    fin.open("regionX.dat");
+    if (fin.fail() ){  //check for errors
+        cout<<"Could not open a regionX.dat file: BASIS"<<endl;
+    }
+    else{
+        inXreg.assign(numSpin,0);
+        for (int i=0; i<numSpin/2; i++){
+            fin>>innum;
+            if (innum != 0 && innum != 1)  cout<<"regionA.dat error 2  BASIS\n";
+            inXreg.at(i) = innum; //base layer
+            inXreg.at(i+numSpin/2) = innum; //ancillary layer
+        }
+        fin>>innum;
+        if (innum!= -99) cout<<"regionA.dat error 3  BASIS\n";
+    }
+
+    fin.close();
+
 };
 
 Basis::Basis(const Basis & B){//Copy constructor
@@ -110,6 +131,10 @@ Basis::Basis(const Basis & B){//Copy constructor
         Sstate.push_back(temp);
 	}
 
+    for (int i=0; i<inXreg.size(); i++){
+        temp = B.inXreg.at(i);
+        (*this).inXreg.push_back(temp);
+    }
 
 };
 
@@ -220,6 +245,8 @@ void Basis::SampleSpinState(MTRand& ran, Basis & beta){
     int next;
     int Nloop = 0;
 
+    SWAP();  //swap the states
+
     int spinval;
     for (int i=0; i<beta.VBasis.size(); i++){
         if (is_in_loop.at(i) == 0){
@@ -255,26 +282,16 @@ void Basis::SampleSpinState(MTRand& ran, Basis & beta){
 	for (int i=0; i<Sstate.size(); i++)
 		beta.Sstate.at(i) = Sstate.at(i); //Copy the SAME spin state to Vl
 
-
     NumOverlapLoop = Nloop; //this is the number of loops in the transition graph
 	beta.NumOverlapLoop = Nloop;
 
+    SWAP();  //unswap the states
 
 }//SampleSstate
 
+
 //this swaps basis states in A : see renyi.h calc_SWAP_2D
-void Basis::SWAP(const int & X){
-
-	vector<int> inAreg; //inside the "A region
-
-	//2D
- 	inAreg.assign(numSpin,0);
- 	for (int i=0; i<X; i++){
- 		for (int j=0; j<X; j++){
- 			inAreg.at(i+j*LinX)=1;
- 			inAreg.at(i+j*LinX+numSpin/2)=1;
- 		}
- 	}
+void Basis::SWAP(){
 
 	int a,b, bond1, bond2;
 	int old1, old2, old3, old4;
@@ -284,26 +301,26 @@ void Basis::SWAP(const int & X){
     for (int i=0; i<numSpin/2; i++){ 
 
         sA = i;
-        if (inAreg.at(sA) == 1) {//cout<<"Renyi error: A reg\n";
+        if (inXreg.at(sA) == 1) {//if the base layer spin is in region X
 
             a = sA;
             b = sA + numSpin/2; //b in the other layer
 
-            tempspin = Sstate.at(a); //Swap spin states in region A
+            tempspin = Sstate.at(a); //Swap spin states in region X
             Sstate.at(a) = Sstate.at(b);
             Sstate.at(b) = tempspin;
 
             bond1 = VBasis[a];  //now swap valence bond endpoints
             bond2 = VBasis[b];
 
-            if (inAreg.at(bond2) == 1 )
+            if (inXreg.at(bond2) == 1 )
                 VBasis[a] = bond2 - numSpin/2;
             else{
                 VBasis[a] = bond2;
                 VBasis[bond2] = a;
             }
 
-            if (inAreg.at(bond1) == 1 )
+            if (inXreg.at(bond1) == 1 )
                 VBasis[b] = bond1 + numSpin/2;
             else{
                 VBasis[b] = bond1;
