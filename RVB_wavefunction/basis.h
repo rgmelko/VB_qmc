@@ -281,38 +281,37 @@ void Basis::SWAP(const int & X){
 	int tempspin;
 
     int sA; //spin in region "A"
-	for (int i=0; i<X; i++){ //X is the maximum *linear* distance to take region "A"
-		for (int j=0; j<X; j++){ 
+    for (int i=0; i<numSpin/2; i++){ 
 
-			sA = i+j*LinX;
-			if (inAreg.at(sA) != 1) cout<<"Renyi error: A reg\n";
+        sA = i;
+        if (inAreg.at(sA) == 1) {//cout<<"Renyi error: A reg\n";
 
-			a = sA;
-			b = sA + numSpin/2; //b in the other layer
+            a = sA;
+            b = sA + numSpin/2; //b in the other layer
 
-			tempspin = Sstate.at(a); //Swap spin states in region A
-			Sstate.at(a) = Sstate.at(b);
-			Sstate.at(b) = tempspin;
+            tempspin = Sstate.at(a); //Swap spin states in region A
+            Sstate.at(a) = Sstate.at(b);
+            Sstate.at(b) = tempspin;
 
-			bond1 = VBasis[a];  //now swap valence bond endpoints
-			bond2 = VBasis[b];
+            bond1 = VBasis[a];  //now swap valence bond endpoints
+            bond2 = VBasis[b];
 
-			if (inAreg.at(bond2) == 1 )
-				VBasis[a] = bond2 - numSpin/2;
-			else{
-				VBasis[a] = bond2;
-				VBasis[bond2] = a;
-			}
+            if (inAreg.at(bond2) == 1 )
+                VBasis[a] = bond2 - numSpin/2;
+            else{
+                VBasis[a] = bond2;
+                VBasis[bond2] = a;
+            }
 
-			if (inAreg.at(bond1) == 1 )
-				VBasis[b] = bond1 + numSpin/2;
-			else{
-				VBasis[b] = bond1;
-				VBasis[bond1] = b;
-			}
+            if (inAreg.at(bond1) == 1 )
+                VBasis[b] = bond1 + numSpin/2;
+            else{
+                VBasis[b] = bond1;
+                VBasis[bond1] = b;
+            }
 
-		}//j
-	}//i
+        }//if
+    }//i
 
 }//SWAP
 
