@@ -31,11 +31,8 @@ int main(){
 	Measure Observ; //create measurement object
 	Renyi renyi(param.nX_,param.ratio_);
 
-	//cout<<"("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<endl;
-	//cout<<"("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<endl;
-
 	//-----choose your topological sector
-	for (int i=0; i<100000; i++){
+    while(1){
 		temp = Valpha.LoopUpdate(mrand,param);
 		temp = Vbeta.LoopUpdate(mrand,param);
 		Vbeta.SWAP(param.ratio_);
@@ -43,14 +40,12 @@ int main(){
 		Vbeta.SWAP(param.ratio_);
 		if( (Vbeta.TopoX() == param.Wx_) && (Vbeta.TopoY() == param.Wy_)) break;
 	}
-	cout<<"beta("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<", ";
-	cout<<"("<<Vbeta.TopoXanc()<<","<<Vbeta.TopoYanc()<<")"<<endl;
-	Vbeta.CopyTop();
-	cout<<"beta("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<", ";
-	cout<<"("<<Vbeta.TopoXanc()<<","<<Vbeta.TopoYanc()<<")"<<endl;
+	cout<<"beta: "; Vbeta.printTOPO();
+    Vbeta.CopyTop();
+    cout<<"beta: "; Vbeta.printTOPO();
 	Valpha = Vbeta;
-	cout<<"alpha("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<", ";
-	cout<<"("<<Valpha.TopoXanc()<<","<<Valpha.TopoYanc()<<")"<<endl;
+    cout<<"alpha: "; Valpha.printTOPO();
+
 	Vbeta.SWAP(param.ratio_);
 	Valpha.SampleSpinState(mrand,Vbeta);
 	Vbeta.SWAP(param.ratio_);
@@ -148,11 +143,8 @@ int main(){
 
 	}//j
 	//------------------------------------
-
-	cout<<"beta("<<Vbeta.TopoX()<<","<<Vbeta.TopoY()<<")"<<", ";
-	cout<<"("<<Vbeta.TopoXanc()<<","<<Vbeta.TopoYanc()<<")"<<endl;
-	cout<<"alpha("<<Valpha.TopoX()<<","<<Valpha.TopoY()<<")"<<", ";
-	cout<<"("<<Valpha.TopoXanc()<<","<<Valpha.TopoYanc()<<")"<<endl;
+    cout<<"beta : "; Vbeta.printTOPO();
+    cout<<"alpha: "; Valpha.printTOPO();
 
 	return 0;
 };

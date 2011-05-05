@@ -36,6 +36,7 @@ class Basis//: public PARAMS
 		void SWAP(const int &); //this swaps basis states in A 
 
         void print(); //print
+        void printTOPO(); //print topological sectors
 
         int TopoX(); //measures the X-topological sector of the VB wavefunction
         int TopoXanc(); //and of the ancillary
@@ -131,6 +132,14 @@ void Basis::print(){
     //}
 
 };//print
+
+
+void Basis::printTOPO(){ //print the topological sectors
+	cout<<"("<<TopoX()<<","<<TopoY()<<")"<<", ";
+	cout<<"("<<TopoXanc()<<","<<TopoYanc()<<")"<<endl;
+}//printTOPO
+
+
 
 
 //This measures the X-topolgical sector
