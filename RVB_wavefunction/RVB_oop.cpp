@@ -24,20 +24,20 @@ int main(){
     Basis Valpha_old(param);  //old ket for rejection
 
 	//initialize the spin state
-	Vbeta.SWAP(param.ratio_);
+	//Vbeta.SWAP(param.ratio_);
     Valpha.SampleSpinState(mrand,Vbeta);
-	Vbeta.SWAP(param.ratio_);
+	//Vbeta.SWAP(param.ratio_);
 
 	Measure Observ; //create measurement object
-	Renyi renyi(param.nX_,param.ratio_);
+	Renyi renyi(param.numSpin);
 
 	//-----choose your topological sector
     while(1){
 		temp = Valpha.LoopUpdate(mrand,param);
 		temp = Vbeta.LoopUpdate(mrand,param);
-		Vbeta.SWAP(param.ratio_);
+		//Vbeta.SWAP(param.ratio_);
 		Valpha.SampleSpinState(mrand,Vbeta);
-		Vbeta.SWAP(param.ratio_);
+		//Vbeta.SWAP(param.ratio_);
 		if( (Vbeta.TopoX() == param.Wx_) && (Vbeta.TopoY() == param.Wy_)) break;
 	}
 	cout<<"beta: "; Vbeta.printTOPO();
@@ -46,9 +46,9 @@ int main(){
 	Valpha = Vbeta;
     cout<<"alpha: "; Valpha.printTOPO();
 
-	Vbeta.SWAP(param.ratio_);
+	//Vbeta.SWAP(param.ratio_);
 	Valpha.SampleSpinState(mrand,Vbeta);
-	Vbeta.SWAP(param.ratio_);
+	//Vbeta.SWAP(param.ratio_);
 	//---------------------------------------
 	Valpha.filewrite(0);
 	Vbeta.filewrite(1); //save configuration file
@@ -74,9 +74,9 @@ int main(){
 		Walpha = Valpha.LoopUpdate(mrand,param);
 
 		if (Walpha == 0 && Wbeta == 0){ //no winding number change
-			Vbeta.SWAP(param.ratio_);
+			//Vbeta.SWAP(param.ratio_);
 			Valpha.SampleSpinState(mrand,Vbeta);
-			Vbeta.SWAP(param.ratio_);
+			//Vbeta.SWAP(param.ratio_);
 			i++;
 			Valpha_old = Valpha;
 			Vbeta_old= Vbeta;
@@ -124,15 +124,16 @@ int main(){
 				}
 			}//k
 
-			renyi.measure_ratio(Valpha,Vbeta,param.ratio_);      // for ratio
+			renyi.measure_H2(Valpha,Vbeta);      // for SWAP
+			//renyi.measure_ratio(Valpha,Vbeta,param.ratio_);      // for ratio
             renyi.record();
 
 			Observ.measure_Cx(Vbeta, Valpha);
 			Observ.record();
 
-			Vbeta.SWAP(param.ratio_);
+			//Vbeta.SWAP(param.ratio_);
 			Valpha.SampleSpinState(mrand,Vbeta); //sample spin state
-			Vbeta.SWAP(param.ratio_);
+			//Vbeta.SWAP(param.ratio_);
 		}//i
 		//cout<<i<<endl;
 

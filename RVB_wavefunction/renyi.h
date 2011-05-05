@@ -9,7 +9,7 @@ class Renyi
     private: 
 	  vector<double> entropy;
 	  vector<double> TOTAL_H2;
-	  vector<int> inAreg; //inside the "A region
+      vector<vector<int> > inAreg; //definition of the A regions to measure
 	  int nSwap;
 	  int Nloop_den;   //number of loops in the denominator
 
@@ -26,28 +26,38 @@ class Renyi
 
 };//Renyi
 
-Renyi::Renyi(const int & Lsize){
+Renyi::Renyi(const int & nSpin){
 
-	nSwap = Lsize;
+    vector<int> temp;
+    temp.assign(nSpin,0);
+    temp.at(0) = 1;
+    temp.at(16) = 1;
+    inAreg.push_back(temp); //the 1 spin region
+    temp.assign(nSpin,0);
+    temp.at(0) = 1; temp.at(1) = 1; temp.at(4) = 1; temp.at(5) = 1;
+    temp.at(16) = 1; temp.at(17) = 1; temp.at(20) = 1; temp.at(21) = 1;
+    inAreg.push_back(temp); //the 4 spinregion
+   
+	nSwap = inAreg.size();
 
-	entropy.assign(nSwap-1,0);  //resize and initialize entropy
-	TOTAL_H2.assign(nSwap-1,0);  //resize and initialize entropy total
+	entropy.assign(nSwap,0);  //resize and initialize entropy
+	TOTAL_H2.assign(nSwap,0);  //resize and initialize entropy total
 
 };//constructor
 
 
-Renyi::Renyi(const int & Lsize, const int & x_num){
-
-	nSwap = Lsize-x_num; //exclude some number of points for the overlap
-
-	entropy.assign(nSwap-1,0);  //resize and initialize entropy
-	TOTAL_H2.assign(nSwap-1,0);  //resize and initialize entropy total
-
-};//constructor
+//Renyi::Renyi(const int & Lsize, const int & x_num){
+//
+//	nSwap = Lsize-x_num; //exclude some number of points for the overlap
+//
+//	entropy.assign(nSwap-1,0);  //resize and initialize entropy
+//	TOTAL_H2.assign(nSwap-1,0);  //resize and initialize entropy total
+//
+//};//constructor
 
 void Renyi::zero(){
 
-	TOTAL_H2.assign(nSwap-1,0);
+	TOTAL_H2.assign(nSwap,0);
 
 }//zero
 
@@ -59,12 +69,9 @@ void Renyi::measure_H2(const Basis & A, const Basis & B){
     Nloop_den = Vl|Vr ; 
 
     int Nloop_num;
-	int r=1;
-	//for (int r=1; r<nSwap; r++){
 	for (int i=0; i<entropy.size(); i++){
-		Nloop_num = calc_SWAP_2D(A,B,r);
-		entropy.at(r-1) = 1.0*pow(2,Nloop_num - Nloop_den);
-		r++;
+		Nloop_num = calc_SWAP_2D(A,B,i);
+		entropy.at(i) = 1.0*pow(2,Nloop_num - Nloop_den);
 	}
 
 }//measure_H2
@@ -81,22 +88,13 @@ void Renyi::measure_ratio(const Basis & A, const Basis & B, const int & x_num){
 	for (int i=0; i<entropy.size(); i++){
         Nloop_num = calc_SWAP_2D(A,B,r);
 		entropy.at(i) = 1.0*pow(2,Nloop_num - Nloop_den);
-		r++;
+        r++; //CHECK
 	}
 
 }//measure_ratio
 
 
 int Renyi::calc_SWAP_2D(const Basis & A, const Basis & B, const int & X){
-
-	//2D
- 	inAreg.assign(A.numSpin,0);
- 	for (int i=0; i<X; i++){
- 		for (int j=0; j<X; j++){
- 			inAreg.at(i+j*A.LinX)=1;
- 			inAreg.at(i+j*A.LinX+A.numSpin/2)=1;
- 		}
- 	}
 
 	//for (int i=0; i < inAreg.size(); i++)
 	//	cout<<i<<" "<<inAreg.at(i)<<endl;
@@ -113,7 +111,7 @@ int Renyi::calc_SWAP_2D(const Basis & A, const Basis & B, const int & X){
     for (int i=0; i<A.numSpin/2; i++){ 
 
         sA = i;
-        if (inAreg.at(sA) == 1) {//cout<<"Renyi error: A reg\n";
+        if (inAreg[X].at(sA) == 1) {//if the base layer spin is in region A
 
             a = sA;
             b = sA + A.numSpin/2; //b in the other layer
@@ -121,14 +119,14 @@ int Renyi::calc_SWAP_2D(const Basis & A, const Basis & B, const int & X){
             bond1 = Vr.VBasis[a]; 
             bond2 = Vr.VBasis[b];
 
-            if (inAreg.at(bond2) == 1 )
+            if (inAreg[X].at(bond2) == 1 )
                 Vr.VBasis[a] = bond2 - A.numSpin/2;
             else{
                 Vr.VBasis[a] = bond2;
                 Vr.VBasis[bond2] = a;
             }
 
-            if (inAreg.at(bond1) == 1 )
+            if (inAreg[X].at(bond1) == 1 )
                 Vr.VBasis[b] = bond1 + A.numSpin/2;
             else{
                 Vr.VBasis[b] = bond1;
