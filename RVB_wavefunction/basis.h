@@ -13,6 +13,7 @@ class Basis//: public PARAMS
         int numLattB;
         vector<int> inXreg; //inside the X region (ratio SWAP weight)
 		void SWAP(); //this swaps basis states in X 
+        int ratioON;  //1 for ratio, 0 for bare swap, from regionX.dat file
 
 	public:
 		int numSpin;
@@ -38,6 +39,7 @@ class Basis//: public PARAMS
 
         void print(); //print
         void printTOPO(); //print topological sectors
+        void printX(); //print the ratio region
 
         int TopoX(); //measures the X-topological sector of the VB wavefunction
         int TopoXanc(); //and of the ancillary
@@ -91,14 +93,16 @@ Basis::Basis(const PARAMS &p){//Square lattice constructor
     for (int i=0; i<numSpin; i++) //initialize the Sz basis to null
         Sstate.push_back(-1);
 
+    inXreg.assign(numSpin,0);
     int innum;
     ifstream fin;
     fin.open("regionX.dat");
-    if (fin.fail() ){  //check for errors
-        cout<<"Could not open a regionX.dat file: BASIS"<<endl;
+    fin>>innum;
+    if (innum == 0 ){  //check for errors
+        cout<<"Not using ratio (basis) \n";
+        //cout<<"WARNING: could not open a regionX.dat file: BASIS"<<endl;
     }
     else{
-        inXreg.assign(numSpin,0);
         for (int i=0; i<numSpin/2; i++){
             fin>>innum;
             if (innum != 0 && innum != 1)  cout<<"regionA.dat error 2  BASIS\n";
@@ -245,7 +249,7 @@ void Basis::SampleSpinState(MTRand& ran, Basis & beta){
     int next;
     int Nloop = 0;
 
-    SWAP();  //swap the states
+    if (ratioON == 1 ) SWAP();  //swap the states
 
     int spinval;
     for (int i=0; i<beta.VBasis.size(); i++){
@@ -285,7 +289,7 @@ void Basis::SampleSpinState(MTRand& ran, Basis & beta){
     NumOverlapLoop = Nloop; //this is the number of loops in the transition graph
 	beta.NumOverlapLoop = Nloop;
 
-    SWAP();  //unswap the states
+     if (ratioON == 1 )  SWAP();  //unswap the states
 
 }//SampleSstate
 
@@ -612,6 +616,16 @@ void Basis::fileread(const int & num){
 	cfin.close();
 
 }//fileread
+
+
+void Basis::printX(){
+
+    for (int i=0; i<2*LinX*LinX; i++){
+        cout<<inXreg.at(i)<<" ";
+        if ((i+1)%LinX == 0) cout<<endl;
+    }
+
+}//printX
 
 #endif 
 

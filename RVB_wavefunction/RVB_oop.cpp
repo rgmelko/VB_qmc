@@ -30,6 +30,8 @@ int main(){
 
 	Measure Observ; //create measurement object
 	Renyi renyi(param.numSpin);
+    //renyi.printA(param.nX_);
+    //Vbeta.printX();
 
 	//-----choose your topological sector
     while(1){

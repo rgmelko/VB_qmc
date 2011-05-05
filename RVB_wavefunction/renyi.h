@@ -22,6 +22,7 @@ class Renyi
       int calc_SWAP_2D(const Basis &, const Basis &, const int &);
       void record();
       void output(PARAMS &);
+	  void printA(const int &);
 
 
 };//Renyi
@@ -63,8 +64,9 @@ Renyi::Renyi(const int & nSpin){
 	//--if there is a regionX.dat file, push this back as the last
 	//--vector element in inAreg<>
 	fin.open("regionX.dat");
-	if (fin.fail() )  //check for errors
-		cout<<"Could not open a regionX.dat file : renyi"<<endl;
+	fin>>temp;
+	if ( temp==0 )  //check for errors
+		cout<<"not using Ratio! : renyi"<<endl;
 	else{
 		for (int i=0; i<nSpin/2; i++){
 			fin>>temp;
@@ -199,5 +201,19 @@ void Renyi::output(PARAMS & p){
 	cfout.close();
 
 }//output
+
+
+void Renyi::printA(const int & nX){
+
+	for (int j=0; j<inAreg.size(); j++){
+		for (int i=0; i<2*nX*nX; i++){
+			cout<<inAreg[j].at(i)<<" ";
+			if ((i+1)%nX == 0) cout<<endl;
+		}
+		cout<<endl;
+	}//j
+
+}//print
+
 
 #endif

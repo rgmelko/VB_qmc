@@ -15,7 +15,6 @@ class PARAMS
 		int MCS_; //the number of Monte Carlo steps
         int nX_;     //linear size of square lattice
         int nBin_;     //number of production bins
-        int ratio_;     //the number for Renyi in the denominator of SWAP
         int Wx_, Wy_;    //the winding number sector to target
         long SEED_;
         PARAMS();
@@ -48,7 +47,6 @@ PARAMS::PARAMS(){
     pfin >> MCS_;
     pfin >> nBin_;
     pfin >> SEED_;
-    pfin >> ratio_;
     pfin >> Wx_;
     pfin >> Wy_;
     pfin.close();
