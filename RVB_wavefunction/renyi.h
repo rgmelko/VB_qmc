@@ -12,6 +12,7 @@ class Renyi
       vector<vector<int> > inAreg; //definition of the A regions to measure
 	  int nSwap;
 	  int Nloop_den;   //number of loops in the denominator
+      int ratioON;  //1 for ratio, 0 for bare swap, from regionX.dat file
 
     public: 
 	  Renyi(const int &);  //direct <swap>
@@ -65,9 +66,12 @@ Renyi::Renyi(const int & nSpin){
 	//--vector element in inAreg<>
 	fin.open("regionX.dat");
 	fin>>temp;
-	if ( temp==0 )  //check for errors
+	if ( temp==0 ){  //check for errors
 		cout<<"not using Ratio! : renyi"<<endl;
+		ratioON = 0;
+	}
 	else{
+		ratioON = 1;
 		for (int i=0; i<nSpin/2; i++){
 			fin>>temp;
 			if (temp != 0 && temp != 1)  cout<<"regionX.dat error 3  \n";
@@ -119,7 +123,9 @@ void Renyi::measure_ratio(const Basis & A, const Basis & B){
 
 	Basis Vl(A);   //copy constructors
 	Basis Vr(B);
-	Nloop_den = calc_SWAP_2D(Vl,Vr,nSwap);  //the last element in inAreg
+	if (ratioON == 0)  Nloop_den = Vl|Vr ; //the last element in inAreg (below)
+	else if (ratioON == 1) Nloop_den = calc_SWAP_2D(Vl,Vr,nSwap);  
+	else cout<<"Meature Ratio error: check regionX file \n"; 
 
     int Nloop_num;
 	for (int i=0; i<entropy.size(); i++){

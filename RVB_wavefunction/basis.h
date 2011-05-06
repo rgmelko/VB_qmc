@@ -101,8 +101,10 @@ Basis::Basis(const PARAMS &p){//Square lattice constructor
     if (innum == 0 ){  //check for errors
         cout<<"Not using ratio (basis) \n";
         //cout<<"WARNING: could not open a regionX.dat file: BASIS"<<endl;
+        ratioON = 0;
     }
     else{
+        ratioON=1;
         for (int i=0; i<numSpin/2; i++){
             fin>>innum;
             if (innum != 0 && innum != 1)  cout<<"regionA.dat error 2  BASIS\n";
