@@ -84,13 +84,15 @@ int main(){
 			Vbeta_old= Vbeta;
 		}//no Wnum change
 		else{
-			if (Walpha != 0) Valpha = Valpha_old;
-			if (Wbeta != 0)  Vbeta = Vbeta_old;
+			Valpha = Valpha_old;
+			Vbeta = Vbeta_old;
 		}//rejection based on winding number change
 
 	}
 	//*********End equilibriation
 	//cout<<"end eq \n";
+	Vbeta_old = Vbeta;
+	Valpha_old = Valpha;
 
 	//temp = (Valpha.Scount + Vbeta.Scount)/(2*param.EQL_);
 	//numLoops = param.numSpin/temp;
@@ -121,8 +123,8 @@ int main(){
 					k++;
 				}
 				else{  //rejection based on winding number change
-					if (Walpha != 0) Valpha = Valpha_old;
-					if (Wbeta != 0)  Vbeta = Vbeta_old;
+					Valpha = Valpha_old;
+					Vbeta = Vbeta_old;
 				}
 			}//k
 
@@ -135,6 +137,9 @@ int main(){
 
 			//Vbeta.SWAP(param.ratio_);
 			Valpha.SampleSpinState(mrand,Vbeta); //sample spin state
+			Vbeta_old = Vbeta;
+			Valpha_old = Valpha;
+
 			//Vbeta.SWAP(param.ratio_);
 		}//i
 		//cout<<i<<endl;
