@@ -9,7 +9,7 @@
 #include "measure.h"
 #include "renyi.h"
 
-int RestricTOPO=1;  //restricts the topological sector
+int RestricTOPO=1;  //restricts the topological sector if 1, lets fluctuate if 0
 
 int main(){
 
@@ -26,22 +26,16 @@ int main(){
     Basis Valpha_old(param);  //old ket for rejection
 
 	//initialize the spin state
-	//Vbeta.SWAP(param.ratio_);
     Valpha.SampleSpinState(mrand,Vbeta);
-	//Vbeta.SWAP(param.ratio_);
 
 	Measure Observ; //create measurement object
 	Renyi renyi(param.numSpin);
-    //renyi.printA(param.nX_);
-    //Vbeta.printX();
 
 	//-----choose your topological sector
     while(1){
 		temp = Valpha.LoopUpdate(mrand,param);
 		temp = Vbeta.LoopUpdate(mrand,param);
-		//Vbeta.SWAP(param.ratio_);
 		Valpha.SampleSpinState(mrand,Vbeta);
-		//Vbeta.SWAP(param.ratio_);
 		if( (Vbeta.TopoX() == param.Wx_) && (Vbeta.TopoY() == param.Wy_)) break;
 	}
 	cout<<"beta: "; Vbeta.printTOPO();
@@ -50,9 +44,7 @@ int main(){
 	Valpha = Vbeta;
     cout<<"alpha: "; Valpha.printTOPO();
 
-	//Vbeta.SWAP(param.ratio_);
 	Valpha.SampleSpinState(mrand,Vbeta);
-	//Vbeta.SWAP(param.ratio_);
 	//---------------------------------------
 	Valpha.filewrite(0);
 	Vbeta.filewrite(1); //save configuration file
@@ -68,13 +60,13 @@ int main(){
 	while (i<param.EQL_){ 
 
 		//for (int j=0; j<param.numSpin/2; j++){  //sample VB bonds
-		//	Valpha.TwoBondUpdate(mrand,param,Z1.Sstate);
-		//	Vbeta.TwoBondUpdate(mrand,param,Z1.Sstate);
+		//	Valpha.TwoBondUpdate(mrand,param);
+		//	Vbeta.TwoBondUpdate(mrand,param);
 		//}
-		//temp = Z1.SampleRandomState(mrand,Valpha,Vbeta); //sample spin state
+        //Valpha.SampleSpinState(mrand,Vbeta);
 		//i++;
 
-		Wbeta = Vbeta.LoopUpdate(mrand,param); //oop update
+		Wbeta = Vbeta.LoopUpdate(mrand,param); //loop update
 		Walpha = Valpha.LoopUpdate(mrand,param);
 
 		//check winding number change
@@ -93,9 +85,7 @@ int main(){
 			Vbeta = Vbeta_old;
 		}//rejection based on winding number change
 
-	}
-	//*********End equilibriation
-	//cout<<"end eq \n";
+	} //*********End equilibriation
 	Vbeta_old = Vbeta;
 	Valpha_old = Valpha;
 
@@ -113,8 +103,8 @@ int main(){
 		for (i=0; i<param.MCS_; i++){
 
 			//for (int j=0; j<param.numSpin/2; j++){  //sample VB bonds
-			//	Valpha.TwoBondUpdate(mrand,param,Z1.Sstate);
-			//	Vbeta.TwoBondUpdate(mrand,param,Z1.Sstate);
+			//	Valpha.TwoBondUpdate(mrand,param);
+			//	Vbeta.TwoBondUpdate(mrand,param);
 			//}
         
 			k=0;
@@ -143,12 +133,10 @@ int main(){
 			Observ.measure_Cx(Vbeta, Valpha);
 			Observ.record();
 
-			//Vbeta.SWAP(param.ratio_);
 			Valpha.SampleSpinState(mrand,Vbeta); //sample spin state
 			Vbeta_old = Vbeta;
 			Valpha_old = Valpha;
 
-			//Vbeta.SWAP(param.ratio_);
 		}//i
 		//cout<<i<<endl;
 
