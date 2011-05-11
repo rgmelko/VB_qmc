@@ -9,6 +9,8 @@
 #include "measure.h"
 #include "renyi.h"
 
+int RestricTOPO=1;  //restricts the topological sector
+
 int main(){
 
     int temp;
@@ -75,13 +77,16 @@ int main(){
 		Wbeta = Vbeta.LoopUpdate(mrand,param); //oop update
 		Walpha = Valpha.LoopUpdate(mrand,param);
 
-		if (Walpha == 0 && Wbeta == 0){ //no winding number change
-			//Vbeta.SWAP(param.ratio_);
+		//check winding number change
+		if (RestricTOPO == 0){
 			Valpha.SampleSpinState(mrand,Vbeta);
-			//Vbeta.SWAP(param.ratio_);
 			i++;
+		}
+		else if (Walpha == 0 && Wbeta == 0){ 
+			Valpha.SampleSpinState(mrand,Vbeta);
 			Valpha_old = Valpha;
 			Vbeta_old= Vbeta;
+			i++;
 		}//no Wnum change
 		else{
 			Valpha = Valpha_old;
@@ -112,12 +117,15 @@ int main(){
 			//	Vbeta.TwoBondUpdate(mrand,param,Z1.Sstate);
 			//}
         
-		    k=0;
+			k=0;
 			while (k<numLoops){
 				Wbeta = Vbeta.LoopUpdate(mrand,param);
 				Walpha = Valpha.LoopUpdate(mrand,param);
 
-				if (Walpha == 0 && Wbeta == 0){ //no winding number change
+				if (RestricTOPO == 0){
+					k++;
+				}
+				else if (Walpha == 0 && Wbeta == 0){ //no winding number change
 					Valpha_old = Valpha;
 					Vbeta_old= Vbeta;
 					k++;
