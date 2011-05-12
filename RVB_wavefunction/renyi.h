@@ -14,6 +14,8 @@ class Renyi
 	  int Nloop_den;   //number of loops in the denominator
       int ratioON;  //1 for ratio, 0 for bare swap, from regionX.dat file
 
+      int SampleNum;  //number of MCS samples performed
+
     public: 
 	  Renyi(const int &);  //direct <swap>
 	  Renyi(const int &, const int &); //ratio 
@@ -22,7 +24,7 @@ class Renyi
 	  void measure_ratio(const Basis & , const Basis & );
       int calc_SWAP_2D(const Basis &, const Basis &, const int &);
       void record();
-      void output(PARAMS &);
+      void output();
 	  void printA(const int &);
 
 
@@ -100,6 +102,7 @@ Renyi::Renyi(const int & nSpin){
 void Renyi::zero(){
 
 	TOTAL_H2.assign(nSwap,0);
+    SampleNum = 0;
 
 }//zero
 
@@ -188,20 +191,24 @@ int Renyi::calc_SWAP_2D(const Basis & A, const Basis & B, const int & X){
 void Renyi::record(){
 
     for (int i=0; i<TOTAL_H2.size(); i++)
-	   TOTAL_H2.at(i) += entropy.at(i);
+        TOTAL_H2.at(i) += entropy.at(i);
+
+    SampleNum ++;
 
 }//record
 
 
-void Renyi::output(PARAMS & p){
+void Renyi::output(){
 
 	ofstream cfout;
     cfout<<setprecision(8);
 	cfout.open("00.renyi",ios::app);
 
+    //if (SampleNum != p.MCS_) cout<<"Reyni sampling error \n";
+
     for (int i=0; i<TOTAL_H2.size(); i++)
 	  //cfout<<-log(TOTAL_H2.at(i)/(1.0*p.MCS_))<<" "; //careful with averaging logs
-	  cfout<<TOTAL_H2.at(i)/(1.0*p.MCS_)<<" "; //careful with averaging logs
+	  cfout<<TOTAL_H2.at(i)/(1.0*SampleNum)<<" "; //careful with averaging logs
 	cfout<<endl;
 
 	cfout.close();

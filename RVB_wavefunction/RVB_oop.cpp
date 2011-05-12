@@ -140,7 +140,7 @@ int main(){
 		}//i
 		//cout<<i<<endl;
 
-		renyi.output(param);
+		renyi.output();
 		Observ.output(param);
 		Valpha.filewrite(0);
 		Vbeta.filewrite(1);
