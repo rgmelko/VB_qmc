@@ -45,6 +45,7 @@ class Basis//: public PARAMS
         int TopoXanc(); //and of the ancillary
         int TopoY(); //measures the Y-topological sector of the VB wavefunction
         int TopoYanc(); //and of the ancillary
+        int RightTopoNum(const PARAMS &);  //is this the correct Topological sector?
 
 		//Basis operator=(const Basis & );
 		int operator|(const Basis & ); //returns number of loops in overlap
@@ -532,7 +533,17 @@ int Basis::LoopUpdate(MTRand& ran, const PARAMS & p){
     else return 0;  //no topo sector change
 
 }//LoopUpdate
-  
+
+
+//checks the 4 different cuts (real and ancill) to see if we're in the right topo#
+int Basis::RightTopoNum(const PARAMS & p){
+    if ((*this).TopoX() != p.Wx_) return 1;   //topo sector has changed
+    else if ((*this).TopoXanc() != p.Wx_) return 1;
+    else if ((*this).TopoY() != p.Wy_) return 1;
+    else if ((*this).TopoYanc() != p.Wy_) return 1;
+    else return 0;  //no topo sector change
+}//RightTopoNum
+
 
 void Basis::filewrite(const int & num){
 
