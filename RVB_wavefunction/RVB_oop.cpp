@@ -112,23 +112,27 @@ int main(){
 				Wbeta = Vbeta.LoopUpdate(mrand,param);
 				Walpha = Valpha.LoopUpdate(mrand,param);
 
-				if (RestricTOPO == 0){
+			//	if (RestricTOPO == 0){
 					k++;
-				}
-				else if (Walpha == 0 && Wbeta == 0){ //no winding number change
-					Valpha_old = Valpha;
-					Vbeta_old= Vbeta;
-					k++;
-				}
-				else{  //rejection based on winding number change
-					Valpha = Valpha_old;
-					Vbeta = Vbeta_old;
-				}
+			//	}
+			//	else if (Walpha == 0 && Wbeta == 0){ //no winding number change
+			//		Valpha_old = Valpha;
+			//		Vbeta_old= Vbeta;
+			//		k++;
+			//	}
+			//	else{  //rejection based on winding number change
+			//		Valpha = Valpha_old;
+			//		Vbeta = Vbeta_old;
+			//	}
 			}//k
 
-			//renyi.measure_H2(Valpha,Vbeta);      // for SWAP
-			renyi.measure_ratio(Valpha,Vbeta);      // for ratio
-            renyi.record();
+			Walpha = Valpha.RightTopoNum(param);
+			Wbeta = Vbeta.RightTopoNum(param);
+			if (Walpha == 0 && Wbeta == 0){ //no winding number change
+				//renyi.measure_H2(Valpha,Vbeta);      // for SWAP
+				renyi.measure_ratio(Valpha,Vbeta);      // for ratio
+				renyi.record();
+			}
 
 			Observ.measure_Cx(Vbeta, Valpha);
 			Observ.record();
