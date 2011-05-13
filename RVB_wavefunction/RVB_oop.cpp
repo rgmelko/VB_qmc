@@ -81,12 +81,13 @@ int main(){
 
 		for (i=0; i<param.MCS_; i++){
 
-			//for (int j=0; j<param.numSpin/2; j++){  //sample VB bonds
+               //Bond update
+			//for (int j=0; j<param.numSpin/2; j++){  
 			//	Valpha.TwoBondUpdate(mrand,param);
 			//	Vbeta.TwoBondUpdate(mrand,param);
 			//}
         
-			k=0;
+			k=0;//Loop update
 			while (k<numLoops){
 				temp = Vbeta.LoopUpdate(mrand,param);
 				temp = Valpha.LoopUpdate(mrand,param);
@@ -101,7 +102,7 @@ int main(){
 				renyi.record();
 			}
 
-			Observ.measure_Cx(Vbeta, Valpha);
+			Observ.measure_Cx(Vbeta, Valpha);  //this could be moved up 
 			Observ.record();
 
 			Valpha.SampleSpinState(mrand,Vbeta); //sample spin state
