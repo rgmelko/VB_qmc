@@ -526,11 +526,12 @@ int Basis::LoopUpdate(MTRand& ran, const PARAMS & p){
     //if (Wx == 0 && Wy == 0) return 0;
 	//else return 1;
 
-    if ((*this).TopoX() != p.Wx_) return 1;   //topo sector has changed
-    else if ((*this).TopoXanc() != p.Wx_) return 1;
-    else if ((*this).TopoY() != p.Wy_) return 1;
-    else if ((*this).TopoYanc() != p.Wy_) return 1;
-    else return 0;  //no topo sector change
+    //if ((*this).TopoX() != p.Wx_) return 1;   //topo sector has changed
+    //else if ((*this).TopoXanc() != p.Wx_) return 1;
+    //else if ((*this).TopoY() != p.Wy_) return 1;
+    //else if ((*this).TopoYanc() != p.Wy_) return 1;
+    //else return 0;  //no topo sector change
+    return 0;
 
 }//LoopUpdate
 

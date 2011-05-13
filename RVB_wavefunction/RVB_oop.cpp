@@ -22,8 +22,6 @@ int main(){
     //initialize your VB basis states
     Basis Vbeta(param);   //bra
     Basis Valpha(param);  //ket
-    Basis Vbeta_old(param);   //old bra for rejection
-    Basis Valpha_old(param);  //old ket for rejection
 
 	//initialize the spin state
     Valpha.SampleSpinState(mrand,Vbeta);
@@ -49,9 +47,6 @@ int main(){
 	Valpha.filewrite(0);
 	Vbeta.filewrite(1); //save configuration file
 
-	Vbeta_old = Vbeta;
-	Valpha_old = Valpha;
-
 	int Walpha, Wbeta;  //detects winding number changes in the loop
 	int i,k;
 
@@ -66,28 +61,12 @@ int main(){
         //Valpha.SampleSpinState(mrand,Vbeta);
 		//i++;
 
-		Wbeta = Vbeta.LoopUpdate(mrand,param); //loop update
-		Walpha = Valpha.LoopUpdate(mrand,param);
-
-		//check winding number change
-		if (RestricTOPO == 0){
-			Valpha.SampleSpinState(mrand,Vbeta);
-			i++;
-		}
-		else if (Walpha == 0 && Wbeta == 0){ 
-			Valpha.SampleSpinState(mrand,Vbeta);
-			Valpha_old = Valpha;
-			Vbeta_old= Vbeta;
-			i++;
-		}//no Wnum change
-		else{
-			Valpha = Valpha_old;
-			Vbeta = Vbeta_old;
-		}//rejection based on winding number change
-
+		temp = Vbeta.LoopUpdate(mrand,param); //loop update
+		temp = Valpha.LoopUpdate(mrand,param);
+		Valpha.SampleSpinState(mrand,Vbeta);
+		i++;
+		
 	} //*********End equilibriation
-	Vbeta_old = Vbeta;
-	Valpha_old = Valpha;
 
 	//temp = (Valpha.Scount + Vbeta.Scount)/(2*param.EQL_);
 	//numLoops = param.numSpin/temp;
@@ -109,26 +88,14 @@ int main(){
         
 			k=0;
 			while (k<numLoops){
-				Wbeta = Vbeta.LoopUpdate(mrand,param);
-				Walpha = Valpha.LoopUpdate(mrand,param);
-
-			//	if (RestricTOPO == 0){
-					k++;
-			//	}
-			//	else if (Walpha == 0 && Wbeta == 0){ //no winding number change
-			//		Valpha_old = Valpha;
-			//		Vbeta_old= Vbeta;
-			//		k++;
-			//	}
-			//	else{  //rejection based on winding number change
-			//		Valpha = Valpha_old;
-			//		Vbeta = Vbeta_old;
-			//	}
+				temp = Vbeta.LoopUpdate(mrand,param);
+				temp = Valpha.LoopUpdate(mrand,param);
+				k++;
 			}//k
 
 			Walpha = Valpha.RightTopoNum(param);
 			Wbeta = Vbeta.RightTopoNum(param);
-			if (Walpha == 0 && Wbeta == 0){ //no winding number change
+			if ( (RestricTOPO == 0) || (Walpha == 0 && Wbeta == 0) ){ 
 				//renyi.measure_H2(Valpha,Vbeta);      // for SWAP
 				renyi.measure_ratio(Valpha,Vbeta);      // for ratio
 				renyi.record();
@@ -138,8 +105,6 @@ int main(){
 			Observ.record();
 
 			Valpha.SampleSpinState(mrand,Vbeta); //sample spin state
-			Vbeta_old = Vbeta;
-			Valpha_old = Valpha;
 
 		}//i
 		//cout<<i<<endl;
