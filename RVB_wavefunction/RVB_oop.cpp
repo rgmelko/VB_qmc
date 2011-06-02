@@ -141,6 +141,7 @@ int main(){
 	//------------------------------------
     cout<<"beta : "; Vbeta.printTOPO();
     cout<<"alpha: "; Valpha.printTOPO();
+	cout<<"Clean Exit \n \n";
 
 	return 0;
 };
