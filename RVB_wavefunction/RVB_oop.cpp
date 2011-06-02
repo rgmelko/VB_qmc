@@ -31,31 +31,36 @@ int main(){
     Basis Vbeta(param);   //bra
     Basis Valpha(param);  //ket
 
+	if (param.EQL_ == 0){  //are we restarting the simulation?
+		Valpha.fileread(0);
+		Vbeta.fileread(1); 
+		cout<<"input beta : "; Vbeta.printTOPO();
+		cout<<"input alpha: "; Valpha.printTOPO();
+	}
+	else{  //-----generate your topological sector
+		Valpha.SampleSpinState(mrand,Vbeta);
+		while(1){
+			temp = Valpha.LoopUpdate(mrand,param);
+			temp = Vbeta.LoopUpdate(mrand,param);
+			Valpha.SampleSpinState(mrand,Vbeta);
+			if( (Vbeta.TopoX() == param.Wx_) && (Vbeta.TopoY() == param.Wy_)) break;
+		}
+		cout<<"beta: "; Vbeta.printTOPO();
+		Vbeta.CopyTop();
+		cout<<"beta: "; Vbeta.printTOPO();
+		Valpha = Vbeta;
+		cout<<"alpha: "; Valpha.printTOPO();
+	}//EQL == 0
+
 	//initialize the spin state
     Valpha.SampleSpinState(mrand,Vbeta);
 
+	//---------------------------------------
+	//Valpha.filewrite(0);
+	//Vbeta.filewrite(1); //save configuration file
+
 	Measure Observ; //create measurement object
 	Renyi renyi(param.numSpin);
-
-
-	//-----choose your topological sector
-    while(1){
-		temp = Valpha.LoopUpdate(mrand,param);
-		temp = Vbeta.LoopUpdate(mrand,param);
-		Valpha.SampleSpinState(mrand,Vbeta);
-		if( (Vbeta.TopoX() == param.Wx_) && (Vbeta.TopoY() == param.Wy_)) break;
-	}
-	cout<<"beta: "; Vbeta.printTOPO();
-    Vbeta.CopyTop();
-    cout<<"beta: "; Vbeta.printTOPO();
-	Valpha = Vbeta;
-    cout<<"alpha: "; Valpha.printTOPO();
-
-	Valpha.SampleSpinState(mrand,Vbeta);
-	//---------------------------------------
-	Valpha.filewrite(0);
-	Vbeta.filewrite(1); //save configuration file
-
 	int Walpha, Wbeta;  //detects winding number changes in the loop
 	int i,k;
 
