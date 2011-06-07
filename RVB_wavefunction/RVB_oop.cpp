@@ -88,7 +88,8 @@ int main(){
 	//temp = (Valpha.Scount + Vbeta.Scount)/(2*param.EQL_);
 	//numLoops = param.numSpin/temp;
 	//if (numLoops < 1) numLoops = 1; //adjust the number of loops
-	numLoops = 10;
+	//numLoops = 10;
+    numLoops = (int)(5.0/3.0 + param.nX_*param.nX_/12.0); //emperical formula
 
     //--------------Main Monte Carlo data binning loop
 	for (int j=0; j<param.nBin_; j++){ 
