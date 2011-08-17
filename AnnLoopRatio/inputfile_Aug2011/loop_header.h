@@ -845,7 +845,7 @@ void LOOPS::swaperator()
     tempbonds = VR;
     for(int lint=0; lint<inAreg[anum].size(); lint++){
     
-    a = inAreg[anum].at(lint);
+    a = inAreg[anum].at(lint); 
     d = a+number_of_sites/2;
     b = tempbonds[d];
     c = tempbonds[a];
