@@ -44,6 +44,10 @@ class LOOPS
   vector <int> whichloop; /* stores which loop number each site is in. used
 			     in the energy measurement */
   vector <double> entropy, entropy_final;
+  
+  vector <int> inXreg;
+  vector<vector<int> > inAreg;
+  int nSwap;
 
   iMatrix nnbonds;//list of all possible nnbonds.  Index is the bond number
   iMatrix nn_mat; /*matrix of the nnbonds. indices are sites
@@ -84,7 +88,7 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, bool ob, long long 
   
   dim1 = xsites; 
   dim2 = ysites;
-  THING = flips;
+  //**CHANGED**  THING = flips; //determines which ratio size is used
   OBC = ob;
   number_of_sites = dim1*dim2; //calculates total number of sites
   //****changed**** multiplied by 2
@@ -95,9 +99,6 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, bool ob, long long 
   energyint = 0; energy = 0; //initialize the energy counters
   iterations = its; 
   bopfile = bondopfile; //name of the bond operator file
-
-  entropy.assign(xsites,0);
-  entropy_final = entropy;
 
   Vlinks.assign(vlegs, -99); //set size and initialize
   Hlinks.assign(vlegs, -99); 
@@ -127,6 +128,45 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, bool ob, long long 
     init_spins[i+number_of_sites]=init_spins[i];
   }
   spins = init_spins; 
+  
+  //READ IN REGION X __________
+  int inX [dim1*dim2];
+  int temp;
+
+  ifstream fin;
+  fin.open("regionX.in");
+  for(int i=0;i<dim1*dim2;i++){
+      fin>>temp;
+      if (temp != 0 && temp != 1)  cout<<"regionX.in error 1  \n";
+      inX[i] = temp; //0 not in X, 1 in X
+      if(temp==1){inXreg.push_back(i);} //site numbers in X
+  }
+  fin>>temp;  if (temp != -99){ cout<<"regionX.in error 2  \n";}
+  fin.close();
+
+  //READ IN REGION A(s) __________
+  int inA_X [dim1*dim2];
+  vector<int> inAtemp;
+  
+  fin.open("regionA.in");
+  fin>>nSwap;
+  if (nSwap < 1) cout<<"regionA.in error 1 \n";
+  
+  for(int j=0;j<nSwap;j++){
+    for(int i=0;i<dim1*dim2;i++){
+      fin>>temp;
+      if (temp != 0 && temp != 1)  cout<<"regionA.in error 1  \n";
+      inA_X[i] = (temp+inX[i])%2; //check for sites that are only in either A or X
+      if(inA_X[i]==1){inAtemp.push_back(i);} //site numbers in either A or X
+    }
+    fin>>temp;  if (temp != -99) cout<<"regionA.in error 2 on #" << j << endl;
+    inAreg.push_back(inAtemp);
+    inAtemp=vector<int>();
+  }
+  fin.close();
+
+  entropy.assign(nSwap,0);
+  entropy_final = entropy;
 }
 
 /********** nnbondlist() ***********************************************
@@ -442,27 +482,14 @@ void LOOPS::create__Hlinks()
    *************************************************************/
   long long a,b,c;
   
-  for(int iz=0; iz<=THING; iz++){
-    c = iz;
+  //change this to (for iz in region x)
+  for(int iz=0; iz<inXreg.size(); iz++){
+    c = inXreg.at(iz);
     a = last[c];
     b = last[c+number_of_sites/2];
   
     last[c+number_of_sites/2] = a;
     last[c] = b;
-
-    for(int jz=1; jz<=iz; jz++){
-      c = iz+dim1*jz;
-      a = last[c];
-      b = last[c + number_of_sites/2];
-      last[c] = b;
-      last[c+number_of_sites/2]=a;
-
-      c = iz*dim1 + jz - 1;
-      a = last[c];
-      b = last[c + number_of_sites/2];
-      last[c] = b;
-      last[c+number_of_sites/2]=a;   
-    }
   }
   /*************************************************************
     End of switching the connections within region A
@@ -492,7 +519,7 @@ void LOOPS::create__Hlinks()
  Creates loops and flips them with probability 1/2
 
  Global:
-   VL[#sites]___________get filled by looking at links crossing the boundary
+   VL[#sites]___________get filled by looking at links crossing the middle
    VR[#sites]___________same
    whichloop[#sites]____get filled. stores the loop number for each site
    cross________________counts the number of loops crossing the boundary
@@ -511,14 +538,14 @@ void LOOPS::create__Hlinks()
    site____________the current vertex leg we're looking at
    which___________0 for looking at vertical links, 1 for horizontal
    flip____________0 if we're not flipping this loop, 1 if we are
-   firstcross______the first site involved in a loop crossing the boundary. 
-                   Used to get the last bond at the boundary.
-   lastcross_______the last site involved in a loop crossing the boundary
+   firstcross______the first site involved in a loop crossing the middle. 
+                   Used to get the last bond at the middle.
+   lastcross_______the last site involved in a loop crossing the middle
    current_________the current site we're looking at (corresponds to some 
                    vertex leg.
-   right___________0 if the current loop is going left over the boundary, 1
+   right___________0 if the current loop is going left over the middle, 1
                    if it's going right (the operators go from left to right)
-   boolcross_______1 if the loop that was just completed crosses the boundary
+   boolcross_______1 if the loop that was just completed crosses the middle
                    so we can increase the cross counter. O otherwise.
    
 *****************************************************************************/
@@ -752,27 +779,14 @@ void LOOPS::change__operators()
   //swap the spins
   int a,b,c;
   
-  for(int iz=0; iz<=THING; iz++){
-    c = iz;
+ for(int iz=0; iz<inXreg.size(); iz++){
+    c = inXreg.at(iz);
     a = spins[c];
     b = spins[c+number_of_sites/2];
   
     spins[c+number_of_sites/2] = a;
     spins[c] = b;
 
-    for(int jz=1; jz<=iz; jz++){
-      c = iz+dim1*jz;
-      a = spins[c];
-      b = spins[c + number_of_sites/2];
-      spins[c] = b;
-      spins[c+number_of_sites/2]=a;
-
-      c = iz*dim1 + jz - 1;
-      a = spins[c];
-      b = spins[c + number_of_sites/2];
-      spins[c] = b;
-      spins[c+number_of_sites/2]=a;   
-    }
   }
   /*************************************************************
    *************************************************************/
@@ -826,30 +840,11 @@ void LOOPS::swaperator()
   tempbonds = VR;
   int a,b,c,d;
   int superflip(0); //what even is this?
-
-  for(int lint=(THING+1); lint<dim1; lint++){
-
+  
+  for(int anum=0; anum<nSwap; anum++){
+    for(int lint=0; lint<inAreg[anum].size(); lint++){
     
-    /*   if(superflip&&((lint+1)*(lint+1)>(dim1*dim2)/2.0)){
-	 for(int oint=0; oint<dim1; oint++){
-	 for(int pint=0; pint<dim2; pint++){
-	 
-	 a = oint+pint*dim1;  
-	 d = a+number_of_sites/2;  //swap site a with it's replica counterpart 
-	 b = tempbonds[d];         // b was bonded to d
-	 c = tempbonds[a];         // c was bonded to a
-	 
-	 tempbonds[a] = b;         // now b is bonded to a
-	 tempbonds[b] = a;        
-	 tempbonds[d] = c;         // and c is bonded to d
-	 tempbonds[c] = d;
-	 superflip=0;              // i still don't know what superflip does...
-	 }
-	 }
-	 } */
-    
-	  
-    a = lint;
+    a = inAreg[anum].at(lint);
     d = lint+number_of_sites/2;
     b = tempbonds[d];
     c = tempbonds[a];
@@ -859,26 +854,6 @@ void LOOPS::swaperator()
     tempbonds[d] = c;
     tempbonds[c] = d;
 
-    for(int mint=1; mint<=lint; mint++){
-      a = lint+(mint*dim1); 
-      d = lint+(mint*dim1)+number_of_sites/2;
-      b = tempbonds[d];
-      c = tempbonds[a];
-      
-      tempbonds[a] = b;
-      tempbonds[b] = a;
-      tempbonds[d] = c;
-      tempbonds[c] = d;
-
-      a = lint*dim1+mint-1;  
-      d = lint*dim1+(mint-1)+number_of_sites/2;
-      b = tempbonds[d];
-      c = tempbonds[a];
-      
-      tempbonds[a] = b;
-      tempbonds[b] = a;
-      tempbonds[d] = c;
-      tempbonds[c] = d;
     }
   
     int counter(0), temploopnum(0), startsite(0), mite(-99), which(0);
@@ -910,7 +885,7 @@ void LOOPS::swaperator()
       while(site[counter]==1){counter++;}
     }
     int loopdiff = temploopnum - cross;
-    entropy[lint] += pow(2,loopdiff);
+    entropy[anum] += pow(2,loopdiff);
     
   }
 }

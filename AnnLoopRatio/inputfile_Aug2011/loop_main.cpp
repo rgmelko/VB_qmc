@@ -18,7 +18,7 @@ int main(){
   long long ranseed=43289841;
   string enerfilename, entrofilename, bondopfilename;
 
-  ifstream fin("param.txt");
+  ifstream fin("param.in");
   fin >> enerfilename >> entrofilename >> bondopfilename
       >> dim1 >> dim2
       >> ratioflip
