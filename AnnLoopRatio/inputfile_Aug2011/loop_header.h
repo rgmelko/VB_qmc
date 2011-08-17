@@ -842,10 +842,11 @@ void LOOPS::swaperator()
   int superflip(0); //what even is this?
   
   for(int anum=0; anum<nSwap; anum++){
+    tempbonds = VR;
     for(int lint=0; lint<inAreg[anum].size(); lint++){
     
     a = inAreg[anum].at(lint);
-    d = lint+number_of_sites/2;
+    d = a+number_of_sites/2;
     b = tempbonds[d];
     c = tempbonds[a];
     
