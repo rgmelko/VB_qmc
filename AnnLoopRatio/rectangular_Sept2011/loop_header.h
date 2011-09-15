@@ -35,7 +35,11 @@ class LOOPS
   vector <long long> Vlinks, Hlinks;//the vert and horizontal links for the LL
   vector <int> spins, init_spins; //keeps track of spins for swaperation
   vector <int> antipar, init_antipar; //keeps track of antiparallelness
+  //stores (for each bond (as listed in nnbonds) if the spins are antiparallel)
+
   vector <int> isgood, init_isgood; //keeps track of 'good'ness
+  //stores a list of the bonds which are antiparallel
+
   vector <int> sides; /*store which side of the boundary a leg is on
 			removing the need to check if it's higher or lower
 			that the "middle" of the number of legs.... I'm not
@@ -288,11 +292,16 @@ void LOOPS::nnbondlist()
   //****changed**** now multiplying #nnbonds by 2
       number_of_nnbonds *=2; 
   
-  // resizing antiparallelness vectors
+  // resizing antiparallelness vector
   init_antipar.assign(number_of_nnbonds, 0);
-   
-  init_isgood.resize(number_of_nnbonds);
-  for(int i=0; i<number_of_nnbonds; i++){init_antipar.at(i)=1; init_isgood.at(i)=i;}
+
+  for(int i=0; i<number_of_nnbonds; i++){
+    //if spins are antiparallel for a given bond it's 1, otherwise 0
+    init_antipar.at(i)=(init_spins.at(nnbonds(i,0))+init_spins.at(nnbonds(i,1)))%2;
+    
+    //for antiparallel bonds, declare them good!
+    if(init_antipar.at(i)==1){init_isgood.push_back(i);}
+  }
   antipar.resize(number_of_nnbonds);
   isgood.resize(number_of_nnbonds);
 
@@ -343,7 +352,7 @@ void LOOPS::Nnnbondlist()
     // Resize and initialize Nnnbonds
     //****changed**** multiplied first dimension by 2
     Nnnbonds.resize(2*number_of_nnbonds,num_neighbs);
-    for(int i=0; i<number_of_nnbonds; i++){
+    for(int i=0; i<2*number_of_nnbonds; i++){
       for(int j=0; j<num_neighbs; j++){
 	Nnnbonds(i,j)=-99;
       }
@@ -374,8 +383,8 @@ void LOOPS::Nnnbondlist()
     }
   }
 
-  //****changed**** for realisies doubling #nnbonds and #sites
-				    number_of_nnbonds *= 2;
+  ///****changed**** for realisies doubling #nnbonds and #sites
+  number_of_nnbonds *= 2;
   number_of_sites *= 2;
 }
 
@@ -396,22 +405,23 @@ void LOOPS::generate_ops()
       bops(i,0) = irand() % number_of_nnbonds; //the bond being operated on
       bops(i,1) = 0; //0 = diagonal, 1 = off-diagonal
     }
-
+  
   superbops.resize(number_of_bondops+number_of_sites,2);
   
-    //initial state is dimerized..
-    for(int i01=0; i01<number_of_sites; i01+=2){
-      superbops(i01/2, 0) = nn_mat(i01,i01+1); 
-      superbops(i01/2, 1) = 0;
-      superbops(number_of_sites/2+number_of_bondops+i01/2,0)=nn_mat(i01,i01+1);
-      superbops(number_of_sites/2+number_of_bondops+i01/2,1) = 0;
-    }
-
-    for(int i=0; i<number_of_bondops; i++){
-      superbops(number_of_sites/2+i,0)=bops(i,0);
-      superbops(number_of_sites/2+i,1)=bops(i,1);
-    }
-
+  //initial state is dimerized..
+  //Yes, this is a part that needs to be fixed...
+  for(int i01=0; i01<number_of_sites; i01+=2){
+    superbops(i01/2, 0) = nn_mat(i01,i01+1); 
+    superbops(i01/2, 1) = 0;
+    superbops(number_of_sites/2+number_of_bondops+i01/2,0)=nn_mat(i01,i01+1);
+    superbops(number_of_sites/2+number_of_bondops+i01/2,1) = 0;
+  }
+  
+  for(int i=0; i<number_of_bondops; i++){
+    superbops(number_of_sites/2+i,0)=bops(i,0);
+    superbops(number_of_sites/2+i,1)=bops(i,1);
+  }
+  
 }
 /************ create_Vlinks() ************************************************
  Uses:
