@@ -228,8 +228,8 @@ void LOOPS::nnbondlist()
     //****changed**** multiplied dimensions by 2
     nn_mat.resize(2*number_of_sites, 2*number_of_sites);
 
-    for(int i=0; i<number_of_sites; i++){
-      for(int j=0; j<number_of_sites; j++){
+    for(int i=0; i<2*number_of_sites; i++){
+      for(int j=0; j<2*number_of_sites; j++){
 	nn_mat(i,j) = -99;
       }
     }
