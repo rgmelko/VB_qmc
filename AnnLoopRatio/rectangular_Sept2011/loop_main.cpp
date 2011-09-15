@@ -30,7 +30,7 @@ int main(){
   
   int total_bops = dim1*dim2*bops_per_site;
 
-  cout << dim1 << " x " << dim2 << " system,  N = " 
+  cout << dim1 << " x " << dim2 << " system, OBC = "<<OBC<<", N = " 
        << dim1*dim2 << " sites \n" << bops_per_site << " bops/site,  " 
        << total_bops << " bops total" << endl;
   cout << "------------------------------------------------ \n"; 
@@ -53,11 +53,17 @@ int main(){
   for(int kk=0; kk<loops; kk++){
     for(int jk=0; jk<its_per_loop; jk++){
       system.create_Vlinks();    //build vertical LL from init VBs and operators
+      cout <<"1"<<endl;
       system.create__Hlinks();   //build horizontal linked list from operators
+      cout <<"2"<<endl;
       system.make_flip_loops();  //generate loops and flip w/ prob 0.5
+      cout <<"3"<<endl;
       system.take_measurement();
+      cout <<"4"<<endl;
       system.swaperator();
+      cout <<"5"<<endl;
       system.change__operators(); //Change the diagonal operators
+      cout <<"6"<<endl;
     }
 
     system.calculate_stuff();
