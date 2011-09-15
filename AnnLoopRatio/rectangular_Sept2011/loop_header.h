@@ -298,12 +298,11 @@ void LOOPS::nnbondlist()
   for(int i=0; i<number_of_nnbonds; i++){
     //if spins are antiparallel for a given bond it's 1, otherwise 0
     init_antipar.at(i)=(init_spins.at(nnbonds(i,0))+init_spins.at(nnbonds(i,1)))%2;
-    
     //for antiparallel bonds, declare them good!
     if(init_antipar.at(i)==1){init_isgood.push_back(i);}
   }
   antipar.resize(number_of_nnbonds);
-  isgood.resize(number_of_nnbonds);
+  isgood.resize(init_isgood.size());
 
   //****changed**** changing #nnbonds back now
       number_of_nnbonds /=2;
@@ -410,7 +409,61 @@ void LOOPS::generate_ops()
   
   //initial state is dimerized..
   //Yes, this is a part that needs to be fixed...
-  for(int i01=0; i01<number_of_sites; i01+=2){
+  int count1=0;
+  if(dim1%2==0){ //make sure bonds go in the right direction
+    //for the first copy of the lattice
+    for(int j1=0; j1<dim2; j1++){
+      for(int i1=0; i1<dim1; i1+=2){
+	superbops(count1, 0) = nn_mat(i1+dim1*j1 , (i1+1)+dim1*j1); 
+	superbops(count1, 1) = 0;
+	superbops(number_of_sites/2+number_of_bondops+count1,0) = superbops(count1,0);
+	superbops(number_of_sites/2+number_of_bondops+count1,1) = 0;
+	//	cout << superbops(count1,0) << "."<<endl;
+	count1++;
+      }
+    }
+    //second copy of the lattice
+    for(int j1=0; j1<dim2; j1++){
+      for(int i1=0; i1<dim1; i1+=2){
+	superbops(count1, 0) = nn_mat(dim1*dim2 + i1+dim1*j1 , dim1*dim2 + (i1+1)+dim1*j1); 
+	superbops(count1, 1) = 0;
+	superbops(number_of_sites/2+number_of_bondops+count1,0) = superbops(count1,0);
+	superbops(number_of_sites/2+number_of_bondops+count1,1) = 0;
+	//	cout << superbops(count1,0) << "."<<endl;
+	count1++;
+      }
+    }
+
+  }
+
+  else{
+    for(int i1=0; i1<dim1; i1++){
+      for(int j1=0; j1<dim2; j1+=2){
+	superbops(count1, 0) = nn_mat(i1+dim1*j1 , i1+dim1*(j1+1)); 
+	superbops(count1, 1) = 0;
+	superbops(number_of_sites/2+number_of_bondops+count1,0) = superbops(count1,0);
+	superbops(number_of_sites/2+number_of_bondops+count1,1) = 0;
+	//	cout << superbops(count1,0) << endl;
+	//	cout << nnbonds(superbops(count1,0),0) << "," << nnbonds(superbops(count1,0),1) << endl;
+	count1++;
+      }
+    }
+    for(int i1=0; i1<dim1; i1++){
+      for(int j1=0; j1<dim2; j1+=2){
+	superbops(count1, 0) = nn_mat(dim1*dim2 + i1+dim1*j1 , dim1*dim2 + i1+dim1*(j1+1)); 
+	superbops(count1, 1) = 0;
+	superbops(number_of_sites/2+number_of_bondops+count1,0) = superbops(count1,0);
+	superbops(number_of_sites/2+number_of_bondops+count1,1) = 0;
+	//	cout << superbops(count1,0) << endl;
+	//	cout << nnbonds(superbops(count1,0),0) << "," << nnbonds(superbops(count1,0),1) << endl;
+
+	count1++;
+      }
+    }
+    // cout << "count11 = " << count1 << endl;
+
+  }
+  /*  for(int i01=0; i01<number_of_sites; i01+=2){
     superbops(i01/2, 0) = nn_mat(i01,i01+1); 
     superbops(i01/2, 1) = 0;
     superbops(number_of_sites/2+number_of_bondops+i01/2,0)=nn_mat(i01,i01+1);
@@ -421,7 +474,8 @@ void LOOPS::generate_ops()
     superbops(number_of_sites/2+i,0)=bops(i,0);
     superbops(number_of_sites/2+i,1)=bops(i,1);
   }
-  
+*/  
+
 }
 /************ create_Vlinks() ************************************************
  Uses:
@@ -455,10 +509,18 @@ void LOOPS::create_Vlinks()
 void LOOPS::create__Hlinks()
 {
   vector <long long> last (number_of_sites,-99);
-  for(int i=0; i<number_of_sites; i+=2){ 
+  
+  //this definitely needs to be changed...
+  for(int i=0; i<number_of_sites/2; i++){ 
+    last.at(nnbonds(superbops(i,0),0))=4*i+2; 
+    last.at(nnbonds(superbops(i,0),1))=4*i+3;
+  }
+  /* 
+ for(int i=0; i<number_of_sites; i+=2){ 
     last.at(i)=i+2*(i/2+1); 
     last.at(i+1)=i+1+2*(i/2+1);
   }
+  */
   
   long long legnum = 0;
   // iterate through bond operators and create horizontal links
@@ -737,17 +799,18 @@ void LOOPS::change__operators()
 	int loc = Nnnbonds(superbops(op,0),i);
        	if(loc<0){continue;}//goto start of loop if its OBC&that nn doesnt exist
 	if(antipar.at(loc)==1){//if bond is already antiparallel change to parallel
-
 	  int i=0;
-	  do{ i++; }
-	  while(isgood.at(i)!=loc);
+	  
+	  while(isgood.at(i)!=loc){ i++; }
+	  
 	  isgood.erase(isgood.begin() + i);
 	  antipar.at(loc)--;
 	}
 	else{
 	  antipar.at(loc)++;   //if bond is parallel change to antiparallel
 	  isgood.push_back(loc);
-	}                                        
+	} 
+                                       
       }
     }                       //otherwise (if diagonal) do nothing
   }
