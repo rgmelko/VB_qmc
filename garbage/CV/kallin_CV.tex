@@ -1,0 +1,242 @@
+% LaTeX Curriculum Vitae Template
+%
+% Copyright (C) 2004-2009 Jason Blevins <jrblevin@sdf.lonestar.org>
+% http://jblevins.org/projects/cv-template/
+%
+% You may use use this document as a template to create your own CV
+% and you may redistribute the source code freely. No attribution is
+% required in any resulting documents. I do ask that you please leave
+% this notice and the above URL in the source code if you choose to
+% redistribute this file.
+
+\documentclass[letterpaper]{article}
+
+\usepackage{hyperref}
+\usepackage{geometry}
+
+% Comment the following lines to use the default Computer Modern font
+% instead of the Palatino font provided by the mathpazo package.
+% Remove the 'osf' bit if you don't like the old style figures.
+\usepackage[T1]{fontenc}
+\usepackage[sc,osf]{mathpazo}
+
+% Set your name here
+\def\name{Ann Berlinsky Kallin}
+
+% Replace this with a link to your CV if you like, or set it empty
+% (as in \def\footerlink{}) to remove the link in the footer:
+\def\footerlink{http://jblevins.org/projects/cv-template/}
+
+% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks = true,
+  urlcolor = black,
+  pdfauthor = {\name},
+  pdfkeywords = {economics, statistics, mathematics},
+  pdftitle = {\name: Curriculum Vitae},
+  pdfsubject = {Curriculum Vitae},
+  pdfpagemode = UseNone
+}
+
+\geometry{
+  body={6.5in, 8.5in},
+  left=1.0in,
+  top=1.25in
+}
+
+% Customize page headers
+\pagestyle{myheadings}
+\markright{\name}
+\thispagestyle{empty}
+
+% Custom section fonts
+\usepackage{sectsty}
+\sectionfont{\rmfamily\mdseries\Large}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Other possible font commands include:
+% \ttfamily for teletype,
+% \sffamily for sans serif,
+% \bfseries for bold,
+% \scshape for small caps,
+% \normalsize, \large, \Large, \LARGE sizes.
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+% Make lists without bullets
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1.5em}
+  }
+}{
+  \end{list}
+}
+
+\begin{document}
+
+% Place name at left
+{\huge \name}
+
+% Alternatively, print name centered and bold:
+%\centerline{\huge \bf \name}
+
+\vspace{0.25in}
+
+\begin{minipage}{0.45\linewidth}
+  Department of Physics \& Astronomy \\
+  \href{http://uwaterloo.ca/}{University of Waterloo} \\
+  Waterloo, Ontario, N2L 3G1, Canada
+\end{minipage}
+\begin{minipage}{0.45\linewidth}
+  \begin{tabular}{ll}
+    Phone: & (226) 868-0431 \\
+%    Fax: &  (919) 962-5678 \\
+    Email: & \href{mailto:ann.kallin@gmail.com}{\tt ann.kallin@gmail.com} \\
+                & \href{mailto:akallin@uwaterloo.ca}{\tt akallin@uwaterloo.ca} \\
+   
+%    Homepage: & \href{http://www.stat-or.unc.edu/}{\tt http://www.stat-or.unc.edu/} \\
+  \end{tabular}
+\end{minipage}
+
+
+\section*{Personal}
+
+\begin{itemize}
+\item Born on September 11, 1985 in Vancouver, BC.
+\item Canadian and American citizen.
+\end{itemize}
+
+
+\section*{Education}
+
+\begin{itemize}
+	\item Ph.D. in Physics, University of Waterloo, Ontario (In Progress)
+  	\item M.Sc. in Physics, University of Waterloo, Ontario (2010)
+	\item B.Sc. in Honours Physics, McMaster University, Hamilton, Ontario (2008)
+\end{itemize}
+
+
+\section*{Awards and Honours}
+
+\begin{itemize}
+\item NSERC Postgraduate Scholarship (PGS D) (2011-2012)
+\item Outstanding Achievement in Graduate Studies Award (2010)
+\item Ontario Graduate Scholarship (2010) (Declined)
+\item CAM Graduate Student Physics Conference Presenter Scholarship (2009)
+\item NSERC Postgraduate Scholarship (PGS M) (2008-2010)
+\item Ontario Graduate Scholarship (2008) (Declined)
+\item NSERC Undergraduate Student Research Award (2008)
+\item McMaster University Futures Fund Graduand Award (2008)
+\item Harry Lyman Hooker Scholarship (2007)
+\item The Boyd McLay Scholarship in Physics (2007)
+\item NSERC Undergraduate Student Research Award (2007)
+\item Dean's Honour List each undergraduate term, graduated with distinction (2004-2008)
+\item The McMaster Honour Entrance Award (2004 - 2005)
+\end{itemize}
+
+\section*{International Workshops}
+
+\begin{itemize}
+
+\item {\bf KITP Affiliate} for the program Disentangling Quantum Many-body Systems: Computational and Conceptual Approaches (2010)
+
+\item {\bf Boulder Summer School} on Computational and Conceptual Approaches
+to Quantum Many-Body Systems (2010)
+
+\end{itemize}
+
+\section*{Conference Talks and Posters}
+
+\begin{itemize}
+\item KITP program on Disentangling Quantum Many-body Systems, Santa Barbara, California (2010) \\
+ 	Invited Talk -- {\it Computing Entanglement Scaling in Condensed Matter Ground States}
+\item Boulder Summer School for Condensed Matter and Materials Physics, Boulder, Colorado (2010)\\
+	Invited Poster -- {\it Measuring Renyi Entanglement Entropy in Quantum Monte Carlo Simulations}
+\item APS March Meeting, Portland, Oregon (2010) \\
+	Talk --  {\it Measuring Renyi Entanglement Entropy with Quantum Monte Carlo}
+\item Waterloo Graduate Student Research Conference, Waterloo, Ontario (2010) \\
+	Talk --  {\it Measuring Renyi Entanglement Entropy with Quantum Monte Carlo}
+\item Candian-American-Mexican Graduate Student Physics Conference, Acapulco, Mexico (2009) \\
+	Talk --  {\it Valence Bond and von Neumann Entanglement Entropy in Quantum Monte Carlo}
+\item SHARCNET Research Day, Waterloo, Ontario (2009)  \\
+	Poster -- {\it Entanglement Entropy in Quantum Monte Carlo}
+\item Canadian Undergraduate Physics Conference, Frederickton, New Brunswick (2006)\\
+	Poster -- {\it Crystal Growth: In the Zone}
+\item Canadian Undergraduate Physics Conference, London, Ontario (2005)\\
+	Poster -- {\it Floating Zone Crystal Growth of High-T$_c$ Superconductors}
+\end{itemize}
+
+%\section*{Employment}
+%\begin{itemize}
+%\item Stanford University 1927--1931.
+%\item Columbia University 1931--1946.
+%\item University of North Carolina, 1946--1973.
+%\end{itemize}
+
+
+\section*{Publications}
+
+%\subsection*{Journal Articles}
+
+\begin{itemize}
+
+\item 1) {\it Anomalies in the Entanglement Properties of Square Lattice Heisenberg Models} \\
+Ann B. Kallin, Matthew B. Hastings, Roger G. Melko, and Rajiv R. P. Singh \\
+(Submitted to PRB) 
+
+\item 2) {\it Finite-Temperature Critical Behavior of Mutual Information} [4 citations]\\
+Rajiv R. P. Singh, Matthew B. Hastings, Ann B. Kallin, and Roger G. Melko\\ 
+Phys. Rev. Lett. {\bf 106}, 135701 (2011)
+
+\item 3) {\it Finite-size scaling of mutual information in Monte Carlo simulations: Application to the spin-1/2 XXZ model} [3 citations] \\
+Roger G. Melko, Ann B. Kallin, and Matthew B. Hastings  \\
+Phys. Rev. B {\bf 82}, 100409(R) (2010) 
+
+\item 4) {\it Measuring Renyi Entanglement Entropy in Quantum Monte Carlo} [25 citations]\\
+Matthew B. Hastings, Ivan Gonzalez, Ann B. Kallin, and Roger G. Melko \\
+Phys. Rev. Lett. {\bf 104}, 157201 (2010) 
+
+\item 5) {\it Valence Bond and von Neumann Entanglement Entropy in Heisenberg Ladders} [21 citations] \\
+Ann B. Kallin, Ivan Gonzalez, Matthew B Hastings, and Roger G. Melko\\
+Phys. Rev. Lett. {\bf 103}, 117203 (2009)
+
+\item 6) {\it Diagonal and collinear incommensurate spin structures in underdoped La$_{2-x}$Ba$_x$CuO$_4$} [2 citations]\\
+    S. R. Dunsiger, Y. Zhao, B. D. Gaulin, Y. Qiu, P. Bourges, Y. Sidis, J. R. D. Copley,  
+  A. B. Kallin, E. M. Mazurek, and H. A. Dabkowska \\
+Phys. Rev. B {\bf 78}, 092507 (2008) 
+\end{itemize}
+
+\section*{Service}
+
+\begin{itemize}
+
+\item {\bf Outreach Instructor} for a session of the UW DIRECTIONS ESTEEM Conference, an Aboriginal High School Enrichment Program (2011)
+
+\item {\bf International Conference Organizer} for Waterloo DMRG Winter School (2011)
+
+\item {\bf Referee} for Physical Review Letters, Physical Review A, Physical Review B, Physica A
+\end{itemize}
+
+\section*{Extracurricular Activities}
+
+\begin{itemize}
+
+\item Member of the uWaterloo Physics intramural ice hockey and ball hockey teams (2008 - Present)
+
+\item Member of LOCO Roller Derby - Kitchener Chapter (2011 - Present)
+
+\item Volunteer for the Tri-City Roller Girls (2011 - Present)
+\end{itemize}
+
+\bigskip
+
+% Footer
+\begin{center}
+  \begin{footnotesize}
+    Last updated: \today \\
+%    \href{\footerlink}{\texttt{\footerlink}}
+  \end{footnotesize}
+\end{center}
+
+\end{document}
