@@ -1,0 +1,211 @@
+% LaTeX Curriculum Vitae Template
+%
+% Copyright (C) 2004-2009 Jason Blevins <jrblevin@sdf.lonestar.org>
+% http://jblevins.org/projects/cv-template/
+%
+% You may use use this document as a template to create your own CV
+% and you may redistribute the source code freely. No attribution is
+% required in any resulting documents. I do ask that you please leave
+% this notice and the above URL in the source code if you choose to
+% redistribute this file.
+
+\documentclass[letterpaper]{article}
+
+\usepackage{hyperref}
+\usepackage{geometry}
+
+% Comment the following lines to use the default Computer Modern font
+% instead of the Palatino font provided by the mathpazo package.
+% Remove the 'osf' bit if you don't like the old style figures.
+\usepackage[T1]{fontenc}
+\usepackage[sc,osf]{mathpazo}
+
+% Set your name here
+\def\name{Ann Berlinsky Kallin}
+
+% Replace this with a link to your CV if you like, or set it empty
+% (as in \def\footerlink{}) to remove the link in the footer:
+\def\footerlink{http://jblevins.org/projects/cv-template/}
+
+% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks = true,
+  urlcolor = black,
+  pdfauthor = {\name},
+  pdfkeywords = {economics, statistics, mathematics},
+  pdftitle = {\name: Curriculum Vitae},
+  pdfsubject = {Curriculum Vitae},
+  pdfpagemode = UseNone
+}
+
+\geometry{
+  body={6.5in, 8.5in},
+  left=1.0in,
+  top=1.25in
+}
+
+% Customize page headers
+\pagestyle{myheadings}
+\markright{\name}
+\thispagestyle{empty}
+
+% Custom section fonts
+\usepackage{sectsty}
+\sectionfont{\rmfamily\mdseries\Large}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Other possible font commands include:
+% \ttfamily for teletype,
+% \sffamily for sans serif,
+% \bfseries for bold,
+% \scshape for small caps,
+% \normalsize, \large, \Large, \LARGE sizes.
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+% Make lists without bullets
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1.5em}
+  }
+}{
+  \end{list}
+}
+
+\begin{document}
+
+% Place name at left
+{\huge \name}
+
+% Alternatively, print name centered and bold:
+%\centerline{\huge \bf \name}
+
+\vspace{0.25in}
+
+\begin{minipage}[t]{0.5\linewidth}
+ \begin{tabular}{ll}
+   Home: & 511-C Weber St. N.\\
+  \vspace{0.1in}
+ & Waterloo, Ontario, N2L 4G1, Canada\\ 
+  Work: & Department of Physics \& Astronomy \\
+  & \href{http://uwaterloo.ca/}{University of Waterloo} \\
+  & Waterloo, Ontario, N2L 3G1, Canada
+  \end{tabular}
+\end{minipage}
+\begin{minipage}[t]{0.45\linewidth}
+  \begin{tabular}{ll}
+  \vspace{0.1in}
+    Phone: & (226) 868-0431 \\
+%    Fax: &  (919) 962-5678 \\
+    Email: & \href{mailto:ann.kallin@gmail.com}{\tt ann.kallin@gmail.com} \\
+                & \href{mailto:akallin@uwaterloo.ca}{\tt akallin@uwaterloo.ca}
+%    Homepage: & \href{http://www.stat-or.unc.edu/}{\tt http://www.stat-or.unc.edu/} \\
+  \end{tabular}
+\end{minipage}
+
+
+\section*{Personal}
+
+\begin{itemize}
+\item Born on September 11, 1985 in Vancouver, BC.
+\item Canadian and American citizen.
+\end{itemize}
+
+
+\section*{Education}
+
+\begin{itemize}
+	\item Ph.D. in Physics, University of Waterloo, Ontario (In Progress)
+  	\item M.Sc. in Physics, University of Waterloo, Ontario (2010)
+	\item B.Sc. in Honours Physics, McMaster University, Hamilton, Ontario (2008)
+\end{itemize}
+
+\section*{Work Experience}
+\begin{itemize}
+\item 
+	\begin{minipage}[t]{0.23\linewidth}
+ 	Sept 2008 - Present 
+	\end{minipage}
+	\begin{minipage}[t]{0.72\linewidth}
+	{\bf University of Waterloo - Graduate Student}
+		\begin{itemize}
+		\item Writing quantum Monte Carlo programs in C++
+		\item Writing scientific research papers published in peer-reviewed journals
+		\item Presenting research at group meetings, and at regional, national, and international conferences
+		\end{itemize}
+\end{minipage}
+\item 
+	\begin{minipage}[t]{0.23\linewidth}
+ 	Summers of\\
+	2005, 2006, 2008
+	\end{minipage}
+	\begin{minipage}[t]{0.77\linewidth}
+	{\bf McMaster University Research Assistantship - Crystal Growth}
+		\begin{itemize}
+		\item Grew crystal samples for neutron scattering experiments
+		\item Participated in a neutron scattering experiment
+		\item Trained and supervised three undergraduate students and one high school student
+		\end{itemize}
+\end{minipage}
+\item 
+	\begin{minipage}[t]{0.23\linewidth}
+ 	Summer 2007
+	\end{minipage}
+	\begin{minipage}[t]{0.72\linewidth}
+	{\bf McMaster University Research Assistantship - Neuroscience}
+		\begin{itemize}
+		\item Analyzed EEG data using MATLAB
+		\end{itemize}
+\end{minipage}
+\end{itemize}
+
+\section*{Service}
+
+\begin{itemize}
+
+\item {\bf Outreach Instructor} for a session of the UW DIRECTIONS ESTEEM Conference, an Aboriginal High School Enrichment Program (March 2011)
+\item {\bf International Conference Organizer} for Waterloo DMRG Winter School (March 2011)
+\item {\bf Volunteer Organizer} for guest judges at the Centennial Science Fair (January 2011)
+\item {\bf Referee} for peer-reviewed journals: Physical Review Letters, Physical Review A, Physical Review B, Physica A (2010 - Present)
+\end{itemize}
+
+\section*{Extracurricular Activities}
+
+\begin{itemize}
+\item Member of the uWaterloo Physics intramural ice hockey and ball hockey teams (2008 - Present)
+\item Member of LOCO Roller Derby - Kitchener Chapter (2011 - Present)
+\item Volunteer for the Tri-City Roller Girls (2011 - Present)
+\end{itemize}
+
+\section*{Academic Awards and Honours}
+
+\begin{itemize}
+\item University of Waterloo Alumni Gold Medal Award (2011)
+\item NSERC Postgraduate Scholarship (PGS D) (2011-2012)
+\item University of Waterloo Outstanding Achievement in Graduate Studies Award (2010)
+\item Ontario Graduate Scholarship (2010) (Declined)
+\item CAM Graduate Student Physics Conference Presenter Scholarship (2009)
+\item NSERC Postgraduate Scholarship (PGS M) (2008-2010)
+\item Ontario Graduate Scholarship (2008) (Declined)
+\item NSERC Undergraduate Student Research Award (2008)
+\item McMaster University Futures Fund Graduand Award (2008)
+\item Harry Lyman Hooker Scholarship (2007)
+\item The Boyd McLay Scholarship in Physics (2007)
+\item NSERC Undergraduate Student Research Award (2007)
+\item Dean's Honour List each undergraduate term, graduated with distinction (2004-2008)
+\item The McMaster Honour Entrance Award (2004 - 2005)
+\end{itemize}
+
+
+\bigskip
+
+% Footer
+\begin{center}
+  \begin{footnotesize}
+    Last updated: \today \\
+%    \href{\footerlink}{\texttt{\footerlink}}
+  \end{footnotesize}
+\end{center}
+
+\end{document}
