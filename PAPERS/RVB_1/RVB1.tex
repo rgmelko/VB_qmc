@@ -61,8 +61,7 @@ In higher dimensions, the relationship between entanglement entropy and universa
 However, as Calabrese and Cardy caution, basic scaling relationships of higher-dimensional systems need to be carefully checked before
 arguments about asymptotic restoration of conformal invariance are advanced.  
 
-Such checks became possible only recently, with the development of measurement techniques for accessing Renyi entropies in scalable quantum Monte Carlo (QMC) methods.  Since its inception, simulations employing this advance have confirmed the presence of universal subleading corrections to the area-law in topologically-ordered systems, as well as preliminary confirmations of area-law (and subleading logarithms) in the simple gapless 2D N\'eel state.  In this paper, we perform a careful finite-size scaling analysis of Renyi entropies in a specific cornerless geometry in several gapless wavefunctions.  We show, in addition to the additive logarithms identified in Ref.~XXX, we observe the emergence of a ``chord length'' scaling term, which depends on the {\color{red} aspect ratio} of the region $A$, reminiscent of Eq.~(\ref{1Dcft}) for a 1D CFT.
-
+Such checks became possible only recently, with the development of measurement techniques for accessing Renyi entropies in scalable quantum Monte Carlo (QMC) methods.  Since its inception in 2010, simulations employing this advance have confirmed the presence of universal subleading corrections to the area-law in topologically-ordered systems, as well as preliminary confirmations of area-law (and subleading logarithms) in the simple gapless 2D N\'eel state.  In this paper, we preform a careful finite-size scaling analysis of Renyi entropies in a specific cornerless geometry in several gapless wavefunctions.  We show, in addition to the additive logarithms identified in Ref.~XXX, we observe the emergence of a ``chord length'' scaling term, which depends on the aspect ratio of the region A, reminiscent of Eq.~(\ref{1Dcft}) for a 1D CFT.
 
 Using quantum Monte Carlo (QMC) techniques we simulate both the Heisenberg ground state and the resonating valence bond (RVB) wavefunction in two dimensions (2D). 
 The Heisenberg ground state is projected from a trial state by applying a high power of the Hamiltonian, via QMC in the valence bond (VB) basis.\cite{Sandvik_VBQMC}
@@ -76,7 +75,18 @@ For both these systems (Heisenberg and RVB) we use a square lattice torus geomet
 a $square$ region $A$ containing four corners, and a $strip$ region $A$ (like a slice of the torus) which has no corners and constant boundary length $\ell$ for a given total system size.
 We denote with width of each of these regions by $x$, where a square will have dimensions $x$ by $x$ and a strip will be $x$ by $L$ when it is embedded in an $L$ by $L$ system.
 
- \begin{figure}[h]
+In Fig.~{\ref{fig:1}} we illustrate QMC results for the N\'eel state, first explored in Ref.~[XXX].  In that work, the presence of an area law term $\propto \ell$ was confirmed, as well as a subleading logarithmic term $\propto \ln(\ell)$ (present, surprizingly, even in the absence of corners in the region $A$).  This subleading term was extracted when the length of the region A, $x = L/2$, equivalent to the ``center'' of each curve in Fig.~{\ref{fig:1}}.  As is apparent, this scaling removes the $x$-dependence of each curve.  This can be remedied by the scaling ansatz
+\begin{align}
+S_2(L) &= a(L) \ell + b(L) \ln(\ell) \nonumber \\
+&+ c(L) \ln \left[{ \sin\left({ \frac{\pi x}{L} }\right) }\right] + d(L) \label{Fit}
+\end{align}
+which we use to fit {\it all} data individually for each system size $L$.  It is clear in Fig.~{\ref{fig:1}} that this form gives excellent fit to the data for all $x$ and $L$, providing strong evidence for the presence of the chord length.  We can analyze the fits further by examining the dependence of the coefficients on system size $L$.  Most interestingly, we observe the coefficient of the chord-length to increase with $L$, as illustrated in the inset of Fig.~{\ref{fig:1}}.
+
+We next examine the scaling of the Renyi entropy in the RVB wavefunction, illustrated in Fig.~{\ref{fig:2}}.  As apparent in the inset for $L=24$, there exists a more complicated structure to the entropies than in the N\'eel state: the appearance of two branches, an ``upper branch'' when $x$ is odd, and a ``lower branch'' when $x$ is even.  The precise source of the two branches is not know, although simple counting arguments of prototypical valence-bond configurations in the (0,0) topological sector may hint at their existence since the number of valence-bond crossing from region $A$ to region $B$ alternates strongly with $x$.  Even from this $L=24$ curve there is a clear $x$-dependent curve in each branch: this can be analyzed more closely by examining one brach and attempting fits of the form Eq.~(\ref{Fit}).  In the main plot of Fig.~{\ref{fig:2}}, it is clear that fits to the scaling ansatz for the lower branch are excellent.  Examining the $L$-dependence of the fit coefficients shows that, like in the N\'eel state, the coefficient of the chord length increases with increasing system size.
+
+{\bf Matt}? DIRAC FERMIONS?
+
+ \begin{figure}[ht]
    \begin{center}
    \scalebox{1}{\includegraphics[width=\columnwidth]{./figs/heisenberg.pdf}}
    \end{center}
@@ -84,12 +94,12 @@ We denote with width of each of these regions by $x$, where a square will have d
    \label{fig:1}
  \end{figure}
 
- \begin{figure}[h]
+ \begin{figure}[ht]
    \begin{center}
    \scalebox{1}{\includegraphics[width=\columnwidth]{./figs/rvb.pdf}}
    \end{center}
    \caption{RVB Renyi-bow. }
-   \label{fig:1}
+   \label{fig:2}
  \end{figure}
 
 
