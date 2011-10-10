@@ -59,10 +59,23 @@ Numerical measurement of $c$ via Eq.~\ref{1Dcft} has become the gold standard, s
 
 In higher dimensions, the relationship between entanglement entropy and universal quantities is less concrete.  Although conformal symmetries exist at scale-invariant critical points in the presence of translational and rotational symmetry, the breaking of the latter in physical systems can make them non-conformal.  Arguments exits that logarithms similar to Eq.~(\ref{1Dcft}) should emerge due to some asymptotic restoration of conformal invariance in higher-dimensional gapless models, although counter examples are known.  This nonetheless often leads to the hope that a logarithmic scaling of entanglement entropy can be used to define an ``effective'' central charge for non-conformally invariant systems that may contain universal physics (or the equivalent of Zamolodchikov's $c$-theorem in higher-dimensions).
 
-{\it Ann's section below}:
-RELATE HEISENBERG AND RVB - type below here
+{\it \color{red} Ann's section below}:
+{\color{red} RELATE HEISENBERG AND RVB - type below here}
 
-END - and above here
+Using quantum Monte Carlo (QMC) techniques we simulate both the Heisenberg ground state and the resonating valence bond (RVB) wavefunction in two dimensions (2D). 
+% heisenberg projector algorithm
+The Heisenberg ground state is projected from a trial state by applying a high power of the Hamiltonian, via QMC in the valence bond (VB) basis.\cite{Sandvik_VBQMC}
+The VB operators act to reorganize the bonds while effectively penalizing states with longer bonds.
+% rvb algorithm
+The RVB wavefunction contains all possible combinations of only nearest-neighbor VBs in an equal superpositions.
+The RVB QMC algorithm does a random walk through the possible states by creating a defect at some point and propagating it through the system (thereby rearranging the nearest-neighbor bonds) until the defect reaches the initial point and its path forms a closed loop.
+% wavefunctions are related
+If we visualize the Heisenberg ground state in this VB language, then the RVB wavefunction is its largest component, the remainder of the state being equal superpositions with longer bonds decaying as $1/r^3$ \cite{Sandvik_VB_decay} with the length of the bonds.
+
+%geometry
+Within both these systems (Heisenberg and RVB) we use a square lattice torus geometry and measure the entanglement for two different types of region $A$.
+
+{\color{red} END - and above here}
 
  \begin{figure}[h]
    \begin{center}
