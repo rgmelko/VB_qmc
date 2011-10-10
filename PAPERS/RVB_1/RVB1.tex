@@ -8,7 +8,7 @@
 \begin{document}
 
 \date{\today}
-\title{Bulk logarithmic terms in the entanglement entropy in
+\title{Emergent chord length in the entanglement entropy of
   two-dimensional gapless systems}
 
 \author{Hyejin Ju}
@@ -44,47 +44,41 @@ function.
 \end{abstract}
 \maketitle
 
+{\it Introduction.} It is now well established that the low-energy physics of certain one-dimensional (1D) quantum many-body systems can be described by relativistic 1+1 dimensional field theories.  This correspondence occurs at quantum critical points, where in addition to scale invariance, quantum systems typically enjoy {\it conformal} invariance.  In 1D, this has allowed classification of quantum critical points via the appropriate 1+1 dimensional conformal field theory (CFT): in particular the central charge $c$ describing the CFT.
+In the cases where it is not known exactly (in integrable models), 
+this central charge can be obtained directly in numerical measurements of the Renyi entanglement entropy,
+$
+S_n = 1/(1-n) \ln \big[ {\rm Tr} \rho_A^n \big],
+$
+(where region $A$ is entangled with its complement, region $B$), has become commonplace in simulations using the density matrix renormalization group (DMRG).  In particular, the
+scaling of the Renyi entropy at a 1D critical system, with total length $L$ and length of region $A$ being $x$, obeys
+\begin{equation}
+S_n = \frac{c}{6}\left({ \frac{1}{1+n} }\right) \ln\Big[ \frac{L}{\pi} \sin\big( \frac{\pi x}{L} \big) \Big]. \label{1Dcft}
+\end{equation}
+Numerical measurement of $c$ via Eq.~\ref{1Dcft} has become the gold standard, since it is accessible in one simple measurement which gives access to the most important universal signature of the underlying CFT.
 
-\begin{figure}[h]
-  \begin{center}
-  \scalebox{1}{\includegraphics[width=\columnwidth]{./figs/RVB-renyibow.pdf}}
-  \end{center}
-  \caption{RVB Renyi-bow. Fit to $a L + b + c \ln \left( L \sin \left( \frac{\pi
- x}{L} \right) \right).$ Coefficients: $a = 0.216\pm 0.002, \, b = -9.22 \pm 0.0
-4, \, c = 0.75\pm 0.02$.}
-  \label{fig:1}
-\end{figure}
+In higher dimensions, the relationship between entanglement entropy and universal quantities is less concrete.  Although conformal symmetries exist at scale-invariant critical points in the presence of translational and rotational symmetry, the breaking of the latter in physical systems can make them non-conformal.  Arguments exits that logarithms similar to Eq.~(\ref{1Dcft}) should emerge due to some asymptotic restoration of conformal invariance in higher-dimensional gapless models, although counter examples are known.  This nonetheless often leads to the hope that a logarithmic scaling of entanglement entropy can be used to define an ``effective'' central charge for non-conformally invariant systems that may contain universal physics (or the equivalent of Zamolodchikov's $c$-theorem in higher-dimensions).
 
-\begin{figure}[h]
-  \begin{center}
-  \scalebox{1}{\includegraphics[width=\columnwidth]{./figs/RVB-renyibow-2.pdf}}
-  \end{center}
-  \caption{RVB Renyi-bow: 2. Fit to $a L + b + c \ln L + d \ln \left( \sin \left
-( \frac{\pi x}{L} \right) \right).$ Coefficients: $a = 0.21\pm 0.01, \, b = -1.2
- \pm 0.4, \, c = 0.9\pm 0.2, \, d = 0.75 \pm 0.02$.}
-  \label{fig:2}
-\end{figure}
+{\it Ann's section below}:
+RELATE HEISENBERG AND RVB - type below here
 
-\begin{figure}[h]
-  \begin{center}
-  \scalebox{1}{\includegraphics[width=\columnwidth]{./figs/Heisenberg-renyibow.pdf}}
-  \end{center}
-  \caption{Heisenberg Renyi-bow. Fit to $a L + b + c \ln \left( L \sin \left( \frac{\pi x}{L} \right) \right).$ Coefficients: $a = 0.2004\pm 0.004, \, b = -0.22 \pm 0.01, \, c = 0.533\pm 0.004$.}
-  \label{fig:3}
-\end{figure}
+END - and above here
 
-\begin{figure}[h]
-  \begin{center}
-  \scalebox{1}{\includegraphics[width=\columnwidth]{./figs/Heisenberg-renyibow-2.pdf}}
-  \end{center}
-  \caption{Heisenberg Renyi-bow-2. Fit to $a L + b + c \ln L + d \ln \left( \sin
- \left( \frac{\pi x}{L} \right) \right).$ Coefficients: $a = 0.197\pm 0.003, \, 
-b = -0.4 \pm 0.1, \, c = 0.61\pm 0.06, \, d = 0.533 \pm 0.004$.}
-  \label{fig:4}
-\end{figure}
+ \begin{figure}[h]
+   \begin{center}
+   \scalebox{1}{\includegraphics[width=\columnwidth]{./figs/heisenberg.pdf}}
+   \end{center}
+   \caption{Heisenberg Renyi-bow. }
+   \label{fig:1}
+ \end{figure}
 
-
-
+ \begin{figure}[h]
+   \begin{center}
+   \scalebox{1}{\includegraphics[width=\columnwidth]{./figs/rvb.pdf}}
+   \end{center}
+   \caption{RVB Renyi-bow. }
+   \label{fig:1}
+ \end{figure}
 
 
 
