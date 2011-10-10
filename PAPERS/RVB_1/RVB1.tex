@@ -29,12 +29,13 @@
 \affiliation{Department of Physics and Astronomy, University of Waterloo, Ontario, N2L 3G1, Canada} 
 
 \begin{abstract} 
-We show that the entanglement entropy of a variety of two-dimensional
-gapless systems contains a logarithmic term that depends on the size
-of the ``bulk''. Precisely, we show that the Renyi entropy between two
-regions of length $l$ and $L-l$ extending around a cylinder of length
-$L$ depends on $\ln(\sin(\pi l/L))$. This logarithmic term is thus
-akin to that appearing in 1d systems with conformal symmetry. We
+We show that the entanglement entropy of several two-dimensional
+gapless systems contains a logarithmic term that depends 
+on the relative size of the entangled region.
+Precisely, we show that the Renyi entropy between two
+regions of length $x$ and $L-x$ extending around a cylinder of length
+$L$ depends on $\ln(\sin(\pi x/L))$. This logarithmic term is thus
+akin to that appearing in 1D systems with conformal symmetry. We
 illustrate this with numerical results on the Heisenberg model with
 N\'eel order, a free Dirac fermion, and the nearest-neighbor RVB wave
 function.
@@ -44,7 +45,7 @@ function.
 \end{abstract}
 \maketitle
 
-{\it Introduction.} It is now well established that the low-energy physics of certain one-dimensional (1D) quantum many-body systems can be described by relativistic 1+1 dimensional field theories.  This correspondence occurs at quantum critical points, where in addition to scale invariance, quantum systems typically enjoy {\it conformal} invariance.  In 1D, this has allowed classification of quantum critical points via the appropriate 1+1 dimensional conformal field theory (CFT): in particular the central charge $c$ describing the CFT.
+{\it Introduction.} It is now well established that the low-energy physics of certain one-dimensional (1D) quantum many-body systems can be described by relativistic 1+1 dimensional field theories.  This correspondence occurs at quantum critical points, where in addition to scale invariance, quantum systems may enjoy {\it conformal} invariance.  In 1D, this has allowed classification of quantum critical points via the appropriate 1+1 dimensional conformal field theory (CFT): in particular the central charge $c$ describing the CFT.
 In the cases where it is not known exactly (in integrable models), 
 this central charge can be obtained directly in numerical measurements of the Renyi entanglement entropy,
 $
@@ -55,11 +56,20 @@ scaling of the Renyi entropy at a 1D critical system, with total length $L$ and 
 \begin{equation}
 S_n = \frac{c}{6}\left({ \frac{1}{1+n} }\right) \ln\Big[ \frac{L}{\pi} \sin\big( \frac{\pi x}{L} \big) \Big]. \label{1Dcft}
 \end{equation}
-Numerical measurement of $c$ via Eq.~\ref{1Dcft} has become the gold standard, since it is accessible in one simple measurement which gives access to the most important universal signature of the underlying CFT.
+Numerical measurement of entanglement entropy via Eq.~\ref{1Dcft} has become the gold standard for identifying $c$ --
+allowing access to the most important universal signature of the underlying CFT in one simple measurement.
 
-In higher dimensions, the relationship between entanglement entropy and universal quantities is less concrete.  Although conformal symmetries exist at scale-invariant critical points in the presence of translational and rotational symmetry, the breaking of which in physical systems can make them non-conformal.  Arguments exit that logarithms similar to Eq.~(\ref{1Dcft}) should emerge due to some asymptotic restoration of conformal invariance in higher-dimensional gapless models, although counter examples are known.  This nonetheless often leads to the hope that a logarithmic scaling of entanglement entropy can be used to define an ``effective'' central charge for non-conformally invariant systems that may contain universal physics (or the equivalent of Zamolodchikov's $c$-theorem in higher-dimensions).
+In higher dimensions, the relationship between entanglement entropy and universal quantities is less concrete.  Although conformal invariance exists at scale-invariant critical points in the presence of translational and rotational symmetry, the breaking of these symmetries in physical systems can make the critical points non-conformal.  Arguments exit that logarithms similar to Eq.~(\ref{1Dcft}) should emerge due to some asymptotic restoration of conformal invariance in higher-dimensional gapless models, although counter examples are known.  This nonetheless often leads to the hope that a logarithmic scaling of entanglement entropy can be used to define an ``effective'' central charge for non-conformally invariant systems that may contain universal physics (or the equivalent of Zamolodchikov's $c$-theorem in higher-dimensions).
 However, as Calabrese and Cardy caution, basic scaling relationships of higher-dimensional systems need to be carefully checked before
 arguments about asymptotic restoration of conformal invariance are advanced.  
+
+ \begin{figure}[ht]
+   \begin{center}
+   \scalebox{1}{\includegraphics[width=2.5in]{./figs/16x8b.pdf}}
+   \end{center}
+   \caption{An $8 \times 16$ toroidal simulation cell.  The width of region $A$ (red) is $x=4$.  The boundary length between region $A$ and its complement is $\ell = 16$.  In results in this paper, tori are always square with dimension $L \times L$. }
+   \label{fig:torus}
+ \end{figure}
 
 Such checks became possible only recently, with the development of measurement techniques for accessing Renyi entropies in scalable quantum Monte Carlo (QMC) methods.  Since its inception in 2010, simulations employing this advance have confirmed the presence of universal subleading corrections to the area-law in topologically-ordered systems, as well as preliminary confirmations of area-law (and subleading logarithms) in the simple gapless 2D N\'eel state.  In this paper, we preform a careful finite-size scaling analysis of Renyi entropies in a specific cornerless geometry in several gapless wavefunctions.  We show, in addition to the additive logarithms identified in Ref.~XXX, we observe the emergence of a ``chord length'' scaling term, which depends on the width of the region $A$, reminiscent of Eq.~(\ref{1Dcft}) for a 1D CFT.
 
