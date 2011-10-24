@@ -45,23 +45,68 @@ function.
 \end{abstract}
 \maketitle
 
-{\it Introduction.} It is now well established that the low-energy physics of certain one-dimensional (1D) quantum many-body systems can be described by relativistic 1+1 dimensional field theories.  This correspondence occurs at quantum critical points, where in addition to scale invariance, quantum systems may enjoy {\it conformal} invariance.  In 1D, this has allowed classification of quantum critical points via the appropriate 1+1 dimensional conformal field theory (CFT): in particular the central charge $c$ describing the CFT.
-In the cases where it is not known exactly (in integrable models), 
-this central charge can be obtained directly in numerical measurements of the Renyi entanglement entropy,
-$
-S_n = 1/(1-n) \ln \big[ {\rm Tr} \rho_A^n \big],
-$
-(where region $A$ is entangled with its complement, region $B$), which have become commonplace in simulations using the density matrix renormalization group (DMRG).  In particular, the
-scaling of the Renyi entropy at a 1D critical system, with total length $L$ and length of region $A$ being $x$, obeys
+{\it Introduction.} It is now well established that the low-energy
+physics of many one-dimensional (1D) quantum many-body systems can be
+described by relativistic 1+1 dimensional field theories.  This
+correspondence is common at quantum critical points, where in addition
+to scale invariance, quantum systems typically enjoy {\it conformal}
+invariance. Here conformal field theory (CFT) provides a powerful tool
+to analyze the physics. The {\it central charge} $c$ is a universal
+number arising in CFT that appears in an astonishing array of physical
+quantities \cite{Cardyubiquitous}. A given conformal field theory and
+hence any quantum critical points it describes can thus be
+characterized by this number. Moreover, a profound result, the
+$c$-theorem, indicates that $c$ cannot increase in
+renormalization-group flows \cite{Zamo}. The central charge thus
+provides a valuable tool in identifying which if any conformal field
+theory describes a given Hamiltonian. Namely, since it appears in
+various physical quantities, it can be measured numerically, and then
+compared with the central charges of the (many) known
+CFTs. Traditionally, numerically extracting $c$ for a 1d quantum
+Hamiltonian was done by analyzing the finite-size spectrum
+\cite{BCN,Affleck}.  This is often difficult: not only is it a
+subleading contribution to the ground-state energy, but requires also
+determining the Fermi velocity.
+
+More recently, a more direct method very amenable to numerical
+simulation has been utilized.  The central charge can be extracted
+directly from the ground-state wavefunction by measuring its Renyi
+entanglement entropy, $ S_n = 1/(1-n) \ln \big[ {\rm Tr} \rho_A^n
+\big], $ where region $A$ is entangled with its complement, region
+$B$. Such measurements have become commonplace and very accurate in
+simulations using the density matrix renormalization group (DMRG).  In
+particular, the scaling of the Renyi entropy at a 1D critical system,
+with total length $L$ and length of region $A$ being $x$, obeys
 \begin{equation}
 S_n = \frac{c}{6}\left({ \frac{1}{1+n} }\right) \ln\Big[ \frac{L}{\pi} \sin\big( \frac{\pi x}{L} \big) \Big]. \label{1Dcft}
 \end{equation}
-Numerical measurement of entanglement entropy via Eq.~\ref{1Dcft} has become the gold standard for identifying $c$ --
-allowing access to the most important universal signature of the underlying CFT in one simple measurement.
+Thus here $c$ appears as the coefficient of the leading
+term.  Numerical measurement of entanglement entropy via
+Eq.~\ref{1Dcft} therefore has become the gold standard for identifying
+$c$ -- allowing access to the most important universal signature of
+the underlying CFT in one simple measurement.
 
-In higher dimensions, the relationship between entanglement entropy and universal quantities is less concrete.  Although conformal invariance exists at scale-invariant critical points in the presence of translational and rotational symmetry, the breaking of these symmetries in physical systems can make the critical points non-conformal.  Arguments exit that logarithms similar to Eq.~(\ref{1Dcft}) should emerge due to some asymptotic restoration of conformal invariance in higher-dimensional gapless models, although counter examples are known.  This nonetheless often leads to the hope that a logarithmic scaling of entanglement entropy can be used to define an ``effective'' central charge for non-conformally invariant systems that may contain universal physics (or the equivalent of Zamolodchikov's $c$-theorem in higher-dimensions).
-However, as Calabrese and Cardy caution, basic scaling relationships of higher-dimensional systems need to be carefully checked before
-arguments about asymptotic restoration of conformal invariance are advanced \cite{EE_CFT}.
+
+
+In higher dimensions, the relationship between entanglement entropy
+and universal quantities is less concrete.  Although conformal
+invariance exists at scale-invariant critical points in the presence
+of translational and rotational symmetry, the breaking of these
+symmetries in physical systems can make the critical points
+non-conformal.  Moreover, even if conformal, precisely which quantity
+in general to identify as a central charge is an open question.
+Nonetheless, one can still hope that a logarithmic scaling of
+entanglement entropy can be used to define an ``effective'' central
+charge for non-conformally invariant systems that may contain
+universal physics (or perhaps even the equivalent of the $c$-theorem
+in higher-dimensions). >>>mention susy case??? Arguments exist that
+logarithms similar to Eq.~(\ref{1Dcft}) should emerge due to some
+asymptotic restoration of conformal invariance in higher-dimensional
+gapless models, although counter examples are known.  However, as
+Calabrese and Cardy caution, basic scaling relationships of
+higher-dimensional systems need to be carefully checked before
+arguments about asymptotic restoration of conformal invariance are
+advanced \cite{EE_CFT}.
 
  \begin{figure}[ht]
    \begin{center}
@@ -71,13 +116,36 @@ arguments about asymptotic restoration of conformal invariance are advanced \cit
    \label{fig:torus}
  \end{figure}
 
-Such checks became possible only recently, with the development of measurement techniques for accessing Renyi entropies in scalable quantum Monte Carlo (QMC) methods \cite{swap}.  Since its inception in 2010, simulations employing this advance have confirmed the presence of universal subleading corrections to the area-law in topologically-ordered systems, as well as preliminary confirmations of area-law (and subleading logarithms) in the simple gapless 2D N\'eel state.  In this paper, we preform a careful finite-size scaling analysis of Renyi entropies in a specific cornerless geometry in several gapless wavefunctions.  We show, in addition to the additive logarithms identified in Ref.~XXX, we observe the emergence of a ``chord length'' scaling term, which depends on the width of the region $A$, reminiscent of Eq.~(\ref{1Dcft}) for a 1D CFT.
+In dimensions higher than one, the terms in the Renyi entropy with
+universal behavior are subleading. Thus it has only recently become
+possible to measure them well, with the development of measurement
+techniques for accessing Renyi entropies in scalable quantum Monte
+Carlo (QMC) methods \cite{swap}.  Simulations employing this advance
+have confirmed the presence of universal subleading corrections to the
+area-law in topologically-ordered systems, as well as preliminary
+confirmations of area-law (and subleading logarithms) in the simple
+gapless 2D N\'eel state >>> Misguich should be mentioned too, they've
+been doing this for a while???.  In this paper, we perform a careful
+finite-size scaling analysis of Renyi entropies in a specific
+cornerless geometry in several gapless wavefunctions.  We show, in
+addition to the additive logarithms identified in Ref.~XXX, we observe
+the emergence of a ``chord length'' scaling term, which depends on the
+width of the region $A$, reminiscent of Eq.~(\ref{1Dcft}) for a 1D
+CFT.
 
-Using quantum Monte Carlo (QMC) techniques we simulate both the Heisenberg ground state and the resonating valence bond (RVB) wavefunction in two dimensions (2D). 
-The Heisenberg ground state is projected from a trial state by applying a high power of the Hamiltonian, via QMC in the valence bond (VB) basis.\cite{Sandvik_VBQMC}
-The VB operators act to reorganize the bonds while effectively penalizing states with longer bonds.
-The RVB wavefunction contains all possible combinations of only nearest-neighbor VBs in an equal superpositions.
-The RVB QMC algorithm does a random walk through the possible states by creating a defect at some point and propagating it through the system (thereby rearranging the nearest-neighbor bonds) until the defect reaches the initial point and its path forms a closed loop.
+Using quantum Monte Carlo (QMC) techniques we simulate both the
+Heisenberg ground state and the resonating valence bond (RVB)
+wavefunction in two dimensions (2D).  The Heisenberg ground state is
+projected from a trial state by applying a high power of the
+Hamiltonian, via QMC in the valence bond (VB)
+basis.\cite{Sandvik_VBQMC} The VB operators act to reorganize the
+bonds while effectively penalizing states with longer bonds.  The RVB
+wavefunction contains all possible combinations of only
+nearest-neighbor VBs in an equal superpositions.  The RVB QMC
+algorithm does a random walk through the possible states by creating a
+defect at some point and propagating it through the system (thereby
+rearranging the nearest-neighbor bonds) until the defect reaches the
+initial point and its path forms a closed loop.
 
 If we visualize the Heisenberg ground state in this VB language, then the RVB wavefunction is its largest component, the remainder of the state being equal superpositions with longer bonds decaying as $1/r^3$ \cite{Sandvik_VB_decay} with the length of the bonds.
 
@@ -118,8 +186,9 @@ We next examine the scaling of the Renyi entropy in the RVB wavefunction, illust
 
 {\it Acknowledgments} 
 The authors thank R.~Myers for enlightening discussions. 
-R.G.M. would like to acknowledge the support Microsoft Station Q.
-This work has been supported by the Natural Sciences and Engineering Research Council of Canada (NSERC).  Simulations were performed on the computing facilities of SHARCNET.
+R.G.M. would like to acknowledge the support of Microsoft Station Q.
+This work has been supported by the Natural Sciences and Engineering
+Research Council of Canada (NSERC), and by the US NSF via grants DMR/MPS-0704666 and DMR/MPS1006549.  Simulations were performed on the computing facilities of SHARCNET.
 
 
 \bibliography{Biblio}
