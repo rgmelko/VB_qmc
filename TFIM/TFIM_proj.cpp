@@ -24,7 +24,8 @@ int main(){
 
     Proj.LinkedList();
     Proj.printLinkedList();
- 
+    Proj.printBasis();
+
 
     return 0;
 

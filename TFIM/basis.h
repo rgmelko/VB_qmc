@@ -32,8 +32,8 @@ class Basis: public PARAMS
 Basis::Basis(MTRand& ran){//constructor
 
     for (int i=0; i< numSpin; i++){
-        S_left.push_back(0);   //start with all spin parallel
-        S_right.push_back(0);
+        S_left.push_back(1);   //start with all spin parallel
+        S_right.push_back(1);
     }
 
     int bond;
@@ -55,6 +55,10 @@ Basis::Basis(MTRand& ran){//constructor
         OperatorList.push_back(temp);
 
     }//i
+     
+    //S_right.at(S_right.size()-1) = S_right.at(S_right.size()-1)^1; 
+    //temp.set(-2,numSpin-1);
+    //OperatorList.at(m_) =  temp;
 
 }//----------------constructor
 
@@ -126,19 +130,19 @@ void Basis::LinkedList(){
     //The linked list is now size N.  Add the 2m operators each of 4 or 2 legs
     for(int i=0; i<OperatorList.size(); i++){
 
-//        if (OperatorList[i].A == -2){ //1-site off-diagonal operator is encountered
-//            site = OperatorList[i].B;
-//            //"lower" or leftmost leg
-//            LinkList.push_back(First[site]); //site index
-//            LinkLegType.push_back(S_prop[site]); //the spin of the leg
-//            S_prop[site] = S_prop[site]^1;   //this is off-d: flip it
-//            LinkList[First[site]] = LinkList.size()-1; //this leg links backwards...
-//            First[site] = LinkList.size(); //update
-//            //"upper" or rightmost leg
-//            LinkList.push_back(-99); //null site index
-//            LinkLegType.push_back(S_prop[site]); //the spin of the leg (flipped)
-//        }
-        if (OperatorList[i].A == -1){ //1-site diagonal operator is encountered
+        if (OperatorList[i].A == -2){ //1-site off-diagonal operator is encountered
+            site = OperatorList[i].B;
+            //"lower" or leftmost leg
+            LinkList.push_back(First[site]); //site index
+            LinkLegType.push_back(S_prop[site]); //the spin of the leg
+            S_prop[site] = S_prop[site]^1;   //this is off-d: flip it
+            LinkList[First[site]] = LinkList.size()-1; //this leg links backwards...
+            First[site] = LinkList.size(); //update
+            //"upper" or rightmost leg
+            LinkList.push_back(-99); //null site index
+            LinkLegType.push_back(S_prop[site]); //the spin of the leg (flipped)
+        }
+        else if (OperatorList[i].A == -1){ //1-site diagonal operator is encountered
             site = OperatorList[i].B;
             //"lower" or leftmost leg
             LinkList.push_back(First[site]); //site index
@@ -175,12 +179,13 @@ void Basis::LinkedList(){
     //now add the legs of the final ("top"or right-hand) spin state
     for (int i=0; i<numSpin; i++){ 
         LinkList.push_back(First[i]);
-        //if (First[i] == i) //there have been no operators!
-        //    LinkList[i] = i;
         LinkList[First[i]] = LinkList.size()-1;
         LinkLegType.push_back(S_prop[i]); //0 or 1
     }
 
+    //DEBUG: check if the state was propagated correctly
+    for (int i=0; i<S_prop.size(); i++)
+        if (S_prop[i] != S_right[i]) cout<<"Basis state prop error: LINKED LIST\n";
 
 }//----------------LinkedList
 
@@ -206,7 +211,7 @@ void Basis::printBasis(){
     }
     cout<<endl;
     for (int i=0; i<S_right.size(); i++){
-        cout<<S_left[i]<<" ";
+        cout<<S_right[i]<<" ";
     }
     cout<<endl;
     for (int i=0; i<OperatorList.size(); i++){
