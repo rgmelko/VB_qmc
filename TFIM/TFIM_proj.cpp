@@ -22,6 +22,9 @@ int main(){
     Proj.DiagonalUpdate(mrand);
     Proj.printBasis();
 
+    Proj.LinkedList();
+    Proj.printLinkedList();
+ 
 
     return 0;
 

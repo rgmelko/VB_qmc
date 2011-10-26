@@ -7,6 +7,9 @@
 
 class Basis: public PARAMS
 {
+    private:
+       vector<int> LinkList;
+       vector<int> LinkLegType;
 
     public:
       vector <index2> OperatorList; //The operator list of 2m
@@ -19,7 +22,9 @@ class Basis: public PARAMS
 
       Basis(MTRand &); //constructor
       void DiagonalUpdate(MTRand &);
+      void LinkedList();
       void printBasis();
+      void printLinkedList();
 
 };
 
@@ -101,6 +106,95 @@ void Basis::DiagonalUpdate(MTRand& ran){
 
 }//----------------DiagonalUpdate
 
+
+
+//----------------LinkedList function
+void Basis::LinkedList(){
+
+    vector<int> First;
+    for (int i=0; i<numSpin; i++){ //the first vertex leg for each spin
+        First.push_back(i);
+        //below, build the first N vertices from the left-basis
+        LinkList.push_back(-99); //unknown what these link to!
+        LinkLegType.push_back(S_left[i]); //0 or 1
+    }
+
+    vector<int> S_prop; //this is the temporary propagated spin state
+    S_prop = S_left; //assign to the left spin state
+
+    int site, site1, site2;
+    //The linked list is now size N.  Add the 2m operators each of 4 or 2 legs
+    for(int i=0; i<OperatorList.size(); i++){
+
+//        if (OperatorList[i].A == -2){ //1-site off-diagonal operator is encountered
+//            site = OperatorList[i].B;
+//            //"lower" or leftmost leg
+//            LinkList.push_back(First[site]); //site index
+//            LinkLegType.push_back(S_prop[site]); //the spin of the leg
+//            S_prop[site] = S_prop[site]^1;   //this is off-d: flip it
+//            LinkList[First[site]] = LinkList.size()-1; //this leg links backwards...
+//            First[site] = LinkList.size(); //update
+//            //"upper" or rightmost leg
+//            LinkList.push_back(-99); //null site index
+//            LinkLegType.push_back(S_prop[site]); //the spin of the leg (flipped)
+//        }
+        if (OperatorList[i].A == -1){ //1-site diagonal operator is encountered
+            site = OperatorList[i].B;
+            //"lower" or leftmost leg
+            LinkList.push_back(First[site]); //site index
+            LinkLegType.push_back(S_prop[site]); //the spin of the leg
+            LinkList[First[site]] = LinkList.size()-1; //this leg links backwards...
+            First[site] = LinkList.size(); //update
+            //"upper" or rightmost leg
+            LinkList.push_back(-99); //null site index
+            LinkLegType.push_back(S_prop[site]); //the spin of the leg 
+        }
+        else {//2-site diagonal operator is encountered (4 legs)
+            //lower left
+            site1 = OperatorList[i].A;
+            LinkList.push_back(First[site1]); //site index
+            LinkLegType.push_back(S_prop[site1]); //the spin of the leg
+            LinkList[First[site1]] = LinkList.size()-1; //this leg links backwards...
+            First[site1] = LinkList.size()+1;
+            //lower right
+            site2 = OperatorList[i].B;
+            LinkList.push_back(First[site2]); //site index
+            LinkLegType.push_back(S_prop[site2]); //the spin of the leg
+            LinkList[First[site2]] = LinkList.size()-1; //this leg links backwards...
+            First[site2] = LinkList.size()+1;
+            //upper left
+            LinkList.push_back(-99); //null site index
+            LinkLegType.push_back(S_prop[site1]); //the spin of the leg 
+            //upper right
+            LinkList.push_back(-99); //null site index
+            LinkLegType.push_back(S_prop[site2]); //the spin of the leg 
+        }
+
+    }//i
+
+    //now add the legs of the final ("top"or right-hand) spin state
+    for (int i=0; i<numSpin; i++){ 
+        LinkList.push_back(First[i]);
+        //if (First[i] == i) //there have been no operators!
+        //    LinkList[i] = i;
+        LinkList[First[i]] = LinkList.size()-1;
+        LinkLegType.push_back(S_prop[i]); //0 or 1
+    }
+
+
+}//----------------LinkedList
+
+//----------------print LinkedList
+void Basis::printLinkedList(){
+
+    for (int i=0; i<LinkList.size(); i++){ 
+        cout<<i<<" ";
+        cout<<LinkList[i]<<" ";
+        cout<<LinkLegType[i]<<"\n";
+    }
+
+
+}
 
 
 
