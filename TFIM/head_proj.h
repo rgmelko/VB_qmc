@@ -24,4 +24,26 @@ class index2{
 };
 
 
+class index4{
+
+    public:
+
+        int A;
+        int B;
+        int C;
+        int D;
+
+        index4() {A=0; B=0; C=0; D=0;};
+        index4(const int a, const int b, const int c, const int d)
+              {A=a; B=b; C=c; D=d;};
+        index4 operator=(const index4 &z) 
+              {A=z.A; B=z.B; C=z.C; D=z.D; return *this;};
+        void set (const int a, const int b, const int c, const int d)
+              {A=a; B=b; C=c; D=d;};
+        void print(){ cout<<"("<<A<<","<<B<<","<<C<<","<<D<<")"<<endl; };
+};
+
+
+
+
 #endif

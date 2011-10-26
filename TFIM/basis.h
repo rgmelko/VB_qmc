@@ -10,6 +10,7 @@ class Basis: public PARAMS
     private:
        vector<int> LinkList;
        vector<int> LinkLegType;
+       vector<index4> Assiosciates;
 
     public:
       vector <index2> OperatorList; //The operator list of 2m
@@ -115,6 +116,9 @@ void Basis::DiagonalUpdate(MTRand& ran){
 //----------------LinkedList function
 void Basis::LinkedList(){
 
+    index4 temp4(-1,-1,-1,-1);
+    Assiosciates.assign(2*numSpin+2*m_, temp4); //initialize the associates
+
     vector<int> First;
     for (int i=0; i<numSpin; i++){ //the first vertex leg for each spin
         First.push_back(i);
@@ -126,9 +130,22 @@ void Basis::LinkedList(){
     vector<int> S_prop; //this is the temporary propagated spin state
     S_prop = S_left; //assign to the left spin state
 
+    int count = numSpin;  
     int site, site1, site2;
     //The linked list is now size N.  Add the 2m operators each of 4 or 2 legs
     for(int i=0; i<OperatorList.size(); i++){
+
+        //assign non-trivial associates
+        if (OperatorList[i].A == -2 || OperatorList[i].A == -1){
+            temp4.set(count+1,-1,-1,-1); Assiosciates[count] = temp4;
+            temp4.set(count,-1,-1,-1); Assiosciates[count+1] = temp4;
+        }
+        else{
+            temp4.set(count+1,count+2,count+3,-1); Assiosciates[count] = temp4;
+            temp4.set(count,count+2,count+3,-1); Assiosciates[count+1] = temp4;
+            temp4.set(count,count+1,count+3,-1); Assiosciates[count+2] = temp4;
+            temp4.set(count,count+1,count+2,-1); Assiosciates[count+3] = temp4;
+        }//done assigning associates
 
         if (OperatorList[i].A == -2){ //1-site off-diagonal operator is encountered
             site = OperatorList[i].B;
