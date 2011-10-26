@@ -12,14 +12,15 @@ int main(){
 
 
     PARAMS param; //read parameter file
-    param.printBst();
+    //param.printBst();
 
     MTRand mrand(param.SEED_); //random number for metropolis
 
     Basis Proj(mrand);
     Proj.printBasis();
 
-    //Proj.DiagonalUpdate(mrand);
+    Proj.DiagonalUpdate(mrand);
+    Proj.printBasis();
 
 
     return 0;

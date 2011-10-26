@@ -61,13 +61,42 @@ void Basis::DiagonalUpdate(MTRand& ran){
     vector<int> S_prop; //this is the temporary propagated spin state
     S_prop = S_left; //assign to the left spin state
 
+    //Probability for a single-site diagonal operator
+    double hProb = h_x/(1.0+h_x);
+
+
+    int bond;
+    int flag;
     for(int i=0; i<OperatorList.size(); i++){
 
         if (OperatorList[i].A == -2) //this is a off-diagonal site operator
             S_prop[OperatorList[i].B] = S_prop[OperatorList[i].B]^1 ; //binary spin flip
 
+        else { //sample a new diagonal operator
+
+            flag = 0;
+            do{ //repeat until a valid selection is made
+                if (hProb > ran.rand() ){ //probability to choose a single-site h operator
+                    OperatorList[i].set(-1,ran.randInt(numSpin-1)); //diagonal site operator
+                    flag = 1; //successful!
+                }
+                else{
+                    cout<<"B "<<i<<" "<<endl;
+                    bond = ran.randInt(numLattB-1);  //new bond for diagonal bond operator
+                    if (S_prop[Bst[bond].A] == S_prop[Bst[bond].B]) {
+                        //spins are the same on the new bond
+                        OperatorList[i] = Bst[bond]; //check overloaded =
+                        flag = 1; //successful!
+                    }
+                } //else the diagonal operator stays unchanged!  repeat
+            }while(flag == 0);
+        }//insert diagonal
+
     }//i  the 2*m propagation
-    cout<<endl;
+
+    //DEBUG: check if the state was propagated correctly
+    for (int i=0; i<S_prop.size(); i++)
+        if (S_prop[i] != S_right[i]) cout<<"Basis state prop error: DIAG UPDATE \n";
 
 
 }//----------------DiagonalUpdate
