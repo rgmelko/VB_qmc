@@ -217,52 +217,60 @@ void Basis::LinkedList(){
 
 
 //----------------ClusterUpdate
-void Basis::ClusterUpdate(MTRand& rand){
+void Basis::ClusterUpdate(MTRand& ran){
 
     vector<int> inCluster(LinkList.size(), 0); //nothing in clusters yet
     stack<int> cluster;
 
     int leg, assoc;
-    bool flip = true;
+    bool flip;
 
-//    for (int i=0; i<LinkList.size(), 0){ //loop to find all clusters
+    int ccount = 0;
+    for (int i=0; i<LinkList.size(); i++){ //loop to find all clusters
 
         //add a new leg
-        cluster.push(19);//wolffish
+        if (inCluster[i] == 0 && Associates[i].A == -1){ //spins and site ops only
+            ccount ++; //cluster counter
 
-        if (flip == true) LegType[cluster.top()] = LegType[cluster.top()]^1;
-        inCluster[cluster.top()] = 1;
+            cluster.push(i);
+            inCluster[cluster.top()] = ccount;
 
-        while(!cluster.empty()){ //build the cluster associated with this leg
+            if (ran.rand() < 0.5) flip = true; else flip = false; //flip a coin for SW
 
-            //first follow the link
-            leg = LinkList[cluster.top()];
-            cluster.pop();
+            if (flip == true) LegType[cluster.top()] = LegType[cluster.top()]^1;
 
-            if (inCluster[leg] == 0){
-                inCluster[leg] = 1; //add the linked leg
-                if (flip == true) LegType[leg] = LegType[leg]^1;
-                //now check all associates
-                assoc = Associates[leg].A;
-                if (assoc != -1) { 
-                    cluster.push(assoc); inCluster[assoc] = 1; 
-                    if (flip == true) LegType[assoc] = LegType[assoc]^1;
-                    assoc = Associates[leg].B;
-                    cluster.push(assoc); inCluster[assoc] = 1; 
-                    if (flip == true) LegType[assoc] = LegType[assoc]^1;
-                    assoc = Associates[leg].C;
-                    cluster.push(assoc); inCluster[assoc] = 1; 
-                    if (flip == true) LegType[assoc] = LegType[assoc]^1;
+            while(!cluster.empty()){ //build the cluster associated with this leg
+
+                //first follow the link
+                leg = LinkList[cluster.top()];
+                cluster.pop();
+
+                if (inCluster[leg] == 0){
+                    inCluster[leg] = ccount; //add the linked leg
+                    if (flip == true) LegType[leg] = LegType[leg]^1;
+                    //now check all associates
+                    assoc = Associates[leg].A;
+                    if (assoc != -1) { 
+                        cluster.push(assoc); inCluster[assoc] = ccount; 
+                        if (flip == true) LegType[assoc] = LegType[assoc]^1;
+                        assoc = Associates[leg].B;
+                        cluster.push(assoc); inCluster[assoc] = ccount; 
+                        if (flip == true) LegType[assoc] = LegType[assoc]^1;
+                        assoc = Associates[leg].C;
+                        cluster.push(assoc); inCluster[assoc] = ccount; 
+                        if (flip == true) LegType[assoc] = LegType[assoc]^1;
+                    }
                 }
-            }
 
-        }//while
+            }//while
 
-//   }//i
+        }//if building a new cluster
 
-//    for (int i=0; i<inCluster.size(); i++)
-//        cout<<inCluster[i]<<" ";
-//    cout<<endl;
+    }//i
+
+    for (int i=0; i<inCluster.size(); i++)
+        cout<<inCluster[i]<<" ";
+    cout<<endl;
 
     //map back basis states and operator list
     for(int i=0; i<numSpin; i++){
