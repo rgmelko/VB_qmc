@@ -10,7 +10,7 @@ class Basis: public PARAMS
     private:
        vector<int> LinkList;
        vector<int> LegType;
-       vector<int> Associates;
+       vector<index3> Associates;
 
     public:
       vector <index2> OperatorList; //The operator list of 2m
@@ -116,13 +116,16 @@ void Basis::DiagonalUpdate(MTRand& ran){
 //----------------LinkedList function
 void Basis::LinkedList(){
 
+    index3 empty(-1,-1,-1);
+    index3 temp3;
+
     vector<int> First;
     for (int i=0; i<numSpin; i++){ //the first vertex leg for each spin
         First.push_back(i);
         //below, build the first N vertices from the left-basis
         LinkList.push_back(-99); //unknown what these link to!
         LegType.push_back(S_left[i]); //0 or 1
-        Associates.push_back(-1); //these have no associates
+        Associates.push_back(empty); //these have no associates
     }
 
     vector<int> S_prop; //this is the temporary propagated spin state
@@ -135,16 +138,17 @@ void Basis::LinkedList(){
 
         //assign non-trivial associates
         if (OperatorList[i].A != -2 && OperatorList[i].A != -1){
-            Associates.push_back(count+1);
-            Associates.push_back(count);
-            Associates.push_back(count+3);
-            Associates.push_back(count+2);
+            temp3.set(count+1,count+2,count+3); Associates.push_back(temp3);
+            temp3.set(count,count+2,count+3); Associates.push_back(temp3);
+            temp3.set(count,count+1,count+3); Associates.push_back(temp3);
+            temp3.set(count,count+1,count+2); Associates.push_back(temp3);
+            count += 4;
         }//done assigning associates
         else{
-            Associates.push_back(-1);
-            Associates.push_back(-1);
+            Associates.push_back(empty);
+            Associates.push_back(empty);
+            count += 2;
         }
-        count++;
 
         if (OperatorList[i].A == -2){ //1-site off-diagonal operator is encountered
             site = OperatorList[i].B;
@@ -197,7 +201,7 @@ void Basis::LinkedList(){
         LinkList.push_back(First[i]);
         LinkList[First[i]] = LinkList.size()-1;
         LegType.push_back(S_prop[i]); //0 or 1
-        Associates.push_back(-1);
+        Associates.push_back(empty);
     }
 
     cout<<"Ass size :"<<Associates.size()<<endl;
@@ -235,7 +239,7 @@ void Basis::ClusterUpdate(){
         if (inCluster[leg] == 0){
             inCluster[leg] = 1; //add the linked leg
             if (flip == true) LegType[leg] = LegType[leg]^1;
-            assoc = Associates[leg]; //check its associates
+            //assoc = Associates[leg]; //check its associates
             if (assoc != -1) { 
                 cluster.push(assoc); 
                 inCluster[assoc] = 1; 
@@ -282,7 +286,7 @@ void Basis::printBasis(){
     }
     cout<<endl;
     for (int i=0; i<Associates.size(); i++){
-        cout<<Associates[i]<<" ";
+        Associates[i].print();
     }
     cout<<endl;
 
