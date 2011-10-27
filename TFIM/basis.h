@@ -222,7 +222,7 @@ void Basis::ClusterUpdate(){
     bool flip = true;
     
     //add a new leg
-    cluster.push(0);
+    cluster.push(1);
     if (flip == true) LegType[cluster.top()] = LegType[cluster.top()]^1;
     inCluster[cluster.top()] = 1;
 
