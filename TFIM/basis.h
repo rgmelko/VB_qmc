@@ -9,7 +9,7 @@ class Basis: public PARAMS
 {
     private:
        vector<int> LinkList;
-       vector<int> LinkLegType;
+       vector<int> LegType;
        vector<int> Associates;
 
     public:
@@ -48,10 +48,9 @@ Basis::Basis(MTRand& ran){//constructor
         else {
             bond = ran.randInt(numLattB-1);      //diagonal bond operator
             temp = Bst[bond]; //checked overloaded =
-            cout<<"temp "<<bond<<" ";
-            Bst[bond].print();
-            cout<<endl;
-
+            //cout<<"temp "<<bond<<" ";
+            //Bst[bond].print();
+            //cout<<endl;
         }
 
         OperatorList.push_back(temp);
@@ -92,7 +91,7 @@ void Basis::DiagonalUpdate(MTRand& ran){
                     flag = 1; //successful!
                 }
                 else{
-                    cout<<"B "<<i<<" "<<endl;
+                    //cout<<"B "<<i<<" "<<endl;
                     bond = ran.randInt(numLattB-1);  //new bond for diagonal bond operator
                     if (S_prop[Bst[bond].A] == S_prop[Bst[bond].B]) {
                         //spins are the same on the new bond
@@ -117,14 +116,12 @@ void Basis::DiagonalUpdate(MTRand& ran){
 //----------------LinkedList function
 void Basis::LinkedList(){
 
-    //Associates.assign(2*numSpin+2*m_, -1); //initialize the associates
-
     vector<int> First;
     for (int i=0; i<numSpin; i++){ //the first vertex leg for each spin
         First.push_back(i);
         //below, build the first N vertices from the left-basis
         LinkList.push_back(-99); //unknown what these link to!
-        LinkLegType.push_back(S_left[i]); //0 or 1
+        LegType.push_back(S_left[i]); //0 or 1
         Associates.push_back(-1); //these have no associates
     }
 
@@ -153,44 +150,44 @@ void Basis::LinkedList(){
             site = OperatorList[i].B;
             //"lower" or leftmost leg
             LinkList.push_back(First[site]); //site index
-            LinkLegType.push_back(S_prop[site]); //the spin of the leg
+            LegType.push_back(S_prop[site]); //the spin of the leg
             S_prop[site] = S_prop[site]^1;   //this is off-d: flip it
             LinkList[First[site]] = LinkList.size()-1; //this leg links backwards...
             First[site] = LinkList.size(); //update
             //"upper" or rightmost leg
             LinkList.push_back(-99); //null site index
-            LinkLegType.push_back(S_prop[site]); //the spin of the leg (flipped)
+            LegType.push_back(S_prop[site]); //the spin of the leg (flipped)
         }
         else if (OperatorList[i].A == -1){ //1-site diagonal operator is encountered
             site = OperatorList[i].B;
             //"lower" or leftmost leg
             LinkList.push_back(First[site]); //site index
-            LinkLegType.push_back(S_prop[site]); //the spin of the leg
+            LegType.push_back(S_prop[site]); //the spin of the leg
             LinkList[First[site]] = LinkList.size()-1; //this leg links backwards...
             First[site] = LinkList.size(); //update
             //"upper" or rightmost leg
             LinkList.push_back(-99); //null site index
-            LinkLegType.push_back(S_prop[site]); //the spin of the leg 
+            LegType.push_back(S_prop[site]); //the spin of the leg 
         }
         else {//2-site diagonal operator is encountered (4 legs)
             //lower left
             site1 = OperatorList[i].A;
             LinkList.push_back(First[site1]); //site index
-            LinkLegType.push_back(S_prop[site1]); //the spin of the leg
+            LegType.push_back(S_prop[site1]); //the spin of the leg
             LinkList[First[site1]] = LinkList.size()-1; //this leg links backwards...
             First[site1] = LinkList.size()+1;
             //lower right
             site2 = OperatorList[i].B;
             LinkList.push_back(First[site2]); //site index
-            LinkLegType.push_back(S_prop[site2]); //the spin of the leg
+            LegType.push_back(S_prop[site2]); //the spin of the leg
             LinkList[First[site2]] = LinkList.size()-1; //this leg links backwards...
             First[site2] = LinkList.size()+1;
             //upper left
             LinkList.push_back(-99); //null site index
-            LinkLegType.push_back(S_prop[site1]); //the spin of the leg 
+            LegType.push_back(S_prop[site1]); //the spin of the leg 
             //upper right
             LinkList.push_back(-99); //null site index
-            LinkLegType.push_back(S_prop[site2]); //the spin of the leg 
+            LegType.push_back(S_prop[site2]); //the spin of the leg 
         }
 
     }//i
@@ -199,13 +196,13 @@ void Basis::LinkedList(){
     for (int i=0; i<numSpin; i++){ 
         LinkList.push_back(First[i]);
         LinkList[First[i]] = LinkList.size()-1;
-        LinkLegType.push_back(S_prop[i]); //0 or 1
+        LegType.push_back(S_prop[i]); //0 or 1
         Associates.push_back(-1);
     }
 
     cout<<"Ass size :"<<Associates.size()<<endl;
     cout<<"LL size :"<<LinkList.size()<<endl;
-    cout<<"LT size :"<<LinkLegType.size()<<endl;
+    cout<<"LT size :"<<LegType.size()<<endl;
 
     //DEBUG: check if the state was propagated correctly
     for (int i=0; i<S_prop.size(); i++)
@@ -221,24 +218,32 @@ void Basis::ClusterUpdate(){
     vector<int> inCluster(LinkList.size(), 0); //nothing in clusters yet
     stack<int> cluster;
 
-    cluster.push(0);
-
     int leg, assoc;
-    while(!cluster.empty()){
+    bool flip = true;
+    
+    //add a new leg
+    cluster.push(0);
+    if (flip == true) LegType[cluster.top()] = LegType[cluster.top()]^1;
+    inCluster[cluster.top()] = 1;
 
-        //first follow the leg
-        inCluster[cluster.top()] = 1;
+    while(!cluster.empty()){ //build the cluster associated with this leg
+
+        //first follow the link
         leg = LinkList[cluster.top()];
         cluster.pop();
-        cout<<"Leg "<<leg<<endl;
 
         if (inCluster[leg] == 0){
             inCluster[leg] = 1; //add the linked leg
+            if (flip == true) LegType[leg] = LegType[leg]^1;
             assoc = Associates[leg]; //check its associates
-            if (assoc != -1) { cluster.push(assoc); inCluster[assoc] = 1; }
+            if (assoc != -1) { 
+                cluster.push(assoc); 
+                inCluster[assoc] = 1; 
+                if (flip == true) LegType[assoc] = LegType[assoc]^1;
+            }
         }
 
-    }
+    }//while
 
     for (int i=0; i<inCluster.size(); i++)
         cout<<inCluster[i]<<" ";
@@ -253,7 +258,7 @@ void Basis::printLinkedList(){
     for (int i=0; i<LinkList.size(); i++){ 
         cout<<i<<" ";
         cout<<LinkList[i]<<" ";
-        cout<<LinkLegType[i]<<"\n";
+        cout<<LegType[i]<<"\n";
     }
 
 
