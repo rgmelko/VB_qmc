@@ -6,6 +6,7 @@ using namespace std;
 
 #include <iomanip>
 #include <vector>
+#include <stack>
 #include "MersenneTwister.h"
 #include "matrix.h"
 

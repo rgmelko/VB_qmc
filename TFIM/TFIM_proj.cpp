@@ -17,7 +17,7 @@ int main(){
     MTRand mrand(param.SEED_); //random number for metropolis
 
     Basis Proj(mrand);
-    Proj.printBasis();
+    //Proj.printBasis();
 
     Proj.DiagonalUpdate(mrand);
     Proj.printBasis();
@@ -25,6 +25,8 @@ int main(){
     Proj.LinkedList();
     Proj.printLinkedList();
     Proj.printBasis();
+
+    Proj.ClusterUpdate();
 
 
     return 0;

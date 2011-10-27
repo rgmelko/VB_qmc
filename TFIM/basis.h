@@ -10,7 +10,7 @@ class Basis: public PARAMS
     private:
        vector<int> LinkList;
        vector<int> LinkLegType;
-       vector<index4> Assiosciates;
+       vector<int> Associates;
 
     public:
       vector <index2> OperatorList; //The operator list of 2m
@@ -24,6 +24,7 @@ class Basis: public PARAMS
       Basis(MTRand &); //constructor
       void DiagonalUpdate(MTRand &);
       void LinkedList();
+      void ClusterUpdate();
       void printBasis();
       void printLinkedList();
 
@@ -116,8 +117,7 @@ void Basis::DiagonalUpdate(MTRand& ran){
 //----------------LinkedList function
 void Basis::LinkedList(){
 
-    index4 temp4(-1,-1,-1,-1);
-    Assiosciates.assign(2*numSpin+2*m_, temp4); //initialize the associates
+    //Associates.assign(2*numSpin+2*m_, -1); //initialize the associates
 
     vector<int> First;
     for (int i=0; i<numSpin; i++){ //the first vertex leg for each spin
@@ -125,6 +125,7 @@ void Basis::LinkedList(){
         //below, build the first N vertices from the left-basis
         LinkList.push_back(-99); //unknown what these link to!
         LinkLegType.push_back(S_left[i]); //0 or 1
+        Associates.push_back(-1); //these have no associates
     }
 
     vector<int> S_prop; //this is the temporary propagated spin state
@@ -136,16 +137,17 @@ void Basis::LinkedList(){
     for(int i=0; i<OperatorList.size(); i++){
 
         //assign non-trivial associates
-        if (OperatorList[i].A == -2 || OperatorList[i].A == -1){
-            temp4.set(count+1,-1,-1,-1); Assiosciates[count] = temp4;
-            temp4.set(count,-1,-1,-1); Assiosciates[count+1] = temp4;
-        }
-        else{
-            temp4.set(count+1,count+2,count+3,-1); Assiosciates[count] = temp4;
-            temp4.set(count,count+2,count+3,-1); Assiosciates[count+1] = temp4;
-            temp4.set(count,count+1,count+3,-1); Assiosciates[count+2] = temp4;
-            temp4.set(count,count+1,count+2,-1); Assiosciates[count+3] = temp4;
+        if (OperatorList[i].A != -2 && OperatorList[i].A != -1){
+            Associates.push_back(count+1);
+            Associates.push_back(count);
+            Associates.push_back(count+3);
+            Associates.push_back(count+2);
         }//done assigning associates
+        else{
+            Associates.push_back(-1);
+            Associates.push_back(-1);
+        }
+        count++;
 
         if (OperatorList[i].A == -2){ //1-site off-diagonal operator is encountered
             site = OperatorList[i].B;
@@ -198,13 +200,52 @@ void Basis::LinkedList(){
         LinkList.push_back(First[i]);
         LinkList[First[i]] = LinkList.size()-1;
         LinkLegType.push_back(S_prop[i]); //0 or 1
+        Associates.push_back(-1);
     }
+
+    cout<<"Ass size :"<<Associates.size()<<endl;
+    cout<<"LL size :"<<LinkList.size()<<endl;
+    cout<<"LT size :"<<LinkLegType.size()<<endl;
 
     //DEBUG: check if the state was propagated correctly
     for (int i=0; i<S_prop.size(); i++)
         if (S_prop[i] != S_right[i]) cout<<"Basis state prop error: LINKED LIST\n";
 
 }//----------------LinkedList
+
+
+
+//----------------ClusterUpdate
+void Basis::ClusterUpdate(){
+
+    vector<int> inCluster(LinkList.size(), 0); //nothing in clusters yet
+    stack<int> cluster;
+
+    cluster.push(0);
+
+    int leg, assoc;
+    while(!cluster.empty()){
+
+        //first follow the leg
+        inCluster[cluster.top()] = 1;
+        leg = LinkList[cluster.top()];
+        cluster.pop();
+        cout<<"Leg "<<leg<<endl;
+
+        if (inCluster[leg] == 0){
+            inCluster[leg] = 1; //add the linked leg
+            assoc = Associates[leg]; //check its associates
+            if (assoc != -1) { cluster.push(assoc); inCluster[assoc] = 1; }
+        }
+
+    }
+
+    for (int i=0; i<inCluster.size(); i++)
+        cout<<inCluster[i]<<" ";
+    cout<<endl;
+
+}//----------------ClusterUpdate
+
 
 //----------------print LinkedList
 void Basis::printLinkedList(){
@@ -235,6 +276,11 @@ void Basis::printBasis(){
         OperatorList[i].print();
     }
     cout<<endl;
+    for (int i=0; i<Associates.size(); i++){
+        cout<<Associates[i]<<" ";
+    }
+    cout<<endl;
+
 }//print
 
 
