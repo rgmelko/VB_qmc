@@ -26,9 +26,12 @@ int main(){
     Proj.printLinkedList();
     Proj.printBasis();
 
-    Proj.ClusterUpdate();
+    Proj.ClusterUpdate(mrand);
     Proj.printLinkedList();
+    Proj.printBasis();
 
+    Proj.DiagonalUpdate(mrand);
+    Proj.printBasis();
 
     return 0;
 

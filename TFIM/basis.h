@@ -24,7 +24,7 @@ class Basis: public PARAMS
       Basis(MTRand &); //constructor
       void DiagonalUpdate(MTRand &);
       void LinkedList();
-      void ClusterUpdate();
+      void ClusterUpdate(MTRand &);
       void printBasis();
       void printLinkedList();
 
@@ -217,47 +217,76 @@ void Basis::LinkedList(){
 
 
 //----------------ClusterUpdate
-void Basis::ClusterUpdate(){
+void Basis::ClusterUpdate(MTRand& rand){
 
     vector<int> inCluster(LinkList.size(), 0); //nothing in clusters yet
     stack<int> cluster;
 
     int leg, assoc;
     bool flip = true;
-    
-    //add a new leg
-    cluster.push(1);
-    if (flip == true) LegType[cluster.top()] = LegType[cluster.top()]^1;
-    inCluster[cluster.top()] = 1;
 
-    while(!cluster.empty()){ //build the cluster associated with this leg
+//    for (int i=0; i<LinkList.size(), 0){ //loop to find all clusters
 
-        //first follow the link
-        leg = LinkList[cluster.top()];
-        cluster.pop();
+        //add a new leg
+        cluster.push(19);//wolffish
 
-        if (inCluster[leg] == 0){
-            inCluster[leg] = 1; //add the linked leg
-            if (flip == true) LegType[leg] = LegType[leg]^1;
-            //now check all associates
-            assoc = Associates[leg].A;
-            if (assoc != -1) { 
-                cluster.push(assoc); inCluster[assoc] = 1; 
-                if (flip == true) LegType[assoc] = LegType[assoc]^1;
-                assoc = Associates[leg].B;
-                cluster.push(assoc); inCluster[assoc] = 1; 
-                if (flip == true) LegType[assoc] = LegType[assoc]^1;
-                assoc = Associates[leg].C;
-                cluster.push(assoc); inCluster[assoc] = 1; 
-                if (flip == true) LegType[assoc] = LegType[assoc]^1;
+        if (flip == true) LegType[cluster.top()] = LegType[cluster.top()]^1;
+        inCluster[cluster.top()] = 1;
+
+        while(!cluster.empty()){ //build the cluster associated with this leg
+
+            //first follow the link
+            leg = LinkList[cluster.top()];
+            cluster.pop();
+
+            if (inCluster[leg] == 0){
+                inCluster[leg] = 1; //add the linked leg
+                if (flip == true) LegType[leg] = LegType[leg]^1;
+                //now check all associates
+                assoc = Associates[leg].A;
+                if (assoc != -1) { 
+                    cluster.push(assoc); inCluster[assoc] = 1; 
+                    if (flip == true) LegType[assoc] = LegType[assoc]^1;
+                    assoc = Associates[leg].B;
+                    cluster.push(assoc); inCluster[assoc] = 1; 
+                    if (flip == true) LegType[assoc] = LegType[assoc]^1;
+                    assoc = Associates[leg].C;
+                    cluster.push(assoc); inCluster[assoc] = 1; 
+                    if (flip == true) LegType[assoc] = LegType[assoc]^1;
+                }
             }
+
+        }//while
+
+//   }//i
+
+//    for (int i=0; i<inCluster.size(); i++)
+//        cout<<inCluster[i]<<" ";
+//    cout<<endl;
+
+    //map back basis states and operator list
+    for(int i=0; i<numSpin; i++){
+        S_left[i] = LegType[i];
+    }//i
+    int count = numSpin;  
+    for(int i=0; i<OperatorList.size(); i++){
+
+        //assign non-trivial associates
+        if (OperatorList[i].A != -2 && OperatorList[i].A != -1){
+            count += 4;
+        }//done assigning associates
+        else{
+            if (LegType[count] == LegType[count+1])
+                OperatorList[i].A = -1;
+            else
+                OperatorList[i].A = -2;
+            count += 2;
         }
+    }//i
+    for(int i=0; i<numSpin; i++){
+        S_right[i] = LegType[LegType.size()-numSpin + i];
+    }//i
 
-    }//while
-
-    for (int i=0; i<inCluster.size(); i++)
-        cout<<inCluster[i]<<" ";
-    cout<<endl;
 
 }//----------------ClusterUpdate
 
@@ -290,11 +319,11 @@ void Basis::printBasis(){
     for (int i=0; i<OperatorList.size(); i++){
         OperatorList[i].print();
     }
-    cout<<endl;
-    for (int i=0; i<Associates.size(); i++){
-        Associates[i].print();
-    }
-    cout<<endl;
+//    cout<<endl;
+//    for (int i=0; i<Associates.size(); i++){
+//        Associates[i].print();
+//    }
+//    cout<<endl;
 
 }//print
 
