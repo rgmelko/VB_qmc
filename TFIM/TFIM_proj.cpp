@@ -5,6 +5,7 @@
 //
 #include "head_proj.h"
 #include "simparam.h"
+#include "measure.h"
 #include "basis.h"
 
 
@@ -19,19 +20,22 @@ int main(){
     Basis Proj(mrand);
     //Proj.printBasis();
 
-    Proj.DiagonalUpdate(mrand);
-    Proj.printBasis();
+    for (int i=0; i<param.EQL_; i++){
+        Proj.DiagonalUpdate(mrand);
+        Proj.LinkedList();
+        Proj.ClusterUpdate(mrand);
+    }
 
-    Proj.LinkedList();
-    Proj.printLinkedList();
-    Proj.printBasis();
+    Measure observ;
+    //observ.zero();
+    for (int i=0; i<param.MCS_; i++){
+        Proj.DiagonalUpdate(mrand);
+        Proj.LinkedList();
+        Proj.ClusterUpdate(mrand);
+        observ.measure_E(Proj);
+    }
+    observ.output();
 
-    Proj.ClusterUpdate(mrand);
-    Proj.printLinkedList();
-    Proj.printBasis();
-
-    Proj.DiagonalUpdate(mrand);
-    Proj.printBasis();
 
     return 0;
 

@@ -204,9 +204,9 @@ void Basis::LinkedList(){
         Associates.push_back(empty);
     }
 
-    cout<<"Ass size :"<<Associates.size()<<endl;
-    cout<<"LL size :"<<LinkList.size()<<endl;
-    cout<<"LT size :"<<LegType.size()<<endl;
+//    cout<<"Ass size :"<<Associates.size()<<endl;
+//    cout<<"LL size :"<<LinkList.size()<<endl;
+//    cout<<"LT size :"<<LegType.size()<<endl;
 
     //DEBUG: check if the state was propagated correctly
     for (int i=0; i<S_prop.size(); i++)
@@ -268,9 +268,9 @@ void Basis::ClusterUpdate(MTRand& ran){
 
     }//i
 
-    for (int i=0; i<inCluster.size(); i++)
-        cout<<inCluster[i]<<" ";
-    cout<<endl;
+//    for (int i=0; i<inCluster.size(); i++)
+//        cout<<inCluster[i]<<" ";
+//    cout<<endl;
 
     //map back basis states and operator list
     for(int i=0; i<numSpin; i++){
@@ -295,6 +295,9 @@ void Basis::ClusterUpdate(MTRand& ran){
         S_right[i] = LegType[LegType.size()-numSpin + i];
     }//i
 
+    LinkList.clear(); //clear up the linked list
+    LegType.clear();
+    Associates.clear();
 
 }//----------------ClusterUpdate
 
