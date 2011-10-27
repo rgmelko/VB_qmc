@@ -74,7 +74,6 @@ void Basis::DiagonalUpdate(MTRand& ran){
     //Probability for a single-site diagonal operator
     double hProb = h_x/(1.0+h_x);
 
-
     int bond;
     int flag;
     for(int i=0; i<OperatorList.size(); i++){
