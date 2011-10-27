@@ -26,8 +26,8 @@ int main(){
     Proj.printLinkedList();
     Proj.printBasis();
 
-    //Proj.ClusterUpdate();
-    //Proj.printLinkedList();
+    Proj.ClusterUpdate();
+    Proj.printLinkedList();
 
 
     return 0;

@@ -239,10 +239,16 @@ void Basis::ClusterUpdate(){
         if (inCluster[leg] == 0){
             inCluster[leg] = 1; //add the linked leg
             if (flip == true) LegType[leg] = LegType[leg]^1;
-            //assoc = Associates[leg]; //check its associates
+            //now check all associates
+            assoc = Associates[leg].A;
             if (assoc != -1) { 
-                cluster.push(assoc); 
-                inCluster[assoc] = 1; 
+                cluster.push(assoc); inCluster[assoc] = 1; 
+                if (flip == true) LegType[assoc] = LegType[assoc]^1;
+                assoc = Associates[leg].B;
+                cluster.push(assoc); inCluster[assoc] = 1; 
+                if (flip == true) LegType[assoc] = LegType[assoc]^1;
+                assoc = Associates[leg].C;
+                cluster.push(assoc); inCluster[assoc] = 1; 
                 if (flip == true) LegType[assoc] = LegType[assoc]^1;
             }
         }
