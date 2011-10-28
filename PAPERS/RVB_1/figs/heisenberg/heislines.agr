@@ -26,7 +26,7 @@
 @map color 4 to (111, 0, 255), "blue"
 @map color 5 to (50, 0, 255), "yellow"
 @map color 6 to (0, 0, 255), "brown"
-@map color 7 to (10, 225, 225), "grey"
+@map color 7 to (0, 70, 255), "grey"
 @map color 8 to (34, 200, 34), "violet"
 @map color 9 to (125, 255, 0), "cyan"
 @map color 10 to (235, 235, 10), "magenta"
@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Fri Oct 28 17:55:31 2011"
+@timestamp def "Fri Oct 28 18:20:33 2011"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -101,10 +101,10 @@
 @g0 fixedpoint format general general
 @g0 fixedpoint prec 6, 6
 @with g0
-@    world 0.87, 0, 20, 10.2
+@    world 0.87, 2.2, 15, 10.2
 @    stack world 0, 0, 0, 0
 @    znorm 1
-@    view 0.150000, 0.150000, 1.150000, 0.900000
+@    view 0.110000, 0.150000, 0.700000, 0.750000
 @    title ""
 @    title font 0
 @    title size 1.500000
@@ -163,10 +163,10 @@
 @    xaxis  ticklabel start 0.000000
 @    xaxis  ticklabel stop type auto
 @    xaxis  ticklabel stop 0.000000
-@    xaxis  ticklabel char size 1.500000
+@    xaxis  ticklabel char size 1.000000
 @    xaxis  ticklabel font 0
 @    xaxis  ticklabel color 1
-@    xaxis  tick place both
+@    xaxis  tick place normal
 @    xaxis  tick spec type none
 @    yaxis  on
 @    yaxis  type zero false
@@ -214,10 +214,10 @@
 @    yaxis  ticklabel start 0.000000
 @    yaxis  ticklabel stop type auto
 @    yaxis  ticklabel stop 0.000000
-@    yaxis  ticklabel char size 1.750000
+@    yaxis  ticklabel char size 1.000000
 @    yaxis  ticklabel font 0
 @    yaxis  ticklabel color 1
-@    yaxis  tick place both
+@    yaxis  tick place normal
 @    yaxis  tick spec type none
 @    altxaxis  off
 @    altyaxis  off
@@ -239,7 +239,7 @@
 @    legend invert false
 @    frame type 0
 @    frame linestyle 1
-@    frame linewidth 1.0
+@    frame linewidth 2.0
 @    frame color 1
 @    frame pattern 1
 @    frame background color 0
@@ -1042,7 +1042,7 @@
 @    world 8, 0.39, 42, 0.6
 @    stack world 0, 0, 0, 0
 @    znorm 1
-@    view 0.810000, 0.150000, 1.150000, 0.558000
+@    view 0.700000, 0.150000, 1.150000, 0.750000
 @    title ""
 @    title font 0
 @    title size 1.500000
@@ -1065,10 +1065,10 @@
 @    xaxis  label "\1L"
 @    xaxis  label layout para
 @    xaxis  label place auto
-@    xaxis  label char size 1.250000
+@    xaxis  label char size 1.500000
 @    xaxis  label font 0
 @    xaxis  label color 1
-@    xaxis  label place opposite
+@    xaxis  label place normal
 @    xaxis  tick on
 @    xaxis  tick major 10
 @    xaxis  tick minor ticks 1
@@ -1094,7 +1094,7 @@
 @    xaxis  ticklabel angle 0
 @    xaxis  ticklabel skip 0
 @    xaxis  ticklabel stagger 0
-@    xaxis  ticklabel place opposite
+@    xaxis  ticklabel place normal
 @    xaxis  ticklabel offset auto
 @    xaxis  ticklabel offset 0.000000 , 0.010000
 @    xaxis  ticklabel start type auto
@@ -1104,7 +1104,7 @@
 @    xaxis  ticklabel char size 1.000000
 @    xaxis  ticklabel font 0
 @    xaxis  ticklabel color 1
-@    xaxis  tick place both
+@    xaxis  tick place normal
 @    xaxis  tick spec type none
 @    yaxis  on
 @    yaxis  type zero false
@@ -1116,10 +1116,10 @@
 @    yaxis  label "\1m"
 @    yaxis  label layout para
 @    yaxis  label place auto
-@    yaxis  label char size 1.250000
+@    yaxis  label char size 1.500000
 @    yaxis  label font 0
 @    yaxis  label color 1
-@    yaxis  label place normal
+@    yaxis  label place opposite
 @    yaxis  tick on
 @    yaxis  tick major 0.05
 @    yaxis  tick minor ticks 1
@@ -1145,7 +1145,7 @@
 @    yaxis  ticklabel angle 0
 @    yaxis  ticklabel skip 0
 @    yaxis  ticklabel stagger 0
-@    yaxis  ticklabel place normal
+@    yaxis  ticklabel place opposite
 @    yaxis  ticklabel offset auto
 @    yaxis  ticklabel offset 0.000000 , 0.010000
 @    yaxis  ticklabel start type auto
@@ -1155,7 +1155,7 @@
 @    yaxis  ticklabel char size 1.000000
 @    yaxis  ticklabel font 0
 @    yaxis  ticklabel color 1
-@    yaxis  tick place both
+@    yaxis  tick place opposite
 @    yaxis  tick spec type none
 @    altxaxis  off
 @    altyaxis  off
@@ -1177,18 +1177,18 @@
 @    legend invert false
 @    frame type 0
 @    frame linestyle 1
-@    frame linewidth 1.0
+@    frame linewidth 2.0
 @    frame color 1
 @    frame pattern 1
 @    frame background color 0
 @    frame background pattern 1
 @    s1 hidden false
 @    s1 type xydy
-@    s1 symbol 2
+@    s1 symbol 3
 @    s1 symbol size 1.000000
 @    s1 symbol color 1
 @    s1 symbol pattern 1
-@    s1 symbol fill color 14
+@    s1 symbol fill color 7
 @    s1 symbol fill pattern 1
 @    s1 symbol linewidth 2.0
 @    s1 symbol linestyle 1
