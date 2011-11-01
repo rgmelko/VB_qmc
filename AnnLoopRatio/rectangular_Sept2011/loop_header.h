@@ -205,7 +205,12 @@ void LOOPS::nnbondlist()
     nnbonds.resize (number_of_nnbonds*2,2);//make nnbonds the proper size
     //****changed**** multiplied dimensions by 2
     nn_mat.resize(number_of_sites*2, number_of_sites*2);
-   
+    
+    for(int i=0;i<number_of_sites*2;i++){
+      for(int j=0; j<number_of_sites*2;j++){
+	nn_mat(i,j)=-99;
+      }
+    }
     for(int i=0; i<number_of_nnbonds; i++){
       nnbonds(i,0) = i;
       nnbonds(i,1) = i+1;
