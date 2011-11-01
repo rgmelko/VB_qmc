@@ -63,7 +63,7 @@ void Measure::measure_M(const Basis & basis){
 		m_0 += S_prop[i];
 
 
-    Mag1 += 1.0*m_0*m_0/(1.0*numSpin*numSpin); //m^2
+    Mag1 += 1.0*m_0*m_0; //m^2
 
 }//measure_M
 
@@ -77,7 +77,7 @@ void Measure::output(){
     one_over_n = Energy/(1.0*MCS_);
     cfout<<numSpin*h_x*2.0*m_ / one_over_n<<" ";
     cfout<<-(-1.0-h_x + h_x*2.0*m_ / one_over_n)<<" ";
-	cfout<<Mag1/(1.0*MCS_);
+	cfout<<Mag1/(1.0*MCS_*1.0*numSpin*numSpin);
     cfout<<endl;
 
 	cfout.close();
