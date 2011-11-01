@@ -33,6 +33,7 @@ int main(){
         Proj.LinkedList();
         Proj.ClusterUpdate(mrand);
         observ.measure_E(Proj);
+        observ.measure_M(Proj);
     }
     observ.output();
 
