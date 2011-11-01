@@ -1,3 +1,0 @@
-#!/bin/sh
-
-rsync -turav akallin@whale.sharcnet.ca:/work/akallin/sharcruns/dub_proj/bondlength/ ./;
