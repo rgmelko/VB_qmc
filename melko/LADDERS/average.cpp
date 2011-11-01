@@ -9,12 +9,15 @@
 // entropies and their errors (sdom)
 //--------------------------------------------------------
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <vector>
 #include <math.h>
 using namespace std;
 
 int main(int argc, char *argv[]){
+
+  cout.precision(10);
   
   if (argc < 4) {
     cout<<"I expect a command line argument: filename, number of columns, number to exclude.\n";
