@@ -60,7 +60,7 @@ void Measure::measure_M(const Basis & basis){
 	}
 
 	for (int i=0; i<basis.numSpin; i++)
-		m_0 += S_prop[i];
+		m_0 += (2*S_prop[i]-1);
 
 
     Mag1 += 1.0*m_0*m_0; //m^2
