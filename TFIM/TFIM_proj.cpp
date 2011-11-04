@@ -27,15 +27,18 @@ int main(){
     }
 
     Measure observ;
-    //observ.zero();
-    for (int i=0; i<param.MCS_; i++){
-        Proj.DiagonalUpdate(mrand);
-        Proj.LinkedList();
-        Proj.ClusterUpdate(mrand);
-        observ.measure_E(Proj);
-        observ.measure_M(Proj);
+
+    for (int j=0; j< param.nBin_; j++){
+        observ.zero();
+        for (int i=0; i<param.MCS_; i++){
+            Proj.DiagonalUpdate(mrand);
+            Proj.LinkedList();
+            Proj.ClusterUpdate(mrand);
+            observ.measure_E(Proj);
+            observ.measure_M(Proj);
+        }
+        observ.output();
     }
-    observ.output();
 
 
     return 0;

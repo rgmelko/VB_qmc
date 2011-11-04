@@ -48,12 +48,12 @@ PARAMS::PARAMS(){
     if (nY_ == 0) {    // ---------1D chain
         //derived constants
         numSpin = nX_;
-        numLattB = nX_; //Periodic BC
+        numLattB = nX_-1; //Periodic BC
 
         //Initialize lattice bond array
         int a,b;
         index2 temp;
-        for (int i=0; i<numSpin; i++){  //REAL SYSTEM (LAYER 1)
+        for (int i=0; i<numLattB; i++){  //REAL SYSTEM (LAYER 1)
             a = i;
             b = i+1;
             if (b == numSpin) b = 0; //PBC
