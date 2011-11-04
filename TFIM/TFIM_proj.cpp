@@ -20,10 +20,13 @@ int main(){
     Basis Proj(mrand);
     //Proj.printBasis();
 
+    int Loopsize2; //loopsize squared for M^2 measurement
+
     for (int i=0; i<param.EQL_; i++){
         Proj.DiagonalUpdate(mrand);
         Proj.LinkedList();
-        Proj.ClusterUpdate(mrand);
+        //Proj.printLinkedList();
+        Proj.ClusterUpdate(mrand,Loopsize2);
     }
 
     Measure observ;
@@ -33,9 +36,11 @@ int main(){
         for (int i=0; i<param.MCS_; i++){
             Proj.DiagonalUpdate(mrand);
             Proj.LinkedList();
-            Proj.ClusterUpdate(mrand);
+            //Proj.printBasis();
+            //Proj.printLinkedList();
+            Proj.ClusterUpdate(mrand,Loopsize2);
             observ.measure_E(Proj);
-            observ.measure_M(Proj);
+            observ.measure_M(Proj, Loopsize2);
         }
         observ.output();
     }

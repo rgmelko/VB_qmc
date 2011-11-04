@@ -11,6 +11,7 @@ class Basis: public PARAMS
        vector<int> LinkList;
        vector<int> LegType;
        vector<index3> Associates;
+       vector<int> inCluster;
 
     public:
       vector <index2> OperatorList; //The operator list of 2m
@@ -24,7 +25,8 @@ class Basis: public PARAMS
       Basis(MTRand &); //constructor
       void DiagonalUpdate(MTRand &);
       void LinkedList();
-      void ClusterUpdate(MTRand &);
+      void ClusterUpdate(MTRand &, int&);
+      int calc_LoopSize2();
       void printBasis();
       void printLinkedList();
 
@@ -216,9 +218,10 @@ void Basis::LinkedList(){
 
 
 //----------------ClusterUpdate
-void Basis::ClusterUpdate(MTRand& ran){
+void Basis::ClusterUpdate(MTRand& ran, int& L2){
 
-    vector<int> inCluster(LinkList.size(), 0); //nothing in clusters yet
+    inCluster.assign(LinkList.size(),0);//nothing in clusters yet
+
     stack<int> cluster;
 
     int leg, assoc;
@@ -267,9 +270,10 @@ void Basis::ClusterUpdate(MTRand& ran){
 
     }//i
 
-//    for (int i=0; i<inCluster.size(); i++)
-//        cout<<inCluster[i]<<" ";
-//    cout<<endl;
+    //cout<<"inCluster: ";
+    //for (int i=0; i<inCluster.size(); i++)
+    //    cout<<inCluster[i]<<" ";
+    //cout<<endl;
 
     //map back basis states and operator list
     for(int i=0; i<numSpin; i++){
@@ -294,11 +298,83 @@ void Basis::ClusterUpdate(MTRand& ran){
         S_right[i] = LegType[LegType.size()-numSpin + i];
     }//i
 
+    L2 = calc_LoopSize2(); //used for magnetization
+
     LinkList.clear(); //clear up the linked list
     LegType.clear();
     Associates.clear();
+    inCluster.clear();  //redundant with assign
 
 }//----------------ClusterUpdate
+
+int Basis::calc_LoopSize2(){
+
+    vector<int> Last;
+    vector<int> LL;
+
+    for (int i=0; i<numSpin; i++){ //the first vertex leg for each spin
+        Last.push_back(i);
+        LL.push_back(-99); //unknown what these link to!
+    }
+
+    int site, site1, site2;
+    for(int i=0; i<OperatorList.size()/2; i++){
+
+        if (OperatorList[i].A == -2){ //1-site off-diagonal operator is encountered
+            site = OperatorList[i].B;
+            //"lower" or leftmost leg
+            LL.push_back(Last[site]); //site index
+            LL[Last[site]] = LL.size()-1; //this leg links backwards...
+            Last[site] = LL.size(); //update
+            //"upper" or rightmost leg
+            LL.push_back(-99); //null site index
+        }
+        else if (OperatorList[i].A == -1){ //1-site diagonal operator is encountered
+            site = OperatorList[i].B;
+            //"lower" or leftmost leg
+            LL.push_back(Last[site]); //site index
+            LL[Last[site]] = LL.size()-1; //this leg links backwards...
+            Last[site] = LL.size(); //update
+            //"upper" or rightmost leg
+            LL.push_back(-99); //null site index
+        }
+        else {//2-site diagonal operator is encountered (4 legs)
+            //lower left
+            site1 = OperatorList[i].A;
+            LL.push_back(Last[site1]); //site index
+            LL[Last[site1]] = LL.size()-1; //this leg links backwards...
+            Last[site1] = LL.size()+1;
+            //lower right
+            site2 = OperatorList[i].B;
+            LL.push_back(Last[site2]); //site index
+            LL[Last[site2]] = LL.size()-1; //this leg links backwards...
+            Last[site2] = LL.size()+1;
+            //upper left
+            LL.push_back(-99); //null site index
+            //upper right
+            LL.push_back(-99); //null site index
+        }
+    }//i
+
+    vector<int> ClusterSize(LL.size(),0); //is this the maximum size?
+
+    for (int i=0; i<numSpin; i++)
+       ClusterSize[inCluster[Last[i]]]++;
+
+    //cout<<"ClusterSize: ";
+    //for (int i=0; i<ClusterSize.size(); i++)
+    //    if (ClusterSize[i] != 0) cout<<i<<" "<<ClusterSize[i]<<" ";
+    //cout<<endl;
+
+    int sizesquared=0;
+    for (int i=0; i<ClusterSize.size(); i++)
+        sizesquared += ClusterSize[i]*ClusterSize[i];
+
+    //cout<<sizesquared<<endl;
+
+    return sizesquared;
+
+}//calc_LoopSize2
 
 
 //----------------print LinkedList
@@ -310,8 +386,7 @@ void Basis::printLinkedList(){
         cout<<LegType[i]<<"\n";
     }
 
-
-}
+}//printLinkedList
 
 
 
