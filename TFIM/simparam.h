@@ -48,7 +48,7 @@ PARAMS::PARAMS(){
     if (nY_ == 0) {    // ---------1D chain
         //derived constants
         numSpin = nX_;
-        numLattB = nX_; //Periodic BC
+        numLattB = nX_-1; //Periodic BC
 
         //Initialize lattice bond array
         int a,b;

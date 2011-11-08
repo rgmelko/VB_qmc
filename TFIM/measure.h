@@ -80,7 +80,8 @@ void Measure::output(){
 
     one_over_n = Energy/(1.0*MCS_);
     cfout<<numSpin*h_x*2.0*m_ / one_over_n<<" ";
-    cfout<<-(-1.0-h_x + h_x*2.0*m_ / one_over_n)<<" ";
+    cfout<<-(numSpin*h_x*2.0*m_ / one_over_n - numSpin*h_x - numLattB)/numSpin<<" ";
+    //cfout<<-(-1.0-h_x + h_x*2.0*m_ / one_over_n)<<" "; //wrong for OBC?
 	cfout<<Mag1/(1.0*MCS_*1.0*numSpin*numSpin)<<" ";
 	cfout<<Mag2/(1.0*MCS_*1.0*numSpin*numSpin);
     cfout<<endl;
