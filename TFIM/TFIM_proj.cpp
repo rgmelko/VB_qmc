@@ -13,7 +13,7 @@ int main(){
 
 
     PARAMS param; //read parameter file
-    //param.printBst();
+    param.printBst();
 
     MTRand mrand(param.SEED_); //random number for metropolis
 
