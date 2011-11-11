@@ -30,7 +30,7 @@ int main(){
     }
 
 
-    vector<int> inA(param.numSpin/2,0); //size of physical spins
+    vector<int> inA(param.numSpin/2-1,0); //size of physical spins
 
     Measure observ;
 
@@ -43,7 +43,7 @@ int main(){
             //Proj.printLinkedList();
             Proj.ClusterUpdate(mrand,Loopsize2);
             //---measure swap
-            inA.assign(param.numSpin/2,0);
+            inA.assign(param.numSpin/2-1,0);
             for(int k=0; k<inA.size(); k++){
                 inA[k] = 1;
                 observ.Renyi2(k,Proj.SWAP(inA),Proj.ClustNumber);

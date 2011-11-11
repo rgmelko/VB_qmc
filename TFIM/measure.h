@@ -30,7 +30,7 @@ Measure::Measure() {//constructor
     Energy = 0.0; 
     Mag1 = 0.0; 
     Mag2 = 0.0;
-    Renyi.assign(numSpin/2,0.0);
+    Renyi.assign(numSpin/2-1,0.0);
 };
 
 void Measure::zero(){
@@ -38,13 +38,15 @@ void Measure::zero(){
     Energy = 0.0;
     Mag1 = 0.0;
     Mag2 = 0.0;
-    Renyi.assign(numSpin/2,0.0);
+    Renyi.assign(numSpin/2-1,0.0);
 
 }//zero
 
 void Measure::Renyi2(const int& index, const int& numer, const int& denom){
 
-    Renyi[index] += (1.0*numer)/(1.0*denom);
+    int frac_s = numer-denom;
+
+    Renyi[index] += pow(2.0,frac_s);
 
 }//Renyi2
 
