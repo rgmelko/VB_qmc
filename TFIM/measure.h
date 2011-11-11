@@ -4,6 +4,7 @@
 #include "head_proj.h"
 #include "basis.h"
 #include <fstream>
+#include <cmath>
 
 class Measure: public PARAMS
 {
@@ -12,15 +13,24 @@ class Measure: public PARAMS
       double Energy;
 	  double Mag1;
 	  double Mag2;
+      vector<double> Renyi;
 
     public:
 
-      Measure(){Energy = 0.0; Mag1 = 0.0; Mag2 = 0.0;};
+      Measure();
       void zero();
       void measure_E(const Basis &);
       void measure_M(const Basis &, const int &);
+      void Renyi2(const int& , const int& , const int& );
       void output();
   
+};
+
+Measure::Measure() {//constructor
+    Energy = 0.0; 
+    Mag1 = 0.0; 
+    Mag2 = 0.0;
+    Renyi.assign(numSpin/2,0.0);
 };
 
 void Measure::zero(){
@@ -28,8 +38,15 @@ void Measure::zero(){
     Energy = 0.0;
     Mag1 = 0.0;
     Mag2 = 0.0;
+    Renyi.assign(numSpin/2,0.0);
 
 }//zero
+
+void Measure::Renyi2(const int& index, const int& numer, const int& denom){
+
+    Renyi[index] += (1.0*numer)/(1.0*denom);
+
+}//Renyi2
 
 void Measure::measure_E(const Basis & basis){
 
@@ -85,6 +102,14 @@ void Measure::output(){
 	cfout<<Mag1/(1.0*MCS_*1.0*numSpin*numSpin)<<" ";
 	cfout<<Mag2/(1.0*MCS_*1.0*numSpin*numSpin);
     cfout<<endl;
+
+	cfout.close();
+
+	cfout.open("01.data",ios::app);
+
+    for (int i=0; i<Renyi.size(); i++)
+        cfout<<i<<" "<<-log(Renyi[i]/(1.0*MCS_))<<endl;
+    //cout<<endl;
 
 	cfout.close();
 

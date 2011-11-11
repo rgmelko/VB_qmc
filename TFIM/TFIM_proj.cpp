@@ -13,7 +13,7 @@ int main(){
 
 
     PARAMS param; //read parameter file
-    param.printBst();
+    //param.printBst();
 
     MTRand mrand(param.SEED_); //random number for metropolis
 
@@ -31,7 +31,6 @@ int main(){
 
 
     vector<int> inA(param.numSpin/2,0); //size of physical spins
-    inA[0] = 1;
 
     Measure observ;
 
@@ -40,12 +39,16 @@ int main(){
         for (int i=0; i<param.MCS_; i++){
             Proj.DiagonalUpdate(mrand);
             Proj.LinkedList();
-            Proj.printBasis();
-            Proj.printLinkedList();
+            //Proj.printBasis();
+            //Proj.printLinkedList();
             Proj.ClusterUpdate(mrand,Loopsize2);
-            Proj.printBasis();
-            cout<<"swapped "<<Proj.SWAP(inA)<<endl;
-            return 0;
+            //---measure swap
+            inA.assign(param.numSpin/2,0);
+            for(int k=0; k<inA.size(); k++){
+                inA[k] = 1;
+                observ.Renyi2(k,Proj.SWAP(inA),Proj.ClustNumber);
+            }
+            //-----------------
             observ.measure_E(Proj);
             observ.measure_M(Proj, Loopsize2);
         }

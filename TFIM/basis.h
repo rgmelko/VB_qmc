@@ -22,6 +22,8 @@ class Basis: public PARAMS
       vector<int> S_left; //the left and right trial spin state
       vector<int> S_right;
 
+      int ClustNumber; //the number of clusters in the center
+
       Basis(MTRand &); //constructor
       void DiagonalUpdate(MTRand &);
       void LinkedList();
@@ -384,8 +386,9 @@ int Basis::calc_LoopSize2(){
     }
 
     //cout<<sizesquared<<endl;
-    cout<<"clusters in center "<<Ccount<<endl;
+    //cout<<"clusters in center "<<Ccount<<endl;
 
+    ClustNumber = Ccount; //number of clusters crossing the center 
     return sizesquared;
 
 }//calc_LoopSize2
