@@ -47,22 +47,30 @@ PARAMS::PARAMS(){
 
     if (nY_ == 0) {    // ---------1D chain
         //derived constants
-        numSpin = nX_;
-        numLattB = nX_-1; //Periodic BC
+        numSpin = 2*nX_;    //replicate it!
+        numLattB = numSpin; //Periodic BC
 
         //Initialize lattice bond array
         int a,b;
         index2 temp;
-        for (int i=0; i<numLattB; i++){  //REAL SYSTEM (LAYER 1)
+        for (int i=0; i<numLattB/2; i++){  //REAL SYSTEM (LAYER 1)
             a = i;
             b = i+1;
-            if (b == numSpin) b = 0; //PBC
+            if (b == numSpin/2) b = 0; //PBC
+            temp.set(a,b);
+            Bst.push_back(temp);
+        }//i
+        for (int i=0; i<numLattB/2; i++){  //REPLICA SYSTEM (LAYER 2)
+            a = numSpin/2+i;
+            b = a+1;
+            if (b == numSpin) b = numSpin/2; //PBC
             temp.set(a,b);
             Bst.push_back(temp);
         }//i
 
     }//1D chain
-    else{
+
+    else{//2D
 
         numSpin = nX_*nX_;
         numLattB = 2*nX_*nX_; //Periodic BC for 2D lattice
