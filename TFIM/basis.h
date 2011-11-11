@@ -27,6 +27,7 @@ class Basis: public PARAMS
       void LinkedList();
       void ClusterUpdate(MTRand &, int&);
       int calc_LoopSize2();
+      int SWAP(const vector<int>& );
       void printBasis();
       void printLinkedList();
 
@@ -116,6 +117,12 @@ void Basis::DiagonalUpdate(MTRand& ran){
 
 //----------------LinkedList function
 void Basis::LinkedList(){
+
+    //Clear linked list from last iteration
+    LinkList.clear(); 
+    LegType.clear();
+    Associates.clear();
+    inCluster.clear();  //redundant with assign
 
     index3 empty(-1,-1,-1);
     index3 temp3;
@@ -300,10 +307,10 @@ void Basis::ClusterUpdate(MTRand& ran, int& L2){
 
     L2 = calc_LoopSize2(); //used for magnetization
 
-    LinkList.clear(); //clear up the linked list
-    LegType.clear();
-    Associates.clear();
-    inCluster.clear();  //redundant with assign
+    //LinkList.clear(); //clear up the linked list
+    //LegType.clear();
+    //Associates.clear();
+    //inCluster.clear();  //redundant with assign
 
 }//----------------ClusterUpdate
 
@@ -357,9 +364,12 @@ int Basis::calc_LoopSize2(){
     }//i
 
     vector<int> ClusterSize(LL.size(),0); //is this the maximum size?
+    vector<int> numCluster(LL.size(),0); 
 
-    for (int i=0; i<numSpin; i++)
-       ClusterSize[inCluster[Last[i]]]++;
+    for (int i=0; i<numSpin; i++){
+        ClusterSize[inCluster[Last[i]]]++;
+        numCluster[inCluster[Last[i]]]=1;
+    }
 
     //cout<<"ClusterSize: ";
     //for (int i=0; i<ClusterSize.size(); i++)
@@ -367,10 +377,14 @@ int Basis::calc_LoopSize2(){
     //cout<<endl;
 
     int sizesquared=0;
-    for (int i=0; i<ClusterSize.size(); i++)
+    int Ccount=0;
+    for (int i=0; i<ClusterSize.size(); i++){
         sizesquared += ClusterSize[i]*ClusterSize[i];
+        Ccount += numCluster[i];
+    }
 
     //cout<<sizesquared<<endl;
+    cout<<"clusters in center "<<Ccount<<endl;
 
     return sizesquared;
 
@@ -411,6 +425,127 @@ void Basis::printBasis(){
 //    cout<<endl;
 
 }//print
+
+
+//----------------SWAP
+int Basis::SWAP(const vector<int>& inA){
+
+    vector<int> Last;
+    vector<int> swapLL;
+    for (int i=0; i<numSpin; i++){ //the first vertex leg for each spin
+        Last.push_back(i);
+        swapLL.push_back(-99);     //unknown what these link to!
+    }
+
+    vector<int> Last_atHalf;
+
+    int count = numSpin;  
+    int site, site1, site2;
+    for(int i=0; i<OperatorList.size(); i++){
+         
+        if (i == OperatorList.size()/2){ //check - in the center?
+            int tempj;
+            for (int j=0; j<inA.size(); j++)
+                if (inA[j] == 1){
+                    tempj = Last[j];
+                    Last[j] = Last[j+numSpin/2];
+                    Last[j+numSpin/2] = tempj;
+                }
+            Last_atHalf = Last; //copy 
+        }//i at the center
+
+        if (OperatorList[i].A == -2){ //1-site off-diagonal operator is encountered
+            site = OperatorList[i].B;
+            //"lower" or leftmost leg
+            swapLL.push_back(Last[site]); //site index
+            swapLL[Last[site]] = swapLL.size()-1; //this leg links backwards...
+            Last[site] = swapLL.size(); //update
+            //"upper" or rightmost leg
+            swapLL.push_back(-99); //null site index
+        }
+        else if (OperatorList[i].A == -1){ //1-site diagonal operator is encountered
+            site = OperatorList[i].B;
+            //"lower" or leftmost leg
+            swapLL.push_back(Last[site]); //site index
+            swapLL[Last[site]] = swapLL.size()-1; //this leg links backwards...
+            Last[site] = swapLL.size(); //update
+            //"upper" or rightmost leg
+            swapLL.push_back(-99); //null site index
+        }
+        else {//2-site diagonal operator is encountered (4 legs)
+            //lower left
+            site1 = OperatorList[i].A;
+            swapLL.push_back(Last[site1]); //site index
+            swapLL[Last[site1]] = swapLL.size()-1; //this leg links backwards...
+            Last[site1] = swapLL.size()+1;
+            //lower right
+            site2 = OperatorList[i].B;
+            swapLL.push_back(Last[site2]); //site index
+            swapLL[Last[site2]] = swapLL.size()-1; //this leg links backwards...
+            Last[site2] = swapLL.size()+1;
+            //upper left
+            swapLL.push_back(-99); //null site index
+            //upper right
+            swapLL.push_back(-99); //null site index
+        }
+
+    }//i
+
+    //now add the legs of the final ("top"or right-hand) spin state
+    for (int i=0; i<numSpin; i++){ 
+        swapLL.push_back(Last[i]);
+        swapLL[Last[i]] = swapLL.size()-1;
+    }
+    //DONE BUILDING SWAPPED LINKED LIST
+    
+    vector<int> swap_inClust(swapLL.size(),0);//nothing in clusters yet
+    stack<int> cluster;
+
+    int leg, assoc;
+    int ccount = 0;
+    for (int i=0; i<swapLL.size(); i++){ //loop to find all clusters
+        //add a new leg
+        if (swap_inClust[i] == 0 && Associates[i].A == -1){ //spins and site ops only
+            ccount ++; //cluster counter
+            cluster.push(i);
+            swap_inClust[cluster.top()] = ccount;
+
+            while(!cluster.empty()){ //build the cluster associated with this leg
+                //first follow the link
+                leg = swapLL[cluster.top()];
+                cluster.pop();
+
+                if (swap_inClust[leg] == 0){
+                    swap_inClust[leg] = ccount; //add the linked leg
+                    //now check all associates
+                    assoc = Associates[leg].A;
+                    if (assoc != -1) { 
+                        cluster.push(assoc); swap_inClust[assoc] = ccount; 
+                        assoc = Associates[leg].B;
+                        cluster.push(assoc); swap_inClust[assoc] = ccount; 
+                        assoc = Associates[leg].C;
+                        cluster.push(assoc); swap_inClust[assoc] = ccount; 
+                    }
+                }
+            }//while
+
+        }//if building a new cluster
+    }//i
+
+    //DONE BUILDING CLUSTERS
+
+    vector<int> numCluster(swapLL.size(),0); //is this the maximum size?
+
+    for (int i=0; i<numSpin; i++)
+       numCluster[swap_inClust[Last_atHalf[i]]] = 1; //look at half
+
+    int Ccount=0;
+    for (int i=0; i<numCluster.size(); i++)
+        Ccount += numCluster[i];
+
+    return Ccount;
+
+}//----------------SWAP
 
 
 

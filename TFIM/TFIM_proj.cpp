@@ -29,6 +29,10 @@ int main(){
         Proj.ClusterUpdate(mrand,Loopsize2);
     }
 
+
+    vector<int> inA(param.numSpin/2,0); //size of physical spins
+    inA[0] = 1;
+
     Measure observ;
 
     for (int j=0; j< param.nBin_; j++){
@@ -36,9 +40,12 @@ int main(){
         for (int i=0; i<param.MCS_; i++){
             Proj.DiagonalUpdate(mrand);
             Proj.LinkedList();
-            //Proj.printBasis();
-            //Proj.printLinkedList();
+            Proj.printBasis();
+            Proj.printLinkedList();
             Proj.ClusterUpdate(mrand,Loopsize2);
+            Proj.printBasis();
+            cout<<"swapped "<<Proj.SWAP(inA)<<endl;
+            return 0;
             observ.measure_E(Proj);
             observ.measure_M(Proj, Loopsize2);
         }
