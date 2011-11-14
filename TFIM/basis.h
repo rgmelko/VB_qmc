@@ -77,7 +77,8 @@ void Basis::DiagonalUpdate(MTRand& ran){
     S_prop = S_left; //assign to the left spin state
 
     //Probability for a single-site diagonal operator
-    double hProb = h_x/(2.0+h_x);
+    //double hProb = h_x/(2.0+h_x);
+    double hProb = 1.0*numSpin*h_x/(numLattB*2.0+numSpin*h_x);
 
     int bond;
     int flag;
