@@ -9,9 +9,13 @@ class Basis: public PARAMS
 {
     private:
        vector<int> LinkList;
-       vector<int> LegType;
+       vector<int> LegType; 
        vector<index3> Associates;
        vector<int> inCluster;
+
+       //center clusters built in Linked List
+       vector<int> LeftinClust;
+       vector<int> RightinClust;
 
     public:
       vector <index2> OperatorList; //The operator list of 2m
@@ -125,8 +129,7 @@ void Basis::LinkedList(){
     LinkList.clear(); 
     LegType.clear();
     Associates.clear();
-    inCluster.clear();  //redundant with assign
-
+    
     index3 empty(-1,-1,-1);
     index3 temp3;
 
@@ -142,10 +145,19 @@ void Basis::LinkedList(){
     vector<int> S_prop; //this is the temporary propagated spin state
     S_prop = S_left; //assign to the left spin state
 
+    int Ccount, Ctemp; //cluster counter
+    vector<int> LRinClust;
+
     int count = numSpin;  
     int site, site1, site2;
     //The linked list is now size N.  Add the 2m operators each of 4 or 2 legs
     for(int i=0; i<OperatorList.size(); i++){
+        
+        //This will build the left/right inClust
+        if (i==0 || i == OperatorList.size()/2){
+            Ccount = 0;
+            LRinClust.assign(numSpin,0);
+        }
 
         //assign non-trivial associates
         if (OperatorList[i].A != -2 && OperatorList[i].A != -1){
@@ -172,6 +184,7 @@ void Basis::LinkedList(){
             //"upper" or rightmost leg
             LinkList.push_back(-99); //null site index
             LegType.push_back(S_prop[site]); //the spin of the leg (flipped)
+            LRinClust[site] = 0; //cluster counter for center
         }
         else if (OperatorList[i].A == -1){ //1-site diagonal operator is encountered
             site = OperatorList[i].B;
@@ -183,6 +196,7 @@ void Basis::LinkedList(){
             //"upper" or rightmost leg
             LinkList.push_back(-99); //null site index
             LegType.push_back(S_prop[site]); //the spin of the leg 
+            LRinClust[site] = 0; //cluster counter for center
         }
         else {//2-site diagonal operator is encountered (4 legs)
             //lower left
@@ -203,9 +217,51 @@ void Basis::LinkedList(){
             //upper right
             LinkList.push_back(-99); //null site index
             LegType.push_back(S_prop[site2]); //the spin of the leg 
+            //------Build the clusters here
+            //cout<<"sites "<<site1<<" "<<site2<<endl;
+            //cout<<"clust "<<LRinClust[site1]<<" "<<LRinClust[site2]<<endl;
+            if (LRinClust[site1] == 0 && LRinClust[site2] == 0)
+            {
+                Ccount++;
+                LRinClust[site1] = Ccount; LRinClust[site2] = Ccount;
+            }
+            else if (LRinClust[site1] != 0 && LRinClust[site2] == 0)
+                LRinClust[site2] = LRinClust[site1];
+            else if (LRinClust[site2] != 0 && LRinClust[site1] == 0)
+                LRinClust[site1] = LRinClust[site2];
+            else if (LRinClust[site2] != 0 && LRinClust[site1] != 0)
+            {
+                if (LRinClust[site2] != LRinClust[site1]){
+                    Ctemp = LRinClust[site2];
+                    for (int ii=0; ii<LRinClust.size(); ii++)
+                        if (LRinClust[ii] == Ctemp) LRinClust[ii] = LRinClust[site1];
+                }
+            }
+            else cout<<"Mid cluster error \n";
+            //cout<<"Aclust "<<LRinClust[site1]<<" "<<LRinClust[site2]<<endl;
+            //-------------------------
+        }//bond operator encountered
+
+        if (i == OperatorList.size()/2-1){
+            LeftinClust = LRinClust; //Left-hand side
+            for (int jj=0; jj<LeftinClust.size(); jj++){
+                if (LeftinClust[jj] == 0){
+                    Ccount++;
+                    LeftinClust[jj] = Ccount;
+                }
+            }//jj
         }
 
     }//i
+
+    RightinClust = LRinClust;  //Right-hand side
+    for (int jj=0; jj<RightinClust.size(); jj++){
+        if (RightinClust[jj] == 0){
+            Ccount++;
+            RightinClust[jj] = Ccount;
+        }
+    }//jj
+
 
     //now add the legs of the final ("top"or right-hand) spin state
     for (int i=0; i<numSpin; i++){ 
@@ -230,6 +286,7 @@ void Basis::LinkedList(){
 //----------------ClusterUpdate
 void Basis::ClusterUpdate(MTRand& ran, int& L2){
 
+    inCluster.clear();  //redundant with assign
     inCluster.assign(LinkList.size(),0);//nothing in clusters yet
 
     stack<int> cluster;
@@ -387,7 +444,7 @@ int Basis::calc_LoopSize2(){
     }
 
     //cout<<sizesquared<<endl;
-    //cout<<"clusters in center "<<Ccount<<endl;
+    cout<<"clusters in center "<<Ccount<<endl;
 
     ClustNumber = Ccount; //number of clusters crossing the center 
     return sizesquared;
@@ -398,11 +455,21 @@ int Basis::calc_LoopSize2(){
 //----------------print LinkedList
 void Basis::printLinkedList(){
 
-    for (int i=0; i<LinkList.size(); i++){ 
-        cout<<i<<" ";
-        cout<<LinkList[i]<<" ";
-        cout<<LegType[i]<<"\n";
-    }
+    //for (int i=0; i<LinkList.size(); i++){ 
+    //    cout<<i<<" ";
+    //    cout<<LinkList[i]<<" ";
+    //    cout<<LegType[i]<<"\n";
+    //}
+
+    cout<<"LH cluster : ";
+    for (int i=0; i<LeftinClust.size(); i++)
+        cout<<LeftinClust[i]<<" ";
+    cout<<endl;
+
+    cout<<"RH cluster : ";
+    for (int i=0; i<RightinClust.size(); i++)
+        cout<<RightinClust[i]<<" ";
+    cout<<endl;
 
 }//printLinkedList
 

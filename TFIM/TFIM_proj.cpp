@@ -13,7 +13,7 @@ int main(){
 
 
     PARAMS param; //read parameter file
-    //param.printBst();
+    param.printBst();
 
     MTRand mrand(param.SEED_); //random number for metropolis
 
@@ -22,12 +22,14 @@ int main(){
 
     int Loopsize2; //loopsize squared for M^2 measurement
 
-    for (int i=0; i<param.EQL_; i++){
+//    for (int i=0; i<param.EQL_; i++){
         Proj.DiagonalUpdate(mrand);
+        Proj.printBasis();
         Proj.LinkedList();
-        //Proj.printLinkedList();
+        Proj.printLinkedList();
         Proj.ClusterUpdate(mrand,Loopsize2);
-    }
+        return 0;
+//    }
 
 
     vector<int> inA(param.numSpin/2-1,0); //size of physical spins
