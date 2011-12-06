@@ -42,68 +42,99 @@ We consider the role of torus aspect ratio and we find that an additive logarith
 \end{abstract}
 \maketitle
 
-{\it Introduction.} It is now well established that the low-energy
-physics of many one-dimensional (1D) quantum many-body systems can be
-described by relativistic 1+1 dimensional field theories.  This
-correspondence is common at quantum critical points, where in addition
-to scale invariance, quantum systems may enjoy {\it conformal}
-invariance. Here conformal field theory (CFT) provides an important
+{\it Introduction.} Quantum condensed matter systems, long studied with a host of probes related to energy spectrum, order parameters, correlation functions and similar, are now clearly benefitting from a infusion of ideas related to quantum information and entanglement.
+This paradigm is highlighted best with the study of entanglement entropy scaling.  
+
+The importance of this new resource was most strikingly 
+demonstrated in the study of conformally-invariant 1D quantum critical points.
+%It is now well established that the low-energy
+%physics of many one-dimensional (1D) quantum many-body systems can be
+%described by relativistic 1+1 dimensional field theories.  This
+%correspondence is common at quantum critical points, 
+%where in addition
+%to scale invariance, quantum systems may enjoy {\it conformal}
+%invariance. 
+Here, their relation to conformal field theory (CFT) provides an important
 universal number, the {\it central charge} $c$, that appears in an astonishing array of physical
 quantities \cite{Cardyubiquitous}. A given CFT, and
 thus any quantum critical points it describes, can be
-characterized by this number. Moreover, a profound result, Zamolodchikov's
-$c$-theorem, indicates that $c$ cannot increase in
-renormalization-group flows \cite{Zamo}. The central charge thus
-provides a valuable tool in identifying which if any conformal field
-theory describes a given Hamiltonian. Namely, since it appears in
-various physical quantities, it can be measured numerically, and then
-compared with the central charges of the (many) known
-CFTs. 
-
+characterized by this number,
+%Moreover, a profound result, Zamolodchikov's
+%$c$-theorem, indicates that $c$ cannot increase in
+%renormalization-group flows \cite{Zamo}. 
+which provides a valuable tool in identifying which if any conformal field
+theory describes a given Hamiltonian. 
+%Namely, since it appears in
+%various physical quantities, it can be measured numerically, and then
+%compared with the central charges of the (many) known
+%CFTs. 
 Traditionally, numerically extracting $c$ for a 1d quantum
 Hamiltonian was done by analyzing the finite-size spectrum
-\cite{BCN,Affleck}.  This is often difficult: not only is it a
+\cite{BCN,Affleck}.  This can be difficult: not only is it a
 subleading contribution to the ground-state energy, but requires also
 determining the Fermi velocity.
-More recently, a more direct method very amenable to numerical
-simulation has been utilized.  The central charge can be extracted
+%More recently, a more direct method very amenable to numerical
+%simulation has been utilized.  
+However, it was demonstrated \cite{Holzhey, VidalC} that the central charge can also be extracted 
 directly from the ground-state wavefunction by measuring its Renyi
 entanglement entropy, $ S_n = 1/(1-n) \ln \big[ {\rm Tr} \rho_A^n
 \big], $ where region $A$ is entangled with its complement, region
 $B$.  In particular, the scaling of the Renyi entropy at a 1D critical system,
 with total length $L$ and length of region $A$ being $x$, obeys \cite{Korepin,Cardy}
 \begin{equation}
-S_n = \frac{c}{6}\left({ \frac{1}{1+n} }\right) \ln\Big[ \frac{L}{\pi} \sin\big( \frac{\pi x}{L} \big) \Big]. \label{1Dcft}
+S_n = \frac{c}{6}\left({1+ \frac{1}{n} }\right) \ln\Big[ \frac{L}{\pi} \sin\big( \frac{\pi x}{L} \big) \Big]. \label{1Dcft}
 \end{equation}
 Thus here $c$ appears as the coefficient of the leading
 term.  
 Numerical measurement of entanglement entropy have become commonplace and 
-very accurate in simulations using the density matrix renormalization group (DMRG).
-Eq.~\ref{1Dcft} has therefore become the gold standard for identifying
-$c$ -- allowing access to the most important universal signature of
-the underlying CFT in one simple measurement.
+very accurate, e.g. in simulations using the density matrix renormalization group (DMRG),
+making Eq.~\ref{1Dcft} the gold standard for identifying $c$.
 
 
-
-In higher dimensions, the relationship between entanglement entropy
-and universal quantities is less concrete.  Although conformal
-invariance exists at scale-invariant critical points in the presence
-of translational and rotational symmetry, the breaking of these
-symmetries in physical systems can make the critical points
-non-conformal.  Moreover, even if conformal, precisely which quantity
-in general to identify as a central charge is an open question.
-Nonetheless, one can still hope that a logarithmic scaling of
-entanglement entropy can be used to define an ``effective'' central
-charge for non-conformally invariant systems that may contain
-universal physics (or perhaps even the equivalent of the $c$-theorem
-in higher-dimensions \cite{ryu,Myers}).  Arguments exist that
-logarithms similar to Eq.~(\ref{1Dcft}) should emerge due to some
-asymptotic restoration of conformal invariance in higher-dimensional
-gapless models \cite{Shredder} (although counter examples are known).  However, as
-Calabrese and Cardy caution, basic scaling relationships of
+In higher dimensional groundstates of condensed matter systems, the scaling behavior of
+entanglement entropy is much less well-understood.  Local Hamiltonians
+are generally believed to produce ``area-law'' (i.e. boundary) scaling, the subleading corrections
+to which may be universal quantities that can be used to identify and characterize
+quantum phases and phase transitons.
+The most well established of these is the {\it topological entanglement entropy} of a gapped
+spin liquid state, that is an universal quantity reflecting the emergent gauge symmetry.
+In gapless states, the subleading corrections, although still potentially harbouring universal 
+quantities, become more complicated.
+In presence of spontaneously broken continuous symmetry, it has been found that Goldstone modes 
+produce a bulk logarithmic correction.
+Subleading logarithms are also predicted to occur at critical points, the coefficients of which are universal. 
+%In higher dimensions, the relationship between entanglement entropy
+%and universal quantities is less concrete.  Although conformal
+%invariance exists at scale-invariant critical points in the presence
+%of translational and rotational symmetry, the breaking of these
+%symmetries in physical systems can make the critical points
+%non-conformal.  Moreover, even if conformal, precisely which quantity
+%in general to identify as a central charge is an open question.
+Some speculate that the presence of logarithmic scaling can be used to define an ``effective'' central
+charge for non-conformally invariant systems in 2D. % that may contain
+%universal physics (or perhaps even the equivalent of the $c$-theorem
+%in higher-dimensions \cite{ryu,Myers}).  
+%Arguments exist that logarithms similar to Eq.~(\ref{1Dcft}) should emerge due to some
+%asymptotic restoration of conformal invariance in higher-dimensional
+%gapless models \cite{Shredder} (although counter examples are known).  
+However, as Calabrese and Cardy caution, basic scaling relationships of
 higher-dimensional systems need to be carefully checked before
 arguments about asymptotic restoration of conformal invariance are
 advanced \cite{EE_CFT}.
+
+In this paper, we study numerically the scaling of the second Renyi entropy in several gapless wavefunctions in 2D \cite{Misguich}.
+For a free spinless fermion in the $\pi$-flux phase, we find that the entanglement scaling has a unpredicted shape-dependent piece.
+For finite-size systems, this closely mimics the chord length of Eq.~(\ref{1Dcft}), although in the infinite-size limit 
+it's observed to cross over to a different non-trivial function.
+We also examine finite-size scaling of the second Renyi entropy in the gapless N\'eel state, and the nearest-neighbor RVB wavefunction
+on the 2D square lattice, using quantum Monte Carlo simulations.
+In addition to the subleading logarithm identified in Ref.~\cite{HeisLog},
+we observe the emergence of a shape-dependent scaling function that closely mimics the chord-length of 1D CFT on finite-size systems, similar to the case of $pi$-flux fermions.
+Among other consequences, this shape-dependent term will give a non-zero signature in the 
+
+
+
+
 
  \begin{figure}[ht]
    \begin{center}
@@ -113,27 +144,23 @@ advanced \cite{EE_CFT}.
    \label{fig:torus}
  \end{figure}
  
-Since the terms in the Renyi entropy with
-universal behavior are subleading in $d>1$, it has only recently become
-possible to measure them accurately through the development of measurement
-techniques in scalable quantum Monte
-Carlo (QMC) methods \cite{swap,XXZ}.  Simulations employing this advance
-have confirmed the presence of universal subleading corrections to the
-area-law in topologically-ordered systems \cite{isakov}, as well as preliminary
-confirmations of area-law (and subleading logarithms) in the simple
-gapless 2D N\'eel state \cite{HeisLog}. %>>> Misguich should be mentioned too, they've been doing this for a while???.  
-In this paper, we perform a careful
-finite-size scaling analysis of Renyi entropies in a specific
-cornerless geometry in several gapless wavefunctions \cite{Misguich}.  We show, in
-addition to the additive logarithms identified in Ref.~\cite{HeisLog},
-the emergence of a universal scaling function of $x/L$, which depends on the
-width of the region $A$, reminiscent of Eq.~(\ref{1Dcft}) for a 1D
-CFT.
+%Since the terms in the Renyi entropy with
+%universal behavior are subleading in $d>1$, it has only recently become
+%possible to measure them accurately through the development of measurement
+%techniques in scalable quantum Monte
+%Carlo (QMC) methods \cite{swap,XXZ}.  Simulations employing this advance
+%have confirmed the presence of universal subleading corrections to the
+%area-law in topologically-ordered systems \cite{isakov}, as well as preliminary
+%confirmations of area-law (and subleading logarithms) in the simple
+%gapless 2D N\'eel state \cite{HeisLog}. %>>> Misguich should be mentioned too, they've been doing this for a while???.  
+%In this paper, we perform a careful
+%finite-size scaling analysis of Renyi entropies in a specific
+%cornerless geometry in several gapless wavefunctions \cite{Misguich}. 
 
-
-{\it Theoretical Scaling Form---}
-Before presenting the quantum Monte Carlo (QMC) analysis of more complicated models, we begin with a more tractable case, a free fermion model.
-We consider free spinless fermions on a square lattice, with $\pi$-flux through each plaquette.  We consider a torus of size $L_x$ by $L_y$ with
+{\it Fermions with $\pi$ flux---}
+%Before presenting the quantum Monte Carlo (QMC) analysis of more complicated models, we begin with a more tractable case, a free fermion model.
+We begin by considering a tractable case of
+free spinless fermions on a square lattice, with $\pi$-flux through each plaquette.  We consider a torus of size $L_x$ by $L_y$ with
 d measure the entanglement % for two different types of region $A$: a $square$ region $A$ containing four corners, and 
 using a cornerless $strip$ region $A$ (Fig.~\ref{fig:torus}) which has no corners and constant boundary length $\ell = 2L_y$.
 We denote the width of region $A$ by $x$.
