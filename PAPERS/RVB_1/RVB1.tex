@@ -138,7 +138,7 @@ Among other consequences, this shape-dependent term will give a non-zero signatu
    \begin{center}
    \scalebox{1}{\includegraphics[width=2.3in]{./figs/16x8b.pdf}}
    \end{center}
-   \caption{An $8 \times 16$ toroidal simulation cell.  The width of region $A$ (red) is $x=4$.  The boundary length between region $A$ and its complement is $\ell = 16$. }
+   \caption{An $8 \times 16$ toroidal simulation cell.  The width of region $A$ (blue) is $x=4$.  The boundary length between region $A$ and its complement is $\ell = 16$. }
    \label{fig:torus}
  \end{figure}
  
@@ -192,12 +192,21 @@ Using QMC techniques we simulate both the
 Heisenberg ground state and the resonating valence bond (RVB)
 wavefunction in two dimensions (2D).  The Heisenberg ground state is
 projected from a trial state by applying a high power of the
-Hamiltonian, via a QMC method operating in the valence bond (VB)
+Hamiltonian, $H = \sum_{\langle ij \rangle} {\bf S}_i \cdot {\bf S}_j$, via a QMC method operating in the valence bond (VB)
 basis \cite{Sandvik}. %The Hamiltonian operators act to reorganize the
 %bonds while effectively penalizing states with longer bonds.  
 The RVB wavefunction, in contrast, 
 is composed of a linear superposition of all possible 
-nearest-neighbor valence-bonds \cite{RVB1,RVB2}.  The RVB 
+nearest-neighbor valence-bonds \cite{RVB1,RVB2},
+\begin{equation}
+| \Psi \rangle = \sum_{\alpha} | V_{\alpha} \rangle,
+\end{equation}
+where
+\begin{equation}
+|V_{\alpha} \rangle =  \frac{1}{2^{N/4}} \prod_{i=1}^{N/2} \big( | \uparrow \downarrow \rangle_{\alpha} -  | \downarrow  \uparrow \rangle_{\alpha} \big)
+\end{equation}
+contains the spin basis associated with a valence-bond $\alpha$.
+The RVB 
 Monte Carlo sampling
 algorithm does a random walk through the possible states by creating a
 defect at some spatial point and propagating it through the system (thereby
@@ -206,21 +215,28 @@ initial point and its path forms a closed loop.
 If we visualize the Heisenberg ground state in this VB language, then the RVB wavefunction is its largest component, the remainder of the state being equal superpositions with longer bonds decaying with the length of the bonds as $1/r^3$ \cite{Sandvik}.
 We consider the same geometry as for the $\pi$-flux fermions above, with $L_x=L_y=L$.
 
-In Fig.~{\ref{fig:heis_bow}} we illustrate QMC results for the Renyi entropy in the N\'eel and RVB states on a $24 \times 24$ torus (Fig.~\ref{fig:torus}).  Several features of the entanglement scaling are clear from this plot.  First, note that the curve for the N\'eel state has a significant curvature as a function of $x$.
+In Fig.~{\ref{fig:heis_bow}} we illustrate QMC results for the Renyi entropy in the N\'eel and RVB states on a $24 \times 24$ torus (see Fig.~\ref{fig:torus}).  
+Several features of the entanglement scaling are clear from this plot.  First, note that the data for the N\'eel state has a significant curvature as a function of $x$.  This curvature, first seen in Ref.~\cite{HeisLog}, was not explored in detail in that work.  Rather, it was demonstrated that, by examining the finite-size scaling at $x=L/2$ as a function of $L$, a subleading logarithmic term $\propto \ln(\ell)$ is present, surprisingly, even with an absence of corners in the region $A$.
+%N\'eel state, first explored in Ref.~\cite{HeisLog}.  In that work, the presence of an area law term $\propto \ell$ was confirmed, as well as a subleading logarithmic term $\propto \ln(\ell)$ (present, surprisingly, even with an absence of corners in the region $A$).  This subleading term was extracted when the width of the region $A$, $x = L/2$, is equivalent to the ``center'' of each curve in Fig.~{\ref{fig:heis_bow}}.  
+As is apparent, this choice of region $A$ removes the $x$-dependence of each curve.  
+Similarly, there is significant curvature in the $x$ dependence of the RVB wavefunction.  However, there exists a more complicated structure to the entropies than in the N\'eel state: the appearance of two branches, an ``upper branch'' when $x$ is odd, and a ``lower branch'' when $x$ is even.  We discuss this branching structure more below.
 
-
-N\'eel state, first explored in Ref.~\cite{HeisLog}.  In that work, the presence of an area law term $\propto \ell$ was confirmed, as well as a subleading logarithmic term $\propto \ln(\ell)$ (present, surprisingly, even with an absence of corners in the region $A$).  This subleading term was extracted when the width of the region $A$, $x = L/2$, is equivalent to the ``center'' of each curve in Fig.~{\ref{fig:heis_bow}}.  As is apparent, this choice of region $A$ removes the $x$-dependence of each curve.  This can be remedied
-by the scaling ansatz
+To capture the $x$-dependent curvature of these wavefunctions, we attempt to fit the data with the scaling ansatz
 \begin{align}
-S_2(L) &= a(L) \ell + b(L) \ln(\ell) \nonumber \\
-&+ c(L) \ln \left[{ \sin\left({ \frac{\pi x}{L} }\right) }\right] + d(L) \label{Fit}
+S_2= a \ell + b\ln(\ell)
++ c(L) \ln \left[{ \sin\left({ \frac{\pi x}{L} }\right) }\right] + d \label{Fit}
 \end{align}
-{\color{red} which we use to fit {\it all} data individually for each system size $L$. }
-% 1.  Do we fit all the data individually with this full function?
-% 2.  If so that put "each data set individually" if not then "all data simultaneously"
-It is clear in Fig.~{\ref{fig:1}} that this form gives an excellent fit to the data for all $x$ and $L$, providing strong evidence for the presence of the chord length.  We can analyze the fits further by examining the dependence of the coefficients on system size $L$.  Most interestingly, we observe the coefficient of the chord-length increasing with $L$, as illustrated in the inset of Fig.~{\ref{fig:1}}.
+motivated by the chord-length of Eq.~(\ref{1Dcft}).
+We begin by examining the N\'eel state in Fig.~{\ref{fig:heis_lines}}.  For a fixed linear system size $L$, plots of $S_2$ versus $ \ln \left[{ \sin\left({ \frac{\pi x}{L} }\right) }\right] $ would yield a straight line if Eq.~(\ref{Fit}) were obeyed perfectly.  In fact, as is visible in the largest $L$ considered, there is a slight deviation of the straight-line fits for small $x$.  This is very similar to the behavior observed for $\pi$-flux fermions in Fig.~\ref{fig:dirac}.  One could speculate therefore that the apparent chord-length scaling of these square-lattice 2D systems is actually not perfectly obeyed in the thermodynamic limit, and that this fact is manifest in the slight deviations from straight-line behavior in Fig.~{\ref{fig:heis_lines}}.
 
-We next examine the scaling of the Renyi entropy in the RVB wavefunction, illustrated in Fig.~{\ref{fig:2}}.  As apparent in the inset for $L=24$, there exists a more complicated structure to the entropies than in the N\'eel state: the appearance of two branches, an ``upper branch'' when $x$ is odd, and a ``lower branch'' when $x$ is even.  The precise source of the two branches is not known, although simple counting arguments of prototypical valence-bond configurations in the (0,0) topological sector may hint at their existence since the number of valence-bonds crossing from region $A$ to region $B$ alternates strongly with $x$.  Even from this $L=24$ curve there is a clear $x$-dependent curve in each branch: this can be analyzed more closely by examining one branch and attempting fits of the form Eq.~(\ref{Fit}).  In the main plot of Fig.~{\ref{fig:2}}, it is clear that fits to the scaling ansatz for the lower branch are excellent.  Examining the $L$-dependence of the fit coefficients shows that, like in the N\'eel state, the coefficient of the chord length increases with increasing system size.
+We can further examine this by extracting the $L$-dependence of the coefficient $c(L)$ of the shape-dependent term in Eq.~(\ref{1Dcft}).
+
+%It is clear in that this form gives an excellent fit to the data for all $x$ and $L$, providing strong evidence for the presence of the chord length.  We can analyze the fits further by examining the dependence of the coefficients on system size $L$.  Most interestingly, we observe the coefficient of the chord-length increasing with $L$, as illustrated in the inset of Fig.~{\ref{fig:1}}.
+
+We next examine the scaling of the Renyi entropy in the RVB wavefunction, illustrated in Fig.~{\ref{fig:2}}.  As apparent in the inset for $L=24$, 
+
+
+ The precise source of the two branches is not known, although simple counting arguments of prototypical valence-bond configurations in the (0,0) topological sector may hint at their existence since the number of valence-bonds crossing from region $A$ to region $B$ alternates strongly with $x$.  Even from this $L=24$ curve there is a clear $x$-dependent curve in each branch: this can be analyzed more closely by examining one branch and attempting fits of the form Eq.~(\ref{Fit}).  In the main plot of Fig.~{\ref{fig:2}}, it is clear that fits to the scaling ansatz for the lower branch are excellent.  Examining the $L$-dependence of the fit coefficients shows that, like in the N\'eel state, the coefficient of the chord length increases with increasing system size.
 
 % \begin{figure}[ht]
 %   \begin{center}
@@ -234,8 +250,9 @@ We next examine the scaling of the Renyi entropy in the RVB wavefunction, illust
    \begin{center}
    \scalebox{1}{\includegraphics[width=\columnwidth]{./figs/RVB-heisenberg.pdf}}
    \end{center}
-   \caption{Heisenberg strip data for $L=12,16,\dots,40$ with fits to the function $m\log(\tfrac{L}{\pi}\sin(\tfrac{x\pi}{L}))+h$} for each system size.
-   \label{fig:heis_bow}
+   \caption{ The second Renyi entropy for the N\'eel and RVB states for $L=24$.
+   %Heisenberg strip data for $L=12,16,\dots,40$ with fits to the function $m\log(\tfrac{L}{\pi}\sin(\tfrac{x\pi}{L}))+h$} for each system size.
+   \label{fig:heis_bow} }
  \end{figure}
 
  \begin{figure}[ht]
@@ -257,7 +274,7 @@ We next examine the scaling of the Renyi entropy in the RVB wavefunction, illust
  \end{figure}
 
 {\it Acknowledgments} 
-The authors thank R.~Myers and A.~Del Maestro for enlightening discussions. 
+The authors thank M.~Metlitski, R.~Myers and A.~Del Maestro for enlightening discussions. 
 R.G.M. would like to acknowledge the support of Microsoft Station Q.
 This work has been supported by the Natural Sciences and Engineering
 Research Council of Canada (NSERC), and by the US NSF via grants DMR/MPS-0704666 and DMR/MPS1006549.  Simulations were performed on the computing facilities of SHARCNET.
