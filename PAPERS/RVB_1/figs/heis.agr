@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Tue Dec  6 18:23:28 2011"
+@timestamp def "Tue Dec  6 18:25:56 2011"
 @with string
 @    string on
 @    string loctype view
@@ -1069,7 +1069,7 @@
 @g1 fixedpoint format general general
 @g1 fixedpoint prec 6, 6
 @with g1
-@    world 8, 0.39, 32, 0.54
+@    world 8, 0.39, 32, 0.53
 @    stack world 0, 0, 0, 0
 @    znorm 1
 @    view 0.800000, 0.150000, 1.150000, 0.850000
