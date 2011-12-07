@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Wed Dec  7 11:08:23 2011"
+@timestamp def "Wed Dec  7 11:17:45 2011"
 @with string
 @    string on
 @    string loctype view
@@ -135,6 +135,36 @@
 @    string just 0
 @    string char size 1.000000
 @    string def "20"
+@with string
+@    string on
+@    string loctype view
+@    string 0.192401960785, 0.901960784313
+@    string color 1
+@    string rot 0
+@    string font 0
+@    string just 0
+@    string char size 1.250000
+@    string def "(a)"
+@with string
+@    string on
+@    string loctype view
+@    string 1.075, 0.901960784313
+@    string color 1
+@    string rot 0
+@    string font 0
+@    string just 0
+@    string char size 1.250000
+@    string def "(b)"
+@with string
+@    string on
+@    string loctype view
+@    string 0.315, 0.325
+@    string color 1
+@    string rot 0
+@    string font 0
+@    string just 0
+@    string char size 1.250000
+@    string def "(c)"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -181,7 +211,7 @@
 @g0 fixedpoint format general general
 @g0 fixedpoint prec 6, 6
 @with g0
-@    world -1.5, 3.5, 0.05, 7
+@    world -1.5, 3.5, 0.1, 7
 @    stack world 0, 0, 0, 0
 @    znorm 1
 @    view 0.100000, 0.470000, 0.650000, 0.980000
@@ -1472,7 +1502,7 @@
 @    world 15, 0.55, 25, 1.201
 @    stack world 0, 0, 0, 0
 @    znorm 1
-@    view 0.100000, 0.080000, 1.200000, 0.370000
+@    view 0.300000, 0.080000, 1.000000, 0.360000
 @    title ""
 @    title font 0
 @    title size 1.500000
@@ -1591,7 +1621,7 @@
 @    altyaxis  off
 @    legend on
 @    legend loctype view
-@    legend 0.12, 0.35
+@    legend 0.35, 0.36
 @    legend box color 1
 @    legend box pattern 0
 @    legend box linewidth 1.0
