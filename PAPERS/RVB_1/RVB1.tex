@@ -227,9 +227,16 @@ S_2= a \ell + b\ln(\ell)
 + c(L) \ln \left[{ \sin\left({ \frac{\pi x}{L} }\right) }\right] + d \label{Fit}
 \end{align}
 motivated by the chord-length of Eq.~(\ref{1Dcft}).
-We begin by examining the N\'eel state in Fig.~{\ref{fig:heis_lines}}.  For a fixed linear system size $L$, plots of $S_2$ versus $ \ln \left[{ \sin\left({ \frac{\pi x}{L} }\right) }\right] $ would yield a straight line if Eq.~(\ref{Fit}) were obeyed perfectly.  In fact, as is visible in the largest $L$ considered, there is a slight deviation of the straight-line fits for small $x$.  This is very similar to the behavior observed for $\pi$-flux fermions in Fig.~\ref{fig:dirac}.  One could speculate therefore that the apparent chord-length scaling of these square-lattice 2D systems is actually not perfectly obeyed in the thermodynamic limit, and that this fact is manifest in the slight deviations from straight-line behavior in Fig.~{\ref{fig:heis_lines}}.
+We begin by examining the N\'eel state in Fig.~{\ref{fig:heis_lines}}.  For a fixed linear system size $L$, plots of $S_2$ versus $ \ln \left[{ \sin\left({ \frac{\pi x}{L} }\right) }\right] $ would yield a straight line if Eq.~(\ref{Fit}) were obeyed perfectly.  
+One could speculate therefore that the apparent chord-length scaling of these square-lattice 2D systems is actually not perfectly obeyed in the thermodynamic limit, and that this fact is manifest in slight deviations from straight-line behavior in Fig.~{\ref{fig:heis_lines}}.
+This would be a similar scenario to the deviation from chord-length scaling observed for $\pi$-flux fermions in Fig.~\ref{fig:dirac}.  
+However, it is difficult to draw a firm conclusion regarding the statistical significance of any deviation from Eq.~(\ref{1Dcft}) scaling in our
+present data, due to limited system sizes and stochastic error bars.
 
-We can further examine this by extracting the $L$-dependence of the coefficient $c(L)$ of the shape-dependent term in Eq.~(\ref{1Dcft}).
+%In fact, as is visible in the largest $L$ considered, there is a slight deviation of the straight-line fits for small $x$.  
+We can however further examine the deviation from conformal scaling by examining the universality of the 
+coefficient of the chord-length in the N\'eel state.
+To do this, we extract the $L$-dependence of the coefficient $c(L)$ in Eq.~(\ref{1Dcft}).
 
 %It is clear in that this form gives an excellent fit to the data for all $x$ and $L$, providing strong evidence for the presence of the chord length.  We can analyze the fits further by examining the dependence of the coefficients on system size $L$.  Most interestingly, we observe the coefficient of the chord-length increasing with $L$, as illustrated in the inset of Fig.~{\ref{fig:1}}.
 
@@ -248,11 +255,7 @@ We next examine the scaling of the Renyi entropy in the RVB wavefunction, illust
 
  \begin{figure}[ht]
    \begin{center}
-<<<<<<< .mine
    \scalebox{1}{\includegraphics[width=\columnwidth]{./figs/rvb-heisenberg.pdf}}
-=======
-   \scalebox{1}{\includegraphics[width=\columnwidth]{./figs/RVB-heisenberg.pdf}}
->>>>>>> .r1004
    \end{center}
    \caption{ The second Renyi entropy for the N\'eel and RVB states for $L=24$.
    %Heisenberg strip data for $L=12,16,\dots,40$ with fits to the function $m\log(\tfrac{L}{\pi}\sin(\tfrac{x\pi}{L}))+h$} for each system size.
@@ -261,7 +264,7 @@ We next examine the scaling of the Renyi entropy in the RVB wavefunction, illust
 
  \begin{figure}[ht]
    \begin{center}
-   \scalebox{1}{\includegraphics[width=\columnwidth]{./figs/heisenberg/hlines.eps}}
+   \scalebox{1}{\includegraphics[width=\columnwidth]{./figs/heis.pdf}}
    \end{center}
    \caption{(Left)Heisenberg data and linear fits (excluding the first two data points) for $L=12,16,\dots,40$ plotted in terms of conformal distance, $x^\prime$.
    (Right) Slopes, $m$, for each $L$ on the left {\color{red} and fit to the function $c(L)=L^f+g$}. 
