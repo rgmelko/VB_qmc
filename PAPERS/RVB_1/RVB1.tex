@@ -276,10 +276,18 @@ The precise source of the two branches is not known, although simple counting ar
 
 In Fig.~{\ref{fig:2}}(a) and (b), it is clear that fits to the scaling ansatz to both branches are quite accurate when the extremal values of $x$ are excluded.   Unfortunately, due to the two-branch structure of the Renyi entropy in the RVB wavefunction, each curve on this plot has essentially half the usable data than the analagous Heisenberg data in Fig.~\ref{fig:heis_lines}.  Nonetheless, we can attempt to extract the size-dependence of the coefficient $c$ in a similar manner.  The result (Fig.~\ref{fig:2}(c)) shows that a significant $L$-dependence again seems to exists in the RVB wavefunction. 
 
-{\it Discussion---} Using three model systems, we have demonstrated that scaling of the Renyi entanglement entropy in gapless wavefunctions contains a hereunto unpredicted scaling term that depends on the shape of the subregion A.  This scaling term is subleading to the area law, and depends on the dimensionless aspect ratios of the subregion and the lattice dimensions.
+{\it Discussion---} Using three model systems, we have demonstrated that scaling of the Renyi entanglement entropy in gapless wavefunctions contains a hereunto unpredicted scaling term $F(x/L_x,L_y/L_x)$ that depends on the shape of the subregion A.  This scaling term $F$ is subleading to the area law, and depends on the dimensionless aspect ratios of the subregion and the lattice dimensions.
 
-Quantum Monte Carlo (QMC) simulations of the Heisenberg N\'eel groundstate, and the short-range RVB wavefunction 
+Quantum Monte Carlo (QMC) simulations of the Heisenberg N\'eel groundstate, and the short-range RVB wavefunction, on $L \times L$ toroidal lattices where $A$ is a cornerless ``strip'', show almost perfect adherence of $F$ to a chord-length that is a function of the strip-width, $x/L$.
+It appears that the coefficient of this chord-length is not a universal constant, however, which might suggest that care must be taken the order of limits with which the thermodynamic limit is approached.  Further evidence that the true 2D scaling function might be more complicated than the familiar chord-length form is given by the scaling of gapless Dirac fermions in the $\pi$-flux phase, for which we've argued that such scaling is superseded by a build of up transverse modes leading to a different functional form in 2D.
 
+Regardless of the precise functional form of $F(x/L_x,L_y/L_x)$, it's general existence in gapless wavefunctions in 2D would have some profound consequences.  Most immediate may be it's complication of attempts to use entanglement to detect gapless spin liquids,
+since it gives a clear non-zero signature in the quantity used to define the topological entanglement entropy \cite{KP,LW}.
+In addition, the similarity of the scaling function to a chord-length (present in 1D conformally invariant systems) 
+raises the tantalizing possibility that it maybe be related to arguments promoting the asymptotic restoration of conformal invariance in higher-dimensional gapless models \cite{Shredder}.  
+Indeed, since the search for higher-dimensional $c$-theorems is of intense interest across several disparate field of physics \cite{Zamo,ryu,Myers},
+it is clear from these numerical results that a much broader examination of the existence of this scaling term in two-dimensional gapless 
+wavefunctions is of immense importance.
 
 {\it Acknowledgments} 
 The authors thank M.~Metlitski, R.~Myers and A.~Del Maestro for enlightening discussions. 
