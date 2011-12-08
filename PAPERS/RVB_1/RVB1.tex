@@ -15,7 +15,7 @@
   two-dimensional gapless systems}
 
 \author{Hyejin Ju}
-\affiliation{University of California, Santa Barbara, CA, 93106}
+\affiliation{Department of Physics, University of California, Santa Barbara, CA, 93106}
 
 \author{Ann B. Kallin}
 \affiliation{Department of Physics and Astronomy, University of Waterloo, Ontario, N2L 3G1, Canada} 
@@ -66,11 +66,11 @@ theory describes a given Hamiltonian.
 %various physical quantities, it can be measured numerically, and then
 %compared with the central charges of the (many) known
 %CFTs. 
-Traditionally, extracting $c$ numerically for a 1D quantum
+\textcolor{red}{Traditionally, extracting $c$ numerically for a 1D quantum
 Hamiltonian was done by analyzing the finite-size spectrum
 \cite{BCN,Affleck}.  This can be difficult: not only is it a
 subleading contribution to the ground-state energy, but it requires also
-determining the Fermi velocity.
+determining the Fermi velocity.}
 %More recently, a more direct method very amenable to numerical
 %simulation has been utilized.  
 However, it was demonstrated \cite{Holzhey, VidalC} that the central charge can also be extracted 
@@ -83,19 +83,19 @@ with total length $L$ and length of region $A$ being $x$, obeys a ``chord-length
 S_n = \frac{c}{6}\left({1+ \frac{1}{n} }\right) \ln\Big[ \frac{L}{\pi} \sin\big( \frac{\pi x}{L} \big) \Big]. \label{1Dcft}
 \end{equation}
 \sout{Here, $c$ appears as the coefficient of the leading term.  }
-Numerical measurement of entanglement entropy have become commonplace and 
+Numerical measurements of entanglement entropy have become commonplace and 
 very accurate, e.g. in simulations using the density matrix renormalization group,
 making Eq.~(\ref{1Dcft}) the gold standard for identifying $c$.
 
 
-In higher dimensional groundstates of condensed matter systems, the scaling behavior of
+In higher dimensional ground states of condensed matter systems, the scaling behavior of
 entanglement entropy is much less well-understood.  Local Hamiltonians
-are generally believed to produce ``area-law'' (i.e. boundary) scaling, the subleading corrections
+are generally believed to produce an ``area-law'' (i.e. boundary) scaling, the subleading corrections
 to which may be universal quantities that can be used to identify and characterize
 quantum phases and phase transitons.
 The most well established of these is the {\it topological entanglement entropy} \cite{KP,LW} of a gapped
-spin liquid state, that is an universal quantity reflecting the emergent gauge symmetry.
-In gapless states, the subleading corrections, although still potentially harbouring universal 
+spin liquid state, that is, a universal quantity reflecting the emergent gauge symmetry.
+In gapless states, the subleading corrections, although still potentially harboring universal 
 quantities, become more complicated \cite{Misguich}.
 In presence of spontaneously broken continuous symmetry, it has been found that Goldstone modes 
 produce a bulk logarithmic correction \cite{HeisLog,MaxLog}.
@@ -216,7 +216,7 @@ We consider the same geometry as for the $\pi$-flux fermions above, with $L_x=L_
    \begin{center}
    \scalebox{1}{\includegraphics[width=0.9\columnwidth]{./figs/rvb-heisenberg.pdf}}
    \end{center}
-   \caption{ The second Renyi entropy for the N\'eel and RVB states for $L=24$.
+   \caption{ The second Renyi entropy for the N\'eel and RVB states for $L=24$. Notice that the entanglement entropy for the RVB splits into two branches, even and odd, which may be related to the existence of topological sectors of the underlying transition graphs.
    %Heisenberg strip data for $L=12,16,\dots,40$ with fits to the function $m\log(\tfrac{L}{\pi}\sin(\tfrac{x\pi}{L}))+h$} for each system size.
    \label{fig:heis_bow} }
  \end{figure}
@@ -243,8 +243,8 @@ present data, due to limited system sizes and stochastic error.
    \begin{center}
    \scalebox{1}{\includegraphics[width=\columnwidth]{./figs/heis.pdf}}
    \end{center}
-   \caption{(a)Heisenberg data and linear fits (excluding the first two data points) for $L=12,16,\dots,40$ plotted in terms of conformal distance, $x^\prime$.
-   (b) Slopes, $m$, for each $L$ on the left. 
+   \caption{(a)Heisenberg data and linear fits (excluding the first two data points) for $L=14,16,\dots,30$ plotted in terms of the log of the ``conformal distance", $\ln\left[\sin \frac{\pi x}{L}\right]$.
+   (b) Slopes, $c(L)$, for each $L$ on the left.
    }
    \label{fig:heis_lines}
  \end{figure}
@@ -289,7 +289,7 @@ it is clear from these numerical results that a much broader examination of the 
 wavefunctions is of immense importance.
 
 {\it Acknowledgments} 
-The authors thank M.~Metlitski, R.~Myers and A.~Del Maestro for enlightening discussions. 
+The authors thank M.~Metlitski, E.G.~Moon, R.~Myers and A.~Del Maestro for enlightening discussions. 
 R.G.M. would like to acknowledge the support of Microsoft Station Q for hospitality during a visit.
 This work has been supported by the Natural Sciences and Engineering
 Research Council of Canada (NSERC), and by the US NSF via grants DMR/MPS-0704666 and DMR/MPS1006549.  Simulations were performed on the computing facilities of SHARCNET.
