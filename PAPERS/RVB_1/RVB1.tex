@@ -35,16 +35,18 @@
 We numerically determine universal terms in the entanglement entropy of several two dimensional (2D) gapless systems, including a Heisenberg model with N\'eel order, a free Dirac fermion in the $\pi$-flux phase, and the nearest-neighbor resonating-valence bond wave function.
 For these models, we show that the entanglement entropy between regions of length $x$ and $L-x$, extending around a torus of
 length $L$, depends upon the dimensionless ratio $x/L$, and can be well-approximated on finite-size lattices by a function
-$\ln(\sin(\pi x/L))$, akin to the ``chord-length'' in one dimension.
+$\ln(\sin(\pi x/L))$, akin to the familiar ``chord-length'' dependence in one dimension. 
 %\sout{We consider the role of the toroidal aspect ratio and we find that an additive logarithmic divergence in $L/a$, where $a$ is the lattice scale, appears in some models but not others.}  
-\textcolor{red}{The presence of an additive logarithmic divergence in the Dirac fermion for different lattice aspect ratios hints however that the precise form of this function may differ from a chord-length in the 2D thermodynamic limit.}
+\textcolor{red}{
+We provide evidence, however, that the precise form of this bulk-dependent contribution
+will be a more general universal function in the two-dimensional thermodynamic limit.
+%The presence of an additive logarithmic divergence in the Dirac fermion for different lattice aspect ratios hints however that 
+}
 \end{abstract}
 \maketitle
 
 {\it Introduction.} Quantum condensed matter systems, long studied with a host of probes related to energy spectrum, broken symmetry,
-and fluctuations, are now benefitting from an infusion of ideas related to quantum information and entanglement.
-%order parameters, correlation functions and similar, are now clearly This paradigm is highlighted best with the study of entanglement entropy scaling.  
-The importance of this new resource is most strikingly 
+and fluctuations, are now benefitting from an infusion of ideas related to quantum information and entanglement. The importance of this new resource is most strikingly 
 demonstrated in the study of entanglement entropy at conformally-invariant one-dimensional (1D) quantum critical points.
 %It is now well established that the low-energy
 %physics of many one-dimensional (1D) quantum many-body systems can be
@@ -67,13 +69,7 @@ This provides an invaluable tool in identifying which, if any, CFT describes a g
 %compared with the central charges of the (many) known
 %CFTs. 
 Traditionally, the central charge was numerically determined in 1D quantum systems by analyzing the finite-size spectrum \cite{BCN,Affleck}.
-This, however, is a formidable task: not only is $c$ a subleading contribution to the ground state energy, but it also requires the knowledge of the \textcolor{red}{\sout{Fermi}} velocity.
-%
-%Traditionally, extracting $c$ numerically for a 1D quantum
-%Hamiltonian was done by analyzing the finite-size spectrum
-%\cite{BCN,Affleck}.  This can be difficult: not only is it a
-%subleading contribution to the ground-state energy, but requires also
-%determining the Fermi velocity.
+This, however, is a formidable task: not only is $c$ a subleading contribution to the ground state energy, but finding it also requires the knowledge of the velocity.
 %
 %More recently, a more direct method very amenable to numerical
 %simulation has been utilized.  
@@ -94,13 +90,14 @@ very accurate, e.g. in simulations using the density matrix renormalization grou
 making Eq.~(\ref{1Dcft}) the gold standard for identifying $c$.
 
 
-In higher dimensional ground states of condensed matter systems, the scaling behavior of
-entanglement entropy is much less well-understood.  Local Hamiltonians
+In higher-dimensional ground states of condensed-matter systems, the scaling behavior of
+entanglement entropy is much less well understood.  Local Hamiltonians
 are generally believed to produce an ``area-law'' (i.e. boundary) scaling \cite{ALreview}, the subleading corrections
 to which may be universal quantities that can be used to identify and characterize
 quantum phases and phase transitons.
-The most well established of these is the {\it topological entanglement entropy} \cite{Alioscia1,Alioscia2,KP,LW} of a \textcolor{red}{(topologically ordered state?)} gapped
-spin liquid state, that is, a universal quantity reflecting the emergent gauge symmetry.
+The most well established of these is the {\it topological entanglement entropy} \cite{Alioscia1,Alioscia2,KP,LW} of a gapped
+state with topological order.
+%, that is, a universal quantity reflecting the emergent gauge symmetry.
 In gapless states, the subleading corrections, although still potentially harboring universal 
 quantities, become more complicated \cite{Misguich}.
 In the presence of a spontaneously broken continuous symmetry, it has been found that Goldstone modes 
@@ -132,8 +129,8 @@ it is observed to cross over to a different non-trivial function.
 We also examine finite-size scaling of the Renyi entropy in the gapless N\'eel state, and the nearest-neighbor RVB wavefunction
 on the 2D square lattice, using quantum Monte Carlo (QMC) simulations.
 In addition to the subleading logarithm identified in Refs.~\cite{HeisLog,MaxLog},
-we observe the emergence of a shape-dependent scaling function that closely mimics the chord-length of 1D CFT on finite-size systems, similar to the case of $\pi$-flux fermions.
-Among other consequences, this shape-dependent term will give a non-zero signature in the entanglement quantities \cite{KP,LW} designed to look for topological order, which implies that a straightforward generalization of a topological entanglement entropy will not be possible in gapless spin liquid states.
+we observe the emergence of a shape-dependent scaling function that closely mimics the chord-length contribution of 1D CFT on finite-size systems, similar to the case of $\pi$-flux fermions.
+Among other consequences, this shape-dependent term will give a non-zero signature in the entanglement quantities \cite{KP,LW} designed to look for topological order, which implies that a straightforward generalization of a topological entanglement entropy will not be possible in gapless spin-liquid states.
 
 
 
