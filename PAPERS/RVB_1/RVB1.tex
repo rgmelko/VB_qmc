@@ -56,7 +56,7 @@ characterized by this number.
 %Moreover, a profound result, Zamolodchikov's
 %$c$-theorem, indicates that $c$ cannot increase in
 %renormalization-group flows \cite{Zamo}. 
-Its numerical or analytical determination provides an invaluable tool in identifying which, if any, CFT describes a given Hamiltonian. 
+Its numerical or analytical determination provides an invaluable tool in identifying which, if any, CFT describes the scaling limit of a given Hamiltonian. 
 %Namely, since it appears in
 %various physical quantities, it can be measured numerically, and then
 %compared with the central charges of the (many) known
@@ -69,14 +69,14 @@ However,  the central charge also can be extracted
 directly from the ground-state wavefunction by measuring its Renyi
 entanglement entropy, $ S_n = 1/(1-n) \ln \big[ {\rm Tr} \rho_A^n
 \big], $ where region $A$ is entangled with its complement, region
-$B$ \cite{Holzhey, VidalC}.  In particular, in a system with total length $L$ and the \textcolor{red}{\sout{connected}} region $A$ being of length $x$, the scaling of the Renyi entropy in 1D critical systems depends on the ``chord length" as \cite{Korepin,Cardy},
+$B$ \cite{Holzhey, VidalC}. Namely, in a system with total length $L$ and the region $A$ being of length $x$, the scaling of the Renyi entropy in 1D critical systems depends on the ``chord length" as \cite{Holzhey,Korepin,Cardy},
 %
 %In particular, the scaling of the Renyi entropy in 1D critical systems,
 %with total length $L$ and length of region $A$ being $x$, obeys a ``chord-length''  \cite{Korepin,Cardy},
 \begin{equation}
 S_n = \frac{c}{6}\left({1+ \frac{1}{n} }\right) \ln\Big[ \frac{L}{\pi} \sin\big( \frac{\pi x}{L} \big) \Big]. \label{1Dcft}
 \end{equation}
-with the central charge appearring as the coefficient.
+with the central charge appearing as the coefficient.
 Due to this result, numerical measurements of entanglement entropy have become commonplace and 
 very accurate, e.g.\ in simulations using the density matrix renormalization group \cite{White92}XXX. This has made
 Eq.~(\ref{1Dcft}) the gold standard for identifying $c$.
@@ -137,8 +137,7 @@ For finite-size systems, this closely mimics the chord length, but in the infini
  \end{figure}
  
 {\it Fermions with $\pi$-flux---}
-%Before presenting the quantum Monte Carlo (QMC) analysis of more complicated models, we begin with a more tractable case, a free fermion model.
-We begin by considering a tractable case of
+We begin by considering
 free spinless fermions on a square lattice, with $\pi$-flux through each plaquette.  We consider a torus of size $L_x$ by $L_y$, and
 measure the entanglement % for two different types of region $A$: a $square$ region $A$ containing four corners, and 
 using a cornerless cylindrical region $A$ (Fig.~\ref{fig:torus}) with a constant boundary length $\ell = 2L_y$.
@@ -146,20 +145,20 @@ We denote the width of region $A$ by $x$. % \sout{and $L = \ell/2$}.
 %, where a square will have dimensions $x$ by $x$ and a strip will be $x$ by $L$ when it is embedded in an $L$ by $L$ system.
 Using translational invariance in the $y$-direction, it is possible to simulate large systems.  This system has Dirac points near momentum $k_y=0$ and $k_y=\pi$.  We take anti-periodic boundary conditions in the $x$-direction so that there will be no exact zero mode.
 
-It has been argued that the entanglement entropy of conformally invariant systems like this is given by \cite{ryu,ZGV}
+The entanglement entropy of 2+1-dimensional conformally invariant systems such as this has been argued to be of the form \cite{ryu,ZGV}
 \be
 S_n \sim {\rm const.}\times \ell /a + \gamma(x/L_x,L_y/L_x),
 \ee
 where $\gamma$ is a universal scaling function of the dimensionless ratios.
 The area-law term proportional to the boundary length $\ell$ depends on the lattice constant $a$, and so the constant is non-universal. A crucial difference
-from the result in 1D, Eq.~(\ref{1Dcft}), is that $a$ only appears in the area law term.  In contrast, the one-dimensional result can be written as a sum of two terms as
+from the result in 1+1D, Eq.~(\ref{1Dcft}), is that $a$ only appears in the area law term.  In contrast, the one-dimensional result can be written as a sum of two terms as
 $S_n =C \ln[\sin\big( \frac{\pi x}{L} \big)]+ C\ln[\frac{L}{\pi}] $, where $C=c/(6(1+n))$.
 The first term is a universal function of the dimensionless ratio $x/L$, akin to the function $\gamma$ above, while the second term involves the lattice scale, as it diverges with $L$.
 
 To illustrate the absence of such an ``additive logarithm" (a logarithmic divergence depending on $L/a$) in 2D,
 we treat this free system as a collection of independent systems in 1D labeled by the momenta $k_y$.
 %consider the two-dimensional entropy as a sum of one-dimensional entropies of systems with different momenta, $k_y$.  
-The $k_y=0$ mode contributes an additive logarithm $C \ln(L_x)$ to the entropy.  The modes with small $k_y \neq 0$ contribute additive logarithms $C \ln(k_y^{-1})$. Summing over $k_y=2\pi m/L_y$, this gives an entropy $C \big( \ln(L_x)+2\sum_{m=1}^{m \sim L_y} \ln(L_y/2 \pi m) \big)=C\ln(L_x) + 2 C\ln((L_y/2\pi)^{L_y}/L_y!)$, where the factor of $2$ arises from summing over positive and negative $m\neq 0$.  Using Stirlings formula for $L_y!$, one finds that the additive logarithm terms add to $C(\ln(L_x)-\ln(L_y))=C\ln(L_x/L_y)$. This can be absorbed into the scaling function $\gamma$, so that there is no additive logarithm.  A more precise calculation would include the effect of finite $L_x$, but we ignore this since it does not affect the cancellation of additive logarithms. A similar calculation near $k_y=\pi$ leads to a cancellation of the additive logarithm there.
+The $k_y=0$ mode contributes an additive logarithm $C \ln(L_x)$ to the entropy, while the modes with small $k_y \neq 0$ contribute additive logarithms $C \ln(k_y^{-1})$ \cite{Holzhey,Korepin,Cardy}. Summing over $k_y=2\pi m/L_y$, this gives an entropy $C \big( \ln(L_x)+2\sum_{m=1}^{m \sim L_y} \ln(L_y/2 \pi m) \big)=C\ln(L_x) + 2 C\ln((L_y/2\pi)^{L_y}/L_y!)$, where the factor of $2$ arises from summing over positive and negative $m\neq 0$.  Using Stirlings formula for $L_y!$, one finds that the additive logarithm terms add to $C(\ln(L_x)-\ln(L_y))=C\ln(L_x/L_y)$. This can be absorbed into the scaling function $\gamma$, so that there is no additive logarithm.  A more precise calculation would include the effect of finite $L_x$, but we ignore this since it does not affect the cancellation of additive logarithms. A similar calculation near $k_y=\pi$ leads to a cancellation of the additive logarithm there.
 
 
 The entropy of a given $k_y$ mode contains, in addition to the additive logarithmic divergence in $k_y$, a universal scaling function $G(x/L_x,k_y x)$.  At $k_y=0$, we see the chord-length scaling $C \ln\sin\big( \frac{\pi x}{L} \big)$ (Fig.~\ref{fig:dirac}), but for $k_y \neq 0$ and for $k_y x$ large, the chord-length scaling disappears and the entropy becomes roughly flat as a function of $x/L$.  In fact, for $L_y=L_x=L$, the lowest $k_y$ mode has a mass $2 k_y=4\pi/L$. This factor of $4\pi\approx 13$ means this mass is rather large, and so the entropy of this mode is flat for a large range of $x/L$.  As a result, for $L_y=L_x=L$, the entropy of the two dimensional system appears to display 1D chord length scaling over a wide range of $x/L_x$.
@@ -265,7 +264,7 @@ demonstrated that it contains a \textcolor{blue}{universal} subleading scaling t
  \onlinecite{isakov}  in the Bose-Hubbard model on the Kagom\'e lattice yielded a non-zero value only in the {gapped, topological} phase.  Interestingly, just as strong sub-additivity constrains the sign of the Levin-Wen entropy\cite{LW}, it also implies that for fixed $L_x,L_y$ that $\gamma$ is a concave-down function of $x$.
 
 Our quantum Monte Carlo simulations of the Heisenberg N\'eel ground state and the short-range RVB wavefunction with $L_x=L_y=L$ show an almost-perfect dependence of $\gamma$ on the chord length $\sin(\pi x/L)$.
-It appears that the coefficient of this term is not a universal constant, however, which might suggest that care must be taken the order of limits with which the thermodynamic limit is approached. A study of the crossover from one to two dimensions might also illuminate this issue further.  Further evidence that the true 2D scaling function might be more complicated than the chord-length form is given by the scaling of gapless Dirac fermions in the $\pi$-flux phase, for which we've argued that such scaling is superseded by a build of up transverse modes leading to a different (unknown) functional form in 2D.  Further,  spontaneous symmetry breaking in the Heisenberg model may complicate measurement of the entanglement entropy, and current simulations are unable to completely characterize the scaling behavior of these terms in the Heisenberg and RVB models at large sizes.
+It appears that the coefficient of this term is not a universal constant, however, which might suggest that care must be taken the order of limits with which the thermodynamic limit is approached. A study of the crossover from one to two dimensions might also illuminate this issue further.  Further evidence that the true 2D scaling function might be more complicated than the chord-length form is given by the scaling of gapless Dirac fermions in the $\pi$-flux phase. Here we have argued that such scaling is superseded by a sum over transverse modes, leading to a different (unknown) functional form in 2D.  Further,  spontaneous symmetry breaking in the Heisenberg model may complicate measurement of the entanglement entropy, and current simulations are unable to completely characterize the scaling behavior of these terms in the Heisenberg and RVB models at large sizes.
 
 Regardless of the precise functional form of $\gamma(x/L_x,L_y/L_x)$, its general existence in gapless wavefunctions in 2D would have some profound consequences.  
 Most immediate may be the complications that arise while attempting to use entanglement as a probe to detect gapless spin liquids, since it gives a clear non-zero signature in the quantities used to define the topological entanglement entropy \cite{KP,LW}.
