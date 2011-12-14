@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Tue Dec  6 14:59:39 2011"
+@timestamp def "Wed Dec 14 08:57:48 2011"
 @with string
 @    string on
 @    string loctype view
@@ -63,7 +63,7 @@
 @    string rot 0
 @    string font 0
 @    string just 0
-@    string char size 1.250000
+@    string char size 1.500000
 @    string def "L = 24"
 @r0 off
 @link r0 to g0
@@ -137,7 +137,7 @@
 @    xaxis  label "\1x"
 @    xaxis  label layout para
 @    xaxis  label place auto
-@    xaxis  label char size 1.500000
+@    xaxis  label char size 1.750000
 @    xaxis  label font 0
 @    xaxis  label color 1
 @    xaxis  label place normal
@@ -173,7 +173,7 @@
 @    xaxis  ticklabel start 0.000000
 @    xaxis  ticklabel stop type auto
 @    xaxis  ticklabel stop 0.000000
-@    xaxis  ticklabel char size 1.000000
+@    xaxis  ticklabel char size 1.250000
 @    xaxis  ticklabel font 0
 @    xaxis  ticklabel color 1
 @    xaxis  tick place both
@@ -188,7 +188,7 @@
 @    yaxis  label "\1S\s2"
 @    yaxis  label layout para
 @    yaxis  label place auto
-@    yaxis  label char size 1.500000
+@    yaxis  label char size 1.750000
 @    yaxis  label font 0
 @    yaxis  label color 1
 @    yaxis  label place normal
@@ -224,7 +224,7 @@
 @    yaxis  ticklabel start 0.000000
 @    yaxis  ticklabel stop type auto
 @    yaxis  ticklabel stop 0.000000
-@    yaxis  ticklabel char size 1.000000
+@    yaxis  ticklabel char size 1.250000
 @    yaxis  ticklabel font 0
 @    yaxis  ticklabel color 1
 @    yaxis  tick place both
@@ -233,7 +233,7 @@
 @    altyaxis  off
 @    legend on
 @    legend loctype view
-@    legend 0.54, 0.8
+@    legend 0.54, 0.81
 @    legend box color 1
 @    legend box pattern 0
 @    legend box linewidth 1.0
@@ -241,7 +241,7 @@
 @    legend box fill color 0
 @    legend box fill pattern 0
 @    legend font 0
-@    legend char size 1.250000
+@    legend char size 1.500000
 @    legend color 1
 @    legend length 4
 @    legend vgap 1

@@ -54,21 +54,21 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Fri Dec  9 08:31:46 2011"
+@timestamp def "Wed Dec 14 08:52:26 2011"
 @with string
 @    string on
 @    string loctype view
-@    string 0.24, 0.8
+@    string 0.24, 0.81
 @    string color 1
 @    string rot 0
 @    string font 0
 @    string just 0
-@    string char size 1.250000
+@    string char size 1.500000
 @    string def "(a)"
 @with string
 @    string on
 @    string loctype view
-@    string 0.86887254902, 0.8
+@    string 0.86887254902, 0.81
 @    string color 1
 @    string rot 0
 @    string font 0
@@ -83,7 +83,7 @@
 @    string rot 0
 @    string font 0
 @    string just 0
-@    string char size 1.250000
+@    string char size 1.500000
 @    string def "L\sx\N = 256"
 @r0 off
 @link r0 to g0
@@ -157,7 +157,7 @@
 @    xaxis  label "ln(sin(\1\x\p\0 x/L\sx\N\0))"
 @    xaxis  label layout para
 @    xaxis  label place auto
-@    xaxis  label char size 1.500000
+@    xaxis  label char size 1.750000
 @    xaxis  label font 0
 @    xaxis  label color 1
 @    xaxis  label place normal
@@ -193,7 +193,7 @@
 @    xaxis  ticklabel start 0.000000
 @    xaxis  ticklabel stop type auto
 @    xaxis  ticklabel stop 0.000000
-@    xaxis  ticklabel char size 1.000000
+@    xaxis  ticklabel char size 1.250000
 @    xaxis  ticklabel font 0
 @    xaxis  ticklabel color 1
 @    xaxis  tick place normal
@@ -208,7 +208,7 @@
 @    yaxis  label "\1S\s2\N\0 - const."
 @    yaxis  label layout para
 @    yaxis  label place auto
-@    yaxis  label char size 1.500000
+@    yaxis  label char size 1.750000
 @    yaxis  label font 0
 @    yaxis  label color 1
 @    yaxis  label place normal
@@ -244,7 +244,7 @@
 @    yaxis  ticklabel start 0.000000
 @    yaxis  ticklabel stop type auto
 @    yaxis  ticklabel stop 0.000000
-@    yaxis  ticklabel char size 1.000000
+@    yaxis  ticklabel char size 1.250000
 @    yaxis  ticklabel font 0
 @    yaxis  ticklabel color 1
 @    yaxis  tick place normal
@@ -253,7 +253,7 @@
 @    altyaxis  off
 @    legend on
 @    legend loctype view
-@    legend 0.155, 0.79
+@    legend 0.15, 0.8
 @    legend box color 1
 @    legend box pattern 0
 @    legend box linewidth 1.0
@@ -261,7 +261,7 @@
 @    legend box fill color 0
 @    legend box fill pattern 0
 @    legend font 0
-@    legend char size 1.000000
+@    legend char size 1.250000
 @    legend color 1
 @    legend length 4
 @    legend vgap 1
@@ -507,7 +507,7 @@
 @    xaxis  label "L\sy\N/L\sx\N"
 @    xaxis  label layout para
 @    xaxis  label place auto
-@    xaxis  label char size 1.500000
+@    xaxis  label char size 1.750000
 @    xaxis  label font 0
 @    xaxis  label color 1
 @    xaxis  label place normal
@@ -543,7 +543,7 @@
 @    xaxis  ticklabel start 0.000000
 @    xaxis  ticklabel stop type auto
 @    xaxis  ticklabel stop 0.000000
-@    xaxis  ticklabel char size 1.000000
+@    xaxis  ticklabel char size 1.250000
 @    xaxis  ticklabel font 0
 @    xaxis  ticklabel color 1
 @    xaxis  tick place normal
@@ -558,7 +558,7 @@
 @    yaxis  label "\1c"
 @    yaxis  label layout para
 @    yaxis  label place auto
-@    yaxis  label char size 1.500000
+@    yaxis  label char size 1.750000
 @    yaxis  label font 0
 @    yaxis  label color 1
 @    yaxis  label place opposite
@@ -594,7 +594,7 @@
 @    yaxis  ticklabel start 0.000000
 @    yaxis  ticklabel stop type auto
 @    yaxis  ticklabel stop 0.000000
-@    yaxis  ticklabel char size 1.000000
+@    yaxis  ticklabel char size 1.250000
 @    yaxis  ticklabel font 0
 @    yaxis  ticklabel color 1
 @    yaxis  tick place opposite
@@ -603,7 +603,7 @@
 @    altyaxis  off
 @    legend on
 @    legend loctype view
-@    legend 0.81, 0.79
+@    legend 0.81, 0.8
 @    legend box color 1
 @    legend box pattern 0
 @    legend box linewidth 1.0
@@ -611,7 +611,7 @@
 @    legend box fill color 0
 @    legend box fill pattern 0
 @    legend font 0
-@    legend char size 1.000000
+@    legend char size 1.250000
 @    legend color 1
 @    legend length 4
 @    legend vgap 1
