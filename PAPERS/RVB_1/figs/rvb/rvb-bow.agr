@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Wed Dec  7 11:17:45 2011"
+@timestamp def "Wed Dec 14 09:07:13 2011"
 @with string
 @    string on
 @    string loctype view
@@ -63,77 +63,77 @@
 @    string rot 0
 @    string font 0
 @    string just 0
-@    string char size 1.250000
+@    string char size 1.500000
 @    string def "Even branch"
 @with string
 @    string on
 @    string loctype view
-@    string 1.01, 0.94
+@    string 0.98, 0.94
+@    string color 1
+@    string rot 0
+@    string font 0
+@    string just 0
+@    string char size 1.500000
+@    string def "Odd branch"
+@with string
+@    string on
+@    string loctype view
+@    string 0.229166666667, 0.502450980392
 @    string color 1
 @    string rot 0
 @    string font 0
 @    string just 0
 @    string char size 1.250000
-@    string def "Odd branch"
-@with string
-@    string on
-@    string loctype view
-@    string 0.24387254902, 0.512254901961
-@    string color 1
-@    string rot 0
-@    string font 0
-@    string just 0
-@    string char size 1.000000
 @    string def "16"
 @with string
 @    string on
 @    string loctype view
-@    string 0.203431372549, 0.574754901961
+@    string 0.191176470588, 0.567401960785
 @    string color 1
 @    string rot 0
 @    string font 0
 @    string just 0
-@    string char size 1.000000
+@    string char size 1.250000
 @    string def "18"
 @with string
 @    string on
 @    string loctype view
-@    string 0.169117647059, 0.637254901961
+@    string 0.156862745098, 0.629901960785
 @    string color 1
 @    string rot 0
 @    string font 0
 @    string just 0
-@    string char size 1.000000
+@    string char size 1.250000
 @    string def "20"
 @with string
 @    string on
 @    string loctype view
-@    string 0.827205882353, 0.560049019608
+@    string 0.81862745098, 0.560049019608
 @    string color 1
 @    string rot 0
 @    string font 0
 @    string just 0
-@    string char size 1.000000
+@    string char size 1.250000
 @    string def "16"
 @with string
 @    string on
 @    string loctype view
-@    string 0.774509803922, 0.650735294118
+@    string 0.767156862746, 0.650735294118
 @    string color 1
 @    string rot 0
 @    string font 0
 @    string just 0
-@    string char size 1.000000
+@    string char size 1.250000
 @    string def "18"
 @with string
 @    string on
 @    string loctype view
-@    string 0.725490196079, 0.738970588236
+@    string 0.71568627451, 0.741421568628
 @    string color 1
 @    string rot 0
 @    string font 0
 @    string just 0
-@    string char size 1.000000
+@    string char size 1.250000
 @    string def "20"
 @with string
 @    string on
@@ -143,27 +143,27 @@
 @    string rot 0
 @    string font 0
 @    string just 0
-@    string char size 1.250000
+@    string char size 1.500000
 @    string def "(a)"
 @with string
 @    string on
 @    string loctype view
-@    string 1.075, 0.901960784313
+@    string 1.055, 0.901960784313
 @    string color 1
 @    string rot 0
 @    string font 0
 @    string just 0
-@    string char size 1.250000
+@    string char size 1.500000
 @    string def "(b)"
 @with string
 @    string on
 @    string loctype view
-@    string 0.315, 0.325
+@    string 0.315, 0.31
 @    string color 1
 @    string rot 0
 @    string font 0
 @    string just 0
-@    string char size 1.250000
+@    string char size 1.500000
 @    string def "(c)"
 @r0 off
 @link r0 to g0
@@ -237,7 +237,7 @@
 @    xaxis  label "log(sin(\xp\0x/L))"
 @    xaxis  label layout para
 @    xaxis  label place auto
-@    xaxis  label char size 1.500000
+@    xaxis  label char size 1.750000
 @    xaxis  label font 0
 @    xaxis  label color 1
 @    xaxis  label place normal
@@ -273,7 +273,7 @@
 @    xaxis  ticklabel start 0.000000
 @    xaxis  ticklabel stop type auto
 @    xaxis  ticklabel stop 0.000000
-@    xaxis  ticklabel char size 1.000000
+@    xaxis  ticklabel char size 1.250000
 @    xaxis  ticklabel font 0
 @    xaxis  ticklabel color 1
 @    xaxis  tick place normal
@@ -288,7 +288,7 @@
 @    yaxis  label "\1S\s2"
 @    yaxis  label layout para
 @    yaxis  label place auto
-@    yaxis  label char size 1.500000
+@    yaxis  label char size 1.750000
 @    yaxis  label font 0
 @    yaxis  label color 1
 @    yaxis  label place normal
@@ -324,7 +324,7 @@
 @    yaxis  ticklabel start 0.000000
 @    yaxis  ticklabel stop type auto
 @    yaxis  ticklabel stop 0.000000
-@    yaxis  ticklabel char size 1.000000
+@    yaxis  ticklabel char size 1.250000
 @    yaxis  ticklabel font 0
 @    yaxis  ticklabel color 1
 @    yaxis  tick place normal
@@ -881,7 +881,7 @@
 @    xaxis  label "log(sin(\xp\0x/L))"
 @    xaxis  label layout para
 @    xaxis  label place auto
-@    xaxis  label char size 1.500000
+@    xaxis  label char size 1.750000
 @    xaxis  label font 0
 @    xaxis  label color 1
 @    xaxis  label place normal
@@ -917,7 +917,7 @@
 @    xaxis  ticklabel start 0.000000
 @    xaxis  ticklabel stop type auto
 @    xaxis  ticklabel stop 0.000000
-@    xaxis  ticklabel char size 1.000000
+@    xaxis  ticklabel char size 1.250000
 @    xaxis  ticklabel font 0
 @    xaxis  ticklabel color 1
 @    xaxis  tick place normal
@@ -932,7 +932,7 @@
 @    yaxis  label ""
 @    yaxis  label layout para
 @    yaxis  label place auto
-@    yaxis  label char size 1.000000
+@    yaxis  label char size 1.750000
 @    yaxis  label font 0
 @    yaxis  label color 1
 @    yaxis  label place normal
@@ -968,7 +968,7 @@
 @    yaxis  ticklabel start 0.000000
 @    yaxis  ticklabel stop type auto
 @    yaxis  ticklabel stop 0.000000
-@    yaxis  ticklabel char size 1.000000
+@    yaxis  ticklabel char size 1.250000
 @    yaxis  ticklabel font 0
 @    yaxis  ticklabel color 1
 @    yaxis  tick place opposite
@@ -1502,7 +1502,7 @@
 @    world 15, 0.55, 25, 1.201
 @    stack world 0, 0, 0, 0
 @    znorm 1
-@    view 0.300000, 0.080000, 1.000000, 0.360000
+@    view 0.300000, 0.080000, 1.000000, 0.350000
 @    title ""
 @    title font 0
 @    title size 1.500000
@@ -1525,7 +1525,7 @@
 @    xaxis  label "\1L"
 @    xaxis  label layout para
 @    xaxis  label place auto
-@    xaxis  label char size 1.250000
+@    xaxis  label char size 1.750000
 @    xaxis  label font 0
 @    xaxis  label color 1
 @    xaxis  label place normal
@@ -1561,7 +1561,7 @@
 @    xaxis  ticklabel start 0.000000
 @    xaxis  ticklabel stop type auto
 @    xaxis  ticklabel stop 0.000000
-@    xaxis  ticklabel char size 1.000000
+@    xaxis  ticklabel char size 1.250000
 @    xaxis  ticklabel font 0
 @    xaxis  ticklabel color 1
 @    xaxis  tick place normal
@@ -1576,7 +1576,7 @@
 @    yaxis  label "|\1c(L)|"
 @    yaxis  label layout para
 @    yaxis  label place auto
-@    yaxis  label char size 1.500000
+@    yaxis  label char size 1.750000
 @    yaxis  label font 0
 @    yaxis  label color 1
 @    yaxis  label place normal
@@ -1612,7 +1612,7 @@
 @    yaxis  ticklabel start 0.000000
 @    yaxis  ticklabel stop type auto
 @    yaxis  ticklabel stop 0.000000
-@    yaxis  ticklabel char size 1.000000
+@    yaxis  ticklabel char size 1.250000
 @    yaxis  ticklabel font 0
 @    yaxis  ticklabel color 1
 @    yaxis  tick place normal
@@ -1621,7 +1621,7 @@
 @    altyaxis  off
 @    legend on
 @    legend loctype view
-@    legend 0.35, 0.36
+@    legend 0.35, 0.35
 @    legend box color 1
 @    legend box pattern 0
 @    legend box linewidth 1.0
@@ -1629,7 +1629,7 @@
 @    legend box fill color 0
 @    legend box fill pattern 0
 @    legend font 0
-@    legend char size 1.250000
+@    legend char size 1.500000
 @    legend color 1
 @    legend length 4
 @    legend vgap 1
