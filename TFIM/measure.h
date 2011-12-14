@@ -21,6 +21,7 @@ class Measure: public PARAMS
       void zero();
       void measure_E(const Basis &);
       void measure_M(const Basis &, const int &);
+      void measure_M_mod(const vector<int>&, const vector<int>&);
       void Renyi2(const int& , const int& , const int& );
       void output();
   
@@ -89,6 +90,64 @@ void Measure::measure_M(const Basis & basis, const int & L2){
     Mag2 += 1.0*L2;
 
 }//measure_M
+
+void Measure::measure_M_mod(const vector<int>& Left, const vector<int>& Right){
+
+    int Nspin = Left.size();
+
+    //vector<int> MidClusts;
+    vector<int> Mtemp;
+
+    stack<int> Rstack;
+    stack<int> Lstack;
+    int current;
+    //cout<<Nspin<<endl;
+    Mtemp.assign(Nspin,0);
+    for (int ii=1; ii<=Nspin; ii++){
+        //int ii=1;
+        Lstack.push(ii);
+
+        current = Lstack.top();
+        Lstack.pop();
+
+        for (int j=0; j<Nspin; j++)
+            if (Left[j] == current && Mtemp[j] == 0){
+                Mtemp[j] = ii;
+                Rstack.push(Right[j]);
+            }
+
+        do{
+            while(!Rstack.empty()){ 
+                current = Rstack.top();
+                Rstack.pop();
+                for (int j=0; j<Nspin; j++)
+                    if (Right[j] == current && Mtemp[j] == 0){
+                        Mtemp[j] = ii;
+                        Lstack.push(Right[j]);
+                    }
+            }//while Rstack
+
+            while(!Lstack.empty()){ 
+                current = Lstack.top();
+                Lstack.pop();
+                for (int j=0; j<Nspin; j++)
+                    if (Left[j] == current && Mtemp[j] == 0){
+                        Mtemp[j] = ii;
+                        Rstack.push(Right[j]);
+                    }
+            }//while Rstack
+
+        }while(!Lstack.empty() && !Rstack.empty());
+
+        for (int k=0; k<Mtemp.size(); k++)
+            cout<<Mtemp[k]<<" ";
+        cout<<endl;
+
+
+    }//ii
+
+
+}//measure_M_mod
 
 
 void Measure::output(){

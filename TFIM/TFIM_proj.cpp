@@ -22,14 +22,13 @@ int main(){
 
     int Loopsize2; //loopsize squared for M^2 measurement
 
-//    for (int i=0; i<param.EQL_; i++){
+    for (int i=0; i<param.EQL_; i++){
         Proj.DiagonalUpdate(mrand);
-        Proj.printBasis();
+        //Proj.printBasis();
         Proj.LinkedList();
-        Proj.printLinkedList();
+        //Proj.printLinkedList();
         Proj.ClusterUpdate(mrand,Loopsize2);
-        return 0;
-//    }
+    }
 
 
     vector<int> inA(param.numSpin/2-1,0); //size of physical spins
@@ -41,8 +40,8 @@ int main(){
         for (int i=0; i<param.MCS_; i++){
             Proj.DiagonalUpdate(mrand);
             Proj.LinkedList();
-            //Proj.printBasis();
-            //Proj.printLinkedList();
+            Proj.printBasis();
+            Proj.printLinkedList();
             Proj.ClusterUpdate(mrand,Loopsize2);
             //---measure swap
             inA.assign(param.numSpin/2-1,0);
@@ -53,6 +52,8 @@ int main(){
             //-----------------
             observ.measure_E(Proj);
             observ.measure_M(Proj, Loopsize2);
+            observ.measure_M_mod(Proj.LeftinClust,Proj.RightinClust);
+			return 0;
         }
         observ.output();
     }

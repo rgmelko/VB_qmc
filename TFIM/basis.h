@@ -11,31 +11,31 @@ class Basis: public PARAMS
        vector<int> LinkList;
        vector<int> LegType; 
        vector<index3> Associates;
-       vector<int> inCluster;
+	   vector<int> inCluster;
 
-       //center clusters built in Linked List
-       vector<int> LeftinClust;
-       vector<int> RightinClust;
+	public:
+	   vector <index2> OperatorList; //The operator list of 2m
+	   // (-2,i): an off-diagonal site operator h(sigma^+_i + sigma^-_i)
+	   // (-1,i): a diagonal site operator h
+	   // (i,j):  a diagonal bond operator J(sigma^z_i sigma^z_j + 1)
 
-    public:
-      vector <index2> OperatorList; //The operator list of 2m
-      // (-2,i): an off-diagonal site operator h(sigma^+_i + sigma^-_i)
-      // (-1,i): a diagonal site operator h
-      // (i,j):  a diagonal bond operator J(sigma^z_i sigma^z_j + 1)
+	   vector<int> S_left; //the left and right trial spin state
+	   vector<int> S_right;
 
-      vector<int> S_left; //the left and right trial spin state
-      vector<int> S_right;
+	   //center clusters built in Linked List
+	   vector<int> LeftinClust;
+	   vector<int> RightinClust;
 
-      int ClustNumber; //the number of clusters in the center
+	   int ClustNumber; //the number of clusters in the center
 
-      Basis(MTRand &); //constructor
-      void DiagonalUpdate(MTRand &);
-      void LinkedList();
-      void ClusterUpdate(MTRand &, int&);
-      int calc_LoopSize2();
-      int SWAP(const vector<int>& );
-      void printBasis();
-      void printLinkedList();
+	   Basis(MTRand &); //constructor
+	   void DiagonalUpdate(MTRand &);
+	   void LinkedList();
+	   void ClusterUpdate(MTRand &, int&);
+	   int calc_LoopSize2();
+	   int SWAP(const vector<int>& );
+	   void printBasis();
+	   void printLinkedList();
 
 };
 
