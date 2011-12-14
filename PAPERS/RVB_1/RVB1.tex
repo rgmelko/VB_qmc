@@ -183,7 +183,7 @@ of all nearest-neighbor valence-bond states,
 \begin{equation}
 |V_{\alpha} \rangle =  \frac{1}{2^{N/4}} \prod_{i=1}^{N/2} \big( | \uparrow_i \downarrow_{j_{\alpha}} \rangle -  | \downarrow_i  \uparrow_{j_{\alpha}} \rangle \big),
 \end{equation}
- defined by requiring that each spin $i$ on one sublattice be in a singlet with one of its neighbors $j_\alpha$ \cite{RVB1,RVB2}. The RVB 
+ defined by requiring that each spin $i$ on one sublattice be in a singlet with one of its nearest neighbors $j_\alpha$ \cite{RVB1,RVB2}. The RVB 
 Monte Carlo sampling
 algorithm does a random walk through the possible states by creating a
 defect at some spatial point and propagating it through the system (thereby
@@ -205,7 +205,7 @@ In Fig.~{\ref{fig:heis_bow}}, we plot QMC results for the Renyi entropy in the N
 Several features of the entanglement scaling are clear from this plot.  First, note that the data for the N\'eel state has a significant curvature as a function of $x$.  This curvature was first seen in Ref.~\cite{HeisLog} but not explored in detail (instead, using a fixed $x/L$ a surprising subleading logarithmic term $\propto \ln(\ell)$ was found).
 %is present, surprisingly, even with an absence of corners in the region $A$ \cite{MaxLog}.
 %N\'eel state, first explored in Ref.~\cite{HeisLog}.  In that work, the presence of an area law term $\propto \ell$ was confirmed, as well as a subleading logarithmic term $\propto \ln(\ell)$ (present, surprisingly, even with an absence of corners in the region $A$).  This subleading term was extracted when the width of the region $A$, $x = L/2$, is equivalent to the ``center'' of each curve in Fig.~{\ref{fig:heis_bow}}.  
-There is significant curvature in the $x$ dependence of the RVB wave function as well  (Fig.~\ref{fig:heis_bow}).  However, here there exists a more complicated structure to the entropies: the appearance of two branches (an ``odd branch'' when $x$ is odd, and an ``even branch'' when $x$ is even).  We discuss this branching structure in more detail below.
+There is significant curvature in the $x$ dependence of the RVB wave function as well  (Fig.~\ref{fig:heis_bow}).  \textcolor{blue}{However, its entropy exhibits a more complicated structure}: the appearance of two branches (an ``odd branch'' when $x$ is odd, and an ``even branch'' when $x$ is even).  We discuss this branching structure in more detail below.
 
 To capture the $x$-dependent curvature of these wavefunctions, we fit the data with the scaling ansatz
 \begin{align}
@@ -244,7 +244,7 @@ accuracy of our QMC simulations.
    \begin{center}
    \scalebox{1}{\includegraphics[width=\columnwidth]{./figs/rvb/rvb-bow.pdf}}
    \end{center}
-   \caption{(a) Even and (b) odd branches of the second Renyi entropy plotted against the log of the ``chord-length". We exclude $x=1,2$ data from the plots, as there is some crossover behavior observed in Fig.~\ref{fig:heis_bow}. (c) The slopes, $c(L)$, as a function of the system size, $L$. As with the Heisenberg, there is a strong dependence on $L$.}
+   \caption{(a) Even and (b) odd branches of the second Renyi entropy plotted against the log of the ``chord-length". We exclude $x=1,2$ data from the plots, as there is some crossover behavior observed in Fig.~\ref{fig:heis_bow}. (c) The absolute value of the slopes, $|c(L)|$, as a function of the system size, $L$. As with the Heisenberg, there is a strong dependence on $L$.}
    \label{fig:2}
  \end{figure}
 
