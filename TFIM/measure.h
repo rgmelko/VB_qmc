@@ -134,8 +134,9 @@ void Measure::measure_M_mod(const vector<int>& Left, const vector<int>& Right){
                     }
             }//while Rstack
 
-        }while(!Lstack.empty() && !Rstack.empty());
+        }while(!Lstack.empty() || !Rstack.empty());
 
+        //cout<<ii<<": ";
         //for (int k=0; k<Mtemp.size(); k++)
         //    cout<<Mtemp[k]<<" ";
         //cout<<endl;
