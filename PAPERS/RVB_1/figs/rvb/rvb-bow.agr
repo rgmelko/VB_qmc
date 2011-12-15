@@ -54,7 +54,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Thu Dec 15 08:39:03 2011"
+@timestamp def "Thu Dec 15 09:16:12 2011"
 @with string
 @    string on
 @    string loctype view
@@ -234,7 +234,7 @@
 @    xaxis  bar color 1
 @    xaxis  bar linestyle 1
 @    xaxis  bar linewidth 2.0
-@    xaxis  label "log(sin(\xp\0x/L))"
+@    xaxis  label "ln(sin(\xp\0x/L))"
 @    xaxis  label layout para
 @    xaxis  label place auto
 @    xaxis  label char size 1.750000
@@ -878,7 +878,7 @@
 @    xaxis  bar color 1
 @    xaxis  bar linestyle 1
 @    xaxis  bar linewidth 2.0
-@    xaxis  label "log(sin(\xp\0x/L))"
+@    xaxis  label "ln(sin(\xp\0x/L))"
 @    xaxis  label layout para
 @    xaxis  label place auto
 @    xaxis  label char size 1.750000
