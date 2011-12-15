@@ -47,7 +47,7 @@ is a more general universal function in the 2D thermodynamic limit.
 The study of quantum condensed matter systems
 %, long studied with a host of probes related to energy spectrum, broken symmetry,
 %and fluctuations,
- is now benefiting from an infusion of ideas related to quantum information and entanglement. The importance of this new resource is strikingly 
+ is benefiting from an infusion of ideas related to quantum information and entanglement. The importance of this new resource is strikingly 
 demonstrated in the study of entanglement entropy at one-dimensional (1D) quantum critical points with conformal invariance. Conformal field theory (CFT) provides an important
 universal number, the {\it central charge} $c$, that appears in an astonishing array of physical
 quantities \cite{Cardyubiquitous}. A given CFT, and
@@ -61,15 +61,19 @@ Its numerical or analytical determination provides an invaluable tool in identif
 %various physical quantities, it can be measured numerically, and then
 %compared with the central charges of the (many) known
 %CFTs. 
-The central charge can be numerically determined in 1D quantum systems by analyzing the finite-size spectrum \cite{BCN,Affleck}, but this is a formidable task: not only is $c$ a subleading contribution to the ground state energy, but extracting it also requires the knowledge of a velocity.
+%Although traditional methods of finding the 
+%The central charge can be numerically determined in 1D quantum systems by finding the finite-size
+% spectrum \cite{BCN,Affleck}, but 
+%this is a formidable task: not only is $c$ a subleading contribution to the ground state energy, but %extracting it also requires the knowledge of a velocity.
 %
 %More recently, a more direct method very amenable to numerical
 %simulation has been utilized.  
-However,  the central charge can also be extracted 
+Computing the entanglement entropy has proved a very useful way of finding $c$ numerically. It can be extracted 
 directly from the ground-state wavefunction by measuring its Renyi
 entanglement entropy, $ S_n = 1/(1-n) \ln \big[ {\rm Tr} \rho_A^n
 \big], $ where region $A$ is entangled with its complement, region
-$B$ \cite{Holzhey, VidalC}. Namely, in a system with total length $L$ and the region $A$ being of length $x$, the scaling of the Renyi entropy in 1D critical systems depends on the ``chord length" as \cite{Holzhey,Korepin,Cardy},
+$B$. Namely, in a system with total length $L$ and the region $A$ being of length $x$, the scaling of the Renyi entropy in 1D critical systems depends on the ``chord length" as \cite{Holzhey,VidalC,
+Korepin,Cardy},
 %
 %In particular, the scaling of the Renyi entropy in 1D critical systems,
 %with total length $L$ and length of region $A$ being $x$, obeys a ``chord-length''  \cite{Korepin,Cardy},
@@ -77,9 +81,10 @@ $B$ \cite{Holzhey, VidalC}. Namely, in a system with total length $L$ and the re
 S_n = \frac{c}{6}\left({1+ \frac{1}{n} }\right) \ln\Big[ \frac{L}{\pi} \sin\big( \frac{\pi x}{L} \big) \Big]. \label{1Dcft}
 \end{equation}
 with the central charge appearing as the coefficient.
-Due to this result, numerical measurements of entanglement entropy have become commonplace and 
-very accurate, e.g.\ in simulations using the density matrix renormalization group \cite{White92,Scholl05}. This has made
-Eq.~(\ref{1Dcft}) the gold standard for identifying $c$.
+%Due to this result, numerical measurements of the central charge have become commonplace
+% and very accurate.
+%, e.g.\ in simulations using the density matrix renormalization group \cite{White92,Scholl05}. 
+%This has made Eq.~(\ref{1Dcft}) the gold standard for identifying $c$.
 
 
 In higher dimensions, the scaling behavior of the entanglement entropy
@@ -87,42 +92,35 @@ is much less well understood.  Ground states of local Hamiltonians are
 generally believed to produce an ``area-law'' (i.e.\ boundary) scaling
 \cite{ALreview}, the subleading corrections to which may be universal
 quantities that can be used to identify and characterize quantum
-phases and phase transitions.  A well established example is the {\it
+phases and phase transitions.  A well established example of such is the {
 topological entanglement entropy} \cite{Alioscia1,Alioscia2,KP,LW} of
 a gapped state with topological order.  In gapless states, the
 subleading corrections may still potentially harbor universal
-quantities.  %, become more complicated.
-The best-understood results apply to a special situation of a conformal quantum critical point,
+quantities. It is conceivable that such quantities could be used to define an
+``effective'' central charge in two spatial dimensions, but there are strong constraints on any proposal \cite{EE_CFT}. The best-understood gapless situation in two dimensions is the special case of a conformal quantum critical point,
 where the ground state itself is written in terms of a two-dimensional
-(2D) CFT \cite{Moore06,Hsu08,Misguich}.  Other cases are more
-complicated; e.g.\ in the presence of a spontaneously broken
+CFT \cite{Moore06,Hsu08,Misguich}.  In the presence of a spontaneously broken
 continuous symmetry, Goldstone modes produce a subleading bulk
 logarithmic correction \cite{HeisLog,MaxLog}.  Subleading logarithms
 from corner contributions with universal coefficients also occur at
-some critical points \cite{Moore06,logcorner,Max}.  It is possible
-that the presence of logarithmic scaling can be used to define an
-``effective'' central charge in two spatial dimensions.  Before such
-claims can be made, however, basic scaling relationships in
-higher-dimensional systems need to be carefully checked \cite{EE_CFT}.
+some critical points \cite{Moore06,logcorner,Max}.  
 
-In this paper, we study the scaling of the second Renyi entropy for
-the ground states of several 2D gapless systems numerically. Gapless
-modes typically have long-range correlations, so it is possible for
+The purpose of this
+paper is to analyze one type of universal term occurring in two-dimensional (2D) gapless systems. Gapless modes typically have long-range correlations, so it is possible for
 the entanglement entropy to depend on the size and shape of the
-regions $A$ and $B$. Indeed, the one-dimensional result
-(\ref{1Dcft}) is manifestly size-dependent. The purpose of this
-paper is to show how similar behavior occurs in two dimensions.
+regions $A$ and $B$. Indeed, the 1D result
+(\ref{1Dcft}) is manifestly size-dependent. We show how similar behavior also occurs in 2D.
 
-We examine finite-size scaling of the Renyi entropy in the N\'eel state, and the nearest-neighbor resonating-valence-bond (RVB) wavefunction
-on the 2D square lattice, using quantum Monte Carlo (QMC) simulations.
-We utilize a toroidal lattice geometry, where regions $A$ and $B$ are cornerless cylinders, which makes it possible to vary the size of $A$ and $B$ without changing the length of the boundary between them. 
-In addition to the subleading logarithm identified in Refs.~\cite{HeisLog,MaxLog},
-we observe the emergence of a shape-dependent scaling function that closely mimics the chord-length contribution in 1D CFT finite-size systems in Eq.~(\ref{1Dcft}).
+We study the finite-size scaling of the second Renyi entropy for
+the ground states of several two-dimensional gapless systems on the square lattice using quantum Monte Carlo (QMC) simulations. It is possible to vary the size of regions $A$ and $B$ without changing the length of the boundary between in a toroidal lattice geometry, where $A$ and $B$ are cylinders as in Fig.\ \ref{fig:torus}. 
+We examine the N\'eel ground state of the Heisenberg model, and the nearest-neighbor resonating-valence-bond (RVB) wavefunction, in this geometry.
+%In addition to the subleading logarithm identified in Refs.~\cite{HeisLog,MaxLog},
+In both cases, we find a shape-dependent scaling function that closely mimics the chord-length contribution in 1D in Eq.~(\ref{1Dcft}).
 
 To probe this behavior in a simpler system, we also study
  free spinless fermions in the $\pi$-flux phase and find that the entanglement scaling also has a universal shape-dependent piece.
 For finite-size systems, this closely mimics the chord length, but in the infinite-size limit we observe it to cross over to a different non-trivial function.
-Among other consequences, this shape-dependent term will give a non-zero signature in the entanglement quantities \cite{KP,LW} designed to look for topological order, which implies that a straightforward generalization of a topological entanglement entropy will not be possible in gapless spin-liquid states. 
+Among other consequences, this shape-dependent term will give a non-zero signature in the entanglement quantities \cite{KP,LW} designed to look for topological order, which complicates any possible generalization of the topological entanglement entropy to gapless spin-liquid states. 
  
   \begin{figure}
    \begin{center}
@@ -146,7 +144,7 @@ S_n \sim {\rm const.}\times \ell /a + \gamma(x/L_x,L_y/L_x),
 \ee
 where $\gamma$ is a universal scaling function of the dimensionless ratios.
 The area-law term proportional to the boundary length $\ell$ depends on the lattice constant $a$, and so the constant is non-universal. A crucial difference
-from the result in 1+1D, Eq.~(\ref{1Dcft}), is that $a$ only appears in the area law term.  In contrast, the one-dimensional result can be written as a sum of two terms as
+from the result in 1D, Eq.~(\ref{1Dcft}), is that $a$ only appears in the area law term.  In contrast, the one-dimensional result can be written as a sum of two terms as
 $S_n =C \ln[\sin\big( \frac{\pi x}{L} \big)]+ C\ln[\frac{L}{\pi}] $, where $C=c/6(1+1/n)$.
 The first term is a universal function of the dimensionless ratio $x/L$, akin to the function $\gamma$ above, while the second term involves the lattice scale, as it diverges with $L$.
 
@@ -201,7 +199,7 @@ We consider the same geometry as for the $\pi$-flux fermions, with $L_x=L_y=L$ (
    %Heisenberg strip data for $L=12,16,\dots,40$ with fits to the function $m\log(\tfrac{L}{\pi}\sin(\tfrac{x\pi}{L}))+h$} for each system size.
    \label{fig:heis_bow} }
  \end{figure}
-In Fig.~{\ref{fig:heis_bow}}, we plot QMC results for the Renyi entropy in the N\'eel and RVB states on a $24 \times 24$ torus.  
+In Fig.~{\ref{fig:heis_bow}}, we plot QMC results for the second Renyi entropy in the N\'eel and RVB states on a $24 \times 24$ torus.  
 Several features of the entanglement scaling are clear from this plot.  First, note that the data for the N\'eel state has a significant curvature as a function of $x$.  This curvature was first seen in Ref.~\cite{HeisLog} but not explored in detail (instead, using a fixed $x/L$ a surprising subleading logarithmic term $\propto \ln(\ell)$ was found).
 %is present, surprisingly, even with an absence of corners in the region $A$ \cite{MaxLog}.
 %N\'eel state, first explored in Ref.~\cite{HeisLog}.  In that work, the presence of an area law term $\propto \ell$ was confirmed, as well as a subleading logarithmic term $\propto \ln(\ell)$ (present, surprisingly, even with an absence of corners in the region $A$).  This subleading term was extracted when the width of the region $A$, $x = L/2$, is equivalent to the ``center'' of each curve in Fig.~{\ref{fig:heis_bow}}.  
@@ -265,7 +263,6 @@ $L$-dependence seems to exist in the RVB wavefunction as well.  This
 again suggests that, although the fit to a chord-length scaling at
 fixed $L$ is consistent within the accuracy of our data, subtle corrections to this form may come into play in the 2D thermodynamic limit.
 
-\eject
 
 {\it Discussion---} We have studied the Renyi entanglement entropy in the ground state of three gapless systems on $L_x\times L_y$ toroidal lattices, where the subregion $A$ is a cylinder of length $x$.  We have  
 demonstrated that it contains a universal subleading scaling term $\gamma(x/L_x,L_y/L_x)$, which depends on bulk quantities, namely the dimensionless aspect ratios of the subregion and the lattice linear dimensions.  
