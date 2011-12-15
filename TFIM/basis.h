@@ -227,19 +227,24 @@ void Basis::LinkedList(){
                 Ccount++;
                 LRinClust[site1] = Ccount; LRinClust[site2] = Ccount;
             }
-            else if (LRinClust[site1] != 0 && LRinClust[site2] == 0)
-                LRinClust[site2] = LRinClust[site1];
-            else if (LRinClust[site2] != 0 && LRinClust[site1] == 0)
-                LRinClust[site1] = LRinClust[site2];
-            else if (LRinClust[site2] != 0 && LRinClust[site1] != 0)
-            {
-                if (LRinClust[site2] != LRinClust[site1]){
-                    Ctemp = LRinClust[site2];
-                    for (int ii=0; ii<LRinClust.size(); ii++)
-                        if (LRinClust[ii] == Ctemp && 
-                            LRinClust[site1] != -1)    LRinClust[ii] = LRinClust[site1];
-                }
-            }
+            else if (LRinClust[site1] != 0 && LRinClust[site2] == 0){
+                if (LRinClust[site1] != -1)  LRinClust[site2] = LRinClust[site1];
+				else {Ccount++; LRinClust[site2] = Ccount;}
+			}
+			else if (LRinClust[site2] != 0 && LRinClust[site1] == 0){
+				if (LRinClust[site2] != -1) LRinClust[site1] = LRinClust[site2];
+				else {Ccount++; LRinClust[site1] = Ccount;}
+			}
+			else if (LRinClust[site2] != 0 && LRinClust[site1] != 0)
+			{
+				if (LRinClust[site2] != LRinClust[site1] 
+						&& LRinClust[site2] != -1 && LRinClust[site1] != -1 ){
+					Ctemp = LRinClust[site2];
+					for (int ii=0; ii<LRinClust.size(); ii++)
+						if (LRinClust[ii] == Ctemp )
+							LRinClust[ii] = LRinClust[site1];
+				}
+			}
             else cout<<"Mid cluster error \n";
             //cout<<"Aclust "<<LRinClust[site1]<<" "<<LRinClust[site2]<<endl;
             //-------------------------
