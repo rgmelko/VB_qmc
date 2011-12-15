@@ -13,6 +13,8 @@ class Basis: public PARAMS
        vector<index3> Associates;
 	   vector<int> inCluster;
 
+	   vector<int> CalcRightCluster();
+
 	public:
 	   vector <index2> OperatorList; //The operator list of 2m
 	   // (-2,i): an off-diagonal site operator h(sigma^+_i + sigma^-_i)
@@ -146,19 +148,15 @@ void Basis::LinkedList(){
     S_prop = S_left; //assign to the left spin state
 
     int Ccount, Ctemp; //cluster counter
-    vector<int> LRinClust;
+	vector<int> LRinClust;
+	Ccount = 0;
+	LRinClust.assign(numSpin,0);
 
     int count = numSpin;  
     int site, site1, site2;
     //The linked list is now size N.  Add the 2m operators each of 4 or 2 legs
     for(int i=0; i<OperatorList.size(); i++){
         
-        //This will build the left/right inClust
-        if (i==0 || i == OperatorList.size()/2){
-            Ccount = 0;
-            LRinClust.assign(numSpin,0);
-        }
-
         //assign non-trivial associates
         if (OperatorList[i].A != -2 && OperatorList[i].A != -1){
             temp3.set(count+1,count+2,count+3); Associates.push_back(temp3);
@@ -184,8 +182,7 @@ void Basis::LinkedList(){
             //"upper" or rightmost leg
             LinkList.push_back(-99); //null site index
             LegType.push_back(S_prop[site]); //the spin of the leg (flipped)
-            if (i < OperatorList.size()/2) LRinClust[site] = 0; //cluster counter for LHS
-            else if (LRinClust[site] == 0) LRinClust[site] = -1; //cluster counter for RHS
+            LRinClust[site] = 0; //cluster counter for LHS
         }
         else if (OperatorList[i].A == -1){ //1-site diagonal operator is encountered
             site = OperatorList[i].B;
@@ -197,8 +194,7 @@ void Basis::LinkedList(){
             //"upper" or rightmost leg
             LinkList.push_back(-99); //null site index
             LegType.push_back(S_prop[site]); //the spin of the leg 
-            if (i < OperatorList.size()/2) LRinClust[site] = 0; //cluster counter for LHS
-            else if (LRinClust[site] == 0) LRinClust[site] = -1; //cluster counter for RHS
+            LRinClust[site] = 0; //cluster counter for LHS
         }
         else {//2-site diagonal operator is encountered (4 legs)
             //lower left
@@ -227,18 +223,13 @@ void Basis::LinkedList(){
                 Ccount++;
                 LRinClust[site1] = Ccount; LRinClust[site2] = Ccount;
             }
-            else if (LRinClust[site1] != 0 && LRinClust[site2] == 0){
-                if (LRinClust[site1] != -1)  LRinClust[site2] = LRinClust[site1];
-				else {Ccount++; LRinClust[site2] = Ccount;}
-			}
-			else if (LRinClust[site2] != 0 && LRinClust[site1] == 0){
-				if (LRinClust[site2] != -1) LRinClust[site1] = LRinClust[site2];
-				else {Ccount++; LRinClust[site1] = Ccount;}
-			}
+            else if (LRinClust[site1] != 0 && LRinClust[site2] == 0)
+                LRinClust[site2] = LRinClust[site1];
+			else if (LRinClust[site2] != 0 && LRinClust[site1] == 0)
+				LRinClust[site1] = LRinClust[site2];
 			else if (LRinClust[site2] != 0 && LRinClust[site1] != 0)
 			{
-				if (LRinClust[site2] != LRinClust[site1] 
-						&& LRinClust[site2] != -1 && LRinClust[site1] != -1 ){
+				if (LRinClust[site2] != LRinClust[site1] ){
 					Ctemp = LRinClust[site2];
 					for (int ii=0; ii<LRinClust.size(); ii++)
 						if (LRinClust[ii] == Ctemp )
@@ -262,14 +253,15 @@ void Basis::LinkedList(){
 
     }//i
 
-    RightinClust = LRinClust;  //Right-hand side
-    for (int jj=0; jj<RightinClust.size(); jj++){
-        if (RightinClust[jj] == 0 || RightinClust[jj] == -1){
-            Ccount++;
-            RightinClust[jj] = Ccount;
-        }
-    }//jj
+    //RightinClust = LRinClust;  //Right-hand side
+    //for (int jj=0; jj<RightinClust.size(); jj++){
+    //    if (RightinClust[jj] == 0 || RightinClust[jj] == -1){
+    //        Ccount++;
+    //        RightinClust[jj] = Ccount;
+    //    }
+    //}//jj
 
+	RightinClust = CalcRightCluster();
 
     //now add the legs of the final ("top"or right-hand) spin state
     for (int i=0; i<numSpin; i++){ 
@@ -289,7 +281,92 @@ void Basis::LinkedList(){
 
 }//----------------LinkedList
 
+vector<int> Basis::CalcRightCluster(){
 
+    vector<int> Last;
+    vector<int> LL;
+
+    for (int i=0; i<numSpin; i++){ //the first vertex leg for each spin
+        Last.push_back(i);
+        LL.push_back(-99); //unknown what these link to!
+	}
+
+    int Ccount = 0;
+	int Ctemp;
+	vector<int> LRinClust(numSpin,0);
+
+    int site, site1, site2;
+    for(int i=OperatorList.size()-1; i>=OperatorList.size()/2; i--){
+
+        if (OperatorList[i].A == -2){ //1-site off-diagonal operator is encountered
+            site = OperatorList[i].B;
+            //"lower" or leftmost leg
+            LL.push_back(Last[site]); //site index
+            LL[Last[site]] = LL.size()-1; //this leg links backwards...
+            Last[site] = LL.size(); //update
+            //"upper" or rightmost leg
+			LL.push_back(-99); //null site index
+			LRinClust[site] = 0; //cluster counter for LHS
+        }
+        else if (OperatorList[i].A == -1){ //1-site diagonal operator is encountered
+            site = OperatorList[i].B;
+            //"lower" or leftmost leg
+            LL.push_back(Last[site]); //site index
+            LL[Last[site]] = LL.size()-1; //this leg links backwards...
+            Last[site] = LL.size(); //update
+            //"upper" or rightmost leg
+            LL.push_back(-99); //null site index
+		    LRinClust[site] = 0; //cluster counter for LHS
+
+        }
+        else {//2-site diagonal operator is encountered (4 legs)
+            //lower left
+            site1 = OperatorList[i].A;
+            LL.push_back(Last[site1]); //site index
+            LL[Last[site1]] = LL.size()-1; //this leg links backwards...
+            Last[site1] = LL.size()+1;
+            //lower right
+            site2 = OperatorList[i].B;
+            LL.push_back(Last[site2]); //site index
+            LL[Last[site2]] = LL.size()-1; //this leg links backwards...
+            Last[site2] = LL.size()+1;
+            //upper left
+            LL.push_back(-99); //null site index
+            //upper right
+			LL.push_back(-99); //null site index
+			if (LRinClust[site1] == 0 && LRinClust[site2] == 0)
+			{
+				Ccount++;
+				LRinClust[site1] = Ccount; LRinClust[site2] = Ccount;
+			}
+			else if (LRinClust[site1] != 0 && LRinClust[site2] == 0)
+				LRinClust[site2] = LRinClust[site1];
+			else if (LRinClust[site2] != 0 && LRinClust[site1] == 0)
+				LRinClust[site1] = LRinClust[site2];
+			else if (LRinClust[site2] != 0 && LRinClust[site1] != 0)
+			{
+				if (LRinClust[site2] != LRinClust[site1] ){
+					Ctemp = LRinClust[site2];
+					for (int ii=0; ii<LRinClust.size(); ii++)
+						if (LRinClust[ii] == Ctemp )
+							LRinClust[ii] = LRinClust[site1];
+				}
+			}
+			else cout<<"Mid cluster error \n";
+        }//bond operator encountered
+    }//i
+
+	for (int jj=0; jj<LRinClust.size(); jj++){
+		if (LRinClust[jj] == 0){
+			Ccount++;
+			LRinClust[jj] = Ccount;
+		}
+	}//jj
+
+	return LRinClust;
+
+
+}//CalcRightCluster
 
 //----------------ClusterUpdate
 void Basis::ClusterUpdate(MTRand& ran, int& L2){

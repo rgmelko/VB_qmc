@@ -13,7 +13,7 @@ int main(){
 
 
     PARAMS param; //read parameter file
-    param.printBst();
+    //param.printBst();
 
     MTRand mrand(param.SEED_); //random number for metropolis
 
@@ -53,7 +53,7 @@ int main(){
             observ.measure_E(Proj);
             observ.measure_M(Proj, Loopsize2);
             observ.measure_M_mod(Proj.LeftinClust,Proj.RightinClust);
-			return 0;
+			//return 0;
         }
         observ.output();
     }

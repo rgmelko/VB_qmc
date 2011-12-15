@@ -95,7 +95,6 @@ void Measure::measure_M_mod(const vector<int>& Left, const vector<int>& Right){
 
     int Nspin = Left.size();
 
-    //vector<int> MidClusts;
     vector<int> Mtemp;
 
     stack<int> Rstack;
@@ -139,12 +138,25 @@ void Measure::measure_M_mod(const vector<int>& Left, const vector<int>& Right){
 
         }while(!Lstack.empty() && !Rstack.empty());
 
-        for (int k=0; k<Mtemp.size(); k++)
-            cout<<Mtemp[k]<<" ";
-        cout<<endl;
-
+        //for (int k=0; k<Mtemp.size(); k++)
+        //    cout<<Mtemp[k]<<" ";
+        //cout<<endl;
 
     }//ii
+
+    for (int k=0; k<Mtemp.size(); k++)
+        cout<<Mtemp[k]<<" ";
+    cout<<endl;
+
+    vector<int> MidClusts(Nspin+1,0);
+    for (int k=0; k<Mtemp.size(); k++)
+        MidClusts[Mtemp[k]] = 1;
+
+    int counter = 0;
+    for (int k=0; k<MidClusts.size(); k++)
+        counter += MidClusts[k];
+
+    cout<<"new clust #: "<<counter<<endl;
 
 
 }//measure_M_mod
