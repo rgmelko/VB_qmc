@@ -40,8 +40,8 @@ int main(){
         for (int i=0; i<param.MCS_; i++){
             Proj.DiagonalUpdate(mrand);
             Proj.LinkedList();
-            Proj.printBasis();
-            Proj.printLinkedList();
+            //Proj.printBasis();
+            //Proj.printLinkedList();
             Proj.ClusterUpdate(mrand,Loopsize2);
             //---measure swap
             inA.assign(param.numSpin/2-1,0);
