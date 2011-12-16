@@ -529,7 +529,7 @@ int Basis::calc_LoopSize2(){
     }
 
     //cout<<sizesquared<<endl;
-    cout<<"clusters in center "<<Ccount<<" ";
+    //cout<<"clusters in center "<<Ccount<<" ";
 
     ClustNumber = Ccount; //number of clusters crossing the center 
     return sizesquared;

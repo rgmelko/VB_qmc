@@ -13,6 +13,7 @@ class Measure: public PARAMS
       double Energy;
 	  double Mag1;
 	  double Mag2;
+	  double Mag3;
       vector<double> Renyi;
 
     public:
@@ -31,6 +32,7 @@ Measure::Measure() {//constructor
     Energy = 0.0; 
     Mag1 = 0.0; 
     Mag2 = 0.0;
+    Mag3 = 0.0;
     Renyi.assign(numSpin/2-1,0.0);
 };
 
@@ -39,6 +41,7 @@ void Measure::zero(){
     Energy = 0.0;
     Mag1 = 0.0;
     Mag2 = 0.0;
+    Mag3 = 0.0;
     Renyi.assign(numSpin/2-1,0.0);
 
 }//zero
@@ -153,17 +156,24 @@ void Measure::measure_M_mod(const vector<int>& Left, const vector<int>& Right){
     //    cout<<Mtemp[k]<<" ";
     //cout<<endl;
 
-    vector<int> MidClusts(ii+1,0);
-    for (int k=0; k<Mtemp.size(); k++)
-        MidClusts[Mtemp[k]] = 1;
+    vector<int> MidClustsNum(ii+1,0);
+    vector<int> MidClustsSize(ii+1,0);
+    for (int k=0; k<Mtemp.size(); k++){
+        MidClustsNum[Mtemp[k]] = 1;
+        MidClustsSize[Mtemp[k]] += 1;
+    }
 
-    int counter = 0;
-    for (int k=0; k<MidClusts.size(); k++)
-        counter += MidClusts[k];
+    int counter = 0; //number of clusters
+    int sizesquared = 0;
+    for (int k=0; k<MidClustsNum.size(); k++){
+        counter += MidClustsNum[k];
+        sizesquared += MidClustsSize[k]*MidClustsSize[k];
+    }
 
     //cout<<"new clust #: "<<counter<<endl;
-    cout<<counter<<endl;
+    //cout<<counter<<endl;
 
+    Mag3 += 1.0*sizesquared;
 
 }//measure_M_mod
 
@@ -173,13 +183,15 @@ void Measure::output(){
     double one_over_n;
 	ofstream cfout;
 	cfout.open("00.data",ios::app);
+    cfout<<setprecision(8);
 
     one_over_n = Energy/(1.0*MCS_);
     cfout<<numSpin*h_x*2.0*m_ / one_over_n<<" ";
     cfout<<-(numSpin*h_x*2.0*m_ / one_over_n - numSpin*h_x - numLattB)/numSpin<<" ";
     //cfout<<-(-1.0-h_x + h_x*2.0*m_ / one_over_n)<<" "; //wrong for OBC?
 	cfout<<Mag1/(1.0*MCS_*1.0*numSpin*numSpin)<<" ";
-	cfout<<Mag2/(1.0*MCS_*1.0*numSpin*numSpin);
+	cfout<<Mag2/(1.0*MCS_*1.0*numSpin*numSpin)<<" ";
+	cfout<<Mag3/(1.0*MCS_*1.0*numSpin*numSpin);
     cfout<<endl;
 
 	cfout.close();
