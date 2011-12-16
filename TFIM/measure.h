@@ -102,16 +102,22 @@ void Measure::measure_M_mod(const vector<int>& Left, const vector<int>& Right){
     int current;
     //cout<<Nspin<<endl;
     Mtemp.assign(Nspin,0);
-    for (int ii=1; ii<=Nspin; ii++){
-        //int ii=1;
+    bool keepgoing = true;
+    //for (int ii=1; ii<=Nspin; ii++){
+    int ii = 0;
+    while(keepgoing == true){
+        ii++;
+        keepgoing = false;
 
         current = ii;
 
-        for (int j=0; j<Nspin; j++)
+        for (int j=0; j<Nspin; j++){
             if (Left[j] == current && Mtemp[j] == 0){
                 Mtemp[j] = ii;
                 Rstack.push(Right[j]);
             }
+            if (Mtemp[j] == 0) keepgoing = true;
+        }
 
         do{
             while(!Rstack.empty()){ 
@@ -147,7 +153,7 @@ void Measure::measure_M_mod(const vector<int>& Left, const vector<int>& Right){
     //    cout<<Mtemp[k]<<" ";
     //cout<<endl;
 
-    vector<int> MidClusts(Nspin+1,0);
+    vector<int> MidClusts(ii+1,0);
     for (int k=0; k<Mtemp.size(); k++)
         MidClusts[Mtemp[k]] = 1;
 
