@@ -43,17 +43,20 @@ int main(){
             //Proj.printBasis();
             //Proj.printLinkedList();
             Proj.ClusterUpdate(mrand,Loopsize2);
+
+            //--regular observables
+            observ.measure_E(Proj);
+            observ.measure_M(Proj, Loopsize2);
+            //need to do measure_M_mod before Renyi *DON'T DELETE*
+            observ.measure_M_mod(Proj.LeftinClust,Proj.RightinClust); 
             //---measure swap
             inA.assign(param.numSpin/2-1,0);
             for(int k=0; k<inA.size(); k++){
                 inA[k] = 1;
-                observ.Renyi2(k,Proj.SWAP(inA),Proj.ClustNumber);
+                observ.Renyi_direct(k,Proj.SWAP(inA),Proj.ClustNumber);
+                observ.Renyi_LRclust(inA,Proj.LeftinClust,Proj.RightinClust); 
             }
             //-----------------
-            observ.measure_E(Proj);
-            observ.measure_M(Proj, Loopsize2);
-            observ.measure_M_mod(Proj.LeftinClust,Proj.RightinClust);
-			//return 0;
         }
         observ.output();
     }

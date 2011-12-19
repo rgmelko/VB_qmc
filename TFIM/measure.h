@@ -14,7 +14,11 @@ class Measure: public PARAMS
 	  double Mag1;
 	  double Mag2;
 	  double Mag3;
-      vector<double> Renyi;
+      vector<double> Renyi; //naiive direct estimator (obsolete)
+      vector<double> Renyi2;//improved LR cluster estimator
+
+      //This is the number of clusters of the unswapped simulation
+      int ClustNumber;
 
     public:
 
@@ -23,7 +27,9 @@ class Measure: public PARAMS
       void measure_E(const Basis &);
       void measure_M(const Basis &, const int &);
       void measure_M_mod(const vector<int>&, const vector<int>&);
-      void Renyi2(const int& , const int& , const int& );
+      void Renyi_direct(const int& , const int& , const int& );
+      void Renyi_LRclust(const vector<int>& ,const vector<int>&, const vector<int>&);
+      vector<int> LRoverlap(const vector<int>&, const vector<int>&, int &);
       void output();
   
 };
@@ -34,6 +40,7 @@ Measure::Measure() {//constructor
     Mag2 = 0.0;
     Mag3 = 0.0;
     Renyi.assign(numSpin/2-1,0.0);
+    Renyi2.assign(numSpin/2-1,0.0);
 };
 
 void Measure::zero(){
@@ -43,16 +50,63 @@ void Measure::zero(){
     Mag2 = 0.0;
     Mag3 = 0.0;
     Renyi.assign(numSpin/2-1,0.0);
+    Renyi2.assign(numSpin/2-1,0.0);
 
 }//zero
 
-void Measure::Renyi2(const int& index, const int& numer, const int& denom){
+void Measure::Renyi_direct(const int& index, const int& numer, const int& denom){
 
     int frac_s = numer-denom;
 
     Renyi[index] += pow(2.0,frac_s);
 
-}//Renyi2
+}//Renyi_direct
+
+
+//This function calculates the swap operator directly from the Left and Right
+// "clusters" that have been calculated in the linked list
+//*** NOTE always calculate measure_M_mod *FIRST*
+void Measure::Renyi_LRclust(const vector<int>& inA,
+                            const vector<int>& Left, const vector<int>& Right){
+
+    vector<int> Mtemp;
+    int max_index; //this is the maximum cluster index in the overlap
+
+    int numRealSpin = inA.size();
+
+    int frac_s, numer;
+    int denom = ClustNumber; //global variable calculated in measure_M_mod
+
+    vector<int> RightSwap(Right); //copy constructor?
+    int temp;
+    int renyi_index; //1D solution only
+    //---Swap the Right projector here
+    for (int i=0; i<inA.size(); i++){
+        if (inA[i] != 0){
+            renyi_index = i; 
+            temp = RightSwap[i];
+            RightSwap[i] = RightSwap[i+numRealSpin];
+            RightSwap[i+numRealSpin] = temp;
+        }//inA
+    }//i
+
+    Mtemp = LRoverlap(Left,RightSwap,max_index);
+
+    vector<int> MidClustsNum(max_index+1,0);
+    for (int k=0; k<Mtemp.size(); k++)
+        MidClustsNum[Mtemp[k]] = 1;
+
+    int counter = 0; //number of clusters
+    for (int k=0; k<MidClustsNum.size(); k++)
+        counter += MidClustsNum[k];
+
+    numer = counter;
+    frac_s = numer-denom;
+    Renyi2.at(renyi_index) += pow(2.0,frac_s);
+
+    
+}//Renyi_LRclust
+
 
 void Measure::measure_E(const Basis & basis){
 
@@ -95,6 +149,38 @@ void Measure::measure_M(const Basis & basis, const int & L2){
 }//measure_M
 
 void Measure::measure_M_mod(const vector<int>& Left, const vector<int>& Right){
+
+    vector<int> Mtemp;
+    int max_index; //this is the maximum cluster index in the overlap
+    Mtemp = LRoverlap(Left,Right,max_index);
+
+    vector<int> MidClustsNum(max_index+1,0);
+    vector<int> MidClustsSize(max_index+1,0);
+    for (int k=0; k<Mtemp.size(); k++){
+        MidClustsNum[Mtemp[k]] = 1;
+        MidClustsSize[Mtemp[k]] += 1;
+    }
+
+    int counter = 0; //number of clusters
+    int sizesquared = 0;
+    for (int k=0; k<MidClustsNum.size(); k++){
+        counter += MidClustsNum[k];
+        sizesquared += MidClustsSize[k]*MidClustsSize[k];
+    }
+
+    //cout<<"new clust #: "<<counter<<endl;
+    //cout<<counter<<endl;
+
+    ClustNumber = counter; //private global variable
+
+    Mag3 += 1.0*sizesquared;
+
+}//measure_M_mod
+
+
+//a function that takes the L and R "center" cluster vectors and calculates
+//the overlap vector 
+vector<int> Measure::LRoverlap(const vector<int>& Left, const vector<int>& Right, int & max){
 
     int Nspin = Left.size();
 
@@ -156,26 +242,10 @@ void Measure::measure_M_mod(const vector<int>& Left, const vector<int>& Right){
     //    cout<<Mtemp[k]<<" ";
     //cout<<endl;
 
-    vector<int> MidClustsNum(ii+1,0);
-    vector<int> MidClustsSize(ii+1,0);
-    for (int k=0; k<Mtemp.size(); k++){
-        MidClustsNum[Mtemp[k]] = 1;
-        MidClustsSize[Mtemp[k]] += 1;
-    }
+    max = ii; //this is the maximum cluster index contained in the overlap
+    return Mtemp;
 
-    int counter = 0; //number of clusters
-    int sizesquared = 0;
-    for (int k=0; k<MidClustsNum.size(); k++){
-        counter += MidClustsNum[k];
-        sizesquared += MidClustsSize[k]*MidClustsSize[k];
-    }
-
-    //cout<<"new clust #: "<<counter<<endl;
-    //cout<<counter<<endl;
-
-    Mag3 += 1.0*sizesquared;
-
-}//measure_M_mod
+}//LRoverlap
 
 
 void Measure::output(){
@@ -198,8 +268,10 @@ void Measure::output(){
 
 	cfout.open("01.data",ios::app);
 
-    for (int i=0; i<Renyi.size(); i++)
-        cfout<<i<<" "<<-log(Renyi[i]/(1.0*MCS_))<<endl;
+    for (int i=0; i<Renyi.size(); i++){
+        cfout<<i<<" "<<-log(Renyi[i]/(1.0*MCS_))<<" ";
+        cfout<<i<<" "<<-log(Renyi2[i]/(1.0*MCS_))<<endl;
+    }
     //cout<<endl;
 
 	cfout.close();
