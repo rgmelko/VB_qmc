@@ -54,28 +54,13 @@ PARAMS::PARAMS(){
         int a,b;
         index2 temp;
         for (int rep=0; rep<alpha; rep++)
-            for (int i=0; i<numLattB/alpha; i++){  //REAL SYSTEM (LAYER 1)
+            for (int i=0; i<numLattB/alpha; i++){  //EACH LAYER
                 a = rep*numLattB/alpha+i;
                 b = a+1;
                 if (b == (rep+1)*numSpin/alpha) b = rep*numLattB/alpha; //PBC
                 temp.set(a,b);
                 Bst.push_back(temp);
             }//i
-
-        //for (int i=0; i<numLattB/alpha; i++){  //REAL SYSTEM (LAYER 1)
-        //    a = i;
-        //    b = i+1;
-        //    if (b == numSpin/alpha) b = 0; //PBC
-        //    temp.set(a,b);
-        //    Bst.push_back(temp);
-        //}//i
-        //for (int i=0; i<numLattB/alpha; i++){  //REPLICA SYSTEM (LAYER 2)
-        //    a = numSpin/alpha+i;
-        //    b = a+1;
-        //    if (b == numSpin) b = numSpin/alpha; //PBC
-        //    temp.set(a,b);
-        //    Bst.push_back(temp);
-        //}//i
 
     }//1D chain
 

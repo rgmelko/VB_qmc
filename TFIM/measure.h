@@ -39,8 +39,8 @@ Measure::Measure() {//constructor
     Mag1 = 0.0; 
     Mag2 = 0.0;
     Mag3 = 0.0;
-    Renyi.assign(numSpin/2-1,0.0);
-    Renyi2.assign(numSpin/2-1,0.0);
+    Renyi.assign(numSpin/alpha-1,0.0);
+    Renyi2.assign(numSpin/alpha-1,0.0);
 };
 
 void Measure::zero(){
@@ -49,8 +49,8 @@ void Measure::zero(){
     Mag1 = 0.0;
     Mag2 = 0.0;
     Mag3 = 0.0;
-    Renyi.assign(numSpin/2-1,0.0);
-    Renyi2.assign(numSpin/2-1,0.0);
+    Renyi.assign(numSpin/alpha-1,0.0);
+    Renyi2.assign(numSpin/alpha-1,0.0);
 
 }//zero
 
@@ -72,7 +72,7 @@ void Measure::Renyi_LRclust(const vector<int>& inA,
     vector<int> Mtemp;
     int max_index; //this is the maximum cluster index in the overlap
 
-    int numRealSpin = numSpin/2;
+    int numRealSpin = numSpin/alpha;
 
     int frac_s, numer;
     int denom = ClustNumber; //global variable calculated in measure_M_mod
