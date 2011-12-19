@@ -10,6 +10,10 @@ using namespace std;
 #include "MersenneTwister.h"
 #include "matrix.h"
 
+//Global constants here
+
+#define alpha 2 //This is the number of replicas
+
 class index2{
 
     public:

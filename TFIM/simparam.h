@@ -47,26 +47,35 @@ PARAMS::PARAMS(){
 
     if (nY_ == 0) {    // ---------1D chain
         //derived constants
-        numSpin = 2*nX_;    //replicate it!
+        numSpin = alpha*nX_;    //replicate it: alpha is a global #define
         numLattB = numSpin; //Periodic BC
 
         //Initialize lattice bond array
         int a,b;
         index2 temp;
-        for (int i=0; i<numLattB/2; i++){  //REAL SYSTEM (LAYER 1)
-            a = i;
-            b = i+1;
-            if (b == numSpin/2) b = 0; //PBC
-            temp.set(a,b);
-            Bst.push_back(temp);
-        }//i
-        for (int i=0; i<numLattB/2; i++){  //REPLICA SYSTEM (LAYER 2)
-            a = numSpin/2+i;
-            b = a+1;
-            if (b == numSpin) b = numSpin/2; //PBC
-            temp.set(a,b);
-            Bst.push_back(temp);
-        }//i
+        for (int rep=0; rep<alpha; rep++)
+            for (int i=0; i<numLattB/alpha; i++){  //REAL SYSTEM (LAYER 1)
+                a = rep*numLattB/alpha+i;
+                b = a+1;
+                if (b == (rep+1)*numSpin/alpha) b = rep*numLattB/alpha; //PBC
+                temp.set(a,b);
+                Bst.push_back(temp);
+            }//i
+
+        //for (int i=0; i<numLattB/alpha; i++){  //REAL SYSTEM (LAYER 1)
+        //    a = i;
+        //    b = i+1;
+        //    if (b == numSpin/alpha) b = 0; //PBC
+        //    temp.set(a,b);
+        //    Bst.push_back(temp);
+        //}//i
+        //for (int i=0; i<numLattB/alpha; i++){  //REPLICA SYSTEM (LAYER 2)
+        //    a = numSpin/alpha+i;
+        //    b = a+1;
+        //    if (b == numSpin) b = numSpin/alpha; //PBC
+        //    temp.set(a,b);
+        //    Bst.push_back(temp);
+        //}//i
 
     }//1D chain
 

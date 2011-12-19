@@ -604,7 +604,7 @@ int Basis::SWAP(const vector<int>& inA){
             for (int j=0; j<inA.size(); j++)
                 if (inA[j] == 1){
                     tempj = Last[j];
-                    Last[j] = Last[j+numSpin/2];
+                    Last[j] = Last[j+numSpin/2]; //SWAP: not for Permutation
                     Last[j+numSpin/2] = tempj;
                 }
             Last_atHalf = Last; //copy 
