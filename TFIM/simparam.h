@@ -26,6 +26,12 @@ class PARAMS
         vector <index2> Bst;
 
         void printBst();
+
+		//stuff for the swap
+		int ratioON;  //1 for ratio, 0 for bare swap, from regionX.dat file
+		int nSwap;
+		vector<vector<int> > inAreg; //definition of the A regions to measure
+
    
 }; //PARAMS
 
@@ -64,32 +70,84 @@ PARAMS::PARAMS(){
 
     }//1D chain
 
-    else{//2D
+    //else{//2D
 
-        numSpin = nX_*nX_;
-        numLattB = 2*nX_*nX_; //Periodic BC for 2D lattice
+    //    numSpin = nX_*nX_;
+    //    numLattB = 2*nX_*nX_; //Periodic BC for 2D lattice
 
-        //Initialize lattice bond array
-        int a,b,d;
-        index2 temp;
+    //    //Initialize lattice bond array
+    //    int a,b,d;
+    //    index2 temp;
 
-        for (int i=0; i<numSpin; i++){  
-            //horizontal bond
-            a = i;
-            b = i+1;
-            if ( b%nX_ == 0) b -= nX_;
-            temp.set(a,b);
-            Bst.push_back(temp);
-            //vertical bond
-            a = i;
-            d = i+nX_;
-            if (d>= nX_*nX_) d -= nX_*nX_;
-            temp.set(a,d);
-            Bst.push_back(temp);
-        }//i
+    //    for (int i=0; i<numSpin; i++){  
+    //        //horizontal bond
+    //        a = i;
+    //        b = i+1;
+    //        if ( b%nX_ == 0) b -= nX_;
+    //        temp.set(a,b);
+    //        Bst.push_back(temp);
+    //        //vertical bond
+    //        a = i;
+    //        d = i+nX_;
+    //        if (d>= nX_*nX_) d -= nX_*nX_;
+    //        temp.set(a,d);
+    //        Bst.push_back(temp);
+    //    }//i
 
-    }
+    //}//end 2D
 
+	//--------read in regions A and X
+	vector<int> Atemp;  //vector to be pushed back
+	Atemp.assign(numSpin/alpha,0);
+
+	ifstream fin;
+	fin.open("regionA.dat");
+
+	if (fin.fail() ) { //check for errors
+		cout<<"Could not open a regionA.dat file"<<endl;
+	}
+
+	fin>>nSwap;
+	if (nSwap < 1) cout<<"regionA.dat error 1 \n";
+
+	int temp;
+
+	for (int j=0; j<nSwap; j++){
+		for (int i=0; i<numSpin/alpha; i++){
+			fin>>temp;
+			if (temp != 0 && temp != 1)  cout<<"regionA.dat error 2 \n";
+			Atemp.at(i) = temp; 
+		}
+		fin>>temp;
+		if (temp != -99) cout<<"regionA.dat error 3 \n";
+		inAreg.push_back(Atemp); //the 1 spin region
+	}//j
+
+	fin.close();
+
+	//--if there is a regionX.dat file, push this back as the last
+	//--vector element in inAreg<>
+	fin.open("regionX.dat");
+	fin>>temp;
+	if ( temp==0 ){  //check for errors
+		//cout<<"not using Ratio! : renyi"<<endl;
+		ratioON = 0;
+	}
+	else{
+		ratioON = 1;
+		for (int i=0; i<numSpin/alpha; i++){
+			fin>>temp;
+			if (temp != 0 && temp != 1)  cout<<"regionX.dat error 3  \n";
+			Atemp.at(i) = temp; 
+		}
+		fin>>temp;
+		if (temp != -99) cout<<"regionX.dat error 4  BASIS\n";
+		inAreg.push_back(Atemp); //the 1 spin region
+	}
+
+	fin.close();
+
+	//------ done reading in regions A and X
 
 
 }//constructor

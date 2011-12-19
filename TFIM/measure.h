@@ -28,9 +28,11 @@ class Measure: public PARAMS
       void measure_M(const Basis &, const int &);
       void measure_M_mod(const vector<int>&, const vector<int>&);
       void Renyi_direct(const int& , const int& , const int& );
-      void Renyi_LRclust(const vector<int>& ,const vector<int>&, const vector<int>&);
       vector<int> LRoverlap(const vector<int>&, const vector<int>&, int &);
       void output();
+	  //Renyis below
+	  void Calc_Renyi(const vector<int>& , const vector<int>& );
+      int Renyi_LRclust(const vector<int>& ,const vector<int>&, const vector<int>&);
   
 };
 
@@ -39,8 +41,8 @@ Measure::Measure() {//constructor
     Mag1 = 0.0; 
     Mag2 = 0.0;
     Mag3 = 0.0;
-    Renyi.assign(numSpin/alpha-1,0.0);
-    Renyi2.assign(numSpin/alpha-1,0.0);
+    Renyi.assign(nSwap,0.0);
+    Renyi2.assign(nSwap,0.0);
 };
 
 void Measure::zero(){
@@ -49,8 +51,8 @@ void Measure::zero(){
     Mag1 = 0.0;
     Mag2 = 0.0;
     Mag3 = 0.0;
-    Renyi.assign(numSpin/alpha-1,0.0);
-    Renyi2.assign(numSpin/alpha-1,0.0);
+    Renyi.assign(nSwap,0.0);
+    Renyi2.assign(nSwap,0.0);
 
 }//zero
 
@@ -62,11 +64,25 @@ void Measure::Renyi_direct(const int& index, const int& numer, const int& denom)
 
 }//Renyi_direct
 
+void Measure::Calc_Renyi(const vector<int>& Left, const vector<int>& Right){
+
+    int frac_s, numer;
+    int denom = ClustNumber; //global variable calculated in measure_M_mod
+
+	for(int ii=0; ii<nSwap; ii++){
+        
+		numer = Renyi_LRclust(inAreg[ii],Left,Right);
+		frac_s = numer-denom;
+		Renyi2.at(ii) += pow(2.0,frac_s);
+	}
+
+
+}//Calc_Renyi
 
 //This function calculates the swap operator directly from the Left and Right
 // "clusters" that have been calculated in the linked list
 //*** NOTE always calculate measure_M_mod *FIRST*
-void Measure::Renyi_LRclust(const vector<int>& inA,
+int Measure::Renyi_LRclust(const vector<int>& inA,
                             const vector<int>& Left, const vector<int>& Right){
 
     vector<int> Mtemp;
@@ -74,25 +90,14 @@ void Measure::Renyi_LRclust(const vector<int>& inA,
 
     int numRealSpin = numSpin/alpha;
 
-    int frac_s, numer;
-    int denom = ClustNumber; //global variable calculated in measure_M_mod
+    //int frac_s, numer;
+    //int denom = ClustNumber; //global variable calculated in measure_M_mod
 
     vector<int> RightSwap(Right); //copy constructor?
     int temp;
-    int renyi_index; //1D solution only
-    //---Swap the Right projector here
-    //for (int i=0; i<inA.size(); i++){
-    //    if (inA[i] != 0){
-    //        renyi_index = i; 
-    //        temp = RightSwap[i];
-    //        RightSwap[i] = RightSwap[i+numRealSpin];
-    //        RightSwap[i+numRealSpin] = temp;
-    //    }//inA
-    //}//i
     //---PERMUTE! the Right projector here
     for (int i=0; i<inA.size(); i++){
         if (inA[i] != 0){
-            renyi_index = i; 
             temp = RightSwap[i];
 			for (int rep=0; rep<alpha-1; rep++)
 				RightSwap[rep*numRealSpin+i] = RightSwap[rep*numRealSpin+i+numRealSpin];
@@ -110,9 +115,12 @@ void Measure::Renyi_LRclust(const vector<int>& inA,
     for (int k=0; k<MidClustsNum.size(); k++)
         counter += MidClustsNum[k];
 
-    numer = counter;
-    frac_s = numer-denom;
-    Renyi2.at(renyi_index) += pow(2.0,frac_s);
+    //numer = counter;
+    //frac_s = numer-denom;
+    
+	return counter; //this is the numerator of the ratio of powers
+	
+	//Renyi2.at() += pow(2.0,frac_s);
 
     
 }//Renyi_LRclust

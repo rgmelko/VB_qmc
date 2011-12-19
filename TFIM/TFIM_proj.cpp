@@ -13,7 +13,7 @@ int main(){
 
 
     PARAMS param; //read parameter file
-    param.printBst();
+    //param.printBst();
     //return 0;
 
     MTRand mrand(param.SEED_); //random number for metropolis
@@ -32,7 +32,7 @@ int main(){
     }
 
 
-    vector<int> inA(param.numSpin/alpha-1,0); //size of physical spins
+    //vector<int> inA(param.numSpin/alpha-1,0); //size of physical spins
 
     Measure observ;
 
@@ -51,12 +51,13 @@ int main(){
             //need to do measure_M_mod before Renyi 
             observ.measure_M_mod(Proj.LeftinClust,Proj.RightinClust); //*DON'T DELETE*
             //---measure swap
-            inA.assign(param.numSpin/alpha-1,0);
-            for(int k=0; k<inA.size(); k++){
-                inA[k] = 1;
-                //observ.Renyi_direct(k,Proj.SWAP(inA),Proj.ClustNumber);
-                observ.Renyi_LRclust(inA,Proj.LeftinClust,Proj.RightinClust); 
-            }
+            observ.Calc_Renyi(Proj.LeftinClust,Proj.RightinClust);
+            //inA.assign(param.numSpin/alpha-1,0);
+            //for(int k=0; k<inA.size(); k++){
+            //    inA[k] = 1;
+            //    //observ.Renyi_direct(k,Proj.SWAP(inA),Proj.ClustNumber);
+            //    observ.Renyi_LRclust(inA,Proj.LeftinClust,Proj.RightinClust); 
+            //}
             //-----------------
         }
         observ.output();
