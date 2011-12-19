@@ -72,7 +72,7 @@ void Measure::Renyi_LRclust(const vector<int>& inA,
     vector<int> Mtemp;
     int max_index; //this is the maximum cluster index in the overlap
 
-    int numRealSpin = inA.size();
+    int numRealSpin = numSpin/2;
 
     int frac_s, numer;
     int denom = ClustNumber; //global variable calculated in measure_M_mod
