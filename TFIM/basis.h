@@ -450,7 +450,7 @@ void Basis::ClusterUpdate(MTRand& ran, int& L2){
         S_right[i] = LegType[LegType.size()-numSpin + i];
     }//i
 
-    L2 = calc_LoopSize2(); //used for magnetization
+    //L2 = calc_LoopSize2(); //used for old magnetization estimator
 
     //LinkList.clear(); //clear up the linked list
     //LegType.clear();

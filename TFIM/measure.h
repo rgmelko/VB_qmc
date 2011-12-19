@@ -256,11 +256,10 @@ void Measure::output(){
     cfout<<setprecision(8);
 
     one_over_n = Energy/(1.0*MCS_);
-    cfout<<numSpin*h_x*2.0*m_ / one_over_n<<" ";
+    //cfout<<numSpin*h_x*2.0*m_ / one_over_n<<" ";
     cfout<<-(numSpin*h_x*2.0*m_ / one_over_n - numSpin*h_x - numLattB)/numSpin<<" ";
-    //cfout<<-(-1.0-h_x + h_x*2.0*m_ / one_over_n)<<" "; //wrong for OBC?
-	cfout<<Mag1/(1.0*MCS_*1.0*numSpin*numSpin)<<" ";
-	cfout<<Mag2/(1.0*MCS_*1.0*numSpin*numSpin)<<" ";
+	//cfout<<Mag1/(1.0*MCS_*1.0*numSpin*numSpin)<<" ";
+	//cfout<<Mag2/(1.0*MCS_*1.0*numSpin*numSpin)<<" ";
 	cfout<<Mag3/(1.0*MCS_*1.0*numSpin*numSpin);
     cfout<<endl;
 
@@ -269,8 +268,8 @@ void Measure::output(){
 	cfout.open("01.data",ios::app);
 
     for (int i=0; i<Renyi.size(); i++){
-        cfout<<i<<" "<<-log(Renyi[i]/(1.0*MCS_))<<" ";
-        cfout<<i<<" "<<-log(Renyi2[i]/(1.0*MCS_))<<endl;
+        //cfout<<i<<" "<<-log(Renyi[i]/(1.0*MCS_))<<" ";
+        cfout<<i+1<<" "<<-log(Renyi2[i]/(1.0*MCS_))<<endl;
     }
     //cout<<endl;
 

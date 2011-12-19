@@ -46,14 +46,14 @@ int main(){
 
             //--regular observables
             observ.measure_E(Proj);
-            observ.measure_M(Proj, Loopsize2);
-            //need to do measure_M_mod before Renyi *DON'T DELETE*
-            observ.measure_M_mod(Proj.LeftinClust,Proj.RightinClust); 
+            //observ.measure_M(Proj, Loopsize2);
+            //need to do measure_M_mod before Renyi 
+            observ.measure_M_mod(Proj.LeftinClust,Proj.RightinClust); //*DON'T DELETE*
             //---measure swap
             inA.assign(param.numSpin/2-1,0);
             for(int k=0; k<inA.size(); k++){
                 inA[k] = 1;
-                observ.Renyi_direct(k,Proj.SWAP(inA),Proj.ClustNumber);
+                //observ.Renyi_direct(k,Proj.SWAP(inA),Proj.ClustNumber);
                 observ.Renyi_LRclust(inA,Proj.LeftinClust,Proj.RightinClust); 
             }
             //-----------------
