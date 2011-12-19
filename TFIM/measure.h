@@ -81,12 +81,22 @@ void Measure::Renyi_LRclust(const vector<int>& inA,
     int temp;
     int renyi_index; //1D solution only
     //---Swap the Right projector here
+    //for (int i=0; i<inA.size(); i++){
+    //    if (inA[i] != 0){
+    //        renyi_index = i; 
+    //        temp = RightSwap[i];
+    //        RightSwap[i] = RightSwap[i+numRealSpin];
+    //        RightSwap[i+numRealSpin] = temp;
+    //    }//inA
+    //}//i
+    //---PERMUTE! the Right projector here
     for (int i=0; i<inA.size(); i++){
         if (inA[i] != 0){
             renyi_index = i; 
             temp = RightSwap[i];
-            RightSwap[i] = RightSwap[i+numRealSpin];
-            RightSwap[i+numRealSpin] = temp;
+			for (int rep=0; rep<alpha-1; rep++)
+				RightSwap[rep*numRealSpin+i] = RightSwap[rep*numRealSpin+i+numRealSpin];
+            RightSwap[(alpha-1)*numRealSpin+i] = temp;
         }//inA
     }//i
 
@@ -269,7 +279,7 @@ void Measure::output(){
 
     for (int i=0; i<Renyi.size(); i++){
         //cfout<<i<<" "<<-log(Renyi[i]/(1.0*MCS_))<<" ";
-        cfout<<i+1<<" "<<-log(Renyi2[i]/(1.0*MCS_))<<endl;
+        cfout<<i+1<<" "<<(1.0/(1.0-1.0*alpha))*log(Renyi2[i]/(1.0*MCS_))<<endl;
     }
     //cout<<endl;
 
