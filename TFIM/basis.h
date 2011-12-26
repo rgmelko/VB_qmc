@@ -90,6 +90,17 @@ void Basis::DiagonalUpdate(MTRand& ran){
     int flag;
     for(int i=0; i<OperatorList.size(); i++){
 
+        if (ratioON == 1 && i == OperatorList.size()/2){ //SWAP for ratio trick
+            int tempj;
+            int Xindex = inAreg.size()-1;
+            for (int j=0; j<inAreg[Xindex].size(); j++)
+                if (inAreg[Xindex][j] == 1){
+                    tempj = S_prop[j];
+                    S_prop[j] = S_prop[j+numSpin/alpha];
+                    S_prop[j+numSpin/alpha] = tempj;
+                }
+        }//--- ratio trick
+
         if (OperatorList[i].A == -2) //this is a off-diagonal site operator
             S_prop[OperatorList[i].B] = S_prop[OperatorList[i].B]^1 ; //binary spin flip
 
@@ -156,7 +167,21 @@ void Basis::LinkedList(){
     int site, site1, site2;
     //The linked list is now size N.  Add the 2m operators each of 4 or 2 legs
     for(int i=0; i<OperatorList.size(); i++){
-        
+
+		if (ratioON == 1 && i == OperatorList.size()/2){ //SWAP for ratio trick
+				int tempj;
+				int Xindex = inAreg.size()-1;
+				for (int j=0; j<inAreg[Xindex].size(); j++)
+					if (inAreg[Xindex][j] == 1){
+						tempj = First[j];
+						First[j] = First[j+numSpin/alpha]; //SWAP: not for Permutation
+						First[j+numSpin/alpha] = tempj;
+                        tempj = S_prop[j];
+                        S_prop[j] = S_prop[j+numSpin/alpha];
+                        S_prop[j+numSpin/alpha] = tempj;
+					}
+		}//ratio trick
+       
         //assign non-trivial associates
         if (OperatorList[i].A != -2 && OperatorList[i].A != -1){
             temp3.set(count+1,count+2,count+3); Associates.push_back(temp3);

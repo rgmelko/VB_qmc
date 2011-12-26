@@ -149,6 +149,12 @@ PARAMS::PARAMS(){
 
 	//------ done reading in regions A and X
 
+    //for (int i=0; i<inAreg.size(); i++){
+    //    for (int j=0; j<inAreg[0].size(); j++)
+    //        cout<<inAreg[i][j]<<" ";
+    //    cout<<endl;
+    //}
+
 
 }//constructor
 
