@@ -97,11 +97,13 @@ int Measure::Renyi_LRclust(const vector<int>& inA,
     int temp;
     //---PERMUTE! the Right projector here
     for (int i=0; i<inA.size(); i++){
-        if (inA[i] != 0){
-            temp = RightSwap[i];
-			for (int rep=0; rep<alpha-1; rep++)
-				RightSwap[rep*numRealSpin+i] = RightSwap[rep*numRealSpin+i+numRealSpin];
-            RightSwap[(alpha-1)*numRealSpin+i] = temp;
+        if (inA[i] != 0){ 
+            if (ratioON == 0 || inAreg[inAreg.size()-1][i] == 0){ //only swap on un-ratioed
+                temp = RightSwap[i];
+                for (int rep=0; rep<alpha-1; rep++)
+                    RightSwap[rep*numRealSpin+i] = RightSwap[rep*numRealSpin+i+numRealSpin];
+                RightSwap[(alpha-1)*numRealSpin+i] = temp;
+            }
         }//inA
     }//i
 
