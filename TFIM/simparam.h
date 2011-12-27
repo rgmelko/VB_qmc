@@ -127,25 +127,31 @@ PARAMS::PARAMS(){
 
 	//--if there is a regionX.dat file, push this back as the last
 	//--vector element in inAreg<>
-	fin.open("regionX.dat");
-	fin>>temp;
-	if ( temp==0 ){  //check for errors
-		//cout<<"not using Ratio! : renyi"<<endl;
-		ratioON = 0;
-	}
-	else{
-		ratioON = 1;
-		for (int i=0; i<numSpin/alpha; i++){
-			fin>>temp;
-			if (temp != 0 && temp != 1)  cout<<"regionX.dat error 3  \n";
-			Atemp.at(i) = temp; 
-		}
-		fin>>temp;
-		if (temp != -99) cout<<"regionX.dat error 4  BASIS\n";
-		inAreg.push_back(Atemp); //the 1 spin region
-	}
+    fin.open("regionX.dat");
+    if (fin.fail() ) { //check for errors
+        cout<<"Could not open a regionX.dat file"<<endl;
+        ratioON = 0;
+    }
+    else{
+        fin>>temp;
+        if ( temp==0 ){  //check for errors
+            //cout<<"not using Ratio! : renyi"<<endl;
+            ratioON = 0;
+        }
+        else{
+            ratioON = 1;
+            for (int i=0; i<numSpin/alpha; i++){
+                fin>>temp;
+                if (temp != 0 && temp != 1)  cout<<"regionX.dat error 3  \n";
+                Atemp.at(i) = temp; 
+            }
+            fin>>temp;
+            if (temp != -99) cout<<"regionX.dat error 4  BASIS\n";
+            inAreg.push_back(Atemp); //the 1 spin region
+        }
 
-	fin.close();
+        fin.close();
+    }//regionX.dat found
 
 	//------ done reading in regions A and X
 
