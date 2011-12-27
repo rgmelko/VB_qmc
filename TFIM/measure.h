@@ -303,9 +303,10 @@ void Measure::output(){
 
     for (int i=0; i<Renyi.size(); i++){
         //cfout<<i<<" "<<-log(Renyi[i]/(1.0*MCS_))<<" ";
-        cfout<<i+1<<" "<<(1.0/(1.0-1.0*alpha))*log(Renyi2[i]/(1.0*MCS_))<<endl;
+        //cfout<<i+1<<" "<<(1.0/(1.0-1.0*alpha))*log(Renyi2[i]/(1.0*MCS_))<<endl;
+        cfout<<Renyi2[i]/(1.0*MCS_)<<" ";
     }
-    //cout<<endl;
+    cfout<<endl;
 
 	cfout.close();
 

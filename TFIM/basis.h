@@ -38,6 +38,9 @@ class Basis: public PARAMS
 	   int SWAP(const vector<int>& );
 	   void printBasis();
 	   void printLinkedList();
+	   void filewrite(const int & num);
+	   void fileread(const int & num);
+
 
 };
 
@@ -737,6 +740,112 @@ int Basis::SWAP(const vector<int>& inA){
 
 }//----------------SWAP
 
+
+void Basis::filewrite(const int & num){
+
+    char fname[8];
+
+    if (num == 0) fname[1] = '0';
+    else if (num%9 == 0) fname[1] = '9';
+    else if (num%8 == 0) fname[1] = '8';
+    else if (num%7 == 0) fname[1] = '7';
+    else if (num%6 == 0) fname[1] = '6';
+    else if (num%5 == 0) fname[1] = '5';
+    else if (num%4 == 0) fname[1] = '4';
+    else if (num%3 == 0) fname[1] = '3';
+    else if (num%2 == 0) fname[1] = '2';
+    else if (num%1 == 0) fname[1] = '1';
+
+    fname[0] = '0';
+    fname[2] = '.';
+    fname[3] = 'b';
+    fname[4] = 'a';
+    fname[5] = 's';
+    fname[6] = 'e';
+    fname[7] = '\0';
+
+    ofstream cfout;
+    cfout.open(fname);
+
+	for (int i=0; i<S_left.size(); i++)
+		cfout<<S_left[i]<<" ";
+	cfout<<endl;
+	for (int i=0; i<S_right.size(); i++)
+		cfout<<S_right[i]<<" ";
+	cfout<<endl;
+
+	cfout<<OperatorList.size()<<endl;
+
+	for (int i=0; i<OperatorList.size(); i++){
+		cfout<<OperatorList[i].A<<" ";
+		cfout<<OperatorList[i].B<<endl;
+	}
+
+	cfout<<"-999 \n"; //check for file corruption etc
+
+    cfout.close();
+
+}//filewrite
+
+
+void Basis::fileread(const int & num){
+
+    char fname[8];
+
+    if (num == 0) fname[1] = '0';
+    else if (num%9 == 0) fname[1] = '9';
+    else if (num%8 == 0) fname[1] = '8';
+    else if (num%7 == 0) fname[1] = '7';
+    else if (num%6 == 0) fname[1] = '6';
+    else if (num%5 == 0) fname[1] = '5';
+    else if (num%4 == 0) fname[1] = '4';
+    else if (num%3 == 0) fname[1] = '3';
+    else if (num%2 == 0) fname[1] = '2';
+    else if (num%1 == 0) fname[1] = '1';
+
+    fname[0] = '0';
+    fname[2] = '.';
+    fname[3] = 'b';
+	fname[4] = 'a';
+	fname[5] = 's';
+	fname[6] = 'e';
+	fname[7] = '\0';
+
+	ifstream cfin;
+	cfin.open(fname);
+
+	if (cfin.fail() ) { //check for errors
+		cout<<"Could not open a basis input file "<<endl;
+	}
+
+	int temp;
+	for (int i=0; i<S_left.size(); i++){
+		cfin>>temp;
+		S_left[i] = temp;
+	}
+	for (int i=0; i<S_right.size(); i++){
+		cfin>>temp;
+		S_right[i] = temp;
+	}
+
+	cfin>>temp;  //OperatorList.size();
+	if (temp != 2*m_) cout<<"Basis fileread error 1 \n";
+	if (temp != OperatorList.size() ) cout<<"Basis fileread error 2 \n";
+
+	for (int i=0; i<OperatorList.size(); i++){
+		cfin>>temp;
+		OperatorList[i].A = temp;
+		cfin>>temp;
+		OperatorList[i].B = temp;
+	}
+
+	cfin>>temp;  //OperatorList.size();
+	if (temp != -999) cout<<"Basis fileread error 3 \n";
+
+	cfin.close();
+
+
+}//fileread
 
 
 #endif
