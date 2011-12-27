@@ -19,7 +19,6 @@ class Measure: public PARAMS
 
       //This is the number of clusters of the unswapped simulation
       int ClustNumber;
-      int numRealSpin;
 
     public:
 
@@ -39,8 +38,6 @@ class Measure: public PARAMS
 
 Measure::Measure() {//constructor
      
-    numRealSpin = numSpin/alpha;
-
     Energy = 0.0; 
     Mag1 = 0.0; 
     Mag2 = 0.0;

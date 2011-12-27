@@ -30,6 +30,7 @@ class PARAMS
 		//stuff for the swap
 		int ratioON;  //1 for ratio, 0 for bare swap, from regionX.dat file
 		int nSwap;
+        int numRealSpin; //the number of spins in the physical system
 		vector<vector<int> > inAreg; //definition of the A regions to measure
 
    
@@ -49,7 +50,6 @@ PARAMS::PARAMS(){
     pfin >> m_;
     pfin >> h_x;
     pfin.close();
-
 
     if (nY_ == 0) {    // ---------1D chain
         //derived constants
@@ -161,6 +161,7 @@ PARAMS::PARAMS(){
     //    cout<<endl;
     //}
 
+    numRealSpin = numSpin/alpha;
 
 }//constructor
 

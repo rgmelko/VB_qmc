@@ -96,8 +96,11 @@ void Basis::DiagonalUpdate(MTRand& ran){
             for (int j=0; j<inAreg[Xindex].size(); j++)
                 if (inAreg[Xindex][j] == 1){
                     tempj = S_prop[j];
-                    S_prop[j] = S_prop[j+numSpin/alpha];
-                    S_prop[j+numSpin/alpha] = tempj;
+                    for (int rep=0; rep<alpha-1; rep++) //Permutation
+                        S_prop[rep*numRealSpin+j] = S_prop[rep*numRealSpin+j+numRealSpin];
+                    S_prop[(alpha-1)*numRealSpin+j] = tempj;
+                    //S_prop[j] = S_prop[j+numSpin/alpha]; //old SWAP
+                    //S_prop[j+numSpin/alpha] = tempj;
                 }
         }//--- ratio trick
 
@@ -173,12 +176,18 @@ void Basis::LinkedList(){
 				int Xindex = inAreg.size()-1;
 				for (int j=0; j<inAreg[Xindex].size(); j++)
 					if (inAreg[Xindex][j] == 1){
-						tempj = First[j];
-						First[j] = First[j+numSpin/alpha]; //SWAP: not for Permutation
-						First[j+numSpin/alpha] = tempj;
+                        tempj = First[j];
+                        for (int rep=0; rep<alpha-1; rep++) //Permutation
+                            First[rep*numRealSpin+j] = First[rep*numRealSpin+j+numRealSpin];
+                        First[(alpha-1)*numRealSpin+j] = tempj;
+						//First[j] = First[j+numSpin/alpha]; //old SWAP
+						//First[j+numSpin/alpha] = tempj;
                         tempj = S_prop[j];
-                        S_prop[j] = S_prop[j+numSpin/alpha];
-                        S_prop[j+numSpin/alpha] = tempj;
+                        for (int rep=0; rep<alpha-1; rep++) //Permutation
+                            S_prop[rep*numRealSpin+j] = S_prop[rep*numRealSpin+j+numRealSpin];
+                        S_prop[(alpha-1)*numRealSpin+j] = tempj;
+                        //S_prop[j] = S_prop[j+numSpin/alpha]; //old SWAP
+                        //S_prop[j+numSpin/alpha] = tempj;
 					}
 		}//ratio trick
        
