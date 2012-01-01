@@ -1,4 +1,13 @@
-Dear Editor,We are delighted to submit the enclosed manuscript, "Universal large-scale entanglement in two-dimensional gapless systems", for consideration in Physical Review Letters.Using numerical simulations of several wavefunctions in condensed matter physics, we have confirmed for the first time that gapless wavefunctions have a universal shape-dependent scaling function, \gamma.  This function is subleading to the usual "area-law" and is absent in conventional or topological gapped states.  The observation of a non-zero shape-dependent term in the wavefunctions studied in this paper strongly suggests that a universal \gamma might be a general feature of entanglement entropy scaling in gapless states.  This fact has profound consequences in several disparate fields of physics, including, but not limited to, quantum information, topological phases, and conformally invariant systems in condensed matter physics.  We hope that the editors and referees share our excitement.Sincerely, H. Ju, A. Kallin, P. Fendley, M. Hastings, and R. Melko
+Dear Editor,
+
+We are delighted to submit the enclosed manuscript, "Universal large-scale entanglement in two-dimensional gapless systems", for consideration in Physical Review Letters.
+
+Condensed matter physics is currently experiencing an explosion of benefits from measurement quantities and techniques influenced by quantum information.  Of these, the entanglement entropy (EE) is the most important, promising to revolutionize our understanding of exotic phases and phase transitions in 2D and higher.  Although the literature is rife with speculation of the potential scaling forms for the EE, very few exact results are known for 2D and higher.  Quantum Monte Carlo (QMC) is the only unbiased numerical method capable of calculating EE in large-scale simulations; it has therefore become the gold standard for exploring the behavior of EE in typical phases of condensed matter systems.
+
+In this paper, we have performed extensive QMC simulations of several wavefunctions in condensed matter physics, and demonstrated for the first time that gapless wavefunctions have a universal shape-dependent scaling function, \gamma.  This function is subleading to the usual "area-law", and is absent in conventional or topological gapped states.  The observation of a non-zero shape-dependent term here strongly suggests that a universal \gamma might be a general feature of entanglement entropy scaling in gapless states.  This fact is of direct consequence for efforts aimed at using EE to identify and characterize phases of gapless wavefunctions; it also has profound consequences in several other fields of physics, including, but not limited to, quantum information, topological phases, and conformally invariant systems in condensed matter physics.  We hope that the editors and referees share our excitement for this result.
+
+Sincerely, 
+H. Ju, A. Kallin, P. Fendley, M. Hastings, and R. Melko
 
 
 
