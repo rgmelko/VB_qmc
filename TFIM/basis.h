@@ -400,6 +400,20 @@ vector<int> Basis::CalcRightCluster(){
 		}
 	}//jj
 
+    //A permute for the ratio trick...
+    if (ratioON == 1){
+        int Xindex = inAreg.size()-1;
+        int temp;
+        for (int i=0; i<inAreg[Xindex].size(); i++){
+            if (inAreg[Xindex][i] != 0){ 
+                temp = LRinClust[i];
+                for (int rep=0; rep<alpha-1; rep++)
+                    LRinClust[rep*numRealSpin+i] = LRinClust[rep*numRealSpin+i+numRealSpin];
+                LRinClust[(alpha-1)*numRealSpin+i] = temp;
+            }
+        }
+    }//if
+
 	return LRinClust;
 
 

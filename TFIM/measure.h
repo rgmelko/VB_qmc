@@ -201,20 +201,20 @@ void Measure::measure_M_mod(const vector<int>& Left, const vector<int>& Right){
 //the overlap vector 
 vector<int> Measure::LRoverlap(const vector<int>& Left, const vector<int>& Right, int & max){
 
-    vector<int> RightSwap(Right); //copy constructor?
-    //---PERMUTE! the Right projector here
-    if (ratioON == 1){
-        int Xindex = inAreg.size()-1;
-        int temp;
-        for (int i=0; i<inAreg[Xindex].size(); i++){
-            if (inAreg[Xindex][i] != 0){ 
-                temp = RightSwap[i];
-                for (int rep=0; rep<alpha-1; rep++)
-                    RightSwap[rep*numRealSpin+i] = RightSwap[rep*numRealSpin+i+numRealSpin];
-                RightSwap[(alpha-1)*numRealSpin+i] = temp;
-            }
-        }
-    }//if
+//    vector<int> RightSwap(Right); //copy constructor?
+//    //---PERMUTE! the Right projector here
+//    if (ratioON == 1){
+//        int Xindex = inAreg.size()-1;
+//        int temp;
+//        for (int i=0; i<inAreg[Xindex].size(); i++){
+//            if (inAreg[Xindex][i] != 0){ 
+//                temp = RightSwap[i];
+//                for (int rep=0; rep<alpha-1; rep++)
+//                    RightSwap[rep*numRealSpin+i] = RightSwap[rep*numRealSpin+i+numRealSpin];
+//                RightSwap[(alpha-1)*numRealSpin+i] = temp;
+//            }
+//        }
+//    }//if
 
     int Nspin = Left.size();
 
@@ -237,7 +237,7 @@ vector<int> Measure::LRoverlap(const vector<int>& Left, const vector<int>& Right
         for (int j=0; j<Nspin; j++){
             if (Left[j] == current && Mtemp[j] == 0){
                 Mtemp[j] = ii;
-                Rstack.push(RightSwap[j]);
+                Rstack.push(Right[j]);
             }
             if (Mtemp[j] == 0) keepgoing = true;
         }
@@ -247,7 +247,7 @@ vector<int> Measure::LRoverlap(const vector<int>& Left, const vector<int>& Right
                 current = Rstack.top();
                 Rstack.pop();
                 for (int j=0; j<Nspin; j++)
-                    if (RightSwap[j] == current && Mtemp[j] == 0){
+                    if (Right[j] == current && Mtemp[j] == 0){
                         Mtemp[j] = ii;
                         Lstack.push(Left[j]);
                     }
@@ -259,7 +259,7 @@ vector<int> Measure::LRoverlap(const vector<int>& Left, const vector<int>& Right
                 for (int j=0; j<Nspin; j++)
                     if (Left[j] == current && Mtemp[j] == 0){
                         Mtemp[j] = ii;
-                        Rstack.push(RightSwap[j]);
+                        Rstack.push(Right[j]);
                     }
             }//while Rstack
 
