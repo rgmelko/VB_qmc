@@ -232,6 +232,7 @@ void LOOPS::nnbondlist()
   init_antipar.assign(number_of_nnbonds, 0);
   //  init_isgood.resize(number_of_nnbonds);
   //omg antiparallelness isn't guaranteed for like.. odd.. something... maybe..!
+  cout << "definitely seems like i've introduced a problem by changing ~line 135" << endl;
   for(int i=0; i<number_of_nnbonds; i++){
     if(nnbonds(i,0)+nnbonds(i,1)==1){
       init_antipar[i]=1; 
