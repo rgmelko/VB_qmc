@@ -65,8 +65,8 @@ class iMatrix {
  inline
  int& iMatrix::operator() (unsigned row, unsigned col)
  {
-   if (row >= rows_ || col >= cols_)
-     cout<<"iMatrix subscript out of bounds"<<endl;
+   if (row >= rows_ || col >= cols_ || row<0 || col<0)
+     cout<<"iMatrix subscript out of bounds.  (row,col)=("<<row<<","<<col<<")"<<endl;
    return data_[cols_*row + col];
  }
  

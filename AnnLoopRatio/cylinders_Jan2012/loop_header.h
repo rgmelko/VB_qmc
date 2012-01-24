@@ -17,9 +17,9 @@ class LOOPS
   MTRand drand; //drand() gives you a random double precision number
   MTRand_int32 irand; // irand() gives you a random integer
 
-  int THING;
+  int flip;
 
-  int dim1, dim2,  number_of_sites; //the dimensions and number of sites
+  int Lx, Ly,  number_of_sites; //the dimensions and number of sites
   int cross; /*the number of loops crossing the boundary i.e. the number of 
 	       loops created by overlapping the propagated |VL> and |VR> */
   long long energyint; /*keeps track of the energy: 
@@ -28,7 +28,6 @@ class LOOPS
   long long vlegs;/*the number of vertex legs including legs from the vertices
 		    used to simulate the edge states |VL> and |VR> */
   long long iterations; //number of iterations per loop. Used for energy calc.
-  bool OBC; //0 for PBC, 1 for OBC
   double energy; //the energy in non-integer form
   string bopfile; //the name of the file in which the bondops are stored
   
@@ -55,7 +54,7 @@ class LOOPS
                      //         (:,1) is 0 for diag, 1 for offdiag???
 
   //CONSTRUCTOR
-  LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, bool ob, long long its,
+  LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
 	       long long rseed, string bondopfile);
 
   void nnbondlist(); //creates list of nnbonds
@@ -76,17 +75,16 @@ class LOOPS
 };
 
 //*************** CONSTRUCTOR ******************************************
-LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, bool ob, long long its, 
+LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its, 
 	     long long rseed, string bondopfile)
 {
   irand.seed(rseed); //uses the random seed from the parameter file
   drand.seed(rseed); //enabling us to run fakely parallelize simulations
   
-  dim1 = xsites; 
-  dim2 = ysites;
-  THING = flips;
-  OBC = ob;
-  number_of_sites = dim1*dim2; //calculates total number of sites
+  Lx = xsites; 
+  Ly = ysites;
+  flip = flips;
+  number_of_sites = Lx*Ly; //calculates total number of sites
   //****changed**** multiplied by 2
   number_of_bondops = 2*2*bondops; /*the *real* number of bondops is multiplied
 				   by 2, one set for |VL> and one for |VR> */
@@ -116,9 +114,9 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, bool ob, long long 
   init_spins.assign(number_of_sites*2,0); 
   int k;
   //for one replica
-  for(int i=0; i<dim1; i++){
-    for(int j=0; j<dim2; j++){
-      k = i+dim1*j;
+  for(int i=0; i<Lx; i++){
+    for(int j=0; j<Ly; j++){
+      k = i+Lx*j;
       if((i+j)%2==0){init_spins[k]=1;}
     }
   }
@@ -132,13 +130,12 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, bool ob, long long 
 /********** nnbondlist() ***********************************************
    Uses:
      Global:
-         dim2                   //
+         Ly                     //
          number_of_nnbonds______sets value based on 1D/2D and PBC/OBC
          number_of_sites        //
-         OBC                    //
          nnbonds[#nnbonds][2]___sized and filled
          nn_mat[#sites][#sites]_sized and filled
-         dim1                   //
+         Lx                     //
          init_antipar[#nnbonds]_sized and filled
          init_isgood[#nnbodds]__sized and filled
          antipar[#nnbonds]______sized
@@ -153,9 +150,11 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, bool ob, long long 
 **********************************************************************/
 void LOOPS::nnbondlist()
 {
-  if(dim2==1){
-    number_of_nnbonds = number_of_sites;
-    if(OBC){number_of_nnbonds--;}//if we have open BCs there's one less bond
+  // should put in a special case for Ly==2.
+
+  //Case of 1D open chain
+  if(Ly==1){
+    number_of_nnbonds = (Lx-1);
     
     //****changed**** multiplied first dimension by 2
     nnbonds.resize (number_of_nnbonds*2,2);//make nnbonds the proper size
@@ -168,18 +167,11 @@ void LOOPS::nnbondlist()
       nn_mat(i,(i+1)%number_of_sites) = i;
       nn_mat((i+1)%number_of_sites,i) = i;
     }  
-    if(!OBC){ //Add the periodic bond for this (1D) system
-      nnbonds(number_of_nnbonds-1,0)=number_of_nnbonds-1;
-      nnbonds(number_of_nnbonds-1,1)=0;
-      nn_mat(number_of_nnbonds-1,0)=number_of_nnbonds-1;
-      nn_mat(0,number_of_nnbonds-1)=number_of_nnbonds-1;
-    }
-    
   }
-  
+
+  //Generic 2D case and 1D ring.
   else{
-    number_of_nnbonds = 2*number_of_sites;
-    if(OBC){number_of_nnbonds -= (dim1+dim2);}
+    number_of_nnbonds = (Lx-1)*Ly + Lx*Ly; // = Ly*(2*Lx-1)
     
     //****changed**** multiplied first dimension by 2
     nnbonds.resize (2*number_of_nnbonds,2);
@@ -187,52 +179,40 @@ void LOOPS::nnbondlist()
     //resize and initialize the matrix of nnbonds
     //****changed**** multiplied dimensions by 2
     nn_mat.resize(2*number_of_sites, 2*number_of_sites);
-
     for(int i=0; i<number_of_sites; i++){
       for(int j=0; j<number_of_sites; j++){
 	nn_mat(i,j) = -99;
       }
     }
 
+    //fill nnbonds and nn_mat
+    //ybonds!!
     int counter = 0;
-    for(int i=0; i<dim1-1; i++){
-      for(int j=0; j<dim2; j++){
-	nnbonds(counter,0) = i+dim1*j;
-	nnbonds(counter,1) = i+dim1*j+1;
+    for(int x=0; x<Lx; x++){
+      for(int y=0; y<Ly; y++){
+	nnbonds(counter,0) = Ly*x+y;
+	nnbonds(counter,1) = Ly*x+(y+1)%Ly;
 	nn_mat(nnbonds(counter,0),nnbonds(counter,1))=counter;
 	nn_mat(nnbonds(counter,1),nnbonds(counter,0))=counter;
 	counter++;
       }
     }
 
-    for(int i=0; i<dim1; i++){
-      for(int j=0; j<dim2-1; j++){
-	nnbonds(counter,0) = i+dim1*j;
-	nnbonds(counter,1) = i+dim1*j + dim1;
-	nn_mat(nnbonds(counter,0),nnbonds(counter,1))=counter;
-	nn_mat(nnbonds(counter,1),nnbonds(counter,0))=counter;
-	counter++;
-      }
+    //xbonds...
+    for(int i=0; i<(Lx-1)*Ly; i++){
+      nnbonds(counter,0) = i;
+      nnbonds(counter,1) = i+Ly;
+      nn_mat(nnbonds(counter,0),nnbonds(counter,1))=counter;
+      nn_mat(nnbonds(counter,1),nnbonds(counter,0))=counter;
+      counter++;
     }
 
-    if(!OBC){
-      for(int i=0; i<dim2; i++){
-	nnbonds(counter,0) = i*dim1 + (dim1-1);
-	nnbonds(counter,1) = i*dim1;
-	nn_mat(nnbonds(counter,0),nnbonds(counter,1))=counter;
-	nn_mat(nnbonds(counter,1),nnbonds(counter,0))=counter;
-	counter++;
-      }
-      for(int j=0; j<dim1; j++){
-	nnbonds(counter,0) = dim1*(dim2-1) + j;
-	nnbonds(counter,1) = j;
-	nn_mat(nnbonds(counter,0),nnbonds(counter,1))=counter;
-	nn_mat(nnbonds(counter,1),nnbonds(counter,0))=counter;
-	counter++;
-      }
-    }
     // make sure we have the proper number of nnbonds
     if(counter!=number_of_nnbonds){cout << "supererror" << endl;}
+
+    //OTHERCHECKS
+    cout<<"first write them... test... then comment out OTHERCHECKS:\n";
+    // for(i=0;i
   }
   
   //****changed**** added this part in to double nnbonds and nnmat
@@ -263,11 +243,10 @@ void LOOPS::nnbondlist()
 /************* Nnnbondlist() *************************************************
  Uses:
   Global:
-   dim2                   //
+   Ly                   //
    Nnnbonds[#Nnnbonds][2] //sizes and fills
    number_of_nnbonds      //
    nn_mat[#sites][#sites] //
-   OBC                    //
    number_of_sites        //
 
   Local:
@@ -276,39 +255,43 @@ void LOOPS::nnbondlist()
    bnum_____the number of the bond we're looking at
 
    Creates a list of the neighbouring bonds for a given bond.
-   Works for OBC, PBC, 1D, and 2D.
+   Works for  PBC, 1D, and 2D.
    For 2D, uses the matrix nn_mat, which is created in nnbondlist().
 *****************************************************************************/
 void LOOPS::Nnnbondlist()
 {
+  cout << "check nnnbondlist.. haven't changed it yet.  Definitely need to fix the 2d case.  maybe 1d too." << endl;
   int num_neighbs = 0;
-  if(dim2==1){  // 1D case
+  if(Ly==1){  // 1D open chain case
     num_neighbs = 2;
     //****changed**** multiplied first dimension by 2
     Nnnbonds.resize(2*number_of_nnbonds,num_neighbs);
 
     // generate nearest nnbonds
     for(int i=0; i<number_of_nnbonds; i++){
-      Nnnbonds(i,0)=(i+1)%number_of_nnbonds;
-      Nnnbonds(i,1)=(i+number_of_nnbonds-1)%number_of_nnbonds;
+      Nnnbonds(i,0)=(i+1)%number_of_nnbonds; // forward bond
+      Nnnbonds(i,1)=(i+number_of_nnbonds-1)%number_of_nnbonds; //backward bond
     }
-    if(OBC){  // For open BCs first and last bonds only have 1 neighbour
-      Nnnbonds(0,1) = -99;
-      Nnnbonds(number_of_nnbonds-1,0) = -99;
-    }
+    // It's always OBC for Lx now!!!
+    // if(OBC){  // For open BCs first and last bonds only have 1 neighbour
+    Nnnbonds(0,1) = -99; //no backward bond for 1st bond
+    Nnnbonds(number_of_nnbonds-1,0) = -99; //no forward bond for last bond
+    // }
   }
   
   else{  // the 2D case... more complicated...
     num_neighbs = 6;
     // Resize and initialize Nnnbonds
-    //****changed**** multiplied first dimension by 2
+    //***changed**** multiplied first dimension by 2;
     Nnnbonds.resize(2*number_of_nnbonds,num_neighbs);
-    for(int i=0; i<number_of_nnbonds; i++){
+    for(int i=0; i<2*number_of_nnbonds; i++){
       for(int j=0; j<num_neighbs; j++){
 	Nnnbonds(i,j)=-99;
       }
     }
-
+    
+    //dont understand this part!!!!
+    cout << "check line 294ish... i don't get it!!"<<endl;
     for(int i=0; i<number_of_nnbonds; i++){
       int counter=0;
       for(int j=1; j<number_of_sites; j++){
@@ -442,26 +425,15 @@ void LOOPS::create__Hlinks()
    *************************************************************/
   long long a,b,c;
   
-  for(int iz=0; iz<=THING; iz++){
-    c = iz;
-    a = last[c];
-    b = last[c+number_of_sites/2];
-  
-    last[c+number_of_sites/2] = a;
-    last[c] = b;
-
-    for(int jz=1; jz<=iz; jz++){
-      c = iz+dim1*jz;
+  //flip 1 column of Ly at a time
+  for(int iz=0; iz<=flip; iz++){
+    //flip each site in the column
+    for(int jz=0; jz<Ly; jz++){
+      c = iz*Ly+jz;
       a = last[c];
       b = last[c + number_of_sites/2];
       last[c] = b;
       last[c+number_of_sites/2]=a;
-
-      c = iz*dim1 + jz - 1;
-      a = last[c];
-      b = last[c + number_of_sites/2];
-      last[c] = b;
-      last[c+number_of_sites/2]=a;   
     }
   }
   /*************************************************************
@@ -685,7 +657,7 @@ void LOOPS::change__operators()
   spins = init_spins;
 
   int neighbs(0);
-  if(dim2==1){neighbs=2;}
+  if(Ly==1){neighbs=2;}
   else{neighbs=6;}
 
   //for the first N/2 operators (i.e. the edge)
@@ -750,30 +722,21 @@ void LOOPS::change__operators()
                Swap some of the spins and stuff, y'know?
   ********************************************************************/
   //swap the spins
-  int a,b,c;
-  
-  for(int iz=0; iz<=THING; iz++){
-    c = iz;
-    a = spins[c];
-    b = spins[c+number_of_sites/2];
-  
-    spins[c+number_of_sites/2] = a;
-    spins[c] = b;
 
-    for(int jz=1; jz<=iz; jz++){
-      c = iz+dim1*jz;
+  long long a,b,c;
+  
+  //flip 1 column of Ly at a time
+  for(int iz=0; iz<=flip; iz++){
+    //flip each site in the column
+    for(int jz=0; jz<Ly; jz++){
+      c = iz*Ly+jz;
       a = spins[c];
       b = spins[c + number_of_sites/2];
       spins[c] = b;
       spins[c+number_of_sites/2]=a;
-
-      c = iz*dim1 + jz - 1;
-      a = spins[c];
-      b = spins[c + number_of_sites/2];
-      spins[c] = b;
-      spins[c+number_of_sites/2]=a;   
     }
   }
+
   /*************************************************************
    *************************************************************/
   
@@ -825,75 +788,39 @@ void LOOPS::swaperator()
   vector <int> tempbonds;
   tempbonds = VR;
   int a,b,c,d;
-  int superflip(0); //what even is this?
 
-  for(int lint=(THING+1); lint<dim1; lint++){
-
-    
-    /*   if(superflip&&((lint+1)*(lint+1)>(dim1*dim2)/2.0)){
-	 for(int oint=0; oint<dim1; oint++){
-	 for(int pint=0; pint<dim2; pint++){
-	 
-	 a = oint+pint*dim1;  
-	 d = a+number_of_sites/2;  //swap site a with it's replica counterpart 
-	 b = tempbonds[d];         // b was bonded to d
-	 c = tempbonds[a];         // c was bonded to a
-	 
-	 tempbonds[a] = b;         // now b is bonded to a
-	 tempbonds[b] = a;        
-	 tempbonds[d] = c;         // and c is bonded to d
-	 tempbonds[c] = d;
-	 superflip=0;              // i still don't know what superflip does...
-	 }
-	 }
-	 } */
-    
-	  
-    a = lint;
-    d = lint+number_of_sites/2;
-    b = tempbonds[d];
-    c = tempbonds[a];
-    
-    tempbonds[a] = b;
-    tempbonds[b] = a;
-    tempbonds[d] = c;
-    tempbonds[c] = d;
-
-    for(int mint=1; mint<=lint; mint++){
-      a = lint+(mint*dim1); 
-      d = lint+(mint*dim1)+number_of_sites/2;
-      b = tempbonds[d];
-      c = tempbonds[a];
-      
-      tempbonds[a] = b;
-      tempbonds[b] = a;
-      tempbonds[d] = c;
-      tempbonds[c] = d;
-
-      a = lint*dim1+mint-1;  
-      d = lint*dim1+(mint-1)+number_of_sites/2;
-      b = tempbonds[d];
-      c = tempbonds[a];
-      
-      tempbonds[a] = b;
-      tempbonds[b] = a;
-      tempbonds[d] = c;
-      tempbonds[c] = d;
-    }
   
+  //flip 1 column of Ly at a time
+  for(int iz=flip+1; iz<Lx; iz++){
+    
+    //flip each site in the column
+    for(int jz=0; jz<Ly; jz++){
+      a = iz*Ly+jz;
+      d = a+number_of_sites/2;
+      b = tempbonds[d];
+      c = tempbonds[a];
+
+      tempbonds[a] = b;
+      tempbonds[b] = a;
+      tempbonds[d] = c;
+      tempbonds[c] = d;
+      
+    }
+
+    //take measurement for each flipped column
     int counter(0), temploopnum(0), startsite(0), mite(-99), which(0);
     vector <int> site(number_of_sites+2,0);
- 
+    
     while(counter < number_of_sites){
-
+      
       site[counter]=1;
       startsite = counter;
-
+      
       mite = VL[counter];
       which=0;
       
       while(mite!=startsite){
-
+	
 	if(mite==-99){cout << "SUPER ERROR" << endl; exit(1); }
 	site[mite]=1;
 	
@@ -910,7 +837,7 @@ void LOOPS::swaperator()
       while(site[counter]==1){counter++;}
     }
     int loopdiff = temploopnum - cross;
-    entropy[lint] += pow(2,loopdiff);
+    entropy[iz] += pow(2,loopdiff);
     
   }
 }

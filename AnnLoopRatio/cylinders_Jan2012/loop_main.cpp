@@ -14,7 +14,6 @@ int main(){
   long long its_per_loop=10000, loops=100;
   long long initialization;
   double bops_per_site=10;
-  bool OBC=0;
   long long ranseed=43289841;
   string enerfilename, entrofilename, bondopfilename;
 
@@ -23,20 +22,20 @@ int main(){
       >> dim1 >> dim2
       >> ratioflip
       >> its_per_loop >> loops
-      >> bops_per_site >> OBC
+      >> bops_per_site
       >> ranseed
       >> initialization;
   fin.close();
   
   int total_bops = dim1*dim2*bops_per_site;
 
-  cout << dim1 << " x " << dim2 << " system,  N = " 
+  cout << "Lx="<< dim1 << " x Ly=" << dim2 << " system,  N = " 
        << dim1*dim2 << " sites \n" << bops_per_site << " bops/site,  " 
        << total_bops << " bops total" << endl;
   cout << "------------------------------------------------ \n"; 
 
   if(dim1==2|dim2==2){cout<<"warning! nnbonds get screwed up for a x 2 \n";}
-  LOOPS system (dim1, dim2, ratioflip, total_bops, OBC, its_per_loop, ranseed, 
+  LOOPS system (dim1, dim2, ratioflip, total_bops, its_per_loop, ranseed, 
 		bondopfilename);
  
   // create initial VB config and initial spin config
