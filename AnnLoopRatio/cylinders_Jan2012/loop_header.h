@@ -230,11 +230,17 @@ void LOOPS::nnbondlist()
   
   // resizing antiparallelness vectors
   init_antipar.assign(number_of_nnbonds, 0);
-   
-  init_isgood.resize(number_of_nnbonds);
-  for(int i=0; i<number_of_nnbonds; i++){init_antipar[i]=1; init_isgood[i]=i;}
+  //  init_isgood.resize(number_of_nnbonds);
+  //omg antiparallelness isn't guaranteed for like.. odd.. something... maybe..!
+  for(int i=0; i<number_of_nnbonds; i++){
+    if(nnbonds(i,0)+nnbonds(i,1)==1){
+      init_antipar[i]=1; 
+      init_isgood.push_back(i);
+    }
+    else{ init_antipar[i]=0;}
+  }
   antipar.resize(number_of_nnbonds);
-  isgood.resize(number_of_nnbonds);
+  isgood.resize(init_isgood.size());
 
   //****changed**** changing #nnbonds back now
       number_of_nnbonds /=2;
