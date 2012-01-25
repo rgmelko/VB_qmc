@@ -51,7 +51,7 @@ class LOOPS
   iMatrix bops; // list of bond operators
   iMatrix superbops; //list of bond operators plus edges simulated via bops
                      //superbops(:,0) is the bond the operator acts on 
-                     //         (:,1) is 0 for diag, 1 for offdiag???
+                     //         (:,1) is 0 for diag, 1 for offdiag
 
   //CONSTRUCTOR
   LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
@@ -156,10 +156,16 @@ void LOOPS::nnbondlist()
   if(Ly==1){
     number_of_nnbonds = (Lx-1);
     
-    //****changed**** multiplied first dimension by 2
+    //changed multiplied first dimension by 2
     nnbonds.resize (number_of_nnbonds*2,2);//make nnbonds the proper size
-    //****changed**** multiplied dimensions by 2
+    for(int i=0;i<number_of_nnbonds*2;i++){nnbonds(i,0)=-99;nnbonds(i,1)=-99;}
+    //changed multiplied dimensions by 2
     nn_mat.resize(number_of_sites*2, number_of_sites*2);
+    for(int i=0;i<number_of_sites*2;i++){
+      for(int j=0;j<number_of_sites*2;j++){
+	nn_mat(i,j)=-99;
+      }
+    }
    
     for(int i=0; i<number_of_nnbonds; i++){
       nnbonds(i,0) = i;
@@ -173,11 +179,11 @@ void LOOPS::nnbondlist()
   else{
     number_of_nnbonds = (Lx-1)*Ly + Lx*Ly; // = Ly*(2*Lx-1)
     
-    //****changed**** multiplied first dimension by 2
+    //changed multiplied first dimension by 2
     nnbonds.resize (2*number_of_nnbonds,2);
-
+    for(int i=0;i<number_of_nnbonds*2;i++){nnbonds(i,0)=-99;nnbonds(i,1)=-99;}
     //resize and initialize the matrix of nnbonds
-    //****changed**** multiplied dimensions by 2
+    //changed multiplied dimensions by 2
     nn_mat.resize(2*number_of_sites, 2*number_of_sites);
     for(int i=0; i<number_of_sites; i++){
       for(int j=0; j<number_of_sites; j++){
@@ -214,8 +220,8 @@ void LOOPS::nnbondlist()
     cout<<"first write them... test... then comment out OTHERCHECKS:\n";
     // for(i=0;i
   }
-  
-  //****changed**** added this part in to double nnbonds and nnmat
+
+  //changed added this part in to double nnbonds and nnmat
       for(int b=number_of_nnbonds; b<2*number_of_nnbonds; b++){
 	int a = number_of_nnbonds;
 	nnbonds(b,0) = nnbonds(b-a,0)+number_of_sites;
@@ -223,29 +229,35 @@ void LOOPS::nnbondlist()
 	nn_mat(nnbonds(b,0),nnbonds(b,1))=b;
 	nn_mat(nnbonds(b,1),nnbonds(b,0))=b;
       }
-  /**** end of this change *****/
+      // end of this change //
 	
-  //****changed**** now multiplying #nnbonds by 2
+      //changed now multiplying #nnbonds by 2
       number_of_nnbonds *=2; 
+      
+      
+      // resizing antiparallelness vectors
+      init_antipar.assign(number_of_nnbonds, 0);
+      //  init_isgood.resize(number_of_nnbonds);
+      //omg antiparallelness isn't guaranteed for like.. odd.. something... maybe..!
+      cout << "definitely seems like i've introduced a problem by changing line 135" << endl;
+      for(int i=0; i<number_of_nnbonds; i++){
+	if(spins[nnbonds(i,0)]+spins[nnbonds(i,1)]==1){
+	  init_antipar[i]=1; 
+	  init_isgood.push_back(i);
+	}
+	else{ init_antipar[i]=0;}
+      }
+      cout << "number of antiparallel bonds: " << init_isgood.size()<< endl;
   
-  // resizing antiparallelness vectors
-  init_antipar.assign(number_of_nnbonds, 0);
-  //  init_isgood.resize(number_of_nnbonds);
-  //omg antiparallelness isn't guaranteed for like.. odd.. something... maybe..!
-  cout << "definitely seems like i've introduced a problem by changing ~line 135" << endl;
-  for(int i=0; i<number_of_nnbonds; i++){
-    if(nnbonds(i,0)+nnbonds(i,1)==1){
-      init_antipar[i]=1; 
-      init_isgood.push_back(i);
-    }
-    else{ init_antipar[i]=0;}
-  }
-  antipar.resize(number_of_nnbonds);
-  isgood.resize(init_isgood.size());
-
-  //****changed**** changing #nnbonds back now
+      antipar.resize(number_of_nnbonds);
+      isgood.resize(init_isgood.size());
+      antipar = init_antipar;
+      isgood = init_isgood;
+      
+      //changed**** changing #nnbonds back now
       number_of_nnbonds /=2;
 }
+
 
 /************* Nnnbondlist() *************************************************
  Uses:
@@ -341,27 +353,82 @@ void LOOPS::Nnnbondlist()
 ***************************************************************************/
 void LOOPS::generate_ops()
 {
+
+  cout << "Change the way things are initialized and the original operators are chosen.  It'll screw up if Ly is odd.  Recheck how spin assignment works!!" << endl;
+
+  //changed so it doesn't just pick random bonds... the spins must be antiparallel
+  //THIS IS GIVING ZERO FOR EVERYTHING!!!!! FIX!!!
   for(int i=0; i<number_of_bondops; i++)
     {
-      bops(i,0) = irand() % number_of_nnbonds; //the bond being operated on
+      bops(i,0) = init_isgood[irand() % init_isgood.size()]; //the bond being operated on
       bops(i,1) = 0; //0 = diagonal, 1 = off-diagonal
+      //  cout << "bops("<<i<<")="<<bops(i,0)<< endl;
     }
 
   superbops.resize(number_of_bondops+number_of_sites,2);
+  //  for(int i=0;i<number_of_sites+number_of_bondops;i++){
+  //    superbops(i,0)=-99;
+  //    superbops(i,1)=-99;
+  //    }
+     
+  //initial state is dimerized, but either Lx or Ly can be odd.
+  //Dimerize in x direction if Lx is even
+  //Otherise dimerize in Ly direction
+  int bondd=0;
+  if(Lx%2==0){
+    for(int ix=0; ix<Lx; ix+=2){
+      for(int iy=0; iy<Ly; iy++){
+	//	cout << iy+ix*Ly<< ", "<<iy+(ix+1)*Ly<<"   
+	// "<<Lx*Ly+iy+ix*Ly<<", "<<Lx*Ly+iy+(ix+1)*Ly<<endl;
+
+	superbops(bondd,0) = nn_mat(iy+ix*Ly,iy+(ix+1)*Ly);
+	superbops(bondd,1) = 0;
+	superbops(bondd+Lx*Ly/2,0) = nn_mat(Lx*Ly+iy+ix*Ly,Lx*Ly+iy+(ix+1)*Ly);
+	superbops(bondd+Lx*Ly/2,1) = 0;
+	//copy into the right side initial state
+	bondd++;
+      }
+    }
+  }
+  else{//Lx is odd, so Ly *must* be even
+    if(Ly%2==1){ cout<<"Error, both dimensions are even!!"<<endl; exit(1);}
+
+    for(int ix=0; ix<Lx; ix++){
+      for(int iy=0; iy<Ly; iy+=2){
+	//cout << iy+ix*Ly<< ", "<<iy+1+ix*Ly<<"   
+	// "<<Lx*Ly+iy+ix*Ly<<", "<<Lx*Ly+iy+1+ix*Ly<<endl;
+
+	superbops(bondd,0) = nn_mat(iy+ix*Ly,iy+1+ix*Ly);
+	superbops(bondd,1) = 0;
+	superbops(bondd+Lx*Ly/2,0) = nn_mat(Lx*Ly+iy+ix*Ly,Lx*Ly+iy+1+ix*Ly);
+	superbops(bondd+Lx*Ly/2,1) = 0;
+	//copy into the right side initial state
+	bondd++;
+      }
+    }
+  }
+  //check to make sure there's the right number of bonds in the initial state
+  if(bondd!=Lx*Ly/2){
+    cout<<"ERROR: Number of bonds didn't work. Check generate_ops()\n"; 
+    cout<<"bondd = "<< bondd << endl;
+    exit(1);
+  }
+
+  //Copy the starting states for all 4 systems
+  for(int iall=0; iall<Lx*Ly; iall++){
+	superbops(Lx*Ly + number_of_bondops + iall,0) = superbops(iall,0);
+	superbops(Lx*Ly + number_of_bondops + iall,1) = 0;
+  }
+
+  for(int i=0; i<number_of_bondops; i++){
+    superbops(number_of_sites/2+i,0)=bops(i,0);
+    superbops(number_of_sites/2+i,1)=bops(i,1);
+  }
+
+  //  for(int i=0;i<number_of_bondops+number_of_sites; i++){
+    //    cout << "superbops("<<i<<",0) = "<<superbops(i,0)<<endl;
+    // }
   
-    //initial state is dimerized..
-    for(int i01=0; i01<number_of_sites; i01+=2){
-      superbops(i01/2, 0) = nn_mat(i01,i01+1); 
-      superbops(i01/2, 1) = 0;
-      superbops(number_of_sites/2+number_of_bondops+i01/2,0)=nn_mat(i01,i01+1);
-      superbops(number_of_sites/2+number_of_bondops+i01/2,1) = 0;
-    }
-
-    for(int i=0; i<number_of_bondops; i++){
-      superbops(number_of_sites/2+i,0)=bops(i,0);
-      superbops(number_of_sites/2+i,1)=bops(i,1);
-    }
-
 }
 /************ create_Vlinks() ************************************************
  Uses:
@@ -626,6 +693,10 @@ void LOOPS::make_flip_loops()
     while(loopnums[counter]>0){counter++; if(counter>vlegs){break;}}
   }
 
+  //check of states
+  //  for(int i=0;i<number_of_sites;i++){
+  //    cout << "VL["<<i<<"] = "<<VL[i]<<endl;
+  //  }
 }   
 /************ take_measurement() *********************************************
  Global:
@@ -677,12 +748,13 @@ void LOOPS::change__operators()
       for(int i=0;i<neighbs;i++){//change antiparallelness of neighboring bonds
 
 	int loc = Nnnbonds(superbops(op,0),i);
+
        	if(loc<0){continue;}//goto start of loop if its OBC&that nn doesnt exist
 	if(antipar[loc]==1){//if bond is already antiparallel change to parallel
 
 	  int i=0;
-	  do{ i++; }
-	  while(isgood[i]!=loc);
+  
+	  while(isgood[i]!=loc){ i++;};
 	  isgood.erase(isgood.begin() + i);
 	  antipar[loc]--;
 	}
@@ -693,6 +765,7 @@ void LOOPS::change__operators()
       }
     }                       //otherwise (if diagonal) do nothing
   }
+
   // Now look at the first half of the *real* operators
   long long op = number_of_sites/2;
   for(op; op<number_of_bondops/2+number_of_sites/2; op++){
@@ -828,7 +901,11 @@ void LOOPS::swaperator()
       
       while(mite!=startsite){
 	
-	if(mite==-99){cout << "SUPER ERROR" << endl; exit(1); }
+	if(mite==-99){
+	  cout << "SUPER ERROR in Swaterator: VL["<<counter<<"] = "<<mite << endl; 
+	  exit(1); 
+	}
+
 	site[mite]=1;
 	
 	if(which==0){
