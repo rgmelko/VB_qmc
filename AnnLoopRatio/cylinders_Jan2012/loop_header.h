@@ -1,3 +1,4 @@
+//Feb 2012 --- try to adapt for cylinder geometry
 //Nov 2010 --- 2D RATIO LOOP HEADER
 
 //Jan 18, 2010 --- starting loop code
@@ -17,9 +18,11 @@ class LOOPS
   MTRand drand; //drand() gives you a random double precision number
   MTRand_int32 irand; // irand() gives you a random integer
 
-  int flip;
+  int flip; // -1 for bare swap, 0 for ratio 1, etc
 
   int Lx, Ly,  number_of_sites; //the dimensions and number of sites
+  //Note: things are periodic in the Ly direction, open in Lx
+
   int cross; /*the number of loops crossing the boundary i.e. the number of 
 	       loops created by overlapping the propagated |VL> and |VR> */
   long long energyint; /*keeps track of the energy: 
@@ -109,14 +112,13 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
   VL.assign(number_of_sites*2, -99); //set size of VL and VR
   VR=VL;
 
-
   //set initial spin values
   init_spins.assign(number_of_sites*2,0); 
   int k;
   //for one replica
-  for(int i=0; i<Lx; i++){
-    for(int j=0; j<Ly; j++){
-      k = i+Lx*j;
+  for(int i=0; i<Ly; i++){
+    for(int j=0; j<Lx; j++){
+      k = i+Ly*j;
       if((i+j)%2==0){init_spins[k]=1;}
     }
   }
@@ -125,6 +127,7 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
     init_spins[i+number_of_sites]=init_spins[i];
   }
   spins = init_spins; 
+
 }
 
 /********** nnbondlist() ***********************************************
@@ -185,8 +188,8 @@ void LOOPS::nnbondlist()
     //resize and initialize the matrix of nnbonds
     //changed multiplied dimensions by 2
     nn_mat.resize(2*number_of_sites, 2*number_of_sites);
-    for(int i=0; i<number_of_sites; i++){
-      for(int j=0; j<number_of_sites; j++){
+    for(int i=0; i<2*number_of_sites; i++){
+      for(int j=0; j<2*number_of_sites; j++){
 	nn_mat(i,j) = -99;
       }
     }
@@ -218,7 +221,7 @@ void LOOPS::nnbondlist()
 
     //OTHERCHECKS
     cout<<"first write them... test... then comment out OTHERCHECKS:\n";
-    // for(i=0;i
+   
   }
 
   //changed added this part in to double nnbonds and nnmat
@@ -231,6 +234,16 @@ void LOOPS::nnbondlist()
       }
       // end of this change //
 	
+      //print out nn_mat !!!!! 
+      //    for(int i=0;i<nn_mat.length();i++){
+      //      for(int j=0; j<nn_mat.width();j++){
+	//	if(nn_mat(i,j)==-99){cout<<". ";}
+	//	else{cout << nn_mat(i,j) <<" " ;}
+	//     }
+      //      cout << endl;
+      //   }
+
+
       //changed now multiplying #nnbonds by 2
       number_of_nnbonds *=2; 
       
@@ -243,7 +256,9 @@ void LOOPS::nnbondlist()
       for(int i=0; i<number_of_nnbonds; i++){
 	if(spins[nnbonds(i,0)]+spins[nnbonds(i,1)]==1){
 	  init_antipar[i]=1; 
+	  cout << init_antipar[i] << "   ";
 	  init_isgood.push_back(i);
+	  cout << i << endl;
 	}
 	else{ init_antipar[i]=0;}
       }
@@ -256,6 +271,9 @@ void LOOPS::nnbondlist()
       
       //changed**** changing #nnbonds back now
       number_of_nnbonds /=2;
+
+
+      
 }
 
 
@@ -362,7 +380,7 @@ void LOOPS::generate_ops()
     {
       bops(i,0) = init_isgood[irand() % init_isgood.size()]; //the bond being operated on
       bops(i,1) = 0; //0 = diagonal, 1 = off-diagonal
-      //  cout << "bops("<<i<<")="<<bops(i,0)<< endl;
+      //       cout << "bops("<<i<<")="<<bops(i,0)<< endl;
     }
 
   superbops.resize(number_of_bondops+number_of_sites,2);
