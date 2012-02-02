@@ -251,14 +251,11 @@ void LOOPS::nnbondlist()
       // resizing antiparallelness vectors
       init_antipar.assign(number_of_nnbonds, 0);
       //  init_isgood.resize(number_of_nnbonds);
-      //omg antiparallelness isn't guaranteed for like.. odd.. something... maybe..!
-      cout << "definitely seems like i've introduced a problem by changing line 135" << endl;
+      //changed it to *check* antiparallelness (since there can be odd dims now)
       for(int i=0; i<number_of_nnbonds; i++){
 	if(spins[nnbonds(i,0)]+spins[nnbonds(i,1)]==1){
 	  init_antipar[i]=1; 
-	  cout << init_antipar[i] << "   ";
 	  init_isgood.push_back(i);
-	  cout << i << endl;
 	}
 	else{ init_antipar[i]=0;}
       }
@@ -297,11 +294,13 @@ void LOOPS::nnbondlist()
 *****************************************************************************/
 void LOOPS::Nnnbondlist()
 {
-  cout << "check nnnbondlist.. haven't changed it yet.  Definitely need to fix the 2d case.  maybe 1d too." << endl;
+  // There's no option for Lx==1 FYI.  So no open chain.
+
+ 
   int num_neighbs = 0;
   if(Ly==1){  // 1D open chain case
     num_neighbs = 2;
-    //****changed**** multiplied first dimension by 2
+    //changed**** multiplied first dimension by 2
     Nnnbonds.resize(2*number_of_nnbonds,num_neighbs);
 
     // generate nearest nnbonds
@@ -319,7 +318,7 @@ void LOOPS::Nnnbondlist()
   else{  // the 2D case... more complicated...
     num_neighbs = 6;
     // Resize and initialize Nnnbonds
-    //***changed**** multiplied first dimension by 2;
+    //changed**** multiplied first dimension by 2;
     Nnnbonds.resize(2*number_of_nnbonds,num_neighbs);
     for(int i=0; i<2*number_of_nnbonds; i++){
       for(int j=0; j<num_neighbs; j++){
@@ -327,8 +326,10 @@ void LOOPS::Nnnbondlist()
       }
     }
     
-    //dont understand this part!!!!
-    cout << "check line 294ish... i don't get it!!"<<endl;
+    //This looks at the full row and column of the nn_mat corresponding
+    //to bond number i.
+    //The matrix is symmetric, so you could equivalently go through the
+    //nnbonds(i,0) and nnbonds(i,1) rows (or columns even)
     for(int i=0; i<number_of_nnbonds; i++){
       int counter=0;
       for(int j=1; j<number_of_sites; j++){
@@ -339,13 +340,15 @@ void LOOPS::Nnnbondlist()
 	if(bnum != -99){Nnnbonds(i,counter) = bnum; counter++;}
 	
 
-	//gdoing the same but moving down instead of across
+	//doing the same but moving down instead of across
 	bnum = nn_mat((nnbonds(i,0) + j)%number_of_sites, nnbonds(i,1));
 	if(bnum != -99){Nnnbonds(i,counter) = bnum; counter++;}
       }
     } 
   } 
-  //****changed**** added this in to copy Nnnbonds.. to double it.. sorta
+
+
+  //changed**** added this in to copy Nnnbonds.. to double it.. sorta
   for(int q=number_of_nnbonds; q<2*number_of_nnbonds; q++){
     for(int s=0; s<num_neighbs; s++){
       int t=number_of_nnbonds;
@@ -354,8 +357,17 @@ void LOOPS::Nnnbondlist()
     }
   }
 
-  //****changed**** for realisies doubling #nnbonds and #sites
-				    number_of_nnbonds *= 2;
+
+
+  //  for(int i=0;i<Nnnbonds.length();i++){
+  //    for(int j=0;j<Nnnbonds.width();j++){
+  //      cout << Nnnbonds(i,j) << " ";
+  //    }
+  //    cout << endl;
+  //  }
+
+  //changed**** for realisies doubling #nnbonds and #sites
+  number_of_nnbonds *= 2;
   number_of_sites *= 2;
 }
 
@@ -371,16 +383,12 @@ void LOOPS::Nnnbondlist()
 ***************************************************************************/
 void LOOPS::generate_ops()
 {
-
-  cout << "Change the way things are initialized and the original operators are chosen.  It'll screw up if Ly is odd.  Recheck how spin assignment works!!" << endl;
-
   //changed so it doesn't just pick random bonds... the spins must be antiparallel
-  //THIS IS GIVING ZERO FOR EVERYTHING!!!!! FIX!!!
   for(int i=0; i<number_of_bondops; i++)
     {
       bops(i,0) = init_isgood[irand() % init_isgood.size()]; //the bond being operated on
       bops(i,1) = 0; //0 = diagonal, 1 = off-diagonal
-      //       cout << "bops("<<i<<")="<<bops(i,0)<< endl;
+      //  cout << "bops("<<i<<")="<<bops(i,0)<< endl;
     }
 
   superbops.resize(number_of_bondops+number_of_sites,2);
@@ -396,8 +404,8 @@ void LOOPS::generate_ops()
   if(Lx%2==0){
     for(int ix=0; ix<Lx; ix+=2){
       for(int iy=0; iy<Ly; iy++){
-	//	cout << iy+ix*Ly<< ", "<<iy+(ix+1)*Ly<<"   
-	// "<<Lx*Ly+iy+ix*Ly<<", "<<Lx*Ly+iy+(ix+1)*Ly<<endl;
+	
+	//	cout << iy+ix*Ly<< ", "<<iy+(ix+1)*Ly<<"    "<<Lx*Ly+iy+ix*Ly<<", "<<Lx*Ly+iy+(ix+1)*Ly<<endl;
 
 	superbops(bondd,0) = nn_mat(iy+ix*Ly,iy+(ix+1)*Ly);
 	superbops(bondd,1) = 0;
@@ -409,7 +417,7 @@ void LOOPS::generate_ops()
     }
   }
   else{//Lx is odd, so Ly *must* be even
-    if(Ly%2==1){ cout<<"Error, both dimensions are even!!"<<endl; exit(1);}
+    if(Ly%2==1){ cout<<"Error, both dimensions are odd!!"<<endl; exit(1);}
 
     for(int ix=0; ix<Lx; ix++){
       for(int iy=0; iy<Ly; iy+=2){
@@ -443,9 +451,9 @@ void LOOPS::generate_ops()
     superbops(number_of_sites/2+i,1)=bops(i,1);
   }
 
-  //  for(int i=0;i<number_of_bondops+number_of_sites; i++){
-    //    cout << "superbops("<<i<<",0) = "<<superbops(i,0)<<endl;
-    // }
+  //  for(int i=number_of_bondops;i<number_of_bondops+number_of_sites; i++){
+  //    cout << "superbops("<<i<<",0) = "<<superbops(i,0)<<endl;
+  //  }
   
 }
 /************ create_Vlinks() ************************************************
@@ -476,15 +484,39 @@ void LOOPS::create_Vlinks()
    last[#sites]_stores the last vertex leg corresponding to a site
    legnum_______the vertex leg number of the current bondop
    bopnum_______counts through the bondops
+
+
+i assume vertex legs are labelled like so (Feb 2012):
+
+                0 ----------- 2
+                       |
+                       |
+                       |
+                1 ----------- 3
+
 *******************************************************************************/
 void LOOPS::create__Hlinks()
 {
+  //what does this part do???
+  //might be implying an initial dimerization!!!
+  //yeah totally.  fix it up!
+  //I think it's the same problem for the end too!!
   vector <long long> last (number_of_sites,-99);
-  for(int i=0; i<number_of_sites; i+=2){ 
-    last[i]=i+2*(i/2+1); 
-    last[i+1]=i+1+2*(i/2+1);
+
+  //put initial state as initial vertices in linked list.
+  //THIS IS CONFUSING
+  int vertex=0;
+  for(int i=0; i<number_of_sites/2; i++){   
+    last[nnbonds(superbops(i,0),0)]= 4*vertex+2;
+    last[nnbonds(superbops(i,0),1)]= 4*vertex+3;
+    vertex++;
   }
   
+  //check that everything got filled 
+  //  for(int i=0;i<last.size();i++){
+  //    if(last[i]<0){cout <<"omg!!! "<< i <<endl;}// exit(1);}
+  //  }
+
   long long legnum = 0;
   // iterate through bond operators and create horizontal links
 
