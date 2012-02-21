@@ -1,0 +1,174 @@
+\documentclass[aps,prb,groupedaddress, twocolumn]{revtex4}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{verbatim}
+
+\usepackage[normalem]{ulem}	% Part of the standard distribution
+\bibliographystyle{apsrev}
+
+
+\newcommand{\note}[1]{
+{\color{red} \bf{#1}}
+}
+
+\begin{document}
+
+%\preprint{}
+
+%Title of paper
+
+\title{Designer Hamiltonians---bridging lattice-scale physics \\ and continuum field theory with 
+quantum Monte Carlo simulations} 
+
+\author{Ribhu K. Kaul}
+\email[]{rkka@pa.uky.edu}
+\affiliation{Department of Physics and Astronomy, University of Kentucky}
+\author{Roger G. Melko}
+\email[]{rgmelko@uwaterloo.ca}
+\affiliation{Department of Physics, University of Waterloo}
+\author{Anders W. Sandvik}
+\affiliation{Department of Physics, Boston University}
+\email[]{sandvik@bu.edu}
+
+\date{\today}
+
+\begin{abstract}
+We discuss recent large-scale numerical studies of ``designer Hamiltonians'', which are lattice models tailored 
+specifically to be free from sign problems when simulated with quantum Monte Carlo methods but still can host 
+complex  many-body states and quantum phase transitions of great interest in condensed matter physics and quantum 
+information theory. We here focus on quantum spin systems in which competing interactions lead to non-magnetic 
+ground states. These states and their associated quantum phase transitions can be studied in great detail
+and allow direct connections with universal properties of low-energy effective quantum field theories. As 
+specific examples, we discuss the transition from a N\'eel antiferromagnet to either a featureless quantum 
+paramagnet or a valence-bond-solid (VBS) in SU($2$) and SU($N$) spin models, as well as spin liquid and an
+associated XY$^*$ transition in XXZ systems. We also discuss recent progress on quantum Monte Carlo algorithms, 
+including ground state projection in the valence-bond basis and direct computation of the Renyi variants of 
+the entanglement entropy.
+\end{abstract}
+
+% insert suggested PACS numbers in braces on next line
+\pacs{}
+% insert suggested keywords - APS authors don't need to do this
+%\keywords{}
+
+%\maketitle must follow title, authors, abstract, \pacs, and \keywords
+\maketitle
+
+\section{Introduction}
+
+Quantum field theory has emerged as one of the most fruitful and promising approaches for studying
+low-energy properties of strongly-correlated quantum matter systems. But there are a number of 
+difficult issues to overcome in this approach, e.g.,
+
+- The field theory can rarely be rigorously derived exactly from the underlying Hamiltonian
+  (which is the natural starting point for describing condensed matter systems). One can
+  mention some cases, e.g., the non-linear sigma-model to describe quantum antiferromagnets
+  was derivad by Haldane in the large-S limit; some issues of additional terms for small S.
+  One cannot, in general, be certain of the theory really describing the system of interest.
+
+- Given the field theory, it is far from trivial to extract it's properties. One can mention
+  RG, epsilon expansions, large-N generalizations and 1/N expansions. It is often not clear (due
+  to convergence issues and difficulties in going to high orders) if the results obtained from 
+  these approaches are applicable to the desired situation, e.g., (2+1) dimensions, SU(2), etc.
+
+An alternative is to study the Hamiltonian directly:
+
+- Exact solutions
+  + very rare (but nice examples, e.g., S=1/2 chain)
+
+- Numerical studies
+  + exact diagonalization (very small systems)
+  + DMRG (1D and some 2D systems)
+  + tensor-network methods (poor scaling, but some progress)
+  + QMC (very powerful for some systems, but often sign problematic)
+
+Currently, QMC is the only method that can reach sufficiently large sizes in a completely
+unbiased way. The class of sign-problem-free models is limited, but still does contain a 
+vast range of models with non-trivial and interesting ground states and quantum phase transitions.
+
+Line of research discussed here: Design hamiltonians that do not have sign problems but harbor ground states 
+and quantum phase transitions of interest. Microscopic interactions do not have to correspond to any particular 
+material, the idea is to tailor a system in such a way that it contains a particular macroscopic (low-energy) 
+phenomenon of interest - universal physics is captured. We will call such models ``Designer Hamiltonians''.
+With unbiased large-scale simulations of Designer Hamiltonians one can test field theories proposed to 
+capture specific quantum many-body states or quantum phase transitions. Explorations of Designer Hamiltonians
+can also serve as ``experiments'' for discovering novel phenomena (examples...?).
+
+One may think that it shold be hard or impossible to find such sign-problem-free and interesting hamiltonians
+(according to one variant of Murphy's law, I head it from Andy Millis, a sign-problem-free model must be
+boring) but in the last few years there have been several new examples; Spin liquids in hard-core bosons
+(frustrated XXZ models), Neel-VBS transition (deconfined qcp) in J-Q models (mention large-N
+generalizations allowing direct contact with 1/N expansions),...
+
+In addition, progress in QMC algorithms; more efficient simulations (no Trotter error, loops/worms,
+valence-bond basis), and new insights in how to exctract relevant information (Renyi entropy,...).
+
+Mention that impurities and disorder is interesting but will not be discussed here.
+
+\section{Modern QMC methods}
+
+\begin{enumerate}
+\item Finite-T and T=0 projector methods presented in a common framework.
+\item Generalizations of SU(2) to SU(N) 
+\item Renyi entropies at T=0 and finie-T simulations
+\item Mention determinant-based fermion QMC (without details)
+\end{enumerate}
+
+\section{SU(2) models}
+
+\begin{enumerate}
+\item N\'eel to quantum paramagnetic transition id dimerized models; O(3) transition, large scaling
+corrections for staggered dimers, experimental realizations and simulations of 3D dimer networks
+\item N\'eel to VBS transitions in J-Q model; deconfined quantum-criticality, anomalous scaling of VBS order
+\end{enumerate}
+
+\section{SU(N) models}
+
+\begin{enumerate}
+\item Kawashima et al. simulations of S(N) Heisenberg
+\item SU(N) bilayer
+\item S(N) J-Q and $J_1$-$J_2$
+\end{enumerate}
+
+\section{U(1) models}
+
+As mentioned above, one of the main foci of research into designer Hamiltonians is the search, detection and characterization of quantum spin liquid (QSL) phases.  In the last few years, there have been several high-profile numerical studies identifying candidate spin liquid states in a variety of Hamiltonians.  As mentioned above, the apparent resolution of the long-standing question of the kagome-lattice antiferromagnet's QSL groundstate has come through large-scale DMRG calculations.  In what came as a surprise to many, quantum Monte Carlo simulations have purported to find a QSL phase in the half-filled Hubbard model on the honeycomb lattice.  This latter case, which has subsequently become the subject of intense theoretical study, highlights that the synergy between field theory and numerics is often driven by the latter.
+
+models are difficult to connect directly to 
+attempts to reconcile theory and experiment rely on phenomenological low-energy effective theories of QSLs.
+
+The smoking gun signature for a spin liquid phase could be argued to be the identification of the emergent gauge symmetry
+
+Contrary to some conjectures, the existence of the sign problem 
+
+\begin{enumerate}
+\item We have 4 or 5 Hamiltonians (with Z2 and U(1) spin liquids)
+\item Balents Fisher Girvin gave us a ``recipe'' for creating Hamiltonians with Z2 spin liquids using constrained interactions
+\item The connection to field theory is the emergent gauge structure I guess
+\item Entanglement entropy identifies the emergent gauge structure of the underlying theory
+\item XY*
+\end{enumerate}
+
+\section{Discussion}
+- Many things left to do along these lines (give some examples), e.g., larger sizes are still needed
+to fully characterize N\'eel--VBS transition; parallelization of QMC, impurities, disorder
+
+- Fermions: it should be possible to study 1 or 2 fermions (manageble sign problem) in 
+VBS/critical/spin-liquid systems. One should be able to see some aspects of the "strange metal''.
+Mention meron algorithm---perhaps some more interesting designer hamiltonian can be constructed.
+
+- Open fundamental questions in this approach, e.g., can one design a sign-problem-free
+  SU(2) hamiltonian with a spin liquid phase?
+
+- Non-equilibrium QMC
+
+- Some blah-blah about the sign problem, e.g., mention, in some diplomatic way, that Troyer-Wiese ``proof'' of no 
+solution is meaningless (classical glasses are also exponentially hard, so why should not quantum glasses be?---this
+is all they ``prove''). Perhaps mention variational QMC in the context of tensor-network states.
+
+% Create the reference section using BibTeX:
+%\bibliography{}{}
+
+\end{document}
+
