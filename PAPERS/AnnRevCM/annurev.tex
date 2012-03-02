@@ -121,6 +121,9 @@ Mention that impurities and disorder is interesting but will not be discussed he
 
 \section{Modern QMC methods}
 
+{\em Guys, Should we add a subsection on the sign problem of QMC in
+  this section? -- Ribhu }
+
 \begin{enumerate}
 \item Finite-T and T=0 projector methods presented in a common framework.
 \item Generalizations of SU(2) to SU(N) 
@@ -146,13 +149,119 @@ corrections for staggered dimers, experimental realizations and simulations of 3
 \item N\'eel to VBS transitions in J-Q model; deconfined quantum-criticality, anomalous scaling of VBS order
 \end{enumerate}
 
-\section{SU(N) models}
+\section{N\'eel-VBS transition in SU($N$) spin models}
 
-\begin{enumerate}
-\item Kawashima et al. simulations of S(N) Heisenberg
-\item SU(N) bilayer
-\item S(N) J-Q and $J_1$-$J_2$
-\end{enumerate}
+In this section we will work with SU($N$) spin models on two
+dimensional  square
+lattices. Sec.~\ref{ss:bilN} concerns itself with a bilayer square
+lattice. 
+
+\subsection{SU($N$) Heisenberg models}
+
+A natural extension of the SU(2) Heisenberg model is to spin models with
+SU($N$) symmetry. Such generalizations were initially introduced to
+facilitate access to
+a solvable large-$N$ limit. In the meantime, new physical systems have
+motivated an interest in such models at arbitrary finite values of
+$N$, leading to extensive studies of SU($N$) spin systems. The physical degrees of freedom of a particular
+spin model depend not only on the global symmetry but also on the
+chosen representation under which the spins transform. Thus there are
+a number of distinct extensions of the SU(2) model to SU($N$), depending on
+what properties of the SU(2) model are intended to be retained in the
+generalization. In the context of the study of deconfined quantum criticality at the
+N\'eel-VBS transition, the ability of two spins to form a singlet is the most
+central characteristic required to form a VBS. It
+is possible to choose SU($N$) models which have this property by
+working on bipartite lattices and
+assigning SU($N$) spins that transform
+as conjugate representations
+ on each of the sublattices. In such models it is possible to form a singlet
+between two spins on opposite sub-lattices and hence a valence bond
+solid.  The simplest two-site Hamiltonian interaction one can define for
+such models is given by,
+\begin{equation}
+\label{ham:j1}
+H_{J_1} = -J_1 \sum_{a,\langle ij\rangle} T^a_i\cdot T^{*a}_j
+\end{equation}
+where $T^a_i$ are generators of the fundamenal representation of SU($N$) defined on the
+$i^{\rm th}$ site. The index $a$ labels the $N^2-1$ generators of
+SU($N$). We note that for $N=2$ this reduces to the familiar
+Heisenberg model. The model $H_{J_1}$ does not suffer from the sign
+problem.
+
+The Hamiltonian Eq.~(\ref{ham:j1}) with $T$ chosen to be the
+fundamental generators of SU($N$) has been studied extensively. In
+one-dimension the well known quantum critical Bethe state for $N=2$ gives way to a valence bond solid
+ordered state for all $N\geq 3$.   In two-dimensions, $H_{J_1}$ was shown to map onto a dimer model
+with only a kinetic term
+in the large-$N$ limit. From direct numerical simulations
+on the quantm dimer model, it is known that the kinetic only dimer model
+valence bond solid orders.  This implies that in $H_{J_1}$ there must be a transition
+between the magentic state at $N=2$ and the valence bond solid at
+$N=\infty$.  The location of the transition was first
+determined to lie between $N=4$ and $N=5$ by quantum Monte Carlo
+simulations of Eq.~(\ref{ham:j1}).
+
+
+\subsection{SU($N$) $J_1$-$Q$ model for $N\leq 4$}
+\label{ss:jqN}
+In the previous subsection we saw that in two spatial dimensions the
+N\'eel-order found for $N=2,3,4$ gives way to valence bond solid
+ordered phases for $N\geq 5$ in the SU($N$) symmetric
+anti-ferromagnet, Eq~(\ref{ham:j1}). In order to access the quantum
+phase transition at a given value of $N\leq 4$ one needs new
+``designer'' couplings that
+destroy the N\'eel phase and result in the VBS. The first such term discovered was
+the so-called $Q$-interaction which can be written in the following
+form for any $N$,
+\begin{equation}
+H_{Q} = - Q \sum_{ab,\langle ijkl \rangle} \left ( T^a_i\cdot
+  T^{*a}_j\right ) \left ( T^b_k\cdot T^{*b}_l \right )
+\end{equation}
+Since the matrix elements of $T\cdot T^*$ are all positive, such a $Q$
+coupling is free of the sign problem of quantum Monte Carlo
+simulations. Numerical simulations show that $J_1$-$Q$ has N\'eel-VBS
+phase transition for $N=2,3,4$. For $N\geq 5$, the $Q$ term strengthens
+the VBS that is already present in the $J_1$ only model, and hence to
+study the N\'eel-VBS transition for large-$N$, a new designer
+Hamiltonian is needed. Before turning to a discussion of such a model in
+Sec.~\ref{ss:j1j2N}, let us briefly summarize the nature of the
+N\'eel-VBS transition in the SU(2,3,4) $J_1$-$Q$ models.
+
+{\em (show some data here? we need to decide which plots to show
+  depending on the space)--Ribhu}
+
+\subsection{SU($N$) $J_1$-$J_2$ model for $N\geq 5$}
+\label{ss:j1j2N}
+
+For $N\geq 5$ the $J_1$ model VBS orders and we have seen that the
+addition of the $Q$ interaction only strengthens this tendency. We now
+introduce an interaction between sites on the same sub-lattice $J_2$ which favors the N\'eel state,
+\begin{equation}
+H_{J_2}= -J_2 \sum_{a,\langle\langle ij\rangle\rangle} T^a_i\cdot T^{a}_j
+\end{equation}
+In order to see that this interaction favors the N\'eel state, we note
+that in the $H_{J_2}$ model by itself, the two sublattices are
+decoupled. The ground state corresponds to having an independent SU($N$) ferromagnet on
+each sublattice. Now turning on a small $J_1$ interaction will cause
+the sub-lattice degeneracy to be lifted, {\em i.e.},
+the two independent ferromagnets will lock into a single
+anti-ferromagnet state. These arguments are true for all $N$. We thus
+come to the conclusion that for every $N\geq 5$ the VBS state is
+realized when $J_1\gg J_2$ and the N\'eel state is obtained when $J_2
+\gg J_1$. Thus there must be a quantum phase transition between these
+two phases. From numerical simulations on $J_1$-$J_2$ model, we have found
+evidence for a direct transition between these two phases with no
+indication of an intervening phase. 
+ 
+{\em (show some data here? we need to decide which plots to show
+  depending on the space)-- Ribhu}
+  
+\subsection{SU($N$) Bilayer}
+\label{ss:bilN}
+
+
+
 
 \section{U(1) models}
 
