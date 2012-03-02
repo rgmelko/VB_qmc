@@ -3,6 +3,7 @@
 \usepackage{color}
 \usepackage{graphicx}
 \usepackage{verbatim}
+\usepackage{graphicx}
 
 \usepackage[normalem]{ulem}	% Part of the standard distribution
 \bibliographystyle{apsrev}
@@ -270,6 +271,19 @@ determined to lie between $N=4$ and $N=5$ by quantum Monte Carlo
 simulations of Eq.~(\ref{ham:j1}).
 
 
+\begin{figure}
+\includegraphics[width=3.5in]{pdj1j2q.pdf}
+  \caption{ \label{fig:pdj1j2q} {\em (Will make a better ``quantiative''
+      figure when  I am back in Kentucky! -Ribhu)}. Phase Diagram of the
+    SU($N$) symmetric sign-problem free
+    $J_1$-$J_2$-$Q$ model as a function of $N$. Each of the couplings has been introduced
+    in the text: $J_1$ in Sec.~\ref{ss:j1N}; $Q$ in Sec.~\ref{ss:jqN};
+  and $J_2$ in Sec.~\ref{ss:j1j2N}. The generalized antiferromagnet
+  allows for a detailed unbiased study of deconfined quantum
+  criticality at the N\'eel-VBS transition for each value of $N$. }
+\end{figure}
+
+
 \subsection{SU($N$) $J_1$-$Q$ model for $N\leq 4$}
 \label{ss:jqN}
 In the previous subsection we saw that in two spatial dimensions the
@@ -322,10 +336,66 @@ the ratio
 $J_2/J_1$ is tuned. From numerical simulations on $J_1$-$J_2$ model, we have found
 evidence for a direct transition between these two phases with no
 indication of an intervening phase. 
- 
-{\em (show some data here? we need to decide which plots to show
-  depending on the space)-- Ribhu}
-  
+
+An important prediction of the deconfined criticality scenario at the
+N\'eel-VBS transition is that both N\'eel and VBS order parameters are
+simultaneously quantum critical at the phase transition and that space
+and time scale in the same way, {\em i.e.} the dynamic critical exponent $z=1$. This implies
+that both correlation functions decay as Lorentz-invariant power laws,
+\begin{equation}
+\label{eq:expdef}
+C_{N,V} ({\bf r},\tau) \sim  \frac{1}{~{(\bf r}^2+c^2\tau^2)^{\frac{(1+\eta_{V,N})}{2}}}.
+\end{equation}
+ where $C_N$ and $C_V$ are the two point correlation functions of the
+ N\'eel and VBS order parameters. The indices $\eta_N$ and $\eta_V$
+ are the so-called anomalous dimensions of the N\'eel and VBS order
+ parameters. The deconfined quantum criticality scenario predicts that
+ the continuum field theoretic universality of the N\'eel-VBS critical
+ point is described by the non-compact CP$^{N-1}$ universality. Quantitative
+ estimates for the universal indices that characterize this
+ universality class are available only in the large-$N$
+ limit~\footnote{Numerical simulations of lattice discretizations of
+   the field theory have been used to make estimates for $N=2$. See
+   XXX.}. The $\frac{1}{N}$ expansions for $\eta_N$ and $\eta_V$ are,
+\begin{eqnarray}
+\label{eq:oneonN}
+\eta_N &=& 1 - \frac{32}{\pi^2N}\nonumber\\
+1+\eta_V &=& 2 \delta_1 N
+\end{eqnarray}
+We note here that as $N\rightarrow\infty$, $\eta_N \rightarrow 1$ and
+$\eta_V\rightarrow \infty$. Both results are very unusual since
+typically order parameters have very small values of the $\eta$
+exponent at the critical point. For reference, in the O($N$) model $\eta\rightarrow
+0$ in the $N\rightarrow\infty$ limit and $\eta=0.04$ for the O($N=3$) model.
+
+We now turn back to the study of our lattice designer $J_1$-$J_2$-$Q$
+Hamiltonian. By studying the size dependence of correlation functions in Eq.~(\ref{eq:expdef})
+ at the location of the critical points shown in Fig.~\ref{fig:pdj1j2q}, we can
+ estimate values for $\eta_N$ and $\eta_V$ as a function
+ of $N$. Our results for $2\leq N \leq 12$ are summarized in Fig.~\ref{fig:exp}. The
+ agreement between the large-$N$ expansion and the values obtained from our
+ lattice Hamiltonian for a fixed $N$ is quantitative. The lattice
+ Hamiltonian also appears to convincingly reproduce the ``smoking gun'' feature that
+ $\eta_N=1$ and $\eta_V=\infty$ in the $N\rightarrow \infty$
+ limit. All these features lend strong positive support in favor of
+ the deconfined quantum criticality scenario at the N\'eel-VBS
+ transition in the SU($N$) models considered here.
+
+
+
+\begin{figure}
+\includegraphics[width=3.0in]{fig_exp.pdf}
+  \caption{ \label{fig:exp} Anomalous dimensions of the N\'eel (left)
+    and VBS (right)
+  order parameters as a function of $N$. The main panels show $\eta_N$ and $\eta_V$ versus $1/N$. For $N=2,3$ and $4$, the data are 
+  for the J-Q model, and the results for $N>4$ are for the $J_1$-$J_2$ model. The analytic results 
+  from the $1/N$ expansion of the CP$^{N-1}$ field theory are shown as thick red lines. The left and right insets 
+  show $N(1-\eta_N)$ and $(1+\eta_V)/N$, respectively. These quantities must be finite in the  $N\rightarrow \infty$ 
+  limit according to the DQC theory and should be given by Eq.~(\ref{eq:oneonN}) (solid straight lines in the insets). 
+  The next corrections to the exponents have not been computed analytically yet, but we can estimate them approximately 
+  as $1+\eta_V = 0.2492 N + 0.68(4)$, $\eta_N = 1+32/(\pi^2 N)-3.6(5)/N^2$ (shown as dashed lines).}
+\end{figure}
+
 \subsection{SU($N$) Bilayer}
 \label{ss:bilN}
 
