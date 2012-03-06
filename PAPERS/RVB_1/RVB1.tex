@@ -31,13 +31,13 @@
 \affiliation{Department of Physics and Astronomy, University of Waterloo, Ontario, N2L 3G1, Canada} 
 
 \begin{abstract} 
-We numerically determine \textcolor{red}{\sout{universal}} \textcolor{blue}{subleading scaling} terms in the ground-state entanglement entropy of several two dimensional (2D) gapless systems, including a Heisenberg model with N\'eel order, a free Dirac fermion in the $\pi$-flux phase, and the nearest-neighbor resonating-valence bond wave function.
+We numerically determine \textcolor{blue}{subleading scaling} terms in the ground-state entanglement entropy of several two dimensional (2D) gapless systems, including a Heisenberg model with N\'eel order, a free Dirac fermion in the $\pi$-flux phase, and the nearest-neighbor resonating-valence bond wave function.
 For these models, we show that the entanglement entropy between cylindrical
 regions of length $x$ and $L-x$, extending around a torus of
 length $L$, depends upon the dimensionless ratio $x/L$.  This can be well-approximated on finite-size lattices by a function
 $\ln(\sin(\pi x/L))$ akin to the familiar chord-length dependence in one dimension. 
 We provide evidence, however, that the precise form of this bulk-dependent contribution
-is a more general \textcolor{red}{\sout{universal}} function in the 2D thermodynamic limit.
+is a more general function in the 2D thermodynamic limit.
 
 \end{abstract}
 \maketitle
@@ -202,13 +202,10 @@ present data, due to limited system sizes and stochastic error.
    \label{fig:heis_lines}
  \end{figure}
 
-We can however further examine the deviation from conformal-style scaling by examining the \textcolor{red}{\sout{universality of the} }
-coefficient of the chord-length in the N\'eel state.
-To do this, we extract the $L$-dependence of the coefficient $c(L)$ in Eq.~(\ref{Fit}).  As illustrated in Fig.~\ref{fig:heis_lines}(b),
+We can however further examine the deviation from conformal-style scaling by extracting the $L$-dependence of the coefficient $c(L)$ in Eq.~(\ref{Fit}).  \textcolor{green}{In order for this shape-dependent term to be universal in 2D, $c(L)$ should approach a constant in the limit $L \rightarrow \infty$ for fixed $x/L$.}
+As illustrated in Fig.~\ref{fig:heis_lines}(b),
 the coefficient does not approach a constant for the system sizes that we have studied, but rather has some functional dependence on $L$.
-This functional dependence is apparently sub-linear \textcolor{blue}{ -- possibly behaving like $c(L) \sim L^p$ with $p\leq1$.  However, in order for this shape-dependent term to be universal in 2D, one expects $c$ to approach a constant in the limit $L \rightarrow \infty$.
-That scenario could be supported by the QMC data if convergence were assumed to be very slow.  Distinguishing between these
-two scenarios (and therefore the strict adherence of $\gamma$ to universality in this system) is impossible on the system sizes studied.}
+This functional dependence is apparently sub-linear \textcolor{blue}{ -- possibly behaving like $c(L) \sim L^p$ with $p\leq1$.  That scenario could be supported by the QMC data if convergence were assumed to be very slow.}  \textcolor{green}{Indeed, in the quantum dimer model, the corresponding term can be computed exactly in finite size, and the convergence is indeed very slow \cite{Stephan12}. A definitive determination of this limit (and therefore the strict adherence of $\gamma$ to universality in this system) is impossible on the system sizes studied.}
 %A rigorous analysis of the data along these lines is impossible however within the current
 %accuracy of our QMC simulations.
 
@@ -224,10 +221,9 @@ We next examine the scaling of the Renyi entropy in the RVB wavefunction.
 As seen in Fig.~\ref{fig:heis_bow}, a striking two-branch structure exists, depending on whether the distance $x$ is even or odd.
 The presence of the two branches presumably is related to the fact that correlators in the RVB state have a pronounced even-odd dependence. Moreover, simple counting arguments of prototypical valence-bond configurations in the (0,0) topological sector \cite{RVB1,RVB2} show that the number of valence bonds crossing from region $A$ to region $B$ alternates strongly with $x$.  This $L=24$ data displays a clear $x$-dependent curvature in each branch. This can be analyzed more closely by attempting fits of the form Eq.~(\ref{Fit}) to each branch individually. From Fig.~{\ref{fig:2}}(a) and (b), it is clear that fits to the scaling
 ansatz to both branches are quite accurate when the extremal values of
-$x$ are excluded. It is worth noting that in the closely related quantum dimer
-model on the square lattice, no such term appears: in this geometry,
-the only subleading term in the entanglement entropy is constant 
-\cite{Hsu08,Misguich,Oshikawa,Hsu10,Zaletel,Stephan11}.
+$x$ are excluded. 
+\textcolor{green}{It is worth noting that in the closely related quantum dimer
+model on the square lattice, a similar terms appear, and can be computed exactly \cite{Stephan12}, generalizing the results of Refs.\ \onlinecite{Hsu08,Misguich,Oshikawa,Hsu10,Zaletel,Stephan11}. }
 
 
 We can attempt to
@@ -262,7 +258,7 @@ Indeed, since the search for a $c$-theorem \cite{Zamo} valid in higher dimension
 we hope our results will inspire a broader examination of this scaling term in 2D gapless states.
 
 {\it Acknowledgments---} 
-The authors thank J.-M. Stephan, A.~Del Maestro, E.~Fradkin, I.~Klich, K.~Intriligator,  M.~Metlitski, E.G.~Moon, R.~Myers and A.~Sandvik for enlightening discussions. 
+The authors thank J.-M. St\'ephan, A.~Del Maestro, E.~Fradkin, I.~Klich, K.~Intriligator,  M.~Metlitski, E.G.~Moon, R.~Myers and A.~Sandvik for enlightening discussions. 
 R.G.M. would like to acknowledge the support of Microsoft Station Q for hospitality during a visit.
 This work has been supported by the Natural Sciences and Engineering
 Research Council of Canada (NSERC), and by the US NSF via grants DMR/MPS-0704666 and DMR/MPS1006549.  Simulations were performed on the computing facilities of SHARCNET.
