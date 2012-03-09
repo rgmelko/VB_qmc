@@ -420,15 +420,18 @@ state as long as they are small compared to $J_\perp$.
 
 As mentioned above, one of the main foci of research into designer Hamiltonians is the search, detection and characterization of quantum spin liquid (QSL) phases.  In the last few years, there have been several high-profile numerical studies identifying candidate spin liquid states in a variety of Hamiltonians.  As mentioned above, the apparent resolution of the long-standing question of the kagome-lattice antiferromagnet's QSL groundstate has come through large-scale DMRG calculations.  In what came as a surprise to many, quantum Monte Carlo simulations have purported to find a QSL phase in the half-filled Hubbard model on the honeycomb lattice.  This latter case, which has subsequently become the subject of intense theoretical study, highlights that the synergy between field theory and numerics is often driven by the latter.
 
-models are difficult to connect directly to 
-attempts to reconcile theory and experiment rely on phenomenological low-energy effective theories of QSLs.
+As with many quantum systems, specific Hamiltonians are often difficult to connect directly to experiment.  In the cases where microscopic Hamiltonians are known, they are rarely soluble; hence attempts to reconcile theory and experiment rely on phenomenological low-energy effective theories.  Here again, we see the use of designer Hamiltonians; rather than attempt to solve a potentially complicated approximation to an experimental Hamiltonian, one may instead construct a sign-problem free model which hopefully captures the essential ingredients (e.g. geometric frustration) which leads to the desired spin-liquid behavior.
+
+Contrary to popular believe, the absence of the sign problem does not somehow preclude the existence of spin liquid physics.  In recent years, there has been significant progress in identifying and characterizing spin liquid phases with QMC.  To date all such Hamiltonians have had U(1) symmetry -- no clear SU(2) candidates have been confirmed by QMC.  
+
+
+
 
 The smoking gun signature for a spin liquid phase could be argued to be the identification of the emergent gauge symmetry
 
-Contrary to some conjectures, the existence of the sign problem 
 
 \begin{enumerate}
-\item We have 4 or 5 Hamiltonians (with Z2 and U(1) spin liquids)
+\item We have 4 or 5 Hamiltonians (with Z2 \cite{Isakov1} and U(1) spin liquids)
 \item Balents Fisher Girvin gave us a ``recipe'' for creating Hamiltonians with Z2 spin liquids using constrained interactions
 \item The connection to field theory is the emergent gauge structure I guess
 \item Entanglement entropy identifies the emergent gauge structure of the underlying theory
@@ -453,7 +456,7 @@ solution is meaningless (classical glasses are also exponentially hard, so why s
 is all they ``prove''). Perhaps mention variational QMC in the context of tensor-network states.
 
 % Create the reference section using BibTeX:
-%\bibliography{}{}
+\bibliography{rev_bib.bib}
 
 \end{document}
 
