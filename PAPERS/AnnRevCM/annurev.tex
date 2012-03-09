@@ -1,9 +1,11 @@
 \documentclass[aps,prb,groupedaddress,twocolumn]{revtex4}
 \usepackage{amsmath}
 \usepackage{color}
-\usepackage{graphicx}
 \usepackage{verbatim}
 \usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{amssymb}
+
 
 \usepackage[normalem]{ulem}	% Part of the standard distribution
 \bibliographystyle{apsrev}
@@ -423,6 +425,13 @@ As mentioned above, one of the main foci of research into designer Hamiltonians 
 As with many quantum systems, specific Hamiltonians are often difficult to connect directly to experiment.  In the cases where microscopic Hamiltonians are known, they are rarely soluble; hence attempts to reconcile theory and experiment rely on phenomenological low-energy effective theories.  Here again, we see the use of designer Hamiltonians; rather than attempt to solve a potentially complicated approximation to an experimental Hamiltonian, one may instead construct a sign-problem free model which hopefully captures the essential ingredients (e.g. geometric frustration) which leads to the desired spin-liquid behavior.
 
 Contrary to popular believe, the absence of the sign problem does not somehow preclude the existence of spin liquid physics.  In recent years, there has been significant progress in identifying and characterizing spin liquid phases with QMC.  To date all such Hamiltonians have had U(1) symmetry -- no clear SU(2) candidates have been confirmed by QMC.  
+
+One of the most important classes of sign-problem free Hamiltonian identified to harbour the simplest Z(2) spin liquid phase was introduced by Balents, Fisher and Girvin\cite{BFG}
+
+\begin{eqnarray}
+H &=& -t \sum_{\langle ij \rangle} [b^{\dagger}_i b_j + b_i b^{\dagger}_j] + V \sum_{\hexagon} (n_{\hexagon})^2 \\
+H &=& -t \sum_{\langle ij \rangle} [b^{\dagger}_i b_j + b_i b^{\dagger}_j] + V \sum_{\hexagon} (n_{\hexagon})^2 
+\end{eqnarray}
 
 
 
