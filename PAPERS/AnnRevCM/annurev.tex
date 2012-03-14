@@ -129,11 +129,28 @@ Mention that impurities and disorder is interesting but will not be discussed he
 
 
 
-\subsection{Finite-T and T=0 projector methods presented in a common
-  framework}
+\subsection{Common framework for finite-T and T=0 projector QMC methods}
 \label{ss:method}
 
-Mention determinant-based fermion QMC (without details)
+Standard QMC algorithms can be classified into {\it finite-temperature} methods, where the goal is to compute a thermal
+average of the form
+\begin{equation}
+\langle A\rangle = \frac{1}{Z}{\bf Tr}\{ {\rm e}^{-\beta H}\},~~~~
+Z = {\bf Tr}\{ {\rm e}^{-\beta H}\},
+\end{equation}
+and {\it ground-state projector} methods, where some operator $P(\beta)$ is applied to a ``trial state'' $|\Psi_0\rangle$,
+such that $|\Psi_\beta=\rangle = P(\beta)|\Psi_0\rangle$ approaches the ground state when $\beta \to \infty$ and an
+expectation value 
+\begin{equation}
+\langle A\rangle = \frac{1}{Z}\langle \Psi_\beta|A|\Psi_\beta\rangle,~~~~ Z = \langle \Psi(\beta)|\Psi(\beta)\rangle,
+\end{equation}
+approaches the true ground state expectation value, $\langle A\rangle \to \langle|0| A|0\rangle$. For the projector, one can use the imaginary-ime
+evolution operator (\ref{utau}), $P(\beta)=U(\beta)={\rm e}^{-\beta \mathcal{H}}$ with a fixed (time-independent) hamiltonian, or one can use a high
+power of the hamiltonian, $P(\beta)=H^m$, where $\beta=m/N$ gives roughly the same rate of convergence for the two choises for a given system size 
+$N$. This follows from a Taylor expansion of the time evolution operator, which for large $\beta$ is dominated by powers of the order
+$n=\beta |E_0|$, where $E_0$ is the ground state energy (which is proportional to $N$) .
+
+
 
 \subsection {Generalizations from SU(2) to SU(N)}
 \label{ss:su2N}
