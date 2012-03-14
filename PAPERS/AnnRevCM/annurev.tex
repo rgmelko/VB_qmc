@@ -26,6 +26,7 @@ quantum Monte Carlo simulations}
 \author{Roger G. Melko}
 \email[]{rgmelko@uwaterloo.ca}
 \affiliation{Department of Physics and Astronomy, University of Waterloo, Ontario, N2L 3G1, Canada}
+\affiliation{Perimeter Institute for Theoretical Physics, Waterloo, Ontario N2L 2Y5, Canada}
 \author{Anders W. Sandvik}
 \email[]{sandvik@bu.edu}
 \affiliation{Department of Physics, Boston University, 590 Commonwealth Avenue, Boston, Massachusetts 02215, USA}
@@ -420,13 +421,20 @@ state as long as they are small compared to $J_\perp$.
   depending on the space)-- Ribhu}
 \section{U(1) models}
 
-As mentioned above, one of the main foci of research into designer Hamiltonians is the search, detection and characterization of quantum spin liquid (QSL) phases.  In the last few years, there have been several high-profile numerical studies identifying candidate spin liquid states in a variety of Hamiltonians.  As mentioned above, the apparent resolution of the long-standing question of the kagome-lattice antiferromagnet's QSL groundstate has come through large-scale DMRG calculations.  In what came as a surprise to many, quantum Monte Carlo simulations have purported to find a QSL phase in the half-filled Hubbard model on the honeycomb lattice.  This latter case, which has subsequently become the subject of intense theoretical study, highlights that the synergy between field theory and numerics is often driven by the latter.
+As mentioned above, one of the main foci of research into designer Hamiltonians is the search, detection and characterization of quantum spin liquid (QSL) phases.  
 
-As with many quantum systems, specific Hamiltonians are often difficult to connect directly to experiment.  In the cases where microscopic Hamiltonians are known, they are rarely soluble; hence attempts to reconcile theory and experiment rely on phenomenological low-energy effective theories.  Here again, we see the use of designer Hamiltonians; rather than attempt to solve a potentially complicated approximation to an experimental Hamiltonian, one may instead construct a sign-problem free model which hopefully captures the essential ingredients (e.g. geometric frustration) which leads to the desired spin-liquid behavior.
+Although there has been much progress in understanding properties of QSL states from effective field theories (e.g. topological order; showing that excitations carry fractional quantum numbers, and interact with emergent gauge fields), there are very few microscopic models that can be argued to exhibit a QSL  without controversy.
+
+In the last few years, there have been several high-profile numerical studies identifying candidate spin liquid states in a variety of Hamiltonians.  As mentioned above, the apparent resolution of the long-standing question of the kagome-lattice antiferromagnet's QSL groundstate has come through large-scale DMRG calculations.  In what came as a surprise to many, quantum Monte Carlo simulations have purported to find a QSL phase in the half-filled Hubbard model on the honeycomb lattice.  This latter case, which has subsequently become the subject of intense theoretical study, highlights that the synergy between field theory and numerics is often driven by the latter.
+
+As with many quantum systems, specific Hamiltonians are often difficult to connect directly to experiment.  In the cases where microscopic Hamiltonians are known, they are rarely soluble; hence attempts to reconcile theory and experiment rely on phenomenological low-energy effective theories.  Here again, we see the use of designer Hamiltonians; rather than attempt to solve a potentially complicated approximation to an experimental Hamiltonian, one may instead construct a sign-problem free model which hopefully captures the essential ingredients (e.g. geometric frustration or quantum disorder) which may lead to the desired spin-liquid behavior.
 
 Contrary to popular believe, the absence of the sign problem does not somehow preclude the existence of spin liquid physics.  In recent years, there has been significant progress in identifying and characterizing spin liquid phases with QMC.  To date all such Hamiltonians have had U(1) symmetry -- no clear SU(2) candidates have been confirmed by QMC.  
 
-One of the most important classes of sign-problem free Hamiltonian identified to harbour the simplest Z(2) spin liquid phase was introduced by Balents, Fisher and Girvin\cite{BFG}
+As argued by Isakov, Paramekanti and Kim,\cite{Isakov2}  Hamiltonians that are known to have QSL phases fall into roughly two categories:
+{\it Quantum dimer models}, which have a strong local constraint that the number of dimers emerging from a site is fixed; and
+{\it Cluster-charging} models, where spin or boson configurations summed over a local cluster (e.g.~a lattice plaquette) are penalized when differing from some chosen value.
+One of the most important classes of cluster-charging Hamiltonians, originally identified to harbour the simplest Z(2) spin liquid phase at an exactly soluble RK-point, was introduced by Balents, Fisher and Girvin.\cite{BFG}  
 
 \begin{eqnarray}
 H &=& -t \sum_{\langle ij \rangle} [b^{\dagger}_i b_j + b_i b^{\dagger}_j] + V \sum_{\hexagon} (n_{\hexagon})^2 \\
