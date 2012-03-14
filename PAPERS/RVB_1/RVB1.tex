@@ -31,7 +31,7 @@
 \affiliation{Department of Physics and Astronomy, University of Waterloo, Ontario, N2L 3G1, Canada} 
 
 \begin{abstract} 
-We numerically determine \textcolor{blue}{subleading scaling} terms in the ground-state entanglement entropy of several two dimensional (2D) gapless systems, including a Heisenberg model with N\'eel order, a free Dirac fermion in the $\pi$-flux phase, and the nearest-neighbor resonating-valence bond wave function.
+We numerically determine subleading scaling terms in the ground-state entanglement entropy of several two dimensional (2D) gapless systems, including a Heisenberg model with N\'eel order, a free Dirac fermion in the $\pi$-flux phase, and the nearest-neighbor resonating-valence bond wavefunction.
 For these models, we show that the entanglement entropy between cylindrical
 regions of length $x$ and $L-x$, extending around a torus of
 length $L$, depends upon the dimensionless ratio $x/L$.  This can be well-approximated on finite-size lattices by a function
@@ -203,10 +203,10 @@ present data, due to limited system sizes and stochastic error.
    \label{fig:heis_lines}
  \end{figure}
 
-We can however further examine the deviation from conformal-style scaling by extracting the $L$-dependence of the coefficient $c(L)$ in Eq.~(\ref{Fit}).  \textcolor{green}{In order for this shape-dependent term to be universal in 2D, $c(L)$ should approach a constant in the limit $L \rightarrow \infty$ for fixed $x/L$.}
+We can however further examine the deviation from conformal-style scaling by extracting the $L$-dependence of the coefficient $c(L)$ in Eq.~(\ref{Fit}).  In order for this shape-dependent term to be universal in 2D, $c(L)$ should approach a constant in the limit $L \rightarrow \infty$ for fixed $x/L$.
 As illustrated in Fig.~\ref{fig:heis_lines}(b),
 the coefficient does not approach a constant for the system sizes that we have studied, but rather has some functional dependence on $L$.
-This functional dependence is apparently sub-linear \textcolor{blue}{ -- possibly behaving like $c(L) \sim L^p$ with $p\leq1$.  That scenario could be supported by the QMC data if convergence were assumed to be very slow.}  \textcolor{green}{Indeed, in the quantum dimer model, the corresponding term can be computed exactly in finite size, and the convergence is indeed very slow \cite{Stephan12}. A definitive determination of this limit (and therefore the strict adherence of $\gamma$ to universality in this system) is impossible on the system sizes studied.}
+This functional dependence is apparently sub-linear -- possibly behaving like $c(L) \sim L^p$ with $p\leq1$.  That scenario could be supported by the QMC data if convergence were assumed to be very slow. Indeed, in the quantum dimer model, the corresponding term can be computed exactly in finite size, and the convergence is indeed very slow \cite{Stephan12}. A definitive determination of this limit (and therefore the strict adherence of $\gamma$ to universality in this system) is impossible on the system sizes studied.
 %A rigorous analysis of the data along these lines is impossible however within the current
 %accuracy of our QMC simulations.
 
@@ -223,8 +223,8 @@ As seen in Fig.~\ref{fig:heis_bow}, a striking two-branch structure exists, depe
 The presence of the two branches presumably is related to the fact that correlators in the RVB state have a pronounced even-odd dependence. Moreover, simple counting arguments of prototypical valence-bond configurations in the (0,0) topological sector \cite{RVB1,RVB2} show that the number of valence bonds crossing from region $A$ to region $B$ alternates strongly with $x$.  This $L=24$ data displays a clear $x$-dependent curvature in each branch. This can be analyzed more closely by attempting fits of the form Eq.~(\ref{Fit}) to each branch individually. From Fig.~{\ref{fig:2}}(a) and (b), it is clear that fits to the scaling
 ansatz to both branches are quite accurate when the extremal values of
 $x$ are excluded. 
-\textcolor{green}{It is worth noting that in the closely related quantum dimer
-model on the square lattice, a similar terms appear, and can be computed exactly \cite{Stephan12}, generalizing the results of Refs.\ \onlinecite{Hsu08,Misguich,Oshikawa,Hsu10,Zaletel,Stephan11}. }
+It is worth noting that in the closely related quantum dimer
+model on the square lattice, a similar terms appear, and can be computed exactly \cite{Stephan12}, generalizing the results of Refs.\ \onlinecite{Hsu08,Misguich,Oshikawa,Hsu10,Zaletel,Stephan11}.
 
 
 We can attempt to
@@ -242,16 +242,16 @@ limit.
 {\it  Discussion---} We have studied the Renyi entanglement entropy in the ground state of three gapless systems on $L_x\times L_y$ toroidal lattices, where the subregion $A$ is a cylinder of length $x$.  
 %We have  
 %demonstrated that it contains a universal subleading scaling term $\gamma(x/L_x,L_y/L_x)$, which depends on bulk quantities, namely the dimensionless aspect ratios of the subregion and the lattice linear dimensions.  
-\textcolor{blue}{We have demonstrated that it contains a subleading scaling term which depends on bulk quantities, namely the dimensionless aspect ratios of the subregion and the lattice linear dimensions.}
+We have demonstrated that it contains a subleading scaling term which depends on bulk quantities, namely the dimensionless aspect ratios of the subregion and the lattice linear dimensions.
 Note that while numerical measurement of topological entanglement entropy \cite{LW,KP} has been used to probe topological properties of {\it gapped} phases \cite{isakov}, the \textcolor{red}{\sout{universal}} subleading term considered here means that a measurement of topological entanglement entropy in a {\it gapless} phase could give either a zero or non-zero result, even without any topological aspects of the phase (though measurements in the $U(1)$ superfluid phase yielded a vanishing number \cite{isakov}).  
 Interestingly, just as strong sub-additivity constrains the sign of the Levin-Wen entropy \cite{LW}, it also implies, for fixed $L_x,L_y$, that $\gamma$ for the von Neumann entropy is a concave-down function of $x$.
 
 Our quantum Monte Carlo simulations of the Heisenberg N\'eel ground state and the short-range RVB wavefunction with $L_x=L_y=L$ show an almost-perfect logarithmic dependence of $\gamma$ on the chord length $\sin(\pi x/L)$.
-It appears that the coefficient of this term is not a universal constant, however, which might suggest either that care must be taken in the order of limits with which the thermodynamic limit is approached, \textcolor{blue}{or that a size-dependence remains in this limit, rendering this term non-universal}. A study of the crossover from one to two dimensions might illuminate this issue further.  Further evidence that the true 2D scaling function might not be exactly the chord-length form is given by the scaling of gapless Dirac fermions in the $\pi$-flux phase. Here we have argued that such scaling is superseded by a sum over transverse modes, leading to a different (unknown) functional form in 2D.  Furthermore,  spontaneous symmetry breaking in the Heisenberg model may complicate measurement of the entanglement entropy.  The fact that a complete characterization of the scaling behavior in the N\'eel and RVB states remains a challenge, despite the large lattice sizes studied to date, underlines the absolute necessity for using large-scale QMC simulations for the study of entanglement entropy.
+It appears that the coefficient of this term is not a universal constant, however, which might suggest either that care must be taken in the order of limits with which the thermodynamic limit is approached, or that a size-dependence remains in this limit, rendering this term non-universal. A study of the crossover from one to two dimensions might illuminate this issue further.  Further evidence that the true 2D scaling function might not be exactly the chord-length form is given by the scaling of gapless Dirac fermions in the $\pi$-flux phase. Here we have argued that such scaling is superseded by a sum over transverse modes, leading to a different (unknown) functional form in 2D.  Furthermore,  spontaneous symmetry breaking in the Heisenberg model may complicate measurement of the entanglement entropy.  The fact that a complete characterization of the scaling behavior in the N\'eel and RVB states remains a challenge, despite the large lattice sizes studied to date, underlines the absolute necessity for using large-scale QMC simulations for the study of entanglement entropy.
 
 Regardless of the precise functional form of 
 %$\gamma(x/L_x,L_y/L_x)$, 
-\textcolor{blue}{the shape-dependent subleading term $\gamma$,}
+the shape-dependent subleading term $\gamma$,
 its general existence in gapless wavefunctions in 2D would have some profound consequences.  
 Besides the immediate complications in attempting to use entanglement as a probe to detect gapless spin liquids mentioned above,
 the similarity of the scaling function to a chord-length (present in 1D conformally invariant systems) 
