@@ -391,12 +391,20 @@ void LOOPS::Nnnbondlist()
 ***************************************************************************/
 void LOOPS::generate_ops()
 {
+    
   //changed so it doesn't just pick random bonds... the spins must be antiparallel
+  int temp(-99);
+  
   for(int i=0; i<number_of_bondops; i++)
     {
-      bops(i,0) = init_isgood[irand() % init_isgood.size()]; //the bond being operated on
-      bops(i,1) = 0; //0 = diagonal, 1 = off-diagonal
+      //  bops(i,0) = init_isgood[irand() % init_isgood.size()]; //the bond being operated on
+      //  bops(i,1) = 0; //0 = diagonal, 1 = off-diagonal
       //  cout << "bops("<<i<<")="<<bops(i,0)<< endl;
+
+      do{temp = irand()%number_of_nnbonds;}
+      while(spins[nnbonds(temp,0)]+spins[nnbonds(temp,1)]!=1);
+      bops(i,0) = temp;
+      bops(i,1) = 0;
     }
 
   superbops.resize(number_of_bondops+number_of_sites,2);
