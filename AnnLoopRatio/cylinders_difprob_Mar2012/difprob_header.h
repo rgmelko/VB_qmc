@@ -1,11 +1,19 @@
+//March 15, 2012 --- Modifying latest cylinder code so operator choice
+//                   works differently.  Instead of keeping a list of
+//                   "good" operators, follow the steps on today's date 
+//                   in my "maze" notebook:
+// 1. Choose Operator type w/ prob: P_p = Q N_p / (Q N_P + J N_b) and 
+//    P_b = 1 - P_p
+// 2. Randomly choose location for given type of operator
+// 3. If operator type is allowed by spins, move on. If not go back to 1.
 //Feb 2012 --- try to adapt for cylinder geometry
 //Nov 2010 --- 2D RATIO LOOP HEADER
-
-//Jan 18, 2010 --- starting loop code
 //Feb 19, 2010 --- trying to swap-ify
+//Jan 18, 2010 --- starting loop code
 
-#ifndef loop_header
-#define loop_header
+
+#ifndef difprob_header
+#define difprob_header
 
 #include "header.h"
 #include "matrix.h"

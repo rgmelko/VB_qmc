@@ -73,17 +73,15 @@ LOOPS::LOOPS(int xsites, int ysites, int bondops, bool ob, long long its,
 	     long long rseed, string bondopfile)
 {
   irand.seed(rseed); //uses the random seed from the parameter file
-  drand.seed(rseed); //enabling us to run fakely parallelize simulations
+  drand.seed(rseed); //enabling us to run fakely parallelized simulations
   
   dim1 = xsites; 
   dim2 = ysites;
   OBC = ob;
   number_of_sites = dim1*dim2; //calculates total number of sites
-  //****changed**** multiplied by 2
-  number_of_bondops = 2*2*bondops; /*the *real* number of bondops is multiplied
+  number_of_bondops = 2*bondops; /*the *real* number of bondops is multiplied
 				   by 2, one set for |VL> and one for |VR> */
-    //****changed**** multiplied first term by 2
-  vlegs = 2*4*number_of_sites + 4*number_of_bondops; //number of vertex legs
+  vlegs = 4*number_of_sites + 4*number_of_bondops; //number of vertex legs
   energyint = 0; energy = 0; //initialize the energy counters
   iterations = its; 
   bopfile = bondopfile; //name of the bond operator file
@@ -310,8 +308,8 @@ void LOOPS::Nnnbondlist()
   }
 
   //****changed**** for realisies doubling #nnbonds and #sites
-				    number_of_nnbonds *= 2;
-  number_of_sites *= 2;
+	number_of_nnbonds *= 2;
+	number_of_sites *= 2;
 }
 
 /***** generate_ops() *****************************************************

@@ -76,7 +76,7 @@ int main(){
     cout << left << setw(12) << system.energy << "    ";
     energy_out << system.energy << endl;
 
-    cout << system.entropy_final[dim1-2] << endl;
+    cout << system.entropy_final[1] << endl;
     energy_out.close();
     
     
