@@ -905,6 +905,10 @@ void LOOPS::change__operators()
   
   for(op; op<number_of_bondops+number_of_sites/2; op++){
     if(superbops(op,1)==1){                         //if operator is offdiagonal
+      //update spins
+      spins[nnbonds(superbops(op,0),0)] = (spins[nnbonds(superbops(op,0),0)]+1)%2;
+      spins[nnbonds(superbops(op,0),1)] = (spins[nnbonds(superbops(op,0),1)]+1)%2;
+
       for(int i=0;i<neighbs; i++){//change antiparallelness of neighboring bonds
 
 	int loc = Nnnbonds(superbops(op,0),i);
