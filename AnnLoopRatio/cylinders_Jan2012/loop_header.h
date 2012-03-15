@@ -804,7 +804,7 @@ void LOOPS::change__operators()
 
 	  int i=0;
   
-	  while(isgood[i]!=loc){ i++;};
+	  while(isgood[i]!=loc){ i++;};  //well *this* can't be efficient.
 	  isgood.erase(isgood.begin() + i);
 	  antipar[loc]--;
 	}
