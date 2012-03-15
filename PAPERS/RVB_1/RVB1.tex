@@ -48,16 +48,15 @@ The study of quantum condensed matter systems
  is benefiting from an infusion of ideas related to quantum information and entanglement. The importance of this new resource is strikingly 
 demonstrated in the study of entanglement entropy at one-dimensional (1D) quantum critical points with conformal invariance. Conformal field theory (CFT) provides an important
 universal number, the {\it central charge} $c$, that appears in an astonishing array of physical
-quantities \cite{Cardyubiquitous}. A given CFT, and
+quantities.\cite{Cardyubiquitous} A given CFT, and
 thus any quantum critical points it describes, can be
 characterized by this number.
 Its numerical or analytical determination provides an invaluable tool in identifying which, if any, CFT describes the scaling limit of a given Hamiltonian. 
-Computing the entanglement entropy has proved a very useful way of finding $c$ numerically. It can be extracted 
+Computing the entanglement entropy has proven to be a very useful way of finding $c$ numerically. It can be extracted 
 directly from the ground-state wavefunction by measuring its Renyi
 entanglement entropy, $ S_n = 1/(1-n) \ln \big[ {\rm Tr} \rho_A^n
 \big], $ where region $A$ is entangled with its complement, region
-$B$. Namely, in a system with total length $L$ and the region $A$ being of length $x$, the scaling of the Renyi entropy in 1D critical systems depends on the ``chord length" as \cite{Holzhey,VidalC,
-Korepin,Cardy},
+$B$. Namely, in a system with total length $L$, where the region $A$ has length $x$, the scaling of the Renyi entropy in 1D critical systems depends on the ``chord length" as,\cite{Holzhey,VidalC,Korepin,Cardy}
 \begin{equation}
 S_n = \frac{c}{6}\left({1+ \frac{1}{n} }\right) \ln\Big[ \frac{L}{\pi} \sin\big( \frac{\pi x}{L} \big) \Big], \label{1Dcft}
 \end{equation}
@@ -66,25 +65,25 @@ with the central charge appearing as the coefficient.
 
 In higher dimensions, the scaling behavior of the entanglement entropy
 is much less well-understood.  Ground states of local Hamiltonians are
-generally believed to produce an ``area-law'' (i.e.\ boundary) scaling
-\cite{ALreview}, the subleading corrections to which may be universal
+generally believed to produce an ``area-law'' (i.e.\ boundary) scaling,
+\cite{ALreview} the subleading corrections to which may be universal
 quantities that can be used to identify and characterize quantum
 phases and phase transitions.  A well established example of such is the 
-topological entanglement entropy \cite{Alioscia1,Alioscia2,KP,LW} of
+topological entanglement entropy\cite{Alioscia1,Alioscia2,KP,LW} of
 a gapped state with topological order.  In gapless states, the
 subleading corrections may still potentially harbor universal
 quantities. It is conceivable that such quantities could be used to define an
-``effective'' central charge in two spatial dimensions, but there are strong constraints on any proposal \cite{EE_CFT}. The best-understood gapless situation in two dimensions is the special case of a conformal quantum critical point,
+``effective'' central charge in two spatial dimensions, but there are strong constraints on any proposal.\cite{EE_CFT} The best-understood gapless situation in two dimensions is the special case of a conformal quantum critical point,
 where the ground state itself is written in terms of a two-dimensional (2D)
-CFT \cite{Moore06,Hsu08,Misguich,Oshikawa,Hsu10,Zaletel,Stephan11}. In the presence of a spontaneously broken
+CFT.\cite{Moore06,Hsu08,Misguich,Oshikawa,Hsu10,Zaletel,Stephan11} In the presence of a spontaneously broken
 continuous symmetry, Goldstone modes produce a subleading bulk
-logarithmic correction \cite{HeisLog,MaxLog}.  Subleading logarithms
+logarithmic correction.\cite{HeisLog,MaxLog}  Subleading logarithms
 from corner contributions with universal coefficients also occur at
-some critical points \cite{Moore06,logcorner,Max}.  
+some critical points.\cite{Moore06,logcorner,Max}  
 
 The purpose of this
-paper is to analyze one type of subleading term in 2D gapless systems
-and to study whether this term is \textcolor{red}{universal}. Gapless modes typically have long-range correlations, so it is possible for
+paper is to analyze one type of subleading term in 2D gapless systems,
+and to study whether this term is universal. Gapless modes typically have long-range correlations, so it is possible for
 the entanglement entropy to depend on the size and shape of the
 regions $A$ and $B$. Indeed, the 1D result
 (\ref{1Dcft}) is manifestly size-dependent. We show how similar behavior also occurs in 2D.
@@ -96,9 +95,9 @@ In both cases, we find a size- and shape-dependent scaling function that closely
 
 To probe this behavior in a simpler system, we also study
  free spinless fermions in the $\pi$-flux phase and find that the
- entanglement scaling also has a \textcolor{red}{universal} size- and shape-dependent piece.
+ entanglement scaling also has a universal size- and shape-dependent piece.
 For finite-size systems, this closely mimics the chord length, but in the infinite-size limit we observe it to cross over to a different non-trivial function.
-Among other consequences, this term will give a non-zero signature in the entanglement quantities \cite{KP,LW} designed to look for topological order, which complicates any possible generalization of the topological entanglement entropy to gapless spin-liquid states. 
+Among other consequences, this term will give a non-zero signature in the entanglement quantities\cite{KP,LW} designed to look for topological order, which complicates any possible generalization of the topological entanglement entropy to gapless spin-liquid states. 
  
   \begin{figure}
    \begin{center}
@@ -116,11 +115,11 @@ using a cornerless cylindrical region $A$ (Fig.~\ref{fig:torus}) with a constant
 We denote the width of region $A$ by $x$.
 This system has Dirac points near momentum $k_y=0$ and $k_y=\pi$.  We take anti-periodic boundary conditions in the $x$-direction so that there will be no exact zero mode.  We use exact numerical diagonalization of the single-particle Hamiltonian to compute the entropy.
 
-The entanglement entropy of 2+1-dimensional conformally invariant systems such as this has been argued to be of the form \cite{ryu,ZGV},
+The entanglement entropy of 2+1-dimensional conformally invariant systems such as this has been argued to be of the form,\cite{ryu,ZGV}
 \be
 S_n \sim {\rm const.}\times \ell /a + \gamma(x/L_x,L_y/L_x),
 \ee
-where $\gamma$ is a \textcolor{red}{universal} scaling function of the dimensionless ratios.
+where $\gamma$ is a universal scaling function of the dimensionless ratios.
 The area-law term proportional to the boundary length $\ell$ depends on the lattice constant $a$, and so the constant is non-universal. A crucial difference
 from the result in 1D, Eq.~(\ref{1Dcft}), is that $a$ only appears in the area law term.  In contrast, the one-dimensional result can be written as a sum of two terms as
 $S_n =C \ln[\sin\big( \frac{\pi x}{L} \big)]+ C\ln[\frac{L}{\pi}] $, where $C=c/6(1+1/n)$.
@@ -128,10 +127,10 @@ The first term is a universal function of the dimensionless ratio $x/L$, akin to
 
 To illustrate the absence of such an ``additive logarithm" (a logarithmic divergence depending on $L/a$) in 2D,
 we treat this free system as a collection of independent systems in 1D labeled by the momenta $k_y$.
-The $k_y=0$ mode contributes an additive logarithm $C \ln(L_x)$ to the entropy, while the modes with small $k_y \neq 0$ contribute additive logarithms $C \ln(k_y^{-1})$ \cite{Holzhey,Korepin,Cardy}. Summing over $k_y=2\pi j/L_y$, this gives an entropy $C \big[ \ln(L_x)+2\sum_{j=1}^{j \sim L_y} \ln(L_y/2 \pi j) \big]=C\ln(L_x) + 2 C\ln[(L_y/2\pi)^{L_y}/L_y!]$, where the factor of $2$ arises from summing over positive and negative $m\neq 0$.  Using Stirling's formula for $L_y!$, one finds that the additive logarithm terms add to $C[\ln(L_x)-\ln(L_y)]=C\ln(L_x/L_y)$. This can be absorbed into the scaling function $\gamma$, so that there is no additive logarithm.  A more precise calculation would include the effect of finite $L_x$, but we ignore this since it does not affect the cancellation of additive logarithms. A similar calculation near $k_y=\pi$ leads to a cancellation of the additive logarithm there.
+The $k_y=0$ mode contributes an additive logarithm $C \ln(L_x)$ to the entropy, while the modes with small $k_y \neq 0$ contribute additive logarithms $C \ln(k_y^{-1})$.\cite{Holzhey,Korepin,Cardy} Summing over $k_y=2\pi j/L_y$, this gives an entropy $C \big[ \ln(L_x)+2\sum_{j=1}^{j \sim L_y} \ln(L_y/2 \pi j) \big]=C\ln(L_x) + 2 C\ln[(L_y/2\pi)^{L_y}/L_y!]$, where the factor of $2$ arises from summing over positive and negative $m\neq 0$.  Using Stirling's formula for $L_y!$, one finds that the additive logarithm terms add to $C[\ln(L_x)-\ln(L_y)]=C\ln(L_x/L_y)$. This can be absorbed into the scaling function $\gamma$, so that there is no additive logarithm.  A more precise calculation would include the effect of finite $L_x$, but we ignore this since it does not affect the cancellation of additive logarithms. A similar calculation near $k_y=\pi$ leads to a cancellation of the additive logarithm there.
 
 
-The entropy of a given $k_y$ mode contains, in addition to the additive logarithmic divergence in $k_y$, a \textcolor{red}{universal} scaling function $G(x/L_x,k_y x)$.  At $k_y=0$, we see the chord-length scaling $C \ln \big[\sin ( \frac{\pi x}{L} ) \big]$ (Fig.~\ref{fig:dirac}), but for $k_y \neq 0$ and for $k_y x$ large, the chord-length scaling disappears and the entropy becomes roughly flat as a function of $x/L$.  In fact, for $L_y=L_x=L$, the lowest $k_y$ mode has a mass $2 k_y=4\pi/L$. This factor of $4\pi\approx 13$ means this mass is rather large, and so the entropy of this mode is flat for a large range of $x/L$.  As a result, for $L_y=L_x=L$, the entropy of the 2D system appears to display 1D chord length scaling over a wide range of $x/L_x$.
+The entropy of a given $k_y$ mode contains, in addition to the additive logarithmic divergence in $k_y$, a universal scaling function $G(x/L_x,k_y x)$.  At $k_y=0$, we see the chord-length scaling $C \ln \big[\sin ( \frac{\pi x}{L} ) \big]$ (Fig.~\ref{fig:dirac}), but for $k_y \neq 0$ and for $k_y x$ large, the chord-length scaling disappears and the entropy becomes roughly flat as a function of $x/L$.  In fact, for $L_y=L_x=L$, the lowest $k_y$ mode has a mass $2 k_y=4\pi/L$. This factor of $4\pi\approx 13$ means this mass is rather large, and so the entropy of this mode is flat for a large range of $x/L$.  As a result, for $L_y=L_x=L$, the entropy of the 2D system appears to display 1D chord length scaling over a wide range of $x/L_x$.
 
  \begin{figure}
    \begin{center}
@@ -151,7 +150,7 @@ Heisenberg ground state and the RVB
 wavefunction in 2D.  The Heisenberg ground state is
 projected from a trial state by applying a high power of the
 Hamiltonian, $H = \sum_{\langle ij \rangle} {\bf S}_i \cdot {\bf S}_j$, via a QMC method operating in the valence bond (VB)
-basis \cite{Sandvik}. 
+basis.\cite{Sandvik}
 The RVB wavefunction 
 is an equal-amplitude superposition 
 $| \Psi \rangle = \sum_{\alpha} | V_{\alpha} \rangle$
@@ -159,13 +158,13 @@ of all nearest-neighbor valence-bond states,
 \begin{equation}
 |V_{\alpha} \rangle =  \frac{1}{2^{N/4}} \prod_{i=1}^{N/2} \big( | \uparrow_i \downarrow_{j_{\alpha}} \rangle -  | \downarrow_i  \uparrow_{j_{\alpha}} \rangle \big),
 \end{equation}
- defined by requiring that each spin $i$ on one sublattice be in a singlet with one of its nearest neighbors $j_\alpha$ \cite{RVB1,RVB2}. The RVB 
+ defined by requiring that each spin $i$ on one sublattice be in a singlet with one of its nearest neighbors $j_\alpha$.\cite{RVB1,RVB2} The RVB 
 Monte Carlo sampling
 algorithm does a random walk through the possible states by creating a
 defect at some spatial point and propagating it through the system (thereby
 rearranging the nearest-neighbor bonds) until the defect reaches the
-initial point and its path forms a closed loop \cite{AWSloop}.
-If we visualize the Heisenberg ground state in this VB language, then the RVB wavefunction is its largest component, the remainder of the state being superpositions of longer bonds, decaying with their length as $1/r^3$ \cite{Sandvik}.  Likewise, the RVB wavefunction is the ground state of a local (but longer-range) Hamiltonian that includes a Heisenberg term \cite{Cano}.
+initial point and its path forms a closed loop.\cite{AWSloop}
+If we visualize the Heisenberg ground state in this VB language, then the RVB wavefunction is its largest component, the remainder of the state being superpositions of longer bonds, decaying with their length as $1/r^3$.\cite{Sandvik}  Likewise, the RVB wavefunction is the ground state of a local (but longer-range) Hamiltonian that includes a Heisenberg term.\cite{Cano}
 
 
 We consider the same geometry as for the $\pi$-flux fermions, with $L_x=L_y=L$ (see Fig.~\ref{fig:torus}).
@@ -177,7 +176,7 @@ We consider the same geometry as for the $\pi$-flux fermions, with $L_x=L_y=L$ (
    \label{fig:heis_bow} }
  \end{figure}
 In Fig.~{\ref{fig:heis_bow}}, we plot QMC results for the second Renyi entropy in the N\'eel and RVB states on a $24 \times 24$ torus.  
-Several features of the entanglement scaling are clear from this plot.  First, note that the data for the N\'eel state has a significant curvature as a function of $x$.  This curvature was first seen in Ref.~\cite{HeisLog} but not explored in detail (instead, using a fixed $x/L$ a surprising subleading logarithmic term $\propto \ln(\ell)$ was found).  
+Several features of the entanglement scaling are clear from this plot.  First, note that the data for the N\'eel state has a significant curvature as a function of $x$.  This curvature was first seen in Ref.~[\onlinecite{HeisLog}] but not explored in detail (instead, using a fixed $x/L$ a surprising subleading logarithmic term $\propto \ln(\ell)$ was found\cite{MaxLog}).  
 The entropy of the RVB wave function exhibits an obvious dependence on whether $x$ is even or odd which we discuss in more detail below. In each of the even and odd ``branches'', 
 there is significant curvature in the $x$ dependence as with the Heisenberg case. 
 
@@ -196,7 +195,7 @@ present data, due to limited system sizes and stochastic error.
 
  \begin{figure}
    \begin{center}
-   \scalebox{1}{\includegraphics[width=\columnwidth]{./figs/heis.pdf}}
+   \scalebox{1}{\includegraphics[width=0.95\columnwidth]{./figs/heis.pdf}}
    \end{center}
    \caption{(a) Heisenberg data and linear fits (excluding the first two data points on the left) for $L=14,16,\dots,28$ plotted in terms of the log of the ``chord-length", $\ln\left[\sin \frac{\pi x}{L}\right]$.
    (b) Slopes of the fits, $c(L)$, exhibit a strong dependence on the system size, $L$.
@@ -207,9 +206,7 @@ present data, due to limited system sizes and stochastic error.
 We can however further examine the deviation from conformal-style scaling by extracting the $L$-dependence of the coefficient $c(L)$ in Eq.~(\ref{Fit}).  In order for this shape-dependent term to be universal in 2D, $c(L)$ should approach a constant in the limit $L \rightarrow \infty$ for fixed $x/L$.
 As illustrated in Fig.~\ref{fig:heis_lines}(b),
 the coefficient does not approach a constant for the system sizes that we have studied, but rather has some functional dependence on $L$.
-This functional dependence is apparently sub-linear -- possibly behaving like $c(L) \sim L^p$ with $p\leq1$.  That scenario could be supported by the QMC data if convergence were assumed to be very slow. Indeed, in the quantum dimer model, the corresponding term can be computed exactly in finite size, and the convergence is indeed very slow \cite{Stephan12}. A definitive determination of this limit (and therefore the strict adherence of $\gamma$ to universality in this system) is impossible on the system sizes studied.
-%A rigorous analysis of the data along these lines is impossible however within the current
-%accuracy of our QMC simulations.
+This functional dependence is apparently sub-linear -- possibly behaving like $c(L) \sim L^p$ with $p\leq1$.  That scenario could be supported by the QMC data if convergence were assumed to be very slow. Indeed, in the quantum dimer model, the corresponding term can be computed exactly in finite size, and the convergence is very slow.\cite{Stephan12} A definitive determination of this limit (and therefore the strict adherence of $\gamma$ to universality in this system) is impossible with our current data; significantly larger system sizes should be studied.
 
  \begin{figure}
    \begin{center}
@@ -221,11 +218,11 @@ This functional dependence is apparently sub-linear -- possibly behaving like $c
 
 We next examine the scaling of the Renyi entropy in the RVB wavefunction.
 As seen in Fig.~\ref{fig:heis_bow}, a striking two-branch structure exists, depending on whether the distance $x$ is even or odd.
-The presence of the two branches presumably is related to the fact that correlators in the RVB state have a pronounced even-odd dependence. Moreover, simple counting arguments of prototypical valence-bond configurations in the (0,0) topological sector \cite{RVB1,RVB2} show that the number of valence bonds crossing from region $A$ to region $B$ alternates strongly with $x$.  This $L=24$ data displays a clear $x$-dependent curvature in each branch. This can be analyzed more closely by attempting fits of the form Eq.~(\ref{Fit}) to each branch individually. From Fig.~{\ref{fig:2}}(a) and (b), it is clear that fits to the scaling
+The presence of the two branches presumably is related to the fact that correlators in the RVB state have a pronounced even-odd dependence. Moreover, simple counting arguments of prototypical valence-bond configurations in the (0,0) topological sector\cite{RVB1,RVB2} show that the number of valence bonds crossing from region $A$ to region $B$ alternates strongly with $x$.  This $L=24$ data displays a clear $x$-dependent curvature in each branch. This can be analyzed more closely by attempting fits of the form Eq.~(\ref{Fit}) to each branch individually. From Fig.~{\ref{fig:2}}(a) and (b), it is clear that fits to the scaling
 ansatz to both branches are quite accurate when the extremal values of
 $x$ are excluded. 
 It is worth noting that in the closely related quantum dimer
-model on the square lattice, a similar terms appear, and can be computed exactly \cite{Stephan12}, generalizing the results of Refs.\ \onlinecite{Hsu08,Misguich,Oshikawa,Hsu10,Zaletel,Stephan11}.
+model on the square lattice, similar terms appear and can be computed exactly,\cite{Stephan12} generalizing the results of Refs.~[\onlinecite{Hsu08,Misguich,Oshikawa,Hsu10,Zaletel,Stephan11}].
 
 
 We can attempt to
@@ -241,23 +238,20 @@ limit.
 \smallskip
 
 {\it  Discussion---} We have studied the Renyi entanglement entropy in the ground state of three gapless systems on $L_x\times L_y$ toroidal lattices, where the subregion $A$ is a cylinder of length $x$.  
-%We have  
-%demonstrated that it contains a universal subleading scaling term $\gamma(x/L_x,L_y/L_x)$, which depends on bulk quantities, namely the dimensionless aspect ratios of the subregion and the lattice linear dimensions.  
 We have demonstrated that it contains a subleading scaling term which depends on bulk quantities, namely the dimensionless aspect ratios of the subregion and the lattice linear dimensions.
-Note that while numerical measurement of topological entanglement entropy \cite{LW,KP} has been used to probe topological properties of {\it gapped} phases \cite{isakov}, the \textcolor{red}{\sout{universal}} subleading term considered here means that a measurement of topological entanglement entropy in a {\it gapless} phase could give either a zero or non-zero result, even without any topological aspects of the phase (though measurements in the $U(1)$ superfluid phase yielded a vanishing number \cite{isakov}).  
-Interestingly, just as strong sub-additivity constrains the sign of the Levin-Wen entropy \cite{LW}, it also implies, for fixed $L_x,L_y$, that $\gamma$ for the von Neumann entropy is a concave-down function of $x$.
+Note that while numerical measurement of topological entanglement entropy\cite{LW,KP} has been used to probe topological properties of {\it gapped} phases,\cite{isakov} the subleading term considered here means that a measurement of topological entanglement entropy in a {\it gapless} phase could give either a zero or non-zero result, even without any topological aspects of the phase (though measurements in the $U(1)$ superfluid phase yielded a vanishing number\cite{isakov}).  
+Interestingly, just as strong sub-additivity constrains the sign of the Levin-Wen entropy,\cite{LW} it also implies, for fixed $L_x,L_y$, that $\gamma$ for the von Neumann entropy is a concave-down function of $x$.
 
 Our quantum Monte Carlo simulations of the Heisenberg N\'eel ground state and the short-range RVB wavefunction with $L_x=L_y=L$ show an almost-perfect logarithmic dependence of $\gamma$ on the chord length $\sin(\pi x/L)$.
 It appears that the coefficient of this term is not a universal constant, however, which might suggest either that care must be taken in the order of limits with which the thermodynamic limit is approached, or that a size-dependence remains in this limit, rendering this term non-universal. A study of the crossover from one to two dimensions might illuminate this issue further.  Further evidence that the true 2D scaling function might not be exactly the chord-length form is given by the scaling of gapless Dirac fermions in the $\pi$-flux phase. Here we have argued that such scaling is superseded by a sum over transverse modes, leading to a different (unknown) functional form in 2D.  Furthermore,  spontaneous symmetry breaking in the Heisenberg model may complicate measurement of the entanglement entropy.  The fact that a complete characterization of the scaling behavior in the N\'eel and RVB states remains a challenge, despite the large lattice sizes studied to date, underlines the absolute necessity for using large-scale QMC simulations for the study of entanglement entropy.
 
 Regardless of the precise functional form of 
-%$\gamma(x/L_x,L_y/L_x)$, 
 the shape-dependent subleading term $\gamma$,
 its general existence in gapless wavefunctions in 2D would have some profound consequences.  
 Besides the immediate complications in attempting to use entanglement as a probe to detect gapless spin liquids mentioned above,
 the similarity of the scaling function to a chord-length (present in 1D conformally invariant systems) 
 raises the tantalizing possibility that our results will prove useful in characterizing higher-dimensional critical points.
-Indeed, since the search for a $c$-theorem \cite{Zamo} valid in higher dimensions is of intense interest across several disparate field of physics (see e.g.\ \cite{Cardy88,ryu,Myers,Komargodski}),
+Indeed, since the search for a $c$-theorem\cite{Zamo} valid in higher dimensions is of intense interest across several disparate field of physics,\cite{Cardy88,ryu,Myers,Komargodski}
 we hope our results will inspire a broader examination of this scaling term in 2D gapless states.
 
 {\it Acknowledgments---} 
