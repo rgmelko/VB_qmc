@@ -65,7 +65,7 @@ class LOOPS
                      //         (:,1) is 0 for diag, 1 for offdiag
 
   //CONSTRUCTOR
-  LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
+  LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
 	       long long rseed, string bondopfile);
 
   void nnbondlist(); //creates list of nnbonds
@@ -852,15 +852,11 @@ void LOOPS::change__operators()
       }
     }      //if the operator is diagonal we need to change it randomly
     else{       //using whichbond..              
-       superbops(op,0) = isgood[irand()%isgood.size()];
-      //   int temp(-99);
-      
-      //   do{
-      //	int temp = irand()%number_of_nnbonds;
-      //	cout << temp << spins[nnbonds(temp,0)] << spins[nnbonds(temp,1)] << endl;
-      //    }
-      //    while(spins[nnbonds(temp,0)]+spins[nnbonds(temp,1)]!=1);
-      //   superbops(op,0) = temp;
+      //   superbops(op,0) = isgood[irand()%isgood.size()];
+      int temp(-99);
+      do{temp = irand()%number_of_nnbonds;}
+      while(spins[nnbonds(temp,0)]+spins[nnbonds(temp,1)]!=1);
+      superbops(op,0) = temp;
       
     }
   }
@@ -921,15 +917,11 @@ void LOOPS::change__operators()
       }
     }      //if the operator is diagonal we need to change it randomly
     else{       //using whichbond..              
-       superbops(op,0) = isgood[irand()%isgood.size()];
-       // int temp(-99);
-      
-       //   do{
-       //	int temp = irand()%number_of_nnbonds;
-       //	cout << temp << endl;
-   //   }
-   //   while(spins[nnbonds(temp,0)]+spins[nnbonds(temp,1)]!=1);
-   //   superbops(op,0) = temp;
+      //superbops(op,0) = isgood[irand()%isgood.size()];
+       int temp(-99);
+       do{temp = irand()%number_of_nnbonds;}
+       while(spins[nnbonds(temp,0)]+spins[nnbonds(temp,1)]!=1);
+       superbops(op,0) = temp;     
     }
   }
 }
