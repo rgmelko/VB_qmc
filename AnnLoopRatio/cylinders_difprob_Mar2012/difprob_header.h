@@ -153,7 +153,7 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
 **********************************************************************/
 void LOOPS::nnbondlist()
 {
-  // should put in a special case for Ly==2.
+  // should put in a special case for Ly==2 ??
 
   //Case of 1D open chain
   if(Ly==1){
@@ -185,6 +185,7 @@ void LOOPS::nnbondlist()
     //changed multiplied first dimension by 2
     nnbonds.resize (2*number_of_nnbonds,2);
     for(int i=0;i<number_of_nnbonds*2;i++){nnbonds(i,0)=-99;nnbonds(i,1)=-99;}
+
     //resize and initialize the matrix of nnbonds
     //changed multiplied dimensions by 2
     nn_mat.resize(2*number_of_sites, 2*number_of_sites);
