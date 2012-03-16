@@ -56,7 +56,6 @@ class LOOPS
   iMatrix nnbonds;//list of all possible nnbonds.  Index is the bond number
   iMatrix nn_mat; /*matrix of the nnbonds. indices are sites
 		    and contents are bond numbers.*/
-  iMatrix Nnnbonds;//list of all nearest nnbonds
   iMatrix bops; // list of bond operators
   iMatrix superbops; //list of bond operators plus edges simulated via bops
                      //superbops(:,0) is the bond the operator acts on 
