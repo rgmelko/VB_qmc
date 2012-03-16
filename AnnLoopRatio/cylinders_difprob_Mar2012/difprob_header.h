@@ -796,8 +796,8 @@ void LOOPS::take_measurement()
 *****************************************************************************/
 void LOOPS::change__operators()
 {
-  antipar = init_antipar;
-  isgood = init_isgood;
+  //  antipar = init_antipar;
+  // isgood = init_isgood;
   spins = init_spins;
 
   int neighbs(0);
@@ -811,24 +811,29 @@ void LOOPS::change__operators()
       spins[nnbonds(superbops(op,0),0)] = (spins[nnbonds(superbops(op,0),0)]+1)%2;
       spins[nnbonds(superbops(op,0),1)] = (spins[nnbonds(superbops(op,0),1)]+1)%2;
 
-      for(int i=0;i<neighbs;i++){//change antiparallelness of neighboring bonds
 
-	int loc = Nnnbonds(superbops(op,0),i);
 
-       	if(loc<0){continue;}//goto start of loop if its OBC&that nn doesnt exist
-	if(antipar[loc]==1){//if bond is already antiparallel change to parallel
+      /*    for(int i=0;i<neighbs;i++){//change antiparallelness of neighboring bonds
+	    
+	    int loc = Nnnbonds(superbops(op,0),i);
+	    
+	    if(loc<0){continue;}//goto start of loop if its OBC&that nn doesnt exist
+	    if(antipar[loc]==1){//if bond is already antiparallel change to parallel
+	    
+	    int i=0;
+	    
+	    while(isgood[i]!=loc){ i++;};
+	    isgood.erase(isgood.begin() + i);
+	    antipar[loc]--;
+	    }
+	    else{
+	    antipar[loc]++;   //if bond is parallel change to antiparallel
+	    isgood.push_back(loc);
+	    }                                        
+	    }
+      */
 
-	  int i=0;
-  
-	  while(isgood[i]!=loc){ i++;};
-	  isgood.erase(isgood.begin() + i);
-	  antipar[loc]--;
-	}
-	else{
-	  antipar[loc]++;   //if bond is parallel change to antiparallel
-	  isgood.push_back(loc);
-	}                                        
-      }
+
     }                       //otherwise (if diagonal) do nothing
   }
 
@@ -840,24 +845,30 @@ void LOOPS::change__operators()
       spins[nnbonds(superbops(op,0),0)] = (spins[nnbonds(superbops(op,0),0)]+1)%2;
       spins[nnbonds(superbops(op,0),1)] = (spins[nnbonds(superbops(op,0),1)]+1)%2;
 
-      for(int i=0;i<neighbs; i++){//change antiparallelness of neighboring bonds
 
-	int loc = Nnnbonds(superbops(op,0),i);
 
-	if(loc<0){continue;}//goto start of loop ifOBC&that nn doesnt exist
-	if(antipar[loc]==1){//if bond's already antiparallel change to parallel
+      /* for(int i=0;i<neighbs; i++){//change antiparallelness of neighboring bonds
+	 
+	 int loc = Nnnbonds(superbops(op,0),i);
+	 
+	 if(loc<0){continue;}//goto start of loop ifOBC&that nn doesnt exist
+	 if(antipar[loc]==1){//if bond's already antiparallel change to parallel
+	 
+	 int j=-1;
+	 do{ j++; }
+	 while(isgood[j]!=loc);
+	 isgood.erase(isgood.begin()+j);
+	 antipar[loc]--;
+	 }
+	 else{
+	 antipar[loc]++;   //if bond is parallel change to antiparallel
+	 isgood.push_back(loc);
+	 }                                       
+	 }
+      */
 
-	  int j=-1;
-	  do{ j++; }
-	  while(isgood[j]!=loc);
-	  isgood.erase(isgood.begin()+j);
-	  antipar[loc]--;
-	}
-	else{
-	  antipar[loc]++;   //if bond is parallel change to antiparallel
-	  isgood.push_back(loc);
-	}                                       
-      }
+
+
     }      //if the operator is diagonal we need to change it randomly
     else{       //using whichbond..              
       //   superbops(op,0) = isgood[irand()%isgood.size()];
@@ -892,12 +903,14 @@ void LOOPS::change__operators()
    *************************************************************/
   
   //find the new antiparallelness
-  isgood.clear();
-  for(int i=0; i<number_of_nnbonds; i++){
+  /*
+    isgood.clear();
+    for(int i=0; i<number_of_nnbonds; i++){
     //if they're different it's 1, otherwise 0)
     antipar[i]=(spins[nnbonds(i,0)]+spins[nnbonds(i,1)])%2;
     if(antipar[i]==1){isgood.push_back(i);} //if it's antiparallel add it to the list
-  }
+    }
+  */
   
   /*******************************************************************
                                end of that
@@ -909,24 +922,29 @@ void LOOPS::change__operators()
       spins[nnbonds(superbops(op,0),0)] = (spins[nnbonds(superbops(op,0),0)]+1)%2;
       spins[nnbonds(superbops(op,0),1)] = (spins[nnbonds(superbops(op,0),1)]+1)%2;
 
-      for(int i=0;i<neighbs; i++){//change antiparallelness of neighboring bonds
 
-	int loc = Nnnbonds(superbops(op,0),i);
+      /*      for(int i=0;i<neighbs; i++){//change antiparallelness of neighboring bonds
+	      
+	      int loc = Nnnbonds(superbops(op,0),i);
+	      
+	      if(loc<0){continue;}//goto start of loop ifOBC&that nn doesnt exist
+	      if(antipar[loc]==1){//if bond's already antiparallel change to parallel
+	      
+	      int j=-1;
+	      do{ j++; }
+	      while(isgood[j]!=loc);
+	      isgood.erase(isgood.begin()+j);
+	      antipar[loc]--;
+	      }
+	      else{
+	      antipar[loc]++;   //if bond is parallel change to antiparallel
+	      isgood.push_back(loc);
+	      } 
+	      
+	      }
+      */
 
-	if(loc<0){continue;}//goto start of loop ifOBC&that nn doesnt exist
-	if(antipar[loc]==1){//if bond's already antiparallel change to parallel
 
-	  int j=-1;
-	  do{ j++; }
-	  while(isgood[j]!=loc);
-	  isgood.erase(isgood.begin()+j);
-	  antipar[loc]--;
-	}
-	else{
-	  antipar[loc]++;   //if bond is parallel change to antiparallel
-	  isgood.push_back(loc);
-	}                                       
-      }
     }      //if the operator is diagonal we need to change it randomly
     else{       //using whichbond..              
       //superbops(op,0) = isgood[irand()%isgood.size()];
