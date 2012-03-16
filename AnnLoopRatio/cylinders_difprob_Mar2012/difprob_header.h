@@ -44,7 +44,6 @@ class LOOPS
   
   vector <long long> Vlinks, Hlinks;//the vert and horizontal links for the LL
   vector <int> spins, init_spins; //keeps track of spins for swaperation
-  vector <int> antipar, init_antipar; //keeps track of antiparallelness
   vector <int> sides; /*store which side of the boundary a leg is on
 			removing the need to check if it's higher or lower
 			that the "middle" of the number of legs.... I'm not
@@ -68,7 +67,6 @@ class LOOPS
 	       long long rseed, string bondopfile);
 
   void nnbondlist(); //creates list of nnbonds
-  void Nnnbondlist(); //creates list of Nnnbonds
   void generate_ops(); //generates initial operators
   void create_Vlinks(); //creates vertical links
   void create__Hlinks(); //creates horizontal linkts (harder)
@@ -146,8 +144,6 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
          nnbonds[#nnbonds][2]___sized and filled
          nn_mat[#sites][#sites]_sized and filled
          Lx                     //
-         init_antipar[#nnbonds]_sized and filled
-         antipar[#nnbonds]______sized
       
       Local:
          counter //represents the number of the nnbond we're on
@@ -245,107 +241,11 @@ void LOOPS::nnbondlist()
       //      cout << endl;
       //   }
 
-
-  
-}
-
-
-/************* Nnnbondlist() *************************************************
- Uses:
-  Global:
-   Ly                   //
-   Nnnbonds[#Nnnbonds][2] //sizes and fills
-   number_of_nnbonds      //
-   nn_mat[#sites][#sites] //
-   number_of_sites        //
-
-  Local:
-   counter__goes from 0-3 (i think) and represents the number of neighbours
-            we've found so far.
-   bnum_____the number of the bond we're looking at
-
-   Creates a list of the neighbouring bonds for a given bond.
-   Works for  PBC, 1D, and 2D.
-   For 2D, uses the matrix nn_mat, which is created in nnbondlist().
-*****************************************************************************/
-void LOOPS::Nnnbondlist()
-{
-  // There's no option for Lx==1 FYI.  So no open chain.
-
- 
-  int num_neighbs = 0;
-  if(Ly==1){  // 1D open chain case
-    num_neighbs = 2;
-    //changed**** multiplied first dimension by 2
-    Nnnbonds.resize(2*number_of_nnbonds,num_neighbs);
-
-    // generate nearest nnbonds
-    for(int i=0; i<number_of_nnbonds; i++){
-      Nnnbonds(i,0)=(i+1)%number_of_nnbonds; // forward bond
-      Nnnbonds(i,1)=(i+number_of_nnbonds-1)%number_of_nnbonds; //backward bond
-    }
-    // It's always OBC for Lx now!!!
-    // if(OBC){  // For open BCs first and last bonds only have 1 neighbour
-    Nnnbonds(0,1) = -99; //no backward bond for 1st bond
-    Nnnbonds(number_of_nnbonds-1,0) = -99; //no forward bond for last bond
-    // }
-  }
-  
-  else{  // the 2D case... more complicated...
-    num_neighbs = 6;
-    // Resize and initialize Nnnbonds
-    //changed**** multiplied first dimension by 2;
-    Nnnbonds.resize(2*number_of_nnbonds,num_neighbs);
-    for(int i=0; i<2*number_of_nnbonds; i++){
-      for(int j=0; j<num_neighbs; j++){
-	Nnnbonds(i,j)=-99;
-      }
-    }
-    
-    //This looks at the full row and column of the nn_mat corresponding
-    //to bond number i.
-    //The matrix is symmetric, so you could equivalently go through the
-    //nnbonds(i,0) and nnbonds(i,1) rows (or columns even)
-    for(int i=0; i<number_of_nnbonds; i++){
-      int counter=0;
-      for(int j=1; j<number_of_sites; j++){
-	
-	//going through the nn matrix
-	int bnum = nn_mat(nnbonds(i,0), (nnbonds(i,1) + j)%number_of_sites);
-	//if the bond is a nn of the initial bond;
-	if(bnum != -99){Nnnbonds(i,counter) = bnum; counter++;}
-	
-
-	//doing the same but moving down instead of across
-	bnum = nn_mat((nnbonds(i,0) + j)%number_of_sites, nnbonds(i,1));
-	if(bnum != -99){Nnnbonds(i,counter) = bnum; counter++;}
-      }
-    } 
-  } 
-
-
-  //changed**** added this in to copy Nnnbonds.. to double it.. sorta
-  for(int q=number_of_nnbonds; q<2*number_of_nnbonds; q++){
-    for(int s=0; s<num_neighbs; s++){
-      int t=number_of_nnbonds;
-      if(Nnnbonds(q-t,s)==-99){Nnnbonds(q,s)=-99;}
-      else{Nnnbonds(q,s)=Nnnbonds(q-t,s)+number_of_nnbonds;}
-    }
-  }
-
-
-
-  //  for(int i=0;i<Nnnbonds.length();i++){
-  //    for(int j=0;j<Nnnbonds.width();j++){
-  //      cout << Nnnbonds(i,j) << " ";
-  //    }
-  //    cout << endl;
-  //  }
-
-  //changed**** for realisies doubling #nnbonds and #sites
   number_of_nnbonds *= 2;
   number_of_sites *= 2;
+  
 }
+
 
 /***** generate_ops() *****************************************************
  Uses:
