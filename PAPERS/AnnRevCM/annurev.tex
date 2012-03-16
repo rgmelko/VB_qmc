@@ -448,17 +448,17 @@ As with many quantum systems, specific Hamiltonians are often difficult to conne
 
 Contrary to popular believe, the absence of the sign problem does not somehow preclude the existence of spin liquid physics.  In recent years, there has been significant progress in identifying and characterizing spin liquid phases with QMC.  To date all such Hamiltonians have had U(1) symmetry -- no clear SU(2) candidates have been confirmed by QMC.  
 
-As argued by Isakov, Paramekanti and Kim,\cite{Isakov2}  Hamiltonians that are known to have QSL phases fall into roughly two categories:
-{\it Quantum dimer models}, which have a strong local constraint that the number of dimers emerging from a site is fixed; and
-{\it Cluster-charging} models, where spin or boson configurations summed over a local cluster (e.g.~a lattice plaquette) are penalized when differing from some chosen value.
-One of the most important classes of cluster-charging Hamiltonians, originally identified to harbour the simplest Z(2) spin liquid phase at an exactly soluble RK-point, was introduced by Balents, Fisher and Girvin.\cite{BFG}  
+Much of our understanding of QSL phases comes from their relation to {\it quantum dimer models}.  Such models have a strong local constraint that the number of dimers emerging from a site is fixed, as well as quantum tunnelling that allows the state to fluctuate while keeping the constraint satisfied.  Under special circumstances, dimer Hamiltonians can be constructed where the fluctuating dimer configuration breaks no symmetry -- being a type of QSL (or resonating valence bond) phase.  The features that emerge in this phase can be directly related to special field theories with gauge symmetry and topological order.
 
+Such dimer models give us a recipe to construct QSL phases in spin or boson models.  The philosophy is to map the dimer constraint to a plaquette spin configuration on the dual lattice; the dimer may represents e.g.~an $S^z$ spin or boson density $n$ configuration on a bond which is frustrated (or unsatisfied).  Then, the role of the quantum dimer move which tunnel between dimer configurations is done by quantum hopping (spin exchange) - processes which are often higher-order in $t$.  Such models are called
+{\it cluster-charging} models,\cite{Isakov2} because spin or boson configurations summed over a local cluster (e.g.~a lattice plaquette) are penalized when differing from some chosen value.  For example:
 \begin{eqnarray}
-H &=& -t \sum_{\langle ij \rangle} [b^{\dagger}_i b_j + b_i b^{\dagger}_j] + V \sum_{\hexagon} (n_{\hexagon})^2 \\
-H &=& -t \sum_{\langle ij \rangle} [b^{\dagger}_i b_j + b_i b^{\dagger}_j] + V \sum_{\hexagon} (n_{\hexagon})^2 
+%H &=& -t \sum_{\langle ij \rangle} [b^{\dagger}_i b_j + b_i b^{\dagger}_j] + V \sum_{\hexagon} (n_{\hexagon})^2 \\
+H &=& -t \sum_{( ij )} [b^{\dagger}_i b_j + b_i b^{\dagger}_j] + V \sum_{\hexagon} (n_{\hexagon})^2 
 \end{eqnarray}
+The cluster-charging potential term is given by the interaction $V$, which favors 3 bosons per site.  Quantum fluctuations are proportional to $t$: they can be nearest-neighbor\cite{TopoEE} or have equal first, second and third nearest-neighbors\cite{Isakov1,Isakov2}.  This model maps to the three-dimer model on the dual lattice...
 
-
+These examples are part of a broader class, originally identified to harbour the simplest Z(2) spin liquid phase at an exactly soluble RK-point, was introduced by Balents, Fisher and Girvin.\cite{BFG}  
 
 
 The smoking gun signature for a spin liquid phase could be argued to be the identification of the emergent gauge symmetry
