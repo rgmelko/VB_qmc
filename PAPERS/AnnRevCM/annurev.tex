@@ -450,6 +450,8 @@ One of the main foci of research into designer Hamiltonians is the search, detec
 That is, although there has been much progress in understanding properties of QSL states from effective field theories, there are very few microscopic models amenable to study by QMC that can be argued to exhibit a QSL without controversy.
 There have been several high-profile numerical studies that have identified QSL candidates in the last few years, including the apparent resolution of the long-standing question of the kagome-lattice antiferromagnet's QSL groundstate (through large-scale DMRG calculations), and QMC simulations which claim a QSL phase in the half-filled Hubbard model on the honeycomb lattice.  This latter case, which has subsequently become the subject of intense theoretical study, highlights that the synergy between analytical theory and numerics is often driven by the latter.
 
+\subsection{BFG Hamiltonians with Z2 spin liquid phases}
+
 Much of the reason for the lack of microscopic models is that fundamental ingredients required to give rise to QSL phases, namely geometrical frustration, are also typical harbingers of the sign problem.  Despite this,  the absence of the sign problem does not fundamentally preclude the existence of spin liquid physics.  In recent years, there has been significant progress in positively identifying (and characterizing) spin liquid phases with QMC.  The most progress has occurred with Hamiltonians with U(1) symmetry -- anisotropic spin or Bose-Hubbard models specifically designed to capture the essential ingredients needed to promote a QSL phase without causing the sign-problem.
 
 %As with many quantum systems, specific Hamiltonians are often difficult to connect directly to experiment.  In the cases where microscopic Hamiltonians are known, they are rarely soluble; hence attempts to reconcile theory and experiment rely on phenomenological low-energy effective theories.  Here again, we see the use of designer Hamiltonians; rather than attempt to solve a potentially complicated approximation to an experimental Hamiltonian, one may instead construct a sign-problem free model which hopefully captures the essential ingredients (e.g. geometric frustration or quantum disorder) which may lead to the desired spin-liquid behavior.
@@ -458,8 +460,8 @@ One successful recipe for designing Bose-Hubbard Hamiltonians with QSL phases wa
 
 
 \begin{figure}
-\includegraphics[width=1.5in]{kagome.pdf}
-  \caption{ }
+\includegraphics[width=3in]{kagome.pdf}
+  \caption{ (a) Boson density in a groundstate configuration satisfying $H_0$ on the kagome lattice.  The degenerate manifold of such configurations maps onto a triangular-lattice (dashed) classical three-dimer configuration, where each boson corresponds to a dimer on the dual lattice.  (b) At right, a plaquette-flip $H_{\rm ring}$ operation preserves the cluster-charging constraint, and can be seen to correspond to a rhombus-flip of dimers.  At left, a charge defect is created by removing one boson (marked ``+'' in (a)).  This defect can be thought of as associating with two hexagonal plaquettes (grey in (b)), each with half of the charge (or two bosons per hexagon), corresponding to fractionalized spinons.}
 \end{figure}
 
 The recipe to construct QSL phases in boson models is to map the dimer constraint to a plaquette spin configuration on the dual lattice; the dimer may represents a boson density $n$ configuration on a bond which is frustrated (or unsatisfied).  Then, the role of the quantum dimer tunnelling moves is done by quantum hopping -- processes which are often higher-order in $t$.  Such models are called
@@ -469,23 +471,44 @@ The recipe to construct QSL phases in boson models is to map the dimer constrain
 %H_0 &=& -t \sum_{( ij )} [b^{\dagger}_i b_j + b_i b^{\dagger}_j] + V \sum_{\hexagon} (n_{\hexagon})^2 
 H_0 &=& V \sum_{\hexagon} (n_{\hexagon})^2 
 \end{eqnarray}
-is a  cluster-charging potential term which favors three bosons per hexagonal plaquette.  This Hamiltonian alone will promote a highly degenerate manifold of groundstate configurations, each with the plaquette constraint.  
+is a cluster-charging potential term which favors three bosons per hexagonal plaquette.  This Hamiltonian alone will promote a highly degenerate manifold of groundstate configurations, where each lattice hexagon satisfies the plaquette constraint but is otherwise disordered.  
+Like all Hamiltonian operators which are entirely diagonal in the QMC basis, $H_0$ does not affect the simulation with a sign problem, no matter how the interaction is frustrated.
 
-The cluster-charging potential term is given by the interaction $V$, which favors 3 bosons per site.  Quantum fluctuations are proportional to $t$: they can be nearest-neighbor\cite{TopoEE} or have equal first, second and third nearest-neighbors\cite{Isakov1,Isakov2}.  This model maps to the three-dimer model on the dual lattice...
+In order to promote a QSL phase from this classical degenerate manifold, one desires to add quantum fluctuations to this Hamiltonian such that the cluster-charging constraint is not violated.  In this case, a {\it ring-exchange} term, 
+\begin{eqnarray}
+H_{\rm ring} = -K \sum_{\bowtie} ( b_i^{\dagger} b_j^{\phantom\dagger} b_k^{\dagger} b_l^{\phantom\dagger} + {\rm h.c.} )
+\end{eqnarray} 
+preserves the cluster-charging constraint $H_0$ while promoting quantum fluctuations.  This, one expects the kagome lattice model with $H = H_0 + H_{\rm ring}$ to retain a disordered groundstate with quantum fluctuations - a good candidate for a quantum spin liquid phase.  In addition, with $K>0$, such terms do not have the sign problem for QMC.
 
-These examples are part of a broader class, originally identified to harbour the simplest Z(2) spin liquid phase at an exactly soluble RK-point, was introduced by Balents, Fisher and Girvin.\cite{BFG}  
+BFG were the first to show that variations of this model support the simplest type of Z2 spin liquid -- mainly through exact calculation at a Roksar-Kivelson point in an extended model.\cite{BFG}  Subsequently, using QMC simuations, Isakov and co-workers showed that a variant of the cluster-charging Hamiltonian with short-range hopping 
+\begin{eqnarray}
+H_{1,3} &=& -t \sum_{( ij )_{1,3}} [b^{\dagger}_i b_j + b_i b^{\dagger}_j]  \\
+%H_0 &=& -t \sum_{( ij )} [b^{\dagger}_i b_j + b_i b^{\dagger}_j] + V \sum_{\hexagon} (n_{\hexagon})^2 
+%H_0 &=& V \sum_{\hexagon} (n_{\hexagon})^2 
+\end{eqnarray}
+supports a Z2 spin liquid phase.  Here, the hopping $t$ term can either connect the first, second and third neighbors $( ij )_3$; or it can be nearest-neighbor only $( ij )_1$.  Again, for $t>0$ no sign problem exists.
 
+%Because of the absence of the sign problem and the high probability of promoting a Z2 spin liquid phase based on analytical work, several combinations of the above Hamiltonian terms have now been studied with large scale QMC and demonstrated to have a Z2 spin liquid phase:
+%including $H = H_0 + H_3$, $H = H_0 + H_1$, and also $H = H_1 + H_{\rm ring}$, where in the latter case the cluster-charging term is not explicitly required and the Hamiltonian consists of two competing kinetic-energy terms, sometimes called the J-K model.
+
+%The cluster-charging potential term is given by the interaction $V$, which favors 3 bosons per site.  Quantum fluctuations are proportional to $t$: they can be nearest-neighbor\cite{TopoEE} or have equal first, second and third nearest-neighbors\cite{Isakov1,Isakov2}.  This model maps to the three-dimer model on the dual lattice...
+
+%These examples are part of a broader class, originally identified to harbour the simplest Z(2) spin liquid phase at an exactly soluble RK-point, was introduced by Balents, Fisher and Girvin.\cite{BFG}  
+
+\subsection{Identifying the Z2 spin liquid: Topological Entanglement Entropy}
 
 The smoking gun signature for a spin liquid phase could be argued to be the identification of the emergent gauge symmetry
 
+\subsection{Deconfinement at the XY* transition}
 
-\begin{enumerate}
-\item We have 4 or 5 Hamiltonians (with Z2 \cite{Isakov1} and U(1) spin liquids)
-\item Balents Fisher Girvin gave us a ``recipe'' for creating Hamiltonians with Z2 spin liquids using constrained interactions
-\item The connection to field theory is the emergent gauge structure I guess
-\item Entanglement entropy identifies the emergent gauge structure of the underlying theory
-\item XY*
-\end{enumerate}
+
+%\begin{enumerate}
+%\item We have 4 or 5 Hamiltonians (with Z2 \cite{Isakov1} and U(1) spin liquids)
+%\item Balents Fisher Girvin gave us a ``recipe'' for creating Hamiltonians with Z2 spin liquids using constrained interactions
+%\item The connection to field theory is the emergent gauge structure I guess
+%\item Entanglement entropy identifies the emergent gauge structure of the underlying theory
+%\item XY*
+%\end{enumerate}
 
 \section{Discussion}
 - Many things left to do along these lines (give some examples), e.g., larger sizes are still needed
