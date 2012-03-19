@@ -154,17 +154,42 @@ ground state when $\beta \to \infty$, and expectation value
 \langle A\rangle = \frac{1}{Z}\langle \Psi_\beta|A|\Psi_\beta\rangle,~~~~ Z = \langle \Psi(\beta)|\Psi(\beta)\rangle,
 \end{equation}
 tends to the true ground state expectation value, $\langle A\rangle$ $\to$ $\langle|0| A|0\rangle$. For the projector, one can use the imaginary-ime
-evolution operator $P(\beta)={\rm e}^{-\beta H}$ or one can use a high power of the hamiltonian, $P(\beta)=H^m$, where $m \propto \beta N$ gives roughly 
-the same rate of convergence for the two choises for a given system size $N$. This follows from a Taylor expansion of the time evolution operator, 
+evolution operator $P(\beta)={\rm e}^{-\beta H}$ or one can use a high power of the hamiltonian, $P(\beta)=H^m$, where $m \propto \beta N$ gives roughly the same rate of convergence for the two choises for a given system size $N$. This follows from a Taylor expansion of the time evolution operator, 
 which for large $\beta$ is dominated by powers of the order $n=\beta |E_0|$, where $E_0$ is the ground state energy (which is proportional to $N$).
 
+In practice, implementations of the $T=0$ and $T>0$ approaches for a given model are often very similar. Choosing a basis, the exponential
+operator can either be treated with path-integral methods (world lines in discrete or continuous imaginary time) or expanded in a power series 
+(stochastic series expansion). The latter approach at $T=0$ is only a minor complications relative to projecting with $H^m$ for a fixed
+power $m$. The difference between Eqs.~() and () is then essentially only in the boundary conditions in the imaginary time direction; 
+periodic for $T>0$ (due to the trace being taken) and dictated by the nature of the trial state in $T=0$ projections. An equal superposition 
+over all basis states corresponds to fully open boundaries, while other choises of the trial state leads to open boundaries with some 
+weighting of the bra and ket states. 
 
+A particularly convenient class of trial states for SU($2$) is the amplitude-product states in the valence-bond basis, introduced 
+by Liang et al. and recently generalized to include bond correlations. These overcomplete states for the singlet sector incorporate
+Marshall's sign rule in a convenient way and also automatically have the appropriate momentum for the ground state of a periodic system.
+For hamiltonians expressed in terms of singlet-projector operators $C_{ij}=\frac{1}{4}-{\bf S}_i\cdot {\bf S}_j$, a power of the
+Hamiltonian $H^m$ can be expanded into all possible products of these projectors, which act on the ket trial state in (). In early
+formulations of this scheme, the resulting paths (propagations) of valence bond states were sampled, while in more recent formulations
+the diagonal and off-diagonal parts of the projectors are also sampled, along with spin configurations compatible with the valence-bond
+configurations of the trial state (which are also sampled). An example of a configuration in such a simulation is shown in Fig.~\ref{loops}.
+
+
+\begin{figure}
+\includegraphics[width=7.5cm, clip]{loops.eps}
+\caption{A configuration (from Ref.~XX) in a VB projector simulation of a 4-site Heisenberg chain. The vertical bars 
+indicate diagonal and off-diagonal bond operators, while the arcs on the left (bra) and right (ket) represent valence 
+bond configurations of the sampled trial state. Open and closed circles indicate up and down spins, which are unchanged between 
+operators and represented by horizontal lines there. These lines, along with the valence bonds, form loops that can be flipped
+(i.e., all spins traversed by the loop are flipped) without changing the configuration weight.}
+\label{loops}
+\end{figure}
 
 \subsection {Generalizations from SU(2) to SU(N)}
 \label{ss:su2N}
 
 Both methods discussed in the previous section can be generalized from
-SU(2) to any arbitrary $N$ in SU($N$). 
+SU($2$) to any arbitrary $N$ in SU($N$). 
 
 \subsection{Renyi entropies at T=0 and finite-T simulations}
 
@@ -225,14 +250,22 @@ simulate a given model.
 \section{SU(2) models}
 
 It has been a matter of debate for a long time whether the non-linear sigma model can correctly capture a 
-phase transition from the N\'eel state to a non-magnetic
-state in two dimensions for $S=1/2$ spins. Other terms, related to Berry phases, have to be added to the Lagrangian
-to describe the formation of a valence-bond-solid, i.e., a state which spontaneously breaks lattice symmetries 
-by the formation of some pattern of weaker and stronger correlated spins (dimerization being the simplest case).
-It was recently proposed that the N\'eel and VBS states are separated by a quantum-critical point, which itself
-is described by the non-compact CP$^1$ model describing spinons weakly interacting with a U($1$) gauge field.
-The VBS and N\'eel order parameter form due to confinement and condensation, respectively, of the spinons.
+phase transition from the N\'eel state to a non-magnetic state in two dimensions for $S=1/2$ spins. Other terms, related to 
+Berry phases, have to be added to the Lagrangian to describe the formation of a valence-bond-solid, i.e., a state which 
+spontaneously breaks lattice symmetries by the formation of some pattern of weaker and stronger correlated spins (dimerization 
+being the simplest case). It was recently proposed that the N\'eel and VBS states are separated by a quantum-critical point, 
+which itself is described by the non-compact CP$^1$ model describing spinons weakly interacting with a U($1$) gauge field.
+The VBS and N\'eel order parameter form due to confinement and condensation, respectively, of the spinons. 
 
+In this section we first discuss the well-studied continuous quantum phase transition between the N\'eel state and a quantum
+paramagnet in systems with a dimerization imposed in the couplings themselves. In this case the paramagnet does not break any
+symmetries of the Hamiltonian and the universality class is believed to be in the universality class of the 3D O($3$) universality
+class. A VBS state with spontaneously broken lattice symmetries can be achived with frustrated interactionss, which, however, are
+sign problematic in QMC simulations. The J-Q model is a Designer Hamiltonian circumventing this problem.
+
+\subsection{N\'eel--paramagnet transition in dimerized systems}
+
+\subsection{Deconfined N\'eel--VBS transition in J-Q models}
 
 \begin{enumerate}
 \item N\'eel to quantum paramagnetic transition id dimerized models; O(3) transition, large scaling
