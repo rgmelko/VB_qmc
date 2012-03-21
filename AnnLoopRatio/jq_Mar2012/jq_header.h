@@ -253,13 +253,20 @@ void LOOPS::operatorLists()
     
   }
   
+  int a = number_of_nnbonds;
   //changed added this part in to double nnbonds and nnmat
   for(int b=number_of_nnbonds; b<2*number_of_nnbonds; b++){
-    int a = number_of_nnbonds;
     nnbonds(b,0) = nnbonds(b-a,0)+number_of_sites;
     nnbonds(b,1) = nnbonds(b-a,1)+number_of_sites;
     nn_mat(nnbonds(b,0),nnbonds(b,1))=b;
     nn_mat(nnbonds(b,1),nnbonds(b,0))=b;
+  }
+  a = numPlaquettes;
+  for(int b=numPlaquettes;b<2*numPlaquettes;b++){
+    plaquettes(b,0) = plaquettes(b-a,0)+number_of_sites;
+    plaquettes(b,1) = plaquettes(b-a,1)+number_of_sites;
+    plaquettes(b,2) = plaquettes(b-a,2)+number_of_sites;
+    plaquettes(b,3) = plaquettes(b-a,3)+number_of_sites;
   }
   // end of this change //
   
