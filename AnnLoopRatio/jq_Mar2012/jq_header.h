@@ -108,6 +108,11 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
   Hlinks.assign(vlegs, -99); 
   //Initialize Hlinks so the "edge" sites are linked to themselves
   for(long long i=0; i<vlegs; i++){ Hlinks[i]=i; } 
+  //Initialize Vlinks
+  for(long long i=0; i<vlegs; i+=2){
+    Vlinks[i] = i+1;
+    Vlinks[i+1] = i;
+  }
 
   bops.resize(number_of_bondops,2); //set size of bops
   //create "sides"
