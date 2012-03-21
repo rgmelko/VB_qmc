@@ -39,13 +39,13 @@ We discuss recent large-scale numerical studies of ``designer Hamiltonians'', wh
 specifically to be free from sign problems when simulated with quantum Monte Carlo methods but still can host 
 complex  many-body states and quantum phase transitions of great interest in condensed matter physics and quantum 
 information theory. We here focus on quantum spin systems in which competing interactions lead to non-magnetic 
-ground states. These states and their associated quantum phase transitions can be studied in great detail
-and allow direct connections with universal properties of low-energy effective quantum field theories. As 
-specific examples, we discuss the transition from a N\'eel antiferromagnet to either a featureless quantum 
-paramagnet or a valence-bond-solid (VBS) in SU($2$) and SU($N$) spin models, as well as spin liquid and an
-associated XY$^*$ transition in XXZ systems. We also discuss recent progress on quantum Monte Carlo algorithms, 
-including ground state projection in the valence-bond basis and direct computation of the Renyi variants of 
-the entanglement entropy.
+ground states. These states and their associated quantum phase transitions can be studied in great detail, 
+enabling direct access to universal properties and connections with low-energy effective quantum field theories. 
+As specific examples, we discuss the transition from a N\'eel antiferromagnet to either a uniform quantum paramagnet 
+or a spontaneously symmetry-broken valence-bond-solid (VBS) in SU($2$) and SU($N$) spin models. We also discuss a
+spin liquid and associated XY$^*$ transition in XXZ systems. We also briefly review recent progress on quantum Monte Carlo 
+algorithms, including ground state projection in the valence-bond basis and direct computation of the Renyi variants 
+of the entanglement entropy.
 \end{abstract}
 
 \pacs{}
@@ -59,7 +59,7 @@ the entanglement entropy.
 Quantum field theory has emerged as one of the most fruitful approaches for studying low-energy properties of
 complex strongly correlated and entangled quantum matter systems. There are potential pitfalls and difficulties 
 with this approach, however, and it is, therefore, important to also study systems directly based on the Hamiltonian 
-formulation. One of the most fruitful directions here is to use numerical methods to study lattice hamiltonians 
+formulation. One of the most fruitful directions here is to use numerical methods to study lattice Hamiltonians 
 in an unbiased way, and to extract from such calculations the relevant low-energy emergent properties that can 
 be compared with results for corresponding quantum field theories. Such connections between the two approaches 
 can have significant synergy effects in advancing our understanding of many-body phenomena. Computational studies 
@@ -68,32 +68,33 @@ beyond the reach of existing numerical algorithms. Frustrated quantum spin syste
 dimensions are the two main groups of problematic systems. The approach we review here is to tailor particular 
 ``designer hamiltonians'', which can host ground states and quantum phase transitions of interest and also are 
 amenable to large-scale numerical studies. The main computational technique we have in mind is quantum Monte Carlo 
-(QMC) simulatuons, which in the aforementioned systems are normally affected by the infamous ``sign problem'', 
+(QMC) simulation, which in the aforementioned systems are normally affected by the infamous ``sign problem'', 
 i.e., the weight function in the configuration space constructed using the path integral or other mappings to 
 an effective statistical-mechanics problem is not positive definite (and hence cannot be directly used as 
 a probability distribution for importance sampling).
 
-A common misunderstanding is that such interesting designer Hamiltonians should not exist---if a model is sign-problem 
-free, it must be trivial or uninteresting. There are already many counter examples to this pessimistic view, however, 
-and we will here review some recent examples in the area of quantum magnetism. Moreover, recent advances in QMC methods 
-have made it possible to truly approach the low-energy limit of such models and to make detailed connections with field 
-theories. We will brifly address some of these technical advances as well. First, let us discuss the drawbacks of field 
-theory and the philosophy of the synergistic use of designer hamiltonians in some more detail.
+A common misunderstanding is that interesting designer Hamiltonians should not exist---if a model is sign-problem 
+free it will likely be trivial or uninteresting. There are already many counter-examples to this pessimistic view, however, 
+and we will here review some recent examples from the area of quantum magnetism. Recent advances in QMC methods have made 
+it possible to truly approach the low-energy limit of many models and to make detailed connections with field theories. 
+We will brifly address some of these technical advances as well. First, let us discuss field theory and the 
+philosophy of the synergistic use of designer hamiltonians in some more detail.
 
 A field theory can rarely be rigorously derived exactly from 
 an underlying Hamiltonian (which is the natural starting point for describing condensed matter systems). Instead
 it is constructed based on symmetries, in combination with insights or assumptions on the physical nature of the
 system. Some times the field theory can be derived in some well defined limit, e.g., the $(d+1)$-dimensional
-nonlinear $\sigma$ model description of interacting quantum spins in $d$ dimensions was derived by Haldane in 
+nonlinear $\sigma$-model description of interacting quantum spins in $d$ dimensions was derived by Haldane in 
 the semi-classical limit of large spin $S$ by using coherent spin states. Having identified or proposed a field
-theory, the next step is to extract its properties. Often this is done using the renormalization group (RG)
+theory, the next step is to extract its properties. This is typically done using the renormalization group (RG)
 approach, which may result in flows to some previously known fixed point, or to some fixed point or effective
 model whose properties are not known. The RG itsef may have to rely on approximations that are not always easy
 to justify, and if the flow is to some unknown state, it may be challenging to characterize it. Often the theory
 is modified in such a way that it can be rigoroulsy controlled and the physical situation of interest is studied 
 by some expansion around it. Well known examples are the $\epsilon$ expansion around the upper critical dimension 
 and the $1/N$ expansion in the number of components $N$ (spin components, flavors of fermions, etc). The
-extrapolation to the $\epsilon$ or $N$ of main interest is often difficult.
+extrapolation to the $\epsilon$ or $N$ of main interest is often challenging, however, because only low-order
+expansions are feasible in practice.
 
 Because of issues such as these, it is important to test the predictions of field theories in some unbiased way
 starting from a microscopic description of the system or phenomenon of interest. In some
@@ -113,75 +114,82 @@ The only numerical approach with which one can reach sufficiently large lattices
 is QMC simulations, and, as already noted, they are often limited in practice by sign problems. The class of
 models for there is no sign problem, or it is known how to circumvent it, still contains a vast range of 
 models with non-trivial and interesting ground states and quantum phase transitions. To study low-energy
-emergent properties, the interactions do not have to correspond to any particular material, the idea is to tailor 
-a system in such a way that it contains a particular macroscopic (low-energy) phenomenon of interest---so that
-universal physics is captured. We will call such models ``Designer Hamiltonians''. With unbiased large-scale simulations 
-of Designer Hamiltonians one can test field theories proposed to capture specific quantum many-body states or quantum phase 
-transitions. Explorations of Designer Hamiltonians can also serve as ``experiments'' for discovering novel phenomena.
+emergent properties, the interactions do not necessarily have to correspond closely to any particular material
+(although some times that is also possible). The idea is to tailor a system in such a way that it contains a particular 
+macroscopic (low-energy) phenomenon of interest---so that universal physics is captured. With unbiased large-scale 
+simulations of such designer hamiltonians one can test field theories proposed to capture specific quantum many-body 
+states or quantum phase transitions. Moreover, explorations of designer hamiltonians can also serve as ``experiments'' 
+for discovering novel phenomena, and, thereby, stimulate further theoretical developments.
 
-Note that the notion of Designer Hamiltonians we consider here goes beyond the often used approach of investigating
+Note that the notion of designer Hamiltonians we consider here goes beyond the often used approach of investigating
 quantum phenomena in $d$ dimensions by simply extending the same model to $d+1$ dimensions. While this works in some cases,
 it has in recent years been realized that this approach misses important quantum states that have no familiar classical
-analogues based just on a simple order parameter. While a Designer Hamiltonian effectively is a classical statistical-mechanics
-model (which arises out of the construction of the sampling space in the QMC approach), it is often not one that would
-have come natural as a starting point just from the perspective of increasing the dimensionality. Note, in particular, that
-it is now well established that symmetries alone do not uniquely determine the nature of a phase transition, but the
-same symmetry can lead to different universality classes, depending on the role of topological defects. Thus, in our
-view the approach of using manifestly quantum mechanical Designer Hamiltonians is a much more fruitful approach to
-studying many-body ground states and quantum criticality.
+analogues based just on a simple order parameter. While a designer Hamiltonian effectively is a classical statistical-mechanics
+model (which arises out of the construction of the sampling space in the QMC approach adopted), it is often not one that 
+would have come natural as a starting point just from the perspective of increasing the dimensionality. Note, in particular, 
+that it is now well established that symmetries alone do not uniquely determine the nature of a quantum phase transition, 
+but the same symmetry can lead to different universality classes, depending on the role of topological defects. Thus, in our
+view the approach of using manifestly quantum mechanical designer Hamiltonians is a much more fruitful approach to studying 
+many-body ground states and quantum criticality.
 
 \section{Modern QMC methods}
 
-There is a wide range of QMC methods tailored to different classes of models. In this Review we are focusing on spin models, and we therefore 
-restict the discussion here to the types of methods most suitable for them. These methods are also well suited for studies of bosons, where 
-a substantial body of work has been carried out in the last few years stimulated by ultracold atoms in optical lattices. For fermions,
-other approaches work much better in practice (except for 1D systems, where the methods discussed here also work well since the signs from
-anticommutation do not appear in this geometry if there is only nearest-neighbor hopping). We will only give a rough overview of the methods,
-with references to more detailed accounts.
+There is a wide range of QMC methods available for studies of different classes of models. In this review we focus on spin models, and we 
+therefore restict the discussion here to the types of methods most suitable for them. These methods are also often well suited for studies of 
+bosons, where a substantial body of work has been carried out in the last few years stimulated by ultracold atoms in optical lattices. For 
+fermions, other approaches work much better in practice (except for 1D systems, where the methods discussed here also work well since the signs 
+from anticommutation do not appear in this geometry if there is only nearest-neighbor hopping). We will here only give a rough overview of the 
+methods, with references to more detailed accounts.
 
 \subsection{Common framework for finite-T and T=0 projector QMC methods}
 \label{ss:method}
 
 In {\it finite-temperature} methods, the goal is to compute thermal averages of the form
 \begin{equation}
-\langle A\rangle = \frac{1}{Z}{\bf Tr}\{ {\rm e}^{-\beta H}\}.
+\langle A\rangle = \frac{1}{Z}{\bf Tr}\{ {\rm e}^{-\beta H}\},~~~
 Z = {\bf Tr}\{ {\rm e}^{-\beta H}\},
+\label{za1}
 \end{equation}
 where $\beta=1/T$. As an alternative to studying the ground state in the limit of  $T\to 0$, in a {\it ground-state projector} method some 
 operator $P(\beta)$  is applied to a ``trial state'' $|\Psi_0\rangle$, such that $|\Psi_\beta \rangle = P(\beta)|\Psi_0\rangle$ approaches the 
-ground state when $\beta \to \infty$, and expectation value 
+ground state when $\beta \to \infty$. An expectation value
 \begin{equation}
 \langle A\rangle = \frac{1}{Z}\langle \Psi_\beta|A|\Psi_\beta\rangle,~~~~ Z = \langle \Psi(\beta)|\Psi(\beta)\rangle,
+\label{za2}
 \end{equation}
-tends to the true ground state expectation value, $\langle A\rangle$ $\to$ $\langle|0| A|0\rangle$. For the projector, one can use the imaginary-ime
-evolution operator $P(\beta)={\rm e}^{-\beta H}$ or one can use a high power of the hamiltonian, $P(\beta)=H^m$, where $m \propto \beta N$ gives roughly the same rate of convergence for the two choises for a given system size $N$. This follows from a Taylor expansion of the time evolution operator, 
-which for large $\beta$ is dominated by powers of the order $n=\beta |E_0|$, where $E_0$ is the ground state energy (which is proportional to $N$).
+tends to the true ground state expectation value, $\langle A\rangle$ $\to$ $\langle 0| A|0\rangle$. For the projector, one can use the imaginary-ime
+evolution operator $P(\beta)={\rm e}^{-\beta H}$ or a high power of the hamiltonian, $P(m)=H^m$. Here $m \propto \beta N$ gives the same rate of 
+convergence for the two choises for a given system size $N$. This follows from a Taylor expansion of the time evolution operator, which for large 
+$\beta$ is dominated by powers of the order $n=\beta |E_0|$, where $E_0$ is the ground state energy (which is proportional to $N$).
 
 In practice, implementations of the $T=0$ and $T>0$ approaches for a given model are often very similar. Choosing a basis, the exponential
 operator can either be treated with path-integral methods (world lines in discrete or continuous imaginary time) or expanded in a power series 
-(stochastic series expansion). The latter approach at $T=0$ is only a minor complications relative to projecting with $H^m$ for a fixed
-power $m$. The difference between Eqs.~() and () is then essentially only in the boundary conditions in the imaginary time direction; 
-periodic for $T>0$ (due to the trace being taken) and dictated by the nature of the trial state in $T=0$ projections. An equal superposition 
-over all basis states corresponds to fully open boundaries, while other choises of the trial state leads to open boundaries with some 
-weighting of the bra and ket states. 
+(stochastic series expansion). The latter approach at $T=0$ differs only in a minor way from projection with $H^m$ with fixed $m$. The difference 
+between Eqs.~(\ref{za1}) and (\ref{za2}) is then essentially only in the boundary conditions in the imaginary time direction; periodic for $T>0$ 
+(due to the trace being taken) and dictated by the nature of the trial state in $T=0$ projections. An equal superposition over all basis states 
+corresponds to fully open boundaries, while other choises of the trial state leads to open boundaries with some weighting of the bra and ket states. 
 
-A particularly convenient class of trial states for SU($2$) is the amplitude-product states in the valence-bond basis, introduced 
-by Liang et al. and recently generalized to include bond correlations. These overcomplete states for the singlet sector incorporate
-Marshall's sign rule in a convenient way and also automatically have the appropriate momentum for the ground state of a periodic system.
-For hamiltonians expressed in terms of singlet-projector operators $C_{ij}=\frac{1}{4}-{\bf S}_i\cdot {\bf S}_j$, a power of the
-Hamiltonian $H^m$ can be expanded into all possible products of these projectors, which act on the ket trial state in (). In early
-formulations of this scheme, the resulting paths (propagations) of valence bond states were sampled, while in more recent formulations
-the diagonal and off-diagonal parts of the projectors are also sampled, along with spin configurations compatible with the valence-bond
-configurations of the trial state (which are also sampled). An example of a configuration in such a simulation is shown in Fig.~\ref{loops}.
-
+A particularly convenient class of trial states for SU($2$) invariant interactions is the amplitude-product states in the valence-bond basis, 
+introduced by Liang et al. and recently generalized to include bond correlations. These overcomplete states for the singlet sector incorporate
+Marshall's sign rule in a convenient way and also automatically have the appropriate momentum for the ground state of a periodic system (thereby
+from the outset filtering out a significant fraction of the excited states). The hamiltonian in this case can typically be expressed in terms of 
+twos-spin singlet-projector operators $C_{ij}=\frac{1}{4}-{\bf S}_i\cdot {\bf S}_j$ (individual ones or products of two or more of them). A power 
+of the Hamiltonian $H^m$ can be expanded into all possible products of these projection projectors, which act on the ket trial state in (\ref{za2}). 
+In early formulations of this scheme, the resulting paths (propagations) of valence bond states were sampled, while in more recent formulations the 
+diagonal and off-diagonal parts of the projectors are also sampled, along with spin configurations compatible with the valence-bond configurations 
+of the trial state (which are also sampled). An example of a configuration in such a simulation is shown in Fig.~\ref{loops}. This configuration
+space is amenable to very efficient loop updates, which are simple generalizations of loop updates previously introduced in the context of $T>0$
+algorithms. 
 
 \begin{figure}
 \includegraphics[width=7.5cm, clip]{loops.eps}
-\caption{A configuration (from Ref.~XX) in a VB projector simulation of a 4-site Heisenberg chain. The vertical bars 
+\caption{A configuration (from Ref.~XX) in a valence-bond projector simulation of a 4-site Heisenberg chain. The vertical bars 
 indicate diagonal and off-diagonal bond operators, while the arcs on the left (bra) and right (ket) represent valence 
 bond configurations of the sampled trial state. Open and closed circles indicate up and down spins, which are unchanged between 
 operators and represented by horizontal lines there. These lines, along with the valence bonds, form loops that can be flipped
-(i.e., all spins traversed by the loop are flipped) without changing the configuration weight.}
+(i.e., all spins traversed by the loop are flipped) without changing the configuration weight. A configuration in a $T>0$
+simulation corresponds to imposing periodic boundary conditions in the ``time'' direction, instead the independent boundaries
+terminated by valence bonds.}
 \label{loops}
 \end{figure}
 
