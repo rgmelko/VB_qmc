@@ -48,7 +48,7 @@ int main(){
 		bondopfilename);
  
   // create initial VB config and initial spin config
-  system.nnbondlist();
+  system.operatorLists();
   system.read_bops(); //checks if file has bops, otherwise generates new ones
 
   for(int jj=0; jj<initialization; jj++){

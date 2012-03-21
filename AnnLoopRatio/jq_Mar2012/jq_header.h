@@ -36,7 +36,7 @@ class LOOPS
 	       loops created by overlapping the propagated |VL> and |VR> */
   long long energyint; /*keeps track of the energy: 
 			    energy = energyint*0.75/iterations */
-  long long number_of_bondops, number_of_nnbonds;
+  long long number_of_bondops, number_of_nnbonds, numPlaquettes;
   long long vlegs;/*the number of vertex legs including legs from the vertices
 		    used to simulate the edge states |VL> and |VR> */
   long long iterations; //number of iterations per loop. Used for energy calc.
@@ -55,6 +55,8 @@ class LOOPS
   vector <double> entropy, entropy_final;
 
   iMatrix nnbonds;//list of all possible nnbonds.  Index is the bond number
+  iMatrix plaquettes;/*list of all possible plaquette operators.  Index
+		       is plaquette operator number. 2 per plaquette */
   iMatrix nn_mat; /*matrix of the nnbonds. indices are sites
 		    and contents are bond numbers.*/
   iMatrix bops; // list of bond operators
@@ -66,7 +68,7 @@ class LOOPS
   LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
 	       long long rseed, string bondopfile);
 
-  void nnbondlist(); //creates list of nnbonds
+  void operatorLists(); //creates list of nnbonds & plaquettes
   void generate_ops(); //generates initial operators
   void create__Hlinks(); //creates horizontal linkts (harder)
   void make_flip_loops(); //generates and flips loops (w/ prob 1/2)
@@ -139,14 +141,16 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
 
 }
 
-/********** nnbondlist() ***********************************************
+/********** operatorLists() *******************************************
    Uses:
      Global:
          Ly                     //
          number_of_nnbonds______sets value based on 1D/2D and PBC/OBC
          number_of_sites        //
+	 numPlaquettes
          nnbonds[#nnbonds][2]___sized and filled
          nn_mat[#sites][#sites]_sized and filled
+	 plaquettes[#plaquettes][4]___sized and filled
          Lx                     //
       
       Local:
@@ -156,14 +160,14 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
    the bond number for a pair of sites, and garbage if they're not nn 
    sites... maybe I should make it -99...
 **********************************************************************/
-void LOOPS::nnbondlist()
+void LOOPS::operatorLists()
 {
   // should put in a special case for Ly==2 ??
 
   //Case of 1D open chain
+  //This case doesn't exist for J-Q.. maybe delete it.
   if(Ly==1){
     number_of_nnbonds = (Lx-1);
-    
     //changed multiplied first dimension by 2
     nnbonds.resize (number_of_nnbonds*2,2);//make nnbonds the proper size
     for(int i=0;i<number_of_nnbonds*2;i++){nnbonds(i,0)=-99;nnbonds(i,1)=-99;}
@@ -174,7 +178,6 @@ void LOOPS::nnbondlist()
 	nn_mat(i,j)=-99;
       }
     }
-   
     for(int i=0; i<number_of_nnbonds; i++){
       nnbonds(i,0) = i;
       nnbonds(i,1) = i+1;
@@ -186,10 +189,17 @@ void LOOPS::nnbondlist()
   //Generic 2D case and 1D ring.
   else{
     number_of_nnbonds = (Lx-1)*Ly + Lx*Ly; // = Ly*(2*Lx-1)
+    numPlaquettes = 2*(Lx-1)*Ly; // = Ly*(2*Lx-2)
     
     //changed multiplied first dimension by 2
     nnbonds.resize (2*number_of_nnbonds,2);
-    for(int i=0;i<number_of_nnbonds*2;i++){nnbonds(i,0)=-99;nnbonds(i,1)=-99;}
+    plaquettes.resize (2*numPlaquettes,4);
+    for(int i=0;i<number_of_nnbonds*2;i++){
+      nnbonds(i,0)=-99;nnbonds(i,1)=-99;
+    }
+    for(int i=0;i<numPlaquettes*2;i++){
+      plaquettes(i,0)=-99;plaquettes(i,1)=-99;plaquettes(i,2)=-99;plaquettes(i,3)=-99;
+    }
 
     //resize and initialize the matrix of nnbonds
     //changed multiplied dimensions by 2
@@ -201,8 +211,9 @@ void LOOPS::nnbondlist()
     }
 
     //fill nnbonds and nn_mat
-    //ybonds!!
+    //ybonds!! (vertical, periodic)
     int counter = 0;
+    int pCounter = 0;
     for(int x=0; x<Lx; x++){
       for(int y=0; y<Ly; y++){
 	nnbonds(counter,0) = Ly*x+y;
@@ -210,42 +221,57 @@ void LOOPS::nnbondlist()
 	nn_mat(nnbonds(counter,0),nnbonds(counter,1))=counter;
 	nn_mat(nnbonds(counter,1),nnbonds(counter,0))=counter;
 	counter++;
+	if((x+1)<Lx){
+	  //first two sites are the same as the bond
+	  plaquettes(pCounter,0) = Ly*x+y;
+	  plaquettes(pCounter,1) = Ly*x+(y+1)%Ly;
+	  //next two sites are shifted right (in the Lx direction)
+	  plaquettes(pCounter,2) = Ly*(x+1)+y;
+	  plaquettes(pCounter,3) = Ly*(x+1)+(y+1)%Ly;
+	  pCounter++;
+	}
       }
     }
-
-    //xbonds...
+    
+    //xbonds... (horizontal, not periodic)
     for(int i=0; i<(Lx-1)*Ly; i++){
       nnbonds(counter,0) = i;
       nnbonds(counter,1) = i+Ly;
       nn_mat(nnbonds(counter,0),nnbonds(counter,1))=counter;
       nn_mat(nnbonds(counter,1),nnbonds(counter,0))=counter;
       counter++;
+      plaquettes(pCounter,0)=i;
+      plaquettes(pCounter,1)=i+Ly;
+      plaquettes(pCounter,2)=(i+1)%Ly;
+      plaquettes(pCounter,3)=(i+1)%Ly+Ly;
+      pCounter++;
     }
 
     // make sure we have the proper number of nnbonds
     if(counter!=number_of_nnbonds){cout << "supererror" << endl;}
-
+    if(pCounter!=numPlaquettes){cout << "super Plaquette counting error" << endl;}
+    
   }
-
+  
   //changed added this part in to double nnbonds and nnmat
-      for(int b=number_of_nnbonds; b<2*number_of_nnbonds; b++){
-	int a = number_of_nnbonds;
-	nnbonds(b,0) = nnbonds(b-a,0)+number_of_sites;
-	nnbonds(b,1) = nnbonds(b-a,1)+number_of_sites;
-	nn_mat(nnbonds(b,0),nnbonds(b,1))=b;
-	nn_mat(nnbonds(b,1),nnbonds(b,0))=b;
-      }
-      // end of this change //
-	
-      //print out nn_mat !!!!! 
-      //    for(int i=0;i<nn_mat.length();i++){
-      //      for(int j=0; j<nn_mat.width();j++){
-	//	if(nn_mat(i,j)==-99){cout<<". ";}
-	//	else{cout << nn_mat(i,j) <<" " ;}
-	//     }
-      //      cout << endl;
-      //   }
-
+  for(int b=number_of_nnbonds; b<2*number_of_nnbonds; b++){
+    int a = number_of_nnbonds;
+    nnbonds(b,0) = nnbonds(b-a,0)+number_of_sites;
+    nnbonds(b,1) = nnbonds(b-a,1)+number_of_sites;
+    nn_mat(nnbonds(b,0),nnbonds(b,1))=b;
+    nn_mat(nnbonds(b,1),nnbonds(b,0))=b;
+  }
+  // end of this change //
+  
+  //print out nn_mat !!!!! 
+  //    for(int i=0;i<nn_mat.length();i++){
+  //      for(int j=0; j<nn_mat.width();j++){
+  //	if(nn_mat(i,j)==-99){cout<<". ";}
+  //	else{cout << nn_mat(i,j) <<" " ;}
+  //     }
+  //      cout << endl;
+  //   }
+  
   number_of_nnbonds *= 2;
   number_of_sites *= 2;
   
