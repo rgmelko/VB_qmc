@@ -1,3 +1,4 @@
+//March 21, 2012 --- Trying to modify this code to do the J-Q model
 //March 15, 2012 --- Modifying latest cylinder code so operator choice
 //                   works differently.  Instead of keeping a list of
 //                   "good" operators, follow the steps on today's date 
@@ -67,7 +68,6 @@ class LOOPS
 
   void nnbondlist(); //creates list of nnbonds
   void generate_ops(); //generates initial operators
-  void create_Vlinks(); //creates vertical links
   void create__Hlinks(); //creates horizontal linkts (harder)
   void make_flip_loops(); //generates and flips loops (w/ prob 1/2)
   void take_measurement(); //measures energy at the moment
@@ -341,21 +341,7 @@ void LOOPS::generate_ops()
   //  }
   
 }
-/************ create_Vlinks() ************************************************
- Uses:
-   vlegs         //
-   Vlinks[vlegs] //filled with the vertical links
 
-******************************************************************************/
-void LOOPS::create_Vlinks()
-{
-  for(long long i=0; i<vlegs; i+=2){
-    Vlinks[i] = i+1;
-    Vlinks[i+1] = i;
-  }
-
-  
-}
 /************ create__Hlinks() ************************************************
  Uses:
   Global:
