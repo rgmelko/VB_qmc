@@ -70,7 +70,7 @@ class LOOPS
 
   void operatorLists(); //creates list of nnbonds & plaquettes
   void generate_ops(); //generates initial operators
-  void create__Hlinks(); //creates horizontal linkts (harder)
+  void create__Hlinks(); //creates horizontal links (harder)
   void make_flip_loops(); //generates and flips loops (w/ prob 1/2)
   void take_measurement(); //measures energy at the moment
   void change__operators(); //changes the diagonal operators randomly
