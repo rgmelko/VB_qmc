@@ -62,7 +62,9 @@ class LOOPS
   iMatrix bops; // list of bond operators
   iMatrix superbops; //list of bond operators plus edges simulated via bops
                      //superbops(:,0) is the bond the operator acts on 
-                     //         (:,1) is 0 for diag, 1 for offdiag
+                     //         (:,1) is 0 for Diag, 1 for OffDiag
+                     //         (:,2) is 1 for Bond, 2 for Plaquette
+                     //               and 3 for Edge state.
 
   //CONSTRUCTOR
   LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
@@ -838,9 +840,12 @@ void LOOPS::calculate_stuff()
 void LOOPS::print_bops()
 {
   ofstream bout(bopfile.c_str());
+  bout << Lx << endl;
+  bout << Ly << endl;
   for(int i=0; i<number_of_bondops+number_of_sites; i++){
     bout << superbops(i,0) << endl << superbops(i,1) << endl;
   }
+  bout << -99 << endl;
 }
 
 /************ read_bops() *****************************************************
@@ -851,12 +856,29 @@ void LOOPS::read_bops()
   ifstream bin(bopfile.c_str());
   
   if(bin.fail()){ generate_ops(); }
-  
   else{ 
+    int test=0;
+    
+    //Check Lx value
+    bin >> test;
+    if(test!=Lx){cout<<"wrong Lx dimension!!\n"; exit(1);}
+
+    //Check Ly value
+    bin >> test;
+    if(test!=Ly){cout<<"wrong Ly dimension!!\n"; exit(1);}
+
+    //Read in bondOps
     superbops.resize(number_of_bondops+number_of_sites,2);
     for(int i=0; i<number_of_bondops+number_of_sites; i++){
       bin >> superbops(i,0) >> superbops(i,1);
     }
+    
+    //Read in -99 at EOF
+    bin >> test;
+    if(test!=-99){
+      cout << "Problem with bondop file! Wrong system size???" << endl; 
+      exit(1);
+    }  
   }
 }
 #endif
