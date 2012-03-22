@@ -182,7 +182,7 @@ space is amenable to very efficient loop updates, which are simple generalizatio
 algorithms. 
 
 \begin{figure}
-\includegraphics[width=7.5cm, clip]{loops.eps}
+\includegraphics[width=7.5cm, clip]{loops}
 \caption{A configuration (from Ref.~XX) in a valence-bond projector simulation of a 4-site Heisenberg chain. The vertical bars 
 indicate diagonal and off-diagonal bond operators, while the arcs on the left (bra) and right (ket) represent valence 
 bond configurations of the sampled trial state. Open and closed circles indicate up and down spins, which are unchanged between 
@@ -550,7 +550,16 @@ The common feature with the BFG Hamiltonians studied by QMC to date is a superfl
 
 \subsection{Identifying the Z2 spin liquid: Topological Entanglement Entropy}
 
-The smoking gun signature for a spin liquid phase could be argued to be the identification of the emergent gauge symmetry.  
+The smoking gun signature for a spin liquid phase could be argued to be the identification of the emergent gauge symmetry.  It is this symmetry that leads to the concept of topological order in a gapped QSL state.  One manifestation is existence of a ground state degeneracy, which is topological in nature, in the simplest (Z2) case being four-fold on a torus.  Unfortunately, previous QMC studies of QSL states have demonstrated the difficulty in clearly identifying this degeneracy, due to the tendency for tunnelling between the equal-energy states on finite-size lattices with realistic Hamiltonians.  Similarly, recent DMRG work purporting to identify candidate gapped spin liquid states have been unable to identify the associated topological degeneracy.
+
+Luckily, the community has another tool suited for the positive identification of this topological order, through measurements of the entanglement entropy.  Specifically, the scaling of entanglement entropy is predicted to be
+\begin{equation}
+S_n = a \ell - \gamma + \cdots
+\end{equation}
+where subsequent terms scale away at least as fast as $\mathcal{O} (1/\ell)$.  Then, the subleading term to the non-universal ``area law'' ($a \ell$) is a universal correction called the {\it topological entanglement entropy}.  In a gapped QSL phase, it is related to the emergent gauge symmetry (independent\cite{Flammia} of Renyi index $n$), e.g.~in the Z2 spin liquid state $\gamma = 2 \ln(2)$ at $T=0$.
+
+Using measurement techniques described in section~XXX, it is possible to 
+
 
 \subsection{Deconfinement at the XY* transition} \label{XYstar}
 
