@@ -118,7 +118,7 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
     Vlinks[i+1] = i;
   }
 
-  bops.resize(number_of_bondops,2); //set size of bops
+  bops.resize(number_of_bondops,3); //set size of bops
   //create "sides"
   sides.assign(vlegs,0); 
   for(long long i=vlegs/2; i<vlegs; i++){sides[i]=1;}
@@ -290,9 +290,9 @@ void LOOPS::operatorLists()
 /***** generate_ops() *****************************************************
  Uses:
    number_of_bondops      //
-   bops[#bondops][2]______fills randomly
+   bops[#bondops][3]______fills randomly
    number_of_nnbonds      //
-   superbops[#bondops][2]_sizes and fills with edges and ops from bops
+   superbops[#bondops][3]_sizes and fills with edges and ops from bops
    number_of_sites        //
    nn_mat[#sites][#sites] //
 
@@ -309,9 +309,10 @@ void LOOPS::generate_ops()
       while(spins[nnbonds(temp,0)]+spins[nnbonds(temp,1)]!=1);
       bops(i,0) = temp;
       bops(i,1) = 0;
+      bops(i,2) = 1;
     }
 
-  superbops.resize(number_of_bondops+number_of_sites,2);
+  superbops.resize(number_of_bondops+number_of_sites,3);
   //  for(int i=0;i<number_of_sites+number_of_bondops;i++){
   //    superbops(i,0)=-99;
   //    superbops(i,1)=-99;
@@ -329,8 +330,10 @@ void LOOPS::generate_ops()
 
 	superbops(bondd,0) = nn_mat(iy+ix*Ly,iy+(ix+1)*Ly);
 	superbops(bondd,1) = 0;
+	superbops(bondd,2) = 1;
 	superbops(bondd+Lx*Ly/2,0) = nn_mat(Lx*Ly+iy+ix*Ly,Lx*Ly+iy+(ix+1)*Ly);
 	superbops(bondd+Lx*Ly/2,1) = 0;
+	superbops(bondd+Lx*Ly/2,2) = 1; //Edges are bond operators
 	//copy into the right side initial state
 	bondd++;
       }
@@ -346,8 +349,10 @@ void LOOPS::generate_ops()
 
 	superbops(bondd,0) = nn_mat(iy+ix*Ly,iy+1+ix*Ly);
 	superbops(bondd,1) = 0;
+	superbops(bondd,2) = 1;
 	superbops(bondd+Lx*Ly/2,0) = nn_mat(Lx*Ly+iy+ix*Ly,Lx*Ly+iy+1+ix*Ly);
 	superbops(bondd+Lx*Ly/2,1) = 0;
+	superbops(bondd+Lx*Ly/2,2) = 1; //These are bond operators
 	//copy into the right side initial state
 	bondd++;
       }
@@ -364,11 +369,13 @@ void LOOPS::generate_ops()
   for(int iall=0; iall<Lx*Ly; iall++){
 	superbops(Lx*Ly + number_of_bondops + iall,0) = superbops(iall,0);
 	superbops(Lx*Ly + number_of_bondops + iall,1) = 0;
+	superbops(Lx*Ly + number_of_bondops + iall,2) = superbops(iall,2);
   }
 
   for(int i=0; i<number_of_bondops; i++){
     superbops(number_of_sites/2+i,0)=bops(i,0);
     superbops(number_of_sites/2+i,1)=bops(i,1);
+    superbops(number_of_sites/2+i,2)=bops(i,2);
   }
 
   //  for(int i=number_of_bondops;i<number_of_bondops+number_of_sites; i++){
@@ -384,7 +391,7 @@ void LOOPS::generate_ops()
    number_of_bondops      //
    Hlinks[vlegs]__________filled with horizontal links
    nnbonds[#nnbonds][2]   //
-   superbops[#bondops][2] //
+   superbops[#bondops][3] //
 
   Local:
    last[#sites]_stores the last vertex leg corresponding to a site
@@ -502,7 +509,7 @@ void LOOPS::create__Hlinks()
    Hlinks[vlegs]        //
    sides[vlegs]         //
    nnbonds[#nnbonds][2] //
-   superbops[#bops][2]  //
+   superbops[#bops][3]  //
    Vlinks[vlegs]        //
 
  Local:
@@ -586,7 +593,7 @@ void LOOPS::make_flip_loops()
       rlastcross = rfirstcross;
     }
   
-    //while loops ends when we get back to the startsite
+    //while loop ends when we get back to the startsite
     while(site!=startsite){
       
       //VERTICAL LINKS
@@ -843,7 +850,7 @@ void LOOPS::print_bops()
   bout << Lx << endl;
   bout << Ly << endl;
   for(int i=0; i<number_of_bondops+number_of_sites; i++){
-    bout << superbops(i,0) << endl << superbops(i,1) << endl;
+    bout << superbops(i,0) << endl << superbops(i,1) << endl << superbops(i,2) << endl;
   }
   bout << -99 << endl;
 }
@@ -870,7 +877,7 @@ void LOOPS::read_bops()
     //Read in bondOps
     superbops.resize(number_of_bondops+number_of_sites,2);
     for(int i=0; i<number_of_bondops+number_of_sites; i++){
-      bin >> superbops(i,0) >> superbops(i,1);
+      bin >> superbops(i,0) >> superbops(i,1) >> superbops(i,2);
     }
     
     //Read in -99 at EOF
