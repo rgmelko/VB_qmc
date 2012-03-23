@@ -167,28 +167,33 @@ operator can either be treated with path-integral methods (world lines in discre
 (stochastic series expansion). The latter approach at $T=0$ differs only in a minor way from projection with $H^m$ with fixed $m$. The difference 
 between Eqs.~(\ref{za1}) and (\ref{za2}) is then essentially only in the boundary conditions in the imaginary time direction; periodic for $T>0$ 
 (due to the trace being taken) and dictated by the nature of the trial state in $T=0$ projections. An equal superposition over all basis states 
-corresponds to fully open boundaries, while other choises of the trial state leads to open boundaries with some weighting of the bra and ket states. 
+corresponds to fully open boundaries, while other choises of the trial state leads to open boundaries with some weighting of the bra and ket 
+states. 
 
 A particularly convenient class of trial states for SU($2$) invariant interactions is the amplitude-product states in the valence-bond basis, 
 introduced by Liang et al. and recently generalized to include bond correlations. These overcomplete states for the singlet sector incorporate
 Marshall's sign rule in a convenient way and also automatically have the appropriate momentum for the ground state of a periodic system (thereby
 from the outset filtering out a significant fraction of the excited states). The hamiltonian in this case can typically be expressed in terms of 
-twos-spin singlet-projector operators $C_{ij}=\frac{1}{4}-{\bf S}_i\cdot {\bf S}_j$ (individual ones or products of two or more of them). A power 
-of the Hamiltonian $H^m$ can be expanded into all possible products of these projection projectors, which act on the ket trial state in (\ref{za2}). 
-In early formulations of this scheme, the resulting paths (propagations) of valence bond states were sampled, while in more recent formulations the 
-diagonal and off-diagonal parts of the projectors are also sampled, along with spin configurations compatible with the valence-bond configurations 
-of the trial state (which are also sampled). An example of a configuration in such a simulation is shown in Fig.~\ref{loops}. This configuration
-space is amenable to very efficient loop updates, which are simple generalizations of loop updates previously introduced in the context of $T>0$
-algorithms. 
+two-spin singlet-projector operators  (individual ones or products of two or more of them);
+\begin{equation}
+P_{ij}=\hbox{$\frac{1}{4}$}-{\bf S}_i\cdot {\bf S}_j.
+\label{psinglet}
+\end{equation}
+A power of the Hamiltonian $H^m$ can be expanded into all possible products of these projection projectors, which act on the ket trial state in 
+(\ref{za2}). In early versions of this scheme, the resulting paths (propagations) of valence bond states were sampled, while in more 
+recent formulations the diagonal and off-diagonal parts of the projectors are also sampled, along with spin configurations compatible with 
+the valence-bond configurations of the trial state (which are also sampled). An example of a configuration in such a simulation is shown 
+in Fig.~\ref{loops}. This configuration space is amenable to very efficient loop updates, which are simple generalizations of loop updates 
+previously introduced in the context of $T>0$ algorithms. Such loop algorithms are reviewed in Refs.~XX and YY.
 
 \begin{figure}
 \includegraphics[width=7.5cm, clip]{loops}
-\caption{A configuration (from Ref.~XX) in a valence-bond projector simulation of a 4-site Heisenberg chain. The vertical bars 
-indicate diagonal and off-diagonal bond operators, while the arcs on the left (bra) and right (ket) represent valence 
-bond configurations of the sampled trial state. Open and closed circles indicate up and down spins, which are unchanged between 
-operators and represented by horizontal lines there. These lines, along with the valence bonds, form loops that can be flipped
-(i.e., all spins traversed by the loop are flipped) without changing the configuration weight. A configuration in a $T>0$
-simulation corresponds to imposing periodic boundary conditions in the ``time'' direction, instead the independent boundaries
+\caption{A configuration (from Ref.~XX) in a valence-bond projector simulation of a 4-site Heisenberg chain (here with a small
+projection power $m=2$). The vertical bars indicate singlet-projectors operators, while the arcs on the left (bra) and right (ket) 
+represent valence bond configurations of the sampled trial state. Open and closed circles indicate up and down spins, which are unchanged 
+between operators and represented by horizontal lines there. These lines, along with the valence bonds, form loops that can be flipped
+(i.e., all spins traversed by the loop are flipped) without changing the configuration weight. A configuration in a $T>0$ simulation 
+corresponds to imposing periodic boundary conditions in the ``time'' direction, instead the independent boundaries
 terminated by valence bonds.}
 \label{loops}
 \end{figure}
@@ -257,29 +262,54 @@ simulate a given model.
 
 \section{SU(2) models}
 
-It has been a matter of debate for a long time whether the non-linear sigma model can correctly capture a 
-phase transition from the N\'eel state to a non-magnetic state in two dimensions for $S=1/2$ spins. Other terms, related to 
-Berry phases, have to be added to the Lagrangian to describe the formation of a valence-bond-solid, i.e., a state which 
-spontaneously breaks lattice symmetries by the formation of some pattern of weaker and stronger correlated spins (dimerization 
-being the simplest case). It was recently proposed that the N\'eel and VBS states are separated by a quantum-critical point, 
-which itself is described by the non-compact CP$^1$ model describing spinons weakly interacting with a U($1$) gauge field.
+It has been a matter of debate for a long time whether the non-linear sigma model can correctly capture a phase transition from the N\'eel state 
+to a non-magnetic state in two dimensions for $S=1/2$ spins. Other terms, related to Berry phases, have to be added to the Lagrangian to describe the 
+formation of a valence-bond-solid, i.e., a state which spontaneously breaks lattice symmetries by the formation of some pattern of weaker and stronger 
+correlated spins (dimerization being the simplest case). It was recently proposed that the N\'eel and VBS states are separated by a quantum-critical 
+point, which itself is described by the {\it non-compact} CP$^1$ model describing spinons weakly interacting with a U($1$) gauge field (in contrast to the
+nonlinear $\sigma$-model, which is a description equivalent to the {\it compact} CP$^1$ model, i.e., the Berry phases make the gauge field non-compact). 
 The VBS and N\'eel order parameter form due to confinement and condensation, respectively, of the spinons. 
 
-In this section we first discuss the well-studied continuous quantum phase transition between the N\'eel state and a quantum
-paramagnet in systems with a dimerization imposed in the couplings themselves. In this case the paramagnet does not break any
-symmetries of the Hamiltonian and the universality class is believed to be in the universality class of the 3D O($3$) universality
-class. A VBS state with spontaneously broken lattice symmetries can be achived with frustrated interactionss, which, however, are
-sign problematic in QMC simulations. The J-Q model is a Designer Hamiltonian circumventing this problem.
+In this section we first discuss the well-studied continuous quantum phase transition between the N\'eel state and a quantum paramagnet in systems 
+with bimodal couplings forming a static pattern. In this case the paramagnet does not break any symmetries of the Hamiltonian and the transition 
+is believed to fall in the 3D O($3$) universality class. A VBS state with spontaneously broken lattice symmetries can be achived with frustrated 
+interactionss, which, however, are sign problematic in QMC simulations.  The J-Q model is a Designer Hamiltonian circumventing this problem.
 
-\subsection{N\'eel--paramagnet transition in dimerized systems}
+\subsection{N\'eel--paramagnetic transition in dimerized systems}
+
+Consider $S=1/2$ spins on a 2D bipartite lattice with the spins paired up such that for each spin $i$ there is exactly one nearest-neighbor spin 
+$j$ to which it is coupled by antiferromagnetic Heisenberg exchange of strength $J_1$. The coupling with all other neighbors is $J_2$. Denoting the 
+corresponding sets of nearest-neighbor sites as $\langle i,j\rangle_1$ (which we refer to as dimers) and $\langle i,j\rangle_2$, the Hamiltonian 
+can be written in terms of the
+singlet projectors (\ref{psinglet}) as
+\begin{equation}
+H = -J_1 \sum_{\langle i,j\rangle_1} P_{ij}  -J_2 \sum_{\langle i,j\rangle_2} P_{ij} .
+\end{equation}
+If $J_2=0$ the ground state is clearly a product of singlets on the $J_1$-bonds, while if $J_1=J_2$ the system is the standard uniform 2D Heisenberg
+model. The former is a non-magnetic state while the ground state of the latter is known to have long-range antiferromagnetic order. There is, thus,
+a quantum phase transition between a magnetic (N\'eel) and paramagnetic ground state as a function of the coupling ratio $g=J_2/J_1$. 
+
+Based on symmetry arguments alone, the N\'eel--paramagnetic transition should be in the standard classical 3D O($3$) universality class. Many QMC studies 
+have been devoted checking the exponents against available results for the classical transition. There are many different ways in which the dimers can be 
+arranged, and instead of dimers one can also use larger $J_1$-coupled units of an even number of spins, e.g., $4$-site plaquettes, or one can use a
+bilayer, with $J_1$ and $J_2$ the inter-and intra-layer couplings, respectively. For some of these systems (e.g., bilayers and columnar dimers on the
+square lattice) results have been obtained that rival classical calculations in precision (statistical error bars) and in general the exponents agree 
+very well with each other. In other cases (e.g., with the dimers arranged in a staggered pattern), some studies indicated a new universality class.
+Later it was concluded that these cases, where the dimer pattern lacls inversion symmetry, have {\it irrelevant} operators (cubic interactions) in 
+the field-theory formulation, which are not present in systems with inversion symmetry. These lead to substantial finite-size corrections, which can
+easily be mistaken for a different universality class.
+
+Field-theoretical descriptions using the nonlinear $\sigma$-model have given a wealth of predictions for the $T>0$ quantum-critical ``fan'' extending 
+out into the plane $(g,T)$  from the quantum-critical point $(g_c,0)$. 
+
+
+
+
+mention experimental realization and simulations of 3D dimer networks
 
 \subsection{Deconfined N\'eel--VBS transition in J-Q models}
 
-\begin{enumerate}
-\item N\'eel to quantum paramagnetic transition id dimerized models; O(3) transition, large scaling
-corrections for staggered dimers, experimental realizations and simulations of 3D dimer networks
-\item N\'eel to VBS transitions in J-Q model; deconfined quantum-criticality, anomalous scaling of VBS order
-\end{enumerate}
+N\'eel to VBS transitions in J-Q model; deconfined quantum-criticality, anomalous scaling of VBS order
 
 \section{N\'eel-VBS transition in SU($N$) spin models}
 
