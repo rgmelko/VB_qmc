@@ -338,7 +338,7 @@ the transition could be very weakly first-order). Various types of $Q$ terms hav
 with similar results.
 
 \begin{figure}
-\includegraphics[width=4.5cm, clip]{qterms.eps}
+\includegraphics[width=4.5cm, clip]{qterms}
 \caption{$Q_2$ and $Q_3$ terms on the square lattice (from Ref.~X). The bars indicate the locations of singlet projectors 
 $C_{ij}$ on site pairs $ij$. The Hamiltonian contains all unique translations of these operators.}
 \label{qterms}
@@ -621,9 +621,10 @@ S_n = a \ell - \gamma + \cdots \label{areaL}
 \end{equation}
 where subsequent terms scale away at least as fast as $\mathcal{O} (1/\ell)$.  Then, the subleading term to the non-universal ``area law'' ($a \ell$) is a universal correction called the {\it topological entanglement entropy}.  In a gapped QSL phase, it is related to the emergent gauge symmetry (independent\cite{Flammia} of Renyi index $n$), e.g.~in the Z2 spin liquid state $\gamma = 2 \ln(2)$ at $T=0$.
 
-Using the estimators described in Section~\ref{ss:renyi}, it is possible to isolate the topological entanglement entropy from the leading-order area-law, as well as subleading corrections due to corner etceteras, by taking measurements several different geometries A and performing additions or subtractions which isolate only $\gamma$.  For example, the {\it Levin-Wen} regions (illustrated in Fig.~XXX) isolate $2\gamma$ from Eq.~(\ref{areaL}).  For a BFG Hamiltonian discussed in the last section, it is possible to extract the topological entanglement entropy in a QMC simulation.  As discussed by Castelnovo and Chamon, the value of $2\gamma$ is approached through two temperature crossovers on a finite-size system, related to the energy of the quasiparticle excitations in the groundstate.
+Using the estimators described in Section~\ref{ss:renyi}, it is possible to isolate the topological entanglement entropy from the leading-order area-law, as well as subleading corrections due to corner etceteras, by taking measurements several different geometries A and performing additions or subtractions which isolate only $\gamma$.  For example, the {\it Levin-Wen} regions (illustrated in Fig.~XXX) isolate $2\gamma$ from Eq.~(\ref{areaL}).  For a BFG Hamiltonian discussed in the last section, it is possible to extract the topological entanglement entropy in a QMC simulation.  As discussed by Castelnovo and Chamon through direct calculation on the toric code (which realizes a Z2 fractionalized spin liquid groundstate), the value of $2\gamma$ is approached through two temperature crossovers on a finite-size system, related to the energy of the quasiparticle excitations in the groundstate -- one ``electric'' corresponding to the fractional charge; one ``magnetic'' corresponding to the vison.  Each excitation contributes a value of $\ln(2)$ to the topological entanglement entropy (giving $2\ln(2)$ as $T \rightarrow 0$).  Interestingly, the analogy of the Z2 fractional phase in the kagome BFG Hamiltonian also raises the possibility that, with a suitable ``binding'' potential, an extension of the model with an emergent fermionic excitation might be created.  The demonstration of the existence of a fermionic excitation in a microscopic model without the sign problem would be a major success for simulations of designer Hamiltonians
 
 \subsection{Deconfinement at the XY* transition} \label{XYstar}
+
 
 
 %\begin{enumerate}
