@@ -167,8 +167,8 @@ operator can either be treated with path-integral methods (world lines in discre
 (stochastic series expansion). The latter approach at $T=0$ differs only in a minor way from projection with $H^m$ with fixed $m$. The difference 
 between Eqs.~(\ref{za1}) and (\ref{za2}) is then essentially only in the boundary conditions in the imaginary time direction; periodic for $T>0$ 
 (due to the trace being taken) and dictated by the nature of the trial state in $T=0$ projections. An equal superposition over all basis states 
-corresponds to fully open boundaries, while other choises of the trial state leads to open boundaries with some weighting of the bra and ket 
-states. 
+corresponds to fully open boundaries, while other choices of the trial state leads to open boundaries (with some weighting of the bra and ket 
+states, depending on the details of the trial state). 
 
 A particularly convenient class of trial states for SU($2$) invariant interactions is the amplitude-product states in the valence-bond basis, 
 introduced by Liang et al. and recently generalized to include bond correlations. These overcomplete states for the singlet sector incorporate
@@ -197,6 +197,13 @@ corresponds to imposing periodic boundary conditions in the ``time'' direction, 
 terminated by valence bonds.}
 \label{loops}
 \end{figure}
+
+Evaluation of expectation values (``measurements'') in projector QMC simulations are carried out at the mid-point of the configuration,
+as indicated in Fig.~\ref{loops}. In the valence-bond basis, when propagating the bra and ket states in the pure valence-bond basis (which 
+corresponds to averaging over all compatible spin configurations), most quantities of interest can be expressed using the loops of the
+transition graph formed when superimposing the projected bra and ket states. Estimators for various correlation functions are discussed
+in Refs.~X and Y.
+
 
 \subsection {Generalizations from SU(2) to SU(N)}
 \label{ss:su2N}
@@ -259,7 +266,6 @@ sign problem free models
 is still an extremely demanding problem that is crucial to our ability to
 simulate a given model. 
 
-
 \section{SU(2) models}
 
 It has been a matter of debate for a long time whether the non-linear sigma model can correctly capture a phase transition from the N\'eel state 
@@ -302,14 +308,39 @@ easily be mistaken for a different universality class.
 Field-theoretical descriptions using the nonlinear $\sigma$-model have given a wealth of predictions for the $T>0$ quantum-critical ``fan'' extending 
 out into the plane $(g,T)$  from the quantum-critical point $(g_c,0)$. 
 
-
-
-
-mention experimental realization and simulations of 3D dimer networks
+The phase transition here can in principle be experimentally realized in systems consisting of coupled dimers as a function of pressure. The authors 
+are not aware of any such case in a clearly 2D geometry, but a well-studied case in 3D is TlCu. Here neutron scattering shows clear evidence of the 
+phase transition from a paramagnet to a N\'eel state at a critical pressure. In this case the values of the couplings and their pressure dependence
+are are not in detail, but one can still learn a lot from studies of designer hamiltonians by focusing on universal properties (XX YY).
 
 \subsection{Deconfined N\'eel--VBS transition in J-Q models}
 
-N\'eel to VBS transitions in J-Q model; deconfined quantum-criticality, anomalous scaling of VBS order
+While VBS states of 2D antiferromagnets have been discussed for a long time, most of the early worked focused on frustrated systems, for which it 
+is very difficult to carry out unbiased numerical calculations. The proposal of a deconfined quantum-critical point separating the N\'eel and 
+VBS states motivated detailed numerical studies of this transition, and, thus, construction of suitable designer hamiltonians to be studied with
+QMC simulations. Some earlier work had already indicated the intriguing possibility of continuous order--order quantum phase transitions (where
+standard arguments based on Landau-Ginzburg theory predict generically first-order transitions), but SU($2$) spin models exhibiting N\'eel--VBS 
+transitions were lacking until the introduction of the J-Q class of models, where $J$ refers to Heisenberg exchange on a bipartite lattice
+and $Q$ is a multi-spin interaction which competes against N\'eel order but does not generate a sign problem.
+
+The $Q$ terms are most conveniently expressed in terms of the singlet projectors (\ref{psinglet}); in the simplest case on a square lattice
+\begin{equation}
+H_Q = - Q\sum_{ijkl} C_{ij}C_{kl},
+\end{equation}
+where $ij$ and $kl$ form parallel edges. One can also use more than two projector in the product, and often the notation $Q_p$ is used for an 
+interaction with $p$ projectors. Fig.~\ref{qterms} shows $Q_2$ and $Q_3$ terms leading to columnar VBS ground states. In addition to the number
+of projectors in the product, they way they are arranged on the lattice is also crucial, with different patterns leading to different VBS states.
+A staggered $Q_3$ term on the square lattice was investigated in Ref.~X, and this leads to a first-order transition into the N\'eel state when
+$J/Q_3$ reaches a critical value. In contrast, the columnar arrangements in Fig.~\ref{qterms} lead to continuous transitions (or, in principle,
+the transition could be very weakly first-order). Various types of $Q$ terms have also been investigated in the honeycomb lattice, with similar 
+results.
+
+\begin{figure}
+\includegraphics[width=4.5cm, clip]{qterms.eps}
+\caption{$Q_2$ and $Q_3$ terms on the square lattice (from Ref.~X). The bars indicate the locations of singlet projectors 
+$C_{ij}$ on site pairs $ij$. The Hamiltonian contains all unique translations of these operators.}
+\label{qterms}
+\end{figure}
 
 \section{N\'eel-VBS transition in SU($N$) spin models}
 
