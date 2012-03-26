@@ -35,17 +35,15 @@ quantum Monte Carlo simulations}
 \date{\today}
 
 \begin{abstract}
-We discuss recent large-scale numerical studies of ``designer Hamiltonians'', which are lattice models tailored 
-specifically to be free from sign problems when simulated with quantum Monte Carlo methods but still can host 
-complex  many-body states and quantum phase transitions of great interest in condensed matter physics and quantum 
-information theory. We here focus on quantum spin systems in which competing interactions lead to non-magnetic 
-ground states. These states and their associated quantum phase transitions can be studied in great detail, 
-enabling direct access to universal properties and connections with low-energy effective quantum field theories. 
-As specific examples, we discuss the transition from a N\'eel antiferromagnet to either a uniform quantum paramagnet 
-or a spontaneously symmetry-broken valence-bond-solid (VBS) in SU($2$) and SU($N$) spin models. We also discuss a
-spin liquid and associated XY$^*$ transition in XXZ systems. We also briefly review recent progress on quantum Monte Carlo 
-algorithms, including ground state projection in the valence-bond basis and direct computation of the Renyi variants 
-of the entanglement entropy.
+We discuss designer Hamiltonians---lattice models tailored to be free from sign problems when simulated with quantum 
+Monte Carlo methods but still host complex  many-body states and quantum phase transitions of great interest in condensed matter 
+physics. We here focus on quantum spin systems in which competing interactions lead to non-magnetic ground states. These states and 
+associated quantum phase transitions can be studied in great detail, enabling direct access to universal properties and connections 
+with low-energy effective quantum field theories. As specific examples, we discuss the transition from a N\'eel antiferromagnet to 
+either a uniform quantum paramagnet or a spontaneously symmetry-broken valence-bond-solid in SU($2$) and SU($N$) spin models. We also 
+discuss anisotropic (XXZ) systems harboring spin liquids and the XY$^*$ transition. We briefly review recent progress on quantum Monte 
+Carlo algorithms, including ground state projection in the valence-bond basis and direct computation of the Renyi variants of the 
+entanglement entropy.
 \end{abstract}
 
 \pacs{}
@@ -55,6 +53,7 @@ of the entanglement entropy.
 \maketitle
 
 \section{Introduction}
+\label{sec:intro}
 
 Quantum field theory has emerged as one of the most fruitful approaches for studying low-energy properties of
 complex strongly correlated and entangled quantum matter systems. There are potential pitfalls and difficulties 
@@ -63,22 +62,24 @@ formulation. One of the most fruitful directions here is to use numerical method
 in an unbiased way, and to extract from such calculations the relevant low-energy emergent properties that can 
 be compared with results for corresponding quantum field theories. Such connections between the two approaches 
 can have significant synergy effects in advancing our understanding of many-body phenomena. Computational studies 
-have their own challenges, however, and most systems of interest are currently 
-beyond the reach of existing numerical algorithms. Frustrated quantum spin systems and fermions in two and three 
-dimensions are the two main groups of problematic systems. The approach we review here is to tailor particular 
-``designer hamiltonians'', which can host ground states and quantum phase transitions of interest and also are 
-amenable to large-scale numerical studies. The main computational technique we have in mind is quantum Monte Carlo 
-(QMC) simulation, which in the aforementioned systems are normally affected by the infamous ``sign problem'', 
-i.e., the weight function in the configuration space constructed using the path integral or other mappings to 
-an effective statistical-mechanics problem is not positive definite (and hence cannot be directly used as 
-a probability distribution for importance sampling).
+have their own challenges, however, and most systems of interest are currently beyond the reach of existing 
+numerical algorithms. Frustrated quantum spin systems and fermions in two and three dimensions are the two main 
+groups of problematic systems. The approach we review here is to tailor particular ``designer hamiltonians'', which 
+can host ground states and quantum phase transitions of interest and also are amenable to large-scale numerical 
+studies. The main computational technique we have in mind is quantum Monte Carlo (QMC) simulation, which in the 
+aforementioned systems are normally affected by the infamous ``sign problem'',\cite{Loh90,Henelius00} i.e., the 
+weight function in the configuration space constructed using the path integral or other mappings to an effective 
+statistical-mechanics problem is not positive definite (and hence cannot be directly used as a probability 
+distribution for importance sampling).
 
 A common misunderstanding is that interesting designer Hamiltonians should not exist---if a model is sign-problem 
 free it will likely be trivial or uninteresting. There are already many counter-examples to this pessimistic view, however, 
 and we will here review some recent examples from the area of quantum magnetism. Recent advances in QMC methods have made 
 it possible to truly approach the low-energy limit of many models and to make detailed connections with field theories. 
-We will brifly address some of these technical advances as well. First, let us discuss field theory and the 
-philosophy of the synergistic use of designer hamiltonians in some more detail.
+We will brifly address some of these technical advances as well. First, further remark on field theory and the philosophy 
+of the synergistic use of designer hamiltonians.
+
+\subsection{Field theory and numerical studies of Hamiltonians}
 
 A field theory can rarely be rigorously derived exactly from 
 an underlying Hamiltonian (which is the natural starting point for describing condensed matter systems). Instead
@@ -132,7 +133,17 @@ but the same symmetry can lead to different universality classes, depending on t
 view the approach of using manifestly quantum mechanical designer Hamiltonians is a much more fruitful approach to studying 
 many-body ground states and quantum criticality.
 
+\subsection{Outline of the Review}
+
+In Sec.~\ref{sec:methods} we discuss some of the QMC schemes used in large-scale studies of quantum spin systems, including treatments
+of SU($N$) symmetry and recent progress in computing the Renyi entanglement entropy. We also remark on the sign problem. In 
+Sec.~\ref{sec:su2models} we give examples of conventional and ``deconfined'' quantum-critical points in SU(2) invariant models, and in 
+Sec.~\ref{sec:sunmodels} we show how generalization to SU($N$) symmetry can be used to directly connect to large-$N$ studies within
+field theory. In Sec.~\ref{sec:u1models} we discuss spin liquid states and associated quantum phase transitions in U($1$) symmetric spin
+models (or, equivalently, hard-core bosons). We conclude in Sec.~\ref{sec:discussion} with a discussion of future prospects and challenges.
+
 \section{Modern QMC methods}
+\label{sec:methods}
 
 There is a wide range of QMC methods available for studies of different classes of models. In this review we focus on spin models, and we 
 therefore restict the discussion here to the types of methods most suitable for them. These methods are also often well suited for studies of 
@@ -267,6 +278,7 @@ is still an extremely demanding problem that is crucial to our ability to
 simulate a given model. 
 
 \section{SU(2) models}
+\label{sec:su2models}
 
 It has been a matter of debate for a long time whether the non-linear sigma model can correctly capture a phase transition from the N\'eel state 
 to a non-magnetic state in two dimensions for $S=1/2$ spins. Other terms, related to Berry phases, have to be added to the Lagrangian to describe the 
@@ -354,7 +366,7 @@ Sec.~\ref{ss:bilN} describes a study on a bilayer square
 lattice. 
 
 \subsection{SU($N$) Heisenberg models}
-\label{ss:j1N}
+\label{sec:sunmodels}
 
 A natural extension of the SU(2) Heisenberg model is to spin models with
 SU($N$) symmetry. Such generalizations were initially introduced to
@@ -548,7 +560,9 @@ state as long as they are small compared to $J_\perp$.
 
 {\em (show some data here? we need to decide which plots to show
   depending on the space)-- Ribhu}
+
 \section{U(1) models}
+\label{sec:u1models}
 
 One of the main foci of research into designer Hamiltonians is the search, detection and characterization of quantum spin liquid (QSL) phases.  
 That is, although there has been much progress in understanding properties of QSL states from effective field theories, there are very few microscopic models amenable to study by QMC that can be argued to exhibit a QSL without controversy.
@@ -636,6 +650,8 @@ Using the estimators described in Section~\ref{ss:renyi}, it is possible to isol
 %\end{enumerate}
 
 \section{Discussion}
+\label{sec:discussion}
+
 - Many things left to do along these lines (give some examples), e.g., larger sizes are still needed
 to fully characterize N\'eel--VBS transition; parallelization of QMC, impurities, disorder
 
