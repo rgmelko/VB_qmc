@@ -182,7 +182,7 @@ P_{ij}=\hbox{$\frac{1}{4}$}-{\bf S}_i\cdot {\bf S}_j.
 A power of the Hamiltonian $H^m$ can be expanded into all possible products of these projection projectors, which act on the ket trial state in 
 (\ref{za2}). In early versions of this scheme, the resulting paths (propagations) of valence bond states were sampled, while in more 
 recent formulations the diagonal and off-diagonal parts of the projectors are also sampled, along with spin configurations compatible with 
-the valence-bond configurations of the trial state (which are also sampled). An example of a configuration in such a simulation is shown 
+the valence-bond configurations of the trial state (which are also sampled).\cite{Sandvik10a} An example of a configuration in such a simulation is shown 
 in Fig.~\ref{loops}. This configuration space is amenable to very efficient loop updates, which are simple generalizations of loop updates 
 previously introduced in the context of $T>0$ algorithms. Such loop algorithms are reviewed in Refs.~XX and YY.
 
@@ -316,10 +316,11 @@ are are not in detail, but one can still learn a lot from studies of designer ha
 
 \subsection{Deconfined N\'eel--VBS transition in J-Q models}
 
-While VBS states of 2D antiferromagnets have been discussed for a long time, most of the early worked focused on frustrated systems, for which it 
-is very difficult to carry out unbiased numerical calculations. The proposal of a deconfined quantum-critical point separating the N\'eel and 
-VBS states motivated detailed numerical studies of this transition, and, thus, construction of suitable designer hamiltonians to be studied with
-QMC simulations. Some earlier work had already indicated the intriguing possibility of continuous order--order quantum phase transitions (where
+While spontaneously formed VBS states in translationally invariant 2D spin systems have been discussed for more than two decades,\cite{Chandra88,Dagotto89,Read89}
+most of the early worked focused on frustrated systems, for which it is very difficult to carry out unbiased numerical calculations. The proposal of a deconfined 
+quantum-critical point separating the N\'eel and VBS states motivated detailed numerical studies of this transition, and, thus, construction of suitable designer 
+hamiltonians to be studied with QMC simulations. Some earlier work had already indicated the intriguing possibility of continuous order--order quantum phase 
+transitions (where
 standard arguments based on Landau-Ginzburg theory predict generically first-order transitions), but SU($2$) spin models exhibiting N\'eel--VBS 
 transitions were lacking until the introduction of the J-Q class of models, where $J$ refers to Heisenberg exchange on a bipartite lattice
 and $Q$ is a multi-spin interaction which competes against N\'eel order but does not generate a sign problem.
@@ -333,8 +334,8 @@ interaction with $p$ projectors. Fig.~\ref{qterms} shows $Q_2$ and $Q_3$ terms l
 of projectors in the product, they way they are arranged on the lattice is also crucial, with different patterns leading to different VBS states.
 A staggered $Q_3$ term on the square lattice was investigated in Ref.~X, and this leads to a first-order transition into the N\'eel state when
 $J/Q_3$ reaches a critical value. In contrast, the columnar arrangements in Fig.~\ref{qterms} lead to continuous transitions (or, in principle,
-the transition could be very weakly first-order). Various types of $Q$ terms have also been investigated in the honeycomb lattice, with similar 
-results.
+the transition could be very weakly first-order). Various types of $Q$ terms have also been investigated in the honeycomb lattice,\cite{Banerjee11} 
+with similar results.
 
 \begin{figure}
 \includegraphics[width=4.5cm, clip]{qterms.eps}
@@ -646,9 +647,17 @@ Mention meron algorithm---perhaps some more interesting designer hamiltonian can
 
 - Non-equilibrium QMC
 
-- Some blah-blah about the sign problem, e.g., mention, in some diplomatic way, that Troyer-Wiese ``proof'' of no 
-solution is meaningless (classical glasses are also exponentially hard, so why should not quantum glasses be?---this
-is all they ``prove''). Perhaps mention variational QMC in the context of tensor-network states.
+
+In Ref.~X, Troyer and Wiese presented a proof that the sign problem cannot be solved in general. The problem is here
+defined in terms of constructing a QMC algorithm for which the computational effort scales as a power-law in the system
+size. They show a particular problem for which the removal of the sign still leaves a problem for which the Monte Carlo
+sampling is believed to scale exponentially in the system size. However, the problem chosen is that of a spin glass, and 
+the conclusion is that the quantum spin glass is not easier to solve than the corresponding classical spin glass. This is 
+hardly a surprising result, and the proof does not say anything about QMC solutions of systems that are not directly
+associated with the well known difficulties of simulating classical glassy systems with complicated energy landscapes. 
+Whether or not the sign problem can be circumvented for translationally invariant systems such as fermionic Hubbard models 
+and frustrated quantum spins models remains and open question.
+
 
 % Create the reference section using BibTeX:
 \bibliography{rev_bib.bib}
