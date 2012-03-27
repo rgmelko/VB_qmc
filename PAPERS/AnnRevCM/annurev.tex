@@ -1,4 +1,5 @@
-\documentclass[aps,prb,groupedaddress,twocolumn]{revtex4}
+\documentclass[range]{ar2e}
+       
 \usepackage{amsmath}
 \usepackage{color}
 \usepackage{verbatim}
@@ -6,33 +7,29 @@
 \usepackage{wasysym}
 \usepackage{amssymb}
 
-
-\usepackage[normalem]{ulem}	% Part of the standard distribution
-\bibliographystyle{apsrev}
-
-
-\newcommand{\note}[1]{
-{\color{red} \bf{#1}}}
-
+                           
 \begin{document}
+
+\input epsf.def
+\input psfig.sty
+
+
+
+%\jname{Annual Reviews of Condensed Matter Physics}
+%\jyear{2012}
+%\jvol{XX}
+%\ARinfo{1056-8700/97/0610-00}
 
 \title{Designer Hamiltonians---bridging lattice-scale physics \\ and continuum field theory with 
 quantum Monte Carlo simulations} 
 
-\author{Ribhu K. Kaul}
-\email[]{rkka@pa.uky.edu}
-\affiliation{Department of Physics and Astronomy, University of
-  Kentucky, Lexington, Kentucky 40506, USA}
-\author{Roger G. Melko}
-\email[]{rgmelko@uwaterloo.ca}
+\author{Ribhu K. Kaul
+\affiliation{Department of Physics and Astronomy, University of Kentucky, Lexington, Kentucky 40506, USA}
+Roger G. Melko
 \affiliation{Department of Physics and Astronomy, University of Waterloo, Ontario, N2L 3G1, Canada}
 \affiliation{Perimeter Institute for Theoretical Physics, Waterloo, Ontario N2L 2Y5, Canada}
-\author{Anders W. Sandvik}
-\email[]{sandvik@bu.edu}
-\affiliation{Department of Physics, Boston University, 590 Commonwealth Avenue, Boston, Massachusetts 02215, USA}
-
-
-\date{\today}
+Anders W. Sandvik
+\affiliation{Department of Physics, Boston University, 590 Commonwealth Avenue, Boston, Massachusetts 02215, USA}}
 
 \begin{abstract}
 We discuss designer Hamiltonians---lattice models tailored to be free from sign problems when simulated with quantum 
@@ -45,10 +42,6 @@ discuss anisotropic (XXZ) systems harboring spin liquids and the XY$^*$ transiti
 Carlo algorithms, including ground state projection in the valence-bond basis and direct computation of the Renyi variants of the 
 entanglement entropy.
 \end{abstract}
-
-\pacs{}
-
-%\keywords{}
 
 \maketitle
 
@@ -197,8 +190,14 @@ the valence-bond configurations of the trial state (which are also sampled).\cit
 in Fig.~\ref{loops}. This configuration space is amenable to very efficient loop updates, which are simple generalizations of loop updates 
 previously introduced in the context of $T>0$ algorithms. Such loop algorithms are reviewed in Refs.~XX and YY.
 
+\begin{figure}%3        % Figure using psfig.sty
+
+\caption{Example of LaTeX {\tt psfig} environment.}
+\label{fig3}
+\end{figure}
+
 \begin{figure}
-\includegraphics[width=7.5cm, clip]{loops}
+\centerline{\psfig{figure=loops.eps,height=6cm}}
 \caption{A configuration (from Ref.~XX) in a valence-bond projector simulation of a 4-site Heisenberg chain (here with a small
 projection power $m=2$). The vertical bars indicate singlet-projectors operators, while the arcs on the left (bra) and right (ket) 
 represent valence bond configurations of the sampled trial state. Open and closed circles indicate up and down spins, which are unchanged 
@@ -350,7 +349,7 @@ the transition could be very weakly first-order). Various types of $Q$ terms hav
 with similar results.
 
 \begin{figure}
-\includegraphics[width=4.5cm, clip]{qterms}
+\centerline{\psfig{figure=qterms.eps,height=6cm}}
 \caption{$Q_2$ and $Q_3$ terms on the square lattice (from Ref.~X). The bars indicate the locations of singlet projectors 
 $C_{ij}$ on site pairs $ij$. The Hamiltonian contains all unique translations of these operators.}
 \label{qterms}
@@ -415,7 +414,7 @@ simulations of Eq.~(\ref{ham:j1}).
 
 
 \begin{figure}
-\includegraphics[width=3.5in]{pdj1j2q.pdf}
+%\includegraphics[width=3.5in]{pdj1j2q.pdf}
   \caption{ \label{fig:pdj1j2q} {\em (Will make a better ``quantiative''
       figure when  I am back in Kentucky! -Ribhu)}. Phase Diagram of the
     SU($N$) symmetric sign-problem free
@@ -527,7 +526,7 @@ Hamiltonian. By studying the size dependence of correlation functions in Eq.~(\r
 
 
 \begin{figure}
-\includegraphics[width=3.0in]{fig_exp.pdf}
+%\centerline{\psfig{figure=fig_exp.pdf,height=6cm}}
   \caption{ \label{fig:exp} Anomalous dimensions of the N\'eel (left)
     and VBS (right)
   order parameters as a function of $N$. The main panels show $\eta_N$ and $\eta_V$ versus $1/N$. For $N=2,3$ and $4$, the data are 
@@ -578,7 +577,7 @@ One successful recipe for designing Bose-Hubbard Hamiltonians with QSL phases wa
 
 
 \begin{figure}
-\includegraphics[width=3in]{kagome.pdf}
+%\includegraphics[width=3in]{kagome.pdf}
   \caption{ (a) Boson density in a groundstate configuration satisfying $H_0$ on the kagome lattice.  The degenerate manifold of such configurations maps onto a triangular-lattice (dashed) classical three-dimer configuration, where each boson corresponds to a dimer on the dual lattice.  (b) At right, a plaquette-flip $H_{\rm ring}$ operation preserves the cluster-charging constraint, and can be seen to correspond to a rhombus-flip of dimers.  At left, a charge defect is created by removing one boson (marked ``+'' in (a)).  This defect can be thought of as associating with two hexagonal plaquettes (grey in (b)), each with half of the charge (or two bosons per hexagon), corresponding to fractionalized spinons.} \label{kag_fig}
 \end{figure}
 
@@ -619,9 +618,9 @@ The common feature with the BFG Hamiltonians studied by QMC to date is a superfl
 \begin{tabular}{ l | c | c}
   Hamiltonian & Critical Point & References \\
   \hline
-  $H_0 + H_1$ & $V/t_1 = 7$ & [\onlinecite{TopoEE}] \\
-  $H_0 + H_3$  & $ V/t_3 = 20$? & [\onlinecite{Isakov1,Isakov2}] \\
-  $H_1 + H_{\rm ring}$ & $K/t = 22$ & [\onlinecite{Long}]  \\
+  $H_0 + H_1$ & $V/t_1 = 7$ & [\cite{TopoEE}] \\
+  $H_0 + H_3$  & $ V/t_3 = 20$? & [\cite{Isakov1,Isakov2}] \\
+  $H_1 + H_{\rm ring}$ & $K/t = 22$ & [\cite{Long}]  \\
 \end{tabular}
 \end{center}
 
@@ -635,14 +634,14 @@ S_n = a \ell - \gamma + \cdots \label{areaL}
 \end{equation}
 where subsequent terms scale away at least as fast as $\mathcal{O} (1/\ell)$.  Then, the subleading term to the non-universal ``area law'' ($a \ell$) is a universal correction called the {\it topological entanglement entropy}.  In a gapped QSL phase, it is related to the emergent gauge symmetry (independent\cite{Flammia} of Renyi index $n$), e.g.~in the Z2 spin liquid state $\gamma = 2 \ln(2)$ at $T=0$.
 
-Using the estimators described in Section~\ref{ss:renyi}, it is possible to isolate the topological entanglement entropy from the leading-order area-law, as well reduce any subleading corrections (e.g. due to corners) by taking measurements several different geometries A and performing additions or subtractions which isolate only $\gamma$.  For example, the {\it Levin-Wen} regions (illustrated in Fig.~XXX) isolate $2\gamma$ from Eq.~(\ref{areaL}).  For a BFG Hamiltonian discussed in the last section, it is possible to extract the topological entanglement entropy in a QMC simulation.  As discussed by Castelnovo and Chamon through direct calculation on the toric code (which realizes a Z2 fractionalized spin liquid groundstate), the value of $2\gamma$ is approached through two temperature crossovers on a finite-size system, related to the energy of the quasiparticle excitations in the groundstate -- one ``electric'' corresponding to the fractional charge; one ``magnetic'' corresponding to the vison.  Each excitation contributes a value of $\ln(2)$ to the topological entanglement entropy (giving $2\ln(2)$ as $T \rightarrow 0$).  Interestingly, the analogy of the Z2 fractional phase in the kagome BFG Hamiltonian also raises the possibility that, with a suitable ``binding'' potential, an extension of the model with an emergent fermionic excitation might be created.  The demonstration of the existence of a fermionic excitation in a microscopic model without the sign problem would be a major success for simulations of designer Hamiltonians
+Using the estimators described in Section~\ref{ss:renyi}, it is possible to isolate the topological entanglement entropy from the leading-order area-law, as well as subleading corrections due to corner etceteras, by taking measurements several different geometries A and performing additions or subtractions which isolate only $\gamma$.  For example, the {\it Levin-Wen} regions (illustrated in Fig.~XXX) isolate $2\gamma$ from Eq.~(\ref{areaL}).  For a BFG Hamiltonian discussed in the last section, it is possible to extract the topological entanglement entropy in a QMC simulation.  As discussed by Castelnovo and Chamon through direct calculation on the toric code (which realizes a Z2 fractionalized spin liquid groundstate), the value of $2\gamma$ is approached through two temperature crossovers on a finite-size system, related to the energy of the quasiparticle excitations in the groundstate -- one ``electric'' corresponding to the fractional charge; one ``magnetic'' corresponding to the vison.  Each excitation contributes a value of $\ln(2)$ to the topological entanglement entropy (giving $2\ln(2)$ as $T \rightarrow 0$).  Interestingly, the analogy of the Z2 fractional phase in the kagome BFG Hamiltonian also raises the possibility that, with a suitable ``binding'' potential, an extension of the model with an emergent fermionic excitation might be created.  The demonstration of the existence of a fermionic excitation in a microscopic model without the sign problem would be a major success for simulations of designer Hamiltonians
 
 \subsection{Deconfinement at the XY* transition} \label{XYstar}
 
 The fractional spinons of the Z2 spin liquid phase (illustrated in Fig.~\ref{kag_fig}) can be thought of as a ``square-root'' operator of the physical spins.  Employing the mapping from $S^z$ spins to hard-core bosons, we can relate the physical boson operator $b^{\dagger}$ as being composed of two operators  $\phi^\dagger \phi$, where $\phi^\dagger,\phi$ denote the raising and lowering operators for the fractionalized spinon particles.  
 Surprisingly, it is predicted that the quantum phase transition between the XY-ferromagnet and the Z2 spin liquid discussed in the last section can actually be mediated not by the physical bosons (which would undergo a quantum phase transition in the 3D XY universality class), but by the fractional spinon fields.\cite{XYstar1,XYstar2,earlyXYstar}  This leads to the same exponents $z$ and $\nu$ as in the ordinary $XY$ critical point.  However, the exponent $\eta$ controlling the equal time correlation function $\langle b^\dagger(0) b(x) \rangle$ is modified as mentioned in Section~XXX, such that one expects a large $\eta \approx 1$.
 
-Previous estimates for $\eta$ were obtained from field-theoretic treatments.  From $1/N$ expansion, Ref.~\onlinecite{XYstar2} obtains
+Previous estimates for $\eta$ were obtained from field-theoretic treatments.  From $1/N$ expansion, Ref.~\cite{XYstar2} obtains
 \begin{equation}
 \eta = 1 + \frac{32}{3 \pi^2 N}
 \end{equation}
@@ -689,6 +688,8 @@ and frustrated quantum spins models remains and open question.
 
 % Create the reference section using BibTeX:
 \bibliography{rev_bib.bib}
+\bibliographystyle{Science}
+%\bibliographystyle{apsrev}
 
 \end{document}
 
