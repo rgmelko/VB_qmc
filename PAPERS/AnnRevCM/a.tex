@@ -1,9 +1,19 @@
 \documentclass[range]{ar2e}
+       
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{wasysym}
+\usepackage{amssymb}
+
                            
 \begin{document}
 
 \input epsf.def
 \input psfig.sty
+
+
 
 %\jname{Annual Reviews of Condensed Matter Physics}
 %\jyear{2012}
@@ -404,7 +414,7 @@ simulations of Eq.~(\ref{ham:j1}).
 
 
 \begin{figure}
-\includegraphics[width=3.5in]{pdj1j2q.pdf}
+%\includegraphics[width=3.5in]{pdj1j2q.pdf}
   \caption{ \label{fig:pdj1j2q} {\em (Will make a better ``quantiative''
       figure when  I am back in Kentucky! -Ribhu)}. Phase Diagram of the
     SU($N$) symmetric sign-problem free
@@ -516,7 +526,7 @@ Hamiltonian. By studying the size dependence of correlation functions in Eq.~(\r
 
 
 \begin{figure}
-\centerline{\psfig{figure=fig_exp.pdf,height=6cm}}
+%\centerline{\psfig{figure=fig_exp.pdf,height=6cm}}
   \caption{ \label{fig:exp} Anomalous dimensions of the N\'eel (left)
     and VBS (right)
   order parameters as a function of $N$. The main panels show $\eta_N$ and $\eta_V$ versus $1/N$. For $N=2,3$ and $4$, the data are 
@@ -567,7 +577,7 @@ One successful recipe for designing Bose-Hubbard Hamiltonians with QSL phases wa
 
 
 \begin{figure}
-\includegraphics[width=3in]{kagome.pdf}
+%\includegraphics[width=3in]{kagome.pdf}
   \caption{ (a) Boson density in a groundstate configuration satisfying $H_0$ on the kagome lattice.  The degenerate manifold of such configurations maps onto a triangular-lattice (dashed) classical three-dimer configuration, where each boson corresponds to a dimer on the dual lattice.  (b) At right, a plaquette-flip $H_{\rm ring}$ operation preserves the cluster-charging constraint, and can be seen to correspond to a rhombus-flip of dimers.  At left, a charge defect is created by removing one boson (marked ``+'' in (a)).  This defect can be thought of as associating with two hexagonal plaquettes (grey in (b)), each with half of the charge (or two bosons per hexagon), corresponding to fractionalized spinons.}
 \end{figure}
 
@@ -608,9 +618,9 @@ The common feature with the BFG Hamiltonians studied by QMC to date is a superfl
 \begin{tabular}{ l | c | c}
   Hamiltonian & Critical Point & References \\
   \hline
-  $H_0 + H_1$ & $V/t_1 = 7$ & [\onlinecite{TopoEE}] \\
-  $H_0 + H_3$  & $ V/t_3 = 20$? & [\onlinecite{Isakov1,Isakov2}] \\
-  $H_1 + H_{\rm ring}$ & $K/t = 22$ & [\onlinecite{Long}]  \\
+  $H_0 + H_1$ & $V/t_1 = 7$ & [\cite{TopoEE}] \\
+  $H_0 + H_3$  & $ V/t_3 = 20$? & [\cite{Isakov1,Isakov2}] \\
+  $H_1 + H_{\rm ring}$ & $K/t = 22$ & [\cite{Long}]  \\
 \end{tabular}
 \end{center}
 
@@ -667,6 +677,8 @@ and frustrated quantum spins models remains and open question.
 
 % Create the reference section using BibTeX:
 \bibliography{rev_bib.bib}
+\bibliographystyle{Science}
+%\bibliographystyle{apsrev}
 
 \end{document}
 
