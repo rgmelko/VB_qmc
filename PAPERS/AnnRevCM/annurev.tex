@@ -218,8 +218,16 @@ in Refs.~X and Y.
 \subsection {Generalizations from SU(2) to SU(N)}
 \label{ss:su2N}
 
-Both methods discussed in the previous section can be generalized from
-SU($2$) to any arbitrary $N$ in SU($N$). 
+The above methods for SU(2) can be extended to a certain
+class of spin models with an SU($N$) symmetry on bipartite
+lattices. These models consist of having an SU($N$) spin of a
+fundamental representation on the A sub-lattice and an SU($N$) spin with
+a conjugate to fundamental representation on the B sub-lattice. Let us
+represent the generators of the fundamental representation by $T$A
+simple interaction between a spin on the A and B sub-lattice is given
+by 
+
+
 
 \subsection{Renyi entropies at T=0 and finite-T simulations} \label{ss:renyi}
 
@@ -229,22 +237,15 @@ SU($2$) to any arbitrary $N$ in SU($N$).
 Solving many-body quantum mechanical problems on a computer is {\em generally}
 exponentially hard in system size on the computing time with known
 algorithms. Remarkably, quantum Monte Carlo allows thermodynamic
-averages to be calculated for certain models
+averages to be calculated for certain ``sign-problem'' free models
 in polynomial time. The statistical mechanics of quantum Hamiltonians can generally be
-rewritten in terms of some kind of statistical mechanics of classical
-variables in one higher dimension. (an example that is
-convenient for numerical analysis presented here is the stochastic series
-expansion method considered in Sec.~\ref{ss:method}),
+rewritten in terms of classical
+variables in one higher dimension. ( {\em e.g.}, the SSE method of Sec.~\ref{ss:method}),
 \begin{equation}
 \label{eq:wc}
 Z=\sum_C W_C
 \end{equation}
- The use of importance sampling ({\em i.e.} ``Monte Carlo'')
-methods on the classical description as a way to estimate observables of the
-original quantum mechanical system is called
-quantum Monte Carlo. However unlike most classical systems, the
-majority of
-quantum systems of interest will have $W_C$ that can have both
+Quantum systems of interest can have $W_C$ with both
 positive and negative signs, invalidating the usual interpretation of
 $W_C$ as a probability. Formally, this difficulty can be side-stepped
 by treating ${\rm  Sign} (W_C)$ as an observable and sampling with
@@ -254,9 +255,9 @@ probability $|W_C|$,
 \frac{\frac{\sum_C O_C {\rm Sign}(W_C) |W_C|}{\sum_{C}|W_C|}}{\frac{\sum_C
     {\rm Sign}(W_C)|W_C|}{\sum_{C}|W_C|}}
 \end{equation}
-A simple proof shows that $\langle {\rm Sign}\rangle$ must go to zero
+The problem is that quantities like the denominator go to zero
 exponentially quickly in system size and in inverse temperature and hence
-resolving such a small quantity by averaging $-1$ and $1$ is
+resolving such small quantities by averaging $-1$ and $1$ is
 exponentially hard. This predicament is called the ``sign-problem'' of
 Monte Carlo, and hence the advantage of importance sampling (time speed-up
 from exponential to polynomial scaling) is
@@ -264,17 +265,10 @@ lost in all cases when the weights have fluctuating signs. Luckily, for a few cl
 choose a basis in which all the $W_C\geq 0$; these Hamiltonians are
 ``sign-problem free'' and hence can be simulated in polynomial time by
 importance sampling, allowing access to large system sizes. 
-These sign problem free models are almost the only interacting quantum
+These models are amongst the very few interacting quantum
 Hamiltonians (apart from the handful that can be solved analytically) in dimensions greater than one for which we have precise ``unbiased''
-quantitative estimates for
-thermodynamic properties.  
- Note that the exponent of the polynomial for the computing time
- scaling is not universal, {\em i.e.}, it is
-determined by the algorithm. Devising efficient update schemes to
-improve this exponent for
-sign problem free models
-is still an extremely demanding problem that is crucial to our ability to
-simulate a given model. 
+quantitative estimates for observables.  
+ 
 
 \section{SU(2) models}
 \label{sec:su2models}
@@ -290,7 +284,7 @@ The VBS and N\'eel order parameter form due to confinement and condensation, res
 In this section we first discuss the well-studied continuous quantum phase transition between the N\'eel state and a quantum paramagnet in systems 
 with bimodal couplings forming a static pattern. In this case the paramagnet does not break any symmetries of the Hamiltonian and the transition 
 is believed to fall in the 3D O($3$) universality class. A VBS state with spontaneously broken lattice symmetries can be achived with frustrated 
-interactionss, which, however, are sign problematic in QMC simulations.  The J-Q model \cite{Sandvik07} is a designer Hamiltonian circumventing 
+interactions, which, however, are sign problematic in QMC simulations.  The J-Q model \cite{Sandvik07} is a designer Hamiltonian circumventing 
 this problem.
 
 \subsection{N\'eel--paramagnetic transition in dimerized systems}
