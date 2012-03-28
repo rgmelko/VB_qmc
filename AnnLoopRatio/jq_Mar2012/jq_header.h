@@ -99,29 +99,39 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
   //****changed**** multiplied by 2
   number_of_bondops = 2*2*bondops; /*the *real* number of bondops is multiplied
 				   by 2, one set for |VL> and one for |VR> */
-    //****changed**** multiplied first term by 2
-  vlegs = 2*4*number_of_sites + 4*number_of_bondops; //number of vertex legs
-  energyint = 0; energy = 0; //initialize the energy counters
+
+  //max possible number of vertex legs (if all bondops were plaquette ops)
+  vlegs = 2*4*number_of_sites + 8*number_of_bondops; 
+  //initialize the energy counters
+  energyint = 0; energy = 0; 
   iterations = its; 
-  bopfile = bondopfile; //name of the bond operator file
+  //name of the bond operator file
+  bopfile = bondopfile; 
 
   entropy.assign(xsites,0);
   entropy_final = entropy;
 
-  Vlinks.assign(vlegs, -99); //set size and initialize
-  Hlinks.assign(vlegs, -99); 
+  // :+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+
   //Initialize Hlinks so the "edge" sites are linked to themselves
+  Hlinks.assign(vlegs, -99); 
   for(long long i=0; i<vlegs; i++){ Hlinks[i]=i; } 
+  // :+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+
+
   //Initialize Vlinks
+  Vlinks.assign(vlegs, -99); //set size and initialize
   for(long long i=0; i<vlegs; i+=2){
     Vlinks[i] = i+1;
     Vlinks[i+1] = i;
   }
 
   bops.resize(number_of_bondops,3); //set size of bops
+
+  // :+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+
   //create "sides"
   sides.assign(vlegs,0); 
   for(long long i=vlegs/2; i<vlegs; i++){sides[i]=1;}
+  // :+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+
+
   VL.assign(number_of_sites*2, -99); //set size of VL and VR
   VR=VL;
 
