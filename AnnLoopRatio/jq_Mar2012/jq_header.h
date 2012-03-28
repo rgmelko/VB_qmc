@@ -514,7 +514,7 @@ void LOOPS::create__Hlinks()
    Vlinks[vlegs]        //
 
  Local:
-   loopnums[vlegs].stores the loop number for each vertex leg
+   loopnums[vlegs]_stores the loop number for each vertex leg
    loopnum_________the loop number we're currently looking at
    startsite_______the start site for the current loop
    counter_________starts at the beginning of the vertex legs, goes to the end
@@ -577,7 +577,8 @@ void LOOPS::make_flip_loops()
 	  right = sides[site];
 	  boolcross++;
 	  whichloop[firstcross]=loopnum;  
-      }*/
+      }
+    */
 
     if(sides[startsite]<sides[site]){
       rfirstcross = nnbonds(superbops(site/4,0),site%2);
