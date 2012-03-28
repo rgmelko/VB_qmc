@@ -570,11 +570,12 @@ These examples highlight that the synergy between analytical theory and numerics
 
 Much of the reason for the scarcity of microscopic models is that fundamental ingredients required to give rise to QSL phases, namely geometrical frustration, are also typical harbingers of the sign problem.  Despite this, the absence of the sign problem does not fundamentally {\it preclude} the existence of spin liquid physics.  This is most evident in Hamiltonians with U(1) symmetry -- anisotropic spin (or Bose-Hubbard) models specifically designed to capture the essential ingredients needed to promote a QSL phase without causing the sign-problem.  In this section, we will explore one class of U(1) spin Hamiltonain that contains the simplest type of QSL phase, and compare universal properties calculated in QMC to effective field-theoretical descriptions of the groundstate.
 
-\subsection{BFG\cite{BFG} Hamiltonians with Z2 spin liquid phases}
+\subsection{BFG Hamiltonians with Z2 spin liquid phases}
 
 %As with many quantum systems, specific Hamiltonians are often difficult to connect directly to experiment.  In the cases where microscopic Hamiltonians are known, they are rarely soluble; hence attempts to reconcile theory and experiment rely on phenomenological low-energy effective theories.  Here again, we see the use of designer Hamiltonians; rather than attempt to solve a potentially complicated approximation to an experimental Hamiltonian, one may instead construct a sign-problem free model which hopefully captures the essential ingredients (e.g. geometric frustration or quantum disorder) which may lead to the desired spin-liquid behavior.
 
-One successful recipe for designing Bose-Hubbard Hamiltonians with QSL phases was pioneered by Isakov and co-workers,\cite{Isakov1, Isakov2, TopoEE} based partly on our understanding of QSL phases from their relation to {\it quantum dimer models}.  Such models have a strong local constraint, that the number of dimers emerging from a site is fixed, as well as quantum tunnelling that allows the state to fluctuate while keeping the constraint satisfied.  Dimer Hamiltonians can be constructed where groundstate superposition of dimer configurations breaks no symmetry -- being a type of QSL (or resonating valence bond) phase.  The features that emerge in this phase can be directly related to special field theories with gauge symmetry and topological order.
+One successful recipe for designing Hamiltonians with QSL phases amenable to QMC study was pioneered by Isakov and co-workers \cite{Isakov1, Isakov2, TopoEE} for certain Bose-Hubbard models on the kagome lattice.  Models in this class, first studied analytically by Balents, Fisher and Girvin\cite{BFG} (BFG),
+are constructed partly based on their relation to {\it quantum dimer models} (QDM), where a strong local constraint (the number of dimers emerging from a site is fixed) is coupled with a quantum tunnelling that allows the state to fluctuate while keeping the constraint satisfied.  QDM Hamiltonians can be constructed where groundstate superposition of dimer configurations breaks no symmetry -- being a type of QSL (or resonating valence bond) phase, that has an emergent gauge symmetry and related topological order.
 
 
 \begin{figure}
@@ -598,7 +599,7 @@ H_{\rm ring} = -K \sum_{\bowtie} ( b_i^{\dagger} b_j^{\phantom\dagger} b_k^{\dag
 \end{eqnarray} 
 preserves the cluster-charging constraint $H_0$ while promoting quantum fluctuations.  This, one expects the kagome lattice model with $H = H_0 + H_{\rm ring}$ to retain a disordered groundstate with quantum fluctuations - a good candidate for a quantum spin liquid phase.  In addition, with $K>0$, such terms do not have the sign problem for QMC.
 
-Balents, Fisher and Girvin\cite{BFG} (BFG) were the first to show that variations of this model support the simplest type of Z2 spin liquid -- mainly through exact calculation at a Roksar-Kivelson point in an extended model.\cite{BFG}  Subsequently, using QMC simuations, Isakov and co-workers showed that a variant of the cluster-charging Hamiltonian with short-range hopping 
+Balents, Fisher and Girvin\cite{BFG} were the first to show that variations of this model support the simplest type of Z2 spin liquid -- mainly through exact calculation at a Roksar-Kivelson point in an extended model.\cite{BFG}  Subsequently, using QMC simuations, Isakov and co-workers showed that a variant of the cluster-charging Hamiltonian with short-range hopping 
 \begin{eqnarray}
 H_{1,3} &=& -t_{1,3} \sum_{( ij )_{1,3}} [b^{\dagger}_i b_j + b_i b^{\dagger}_j]  \\
 %H_0 &=& -t \sum_{( ij )} [b^{\dagger}_i b_j + b_i b^{\dagger}_j] + V \sum_{\hexagon} (n_{\hexagon})^2 
