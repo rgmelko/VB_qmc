@@ -79,7 +79,7 @@ an underlying Hamiltonian (which is the natural starting point for describing co
 it is constructed based on symmetries, in combination with insights or assumptions on the physical nature of the
 system. Some times the field theory can be derived in some well defined limit, e.g., the $(d+1)$-dimensional
 nonlinear $\sigma$-model description of interacting quantum spins in $d$ dimensions was derived by Haldane in 
-the semi-classical limit of large spin $S$ by using coherent spin states \cite{Haldane83,Auerbach94}. 
+the semi-classical limit of large spin $S$ by using coherent spin states \cite{Haldane83,Chakravarty89,Auerbach94}. 
 In other cases, the field theory is constructed heuristically, e.g., the non-compact CP$^{N-1}$ action
 proposed to describe the intriguing ``deconfined'' quantum-critical point in $d=2$ quantum spin systems undergoing 
 transitions between a N\'eel antiferromagnet and a valence-bond solid (VBS) \cite{Senthil04a,Sachdev08}.
@@ -156,10 +156,10 @@ fermions, other approaches work much better in practice (except for 1D systems, 
 from anticommutation do not appear in this geometry if there is only nearest-neighbor hopping). We will here only give a rough overview of the 
 methods, with references to more detailed accounts.
 
-\subsection{Common framework for finite-T and T=0 projector QMC methods}
+\subsection{Common framework for $T>0$ and $T=0$ QMC methods}
 \label{ss:method}
 
-In {\it finite-temperature} methods, the goal is to compute thermal averages of the form
+In {\it finite-temperature} methods, the goal is to compute thermal averages
 \begin{equation}
 \langle A\rangle = \frac{1}{Z}{\bf Tr}\{ {\rm e}^{-\beta H}\},~~~
 Z = {\bf Tr}\{ {\rm e}^{-\beta H}\},
@@ -191,10 +191,11 @@ Marshall's sign rule in a convenient way and also automatically have the appropr
 from the outset filtering out a significant fraction of the excited states). The hamiltonian in this case can typically be expressed in terms of 
 two-spin singlet-projector operators  (individual ones or products of two or more of them);
 \begin{equation}
-P_{ij}=\hbox{$\frac{1}{4}$}-{\bf S}_i\cdot {\bf S}_j.
+P_{ij}=\hbox{$\frac{1}{4}$}-{\bf S}_i\cdot {\bf S}_j = |s_{ij}\rangle\langle s_{ij}|,
 \label{psinglet}
 \end{equation}
-A power of the Hamiltonian $H^m$ can be expanded into all possible products of these projection projectors, which act on the ket trial state in 
+where $s_{ij}$ denotes the singlet state of spins $i$ and $j$.
+A power of the Hamiltonian $H^m$ can be expanded into all possible products of these projectors, which act on the ket trial state in 
 (\ref{za2}). In early versions of this scheme, the resulting paths (propagations) of valence bond states were sampled, while in more 
 recent formulations the diagonal and off-diagonal parts of the projectors are also sampled, along with spin configurations compatible with 
 the valence-bond configurations of the trial state (which are also sampled).\cite{Sandvik10a} An example of a configuration in such a simulation is shown 
@@ -291,17 +292,21 @@ this problem.
 
 \subsection{N\'eel--paramagnetic transition in dimerized systems}
 
-Consider $S=1/2$ spins on a 2D bipartite lattice with the spins paired up such that for each spin $i$ there is exactly one nearest-neighbor spin 
-$j$ to which it is coupled by antiferromagnetic Heisenberg exchange of strength $J_1$. The coupling with all other neighbors is $J_2$. Denoting the 
-corresponding sets of nearest-neighbor sites as $\langle i,j\rangle_1$ (which we refer to as dimers) and $\langle i,j\rangle_2$, the Hamiltonian 
-can be written in terms of the
-singlet projectors (\ref{psinglet}) as
+Consider $S=1/2$ spins on a 2D bipartite lattice (e.g., the simple square lattice), interacting with antiferromagnetic Heisenberg exchange of 
+strength $J_1$, written using the singlet projectors (\ref{psinglet}),
 \begin{equation}
-H = -J_1 \sum_{\langle i,j\rangle_1} P_{ij}  -J_2 \sum_{\langle i,j\rangle_2} P_{ij} .
+H_1 = -J_1 \sum_{\langle i,j\rangle} P_{ij}.
+\label{h1def}
 \end{equation}
-If $J_2=0$ the ground state is clearly a product of singlets on the $J_1$-bonds, while if $J_1=J_2$ the system is the standard uniform 2D Heisenberg
-model. The former is a non-magnetic state while the ground state of the latter is known to have long-range antiferromagnetic order. There is, thus,
-a quantum phase transition between a magnetic (N\'eel) and paramagnetic ground state as a function of the coupling ratio $g=J_2/J_1$. 
+Here $\langle i,j\rangle$ denotes nearest-neighbor spins. This system has long-range antiferromagnetic order at $T=0$. Now introduce {\it dimerization}, 
+i.e., consider pairs (dimers) of spins $[i,j]$ such that each spin belongs exactly to one dimer. In addition to the nearest-neighbor couplings (\ref{h1def}),
+let there be additional inter-dimer couplings of strength $\lambda$ (i.e., the total inter-dimer coupling is $J_1+\lambda$), such that the total Hamiltonian is
+\begin{equation}
+H = H_1  -\lambda \sum_{[ i,j]} P_{ij} .
+\end{equation}
+If $\lambda>0$ and $J_1\to 0$, the ground state is clearly a product of singlets on the dimers, which is a quantum paramagnetic state, while if $\lambda=0$ 
+the system is the standard Heisenberg model (\ref{h1def}). There is, thus, a quantum phase transition between the N\'eel and paramagnetic ground states as a 
+function of the coupling ratio $g=(J_1+\lambda)/J_1$. 
 
 Based on symmetry arguments alone, the N\'eel--paramagnetic transition should be in the standard classical 3D O($3$) universality class. Many QMC studies 
 have been devoted checking the exponents against available results for the classical transition. There are many different ways in which the dimers can be 
@@ -313,8 +318,8 @@ Later it was concluded that these cases, where the dimer pattern lacls inversion
 the field-theory formulation, which are not present in systems with inversion symmetry. These lead to substantial finite-size corrections, which can
 easily be mistaken for a different universality class.
 
-Field-theoretical descriptions using the nonlinear $\sigma$-model have given a wealth of predictions for the $T>0$ quantum-critical ``fan'' extending 
-out into the plane $(g,T)$  from the quantum-critical point $(g_c,0)$. 
+Field-theoretical descriptions using the nonlinear $\sigma$-model \cite{Haldane83,Chakravarty89} have given a wealth of predictions \cite{Chubukov94}
+for the $T>0$ quantum-critical ``fan'' extending out into the plane $(g,T)$  from the quantum-critical point $(g_c,0)$. 
 
 The phase transition here can in principle be experimentally realized in systems consisting of coupled dimers as a function of pressure. The authors 
 are not aware of any such case in a clearly 2D geometry, but a well-studied case in 3D is TlCu. Here neutron scattering shows clear evidence of the 
