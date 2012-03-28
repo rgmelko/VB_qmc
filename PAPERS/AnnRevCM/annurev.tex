@@ -258,16 +258,14 @@ probability $|W_C|$,
 The problem is that quantities like the denominator go to zero
 exponentially quickly in system size and in inverse temperature and hence
 resolving such small quantities by averaging $-1$ and $1$ is
-exponentially hard. This predicament is called the ``sign-problem'' of
-Monte Carlo, and hence the advantage of importance sampling (time speed-up
+exponentially hard. Hence the advantage of importance sampling (time speed-up
 from exponential to polynomial scaling) is
-lost in all cases when the weights have fluctuating signs. Luckily, for a few classes of quantum Hamiltonians, it is possible to
+lost in all cases when the weights have fluctuating signs. This predicament is called the ``sign-problem'' of
+Monte Carlo. Luckily, for a few classes of quantum Hamiltonians, it is possible to
 choose a basis in which all the $W_C\geq 0$; these Hamiltonians are
-``sign-problem free'' and hence can be simulated in polynomial time by
+``sign-problem free'' and can be simulated in polynomial time by
 importance sampling, allowing access to large system sizes. 
-These models are amongst the very few interacting quantum
-Hamiltonians (apart from the handful that can be solved analytically) in dimensions greater than one for which we have precise ``unbiased''
-quantitative estimates for observables.  
+
  
 
 \section{SU(2) models}
