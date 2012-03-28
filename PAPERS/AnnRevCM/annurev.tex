@@ -7,34 +7,31 @@
 \usepackage{wasysym}
 \usepackage{amssymb}
 
-                           
 \begin{document}
 
 \input epsf.def
 \input psfig.sty
 
-
-
-%\jname{Annual Reviews of Condensed Matter Physics}
+%\jname{Annual Review of Condensed Matter Physics}
 %\jyear{2012}
 %\jvol{XX}
 %\ARinfo{1056-8700/97/0610-00}
 
-\title{Designer Hamiltonians---bridging lattice-scale physics \\ and continuum field theory with 
+\title{Designer Hamiltonians---bridging lattice-scale physics and continuum field theory with 
 quantum Monte Carlo simulations} 
 
 \author{Ribhu K. Kaul
 \affiliation{Department of Physics and Astronomy, University of Kentucky, Lexington, Kentucky 40506, USA}
 Roger G. Melko
-\affiliation{Department of Physics and Astronomy, University of Waterloo, Ontario, N2L 3G1, Canada}
-\affiliation{Perimeter Institute for Theoretical Physics, Waterloo, Ontario N2L 2Y5, Canada}
+\affiliation{Department of Physics and Astronomy, University of Waterloo, Ontario, N2L 3G1, Canada, and
+Perimeter Institute for Theoretical Physics, Waterloo, Ontario N2L 2Y5, Canada}
 Anders W. Sandvik
 \affiliation{Department of Physics, Boston University, 590 Commonwealth Avenue, Boston, Massachusetts 02215, USA}}
 
 \begin{abstract}
 We discuss designer Hamiltonians---lattice models tailored to be free from sign problems when simulated with quantum 
 Monte Carlo methods but still host complex  many-body states and quantum phase transitions of great interest in condensed matter 
-physics. We here focus on quantum spin systems in which competing interactions lead to non-magnetic ground states. These states and 
+physics. We focus on quantum spin systems in which competing interactions lead to non-magnetic ground states. These states and 
 associated quantum phase transitions can be studied in great detail, enabling direct access to universal properties and connections 
 with low-energy effective quantum field theories. As specific examples, we discuss the transition from a N\'eel antiferromagnet to 
 either a uniform quantum paramagnet or a spontaneously symmetry-broken valence-bond-solid in SU($2$) and SU($N$) spin models. We also 
@@ -48,29 +45,32 @@ entanglement entropy.
 \section{Introduction}
 \label{sec:intro}
 
-Quantum field theory has emerged as one of the most fruitful approaches for studying low-energy properties of
-complex strongly correlated and entangled quantum matter systems. There are potential pitfalls and difficulties 
+Quantum field theory has emerged as a powerful approach for studying low-energy properties of
+complex strongly correlated and entangled quantum matter systems \cite{Sachdev11}. There are potential pitfalls and difficulties 
 with this approach, however, and it is, therefore, important to also study systems directly based on the Hamiltonian 
-formulation. One of the most fruitful directions here is to use numerical methods to study lattice Hamiltonians 
-in an unbiased way, and to extract from such calculations the relevant low-energy emergent properties that can 
-be compared with results for corresponding quantum field theories. Such connections between the two approaches 
-can have significant synergy effects in advancing our understanding of many-body phenomena. Computational studies 
-have their own challenges, however, and most systems of interest are currently beyond the reach of existing 
-numerical algorithms. Frustrated quantum spin systems and fermions in two and three dimensions are the two main 
-groups of problematic systems. The approach we review here is to tailor particular ``designer hamiltonians'', which 
-can host ground states and quantum phase transitions of interest and also are amenable to large-scale numerical 
-studies. The main computational technique we have in mind is quantum Monte Carlo (QMC) simulation, which in the 
-aforementioned systems are normally affected by the infamous ``sign problem'',\cite{Loh90,Henelius00} i.e., the 
-weight function in the configuration space constructed using the path integral or other mappings to an effective 
-statistical-mechanics problem is not positive definite (and hence cannot be directly used as a probability 
-distribution for importance sampling).
+formulation. One of the most fruitful directions is to use numerical methods to study lattice Hamiltonians 
+in an unbiased way, and to extract from such calculations emergent low-energy properties which can be 
+compared with results for corresponding quantum field theories. Such connections between the two approaches 
+can have significant synergy effects in advancing our understanding of quantum many-body phenomena---as they
+have had and continue to have in classical statistical mechanics, especially with regards to phase transitions. 
 
-A common misunderstanding is that interesting designer Hamiltonians should not exist---if a model is sign-problem 
-free it will likely be trivial or uninteresting. There are already many counter-examples to this pessimistic view, however, 
-and we will here review some recent examples from the area of quantum magnetism. Recent advances in QMC methods have made 
-it possible to truly approach the low-energy limit of many models and to make detailed connections with field theories. 
-We will brifly address some of these technical advances as well. First, further remark on field theory and the philosophy 
-of the synergistic use of designer hamiltonians.
+Computational studies have their own challenges, and many models of interest are currently beyond the reach of existing 
+numerical algorithms. Frustrated quantum spin systems and fermions in two and three dimensions are the two main groups 
+of difficult systems. They are generally associated with the infamous ``sign problem'' in quantum Monte Carlo (QMC) simulation
+\cite{Loh90,Henelius00,Nyfeler08}, i.e., the weight function in the configuration space constructed using the Euclidean path 
+integral or other mappings to an effective statistical-mechanics problem is not positive definite (and hence cannot be directly 
+used as a probability distribution for importance sampling). The approach we advocate and review here is to construct particular 
+``designer hamiltonians'', which host interesting ground states and quantum phase transitions but still are amenable to 
+large-scale QMC studies without sign problems (i.e., they are ``de-signed'' by design). 
+
+A common misconception is that interesting designer Hamiltonians should not exist---if a model is sign-problem 
+free it must be trivial or uninteresting. There are already many counter-examples to this pessimistic view, 
+however, and we will here review some recent examples from the area of quantum magnetism. Recent advances in QMC 
+methods \cite{Sandvik91,Evertz93,Beard96,Prokofev98,Sandvik99,Sandvik10a} have made it possible to truly approach the 
+low-energy limit of many important models without any approximations, and to compute quantities of great current interest, 
+e.g., the fidelity \cite{Schwandt09,Degrandi11} and the entanglement entropy \cite{Hastings10}. We will brifly address some 
+of these technical advances as well. We here first give some further remark on field theory and the philosophy of the 
+synergistic use of designer Hamiltonians, and then outline the topics covered in this review.
 
 \subsection{Field theory and numerical studies of Hamiltonians}
 
@@ -79,7 +79,18 @@ an underlying Hamiltonian (which is the natural starting point for describing co
 it is constructed based on symmetries, in combination with insights or assumptions on the physical nature of the
 system. Some times the field theory can be derived in some well defined limit, e.g., the $(d+1)$-dimensional
 nonlinear $\sigma$-model description of interacting quantum spins in $d$ dimensions was derived by Haldane in 
-the semi-classical limit of large spin $S$ by using coherent spin states. Having identified or proposed a field
+the semi-classical limit of large spin $S$ by using coherent spin states \cite{Haldane83,Auerbach94}. 
+In other cases, the field theory is constructed heuristically, e.g., the non-compact CP$^{N-1}$ action
+proposed to describe the intriguing ``deconfined'' quantum-critical point in $d=2$ quantum spin systems undergoing 
+transitions between a N\'eel antiferromagnet and a valence-bond solid (VBS) \cite{Senthil04a,Sachdev08}.
+
+%It is
+%not {\it a priori} clear whether the mapping is correct for all $d$ and small $S$, although it is now well
+%established that it is for the Heisenberg chain ($d=1$) for any $S$. The $d=2$ Heisenberg model and certain
+%transitions out of its N\'eel antiferromagnetic ground state is also believed to be captured by this field
+%theory for any $S$ \cite{Chakravarty89}. 
+
+Having identified or proposed a field
 theory, the next step is to extract its properties. This is typically done using the renormalization group (RG)
 approach, which may result in flows to some previously known fixed point, or to some fixed point or effective
 model whose properties are not known. The RG itsef may have to rely on approximations that are not always easy
@@ -91,40 +102,40 @@ extrapolation to the $\epsilon$ or $N$ of main interest is often challenging, ho
 expansions are feasible in practice.
 
 Because of issues such as these, it is important to test the predictions of field theories in some unbiased way
-starting from a microscopic description of the system or phenomenon of interest. In some
-cases there are exact solutions, e.g., the Bethe Ansatz solution of the $S=1/2$ Heisenberg chain has been immensely
-important for testing the non-linear sigma model description of this class of critical spin chains. The exact
-AKLT state for a special version of the $S=1$ chain was similarly important in testing Haldane's prediction of
-the qualitative differences between half-odd integer and integer spins. Exact solutions are rare, however, and
-essentially limited to 1D models. Another, more general approach is to study Hamiltonians numerically. Exact
-diagonalization of the Hamiltonian is possible only for small systems, which limits the usefulness of this approach 
-to some 1D systems. White's density matrix renormalization (DMRG) scheme and related approaches based 
-on matric-product states have enabled even more detailed studies of the low-energy physics of 1D systems (including
-also ``ladders'' of several coupled chains). While there has been some progress for 2D systems, with
-DMRG and tensor-product states (generalizations of matrix-product states), in general these approaches have not
-yet reached the level where one can obtain unbiased results for large systems.
+starting from a microscopic description of the system or phenomenon of interest. In some cases there are exact solutions, 
+e.g., the Bethe Ansatz solution of the $S=1/2$ Heisenberg chain \cite{Bethe31} has been immensely important for testing 
+the non-linear sigma model description of this class of critical spin chains. The exact AKLT state \cite{affleck88} for a special 
+version of the $S=1$ chain was similarly important in testing Haldane's prediction of the qualitative differences between 
+half-odd integer and integer spins \cite{Haldane83}. Exact solutions are rare, however, and essentially limited to 1D models. 
+Another, more general approach is to study Hamiltonians numerically. Exact diagonalization of the Hamiltonian is possible 
+only for very small systems; currently up to $\approx 42$ $S=1/2$ spins \cite{Nakano11,Lauchli11}. White's density matrix 
+renormalization (DMRG) scheme \cite{White92} and related approaches based on matrix-product states \cite{Schollwock05} 
+have enabled even more detailed studies of the low-energy physics of 1D systems (including also ``ladders'' of several 
+coupled chains). While there has been some progress for 2D systems, with DMRG \cite{Stoudenmire12} and tensor-product 
+\cite{Murg09} states (generalizations of matrix-product states), in general these approaches have not yet reached the 
+level where one can obtain unbiased results for large systems.
 
-The only numerical approach with which one can reach sufficiently large lattices in two and three dimensions
-is QMC simulations, and, as already noted, they are often limited in practice by sign problems. The class of
-models for there is no sign problem, or it is known how to circumvent it, still contains a vast range of 
-models with non-trivial and interesting ground states and quantum phase transitions. To study low-energy
-emergent properties, the interactions do not necessarily have to correspond closely to any particular material
-(although some times that is also possible). The idea is to tailor a system in such a way that it contains a particular 
-macroscopic (low-energy) phenomenon of interest---so that universal physics is captured. With unbiased large-scale 
-simulations of such designer hamiltonians one can test field theories proposed to capture specific quantum many-body 
+The only numerical approach with which one can reach sufficiently large lattices in two and three dimensions is QMC 
+simulations \cite{Evertz03,Sandvik10b}, and, as already noted, they are often limited in practice by sign problems. The 
+class of models for there is no sign problem, or it is known how to circumvent it, still contains a vast range of 
+models with non-trivial and interesting ground states and quantum phase transitions. To study low-energy emergent 
+properties, the interactions do not necessarily have to correspond closely to any particular material (although some 
+times that is also possible). The idea is to design a sign-problem free Hamiltonian in such a way that it contains a 
+particular macroscopic (low-energy) phenomenon of interest---so that universal physics is captured. With unbiased large-scale 
+QMC simulations of such designer hamiltonians one can test field theories proposed to capture specific quantum many-body 
 states or quantum phase transitions. Moreover, explorations of designer hamiltonians can also serve as ``experiments'' 
 for discovering novel phenomena, and, thereby, stimulate further theoretical developments.
 
-Note that the notion of designer Hamiltonians we consider here goes beyond the often used approach of investigating
-quantum phenomena in $d$ dimensions by simply extending the same model to $d+1$ dimensions. While this works in some cases,
-it has in recent years been realized that this approach misses important quantum states that have no familiar classical
-analogues based just on a simple order parameter. While a designer Hamiltonian effectively is a classical statistical-mechanics
-model (which arises out of the construction of the sampling space in the QMC approach adopted), it is often not one that 
-would have come natural as a starting point just from the perspective of increasing the dimensionality. Note, in particular, 
-that it is now well established that symmetries alone do not uniquely determine the nature of a quantum phase transition, 
-but the same symmetry can lead to different universality classes, depending on the role of topological defects. Thus, in our
-view the approach of using manifestly quantum mechanical designer Hamiltonians is a much more fruitful approach to studying 
-many-body ground states and quantum criticality.
+Note that the notion of designer Hamiltonians we consider here goes beyond the often used approach of investigating quantum phenomena 
+in $d$ dimensions by simply extending the same model to $d+1$ dimensions. While this works in some cases \cite{Rieger94,Sorensen92,Nahum11}, 
+it has in recent years been realized that this approach misses important quantum states that have no natural or familiar classical 
+analogues based just on a simple order parameter \cite{Senthil04a,Fradkin04,Sachdev08}. While a designer Hamiltonian effectively also {\it is} 
+a classical statistical-mechanics model (which arises out of the construction of the sampling space in the QMC scheme implemented), it is 
+often not one that would have come natural as a starting point just from the perspective of increasing the dimensionality of some
+classical model. Note, in particular, that it is now well established that symmetries alone do not uniquely determine the nature of a 
+quantum phase transition, but the same symmetry can lead to different universality classes, depending on the role of topological defects 
+\cite{Motrunich04}. Thus, in our view the approach of using manifestly quantum mechanical designer Hamiltonians is an important direction
+in research on many-body ground states and quantum criticality.
 
 \subsection{Outline of the Review}
 
@@ -190,12 +201,6 @@ the valence-bond configurations of the trial state (which are also sampled).\cit
 in Fig.~\ref{loops}. This configuration space is amenable to very efficient loop updates, which are simple generalizations of loop updates 
 previously introduced in the context of $T>0$ algorithms. Such loop algorithms are reviewed in Refs.~XX and YY.
 
-\begin{figure}%3        % Figure using psfig.sty
-
-\caption{Example of LaTeX {\tt psfig} environment.}
-\label{fig3}
-\end{figure}
-
 \begin{figure}
 \centerline{\psfig{figure=loops.eps,height=6cm}}
 \caption{A configuration (from Ref.~XX) in a valence-bond projector simulation of a 4-site Heisenberg chain (here with a small
@@ -213,7 +218,6 @@ as indicated in Fig.~\ref{loops}. In the valence-bond basis, when propagating th
 corresponds to averaging over all compatible spin configurations), most quantities of interest can be expressed using the loops of the
 transition graph formed when superimposing the projected bra and ket states. Estimators for various correlation functions are discussed
 in Refs.~X and Y.
-
 
 \subsection {Generalizations from SU(2) to SU(N)}
 \label{ss:su2N}
@@ -672,7 +676,7 @@ and frustrated quantum spins models remains and open question.
 
 % Create the reference section using BibTeX:
 \bibliography{rev_bib.bib}
-\bibliographystyle{Science}
+\bibliographystyle{plain}
 %\bibliographystyle{apsrev}
 
 \end{document}
