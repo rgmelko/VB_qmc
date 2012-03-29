@@ -336,6 +336,7 @@ void LOOPS::generate_ops()
     if(drand()<plaqProb){
       //choose a plaquette!!
       temp = irand()%numPlaquettes;
+      //if the spins are antiparallel, assign it
       if(spins[plaquettes(temp,0)]+spins[plaquettes(temp,1)]==1 && 
 	 spins[plaquettes(temp,2)]+spins[plaquettes(temp,3)]==1){
 	bops(i,0) = temp;
@@ -348,6 +349,7 @@ void LOOPS::generate_ops()
     else{
       //choose a bondop
       temp = irand()%number_of_nnbonds;
+      //if the spins are antiparallel, assign it
       if(spins[nnbonds(temp,0)]+spins[nnbonds(temp,1)]==1){
 	bops(i,0) = temp;
 	bops(i,1) = 0;
