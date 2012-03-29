@@ -117,12 +117,6 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
   entropy.assign(xsites,0);
   entropy_final = entropy;
 
-  // :+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+
-  //Initialize Hlinks so the "edge" sites are linked to themselves
-  Hlinks.assign(vlegs, -99); 
-  for(long long i=0; i<vlegs; i++){ Hlinks[i]=i; } 
-  // :+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+
-
   int maxVlegs =  2*4*number_of_sites + 8*number_of_bondops;
   //Initialize Vlinks
   Vlinks.assign(maxVlegs, -99); //set size and initialize
@@ -447,7 +441,19 @@ void LOOPS::create__Hlinks()
   long long legnum = 0;
   // iterate through bond operators and create horizontal links
 
-  // the first N/2 bondops are actually the initial VB configuration
+
+  // Size Hlinks
+  Hlinks.assign(vlegs, -99); 
+
+  //Initialize Hlinks so the "edge" sites are linked to themselves
+  for(int i=0; i<number_of_sites/2; i++){
+    for(int j=0; j<4; j++){Hlinks[i*4+j]=i*4+j;}
+  }
+  for(int i=vlegs/4-number_of_sites/2; i<vlegs/4; i++){
+    for(int j=0; j<4; j++){Hlinks[i*4+j]=i*4+j;}
+  }
+  
+  // the first N/2 bondops are the initial VB config. Pick up from there
   long long bopnum = number_of_sites/2;
 
   // create Hlinks for the operators after the init VB config.. 
@@ -680,6 +686,9 @@ void LOOPS::make_flip_loops()
   //  for(int i=0;i<number_of_sites;i++){
   //    cout << "VL["<<i<<"] = "<<VL[i]<<endl;
   //  }
+
+  //Hlinks isn't used in any other functions.  Clear it.
+  Hlinks.clear();
 }   
 /************ take_measurement() *********************************************
  Global:
