@@ -123,14 +123,13 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
   for(long long i=0; i<vlegs; i++){ Hlinks[i]=i; } 
   // :+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+
 
-  // :+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+
+  int maxVlegs =  2*4*number_of_sites + 8*number_of_bondops;
   //Initialize Vlinks
-  Vlinks.assign(vlegs, -99); //set size and initialize
-  for(long long i=0; i<vlegs; i+=2){
+  Vlinks.assign(maxVlegs, -99); //set size and initialize
+  for(long long i=0; i<maxVlegs; i+=2){
     Vlinks[i] = i+1;
     Vlinks[i+1] = i;
   }
-  // :+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+
 
   
   bops.resize(number_of_bondops,3); //set size of bops
