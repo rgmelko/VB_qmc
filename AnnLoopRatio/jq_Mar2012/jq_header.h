@@ -29,6 +29,7 @@ class LOOPS
 
   int flip; // -1 for bare swap, 0 for ratio 1, etc
 
+  double J,Q;
   int Lx, Ly,  number_of_sites; //the dimensions and number of sites
   //Note: things are periodic in the Ly direction, open in Lx
 
@@ -67,8 +68,8 @@ class LOOPS
                      //               and 3 for Edge state.
 
   //CONSTRUCTOR
-  LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
-	       long long rseed, string bondopfile);
+  LOOPS(double jay, double que, int xsites, int ysites, int flips, 
+	int bondops, long long its, long long rseed, string bondopfile);
 
   void operatorLists(); //creates list of nnbonds & plaquettes
   void generate_ops(); //generates initial operators
@@ -86,12 +87,14 @@ class LOOPS
 };
 
 //*************** CONSTRUCTOR ******************************************
-LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its, 
-	     long long rseed, string bondopfile)
+LOOPS::LOOPS(double jay, double que, int xsites, int ysites, int flips, 
+	     int bondops, long long its, long long rseed, string bondopfile)
 {
   irand.seed(rseed); //uses the random seed from the parameter file
   drand.seed(rseed); //enabling us to run fakely parallelize simulations
   
+  J = jay;
+  Q = que;
   Lx = xsites; 
   Ly = ysites;
   flip = flips;

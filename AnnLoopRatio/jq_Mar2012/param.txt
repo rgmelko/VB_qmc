@@ -2,7 +2,10 @@ energy.dat
 entrpy.dat
 bondop.dat
 
-8
+1
+0
+
+8 
 4
 
 -1
@@ -19,6 +22,9 @@ bondop.dat
 energy filename
 entropy filename
 bondops filename
+
+J
+Q
 
 dimension 1
 dimension 2

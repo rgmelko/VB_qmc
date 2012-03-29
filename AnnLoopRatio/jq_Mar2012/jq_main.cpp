@@ -18,6 +18,7 @@ int main(){
   //  read in parameters: system dimensions, number of bond operators, 
   //   filenames, iterations per loop, number of loops, a random seed
 
+  double J,Q;
   int dim1, dim2;
   int ratioflip;
   long long its_per_loop=10000, loops=100;
@@ -28,6 +29,7 @@ int main(){
 
   ifstream fin("param.txt");
   fin >> enerfilename >> entrofilename >> bondopfilename
+      >> J >> Q 
       >> dim1 >> dim2
       >> ratioflip
       >> its_per_loop >> loops
@@ -38,14 +40,15 @@ int main(){
   
   int total_bops = dim1*dim2*bops_per_site;
 
-  cout << "Lx="<< dim1 << " x Ly=" << dim2 << " system,  N = " 
+  cout << "J=" << J << " Q=" << Q <<" Lx="<< dim1 << " x Ly=" << dim2 
+       << " system,  N = " 
        << dim1*dim2 << " sites \n" << bops_per_site << " bops/site,  " 
        << total_bops << " bops total" << endl;
   cout << "------------------------------------------------ \n"; 
 
   if(dim1==2|dim2==2){cout<<"warning! nnbonds get screwed up for a x 2 \n";}
-  LOOPS system (dim1, dim2, ratioflip, total_bops, its_per_loop, ranseed, 
-		bondopfilename);
+  LOOPS system (J, Q, dim1, dim2, ratioflip, total_bops, its_per_loop,
+		ranseed, bondopfilename);
  
   // create initial VB config and initial spin config
   system.operatorLists();
