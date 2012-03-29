@@ -244,7 +244,7 @@ in Fig.~\ref{loops}. This configuration space is amenable to very efficient loop
 previously introduced in the context of $T>0$ algorithms. Such loop algorithms are reviewed in Refs.~XX and YY.
 
 \begin{figure}
-\centerline{\psfig{figure=loops.eps,height=6cm}}
+\centerline{\psfig{figure=loops.eps,height=4.5cm}}
 \caption{A configuration (from Ref.~XX) in a valence-bond projector simulation of a 4-site Heisenberg chain (here with a small
 projection power $m=2$). The vertical bars indicate singlet-projectors operators, while the arcs on the left (bra) and right (ket) 
 represent valence bond configurations of the sampled trial state. Open and closed circles indicate up and down spins, which are unchanged 
@@ -351,24 +351,25 @@ Later it was concluded that these cases, where the dimer pattern lacls inversion
 the field-theory formulation, which are not present in systems with inversion symmetry. These lead to substantial finite-size corrections, which can
 easily be mistaken for a different universality class.
 
-Field-theoretical descriptions using the nonlinear $\sigma$-model \cite{Haldane83,Chakravarty89} have given a wealth of predictions \cite{Chubukov94}
-for the $T>0$ quantum-critical ``fan'' extending out into the plane $(g,T)$  from the quantum-critical point $(g_c,0)$. 
+Field-theoretical descriptions using the nonlinear $\sigma$-model \cite{Haldane83,Chakravarty89,Chubukov94} and other approaches have given a wealth of 
+predictions also for the $T>0$ quantum-critical ``fan'' extending out into the plane $(g,T)$  from the quantum-critical point $(g_c,0)$. Quantum-critical
+scaling in an extended $T>0$ region is an important aspect of quantum phase transitions, as a contrast to classical phase transitions with typically very
+narrow regions of critical scaling.
 
-The phase transition here can in principle be experimentally realized in systems consisting of coupled dimers as a function of pressure. The authors 
-are not aware of any such case in a clearly 2D geometry, but a well-studied case in 3D is TlCu. Here neutron scattering shows clear evidence of the 
-phase transition from a paramagnet to a N\'eel state at a critical pressure. In this case the values of the couplings and their pressure dependence
-are are not in detail, but one can still learn a lot from studies of designer hamiltonians by focusing on universal properties (XX YY).
+A N\'eel--paramegnetic transition of the type discussed above can in principle be experimentally realized in systems consisting of coupled dimers as a function 
+of pressure. The authors are not aware of any case where the phase transition can be crossed in 2D geometry, but a well-studied case in 3D is TlCu. Here neutron 
+scattering shows clear evidence of the phase transition from a paramagnet to a N\'eel state at a critical pressure. In this case the values of the couplings and 
+their pressure dependence are are not in detail, but one can still learn a lot from studies of designer hamiltonians by focusing on universal properties (XX YY).
 
 \subsection{Deconfined N\'eel--VBS transition in J-Q models}
 
 While spontaneously formed VBS states in translationally invariant 2D spin systems have been discussed for more than two decades,\cite{Chandra88,Dagotto89,Read89}
 most of the early worked focused on frustrated systems, for which it is very difficult to carry out unbiased numerical calculations. The proposal of a deconfined 
 quantum-critical point separating the N\'eel and VBS states motivated detailed numerical studies of this transition, and, thus, construction of suitable designer 
-hamiltonians to be studied with QMC simulations. Some earlier work had already indicated the intriguing possibility of continuous order--order quantum phase 
-transitions (where
-standard arguments based on Landau-Ginzburg theory predict generically first-order transitions), but SU($2$) spin models exhibiting N\'eel--VBS 
-transitions were lacking until the introduction of the J-Q class of models, where $J$ refers to Heisenberg exchange on a bipartite lattice
-and $Q$ is a multi-spin interaction which competes against N\'eel order but does not generate a sign problem.
+hamiltonians to be studied with QMC simulations. Work preceeding the theory had already indicated the intriguing possibility of continuous order--order quantum 
+phase transitions (where standard arguments based on Landau-Ginzburg theory predict generically first-order transitions), but SU($2$) spin models exhibiting 
+N\'eel--VBS transitions were lacking until the introduction of the J-Q class of models, where $J$ refers to Heisenberg exchange on a bipartite lattice and $Q$ is 
+a multi-spin interaction which competes against N\'eel order but does not generate a sign problem. 
 
 The $Q$ terms are most conveniently expressed in terms of the singlet projectors (\ref{psinglet}); in the simplest case on a square lattice
 \begin{equation}
@@ -383,11 +384,37 @@ the transition could be very weakly first-order). Various types of $Q$ terms hav
 with similar results.
 
 \begin{figure}
-\centerline{\psfig{figure=qterms.eps,height=6cm}}
+\centerline{\psfig{figure=qterms.eps,height=4.5cm}}
 \caption{$Q_2$ and $Q_3$ terms on the square lattice (from Ref.~X). The bars indicate the locations of singlet projectors 
 $C_{ij}$ on site pairs $ij$. The Hamiltonian contains all unique translations of these operators.}
 \label{qterms}
 \end{figure}
+
+The critical behavior of both the $J$-$Q_2$ and $J$-$Q_3$ model has been analyzed in different ways. One useful quantity for studying the criticality 
+of the N\'eel order parameter is the spin stiffness $\rho_s$. It should scale in the critical ground state as $\rho_s \sim L^{2-d-z}$, where $z$ is 
+the dynamic exponent. For a Lorenz-invariant critical theory $z=1$. One can test this by graphing $L\rho_s(L)$ versus the coupling ratio $J/Q$ for
+different $L\times L$ lattices (in the ground state or with the inverse temperature $\beta \propto L^z$). Such curves should cross at the critical point. 
+In practice, the crossing point often exhibit some drift with $L$, reflecting scaling corrections. 
+
+In the $J$-$Q$ models the drift is anomalously large, which had been interpreted as a weakly first-order transition (for which $L\rho_s$
+should eventually diverge as $L$, due to coexistence of a stiff and non-stiff phase). Another possibility is that the model in fact has unusually
+large scaling corrections, that could be intimately associated with the nature of the deconfined quantum-critical point. For example, in the
+theory the perturbation to the critical point leading to VBS order is a dangerously irrelevant operator. It could potentially lead to large, but
+conventional, scaling corrections. Another possibility is that the corrections are logarithmic (multiplicative), similar to those known in the
+critical Heisenberg chain. Such corrections do not appear in the large-$N$ calculations of the CP$^{N-1}$ theory, but potentially they could
+appear for small $N$ (as has recently also been argued for based on a modified version of the deconfined-criticality theory).
+
+Numerical data for the $J$-$Q_2$ model, on lattices with $L$ up to $256$, can, in fact, be well accounted for by a log correction, as shown in 
+Fig.~\ref{jqrhos}, but also with a conventional correction of the form $(1+aL^{-\omega}$ with large $a$ and small $\omega$.
+
+\begin{figure}
+\centerline{\psfig{figure=jqrhos.eps,height=8cm}}
+\caption{Finite-size scaling of the spin stiffness of the $J$-$Q_2$ model in the vicinity of its quantum-critical point \cite{Sandvik10c}. The 
+calculations were done at inverse temperature $\beta=L$. The standard critical scaling form $\rho_s \sim L^{-1}$ has been modified by a log correction 
+(with $L_0=0.9$) in order to compensate for a wek drift of the crossing point (the critical coupling). The critical coupling $(J/Q)_c = 0.0447(2)$.}
+\label{jqrhos}
+\end{figure}
+
 
 \section{N\'eel-VBS transition in SU($N$) spin models}
 \label{sec:sunmodels}
@@ -448,7 +475,7 @@ simulations of Eq.~(\ref{ham:j1}).
 
 
 \begin{figure}
-\centerline{\psfig{figure=pdj1j2q_2.eps,height=6cm}}
+\centerline{\psfig{figure=pdj1j2q_2.eps,height=9cm}}
 %\includegraphics[width=3.5in]{pdj1j2q_2.eps}
   \caption{ \label{fig:pdj1j2q} Phase Diagram of the
     SU($N$) symmetric sign-problem free
@@ -558,7 +585,7 @@ Hamiltonian. By studying the size dependence of correlation functions in Eq.~(\r
 
 
 \begin{figure}
-\centerline{\psfig{figure=fig_exp.eps,height=6cm}}
+\centerline{\psfig{figure=fig_exp.eps,height=9cm}}
   \caption{ \label{fig:exp} Anomalous dimensions of the N\'eel (left)
     and VBS (right)
   order parameters as a function of $N$. The main panels show $\eta_N$ and $\eta_V$ versus $1/N$. For $N=2,3$ and $4$, the data are 
