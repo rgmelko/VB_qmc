@@ -797,8 +797,7 @@ void LOOPS::change__operators()
       spins[nnbonds(superbops(op,0),0)] = (spins[nnbonds(superbops(op,0),0)]+1)%2;
       spins[nnbonds(superbops(op,0),1)] = (spins[nnbonds(superbops(op,0),1)]+1)%2;
     }     
-    //if the operator is diagonal we need to change it randomly
-    //using whichbond..  
+    //if the operator is diagonal we need to change it randomly 
     else{                
     
       int temp(-99);
