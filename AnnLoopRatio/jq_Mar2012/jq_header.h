@@ -95,6 +95,7 @@ LOOPS::LOOPS(double jay, double que, int xsites, int ysites, int flips,
   
   J = jay;
   Q = que;
+
   Lx = xsites; 
   Ly = ysites;
   flip = flips;
@@ -215,7 +216,10 @@ void LOOPS::operatorLists()
       nnbonds(i,0)=-99;nnbonds(i,1)=-99;
     }
     for(int i=0;i<numPlaquettes*2;i++){
-      plaquettes(i,0)=-99;plaquettes(i,1)=-99;plaquettes(i,2)=-99;plaquettes(i,3)=-99;
+      plaquettes(i,0)=-99;
+      plaquettes(i,1)=-99;
+      plaquettes(i,2)=-99;
+      plaquettes(i,3)=-99;
     }
 
     //resize and initialize the matrix of nnbonds
@@ -315,16 +319,23 @@ void LOOPS::operatorLists()
 void LOOPS::generate_ops()
 {
     
-  //changed so it doesn't just pick random bonds... the spins must be antiparallel
+  //picks initial operators acting on antiparallel spins
   int temp(-99);
   
+  double plaqProb = Q*numPlaquettes/(J*number_of_nnbonds + Q*numPlaquettes);
   for(int i=0; i<number_of_bondops; i++)
     {
+      if(drand()<plaqProb){
+	//choose a plaquette!!
+      }
+      else{
+	//choose a bondop
       do{temp = irand()%number_of_nnbonds;}
       while(spins[nnbonds(temp,0)]+spins[nnbonds(temp,1)]!=1);
       bops(i,0) = temp;
       bops(i,1) = 0;
       bops(i,2) = 1;
+      }
     }
 
   superbops.resize(number_of_bondops+number_of_sites,3);
