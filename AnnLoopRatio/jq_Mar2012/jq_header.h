@@ -40,6 +40,7 @@ class LOOPS
   long long number_of_bondops, number_of_nnbonds, numPlaquettes;
   int num2site;
   double middle, vlegMiddle;
+  double plaqProb;
   long long vlegs;/*the number of vertex legs including legs from the vertices
 		    used to simulate the edge states |VL> and |VR> */
   long long iterations; //number of iterations per loop. Used for energy calc.
@@ -304,6 +305,9 @@ void LOOPS::operatorLists()
   
   number_of_nnbonds *= 2;
   number_of_sites *= 2;
+  numPlaquettes *=2;
+
+  plaqProb = Q*numPlaquettes/(J*number_of_nnbonds + Q*numPlaquettes);
   
 }
 
@@ -331,7 +335,7 @@ void LOOPS::generate_ops()
   //to 2 bondops
   middle=0;
   
-  double plaqProb = Q*numPlaquettes/(J*number_of_nnbonds + Q*numPlaquettes);
+  plaqProb = Q*numPlaquettes/(J*number_of_nnbonds + Q*numPlaquettes);
   
   for(int i=0; i<number_of_bondops;){
     if(drand()<plaqProb){
@@ -787,14 +791,16 @@ void LOOPS::change__operators()
   // Now look at the first half of the *real* operators
   long long op = number_of_sites/2;
   for(op; op<number_of_bondops/2+number_of_sites/2; op++){
-    if(superbops(op,1)==1){                         //if operator is offdiagonal
+    //if operator is offdiagonal
+    if(superbops(op,1)==1){                       
       //update spins
       spins[nnbonds(superbops(op,0),0)] = (spins[nnbonds(superbops(op,0),0)]+1)%2;
       spins[nnbonds(superbops(op,0),1)] = (spins[nnbonds(superbops(op,0),1)]+1)%2;
-    }      //if the operator is diagonal we need to change it randomly
-
-    else{       //using whichbond..              
-     
+    }     
+    //if the operator is diagonal we need to change it randomly
+    //using whichbond..  
+    else{                
+    
       int temp(-99);
       do{temp = irand()%number_of_nnbonds;}
       while(spins[nnbonds(temp,0)]+spins[nnbonds(temp,1)]!=1);
