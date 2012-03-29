@@ -156,6 +156,38 @@ fermions, other approaches work much better in practice (except for 1D systems, 
 from anticommutation do not appear in this geometry if there is only nearest-neighbor hopping). We will here only give a rough overview of the 
 methods, with references to more detailed accounts.
 
+\subsection{The sign problem}
+\label{ss:sign}
+
+Solving many-body quantum mechanical problems on a computer is {\em generally} exponentially 
+hard (in computing time versus system size) with known algorithms. The statistical mechanics of 
+$d$-dimensional quantum Hamiltonians can be rewritten in terms of classical variables $C$ in 
+$d+1$ dimensions, e.g., the partition function ($T>0$) or the normalization ($T=0$) has the form
+\begin{equation}
+\label{eq:wc}
+Z=\sum_C W_C.
+\end{equation}
+Systems of interest can have positive and negative weights $W_C$, invalidating the usual interpretation 
+of $W_C$ as a probability in Monte Carlo simulations. Formally, this difficulty can be side-stepped by 
+not including the sign in the probability $P_C \propto |W_C|$, instead weighting the observables with it;
+\begin{equation}
+\langle O \rangle = \frac{\sum_C W_C O_C}{\sum_C W_C} =
+\frac{\sum_C O_C {\rm Sign}(W_C) |W_C|}{\sum_C {\rm Sign}(W_C)|W_C|} = 
+\frac{\langle {\rm Sign} \cdot O\rangle_W}{\langle {\rm Sign}\rangle_W}
+\end{equation}
+The problem here is that the numerator and denominator in the last expression both approach zero
+exponentially in system size and inverse temperature, and, hence, resolving them and their ratio 
+within statistical noise is exponentially hard. Hence the advantage of importance sampling (time speed-up 
+from exponential to polynomial scaling) is lost. This predicament is the QMC sign problem.
+
+We here consider classes of quantum Hamiltonians for which it is possible to choose a basis in which all 
+the $W_C\geq 0$. These ``sign-problem free'' Hamiltonians can generally be simulated in polynomial time by 
+importance sampling, allowing access to large system sizes (with the exception of ``glassy'' systems and
+other systems where even classical Monte Carlo systems scale exponentially). In some cases, sign problems
+can be solved in more sophisticated ways, e.g., in the Meron algorithm \cite{Chandrasekharan99}. Here we 
+consider only cases where the ``de-signing'' is essentially automatic, being related to the bipartiteness 
+of the interactions.
+ 
 \subsection{Common framework for $T>0$ and $T=0$ QMC methods}
 \label{ss:method}
 
@@ -236,42 +268,6 @@ by
 
 \subsection{Renyi entropies at T=0 and finite-T simulations} \label{ss:renyi}
 
-\subsection{Sign Problem}
-\label{ss:sign}
-
-Solving many-body quantum mechanical problems on a computer is {\em generally}
-exponentially hard in system size on the computing time with known
-algorithms. Remarkably, quantum Monte Carlo allows thermodynamic
-averages to be calculated for certain ``sign-problem'' free models
-in polynomial time. The statistical mechanics of quantum Hamiltonians can generally be
-rewritten in terms of classical
-variables in one higher dimension. ( {\em e.g.}, the SSE method of Sec.~\ref{ss:method}),
-\begin{equation}
-\label{eq:wc}
-Z=\sum_C W_C
-\end{equation}
-Quantum systems of interest can have $W_C$ with both
-positive and negative signs, invalidating the usual interpretation of
-$W_C$ as a probability. Formally, this difficulty can be side-stepped
-by treating ${\rm  Sign} (W_C)$ as an observable and sampling with
-probability $|W_C|$,
-\begin{equation}
-\langle O \rangle = \frac{\sum_C W_C O_C}{\sum_C W_C} =
-\frac{\frac{\sum_C O_C {\rm Sign}(W_C) |W_C|}{\sum_{C}|W_C|}}{\frac{\sum_C
-    {\rm Sign}(W_C)|W_C|}{\sum_{C}|W_C|}}
-\end{equation}
-The problem is that quantities like the denominator go to zero
-exponentially quickly in system size and in inverse temperature and hence
-resolving such small quantities by averaging $-1$ and $1$ is
-exponentially hard. Hence the advantage of importance sampling (time speed-up
-from exponential to polynomial scaling) is
-lost in all cases when the weights have fluctuating signs. This predicament is called the ``sign-problem'' of
-Monte Carlo. Luckily, for a few classes of quantum Hamiltonians, it is possible to
-choose a basis in which all the $W_C\geq 0$; these Hamiltonians are
-``sign-problem free'' and can be simulated in polynomial time by
-importance sampling, allowing access to large system sizes. 
-
- 
 
 \section{SU(2) models}
 \label{sec:su2models}
