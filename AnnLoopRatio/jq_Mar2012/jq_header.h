@@ -100,8 +100,9 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
   number_of_bondops = 2*2*bondops; /*the *real* number of bondops is multiplied
 				   by 2, one set for |VL> and one for |VR> */
 
-  //max possible number of vertex legs (if all bondops were plaquette ops)
-  vlegs = 2*4*number_of_sites + 8*number_of_bondops; 
+  //number of vertex legs assuming all operators are bondops
+  //changing this to all plaquette ops screws up the entropy measurement...
+  vlegs = 2*4*number_of_sites + 4*number_of_bondops; 
   //initialize the energy counters
   energyint = 0; energy = 0; 
   iterations = its; 
@@ -224,15 +225,15 @@ void LOOPS::operatorLists()
 
     //fill nnbonds and nn_mat
     //ybonds!! (vertical, periodic)
-    int counter = 0;
+    int bCounter = 0;
     int pCounter = 0;
     for(int x=0; x<Lx; x++){
       for(int y=0; y<Ly; y++){
-	nnbonds(counter,0) = Ly*x+y;
-	nnbonds(counter,1) = Ly*x+(y+1)%Ly;
-	nn_mat(nnbonds(counter,0),nnbonds(counter,1))=counter;
-	nn_mat(nnbonds(counter,1),nnbonds(counter,0))=counter;
-	counter++;
+	nnbonds(bCounter,0) = Ly*x+y;
+	nnbonds(bCounter,1) = Ly*x+(y+1)%Ly;
+	nn_mat(nnbonds(bCounter,0),nnbonds(bCounter,1))=bCounter;
+	nn_mat(nnbonds(bCounter,1),nnbonds(bCounter,0))=bCounter;
+	bCounter++;
 	if((x+1)<Lx){
 	  //first two sites are the same as the bond
 	  plaquettes(pCounter,0) = Ly*x+y;
@@ -247,11 +248,11 @@ void LOOPS::operatorLists()
     
     //xbonds... (horizontal, not periodic)
     for(int i=0; i<(Lx-1)*Ly; i++){
-      nnbonds(counter,0) = i;
-      nnbonds(counter,1) = i+Ly;
-      nn_mat(nnbonds(counter,0),nnbonds(counter,1))=counter;
-      nn_mat(nnbonds(counter,1),nnbonds(counter,0))=counter;
-      counter++;
+      nnbonds(bCounter,0) = i;
+      nnbonds(bCounter,1) = i+Ly;
+      nn_mat(nnbonds(bCounter,0),nnbonds(bCounter,1))=bCounter;
+      nn_mat(nnbonds(bCounter,1),nnbonds(bCounter,0))=bCounter;
+      bCounter++;
       plaquettes(pCounter,0)=i;
       plaquettes(pCounter,1)=i+Ly;
       plaquettes(pCounter,2)=(i+1)%Ly;
@@ -260,7 +261,7 @@ void LOOPS::operatorLists()
     }
 
     // make sure we have the proper number of nnbonds
-    if(counter!=number_of_nnbonds){cout << "supererror" << endl;}
+    if(bCounter!=number_of_nnbonds){cout << "supererror" << endl;}
     if(pCounter!=numPlaquettes){cout << "super Plaquette counting error" << endl;}
     
   }
