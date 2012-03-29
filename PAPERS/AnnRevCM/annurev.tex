@@ -174,14 +174,15 @@ not including the sign in the probability $P_C \propto |W_C|$, instead weighting
 \langle O \rangle = \frac{\sum_C W_C O_C}{\sum_C W_C} =
 \frac{\sum_C O_C {\rm Sign}(W_C) |W_C|}{\sum_C {\rm Sign}(W_C)|W_C|} = 
 \frac{\langle {\rm Sign} \cdot O\rangle_W}{\langle {\rm Sign}\rangle_W}
+\label{expvalue}
 \end{equation}
 The problem here is that the numerator and denominator in the last expression both approach zero
 exponentially in system size and inverse temperature, and, hence, resolving them and their ratio 
-within statistical noise is exponentially hard. Hence the advantage of importance sampling (time speed-up 
-from exponential to polynomial scaling) is lost. This predicament is the QMC sign problem.
+within statistical noise is exponentially hard. The advantage of importance sampling (time speed-up 
+from exponential to polynomial scaling) is then lost. This predicament is the QMC sign problem.
 
 We here consider classes of quantum Hamiltonians for which it is possible to choose a basis in which all 
-the $W_C\geq 0$. These ``sign-problem free'' Hamiltonians can generally be simulated in polynomial time by 
+the $W_C\geq 0$. These sign-problem free models can generally be simulated in polynomial time by 
 importance sampling, allowing access to large system sizes (with the exception of ``glassy'' systems and
 other systems where even classical Monte Carlo systems scale exponentially). In some cases, sign problems
 can be solved in more sophisticated ways, e.g., in the Meron algorithm \cite{Chandrasekharan99}. Here we 
@@ -209,9 +210,10 @@ evolution operator $P(\beta)={\rm e}^{-\beta H}$ or a high power of the hamilton
 convergence for the two choises for a given system size $N$. This follows from a Taylor expansion of the time evolution operator, which for large 
 $\beta$ is dominated by powers of the order $n=\beta |E_0|$, where $E_0$ is the ground state energy (which is proportional to $N$).
 
-In practice, implementations of the $T=0$ and $T>0$ approaches for a given model are often very similar. Choosing a basis, the exponential
-operator can either be treated with path-integral methods (world lines in discrete or continuous imaginary time) or expanded in a power series 
-(stochastic series expansion). The latter approach at $T=0$ differs only in a minor way from projection with $H^m$ with fixed $m$. The difference 
+The task is now to rewrite $Z$ in (\ref{za1}) or (\ref{za2}) into the form (\ref{eq:wc}), and expectation values as (\ref{expvalue}), with classical 
+variables without diagonalizing $H$. In practice, implementations of $T=0$ and $T>0$ approaches for a given model are often very similar. Choosing a 
+basis, the exponential operator can either be treated with path-integral methods (world lines in discrete or continuous imaginary time) or expanded 
+in a power series (stochastic series expansion). The latter approach at $T=0$ differs only in a minor way from projection with $H^m$ with fixed $m$. The difference 
 between Eqs.~(\ref{za1}) and (\ref{za2}) is then essentially only in the boundary conditions in the imaginary time direction; periodic for $T>0$ 
 (due to the trace being taken) and dictated by the nature of the trial state in $T=0$ projections. An equal superposition over all basis states 
 corresponds to fully open boundaries, while other choices of the trial state leads to open boundaries (with some weighting of the bra and ket 
@@ -266,7 +268,8 @@ by
 
 
 
-\subsection{Renyi entropies at T=0 and finite-T simulations} \label{ss:renyi}
+\subsection{Renyi entropies in $T=0$ and $T>0$ simulations} 
+\label{ss:renyi}
 
 
 \section{SU(2) models}
