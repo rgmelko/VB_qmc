@@ -364,11 +364,11 @@ void LOOPS::generate_ops()
   cout << num2site << endl;
   cout << middle << endl;
 
-  cout << vlegs << endl;
+  //  cout << vlegs << endl;
   vlegs = 4*number_of_sites + 4*num2site;
-  cout << vlegs << endl;
+  //  cout << vlegs << endl;
   vlegMiddle = 2*number_of_sites + 4*(middle+0.5) - 0.5;
-  cout << vlegMiddle << endl;
+  //  cout << vlegMiddle << endl;
 
   superbops.resize(number_of_bondops+number_of_sites,3);
   //  for(int i=0;i<number_of_sites+number_of_bondops;i++){
