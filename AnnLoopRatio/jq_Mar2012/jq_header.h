@@ -323,20 +323,21 @@ void LOOPS::generate_ops()
   int temp(-99);
   
   double plaqProb = Q*numPlaquettes/(J*number_of_nnbonds + Q*numPlaquettes);
-  for(int i=0; i<number_of_bondops; i++)
-    {
-      if(drand()<plaqProb){
-	//choose a plaquette!!
-      }
-      else{
-	//choose a bondop
-      do{temp = irand()%number_of_nnbonds;}
-      while(spins[nnbonds(temp,0)]+spins[nnbonds(temp,1)]!=1);
-      bops(i,0) = temp;
-      bops(i,1) = 0;
-      bops(i,2) = 1;
+  for(int i=0; i<number_of_bondops;){
+    if(drand()<plaqProb){
+      //choose a plaquette!!
+    }
+    else{
+      //choose a bondop
+      temp = irand()%number_of_nnbonds;
+      if(spins[nnbonds(temp,0)]+spins[nnbonds(temp,1)]==1){
+	bops(i,0) = temp;
+	bops(i,1) = 0;
+	bops(i,2) = 1;
+	i++;
       }
     }
+  }
 
   superbops.resize(number_of_bondops+number_of_sites,3);
   //  for(int i=0;i<number_of_sites+number_of_bondops;i++){
