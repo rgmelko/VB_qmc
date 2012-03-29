@@ -99,10 +99,15 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
   //****changed**** multiplied by 2
   number_of_bondops = 2*2*bondops; /*the *real* number of bondops is multiplied
 				   by 2, one set for |VL> and one for |VR> */
+  
 
+  // :+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+
   //number of vertex legs assuming all operators are bondops
   //changing this to all plaquette ops screws up the entropy measurement...
   vlegs = 2*4*number_of_sites + 4*number_of_bondops; 
+  // :+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+
+
+
   //initialize the energy counters
   energyint = 0; energy = 0; 
   iterations = its; 
@@ -118,13 +123,16 @@ LOOPS::LOOPS(int xsites, int ysites, int flips, int bondops, long long its,
   for(long long i=0; i<vlegs; i++){ Hlinks[i]=i; } 
   // :+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+
 
+  // :+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+
   //Initialize Vlinks
   Vlinks.assign(vlegs, -99); //set size and initialize
   for(long long i=0; i<vlegs; i+=2){
     Vlinks[i] = i+1;
     Vlinks[i+1] = i;
   }
+  // :+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+
 
+  
   bops.resize(number_of_bondops,3); //set size of bops
 
   // :+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+
