@@ -266,17 +266,44 @@ in Refs.~X and Y.
 
 The above methods for SU(2) can be extended to a certain
 class of spin models with an SU($N$) symmetry on bipartite
-lattices. These models consist of having an SU($N$) spin of a
+lattices. These models consist of having an SU($N$) spin with a
 fundamental representation on the A sub-lattice and an SU($N$) spin with
 a conjugate to fundamental representation on the B sub-lattice. Let us
-represent the generators of the fundamental representation by $T$A
-simple interaction between a spin on the A and B sub-lattice is given
-by 
+denote the $N$ states on each site of our lattice by $|\alpha\rangle$ where
+$1\leq \alpha \leq N$ 
+and the generators of the fundamental representation by $T^a$ (an
+$N\times N$ matrix). 
+The SU($N$) singlet between a spin $i$ on the A sub-lattice and a spin $j$ on the
+B sub-lattice is given by, $|s^N_{ij}\rangle = \sum_\alpha
+|\alpha_i\alpha_j\rangle$. We can use this state to rewrite the
+manifestly SU($N$) invariant interaction  $\sum_a T^a_i \cdot
+T^{*a}_j$, as an explicitly sign problem free projection operator,
+\begin{equation}
+\sum_a T^a_i \cdot
+T^{*a}_j + c = |s^N_{ij}\rangle \langle s^N_{ij}|\equiv P_{ij}
+\end{equation}
+This is an SU($N$) invariant generalization of the SU(2) Heisenberg interaction
+for two spins on {\em opposite} sub-lattices.
 
+Another interaction of interest is an SU($N$) invariant interaction
+between sites having the same representation, the permutation
+operator, which is defined by its action on a ket,
+$\Pi_{ij}|\alpha_i\beta_j\rangle = |\beta_i\alpha_j\rangle$. We can now relate this operator to the generators $T^a$,
+\begin{equation}
+\sum_a T^a_i \cdot
+T^{a}_j + c = \Pi_{ij}
+\end{equation}
+This is an SU($N$) invariant generalization of the SU(2) Heisenberg
+interaction for two spins on the {\em same} sub-lattice.
+
+In terms of the definitions of $P_{ij}$ and $\Pi_{ij}$, the algorithms presented in
+Sec.~\ref{ss:method} can be generalized from SU(2) to SU($N$) by
+extending the number of loop colors from 2 to $N$.
 
 
 \subsection{Renyi entropies in $T=0$ and $T>0$ simulations} 
 \label{ss:renyi}
+
 
 In addition to conventional estimators such as correlation functions, it has recently become apparent that QMC methods are capable of measuring estimators related to the {\it entanglement} of a quantum system.  Several quantities related to entanglement have been explored for their abilities to identify and characterize quantum phase and phase transitions such as concurrence, fluctuations, and fidelity.  
 
