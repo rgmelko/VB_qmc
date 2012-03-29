@@ -330,6 +330,7 @@ void LOOPS::generate_ops()
   //middle gives the middle bond operator if you equate a 4site operator 
   //to 2 bondops
   middle=0;
+  
   double plaqProb = Q*numPlaquettes/(J*number_of_nnbonds + Q*numPlaquettes);
   
   for(int i=0; i<number_of_bondops;){
@@ -363,12 +364,21 @@ void LOOPS::generate_ops()
   cout << num2site << endl;
   cout << middle << endl;
 
+  cout << vlegs << endl;
+  vlegs = 4*number_of_sites + 4*num2site;
+  cout << vlegs << endl;
+  vlegMiddle = 2*number_of_sites + 4*(middle+0.5) - 0.5;
+  cout << vlegMiddle << endl;
+
   superbops.resize(number_of_bondops+number_of_sites,3);
   //  for(int i=0;i<number_of_sites+number_of_bondops;i++){
   //    superbops(i,0)=-99;
   //    superbops(i,1)=-99;
   //    }
-     
+
+  /*==============================================================
+    Setting the initial dimerized state in terms of bond operators
+    ==============================================================*/
   //initial state is dimerized, but either Lx or Ly can be odd.
   //Dimerize in x direction if Lx is even
   //Otherise dimerize in Ly direction
@@ -376,9 +386,8 @@ void LOOPS::generate_ops()
   if(Lx%2==0){
     for(int ix=0; ix<Lx; ix+=2){
       for(int iy=0; iy<Ly; iy++){
-	
-	//	cout << iy+ix*Ly<< ", "<<iy+(ix+1)*Ly<<"    "<<Lx*Ly+iy+ix*Ly<<", "<<Lx*Ly+iy+(ix+1)*Ly<<endl;
-
+	//cout << iy+ix*Ly<< ", "<<iy+(ix+1)*Ly<<"    "
+	//<<Lx*Ly+iy+ix*Ly<<", "<<Lx*Ly+iy+(ix+1)*Ly<<endl;
 	superbops(bondd,0) = nn_mat(iy+ix*Ly,iy+(ix+1)*Ly);
 	superbops(bondd,1) = 0;
 	superbops(bondd,2) = 1;
@@ -397,7 +406,6 @@ void LOOPS::generate_ops()
       for(int iy=0; iy<Ly; iy+=2){
 	//cout << iy+ix*Ly<< ", "<<iy+1+ix*Ly<<"   
 	// "<<Lx*Ly+iy+ix*Ly<<", "<<Lx*Ly+iy+1+ix*Ly<<endl;
-
 	superbops(bondd,0) = nn_mat(iy+ix*Ly,iy+1+ix*Ly);
 	superbops(bondd,1) = 0;
 	superbops(bondd,2) = 1;
@@ -418,9 +426,9 @@ void LOOPS::generate_ops()
 
   //Copy the starting states for all 4 systems
   for(int iall=0; iall<Lx*Ly; iall++){
-	superbops(Lx*Ly + number_of_bondops + iall,0) = superbops(iall,0);
-	superbops(Lx*Ly + number_of_bondops + iall,1) = 0;
-	superbops(Lx*Ly + number_of_bondops + iall,2) = superbops(iall,2);
+    superbops(Lx*Ly + number_of_bondops + iall,0) = superbops(iall,0);
+    superbops(Lx*Ly + number_of_bondops + iall,1) = 0;
+    superbops(Lx*Ly + number_of_bondops + iall,2) = superbops(iall,2);
   }
 
   for(int i=0; i<number_of_bondops; i++){
