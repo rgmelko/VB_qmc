@@ -38,6 +38,8 @@ class LOOPS
   long long energyint; /*keeps track of the energy: 
 			    energy = energyint*0.75/iterations */
   long long number_of_bondops, number_of_nnbonds, numPlaquettes;
+  int num2site;
+  double middle, vlegMiddle;
   long long vlegs;/*the number of vertex legs including legs from the vertices
 		    used to simulate the edge states |VL> and |VR> */
   long long iterations; //number of iterations per loop. Used for energy calc.
@@ -322,10 +324,26 @@ void LOOPS::generate_ops()
   //picks initial operators acting on antiparallel spins
   int temp(-99);
   
+  //num2site is the effective number of 2 site operators (counting a plaquette
+  // operator as 1 bond operators)
+  num2site=0;
+  //middle gives the middle bond operator if you equate a 4site operator 
+  //to 2 bondops
+  middle=0;
   double plaqProb = Q*numPlaquettes/(J*number_of_nnbonds + Q*numPlaquettes);
+  
   for(int i=0; i<number_of_bondops;){
     if(drand()<plaqProb){
       //choose a plaquette!!
+      temp = irand()%numPlaquettes;
+      if(spins[plaquettes(temp,0)]+spins[plaquettes(temp,1)]==1 && 
+	 spins[plaquettes(temp,2)]+spins[plaquettes(temp,3)]==1){
+	bops(i,0) = temp;
+	bops(i,1) = 0;
+	bops(i,2) = 2; //2 for plaquette, right?
+	i++;
+	num2site+=2;
+      }
     }
     else{
       //choose a bondop
@@ -333,11 +351,15 @@ void LOOPS::generate_ops()
       if(spins[nnbonds(temp,0)]+spins[nnbonds(temp,1)]==1){
 	bops(i,0) = temp;
 	bops(i,1) = 0;
-	bops(i,2) = 1;
+	bops(i,2) = 1; //1 for bond operator
 	i++;
+	num2site++;
       }
     }
+    if(i==number_of_bondops/2){middle = num2site-0.5;}
   }
+  cout << num2site << endl;
+  cout << middle << endl;
 
   superbops.resize(number_of_bondops+number_of_sites,3);
   //  for(int i=0;i<number_of_sites+number_of_bondops;i++){
