@@ -133,8 +133,8 @@ analogues based just on a simple order parameter \cite{Senthil04a,Fradkin04,Sach
 a classical statistical-mechanics model (which arises out of the construction of the sampling space in the QMC scheme implemented), it is 
 often not one that would have come natural as a starting point just from the perspective of increasing the dimensionality of some
 classical model. Note, in particular, that it is now well established that symmetries alone do not uniquely determine the nature of a 
-quantum phase transition, but the same symmetry can lead to different universality classes, depending on the role of topological defects 
-\cite{Motrunich04}. Thus, in our view the approach of using manifestly quantum mechanical designer Hamiltonians is an important direction
+quantum phase transition, but systems with the same symmetries can belong to different universality classes, depending on the role of topological 
+defects \cite{Motrunich04}. Thus, in our view the approach of using manifestly quantum mechanical designer Hamiltonians is an important direction
 in research on many-body ground states and quantum criticality.
 
 \subsection{Outline of the Review}
@@ -339,7 +339,7 @@ and $Q$ is a multi-spin interaction which competes against N\'eel order but does
 
 The $Q$ terms are most conveniently expressed in terms of the singlet projectors (\ref{psinglet}); in the simplest case on a square lattice
 \begin{equation}
-H_Q = - Q\sum_{ijkl} C_{ij}C_{kl},
+H_Q = - Q\sum_{ijkl} P_{ij}P_{kl},
 \end{equation}
 where $ij$ and $kl$ form parallel edges. One can also use more than two projector in the product, and often the notation $Q_p$ is used for an 
 interaction with $p$ projectors. Fig.~\ref{qterms} shows $Q_2$ and $Q_3$ terms leading to columnar VBS ground states. In addition to the number
@@ -357,6 +357,7 @@ $C_{ij}$ on site pairs $ij$. The Hamiltonian contains all unique translations of
 \end{figure}
 
 \section{N\'eel-VBS transition in SU($N$) spin models}
+\label{sec:sunmodels}
 
 In this section we will work with SU($N$) spin models on two
 dimensional  square
@@ -366,7 +367,6 @@ Sec.~\ref{ss:bilN} describes a study on a bilayer square
 lattice. 
 
 \subsection{SU($N$) Heisenberg models}
-\label{sec:sunmodels}
 
 A natural extension of the SU(2) Heisenberg model is to spin models with
 SU($N$) symmetry. Such generalizations were initially introduced to
@@ -679,10 +679,8 @@ Whether or not the sign problem can be circumvented for translationally invarian
 and frustrated quantum spins models remains and open question.
 
 
-% Create the reference section using BibTeX:
 \bibliography{rev_bib.bib}
-\bibliographystyle{plain}
-%\bibliographystyle{apsrev}
+\bibliographystyle{Science}
 
 \end{document}
 
