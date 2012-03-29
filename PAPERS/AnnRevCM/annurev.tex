@@ -139,12 +139,19 @@ in research on many-body ground states and quantum criticality.
 
 \subsection{Outline of the Review}
 
-In Sec.~\ref{sec:methods} we discuss some of the QMC schemes used in large-scale studies of quantum spin systems, including treatments
-of SU($N$) symmetry and recent progress in computing the Renyi entanglement entropy. We also remark on the sign problem. In 
-Sec.~\ref{sec:su2models} we give examples of conventional and ``deconfined'' quantum-critical points in SU(2) invariant models, and in 
-Sec.~\ref{sec:sunmodels} we show how generalization to SU($N$) symmetry can be used to directly connect to large-$N$ studies within
-field theory. In Sec.~\ref{sec:u1models} we discuss spin liquid states and associated quantum phase transitions in U($1$) symmetric spin
-models (or, equivalently, hard-core bosons). We conclude in Sec.~\ref{sec:discussion} with a discussion of future prospects and challenges.
+In this review, we will focus on some recent concrete examples where it has been possible to study quantum phase transitions in detail 
+by QMC studies, and to make contact with corresponding field theories by, e.g., comparing analytical and numerical results for critical 
+exponents. We also discuss other fascinating quantum phenomena, e.g., emergent gauge fields and entanglement, where QMC studies are
+playing a critical role in establishing bench-marks and gaining insights that are hard or impossible to exctract from the field theories.
+
+In Sec.~\ref{sec:methods} we discuss the sign problem and some of the QMC schemes used in large-scale studies of quantum spin systems, 
+including treatments of SU($N$) symmetry and recent progress in computing the Renyi entanglement entropy. In Sec.~\ref{sec:su2models} 
+we give examples of conventional and deconfined quantum-critical points in SU(2) invariant models, and in Sec.~\ref{sec:sunmodels} 
+we show how generalization to SU($N$) symmetry can be used to directly connect to large-$N$ studies within field theory. In Sec.~\ref{sec:u1models} 
+we discuss spin liquid states and associated quantum phase transitions in U($1$) symmetric spin models (or, equivalently, hard-core bosons). 
+
+
+We conclude in Sec.~\ref{sec:discussion} with a discussion of future prospects and challenges.
 
 \section{Modern QMC methods}
 \label{sec:methods}
@@ -272,22 +279,21 @@ by
 \label{ss:renyi}
 
 
-\section{SU(2) models}
+\section{Ground states and quantum phase transitions in SU(2) models}
 \label{sec:su2models}
 
 It has been a matter of debate for a long time whether the non-linear sigma model can correctly capture a phase transition from the N\'eel state 
 to a non-magnetic state in two dimensions for $S=1/2$ spins. Other terms, related to Berry phases, have to be added to the Lagrangian to describe the 
-formation of a valence-bond-solid, i.e., a state which spontaneously breaks lattice symmetries by the formation of some pattern of weaker and stronger 
-correlated spins (dimerization being the simplest case). It was recently proposed that the N\'eel and VBS states are separated by a quantum-critical 
-point, which itself is described by the {\it non-compact} CP$^1$ model describing spinons weakly interacting with a U($1$) gauge field (in contrast to the
-nonlinear $\sigma$-model, which is a description equivalent to the {\it compact} CP$^1$ model, i.e., the Berry phases make the gauge field non-compact). 
-The VBS and N\'eel order parameter form due to confinement and condensation, respectively, of the spinons. 
+formation of a spontaneously formed VBS. It was recently proposed that the N\'eel and VBS states are separated by a ``deconfined'' quantum-critical 
+point \cite{Senthil04a} corresponding to the {\it non-compact} CP$^1$ model. It  describing spinons weakly interacting with a U($1$) gauge field (in contrast 
+to the nonlinear $\sigma$-model, which is a description equivalent to the {\it compact} CP$^1$ model, i.e., the Berry phases make the gauge field non-compact). 
+The VBS and N\'eel order parameter form due to confinement and condensation, respectively, of spinons. 
 
 In this section we first discuss the well-studied continuous quantum phase transition between the N\'eel state and a quantum paramagnet in systems 
 with bimodal couplings forming a static pattern. In this case the paramagnet does not break any symmetries of the Hamiltonian and the transition 
 is believed to fall in the 3D O($3$) universality class. A VBS state with spontaneously broken lattice symmetries can be achived with frustrated 
-interactions, which, however, are sign problematic in QMC simulations.  The J-Q model \cite{Sandvik07} is a designer Hamiltonian circumventing 
-this problem.
+interactions, which, however, are sign problematic in QMC simulations. The J-Q model \cite{Sandvik07} is a designer Hamiltonian circumventing this 
+problem. We will review some of the recent work aimed at characterizing its VBS state and  N\'eel--VBS transition.
 
 \subsection{N\'eel--paramagnetic transition in dimerized systems}
 
