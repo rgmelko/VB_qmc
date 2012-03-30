@@ -29,7 +29,7 @@ Anders W. Sandvik
 \affiliation{Department of Physics, Boston University, 590 Commonwealth Avenue, Boston, Massachusetts 02215, USA}}
 
 \begin{abstract}
-We discuss designer Hamiltonians---lattice models tailored to be free from sign problems when simulated with quantum 
+We discuss designer Hamiltonians---lattice models tailored to be free from sign problems (``de-signed'') when simulated with quantum 
 Monte Carlo methods but still host complex  many-body states and quantum phase transitions of great interest in condensed matter 
 physics. We focus on quantum spin systems in which competing interactions lead to non-magnetic ground states. These states and 
 associated quantum phase transitions can be studied in great detail, enabling direct access to universal properties and connections 
@@ -55,7 +55,7 @@ can have significant synergy effects in advancing our understanding of quantum m
 have had and continue to have in classical statistical mechanics, especially with regards to phase transitions. 
 
 Computational studies have their own challenges, and many models of interest are currently beyond the reach of existing 
-numerical algorithms. Frustrated quantum spin systems and fermions in two and three dimensions are the two main groups 
+algorithms. Frustrated quantum spin systems and fermions in two and three dimensions are the two main groups 
 of difficult systems. They are generally associated with the infamous ``sign problem'' in quantum Monte Carlo (QMC) simulation
 \cite{Loh90,Henelius00,Nyfeler08}, i.e., the weight function in the configuration space constructed using the Euclidean path 
 integral or other mappings to an effective statistical-mechanics problem is not positive definite (and hence cannot be directly 
@@ -65,11 +65,11 @@ large-scale QMC studies without sign problems (i.e., they are ``de-signed'' by d
 
 A common misconception is that interesting designer Hamiltonians should not exist---if a model is sign-problem 
 free it must be trivial or uninteresting. There are already many counter-examples to this pessimistic view, 
-however, and we will here review some recent examples from the area of quantum magnetism. Recent advances in QMC 
+however, and we will here review some recent examples from the area of quantum magnetism. Advances in QMC 
 methods \cite{Sandvik91,Evertz93,Beard96,Prokofev98,Sandvik99,Sandvik10a} have made it possible to truly approach the 
 low-energy limit of many important models without any approximations, and to compute quantities of great current interest, 
 e.g., the fidelity \cite{Schwandt09,Degrandi11} and the entanglement entropy \cite{Hastings10}. We will brifly address some 
-of these technical advances as well. We here first give some further remark on field theory and the philosophy of the 
+of these technical aspects as well. We here first give some further remark on field theory and the philosophy of the 
 synergistic use of designer Hamiltonians, and then outline the topics covered in this review.
 
 \subsection{Field theory and numerical studies of Hamiltonians}
@@ -174,9 +174,10 @@ $d+1$ dimensions, e.g., the partition function ($T>0$) or the normalization ($T=
 \label{eq:wc}
 Z=\sum_C W_C.
 \end{equation}
-Systems of interest can have positive and negative weights $W_C$, invalidating the usual interpretation 
-of $W_C$ as a probability in Monte Carlo simulations. Formally, this difficulty can be side-stepped by 
-not including the sign in the probability $P_C \propto |W_C|$, instead weighting the observables with it;
+Systems of interest can, for practical, known ways of transforming into the above form,
+have positive and negative weights $W_C$, invalidating the usual interpretation of $W_C$ as a probability 
+in Monte Carlo simulations. Formally, this difficulty can be side-stepped by not including the sign 
+in the probability $P_C \propto |W_C|$, instead weighting the observables with it;
 \begin{equation}
 \langle O \rangle = \frac{\sum_C W_C O_C}{\sum_C W_C} =
 \frac{\sum_C O_C {\rm Sign}(W_C) |W_C|}{\sum_C {\rm Sign}(W_C)|W_C|} = 
@@ -184,7 +185,7 @@ not including the sign in the probability $P_C \propto |W_C|$, instead weighting
 \label{expvalue}
 \end{equation}
 The problem here is that the numerator and denominator in the last expression both approach zero
-exponentially in system size and inverse temperature, and, hence, resolving them and their ratio 
+exponentially in system size and inverse temperature, and, hence, resolving (\ref{expvalue})
 within statistical noise is exponentially hard. The advantage of importance sampling (time speed-up 
 from exponential to polynomial scaling) is then lost. This predicament is the QMC sign problem.
 
@@ -196,7 +197,7 @@ can be solved in more sophisticated ways, e.g., in the Meron algorithm \cite{Cha
 consider only cases where the ``de-signing'' is essentially automatic, being related to the bipartiteness 
 of the interactions.
  
-\subsection{Common framework for $T>0$ and $T=0$ QMC methods}
+\subsection{$T>0$ and $T=0$ QMC methods}
 \label{ss:method}
 
 In {\it finite-temperature} methods, the goal is to compute thermal averages
@@ -217,14 +218,40 @@ evolution operator $P(\beta)={\rm e}^{-\beta H}$ or a high power of the hamilton
 convergence for the two choises for a given system size $N$. This follows from a Taylor expansion of the time evolution operator, which for large 
 $\beta$ is dominated by powers of the order $n=\beta |E_0|$, where $E_0$ is the ground state energy (which is proportional to $N$).
 
+\subsubsection{Path integrals and stochastic series expansion}
+
 The task is now to rewrite $Z$ in (\ref{za1}) or (\ref{za2}) into the form (\ref{eq:wc}), and expectation values as (\ref{expvalue}), with classical 
-variables without diagonalizing $H$. In practice, implementations of $T=0$ and $T>0$ approaches for a given model are often very similar. Choosing a 
-basis, the exponential operator can either be treated with path-integral methods (world lines in discrete or continuous imaginary time) or expanded 
-in a power series (stochastic series expansion). The latter approach at $T=0$ differs only in a minor way from projection with $H^m$ with fixed $m$. The difference 
-between Eqs.~(\ref{za1}) and (\ref{za2}) is then essentially only in the boundary conditions in the imaginary time direction; periodic for $T>0$ 
-(due to the trace being taken) and dictated by the nature of the trial state in $T=0$ projections. An equal superposition over all basis states 
-corresponds to fully open boundaries, while other choices of the trial state leads to open boundaries (with some weighting of the bra and ket 
-states, depending on the details of the trial state). 
+variables without diagonalizing $H$. In practice, implementations of $T=0$ and $T>0$ approaches for a given model are often very similar. In either case,
+the exponential operator can be treated with path-integral methods (world lines in discrete or continuous imaginary time), starting from a product of
+ ``imaginary-time slices'',
+\begin{equation}
+{\rm e}^{-\beta H}= \prod_{i=1}^M {\rm e}^{-\Delta H},~~~~ \Delta=\frac{\beta}{M},
+\label{slicing}
+\end{equation}
+ans complete sets of states are inserted between the exponentials (and the trace is further taken at $T>0$). For small $\Delta$, the
+matrix elements of the exponentials can be evaluated approximately, giving the form (\ref{eq:wc}) with $W_C$ a product of $M$ matrix elements. 
+In modern approaches the limit $\Delta \to 0$ can be taken at the algorithmic level, and the Monte Carlo sampling is of paths in continuous
+imaginary time. Older approaches employed the Suzuki-Trotter decomposition in (\ref{slicing}), typically leading to an error $\mathcal{O}(\Delta^2)$.
+
+Al alternative way is to start from a series expansion,
+\begin{equation}
+{\rm e}^{-\beta H}= \sum_{n=0}^\infty \frac{\beta)^n}{n}(-H)^n,
+\end{equation}
+and again insering complete sets of states between each $H$ in the powers $(-H)^n$. The expansion power $n$ itself is importance-sampled along 
+with the terms of $H$ (stochastic series expansion; SSE), and the expansion is sharply peaked around $\langle n\rangle = -\beta E_0$ (under the assumption 
+that there is no sign problem). Again, $W_c$ in (\ref{eq:wc}) is a product of matrix elements (now with no approximations from the outset). The continuous-time 
+path integral can also be seen as a variant of SSE, where the evolution operator is written in the interaction picture, with $H=H_0+V$ and expanding only 
+in $V$. The full SSE is normally more efficient for spin systems, while the continuous-time variant should be better for certain boson systems.
+
+Regardless of how the exponential operator is treated,
+the difference between Eqs.~(\ref{za1}) and (\ref{za2}) is essentially only in the boundary conditions in the imaginary time direction; 
+periodic for $T>0$ (due to the trace being taken) and dictated by the nature of the trial state in $T=0$ projections. An equal superposition over 
+all basis states corresponds to fully open boundaries, while other choices of the trial state leads to open boundaries (with some weighting of the bra 
+and ket states, depending on the details of the trial state). 
+
+\subsection{Sampling with loop and cluster algorithms}
+
+\subsection{Special techniques for SU(2)-symmetric models}
 
 A particularly convenient class of trial states for SU($2$) invariant interactions is the amplitude-product states in the valence-bond basis, 
 introduced by Liang et al. and recently generalized to include bond correlations. These overcomplete states for the singlet sector incorporate
