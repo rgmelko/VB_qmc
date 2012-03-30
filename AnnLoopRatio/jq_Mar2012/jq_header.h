@@ -488,22 +488,30 @@ void LOOPS::create__Hlinks()
   // (on the right side) |VR> 
 
   long long templegnum;
+  //initialize the leg we start on
+  legnum = 4*bopnum;
+
   //for the LHS of the bondops
-  for(bopnum; bopnum<(number_of_bondops+number_of_sites)/2; bopnum++){
+  for(bopnum; legnum<vlegMiddle; bopnum++){
 
-    //the top left (first) leg of the bond op
-    legnum = 4*bopnum;
-
-    //join the first leg to the 
-    templegnum = nnbonds(superbops(bopnum,0),0);
-    Hlinks[legnum] = last[templegnum];//does it matter if
-    Hlinks[last[templegnum]] = legnum;//I screw up the order
-    last[templegnum] = legnum + 2; //? because I am
-
-    templegnum = nnbonds(superbops(bopnum,0),1);
-    Hlinks[legnum+1] = last[templegnum]; 
-    Hlinks[last[templegnum]] = legnum+1;
-    last[templegnum] = legnum + 3;
+    //figure out operator type
+    //bond operator
+    if(superbops(bopnum,2)==1){
+      //join the first leg to the... 
+      templegnum = nnbonds(superbops(bopnum,0),0);
+      Hlinks[legnum] = last[templegnum];//does it matter if
+      Hlinks[last[templegnum]] = legnum;//I screw up the order
+      last[templegnum] = legnum + 2; //? because I am
+      
+      templegnum = nnbonds(superbops(bopnum,0),1);
+      Hlinks[legnum+1] = last[templegnum]; 
+      Hlinks[last[templegnum]] = legnum+1;
+      last[templegnum] = legnum + 3;
+      
+      legnum+=4;
+    }
+    else{ //it's a plaquette operator!!!
+    }
   }
 
   /*************************************************************
@@ -529,9 +537,6 @@ void LOOPS::create__Hlinks()
   //now the RHS bondops
   for(bopnum; bopnum<number_of_bondops+number_of_sites; bopnum++){
 
-    //the top left (first) leg of the bond op
-    legnum = 4*bopnum;
-
     //join the first leg to the 
     templegnum = nnbonds(superbops(bopnum,0),0);
     Hlinks[legnum] = last[templegnum];//does it matter if
@@ -541,10 +546,10 @@ void LOOPS::create__Hlinks()
     templegnum = nnbonds(superbops(bopnum,0),1);
     Hlinks[legnum+1] = last[templegnum]; 
     Hlinks[last[templegnum]] = legnum+1;
-    last[templegnum] = legnum + 3;   
+    last[templegnum] = legnum + 3;  
 
+    legnum += 4;
   }
-
 }
 
 
