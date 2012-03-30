@@ -48,6 +48,7 @@ class LOOPS
   string bopfile; //the name of the file in which the bondops are stored
   
   vector <long long> Vlinks, Hlinks;//the vert and horizontal links for the LL
+  vector <double> vleg2op; //list of which leg/4 corresponds to what operator
   vector <int> spins, init_spins; //keeps track of spins for swaperation
 
   vector <int> VL, VR; //the propagated left and right VB states
@@ -470,8 +471,9 @@ void LOOPS::create__Hlinks()
   long long legnum = 0;
   // iterate through bond operators and create horizontal links
 
-  // Size Hlinks
+  // Size Hlinks and vleg2op
   Hlinks.assign(vlegs, -99); 
+  vleg2op.assign(vlegs, -99);
   //Initialize Hlinks so the "edge" sites are linked to themselves
   for(int i=0; i<number_of_sites/2; i++){
     for(int j=0; j<4; j++){Hlinks[i*4+j]=i*4+j;}
@@ -508,6 +510,7 @@ void LOOPS::create__Hlinks()
       Hlinks[last[templegnum]] = legnum+1;
       last[templegnum] = legnum + 3;
       
+      vleg2op[legnum/4] = bopnum;
       legnum+=4;
     }
     else{ //it's a plaquette operator!!!
@@ -521,6 +524,7 @@ void LOOPS::create__Hlinks()
       Hlinks[last[templegnum]] = legnum+1;
       last[templegnum] = legnum + 3;
       
+      vleg2op[legnum/4] = bopnum;
       legnum +=4;
       
       //now the other side of the plaquette
@@ -534,6 +538,7 @@ void LOOPS::create__Hlinks()
       Hlinks[last[templegnum]] = legnum+1;
       last[templegnum] = legnum + 3;
 
+      vleg2op[legnum/4] = bopnum+0.5;
       legnum +=4;  
     }
   }
@@ -574,7 +579,8 @@ void LOOPS::create__Hlinks()
       Hlinks[legnum+1] = last[templegnum]; 
       Hlinks[last[templegnum]] = legnum+1;
       last[templegnum] = legnum + 3;
-      
+
+      vleg2op[legnum/4] = bopnum;
       legnum+=4;
     }
     else{ //it's a plaquette operator!!!
@@ -588,6 +594,7 @@ void LOOPS::create__Hlinks()
       Hlinks[last[templegnum]] = legnum+1;
       last[templegnum] = legnum + 3;
       
+      vleg2op[legnum/4] = bopnum;
       legnum +=4;
       
       //now the other side of the plaquette
@@ -601,6 +608,7 @@ void LOOPS::create__Hlinks()
       Hlinks[last[templegnum]] = legnum+1;
       last[templegnum] = legnum + 3;
       
+      vleg2op[legnum/4] = bopnum+0.5;
       legnum +=4;  
     }
   }
@@ -677,14 +685,33 @@ void LOOPS::make_flip_loops()
     
 
     if(leg>vlegMiddle&&startleg<vlegMiddle){
-      rfirstcross = nnbonds(superbops(leg/4,0),leg%2);
+      //if it's a bond operator
+      int tempOp = floor (vleg2op[leg/4]);
+      if(superbops(tempOp,2)==1){
+	rfirstcross = nnbonds(superbops(tempOp,0),leg%2);
+      }
+      //if it's a plaquette operator
+      else{
+	rfirstcross = plaquettes(superbops(tempOp,0),
+				 (floor ((vleg2op[leg/4]-tempOp)+0.6))*4+leg%2);
+      }
       right = 1;
       boolcross++;
       whichloop[rfirstcross]=loopnum;
       rlastcross = rfirstcross;
     }
     if(leg<vlegMiddle&&startleg>vlegMiddle){
-      rfirstcross = nnbonds(superbops(startleg/4,0),startleg%2);
+      //if it's a bond operator
+      int tempOp = floor (vleg2op[startleg/4]);
+      if(superbops(tempOp,2)==1){
+	rfirstcross = nnbonds(superbops(tempOp,0),leg%2);
+      }
+      //if it's a plaquette operator
+      else{
+	rfirstcross = plaquettes(superbops(tempOp,0),
+				 (floor ((vleg2op[startleg/4]-tempOp)+0.6))*4+startleg%2);
+      }
+
       right = 0;
       boolcross++;
       whichloop[rfirstcross]=loopnum;
@@ -761,6 +788,7 @@ void LOOPS::make_flip_loops()
 
   //Hlinks isn't used in any other functions.  Clear it.
   Hlinks.clear();
+  vleg2op.clear();
 }   
 /************ take_measurement() *********************************************
  Global:
