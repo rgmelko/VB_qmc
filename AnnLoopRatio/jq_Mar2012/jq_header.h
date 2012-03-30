@@ -365,14 +365,14 @@ void LOOPS::generate_ops()
     }
     if(i==number_of_bondops/2){middle = num2site-0.5;}
   }
-  cout << num2site << endl;
-  cout << middle << endl;
+  // cout << num2site << endl;
+  //cout << middle << endl;
 
   //  cout << vlegs << endl;
   vlegs = 4*number_of_sites + 4*num2site;
   //  cout << vlegs << endl;
   vlegMiddle = 2*number_of_sites + 4*(middle+0.5) - 0.5;
-  //  cout << vlegMiddle << endl;
+  // cout << vlegMiddle << endl;
 
   superbops.resize(number_of_bondops+number_of_sites,3);
   //  for(int i=0;i<number_of_sites+number_of_bondops;i++){
@@ -492,10 +492,8 @@ void LOOPS::create__Hlinks()
   long long legnum = 0;
   // iterate through bond operators and create horizontal links
 
-
   // Size Hlinks
   Hlinks.assign(vlegs, -99); 
-
   //Initialize Hlinks so the "edge" sites are linked to themselves
   for(int i=0; i<number_of_sites/2; i++){
     for(int j=0; j<4; j++){Hlinks[i*4+j]=i*4+j;}
@@ -790,6 +788,9 @@ void LOOPS::change__operators()
 
   // Now look at the first half of the *real* operators
   long long op = number_of_sites/2;
+  int otemp(-99);
+  int oldtype=-1;
+  bool flag = false;
   for(op; op<number_of_bondops/2+number_of_sites/2; op++){
     //if operator is offdiagonal
     if(superbops(op,1)==1){                       
@@ -800,13 +801,49 @@ void LOOPS::change__operators()
     //if the operator is diagonal we need to change it randomly 
     else{                
     
-      int temp(-99);
-      do{temp = irand()%number_of_nnbonds;}
-      while(spins[nnbonds(temp,0)]+spins[nnbonds(temp,1)]!=1);
-      superbops(op,0) = temp;   
+      // int temp(-99);
+      //do{temp = irand()%number_of_nnbonds;}
+      //while(spins[nnbonds(temp,0)]+spins[nnbonds(temp,1)]!=1);
+      //superbops(op,0) = temp; 
+      flag = false;
+      
+      while(!flag){
+	if(drand()<plaqProb){
+	  //choose a plaquette!!
+	  otemp = irand()%numPlaquettes;
+	  //if the spins are antiparallel, assign it
+	  if(spins[plaquettes(otemp,0)]+spins[plaquettes(otemp,1)]==1 && 
+	     spins[plaquettes(otemp,2)]+spins[plaquettes(otemp,3)]==1){
+	    superbops(op,0) = otemp;
+	    superbops(op,1) = 0;
+	    oldtype = superbops(op,2);
+	    superbops(op,2) = 2; //2 for plaquette, right?
+
+	    flag = true;
+	    num2site += 2-oldtype;
+	    middle += 2-oldtype;
+	  }
+	}
+	else{
+	  //choose a bondop
+	  otemp = irand()%number_of_nnbonds;
+	  //if the spins are antiparallel, assign it
+	  if(spins[nnbonds(otemp,0)]+spins[nnbonds(otemp,1)]==1){
+	    superbops(op,0) = otemp;
+	    superbops(op,1) = 0;
+	    oldtype = superbops(op,2);
+	    superbops(op,2) = 1; //1 for bond operator
+	    
+	    flag = true;
+	    num2site += 1-oldtype;
+	    middle += 1-oldtype;
+	  }
+	}
+      }
     }
   }
 
+  vlegMiddle = 2*number_of_sites + 4*(middle+0.5) - 0.5;
   /*******************************************************************
                Swap some of the spins and stuff, y'know?
   ********************************************************************/
@@ -834,13 +871,52 @@ void LOOPS::change__operators()
       spins[nnbonds(superbops(op,0),1)] = (spins[nnbonds(superbops(op,0),1)]+1)%2;
     }      //if the operator is diagonal we need to change it randomly
 
-    else{       //using whichbond..              
-       int temp(-99);
-       do{temp = irand()%number_of_nnbonds;}
-       while(spins[nnbonds(temp,0)]+spins[nnbonds(temp,1)]!=1);
-       superbops(op,0) = temp;     
+    else{                  
+      // int temp(-99);
+      //   do{temp = irand()%number_of_nnbonds;}
+      //   while(spins[nnbonds(temp,0)]+spins[nnbonds(temp,1)]!=1);
+      //  superbops(op,0) = temp;     
+
+      flag = false;
+      
+      while(!flag){
+	if(drand()<plaqProb){
+	  //choose a plaquette!!
+	  otemp = irand()%numPlaquettes;
+	  //if the spins are antiparallel, assign it
+	  if(spins[plaquettes(otemp,0)]+spins[plaquettes(otemp,1)]==1 && 
+	     spins[plaquettes(otemp,2)]+spins[plaquettes(otemp,3)]==1){
+	    superbops(op,0) = otemp;
+	    superbops(op,1) = 0;
+	    oldtype = superbops(op,2);
+	    superbops(op,2) = 2; //2 for plaquette, right?
+
+	    flag = true;
+	    num2site += 2-oldtype;
+	  }
+	}
+	else{
+	  //choose a bondop
+	  otemp = irand()%number_of_nnbonds;
+	  //if the spins are antiparallel, assign it
+	  if(spins[nnbonds(otemp,0)]+spins[nnbonds(otemp,1)]==1){
+	    superbops(op,0) = otemp;
+	    superbops(op,1) = 0;
+	    oldtype = superbops(op,2);
+	    superbops(op,2) = 1; //1 for bond operator
+	    // cout << "oldtype = " << oldtype << endl;
+
+	    flag = true;
+	    num2site += 1-oldtype;
+	  }
+	}
+      }   
     }
   }
+  //cout << "vlegs1" << vlegs << endl;
+  //cout << num2site << endl;
+  vlegs = 4*number_of_sites + 4*num2site;
+  // cout << vlegs << endl;
 }
 /************ swaperator() ****************************************************
 what geometry does this even use?  squares?
@@ -933,6 +1009,7 @@ void LOOPS::print_bops()
   for(int i=0; i<number_of_bondops+number_of_sites; i++){
     bout << superbops(i,0) << endl << superbops(i,1) << endl << superbops(i,2) << endl;
   }
+  
   bout << -99 << endl;
 }
 
@@ -946,6 +1023,8 @@ void LOOPS::read_bops()
   if(bin.fail()){ generate_ops(); }
   else{ 
     int test=0;
+    int tally(0);
+    int midtally(0);
     
     //Check Lx value
     bin >> test;
@@ -956,11 +1035,29 @@ void LOOPS::read_bops()
     if(test!=Ly){cout<<"wrong Ly dimension!!\n"; exit(1);}
 
     //Read in bondOps
-    superbops.resize(number_of_bondops+number_of_sites,2);
+    superbops.resize(number_of_bondops+number_of_sites,3);
+
     for(int i=0; i<number_of_bondops+number_of_sites; i++){
       bin >> superbops(i,0) >> superbops(i,1) >> superbops(i,2);
+
+      if(i>=number_of_sites/2 && i<number_of_sites/2+number_of_bondops){
+	tally+=superbops(i,2);
+	if(i<number_of_sites/2+number_of_bondops/2){
+	  midtally+=superbops(i,2);
+	}
+      }
     }
     
+    middle = midtally-0.5;
+    //  cout << middle << endl;
+    num2site = tally;
+    //  cout << num2site << endl;
+    
+    vlegs = 4*number_of_sites + 4*num2site;
+    //  cout << vlegs << endl;
+    vlegMiddle = 2*number_of_sites + 4*(middle+0.5) - 0.5;
+    //   cout << vlegMiddle << endl;
+
     //Read in -99 at EOF
     bin >> test;
     if(test!=-99){
