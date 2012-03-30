@@ -317,6 +317,9 @@ void LOOPS::generate_ops()
   //to 2 bondops
   middle=0;
   
+  //Just put this here in case I want to experiment with different Qs 
+  //without changing the param file.
+  //Can delete it later.  The real one is at the end of operatorLists()
   plaqProb = Q*numPlaquettes/(J*number_of_nnbonds + Q*numPlaquettes);
   
   for(int i=0; i<number_of_bondops;){
@@ -347,14 +350,9 @@ void LOOPS::generate_ops()
     }
     if(i==number_of_bondops/2){middle = num2site-0.5;}
   }
-  // cout << num2site << endl;
-  //cout << middle << endl;
 
-  //  cout << vlegs << endl;
   vlegs = 4*number_of_sites + 4*num2site;
-  //  cout << vlegs << endl;
   vlegMiddle = 2*number_of_sites + 4*(middle+0.5) - 0.5;
-  // cout << vlegMiddle << endl;
 
   superbops.resize(number_of_bondops+number_of_sites,3);
   //  for(int i=0;i<number_of_sites+number_of_bondops;i++){
@@ -372,8 +370,6 @@ void LOOPS::generate_ops()
   if(Lx%2==0){
     for(int ix=0; ix<Lx; ix+=2){
       for(int iy=0; iy<Ly; iy++){
-	//cout << iy+ix*Ly<< ", "<<iy+(ix+1)*Ly<<"    "
-	//<<Lx*Ly+iy+ix*Ly<<", "<<Lx*Ly+iy+(ix+1)*Ly<<endl;
 	superbops(bondd,0) = nn_mat(iy+ix*Ly,iy+(ix+1)*Ly);
 	superbops(bondd,1) = 0;
 	superbops(bondd,2) = 1;
