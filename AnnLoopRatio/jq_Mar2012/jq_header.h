@@ -511,9 +511,33 @@ void LOOPS::create__Hlinks()
       legnum+=4;
     }
     else{ //it's a plaquette operator!!!
+      templegnum = plaquettes(superbops(bopnum,0),0);
+      Hlinks[legnum] = last[templegnum];
+      Hlinks[last[templegnum]] = legnum;
+      last[templegnum] = legnum + 2;
+
+      templegnum = plaquettes(superbops(bopnum,0),1);
+      Hlinks[legnum+1] = last[templegnum]; 
+      Hlinks[last[templegnum]] = legnum+1;
+      last[templegnum] = legnum + 3;
+      
+      legnum +=4;
+      
+      //now the other side of the plaquette
+      templegnum = plaquettes(superbops(bopnum,0),2);
+      Hlinks[legnum] = last[templegnum];
+      Hlinks[last[templegnum]] = legnum;
+      last[templegnum] = legnum + 2;
+
+      templegnum = plaquettes(superbops(bopnum,0),3);
+      Hlinks[legnum+1] = last[templegnum]; 
+      Hlinks[last[templegnum]] = legnum+1;
+      last[templegnum] = legnum + 3;
+
+      legnum +=4;  
     }
   }
-
+  
   /*************************************************************
     NOW stop to switch the connections within region A
    *************************************************************/
@@ -537,22 +561,50 @@ void LOOPS::create__Hlinks()
   //now the RHS bondops
   for(bopnum; bopnum<number_of_bondops+number_of_sites; bopnum++){
 
-    //join the first leg to the 
-    templegnum = nnbonds(superbops(bopnum,0),0);
-    Hlinks[legnum] = last[templegnum];//does it matter if
-    Hlinks[last[templegnum]] = legnum;//I screw up the order
-    last[templegnum] = legnum + 2; //? because I am
-
-    templegnum = nnbonds(superbops(bopnum,0),1);
-    Hlinks[legnum+1] = last[templegnum]; 
-    Hlinks[last[templegnum]] = legnum+1;
-    last[templegnum] = legnum + 3;  
-
-    legnum += 4;
+    //figure out operator type
+    //bond operator
+    if(superbops(bopnum,2)==1){
+      //join the first leg to the... 
+      templegnum = nnbonds(superbops(bopnum,0),0);
+      Hlinks[legnum] = last[templegnum];//does it matter if
+      Hlinks[last[templegnum]] = legnum;//I screw up the order
+      last[templegnum] = legnum + 2; //? because I am
+      
+      templegnum = nnbonds(superbops(bopnum,0),1);
+      Hlinks[legnum+1] = last[templegnum]; 
+      Hlinks[last[templegnum]] = legnum+1;
+      last[templegnum] = legnum + 3;
+      
+      legnum+=4;
+    }
+    else{ //it's a plaquette operator!!!
+      templegnum = plaquettes(superbops(bopnum,0),0);
+      Hlinks[legnum] = last[templegnum];
+      Hlinks[last[templegnum]] = legnum;
+      last[templegnum] = legnum + 2;
+      
+      templegnum = plaquettes(superbops(bopnum,0),1);
+      Hlinks[legnum+1] = last[templegnum]; 
+      Hlinks[last[templegnum]] = legnum+1;
+      last[templegnum] = legnum + 3;
+      
+      legnum +=4;
+      
+      //now the other side of the plaquette
+      templegnum = plaquettes(superbops(bopnum,0),2);
+      Hlinks[legnum] = last[templegnum];
+      Hlinks[last[templegnum]] = legnum;
+      last[templegnum] = legnum + 2;
+      
+      templegnum = plaquettes(superbops(bopnum,0),3);
+      Hlinks[legnum+1] = last[templegnum]; 
+      Hlinks[last[templegnum]] = legnum+1;
+      last[templegnum] = legnum + 3;
+      
+      legnum +=4;  
+    }
   }
 }
-
-
 
 /************ make_flip_loops() **********************************************
  Creates loops and flips them with probability 1/2
@@ -571,9 +623,9 @@ void LOOPS::create__Hlinks()
  Local:
    loopnums[vlegs]_stores the loop number for each vertex leg
    loopnum_________the loop number we're currently looking at
-   startsite_______the start site for the current loop
+   startleg________the start vertex for the current loop
    counter_________starts at the beginning of the vertex legs, goes to the end
-   site____________the current vertex leg we're looking at
+   leg_____________the current vertex leg we're looking at
    which___________0 for looking at vertical links, 1 for horizontal
    flip____________0 if we're not flipping this loop, 1 if we are
    firstcross______the first site involved in a loop crossing the boundary. 
@@ -590,8 +642,8 @@ void LOOPS::create__Hlinks()
 void LOOPS::make_flip_loops()
 {
   vector <int> loopnums(vlegs,-99);
-  int loopnum(1), startsite(0); 
-  long long counter(0), site(0);
+  int loopnum(1), startleg(0); 
+  long long counter(0), leg(0);
   bool which(0), flip=0;
   int rfirstcross(-99),rlastcross(-99), rcurrent(0); 
   int right=-99;
@@ -607,32 +659,32 @@ void LOOPS::make_flip_loops()
     if(drand()<0.5){flip=1;}
     else{flip=0;}
 
-    startsite = counter;        // set the initial site (startsite)
-    site = Hlinks[counter];     // the site connected to startsite horizontally
+    startleg = counter;        // set the initial site (startsite)
+    leg = Hlinks[counter];     // the site connected to startsite horizontally
 
     //making sure site isn't bonded to itself (edges are bonded to themselves)
     //and checking that the startsite isn't already in a loop
-    while(((site == Hlinks[site])|(loopnums[counter]>0))&&(counter<vlegs-2)){ 
+    while(((leg == Hlinks[leg])|(loopnums[counter]>0))&&(counter<vlegs-2)){ 
       counter++;  //changing startsite
-      site = Hlinks[counter]; //site connected to new startsite
-      startsite = counter;    //setting new startsite
+      leg = Hlinks[counter]; //site connected to new startsite
+      startleg = counter;    //setting new startsite
     }
     //breaks if we get to the last or 2nd last site
     if(counter > vlegs-2){break;} 
-    loopnums[startsite] = loopnum; //including startsite in new loop
-    loopnums[site] = loopnum;    //adding the next site to the loop
+    loopnums[startleg] = loopnum; //including startsite in new loop
+    loopnums[leg] = loopnum;    //adding the next site to the loop
     which = 0;      //"which" checks if we're on horiz(1) or vert(0) 
     
 
-    if(site>vlegMiddle&&startsite<vlegMiddle){
-      rfirstcross = nnbonds(superbops(site/4,0),site%2);
+    if(leg>vlegMiddle&&startleg<vlegMiddle){
+      rfirstcross = nnbonds(superbops(leg/4,0),leg%2);
       right = 1;
       boolcross++;
       whichloop[rfirstcross]=loopnum;
       rlastcross = rfirstcross;
     }
-    if(site<vlegMiddle&&startsite>vlegMiddle){
-      rfirstcross = nnbonds(superbops(startsite/4,0),startsite%2);
+    if(leg<vlegMiddle&&startleg>vlegMiddle){
+      rfirstcross = nnbonds(superbops(startleg/4,0),startleg%2);
       right = 0;
       boolcross++;
       whichloop[rfirstcross]=loopnum;
@@ -640,31 +692,31 @@ void LOOPS::make_flip_loops()
     }
   
     //while loop ends when we get back to the startsite
-    while(site!=startsite){
+    while(leg!=startleg){
       
       //VERTICAL LINKS
       if(!which){                
-	site = Vlinks[site];
+	leg = Vlinks[leg];
 
-	if(flip){superbops(site/4,1) = (superbops(site/4,1)+1)%2;}
+	if(flip){superbops(leg/4,1) = (superbops(leg/4,1)+1)%2;}
       }
       //HORIZONTAL LINKS
       //****************************
       else{
 	//if it crosses the boundary
-	if((site<vlegMiddle)^(Hlinks[site]<vlegMiddle)){
-	  if(site<vlegMiddle){
-	    rcurrent = nnbonds(superbops(Hlinks[site]/4,0),Hlinks[site]%2);
+	if((leg<vlegMiddle)^(Hlinks[leg]<vlegMiddle)){
+	  if(leg<vlegMiddle){
+	    rcurrent = nnbonds(superbops(Hlinks[leg]/4,0),Hlinks[leg]%2);
 	  }
 	  else{
-	    rcurrent = nnbonds(superbops(site/4,0),site%2);
+	    rcurrent = nnbonds(superbops(leg/4,0),leg%2);
 	  }
 	  boolcross++;
 
 	  //if this is the first crossing for this loop set firstcross
 	  if(rlastcross<0){//and set right to show if it's crossing left or right
 	    rfirstcross = rcurrent;
-	    if (site<vlegMiddle){right=1;}
+	    if (leg<vlegMiddle){right=1;}
 	    else {right=0;}
 	  }
 
@@ -684,11 +736,11 @@ void LOOPS::make_flip_loops()
 	  whichloop[rcurrent]=loopnum;
 	}
 	
-	site = Hlinks[site];
+	leg = Hlinks[leg];
 	
       }
       which = !which; //changes from horiz(1) to vert(0) or vice versa
-      loopnums[site] = loopnum; //adds next site to loop
+      loopnums[leg] = loopnum; //adds next site to loop
     }
     if(rlastcross>-1){
       if(right){ VR[rfirstcross]=rlastcross; VR[rlastcross]=rfirstcross;}
