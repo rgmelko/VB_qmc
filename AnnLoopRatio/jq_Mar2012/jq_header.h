@@ -732,21 +732,15 @@ void LOOPS::make_flip_loops()
 	  
 	  //if it's a bond operator
 	  int tempOp = floor (vleg2op[leg/4]);
-	   //	    cout << leg/4 << "  " << superbops(leg/4,1) << "  "
-	      //	 << (superbops(leg/4,1)+1)%2 << "   "
-	      //	 << (int) floor(vleg2op[leg/4]) << "  " 
-	      //     	 << superbops(tempOp,1)
-	      //   <<"  " << (superbops(tempOp,1)+1)%2 
-	      //	 << endl;
-	  //if(superbops(tempOp,2)==1){ 
+	  if(superbops(tempOp,2)==1){ 
 	  superbops(tempOp,1)=(superbops(tempOp,1)+1)%2;
-	  //}
+	  }
 	  //if it's a plaquette operator
-	  //else{
+	  else{
 	  //  rcurrent = plaquettes(superbops(tempOp,0),
 	  //  (floor ((vleg2op[Hlinks[leg]/4]-tempOp)+0.6))*4
 	  //		  +Hlinks[leg]%2);
-	//} 
+	  } 
 	}
       }
       //HORIZONTAL LINKS
