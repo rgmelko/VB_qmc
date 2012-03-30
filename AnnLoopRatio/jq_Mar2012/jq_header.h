@@ -616,6 +616,10 @@ void LOOPS::create__Hlinks()
       legnum +=4;  
     }
   }
+  // for(int i=0;i<vlegs/4;i++){
+  //    cout <<"vleg2op["<<i<<"]="<<vleg2op[i]<<"  "<<superbops(floor(vleg2op[i]),2)<<endl;
+  //  }
+
 }
 
 /************ make_flip_loops() **********************************************
@@ -697,7 +701,8 @@ void LOOPS::make_flip_loops()
       //if it's a plaquette operator
       else{
 	rfirstcross = plaquettes(superbops(tempOp,0),
-				 (floor ((vleg2op[leg/4]-tempOp)+0.6))*4+leg%2);
+				 (floor ((vleg2op[leg/4]-tempOp)+0.6))*2+leg%2);
+	//	cout <<"leg="<<leg<<" vleg2op="<<floor(vleg2op[leg/4]-tempOp+0.6)*2+leg%2<<endl; 
       }
       right = 1;
       boolcross++;
@@ -713,7 +718,7 @@ void LOOPS::make_flip_loops()
       //if it's a plaquette operator
       else{
 	rfirstcross = plaquettes(superbops(tempOp,0),
-				 (floor ((vleg2op[startleg/4]-tempOp)+0.6))*4+startleg%2);
+				 (floor ((vleg2op[startleg/4]-tempOp)+0.6))*2+startleg%2);
       }
 
       right = 0;
@@ -766,9 +771,8 @@ void LOOPS::make_flip_loops()
 	    //if it's a plaquette operator
 	    else{
 	      rcurrent = plaquettes(superbops(tempOp,0),
-				    (floor ((vleg2op[Hlinks[leg]/4]-tempOp)+0.6))*4
+				    (floor ((vleg2op[Hlinks[leg]/4]-tempOp)+0.6))*2
 				    +Hlinks[leg]%2);
-	      cout << "rcurrent " << rcurrent << endl; 
 	    } 
 	    //    rcurrent = nnbonds(superbops(Hlinks[leg]/4,0),Hlinks[leg]%2);
 	  }
@@ -782,7 +786,7 @@ void LOOPS::make_flip_loops()
 	    //if it's a plaquette operator
 	    else{
 	      rcurrent = plaquettes(superbops(tempOp,0),
-				    (floor ((vleg2op[leg/4]-tempOp)+0.6))*4
+				    (floor ((vleg2op[leg/4]-tempOp)+0.6))*2
 				    +leg%2);
 	    } 
 	    //	    rcurrent = nnbonds(superbops(leg/4,0),leg%2);
@@ -831,9 +835,9 @@ void LOOPS::make_flip_loops()
   }
 
   //check of states
-   for(int i=0;i<number_of_sites;i++){
-     cout << "VL["<<i<<"] = "<<VL[i]<<endl;
-   }
+  //   for(int i=0;i<number_of_sites;i++){
+  //     cout << "VL["<<i<<"] = "<<VL[i]<<endl;
+  //   }
 
   //Hlinks isn't used in any other functions.  Clear it.
   Hlinks.clear();
