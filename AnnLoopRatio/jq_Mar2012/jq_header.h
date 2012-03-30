@@ -888,18 +888,27 @@ void LOOPS::change__operators()
   bool flag = false;
   for(op; op<number_of_bondops/2+number_of_sites/2; op++){
     //if operator is offdiagonal
-    if(superbops(op,1)==1){                       
-      //update spins
-      spins[nnbonds(superbops(op,0),0)] = (spins[nnbonds(superbops(op,0),0)]+1)%2;
-      spins[nnbonds(superbops(op,0),1)] = (spins[nnbonds(superbops(op,0),1)]+1)%2;
+    if(superbops(op,1)>0){
+      if(superbops(op,2)==1){
+	//update spins
+	spins[nnbonds(superbops(op,0),0)] = (spins[nnbonds(superbops(op,0),0)]+1)%2;
+	spins[nnbonds(superbops(op,0),1)] = (spins[nnbonds(superbops(op,0),1)]+1)%2;
+      }
+      else{
+	//if the first bond is flipped
+	if(superbops(op,1)%1==1){
+	  spins[plaquettes(superbops(op,0),0)] = (spins[plaquettes(superbops(op,0),0)]+1)%2;
+	  spins[plaquettes(superbops(op,0),1)] = (spins[plaquettes(superbops(op,0),1)]+1)%2;
+	}
+	//if the second bond is flipped
+	if(superbops(op,1)>1){
+	  spins[plaquettes(superbops(op,0),2)] = (spins[plaquettes(superbops(op,0),2)]+1)%2;
+	  spins[plaquettes(superbops(op,0),3)] = (spins[plaquettes(superbops(op,0),3)]+1)%2;
+	}
+      }
     }     
     //if the operator is diagonal we need to change it randomly 
     else{                
-    
-      // int temp(-99);
-      //do{temp = irand()%number_of_nnbonds;}
-      //while(spins[nnbonds(temp,0)]+spins[nnbonds(temp,1)]!=1);
-      //superbops(op,0) = temp; 
       flag = false;
       
       while(!flag){
@@ -960,17 +969,28 @@ void LOOPS::change__operators()
   ********************************************************************/
   
   for(op; op<number_of_bondops+number_of_sites/2; op++){
-    if(superbops(op,1)==1){                         //if operator is offdiagonal
-      //update spins
-      spins[nnbonds(superbops(op,0),0)] = (spins[nnbonds(superbops(op,0),0)]+1)%2;
-      spins[nnbonds(superbops(op,0),1)] = (spins[nnbonds(superbops(op,0),1)]+1)%2;
-    }      //if the operator is diagonal we need to change it randomly
+                       //if operator is offdiagonal
+    if(superbops(op,1)>0){
+      if(superbops(op,2)==1){
+	//update spins
+	spins[nnbonds(superbops(op,0),0)] = (spins[nnbonds(superbops(op,0),0)]+1)%2;
+	spins[nnbonds(superbops(op,0),1)] = (spins[nnbonds(superbops(op,0),1)]+1)%2;
+      }
+      else{
+	//if the first bond is flipped
+	if(superbops(op,1)%1==1){
+	  spins[plaquettes(superbops(op,0),0)] = (spins[plaquettes(superbops(op,0),0)]+1)%2;
+	  spins[plaquettes(superbops(op,0),1)] = (spins[plaquettes(superbops(op,0),1)]+1)%2;
+	}
+	//if the second bond is flipped
+	if(superbops(op,1)>1){
+	  spins[plaquettes(superbops(op,0),2)] = (spins[plaquettes(superbops(op,0),2)]+1)%2;
+	  spins[plaquettes(superbops(op,0),3)] = (spins[plaquettes(superbops(op,0),3)]+1)%2;
+	}
+      }
+    }     //if the operator is diagonal we need to change it randomly
 
-    else{                  
-      // int temp(-99);
-      //   do{temp = irand()%number_of_nnbonds;}
-      //   while(spins[nnbonds(temp,0)]+spins[nnbonds(temp,1)]!=1);
-      //  superbops(op,0) = temp;     
+    else{                      
 
       flag = false;
       
