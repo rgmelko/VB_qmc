@@ -64,9 +64,11 @@ class LOOPS
   iMatrix bops; // list of bond operators
   iMatrix superbops; //list of bond operators plus edges simulated via bops
                      //superbops(:,0) is the bond the operator acts on 
-                     //         (:,1) is 0 for Diag, 1 for OffDiag
+                     //         (:,1) is 0 for Diag, 1 for OffDiag (1st bond)
+                     //                  2 for OffDiag (2nd bond)
+                     //                  3 for *both* bonds OffDiag
                      //         (:,2) is 1 for Bond, 2 for Plaquette
-                     //               and 3 for Edge state.
+                     //               
 
   //CONSTRUCTOR
   LOOPS(double jay, double que, int xsites, int ysites, int flips, 
@@ -869,10 +871,6 @@ void LOOPS::take_measurement()
 void LOOPS::change__operators()
 {
   spins = init_spins;
-
-  int neighbs(0);
-  if(Ly==1){neighbs=2;}
-  else{neighbs=6;}
 
   //for the first N/2 operators (i.e. the edge)
   for(int op=0; op<number_of_sites/2; op++){ 
