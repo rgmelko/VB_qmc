@@ -768,6 +768,7 @@ void LOOPS::make_flip_loops()
 	      rcurrent = plaquettes(superbops(tempOp,0),
 				    (floor ((vleg2op[Hlinks[leg]/4]-tempOp)+0.6))*4
 				    +Hlinks[leg]%2);
+	      cout << "rcurrent " << rcurrent << endl; 
 	    } 
 	    //    rcurrent = nnbonds(superbops(Hlinks[leg]/4,0),Hlinks[leg]%2);
 	  }
@@ -830,9 +831,9 @@ void LOOPS::make_flip_loops()
   }
 
   //check of states
-  //  for(int i=0;i<number_of_sites;i++){
-  //    cout << "VL["<<i<<"] = "<<VL[i]<<endl;
-  //  }
+   for(int i=0;i<number_of_sites;i++){
+     cout << "VL["<<i<<"] = "<<VL[i]<<endl;
+   }
 
   //Hlinks isn't used in any other functions.  Clear it.
   Hlinks.clear();
@@ -969,7 +970,7 @@ void LOOPS::change__operators()
   ********************************************************************/
   
   for(op; op<number_of_bondops+number_of_sites/2; op++){
-                       //if operator is offdiagonal
+    //if operator is offdiagonal
     if(superbops(op,1)>0){
       if(superbops(op,2)==1){
 	//update spins
@@ -989,9 +990,8 @@ void LOOPS::change__operators()
 	}
       }
     }     //if the operator is diagonal we need to change it randomly
-
+    
     else{                      
-
       flag = false;
       
       while(!flag){
