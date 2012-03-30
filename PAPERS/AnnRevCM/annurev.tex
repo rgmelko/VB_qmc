@@ -713,7 +713,7 @@ In addition to  $H = H_0 + H_3$, $H = H_0 + H_1$, also $H = H_1 + H_{\rm ring}$,
 
 In the next section, we explore the procedure by which QMC simulations can positively identify such spin liquid phases.  In section \ref{XYstar}, we examine the superfluid to QSL phase transition, which is common to these models, as an different example of a ``deconfined'' or fractionalized quantum critical point.
 
-\subsection{Identifying the Z2 spin liquid: Topological Entanglement Entropy}
+\subsection{Identifying the Z2 spin liquid: Topological Entanglement}
 
 The smoking gun signature for a gapped spin liquid phase could be argued to be the identification of an emergent gauge symmetry.  It is this symmetry that leads to the concept of topological order.  One manifestation is existence of a ground state degeneracy, which is topological in nature, in the simplest (Z2) case being four-fold on a torus.  Unfortunately, previous QMC studies of QSL states have demonstrated the difficulty in clearly identifying this degeneracy, due to the tendency for tunnelling between the equal-energy states on finite-size lattices with physical Hamiltonians \cite{Isakov1}.  Similarly, recent DMRG work purporting to identify candidate gapped spin liquid states have been unable to identify the associated topological degeneracy \cite{Yan,J1J2}.
 
@@ -754,6 +754,37 @@ Measurements of the Green's function in Fig.~XXX show an algebraic decay with $\
 \section{Discussion}
 \label{sec:discussion}
 
+\subsection{Designer hamiltonians, stoquasticity, and the sign problem}
+
+The concept of designer Hamiltonian we have introduced here is different from the ``stoquastic'' Hamiltonians \cite{Terhal08}; 
+those for which all off-diagonal matrix elements are non-positive (i.e., sign-problem free) in the standard basis, normally the standard $z$-component 
+basis for spin systems [although a broader definition with respect to an arbitrary basis has also been presented \cite{Terhal09}, which would seem to 
+indicate that any Hamiltonian could in principle be cast into this class]. Our criterion is more one of scientific utility than a strict mathematical 
+definition---models that are free from sign problems either automatically (i.e., they are stoquastic in a practically useful basis), or through some 
+other way of circumventing it [i.e., the Meron algorithm \cite{Chandrasekharan99} or determinant-based QMC of particle-hole symmetric Hubbard 
+models \cite{White89,Assaad05,Assaad07}]. Importantly, to be considered a designer Hamiltonian, such a model should also represent a prototypical case of 
+some interesting quantum-man body phenomenon which is difficult to access in an unbiased manner in other ways, i.e., the model is designed to shed
+light on this problem (and must be ``de-signed'' to be practically useful for studies on large scale).
+
+An important fundamental problem is whether it is always possible to construct such designer hamiltonians, or whether certain types of 
+states is beyond reach in practice because their physical properties are fundamentally tied to the difficulties in curcumventing the sign problem. 
+The $Z_2$ spin liquid [which itself is a broad class if states \cite{Wen03}] in SU($2$) variant models is potentially an example of such a state. 
+It is certainly possible that such a state cannot be realized with stoquastic hamiltonians in a simple basis, but one can still not exclude that 
+designer hamiltonians can be constructed for which some useful basis can be found, or for which the sign problem can be solved in some other way.
+Indeed, the recent discovery of a spin liquid in the Hubbard model on the honeycomb lattice \cite{Meng10} seems to provide an example, although it 
+remains to be seen whether this state really is a $Z_2$ topological state.
+
+Regarding the sign problem itself more broadly, Ref.~\cite{Troyer05} presents a proof that the sign problem cannot be solved 
+in general. The problem is here defined in terms of constructing a QMC algorithm for which the computational effort scales as a power-law in the system
+size. They show a particular problem for which the removal of the sign still leaves a problem for which the Monte Carlo
+sampling is believed to scale exponentially in the system size. However, the problem chosen is that of a spin glass, and 
+the conclusion is that the quantum spin glass is not easier to solve than the corresponding classical spin glass. This is 
+hardly a surprising result, and the proof does not say anything about QMC solutions of systems that are not directly associated with the well known difficulties of simulating classical glassy systems with complicated energy landscapes. 
+Whether or not the sign problem can be circumvented for translationally invariant systems such as fermionic Hubbard models without
+particle-hole symmetry and frustrated quantum spins models remains and open question.
+
+\subsection{future prospects}
+
 - Many things left to do along these lines (give some examples), e.g., larger sizes are still needed
 to fully characterize N\'eel--VBS transition; parallelization of QMC, impurities, disorder
 
@@ -765,17 +796,6 @@ Mention meron algorithm---perhaps some more interesting designer hamiltonian can
   SU(2) hamiltonian with a spin liquid phase?
 
 - Non-equilibrium QMC
-
-
-In Ref.~X, Troyer and Wiese presented a proof that the sign problem cannot be solved in general. The problem is here
-defined in terms of constructing a QMC algorithm for which the computational effort scales as a power-law in the system
-size. They show a particular problem for which the removal of the sign still leaves a problem for which the Monte Carlo
-sampling is believed to scale exponentially in the system size. However, the problem chosen is that of a spin glass, and 
-the conclusion is that the quantum spin glass is not easier to solve than the corresponding classical spin glass. This is 
-hardly a surprising result, and the proof does not say anything about QMC solutions of systems that are not directly
-associated with the well known difficulties of simulating classical glassy systems with complicated energy landscapes. 
-Whether or not the sign problem can be circumvented for translationally invariant systems such as fermionic Hubbard models 
-and frustrated quantum spins models remains and open question.
 
 
 \bibliography{rev_bib.bib}
