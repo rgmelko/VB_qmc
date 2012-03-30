@@ -49,10 +49,7 @@ class LOOPS
   
   vector <long long> Vlinks, Hlinks;//the vert and horizontal links for the LL
   vector <int> spins, init_spins; //keeps track of spins for swaperation
-  vector <int> sides; /*store which side of the boundary a leg is on
-			removing the need to check if it's higher or lower
-			that the "middle" of the number of legs.... I'm not
-			sure if this is more efficient or not */
+
   vector <int> VL, VR; //the propagated left and right VB states
   vector <int> whichloop; /* stores which loop number each site is in. used
 			     in the energy measurement */
@@ -134,12 +131,6 @@ LOOPS::LOOPS(double jay, double que, int xsites, int ysites, int flips,
 
   
   bops.resize(number_of_bondops,3); //set size of bops
-
-  // :+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+
-  //create "sides"
-  sides.assign(vlegs,0); 
-  for(long long i=vlegs/2; i<vlegs; i++){sides[i]=1;}
-  // :+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+:+
 
   VL.assign(number_of_sites*2, -99); //set size of VL and VR
   VR=VL;
@@ -581,7 +572,6 @@ void LOOPS::create__Hlinks()
    cross________________counts the number of loops crossing the boundary
    vlegs                //
    Hlinks[vlegs]        //
-   sides[vlegs]         //
    nnbonds[#nnbonds][2] //
    superbops[#bops][3]  //
    Vlinks[vlegs]        //
@@ -642,25 +632,14 @@ void LOOPS::make_flip_loops()
     which = 0;      //"which" checks if we're on horiz(1) or vert(0) 
     
 
-    /*    if(sides[startsite]!=sides[site]){ 
-	  cout << "cross!!!\n";
-	  firstcross =  nnbonds(superbops(site/4,0),site%2);//************
-	  lastcross = firstcross;
-	  cout << "firstcross = " << firstcross << endl;
-	  right = sides[site];
-	  boolcross++;
-	  whichloop[firstcross]=loopnum;  
-      }
-    */
-
-    if(sides[startsite]<sides[site]){
+    if(site>vlegMiddle&&startsite<vlegMiddle){
       rfirstcross = nnbonds(superbops(site/4,0),site%2);
       right = 1;
       boolcross++;
       whichloop[rfirstcross]=loopnum;
       rlastcross = rfirstcross;
     }
-    if(sides[startsite]>sides[site]){
+    if(site<vlegMiddle&&startsite>vlegMiddle){
       rfirstcross = nnbonds(superbops(startsite/4,0),startsite%2);
       right = 0;
       boolcross++;
@@ -680,9 +659,9 @@ void LOOPS::make_flip_loops()
       //HORIZONTAL LINKS
       //****************************
       else{
-    
-	if(sides[site]!=sides[Hlinks[site]]){  //if it crosses the boundary
-	  if(sides[site]<sides[Hlinks[site]]){
+	//if it crosses the boundary
+	if((site<vlegMiddle)^(Hlinks[site]<vlegMiddle)){
+	  if(site<vlegMiddle){
 	    rcurrent = nnbonds(superbops(Hlinks[site]/4,0),Hlinks[site]%2);
 	  }
 	  else{
@@ -693,7 +672,7 @@ void LOOPS::make_flip_loops()
 	  //if this is the first crossing for this loop set firstcross
 	  if(rlastcross<0){//and set right to show if it's crossing left or right
 	    rfirstcross = rcurrent;
-	    if (sides[site]<sides[Hlinks[site]]){right=1;}
+	    if (site<vlegMiddle){right=1;}
 	    else {right=0;}
 	  }
 
