@@ -737,9 +737,15 @@ void LOOPS::make_flip_loops()
 	  }
 	  //if it's a plaquette operator
 	  else{
-	  //  rcurrent = plaquettes(superbops(tempOp,0),
-	  //  (floor ((vleg2op[Hlinks[leg]/4]-tempOp)+0.6))*4
-	  //		  +Hlinks[leg]%2);
+	    //figure out which of the two ops we're on
+	    //if it's the second one
+	    if(vleg2op[leg/4]-tempOp){
+	      //add 2 mod 4
+	      // 0->2,1->3,3->1,2->0
+	      superbops(tempOp,1)=(superbops(tempOp,1)+2)%4;
+	    }
+	    //otherwise 0->1, 1->0, 2->3, 3->2
+	    else{superbops(tempOp,1)=Vlinks[superbops(tempOp,1)];}
 	  } 
 	}
       }
