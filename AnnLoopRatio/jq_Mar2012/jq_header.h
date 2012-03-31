@@ -330,8 +330,8 @@ void LOOPS::generate_ops()
       //choose a plaquette!!
       temp = irand()%numPlaquettes;
       //if the spins are antiparallel, assign it
-      if(spins[plaquettes(temp,0)]+spins[plaquettes(temp,1)]==1 && 
-	 spins[plaquettes(temp,2)]+spins[plaquettes(temp,3)]==1){
+      if((spins[plaquettes(temp,0)]+spins[plaquettes(temp,1)]==1) && 
+	 (spins[plaquettes(temp,2)]+spins[plaquettes(temp,3)]==1)){
 	bops(i,0) = temp;
 	bops(i,1) = 0;
 	bops(i,2) = 2; //2 for plaquette, right?
@@ -929,7 +929,7 @@ void LOOPS::change__operators()
       }
       else{
 	//if the first bond is flipped
-	if(superbops(op,1)%1==1){
+	if(superbops(op,1)%2==1){
 	  spins[plaquettes(superbops(op,0),0)] = (spins[plaquettes(superbops(op,0),0)]+1)%2;
 	  spins[plaquettes(superbops(op,0),1)] = (spins[plaquettes(superbops(op,0),1)]+1)%2;
 	}
@@ -949,8 +949,8 @@ void LOOPS::change__operators()
 	  //choose a plaquette!!
 	  otemp = irand()%numPlaquettes;
 	  //if the spins are antiparallel, assign it
-	  if(spins[plaquettes(otemp,0)]+spins[plaquettes(otemp,1)]==1 && 
-	     spins[plaquettes(otemp,2)]+spins[plaquettes(otemp,3)]==1){
+	  if((spins[plaquettes(otemp,0)]+spins[plaquettes(otemp,1)]==1) && 
+	     (spins[plaquettes(otemp,2)]+spins[plaquettes(otemp,3)]==1)){
 	    superbops(op,0) = otemp;
 	    superbops(op,1) = 0;
 	    oldtype = superbops(op,2);
@@ -1011,7 +1011,7 @@ void LOOPS::change__operators()
       }
       else{
 	//if the first bond is flipped
-	if(superbops(op,1)%1==1){
+	if(superbops(op,1)%2==1){
 	  spins[plaquettes(superbops(op,0),0)] = (spins[plaquettes(superbops(op,0),0)]+1)%2;
 	  spins[plaquettes(superbops(op,0),1)] = (spins[plaquettes(superbops(op,0),1)]+1)%2;
 	}
@@ -1031,8 +1031,8 @@ void LOOPS::change__operators()
 	  //choose a plaquette!!
 	  otemp = irand()%numPlaquettes;
 	  //if the spins are antiparallel, assign it
-	  if(spins[plaquettes(otemp,0)]+spins[plaquettes(otemp,1)]==1 && 
-	     spins[plaquettes(otemp,2)]+spins[plaquettes(otemp,3)]==1){
+	  if((spins[plaquettes(otemp,0)]+spins[plaquettes(otemp,1)]==1) && 
+	     (spins[plaquettes(otemp,2)]+spins[plaquettes(otemp,3)]==1)){
 	    superbops(op,0) = otemp;
 	    superbops(op,1) = 0;
 	    oldtype = superbops(op,2);
@@ -1064,9 +1064,9 @@ void LOOPS::change__operators()
   //cout << num2site << endl;
   vlegs = 4*number_of_sites + 4*num2site;
   // cout << vlegs << endl;
-  int tempspins(0);
-  for(int i=0; i<number_of_sites; i++){tempspins += spins[i];}
-  cout << tempspins <<"   " << number_of_sites << endl;
+  // int tempspins(0);
+  // for(int i=0; i<number_of_sites; i++){tempspins += spins[i];}
+  // cout << tempspins <<"   " << number_of_sites << endl;
 }
 /************ swaperator() ****************************************************
 what geometry does this even use?  squares?
