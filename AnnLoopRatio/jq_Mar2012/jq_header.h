@@ -243,18 +243,24 @@ void LOOPS::operatorLists()
     }
     
     //xbonds... (horizontal, not periodic)
-    for(int i=0; i<(Lx-1)*Ly; i++){
-      nnbonds(bCounter,0) = i;
-      nnbonds(bCounter,1) = i+Ly;
-      nn_mat(nnbonds(bCounter,0),nnbonds(bCounter,1))=bCounter;
-      nn_mat(nnbonds(bCounter,1),nnbonds(bCounter,0))=bCounter;
-      bCounter++;
-      plaquettes(pCounter,0)=i;
-      plaquettes(pCounter,1)=i+Ly;
-      plaquettes(pCounter,2)=(i+1)%Ly;
-      plaquettes(pCounter,3)=(i+1)%Ly+Ly;
-      pCounter++;
+    for(int x=0; x<(Lx-1); x++){
+      for(int y=0; y<Ly; y++){
+	nnbonds(bCounter,0) = Ly*x+y;
+	nnbonds(bCounter,1) = Ly*(x+1)+y;
+	nn_mat(nnbonds(bCounter,0),nnbonds(bCounter,1))=bCounter;
+	nn_mat(nnbonds(bCounter,1),nnbonds(bCounter,0))=bCounter;
+	bCounter++;
+	plaquettes(pCounter,0)=Ly*x+y;
+	plaquettes(pCounter,1)=Ly*(x+1)+y; // i+Ly;
+	plaquettes(pCounter,2)=Ly*x+(y+1)%Ly; //i+1;
+	plaquettes(pCounter,3)=Ly*(x+1)+(y+1)%Ly; // i+1+Ly;
+	pCounter++;
+      }
     }
+
+    //  for(int i=0;i<numPlaquettes; i++){ for(int j=0;j<4;j++){
+    //	cout << plaquettes(i,j) << ","; } cout << endl;    } exit(1);
+
 
     // make sure we have the proper number of nnbonds
     if(bCounter!=number_of_nnbonds){cout << "supererror" << endl;}
