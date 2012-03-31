@@ -41,13 +41,13 @@ class LOOPS
   int num2site;
   double middle, vlegMiddle;
   double plaqProb;
-  long long vlegs;/*the number of vertex legs including legs from the vertices
+  int vlegs;/*the number of vertex legs including legs from the vertices
 		    used to simulate the edge states |VL> and |VR> */
-  long long iterations; //number of iterations per loop. Used for energy calc.
+  int iterations; //number of iterations per loop. Used for energy calc.
   double energy; //the energy in non-integer form
   string bopfile; //the name of the file in which the bondops are stored
   
-  vector <long long> Vlinks, Hlinks;//the vert and horizontal links for the LL
+  vector <int> Vlinks, Hlinks;//the vert and horizontal links for the LL
   vector <double> vleg2op; //list of which leg/4 corresponds to what operator
   vector <int> spins, init_spins; //keeps track of spins for swaperation
 
@@ -354,8 +354,15 @@ void LOOPS::generate_ops()
     if(i==number_of_bondops/2){middle = num2site-0.5;}
   }
 
-  vlegs = 4*number_of_sites + 4*num2site;
-  vlegMiddle = 2*number_of_sites + 4*(middle+0.5) - 0.5;
+  //  cout << "#sites=" << number_of_sites << "  #2site=" << num2site 
+  //       << "  #ops=" << number_of_bondops << endl; 
+  
+  //  vlegs = 4*2*number_of_sites + 4*num2site;
+  //  vlegMiddle = 4*number_of_sites + 4*(middle+0.5) - 0.5;
+    vlegs = 4*number_of_sites + 4*num2site;
+    vlegMiddle = 2*number_of_sites + 4*(middle+0.5) - 0.5;
+
+  //  cout << "vlegs=" << vlegs << "  vlegMiddle=" << vlegMiddle << endl;
 
   superbops.resize(number_of_bondops+number_of_sites,3);
   //  for(int i=0;i<number_of_sites+number_of_bondops;i++){
@@ -478,12 +485,13 @@ void LOOPS::create__Hlinks()
   vleg2op.assign(vlegs, -99);
   //Initialize Hlinks so the "edge" sites are linked to themselves
   for(int i=0; i<number_of_sites/2; i++){
-    for(int j=0; j<4; j++){Hlinks[i*4+j]=i*4+j;}
-    vleg2op[i] = i;
+    for(int j=0; j<4; j++){Hlinks[i*4+j]=i*4+j; vleg2op[i*4+j]=i;}
   }
   for(int i=vlegs/4-number_of_sites/2; i<vlegs/4; i++){
-    for(int j=0; j<4; j++){Hlinks[i*4+j]=i*4+j;}
-    vleg2op[i]= i-vlegs/4+number_of_sites+number_of_bondops;
+    for(int j=0; j<4; j++){
+      Hlinks[i*4+j]=i*4+j; 
+      vleg2op[i*4+j]=i-vlegs/4+number_of_sites+number_of_bondops;
+    }
   }
 
   // the first N/2 bondops are the initial VB config. Pick up from there
@@ -514,7 +522,10 @@ void LOOPS::create__Hlinks()
       Hlinks[last[templegnum]] = legnum+1;
       last[templegnum] = legnum + 3;
       
-      vleg2op[legnum/4] = bopnum;
+      vleg2op[legnum] = bopnum;
+      vleg2op[legnum+1]= bopnum;
+      vleg2op[legnum+2]= bopnum;
+      vleg2op[legnum+3]= bopnum;
       legnum+=4;
     }
     else{ //it's a plaquette operator!!!
@@ -528,7 +539,10 @@ void LOOPS::create__Hlinks()
       Hlinks[last[templegnum]] = legnum+1;
       last[templegnum] = legnum + 3;
       
-      vleg2op[legnum/4] = bopnum;
+      vleg2op[legnum] = bopnum;
+      vleg2op[legnum+1]= bopnum;
+      vleg2op[legnum+2]= bopnum;
+      vleg2op[legnum+3]= bopnum;
       legnum +=4;
       
       //now the other side of the plaquette
@@ -542,7 +556,11 @@ void LOOPS::create__Hlinks()
       Hlinks[last[templegnum]] = legnum+1;
       last[templegnum] = legnum + 3;
 
-      vleg2op[legnum/4] = bopnum+0.5;
+  
+      vleg2op[legnum] = bopnum + 0.5;
+      vleg2op[legnum+1]= bopnum +0.5;
+      vleg2op[legnum+2]= bopnum +0.5;
+      vleg2op[legnum+3]= bopnum +0.5;
       legnum +=4;  
     }
   }
@@ -584,7 +602,10 @@ void LOOPS::create__Hlinks()
       Hlinks[last[templegnum]] = legnum+1;
       last[templegnum] = legnum + 3;
 
-      vleg2op[legnum/4] = bopnum;
+      vleg2op[legnum] = bopnum;
+      vleg2op[legnum+1] = bopnum;
+      vleg2op[legnum+2] = bopnum;
+      vleg2op[legnum+3] = bopnum;
       legnum+=4;
     }
     else{ //it's a plaquette operator!!!
@@ -598,7 +619,10 @@ void LOOPS::create__Hlinks()
       Hlinks[last[templegnum]] = legnum+1;
       last[templegnum] = legnum + 3;
       
-      vleg2op[legnum/4] = bopnum;
+      vleg2op[legnum] = bopnum;
+      vleg2op[legnum+1] = bopnum;
+      vleg2op[legnum+2] = bopnum;
+      vleg2op[legnum+3] = bopnum;
       legnum +=4;
       
       //now the other side of the plaquette
@@ -612,14 +636,22 @@ void LOOPS::create__Hlinks()
       Hlinks[last[templegnum]] = legnum+1;
       last[templegnum] = legnum + 3;
       
-      vleg2op[legnum/4] = bopnum+0.5;
+      vleg2op[legnum] = bopnum+0.5;
+      vleg2op[legnum+1] = bopnum+0.5;
+      vleg2op[legnum+2] = bopnum+0.5;
+      vleg2op[legnum+3] = bopnum+0.5;
       legnum +=4;  
     }
   }
-  // for(int i=0;i<vlegs/4;i++){
+  //  for(int i=0;i<vlegs;i++){
   //    cout <<"vleg2op["<<i<<"]="<<vleg2op[i]<<"  "<<superbops(floor(vleg2op[i]),2)<<endl;
   //  }
+  
+  //  cout << middle  << "   " << vleg2op[((int) ceil(vlegMiddle))] << "   " << vlegs << "  " 
+  //       <<number_of_bondops << endl;
+  //  cout << "size of vleg2op " << vleg2op.size() << endl;
 
+  //  exit(1);
 }
 
 /************ make_flip_loops() **********************************************
@@ -694,15 +726,15 @@ void LOOPS::make_flip_loops()
 
     if(leg>vlegMiddle&&startleg<vlegMiddle){
       //if it's a bond operator
-      int tempOp = floor (vleg2op[leg/4]);
+      int tempOp = floor (vleg2op[leg]);
       if(superbops(tempOp,2)==1){
 	rfirstcross = nnbonds(superbops(tempOp,0),leg%2);
       }
       //if it's a plaquette operator
       else{
 	rfirstcross = plaquettes(superbops(tempOp,0),
-				 (floor ((vleg2op[leg/4]-tempOp)+0.6))*2+leg%2);
-	//	cout <<"leg="<<leg<<" vleg2op="<<floor(vleg2op[leg/4]-tempOp+0.6)*2+leg%2<<endl; 
+				 (floor ((vleg2op[leg]-tempOp)+0.6))*2+leg%2);
+	//	cout <<"leg="<<leg<<" vleg2op="<<floor(vleg2op[leg]-tempOp+0.6)*2+leg%2<<endl; 
       }
       right = 1;
       boolcross++;
@@ -711,14 +743,14 @@ void LOOPS::make_flip_loops()
     }
     if(leg<vlegMiddle&&startleg>vlegMiddle){
       //if it's a bond operator
-      int tempOp = floor (vleg2op[startleg/4]);
+      int tempOp = floor (vleg2op[startleg]);
       if(superbops(tempOp,2)==1){
 	rfirstcross = nnbonds(superbops(tempOp,0),leg%2);
       }
       //if it's a plaquette operator
       else{
 	rfirstcross = plaquettes(superbops(tempOp,0),
-				 (floor ((vleg2op[startleg/4]-tempOp)+0.6))*2+startleg%2);
+				 (floor ((vleg2op[startleg]-tempOp)+0.6))*2+startleg%2);
       }
 
       right = 0;
@@ -738,7 +770,7 @@ void LOOPS::make_flip_loops()
 	  // superbops(leg/4,1) = (superbops(leg/4,1)+1)%2;
 	  
 	  //if it's a bond operator
-	  int tempOp = floor (vleg2op[leg/4]);
+	  int tempOp = floor (vleg2op[leg]);
 	  if(superbops(tempOp,2)==1){ 
 	  superbops(tempOp,1)=(superbops(tempOp,1)+1)%2;
 	  }
@@ -746,7 +778,7 @@ void LOOPS::make_flip_loops()
 	  else{
 	    //figure out which of the two ops we're on
 	    //if it's the second one
-	    if(vleg2op[leg/4]-tempOp){
+	    if(vleg2op[leg]-tempOp){
 	      //add 2 mod 4
 	      // 0->2,1->3,3->1,2->0
 	      superbops(tempOp,1)=(superbops(tempOp,1)+2)%4;
@@ -764,14 +796,14 @@ void LOOPS::make_flip_loops()
 	  if(leg<vlegMiddle){
 
 	    //if it's a bond operator
-	    int tempOp = floor (vleg2op[Hlinks[leg]/4]);
+	    int tempOp = floor (vleg2op[Hlinks[leg]]);
 	    if(superbops(tempOp,2)==1){
 	      rcurrent = nnbonds(superbops(tempOp,0),Hlinks[leg]%2);
 	    }
 	    //if it's a plaquette operator
 	    else{
 	      rcurrent = plaquettes(superbops(tempOp,0),
-				    (floor ((vleg2op[Hlinks[leg]/4]-tempOp)+0.6))*2
+				    (floor ((vleg2op[Hlinks[leg]]-tempOp)+0.6))*2
 				    +Hlinks[leg]%2);
 	    } 
 	    //    rcurrent = nnbonds(superbops(Hlinks[leg]/4,0),Hlinks[leg]%2);
@@ -779,14 +811,14 @@ void LOOPS::make_flip_loops()
 	  else{
 	    
 	    //if it's a bond operator
-	    int tempOp = floor (vleg2op[leg/4]);
+	    int tempOp = floor (vleg2op[leg]);
 	    if(superbops(tempOp,2)==1){
 	      rcurrent = nnbonds(superbops(tempOp,0),leg%2);
 	    }
 	    //if it's a plaquette operator
 	    else{
 	      rcurrent = plaquettes(superbops(tempOp,0),
-				    (floor ((vleg2op[leg/4]-tempOp)+0.6))*2
+				    (floor ((vleg2op[leg]-tempOp)+0.6))*2
 				    +leg%2);
 	    } 
 	    //	    rcurrent = nnbonds(superbops(leg/4,0),leg%2);
