@@ -354,15 +354,15 @@ void LOOPS::generate_ops()
     if(i==number_of_bondops/2){middle = num2site-0.5;}
   }
 
-  //  cout << "#sites=" << number_of_sites << "  #2site=" << num2site 
-  //       << "  #ops=" << number_of_bondops << endl; 
+  //   cout << "#sites=" << number_of_sites << "  #2site=" << num2site 
+  //         << "  #ops=" << number_of_bondops << endl; 
   
-  //  vlegs = 4*2*number_of_sites + 4*num2site;
-  //  vlegMiddle = 4*number_of_sites + 4*(middle+0.5) - 0.5;
+    //  vlegs = 4*2*number_of_sites + 4*num2site;
+    //  vlegMiddle = 4*number_of_sites + 4*(middle+0.5) - 0.5;
     vlegs = 4*number_of_sites + 4*num2site;
     vlegMiddle = 2*number_of_sites + 4*(middle+0.5) - 0.5;
 
-  //  cout << "vlegs=" << vlegs << "  vlegMiddle=" << vlegMiddle << endl;
+    //   cout << "vlegs=" << vlegs << "  vlegMiddle=" << vlegMiddle << endl;
 
   superbops.resize(number_of_bondops+number_of_sites,3);
   //  for(int i=0;i<number_of_sites+number_of_bondops;i++){
@@ -643,15 +643,11 @@ void LOOPS::create__Hlinks()
       legnum +=4;  
     }
   }
-  //  for(int i=0;i<vlegs;i++){
-  //    cout <<"vleg2op["<<i<<"]="<<vleg2op[i]<<"  "<<superbops(floor(vleg2op[i]),2)<<endl;
-  //  }
-  
-  //  cout << middle  << "   " << vleg2op[((int) ceil(vlegMiddle))] << "   " << vlegs << "  " 
-  //       <<number_of_bondops << endl;
-  //  cout << "size of vleg2op " << vleg2op.size() << endl;
-
-  //  exit(1);
+  //    for(int i=0;i<vlegs;i++){
+  //      cout <<"vleg2op["<<i<<"]="<<vleg2op[i]<<"  "<<superbops(floor(vleg2op[i]),2)<<endl;}
+  //    cout << middle  << "   " << vleg2op[((int) ceil(vlegMiddle))] << "   " << vlegs << "  " 
+  //         <<number_of_bondops << endl;
+  //    cout << "size of vleg2op " << vleg2op.size() << endl;    exit(1);
 }
 
 /************ make_flip_loops() **********************************************
@@ -675,7 +671,7 @@ void LOOPS::create__Hlinks()
    counter_________starts at the beginning of the vertex legs, goes to the end
    leg_____________the current vertex leg we're looking at
    which___________0 for looking at vertical links, 1 for horizontal
-   flip____________0 if we're not flipping this loop, 1 if we are
+   loopflip________0 if we're not flipping this loop, 1 if we are
    firstcross______the first site involved in a loop crossing the boundary. 
                    Used to get the last bond at the boundary.
    lastcross_______the last site involved in a loop crossing the boundary
@@ -692,7 +688,7 @@ void LOOPS::make_flip_loops()
   vector <int> loopnums(vlegs,-99);
   int loopnum(1), startleg(0); 
   long long counter(0), leg(0);
-  bool which(0), flip=0;
+  bool which(0), loopflip=0;
   int rfirstcross(-99),rlastcross(-99), rcurrent(0); 
   int right=-99;
   bool boolcross=0;
@@ -704,8 +700,8 @@ void LOOPS::make_flip_loops()
 
   while(counter < vlegs-2){
 
-    if(drand()<0.5){flip=1;}
-    else{flip=0;}
+    if(drand()<0.5){loopflip=1;}
+    else{loopflip=0;}
 
     startleg = counter;        // set the initial site (startsite)
     leg = Hlinks[counter];     // the site connected to startsite horizontally
@@ -766,7 +762,7 @@ void LOOPS::make_flip_loops()
       if(!which){                
 	leg = Vlinks[leg];
 
-	if(flip){
+	if(loopflip){
 	  // superbops(leg/4,1) = (superbops(leg/4,1)+1)%2;
 	  
 	  //if it's a bond operator
@@ -867,9 +863,9 @@ void LOOPS::make_flip_loops()
   }
 
   //check of states
-  //   for(int i=0;i<number_of_sites;i++){
-  //     cout << "VL["<<i<<"] = "<<VL[i]<<endl;
-  //   }
+  //  for(int i=0;i<number_of_sites;i++){   cout << "VL["<<i<<"]="<<VL[i]<<"   VR["<<i<<"]="<<VR[i]  <<endl;  }
+  //  cout << cross << endl;
+  // exit(1);
 
   //Hlinks isn't used in any other functions.  Clear it.
   Hlinks.clear();
@@ -1068,6 +1064,9 @@ void LOOPS::change__operators()
   //cout << num2site << endl;
   vlegs = 4*number_of_sites + 4*num2site;
   // cout << vlegs << endl;
+  int tempspins(0);
+  for(int i=0; i<number_of_sites; i++){tempspins += spins[i];}
+  cout << tempspins <<"   " << number_of_sites << endl;
 }
 /************ swaperator() ****************************************************
 what geometry does this even use?  squares?
@@ -1133,8 +1132,9 @@ void LOOPS::swaperator()
     }
     int loopdiff = temploopnum - cross;
     entropy[iz] += pow(2,loopdiff);
-    
+    // cout << "temploopnum " << temploopnum << "    loopdiff " << loopdiff << endl;    
   }
+  //exit (1);
 }
 /************ calculate_stuff() ***********************************************
 ******************************************************************************/
