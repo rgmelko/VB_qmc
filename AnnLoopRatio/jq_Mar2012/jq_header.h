@@ -1064,9 +1064,10 @@ void LOOPS::change__operators()
   //cout << num2site << endl;
   vlegs = 4*number_of_sites + 4*num2site;
   // cout << vlegs << endl;
-  // int tempspins(0);
+  //int tempspins(0);
   // for(int i=0; i<number_of_sites; i++){tempspins += spins[i];}
-  // cout << tempspins <<"   " << number_of_sites << endl;
+  //if(tempspins!=number_of_sites/2){ 
+  //  cout << tempspins <<"   " << number_of_sites << endl;exit(1);}
 }
 /************ swaperator() ****************************************************
 what geometry does this even use?  squares?
