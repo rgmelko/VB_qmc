@@ -52,10 +52,10 @@ formulation. One of the most fruitful directions is to use numerical methods to 
 in an unbiased way, and to extract from such calculations emergent low-energy properties which can be 
 compared with results for corresponding quantum field theories. Such connections between the two approaches 
 can have significant synergy effects in advancing our understanding of quantum many-body phenomena---as they
-have had and continue to have in classical statistical mechanics, especially with regards to phase transitions. 
+have had and continue to have in classical statistical mechanics, especially in studies of phase transitions. 
 
-Computational studies have their own challenges, and many models of interest are currently beyond the reach of existing 
-algorithms. Frustrated quantum spin systems and fermions in two and three dimensions are the two main groups 
+Computational research has its own challenges, however, and many quantum models of interest are currently beyond the reach 
+of existing algorithms. Frustrated quantum spin systems and fermions in two and three dimensions are the two main groups 
 of difficult systems. They are generally associated with the infamous ``sign problem'' in quantum Monte Carlo (QMC) simulation
 \cite{Loh90,Henelius00,Nyfeler08}, i.e., the weight function in the configuration space constructed using the Euclidean path 
 integral or other mappings to an effective statistical-mechanics problem is not positive definite (and hence cannot be directly 
@@ -66,11 +66,12 @@ large-scale QMC studies without sign problems (i.e., they are ``de-signed'' by d
 A common misconception is that interesting designer Hamiltonians should not exist---if a model is sign-problem 
 free it must be trivial or uninteresting. There are already many counter-examples to this pessimistic view, 
 however, and we will here review some recent examples from the area of quantum magnetism. Advances in QMC 
-methods \cite{Sandvik91,Evertz93,Beard96,Prokofev98,Sandvik99,Sandvik10a} have made it possible to truly approach the 
-low-energy limit of many important models without any approximations (beyond controllable statistical errors), and to compute quantities of 
-great current interest, e.g., the fidelity \cite{Schwandt09,Degrandi11} and the entanglement entropy \cite{Hastings10}. We will 
-brifly address some of these technical aspects as well. We here first give some further remark on field theory and the philosophy 
-of the synergistic use of designer Hamiltonians, and then outline the topics covered in this review.
+methods \cite{Sandvik91,Evertz93,Beard96,WormA,Sandvik99,Sandvik10a} have made it possible to truly approach the 
+low-energy limit of many important models without any approximations (beyond controllable statistical errors), and to compute 
+quantities of great current interest in condensed matter physics and quantum information theory, e.g., the fidelity 
+\cite{Schwandt09,Degrandi11} and the entanglement entropy \cite{Hastings10}. We will brifly address some of these technical 
+aspects as well. We here first give some further remark on field theory and the philosophy of the synergistic use of 
+designer Hamiltonians, and then outline the topics covered in this review.
 
 \subsection{Field theory and numerical studies of Hamiltonians}
 
@@ -81,7 +82,7 @@ system. Some times the field theory can be derived in some well defined limit, e
 nonlinear $\sigma$-model description of interacting quantum spins in $d$ dimensions was derived by Haldane in 
 the semi-classical limit of large spin $S$ by using coherent spin states \cite{Haldane83,Chakravarty89,Auerbach94}. 
 In other cases, the field theory is constructed heuristically, e.g., the non-compact CP$^{N-1}$ action
-proposed to describe the intriguing ``deconfined'' quantum-critical point in $d=2$ quantum spin systems undergoing 
+proposed to describe the intriguing ``deconfined'' quantum-critical point in $d=2$ quantum magnets with 
 transitions between a N\'eel antiferromagnet and a valence-bond solid (VBS) \cite{Senthil04a,Sachdev08}.
 
 %It is
@@ -117,7 +118,7 @@ level where one can obtain unbiased results for large systems.
 
 The only numerical approach with which one can reach sufficiently large lattices in two and three dimensions is QMC 
 simulations \cite{Evertz03,Sandvik10b}, and, as already noted, they are often limited in practice by sign problems. The 
-class of models for there is no sign problem, or it is known how to circumvent it, still contains a vast range of 
+class of models for which there is no sign problem, or it is known how to circumvent it, still contains a vast range of 
 models with non-trivial and interesting ground states and quantum phase transitions. To study low-energy emergent 
 properties, the interactions do not necessarily have to correspond closely to any particular material (although some 
 times that is also possible). The idea is to design a sign-problem free Hamiltonian in such a way that it contains a 
@@ -135,7 +136,7 @@ often not one that would have come natural as a starting point just from the per
 classical model. Note, in particular, that it is now well established that symmetries alone do not uniquely determine the nature of a 
 quantum phase transition, but systems with the same symmetries can belong to different universality classes, depending on the role of topological 
 defects \cite{Motrunich04}. Thus, in our view the approach of using manifestly quantum mechanical designer Hamiltonians is an important direction
-in research on many-body ground states and quantum criticality.
+in research on many-body ground states, quantum criticality, and other emergent phenomena.
 
 \subsection{Outline of the Review}
 
@@ -179,7 +180,7 @@ in the probability $P_C \propto |W_C|$, instead weighting the observables with i
 \begin{equation}
 \langle O \rangle = \frac{\sum_C W_C O_C}{\sum_C W_C} =
 \frac{\sum_C O_C {\rm Sign}(W_C) |W_C|}{\sum_C {\rm Sign}(W_C)|W_C|} = 
-\frac{\langle {\rm Sign} \cdot O\rangle_W}{\langle {\rm Sign}\rangle_W}
+\frac{\langle {\rm Sign} \cdot O\rangle_{|W|}}{\langle {\rm Sign}\rangle_{|W|}}
 \label{expvalue}
 \end{equation}
 The problem here is that the numerator and denominator in the last expression both approach zero
@@ -190,7 +191,7 @@ from exponential to polynomial scaling) is then lost. This predicament is the QM
 We here consider classes of quantum Hamiltonians for which it is possible to choose a basis in which all 
 the $W_C\geq 0$. These sign-problem free models can generally be simulated in polynomial time by 
 importance sampling, allowing access to large system sizes (with the exception of ``glassy'' systems and
-other systems where even classical Monte Carlo systems scale exponentially). In some cases, sign problems
+other systems where even classical Monte Carlo simulations scale exponentially). In some cases, sign problems
 can be solved in more sophisticated ways, e.g., in the Meron algorithm \cite{Chandrasekharan99}. Here we 
 consider only cases where the ``de-signing'' is essentially automatic, being related to the bipartiteness 
 of the interactions.
@@ -223,32 +224,45 @@ without diagonalizing $H$. In practice, implementations of $T=0$ and $T>0$ appro
 operator can be treated with path-integral methods---world lines in discrete \cite{Suzuki77,Hirsch82} or continuous \cite{Beard96,Prokofev96,Prokofev98} 
 imaginary time---starting from a product of ``time slices'',
 \begin{equation}
-{\rm e}^{-\beta H}= \prod_{i=1}^M {\rm e}^{-\Delta H},~~~~ \Delta=\frac{\beta}{M},
+{\rm e}^{-\beta H}= \prod_{i=1}^M {\rm e}^{-\Delta H},~~~~ \Delta=\frac{\beta}{M}.
 \label{slicing}
 \end{equation}
-ans complete sets of states are inserted between the exponentials (and the trace is further taken at $T>0$). For small $\Delta$, the
+Complete sets of states are inserted between the exponentials (and the trace is further taken at $T>0$). For small $\Delta$, the
 matrix elements of the exponentials can be evaluated approximately, giving the form (\ref{eq:wc}) with $W_C$ a product of $M$ matrix elements. 
-In modern approaches the limit $\Delta \to 0$ can be taken at the algorithmic level, and the Monte Carlo sampling is of paths in continuous
-imaginary time. Older approaches employed the Suzuki-Trotter decomposition \cite{Suzuki76} in (\ref{slicing}), typically leading to an error 
+In modern approaches the limit $\Delta \to 0$ is taken at the algorithmic level, and the Monte Carlo sampling is of paths in continuous imaginary 
+time. Older approaches employed the Suzuki-Trotter decomposition \cite{Suzuki76} in (\ref{slicing}), typically leading to an error 
 $\mathcal{O}(\Delta^2)$.
 
 An alternative way is to start from a series expansion \cite{Handscomb62,Sandvik91},
 \begin{equation}
 {\rm e}^{-\beta H}= \sum_{n=0}^\infty \frac{\beta)^n}{n}(-H)^n,
 \end{equation}
-and again insering complete sets of states between each $H$ in the powers $(-H)^n$. The expansion power $n$ itself is importance-sampled along 
-with the terms of $H$ (stochastic series expansion; SSE), and the expansion is sharply peaked around $\langle n\rangle = -\beta E_0$ (under the assumption 
-that there is no sign problem). Again, $W_c$ in (\ref{eq:wc}) is a product of matrix elements (now with no approximations from the outset). The continuous-time 
-path integral can also be seen as a variant of SSE, where the evolution operator is written in the interaction picture, with $H=H_0+V$ and expanding only 
-in $V$ \cite{Prokofev96,Sandvik97a}. The full SSE is normally more efficient for spin systems, while the continuous-time variant should be better for certain boson systems.
+and inserting complete sets of states between each instance of $H$. The power $n$ itself is importance-sampled along with the terms of $H$ 
+(stochastic series expansion; SSE), and the expansion is sharply peaked around $\langle n\rangle = -\beta E_0$ (under the assumption that there 
+is no sign problem). Again, $W_c$ in (\ref{eq:wc}) is a product of matrix elements. The continuous-time path integral can also be seen as a variant 
+of SSE, where the evolution operator is written in the interaction picture, with $H=H_0+V$ and expanding only in $V$ \cite{Prokofev96,Sandvik97a}. 
+The full SSE is normally more efficient for spin systems, while the continuous-time variant should be better for certain boson systems.
 
-Regardless of how the exponential operator is treated,
-the difference between Eqs.~(\ref{za1}) and (\ref{za2}) is essentially only in the boundary conditions in the imaginary time direction; 
-periodic for $T>0$ (due to the trace being taken) and dictated by the nature of the trial state in $T=0$ projections. An equal superposition over 
-all basis states corresponds to fully open boundaries, while other choices of the trial state leads to open boundaries (with some weighting of the bra 
-and ket states, depending on the details of the trial state). 
+Regardless of how the exponential operator is treated, the difference between Eqs.~(\ref{za1}) and (\ref{za2}) is essentially only in the boundary 
+conditions in the imaginary time direction; periodic for $T>0$ (due to the trace being taken) and dictated by the nature of the trial state in $T=0$ 
+projections. An equal superposition over all basis states corresponds to fully open boundaries, while other choices of the trial state leads to open 
+boundaries (with some weighting of the bra and ket states, depending on the details of the trial state). 
+
+There is no sign problem in these approaches
+for spin systems on bipartite lattices (for a properly chosen trial state in the case of the $T=0$ approach); essentially because all individual 
+matrix elements in the products constituting the weight $W_C$ can be rendered positive by a simple transformation. For details, see, 
+e.g., Ref.~\cite{Henelius00}.
 
 \subsection{Sampling with loop and cluster algorithms}
+
+A break-throug leading to today's efficient QMC algorithm was the realization \cite{Evertz93} that generalizations of the classical Swendesn-Wang (SW) cluster 
+Monte Carlo method \cite{Swendsen88} could be generalized to loop algorithms (i.e., clusters in the form of one-dimensional loops) for vertex models, and that 
+these vertex models are very similar to the effective statistical mechanics problems arising in the transformations of the quantum problem discussed above. Such 
+loop algorithms cannot be applied to all cases (in analogy with the SW method, which also has limited applicability), but the loop concept has also been further 
+generalized to ``worms'' \cite{Prokofev96,Prokofev98, WormA} and ``directed loops'' \cite{Sandvik99,Syljuasen02}, which are essentially loops that can self-intersect
+during their construction and incorporate the detailed-balance principle in a more general way. Recently such an algorithm was also formulated without
+delatiled balance \cite{Suwa10}. In addition, for some models where loop algorithms and their generalizations are not applicable (e.g., transeverse-field 
+Ising models), other efficient generalizations of the SW concept has been developed \cite{Rieger99,Sandvik03}.
 
 \subsection{Special techniques for SU(2)-symmetric models}
 
@@ -265,7 +279,7 @@ where $s_{ij}$ denotes the singlet state of spins $i$ and $j$.
 A power of the Hamiltonian $H^m$ can be expanded into all possible products of these projectors, which act on the ket trial state in 
 (\ref{za2}). In early versions of this scheme, the resulting paths (propagations) of valence bond states were sampled, while in more 
 recent formulations the diagonal and off-diagonal parts of the projectors are also sampled, along with spin configurations compatible with 
-the valence-bond configurations of the trial state (which are also sampled).\cite{Sandvik10a} An example of a configuration in such a simulation is shown 
+the valence-bond configurations of the trial state (which are also sampled) \cite{Sandvik10c}. An example of a configuration in such a simulation is shown 
 in Fig.~\ref{loops}. This configuration space is amenable to very efficient loop updates, which are simple generalizations of loop updates 
 previously introduced in the context of $T>0$ algorithms. Such loop algorithms are reviewed in Refs.~XX and YY.
 
@@ -737,7 +751,7 @@ Previous estimates for $\eta$ were obtained from field-theoretic treatments.  Fr
 which gives $\eta = 2.08$ for $N=1$.
 A more accurate value was obtained from a combination of field theoretic and Monte Carlo simulations of the correlation of a composite operator in the 3D XY model\cite{compositefieldtheory,compositeMC}, leading to $\eta\approx  1.47(3)$.
 
-The measurement of $\eta$ in the kagome BFG model is challenging, requiring measurement the equal time Green's function in real space: $G(x)\equiv G(\tau=0,r) = \langle b^\dagger(0) b(r) \rangle$ \cite{WormA,gfsse}, done by keeping track of the defects created in the non-local {\it loop} algorithm \cite{dirloops} as it traverses the QMC's $d+1$ space-time simulation cell.  At the critical point, $G(r)$ should decay as $1/r^{1+\eta}$, and finite size effects can be minimized e.g. by measuring $G(L/6)$, which decays as $1/L^{1+\eta}$, as a function of $L$
+The measurement of $\eta$ in the kagome BFG model is challenging, requiring measurement the equal time Green's function in real space: $G(x)\equiv G(\tau=0,r) = \langle b^\dagger(0) b(r) \rangle$ \cite{WormA,gfsse}, done by keeping track of the defects created in the non-local {\it loop} algorithm \cite{Syljuasen02} as it traverses the QMC's $d+1$ space-time simulation cell.  At the critical point, $G(r)$ should decay as $1/r^{1+\eta}$, and finite size effects can be minimized e.g. by measuring $G(L/6)$, which decays as $1/L^{1+\eta}$, as a function of $L$
 
 Measurements of the Green's function in Fig.~XXX show an algebraic decay with $\eta=1.493(10)$, a value that is consistent with $\eta$ for a composite operator in the 3D XY model.  The excellent agreement between QMC simulation results and the composite boson field theory is a remarkable confirmation of fractionalized universality in this model, and highlights that synergetic work between simulation and quantum field theory is uniquiely capable of positive identification of exotic quantum phase transitions in condensed matter systems.
 
