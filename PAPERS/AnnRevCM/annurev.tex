@@ -379,27 +379,28 @@ H = H_1  -\lambda \sum_{[ i,j]} P_{ij} .
 \end{equation}
 If $\lambda>0$ and $J_1\to 0$, the ground state is clearly a product of singlets on the dimers, which is a quantum paramagnetic state, while if $\lambda=0$ 
 the system is the standard Heisenberg model (\ref{h1def}). There is, thus, a quantum phase transition between the N\'eel and paramagnetic ground states as a 
-function of the coupling ratio $g=(J_1+\lambda)/J_1$. 
+function of the coupling ratio $g=(J_1+\lambda)/J_1$. The dimers can be arranged in different ways, and instead of dimers one can also use larger $J_1$-coupled 
+units of an even number of spins, e.g., $4$-site plaquettes , or one can use a bilayer, with $J_1$ and $J_2$ the inter-and intra-layer couplings, respectively.
 
 Based on symmetry arguments alone, the N\'eel--paramagnetic transition should be in the standard classical 3D O($3$) universality class. Many QMC studies 
-have been devoted checking the exponents against available results for the classical transition. There are many different ways in which the dimers can be 
-arranged, and instead of dimers one can also use larger $J_1$-coupled units of an even number of spins, e.g., $4$-site plaquettes, or one can use a
-bilayer, with $J_1$ and $J_2$ the inter-and intra-layer couplings, respectively. For some of these systems (e.g., bilayers and columnar dimers on the
-square lattice) results have been obtained that rival classical calculations in precision (statistical error bars) and in general the exponents agree 
-very well with each other. In other cases (e.g., with the dimers arranged in a staggered pattern), some studies indicated a new universality class.
-Later it was concluded that these cases, where the dimer pattern lacls inversion symmetry, have {\it irrelevant} operators (cubic interactions) in 
-the field-theory formulation, which are not present in systems with inversion symmetry. These lead to substantial finite-size corrections, which can
-easily be mistaken for a different universality class.
+have been devoted to checking the exponents against available results for the classical transition \cite{Sandvik94,Troyer96,Matsumoto01,Wang06,Wenzel08,Wenzel09}.
+For some of the systems, e.g., bilayers \cite{Wang06} and columnar dimers on the square lattice \cite{Matsumoto01,Wenzel09,Sandvik10b}, results have been 
+obtained that rival classical calculations in precision (statistical error bars) and in general the exponents agree very well with each other. In other 
+cases (e.g., with the dimers arranged in a staggered pattern), some studies initially indicated a new universality class \cite{Wenzel08}, while others
+supported the O($3$) transition \cite{Jiang12}.  Later it was realized that these cases, where the dimer pattern lack inversion symmetry, are associated with certain
+{\it irrelevant} operators (cubic interactions) in the field-theory formulation which are not present in systems with inversion symmetry \cite{Fritz11}. 
+These lead to substantial finite-size corrections, which can easily be mistaken for a different universality class.
 
 Field-theoretical descriptions using the nonlinear $\sigma$-model \cite{Haldane83,Chakravarty89,Chubukov94} and other approaches have given a wealth of 
 predictions also for the $T>0$ quantum-critical ``fan'' extending out into the plane $(g,T)$  from the quantum-critical point $(g_c,0)$. Quantum-critical
-scaling in an extended $T>0$ region is an important aspect of quantum phase transitions, as a contrast to classical phase transitions with typically very
-narrow regions of critical scaling.
+scaling in this extended $T>0$ region is an important characteristic of quantum phase transitions, in contrast with classical phase transitions, with typically 
+very narrow regions of critical scaling. This aspect of criticality dimerized models have also been investigated in detail with QMC studies \cite{Sandvik95,Brenig06,Sandvik11a}
 
 A N\'eel--paramegnetic transition of the type discussed above can in principle be experimentally realized in systems consisting of coupled dimers as a function 
-of pressure. The authors are not aware of any case where the phase transition can be crossed in 2D geometry, but a well-studied case in 3D is TlCu. Here neutron 
-scattering shows clear evidence of the phase transition from a paramagnet to a N\'eel state at a critical pressure. In this case the values of the couplings and 
-their pressure dependence are are not in detail, but one can still learn a lot from studies of designer hamiltonians by focusing on universal properties (XX YY).
+of pressure. The authors are not aware of any case where the phase transition can be crossed in 2D geometry, but a well-studied case in 3D is TlCuCl$_3$ 
+\cite{Cavadini01,Ruegg04}. Here neutron scattering shows clear evidence of the phase transition from a paramagnet to a N\'eel state at a critical pressure 
+\cite{Ruegg08}. In this case the values of the couplings and their pressure dependence are are not in detail, but one can still learn a lot from studies 
+of designer hamiltonians by focusing on universal properties \cite{Troyer97,Jin12,Oitmaa11}.
 
 \subsection{Deconfined N\'eel--VBS transition in J-Q models}
 
@@ -787,14 +788,15 @@ designer hamiltonians can be constructed for which some useful basis can be foun
 Indeed, the recent discovery of a spin liquid in the Hubbard model on the honeycomb lattice \cite{Meng10} seems to provide an example, although it 
 remains to be seen whether this state really is a $Z_2$ topological state.
 
-Regarding the sign problem itself more broadly, Ref.~\cite{Troyer05} presents a proof that the sign problem cannot be solved 
-in general. The problem is here defined in terms of constructing a QMC algorithm for which the computational effort scales as a power-law in the system
-size. They show a particular problem for which the removal of the sign still leaves a problem for which the Monte Carlo
-sampling is believed to scale exponentially in the system size. However, the problem chosen is that of a spin glass, and 
-the conclusion is that the quantum spin glass is not easier to solve than the corresponding classical spin glass. This is 
-hardly a surprising result, and the proof does not say anything about QMC solutions of systems that are not directly associated with the well known difficulties of simulating classical glassy systems with complicated energy landscapes. 
-Whether or not the sign problem can be circumvented for translationally invariant systems such as fermionic Hubbard models without
-particle-hole symmetry and frustrated quantum spins models remains and open question.
+Regarding the sign problem itself more broadly, Ref.~\cite{Troyer05} presents a proof that the sign problem cannot be solved in general. 
+The problem is here defined in terms of constructing a QMC algorithm for which the computational effort scales as a power-law in the system
+size. They show a particular problem for which the removal of the sign still leaves a problem for which the Monte Carlo sampling is believed 
+to scale exponentially in the system size. However, the problem chosen is that of a spin glass, and the conclusion reached is equivalent to
+the statement that the quantum spin glass is not easier to solve than the corresponding classical spin glass. This is hardly a surprising result, 
+and the proof does not say anything about QMC solutions of systems that are not directly associated with the well known difficulties of simulating 
+classical glassy systems with complicated energy landscapes. Whether or not the sign problem can be circumvented (at least for representative 
+designer hamiltonians) for translationally invariant systems such as fermionic Hubbard models without particle-hole symmetry and SU($2$) frustrated 
+quantum spins models remains and open question.
 
 \subsection{future prospects}
 
