@@ -35,8 +35,8 @@ physics. We focus on quantum spin systems in which competing interactions lead t
 associated quantum phase transitions can be studied in great detail, enabling direct access to universal properties and connections 
 with low-energy effective quantum field theories. As specific examples, we discuss the transition from a N\'eel antiferromagnet to 
 either a uniform quantum paramagnet or a spontaneously symmetry-broken valence-bond-solid in SU($2$) and SU($N$) spin models. We also 
-discuss anisotropic (XXZ) systems harboring spin liquids and the XY$^*$ transition. We briefly review recent progress on quantum Monte 
-Carlo algorithms, including ground state projection in the valence-bond basis and direct computation of the Renyi variants of the 
+discuss anisotropic (XXZ) systems harboring topological Z$_2$ spin liquids and the XY$^*$ transition. We briefly review recent progress 
+on quantum Monte Carlo algorithms, including ground state projection in the valence-bond basis and direct computation of the Renyi variants of the 
 entanglement entropy.
 \end{abstract}
 
@@ -155,32 +155,29 @@ We conclude in Sec.~\ref{sec:discussion} with a discussion of future prospects a
 \section{Modern QMC methods}
 \label{sec:methods}
 
-There is a wide range of QMC methods available for studies of different classes of models \cite{Assaad07,Evertz03,Sandvik10b}. 
-In this review we focus on spin models, and therefore restrict the discussion to the types of methods most suitable for them. 
-These methods are also often well suited for studies of bosons, where a substantial body of work has been carried out in the last few years 
-stimulated by ultracold atoms in optical lattices. For fermions, other approaches work much better in practice (except for 1D systems, where the methods discussed 
-here also work well since the signs from anticommutation normally do not appear in this geometry). We will here only give a rough overview of the 
-methods, with references to more detailed accounts.
+There is a wide range of QMC methods available for studies of different classes of models \cite{Assaad07,Evertz03,Sandvik10b}. In this review we 
+focus on spin models, and therefore restrict the discussion to the types of methods most suitable for them. These methods are also often well suited 
+for studies of bosons, where a substantial body of work has been carried out in the last few years stimulated by ultracold atoms in optical lattices. 
+For fermions, other approaches work much better in practice (except for 1D systems, where the methods discussed here also work well since the 
+signs from anticommutation normally do not appear in this geometry). We will here only give a rough overview of the methods.
 
 \subsection{The sign problem}
 \label{ss:sign}
 
-Solving many-body quantum mechanical problems on a computer is {\em generally} exponentially 
-hard (in computing time versus system size) with known algorithms. The statistical mechanics of 
-$d$-dimensional quantum Hamiltonians can be rewritten in terms of classical variables $C$ in 
-$d+1$ dimensions, e.g., the partition function ($T>0$) or the normalization ($T=0$) has the form
+Solving many-body quantum mechanical problems on a computer is {\em generally} exponentially hard (in computing time versus system size) 
+with known algorithms. The statistical mechanics of a $d$-dimensional quantum Hamiltonian can be rewritten in terms of some classical variables 
+$C$ in $d+1$ dimensions, e.g., the partition function ($T>0$) or the normalization ($T=0$) has the form
 \begin{equation}
 \label{eq:wc}
 Z=\sum_C W_C.
 \end{equation}
-Systems of interest can, for practical, known ways of transforming into the above form,
-have positive and negative weights $W_C$, invalidating the usual interpretation of $W_C$ as a probability 
-in Monte Carlo simulations. Formally, this difficulty can be side-stepped by not including the sign 
-in the probability $P_C \propto |W_C|$, instead weighting the observables with it;
+Systems of interest can, for practical, known ways of transforming into the above form, have positive and negative weights $W_C$, 
+invalidating the usual interpretation of $W_C/Z$ as a probability distribution in Monte Carlo simulations. Formally, this difficulty 
+can be side-stepped by not including the sign in the probability $P_C \propto |W_C|$ and compensating by weighting the observables with it;
 \begin{equation}
 \langle O \rangle = \frac{\sum_C W_C O_C}{\sum_C W_C} =
 \frac{\sum_C O_C {\rm Sign}(W_C) |W_C|}{\sum_C {\rm Sign}(W_C)|W_C|} = 
-\frac{\langle {\rm Sign} \cdot O\rangle_{|W|}}{\langle {\rm Sign}\rangle_{|W|}}
+\frac{\langle {\rm Sign} \cdot O\rangle_{|W|}}{\langle {\rm Sign}\rangle_{|W|}}.
 \label{expvalue}
 \end{equation}
 The problem here is that the numerator and denominator in the last expression both approach zero
@@ -193,7 +190,7 @@ the $W_C\geq 0$. These sign-problem free models can generally be simulated in po
 importance sampling, allowing access to large system sizes (with the exception of ``glassy'' systems and
 other systems where even classical Monte Carlo simulations scale exponentially). In some cases, sign problems
 can be solved in more sophisticated ways, e.g., in the Meron algorithm \cite{Chandrasekharan99}. Here we 
-consider only cases where the ``de-signing'' is essentially automatic, being related to the bipartiteness 
+implicitly consider cases where the ``de-signing'' is essentially automatic, being related to the bipartiteness 
 of the interactions.
  
 \subsection{$T>0$ and $T=0$ QMC methods}
@@ -229,9 +226,9 @@ imaginary time---starting from a product of ``time slices'',
 \end{equation}
 Complete sets of states are inserted between the exponentials (and the trace is further taken at $T>0$). For small $\Delta$, the
 matrix elements of the exponentials can be evaluated approximately, giving the form (\ref{eq:wc}) with $W_C$ a product of $M$ matrix elements. 
-In modern approaches the limit $\Delta \to 0$ is taken at the algorithmic level, and the Monte Carlo sampling is of paths in continuous imaginary 
-time. Older approaches employed the Suzuki-Trotter decomposition \cite{Suzuki76} in (\ref{slicing}), typically leading to an error 
-$\mathcal{O}(\Delta^2)$.
+In modern approaches the limit $\Delta \to 0$ is taken at the algorithmic level \cite{Prokofev96,WormA,Beard96} and the Monte Carlo sampling is of 
+paths in continuous imaginary time. Older approaches employed the Suzuki-Trotter decomposition \cite{Suzuki76} in (\ref{slicing}), typically leading 
+to an error $\mathcal{O}(\Delta^2)$.
 
 An alternative way is to start from a series expansion \cite{Handscomb62,Sandvik91},
 \begin{equation}
@@ -248,10 +245,9 @@ conditions in the imaginary time direction; periodic for $T>0$ (due to the trace
 projections. An equal superposition over all basis states corresponds to fully open boundaries, while other choices of the trial state leads to open 
 boundaries (with some weighting of the bra and ket states, depending on the details of the trial state). 
 
-There is no sign problem in these approaches
-for spin systems on bipartite lattices (for a properly chosen trial state in the case of the $T=0$ approach); essentially because all individual 
-matrix elements in the products constituting the weight $W_C$ can be rendered positive by a simple transformation. For details, see, 
-e.g., Ref.~\cite{Henelius00}.
+There is no sign problem in these approaches for spin systems on bipartite lattices (for a properly chosen trial state in the case of the $T=0$ approach); 
+essentially because there is always an even number of the negative matrix elements in $W_C$, or, equivalently, all of them can be rendered positive by a 
+sublattice transformation. For details, see, e.g., Ref.~\cite{Henelius00}.
 
 \subsection{Sampling with loop and cluster algorithms}
 
@@ -266,10 +262,10 @@ Ising models), other efficient generalizations of the SW concept has been develo
 
 \subsection{Special techniques for SU(2)-symmetric models}
 
-A particularly convenient class of trial states for SU($2$) invariant interactions is the amplitude-product states in the valence-bond basis, 
-introduced by Liang et al. and recently generalized to include bond correlations. These overcomplete states for the singlet sector incorporate
-Marshall's sign rule in a convenient way and also automatically have the appropriate momentum for the ground state of a periodic system (thereby
-from the outset filtering out a significant fraction of the excited states). The hamiltonian in this case can typically be expressed in terms of 
+A particularly convenient class of trial states in projector QMC with SU($2$) invariant interactions is the amplitude-product states in the valence-bond
+(singlet pair) basis \cite{Liang88}, whuch were recently generalized to include bond correlations \cite{Lin12}. These overcomplete states for the singlet 
+sector incorporate Marshall's sign rule in a convenient way and also automatically have the appropriate momentum for the ground state of a periodic system 
+(thereby from the outset filtering out a significant fraction of the excited states). The hamiltonian in this case can typically be expressed in terms of 
 two-spin singlet-projector operators  (individual ones or products of two or more of them);
 \begin{equation}
 P_{ij}=\hbox{$\frac{1}{4}$}-{\bf S}_i\cdot {\bf S}_j = |s_{ij}\rangle\langle s_{ij}|,
@@ -277,11 +273,11 @@ P_{ij}=\hbox{$\frac{1}{4}$}-{\bf S}_i\cdot {\bf S}_j = |s_{ij}\rangle\langle s_{
 \end{equation}
 where $s_{ij}$ denotes the singlet state of spins $i$ and $j$.
 A power of the Hamiltonian $H^m$ can be expanded into all possible products of these projectors, which act on the ket trial state in 
-(\ref{za2}). In early versions of this scheme, the resulting paths (propagations) of valence bond states were sampled, while in more 
-recent formulations the diagonal and off-diagonal parts of the projectors are also sampled, along with spin configurations compatible with 
+(\ref{za2}). In early versions of this scheme, the resulting paths (propagations) of valence bond states were sampled \cite{Liang90,Santoro99,Sandvik05}, 
+while in more recent formulations the diagonal and off-diagonal parts of the projectors are also sampled, along with spin configurations compatible with 
 the valence-bond configurations of the trial state (which are also sampled) \cite{Sandvik10c}. An example of a configuration in such a simulation is shown 
 in Fig.~\ref{loops}. This configuration space is amenable to very efficient loop updates, which are simple generalizations of loop updates 
-previously introduced in the context of $T>0$ algorithms. Such loop algorithms are reviewed in Refs.~XX and YY.
+previously introduced in the context of $T>0$ algorithms. Such loop algorithms are reviewed in Refs.~\cite{Evertz03} and \cite{Sandvik10b}.
 
 \begin{figure}
 \centerline{\psfig{figure=loops.eps,height=4.5cm}}
@@ -299,7 +295,7 @@ Evaluation of expectation values (``measurements'') in projector QMC simulations
 as indicated in Fig.~\ref{loops}. In the valence-bond basis, when propagating the bra and ket states in the pure valence-bond basis (which 
 corresponds to averaging over all compatible spin configurations), most quantities of interest can be expressed using the loops of the
 transition graph formed when superimposing the projected bra and ket states. Estimators for various correlation functions are discussed
-in Refs.~X and Y.
+in Refs.~\cite{Beach06} and \cite{Tang11a}.
 
 \subsection {Generalizations from SU(2) to SU(N)}
 \label{ss:su2N}
@@ -441,7 +437,8 @@ The critical behavior of both the $J$-$Q_2$ and $J$-$Q_3$ model on the simple 2D
 One useful quantity for studying the criticality of the N\'eel order parameter is the spin stiffness $\rho_s$. It should scale in the critical ground state 
 as $\rho_s \sim L^{2-d-z}$, where $z$ is the dynamic exponent. For a Lorenz-invariant critical theory $z=1$. One can test this by graphing $L\rho_s(L)$ versus 
 the coupling ratio $J/Q$ for different $L\times L$ lattices (in the ground state or with the inverse temperature $\beta \propto L^z$). Such curves should 
-cross at the critical point. In practice, the crossing point often exhibit some drift with $L$, reflecting scaling corrections. 
+cross at the critical point. In practice, the crossing point often exhibit some drift with $L$, reflecting scaling corrections. Results for the $J$-$Q_2$ 
+model are graphed in Fig.~\ref{jqrhos} and discussed next.
 
 In the $J$-$Q$ models the drift is anomalously large, which had been interpreted as a weakly first-order transition (for which $L\rho_s$
 should eventually diverge as $L$, due to coexistence of a stiff and non-stiff phase). Another possibility is that the model in fact has unusually
@@ -768,6 +765,9 @@ Measurements of the Green's function in Fig.~XXX show an algebraic decay with $\
 \section{Discussion}
 \label{sec:discussion}
 
+We have here given some examples of what can be accomplished with judiciously constructed designer Hamiltonians. Here we discuss
+some further generic aspects of this approach, followed by an outlook on future directions.
+
 \subsection{Designer hamiltonians, stoquasticity, and the sign problem}
 
 The concept of designer Hamiltonian we have introduced here is different from the ``stoquastic'' Hamiltonians \cite{Terhal08}; 
@@ -800,15 +800,18 @@ quantum spins models remains and open question.
 
 \subsection{future prospects}
 
-- Many things left to do along these lines (give some examples), e.g., larger sizes are still needed
-to fully characterize N\'eel--VBS transition; parallelization of QMC, impurities, disorder
+Within the classes of models we have discussed here, although the essential physics is now has been assertained, there still remains
+important work to be done to improve on the quantitative aspects, e.g., the critical exponents. In the case of the studies aiming to connect
+SU($N$) QMC simulations with large-$N$ expansions, summarized in Sec.~\ref{sec:sunmodels}, it would be very useful to go to still larger lattices, 
+to investigate the convergence of the computed exponents. This is importan, in particular, in light of the fact there there are significant scaling 
+corrections in quantities such as the spin stiffness for $N=2$. Such corrections could potentially affect also the fitting procedures underlying 
+the exponents graphed in Fig.~X for small N. When higher-order $1/N$ analytical results eventually become available, it will be important to know 
+the values of the exponents without possible remaining effects of scaling corrections. What is needed here is high-accuracy (small error bars) 
+results for the correlation functions on large lattices.
 
 - Fermions: it should be possible to study 1 or 2 fermions (manageble sign problem) in 
 VBS/critical/spin-liquid systems. One should be able to see some aspects of the "strange metal''.
 Mention meron algorithm---perhaps some more interesting designer hamiltonian can be constructed.
-
-- Open fundamental questions in this approach, e.g., can one design a sign-problem-free
-  SU(2) hamiltonian with a spin liquid phase?
 
 - Non-equilibrium QMC
 
