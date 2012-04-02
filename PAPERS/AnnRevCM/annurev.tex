@@ -33,8 +33,8 @@ We discuss designer Hamiltonians---lattice models tailored to be free from sign 
 Monte Carlo methods but still host complex  many-body states and quantum phase transitions of great interest in condensed matter 
 physics. We focus on quantum spin systems in which competing interactions lead to non-magnetic ground states. These states and 
 associated quantum phase transitions can be studied in great detail, enabling direct access to universal properties and connections 
-with low-energy effective quantum field theories. As specific examples, we discuss the transition from a N\'eel antiferromagnet to 
-either a uniform quantum paramagnet or a spontaneously symmetry-broken valence-bond-solid in SU($2$) and SU($N$) spin models. We also 
+to be made with low-energy effective quantum field theories. As specific examples, we discuss the transition from a N\'eel antiferromagnet to 
+either a uniform quantum paramagnet or a spontaneously symmetry-broken valence-bond solid in SU($2$) and SU($N$) spin models. We also 
 discuss anisotropic (XXZ) systems harboring topological Z$_2$ spin liquids and the XY$^*$ transition. We briefly review recent progress 
 on quantum Monte Carlo algorithms, including ground state projection in the valence-bond basis and direct computation of the Renyi variants of the 
 entanglement entropy.
@@ -227,12 +227,13 @@ imaginary time---starting from a product of ``time slices'',
 Complete sets of states are inserted between the exponentials (and the trace is further taken at $T>0$). For small $\Delta$, the
 matrix elements of the exponentials can be evaluated approximately, giving the form (\ref{eq:wc}) with $W_C$ a product of $M$ matrix elements. 
 In modern approaches the limit $\Delta \to 0$ is taken at the algorithmic level \cite{Prokofev96,WormA,Beard96} and the Monte Carlo sampling is of 
-paths in continuous imaginary time. Older approaches employed the Suzuki-Trotter decomposition \cite{Suzuki76} in (\ref{slicing}), typically leading 
-to an error $\mathcal{O}(\Delta^2)$.
+paths in continuous imaginary time. Older approaches employed the Suzuki-Trotter decomposition \cite{Suzuki76} in Eq.~(\ref{slicing}), which 
+typically leads to an error $\mathcal{O}(\Delta^2)$.
 
 An alternative way is to start from a series expansion \cite{Handscomb62,Sandvik91},
 \begin{equation}
 {\rm e}^{-\beta H}= \sum_{n=0}^\infty \frac{\beta)^n}{n}(-H)^n,
+\label{series}
 \end{equation}
 and inserting complete sets of states between each instance of $H$. The power $n$ itself is importance-sampled along with the terms of $H$ 
 (stochastic series expansion; SSE), and the expansion is sharply peaked around $\langle n\rangle = -\beta E_0$ (under the assumption that there 
@@ -251,14 +252,15 @@ sublattice transformation. For details, see, e.g., Ref.~\cite{Henelius00}.
 
 \subsection{Sampling with loop and cluster algorithms}
 
-A break-throug leading to today's efficient QMC algorithm was the realization \cite{Evertz93} that generalizations of the classical Swendesn-Wang (SW) cluster 
+A break-throug leading to today's efficient QMC algorithms of the types discussed above
+was the realization \cite{Evertz93} that generalizations of the classical Swendesn-Wang (SW) cluster 
 Monte Carlo method \cite{Swendsen88} could be generalized to loop algorithms (i.e., clusters in the form of one-dimensional loops) for vertex models, and that 
 these vertex models are very similar to the effective statistical mechanics problems arising in the transformations of the quantum problem discussed above. Such 
 loop algorithms cannot be applied to all cases (in analogy with the SW method, which also has limited applicability), but the loop concept has also been further 
 generalized to ``worms'' \cite{Prokofev96,Prokofev98, WormA} and ``directed loops'' \cite{Sandvik99,Syljuasen02}, which are essentially loops that can self-intersect
 during their construction and incorporate the detailed-balance principle in a more general way. Recently such an algorithm was also formulated without
 delatiled balance \cite{Suwa10}. In addition, for some models where loop algorithms and their generalizations are not applicable (e.g., transeverse-field 
-Ising models), other efficient generalizations of the SW concept has been developed \cite{Rieger99,Sandvik03}.
+Ising models), other efficient generalizations of the SW concept have been developed \cite{Rieger99,Sandvik03}.
 
 \subsection{Special techniques for SU(2)-symmetric models}
 
@@ -271,31 +273,30 @@ two-spin singlet-projector operators  (individual ones or products of two or mor
 P_{ij}=\hbox{$\frac{1}{4}$}-{\bf S}_i\cdot {\bf S}_j = |s_{ij}\rangle\langle s_{ij}|,
 \label{psinglet}
 \end{equation}
-where $s_{ij}$ denotes the singlet state of spins $i$ and $j$.
-A power of the Hamiltonian $H^m$ can be expanded into all possible products of these projectors, which act on the ket trial state in 
-(\ref{za2}). In early versions of this scheme, the resulting paths (propagations) of valence bond states were sampled \cite{Liang90,Santoro99,Sandvik05}, 
-while in more recent formulations the diagonal and off-diagonal parts of the projectors are also sampled, along with spin configurations compatible with 
-the valence-bond configurations of the trial state (which are also sampled) \cite{Sandvik10c}. An example of a configuration in such a simulation is shown 
-in Fig.~\ref{loops}. This configuration space is amenable to very efficient loop updates, which are simple generalizations of loop updates 
-previously introduced in the context of $T>0$ algorithms. Such loop algorithms are reviewed in Refs.~\cite{Evertz03} and \cite{Sandvik10b}.
+where $s_{ij}$ denotes the singlet state of spins $i$ and $j$. A power of the Hamiltonian $H^m$, for fixed $m$ or in a series expansiom, Eq.~(\ref{series}),
+is expanded into all possible products of these projectors, which act on the ket trial state in (\ref{za2}). In early versions of this scheme, the resulting 
+paths of valence bond states were sampled \cite{Liang90,Santoro99,Sandvik05}, while in more recent formulations the diagonal and off-diagonal parts of the 
+projectors are also sampled, along with spin configurations compatible with the valence-bond configurations of the trial state (which are also sampled) 
+\cite{Sandvik10c}. An example of a configuration in such a simulation is shown in Fig.~\ref{loops}. This configuration space is amenable the very efficient 
+loop updates discussed above \cite{Sandvik10a}. Apart from the boundary conditions in the ``propagation'' direction (and the associated sampling of the
+valence bonds in the trial state), this kind of projector method is in practice implemented in a very similar way as the SSE method for SU($2$) 
+models \cite{Sandvik10b}.
 
 \begin{figure}
 \centerline{\psfig{figure=loops.eps,height=4.5cm}}
-\caption{A configuration (from Ref.~XX) in a valence-bond projector simulation of a 4-site Heisenberg chain (here with a small
-projection power $m=2$). The vertical bars indicate singlet-projectors operators, while the arcs on the left (bra) and right (ket) 
-represent valence bond configurations of the sampled trial state. Open and closed circles indicate up and down spins, which are unchanged 
-between operators and represented by horizontal lines there. These lines, along with the valence bonds, form loops that can be flipped
-(i.e., all spins traversed by the loop are flipped) without changing the configuration weight. A configuration in a $T>0$ simulation 
-corresponds to imposing periodic boundary conditions in the ``time'' direction, instead the independent boundaries
-terminated by valence bonds.}
+\caption{A configuration in a valence-bond projector simulation of a 4-site Heisenberg chain; here with a small projection power, 
+$m=2$ \cite{Sandvik10a}. The vertical bars indicate singlet-projectors operators, while the arcs on the left (bra) and right (ket) represent 
+valence bond configurations of the sampled trial state. Open and closed circles indicate up and down spins, which are unchanged between 
+operators and represented by horizontal lines there. These lines, along with the valence bonds, form loops that can be flipped (i.e., 
+all spins traversed by the loop are flipped) without changing the configuration weight. A configuration in a $T>0$ simulation corresponds 
+to imposing periodic boundary conditions in the ``time'' direction, instead the independent boundaries terminated by valence bonds.}
 \label{loops}
 \end{figure}
 
-Evaluation of expectation values (``measurements'') in projector QMC simulations are carried out at the mid-point of the configuration,
-as indicated in Fig.~\ref{loops}. In the valence-bond basis, when propagating the bra and ket states in the pure valence-bond basis (which 
-corresponds to averaging over all compatible spin configurations), most quantities of interest can be expressed using the loops of the
-transition graph formed when superimposing the projected bra and ket states. Estimators for various correlation functions are discussed
-in Refs.~\cite{Beach06} and \cite{Tang11a}.
+Evaluation of expectation values (``measurements'') in projector QMC simulations are carried out at the mid-point of the configuration, as indicated 
+in Fig.~\ref{loops}. In the valence-bond basis, when propagating the bra and ket states in the pure valence-bond basis (which corresponds to averaging 
+over all compatible spin configurations), most quantities of interest can be expressed using the loops of the transition graph formed when superimposing 
+the projected bra and ket states. Estimators for various correlation functions are discussed in Refs.~\cite{Beach06} and \cite{Tang11a}.
 
 \subsection {Generalizations from SU(2) to SU(N)}
 \label{ss:su2N}
