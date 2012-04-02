@@ -69,7 +69,7 @@ however, and we will here review some recent examples from the area of quantum m
 methods \cite{Sandvik91,Evertz93,Beard96,WormA,Sandvik99,Sandvik10a} have made it possible to truly approach the 
 low-energy limit of many important models without any approximations (beyond controllable statistical errors), and to compute 
 quantities of great current interest in condensed matter physics and quantum information theory, e.g., the fidelity 
-\cite{Schwandt09,Degrandi11} and the entanglement entropy \cite{Hastings10}. We will brifly address some of these technical 
+\cite{Schwandt09,Degrandi11} and the entanglement entropy \cite{Hastings10, Melko10}. We will brifly address some of these technical 
 aspects as well. We here first give some further remark on field theory and the philosophy of the synergistic use of 
 designer Hamiltonians, and then outline the topics covered in this review.
 
@@ -149,7 +149,7 @@ In Sec.~\ref{sec:methods} we discuss the sign problem and some of the QMC scheme
 including treatments of SU($N$) symmetry and recent progress in computing the Renyi entanglement entropy. In Sec.~\ref{sec:su2models} 
 we give examples of conventional and deconfined quantum-critical points in SU(2) invariant models, and in Sec.~\ref{sec:sunmodels} 
 we show how generalization to SU($N$) symmetry can be used to directly connect to large-$N$ studies within field theory. In Sec.~\ref{sec:u1models} 
-we discuss spin liquid states and associated quantum phase transitions in U($1$) symmetric spin models (or, equivalently, hard-core bosons). 
+we discuss spin liquid states and associated quantum phase transitions in U($1$) symmetric ``XXZ'' spin models (or, equivalently, hard-core bosons). 
 We conclude in Sec.~\ref{sec:discussion} with a discussion of future prospects and challenges.
 
 \section{Modern QMC methods}
@@ -232,7 +232,7 @@ typically leads to an error $\mathcal{O}(\Delta^2)$.
 
 An alternative way is to start from a series expansion \cite{Handscomb62,Sandvik91},
 \begin{equation}
-{\rm e}^{-\beta H}= \sum_{n=0}^\infty \frac{\beta)^n}{n}(-H)^n,
+{\rm e}^{-\beta H}= \sum_{n=0}^\infty \frac{\beta^n}{n}(-H)^n,
 \label{series}
 \end{equation}
 and inserting complete sets of states between each instance of $H$. The power $n$ itself is importance-sampled along with the terms of $H$ 
@@ -265,7 +265,7 @@ Ising models), other efficient generalizations of the SW concept have been devel
 \subsection{Special techniques for SU(2)-symmetric models}
 
 A particularly convenient class of trial states in projector QMC with SU($2$) invariant interactions is the amplitude-product states in the valence-bond
-(singlet pair) basis \cite{Liang88}, whuch were recently generalized to include bond correlations \cite{Lin12}. These overcomplete states for the singlet 
+(singlet pair) basis \cite{Liang88}, which were recently generalized to include bond correlations \cite{Lin12}. These overcomplete states for the singlet 
 sector incorporate Marshall's sign rule in a convenient way and also automatically have the appropriate momentum for the ground state of a periodic system 
 (thereby from the outset filtering out a significant fraction of the excited states). The hamiltonian in this case can typically be expressed in terms of 
 two-spin singlet-projector operators  (individual ones or products of two or more of them);
@@ -273,7 +273,7 @@ two-spin singlet-projector operators  (individual ones or products of two or mor
 P_{ij}=\hbox{$\frac{1}{4}$}-{\bf S}_i\cdot {\bf S}_j = |s_{ij}\rangle\langle s_{ij}|,
 \label{psinglet}
 \end{equation}
-where $s_{ij}$ denotes the singlet state of spins $i$ and $j$. A power of the Hamiltonian $H^m$, for fixed $m$ or in a series expansiom, Eq.~(\ref{series}),
+where $s_{ij}$ denotes the singlet state of spins $i$ and $j$. A power of the Hamiltonian $H^m$, for fixed $m$ or in a series expansion, Eq.~(\ref{series}),
 is expanded into all possible products of these projectors, which act on the ket trial state in (\ref{za2}). In early versions of this scheme, the resulting 
 paths of valence bond states were sampled \cite{Liang90,Santoro99,Sandvik05}, while in more recent formulations the diagonal and off-diagonal parts of the 
 projectors are also sampled, along with spin configurations compatible with the valence-bond configurations of the trial state (which are also sampled) 
@@ -342,7 +342,31 @@ extending the number of loop colors from 2 to $N$.
 \label{ss:renyi}
 
 
-In addition to conventional estimators such as correlation functions, it has recently become apparent that QMC methods are capable of measuring estimators related to the {\it entanglement} of a quantum system.  Several quantities related to entanglement have been explored for their abilities to identify and characterize quantum phase and phase transitions such as concurrence, fluctuations, and fidelity.  
+In addition to conventional estimators such as correlation functions, it has recently been discovered that QMC methods are capable of measuring estimators related to the {\it entanglement} of a quantum system \cite{EntangleMeasure}.  Several quantities related to entanglement have recently been explored for their abilities to identify and characterize quantum phases and phase transitions such as concurrence \cite{conc1}, fluctuations \cite{fluc1,fluc2}, and fidelity \cite{fid1,fid2}.  In this review, we concentrate of measures of the entanglement entropy, specifically the {\it Renyi} entropies,
+\begin{equation}
+S_{\alpha} = \frac{1}{1-\alpha} \ln \Big[ {\rm Tr}\big( \rho_A^{\alpha} \big) \Big]
+\end{equation}
+which are defined for integer $\alpha \ge 1$.  Here, $\rho_A$ is the reduced density matrix, $\rho_A = {\rm Tr}_B (\rho)$, where $A$ is a subregion of a lattice system (with $B$ being its complement).  
+ 
+The direct measure of Renyi entropies is not possible in QMC using conventional estimators, however recent work has demonstrated that it is possible to measure $S_{\alpha}$ using a {\it replica trick}.  Here, $\alpha$ copies of the simulation cell are used, with modified periodic boundaries in the expansion (or imaginary time) direction.  The evaluation of Renyi entropies proceeds in formally different ways for $T=0$ \cite{Hastings10} and $T>0$ \cite{Melko10} QMC methods; however, like the unified framework of QMC itself, when considered in the context of loop-cluster algorithms, the implementation for these two different techniques is practically identical.  It is easiest to understand in the context of the projector algorithm discussed above.  Here, the second-Renyi entropy (for example) is given by the mid-point evaluation of a {\it Swap}$_A$ operator on two replicas of the system (Figure \ref{swap}), that literally ``swaps'' basis states (spins or valence-bond endpoints) between replicas when they lie in region $A$.  Then
+\begin{equation}
+ S_2 = -\ln \Big[ \langle Swap_A \rangle \Big]
+\end{equation}
+ where the expectation value is calculated at the mid-point of the configuration, and expressed using the loops of the transition graph formed when superimposing the projected bra and ket states.  Namely,
+\begin{equation}
+\langle Swap_A \rangle = 2^{N_{\rm swap} - N_{0}} 
+\end{equation} 
+where $N_{\rm swap}$ is the number of loops at the mid-point of the swapped configuration, while $N_0$ is for the configuration before the swap operator is applied (Figure \ref{swap}).  
+
+We refer to Ref.~\cite{Kallin11} for further details of this particular $T=0$ projector implementation.  At finite temperature, the explicit evaluation of the {\it Swap}$_A$ operator can be replaced by an evaluate of the difference in free energies between a replicated system (similar to Figure \ref{swap}), and an un-replicated system \cite{Melko10}.  Although this technique looks quite different formally (and also in some implementations), both the $T=0$ and $T>0$ techniques can be viewed in a similar footing when considered in the context of SW loop or cluster algorithms.
+
+
+\begin{figure}
+\centerline{\psfig{figure=swap.eps,height=9cm}}
+\caption{The {\it Swap}$_A$ operator for a simulation of Renyi entropy $S_2$, where $A$ consists of two sites.  The system consists of two non-interacting replicas, top (compare to Fig.~\ref{loops}), and bottom, which is sampled independently.  Just to the right of the middle of the system (dashed line) the {\it Swap} operator (green) connects the spin in the top replica to the bottom, indicated by the color of the loops.  
+}
+\label{swap}
+\end{figure}
 
 \section{Ground states and quantum phase transitions in SU(2) models}
 \label{sec:su2models}
@@ -687,7 +711,7 @@ are constructed partly based on their relation to {\it quantum dimer models} (QD
 
 
 \begin{figure}
-%\includegraphics[width=3in]{kagome.pdf}
+\includegraphics[width=6in]{kagome}
   \caption{ (a) Boson density in a groundstate configuration satisfying $H_0$ on the kagome lattice.  The degenerate manifold of such configurations maps onto a triangular-lattice (dashed) classical three-dimer configuration, where each boson corresponds to a dimer on the dual lattice.  (b) At right, a plaquette-flip $H_{\rm ring}$ operation preserves the cluster-charging constraint, and can be seen to correspond to a rhombus-flip of dimers.  At left, a charge defect is created by removing one boson (marked ``+'' in (a)).  This defect can be thought of as associating with two hexagonal plaquettes (grey in (b)), each with half of the charge (or two bosons per hexagon), corresponding to fractionalized spinons.} \label{kag_fig}
 \end{figure}
 
@@ -725,22 +749,40 @@ In addition to  $H = H_0 + H_3$, $H = H_0 + H_1$, also $H = H_1 + H_{\rm ring}$,
 
 In the next section, we explore the procedure by which QMC simulations can positively identify such spin liquid phases.  In section \ref{XYstar}, we examine the superfluid to QSL phase transition, which is common to these models, as an different example of a ``deconfined'' or fractionalized quantum critical point.
 
-\subsection{Identifying the Z2 spin liquid: Topological Entanglement}
+\subsection{Identifying the Z2 spin liquid: Topological Entanglement} \label{topoEEsec}
 
-The smoking gun signature for a gapped spin liquid phase could be argued to be the identification of an emergent gauge symmetry.  It is this symmetry that leads to the concept of topological order.  One manifestation is existence of a ground state degeneracy, which is topological in nature, in the simplest (Z2) case being four-fold on a torus.  Unfortunately, previous QMC studies of QSL states have demonstrated the difficulty in clearly identifying this degeneracy, due to the tendency for tunnelling between the equal-energy states on finite-size lattices with physical Hamiltonians \cite{Isakov1}.  Similarly, recent DMRG work purporting to identify candidate gapped spin liquid states have been unable to identify the associated topological degeneracy \cite{Yan,J1J2}.
+The smoking gun signature for a gapped spin liquid phase could be argued to be the identification of an emergent gauge symmetry,
+and the associated topological order.  One manifestation is the existence of a ground state degeneracy, which is topological in nature, in the simplest ($Z_2$) case being four-fold on a torus.  Unfortunately, previous QMC studies of QSL states have demonstrated the difficulty in clearly identifying this degeneracy, due to the tendency for tunnelling between the equal-energy states on finite-size lattices with physical Hamiltonians \cite{Isakov1}.  Similarly, recent DMRG work purporting to identify candidate gapped spin liquid states have been unable to identify the associated topological degeneracy \cite{Yan,J1J2}.
 
-Luckily, the community has another tool suited for the positive identification of this topological order, through measurements of the entanglement entropy.  Specifically, the scaling of entanglement entropy is predicted to be
-\begin{equation}
-S_n = a \ell - \gamma + \cdots \label{areaL}
+Luckily, the community has another tool suited for the positive identification of this topological order, through measurements of the Renyi entanglement entropy, introduced in section \ref{ss:renyi}.  The $S_{\alpha}$ are well-studied quantities in quantum information science; they quantify all quantum correlations for a system in a basis-independent way, which makes them suitable in particular for characterizing phases that do not have an explicit broken symmetry (in particular quantum spin liquid phases).  In fact, some authors have championed the entanglement entropy as a paradigmatic analog to symmetry breaking for non-Landau phases; here, the concept of {\it Long Range Entanglement} (LRE) replaces the concept of {\it Long Range Order} (LRO).  For example, in a gapped phase with LRO (such as the VBS phases mentioned above),
+the entanglement entropy is expected to obey the ``area law''
+\begin{equation} 
+S_{\alpha} = a\ell + \cdots
 \end{equation}
-where terms denoted by $\cdots$ scale away at least as fast as $\mathcal{O} (1/\ell)$.  Then, the subleading term to the non-universal ``area law'' ($a \ell$) is a universal correction called the {\it topological entanglement entropy} \cite{Alioscia1,Alioscia2,LW,KP}.  In a gapped QSL phase, it is related to the emergent gauge symmetry (independent \cite{Flammia} of Renyi index $n$), e.g.~in the Z2 spin liquid state $\gamma = 2 \ln(2)$ at $T=0$.
+where $a$ is a non-universal constant, $\ell$ is the length of the boundary between regions $A$ and $B$, and terms denoted by $\cdots$ scale away at least as fast as $\mathcal{O} (1/\ell)$.  This can heuristically be considered as ``short-range'' entanglement.  In contrast, in a gapped spin liquid phase (with no broken symmetries)
+scaling of entanglement entropy is predicted to be
+\begin{equation}
+S_{\alpha} = a \ell - \gamma + \cdots \label{areaL}.
+\end{equation}
+ Here, the subleading term to the area law is a universal correction called the {\it topological entanglement entropy} \cite{Alioscia1,Alioscia2,LW,KP}.  In a gapped quantum spin liquid phase, it is related to the emergent gauge symmetry (independent \cite{Flammia} of Renyi index $\alpha$), e.g.~in the $Z_2$ spin liquid state $\gamma = 2 \ln(2)$ at $T=0$.  This is discussed more in Section~\ref{topoEEsec}.
+ The addition of a universal subleading constant to the area law motivates the notion of LRE for a quantum spin liquid phase.
 
-Using the estimators described in Section~\ref{ss:renyi}, it is possible to isolate the topological entanglement entropy from the leading-order area-law, as well as subleading corrections due to effects such as corners, by taking measurements using several different geometries A and performing additions or subtractions which isolate only $\gamma$.  For example, the {\it Levin-Wen} \cite{LW} regions (illustrated in Fig.~XXX) isolate $2\gamma$ from Eq.~(\ref{areaL}).  For a BFG Hamiltonian discussed in the last section, it is possible to extract the topological entanglement entropy in a QMC simulation.  As noted by Castelnovo and Chamon \cite{castelnovo} through direct calculation on the toric code (which realizes a Z2 fractionalized spin liquid groundstate), the value of $2\gamma$ is approached through two temperature crossovers on a finite-size system, related to the energy of the quasiparticle excitations in the groundstate -- one ``electric'' corresponding to the spinon; one ``magnetic'' corresponding to the vison.  Each excitation contributes a value of $\ln(2)$ to the topological entanglement entropy (giving $2\ln(2)$ as $T \rightarrow 0$).  Indeed, the existence of the Z2 fractional phase in the kagome BFG Hamiltonian also raises the possibility that, with a suitable ``binding'' potential, an extension of the model with an emergent fermionic excitation might be created.  
+
+%Specifically, the scaling of entanglement entropy is predicted to be
+%\begin{equation}
+%S_n = a \ell - \gamma + \cdots \label{areaL}
+%\end{equation}
+%where terms denoted by $\cdots$ scale away at least as fast as $\mathcal{O} (1/\ell)$.  Then, the subleading term to the non-universal ``area
+% law'' ($a \ell$) is a universal correction called the {\it topological entanglement entropy} \cite{Alioscia1,Alioscia2,LW,KP}.  In a gapped QSL
+% phase, it is related to the emergent gauge symmetry (independent \cite{Flammia} of Renyi index $n$), e.g.~in the Z2 spin liquid state 
+% \gamma = 2 \ln(2)$ at $T=0$.
+
+Using the estimators described in Section~\ref{ss:renyi}, it is possible to isolate the topological entanglement entropy from the leading-order area-law, as well as subleading corrections due to effects such as corners, by taking measurements using several different geometries A and performing additions or subtractions which isolate only $\gamma$.  For example, the {\it Levin-Wen} \cite{LW} regions (illustrated in Fig.~XXX) isolate $2\gamma$ from Eq.~(\ref{areaL}).  For a BFG Hamiltonian discussed in the last section, it is possible to extract the topological entanglement entropy in a QMC simulation.  As noted by Castelnovo and Chamon \cite{castelnovo} through direct calculation on the toric code (which realizes a $Z_2$ fractionalized spin liquid groundstate), the value of $2\gamma$ is approached through two temperature crossovers on a finite-size system, related to the energy of the quasiparticle excitations in the groundstate -- one $Z_2$ charge corresponding to the spinon; one $Z_2$ flux corresponding to the vison.  Each excitation contributes a value of $\ln(2)$ to the topological entanglement entropy (giving $2\ln(2)$ as $T \rightarrow 0$).  Indeed, the existence of the $Z_2$ fractional phase in the kagome BFG Hamiltonian also raises the possibility that, with a suitable ``binding'' potential, an extension of the model with an emergent fermionic excitation might be created.  
 Future simulations on designer Hamiltonians will be required to address the interesting question of whether fermions can be observed emerging as collective excitations of a purely bosonic microscopic model without the sign problem.
 
 \subsection{Deconfinement at the XY* transition} \label{XYstar}
 
-The fractional spinons of the Z2 spin liquid phase (illustrated in Fig.~\ref{kag_fig}) can be thought of as a ``square-root'' operator of the physical spins.  Employing the mapping from $S^z$ spins to hard-core bosons, we can relate the physical spin $S^+$ or (equivalently) boson operator $b^{\dagger}$ as being composed of two operators  $\phi^\dagger \phi$, where $\phi^\dagger,\phi$ denote the raising and lowering operators for the fractionalized spinon particles.  
+The fractional spinons of the Z2 spin liquid phase (illustrated in Fig.~\ref{kag_fig}) can be thought of as a ``square-root'' operator of the physical spins.  Employing the mapping from $S^z$ spins to hard-core bosons, we can relate the physical spin $S^+$ or (equivalently) boson operator $b^{\dagger}$ as being composed of two operators  $\phi^\dagger \phi$, where $\phi^\dagger$ and $\phi$ denote the raising and lowering operators for the fractionalized spinon particles.  
 Surprisingly, it is predicted that the quantum phase transition between the XY-ferromagnet and the Z2 spin liquid discussed in the last section can actually be mediated not by the physical bosons (which would undergo a quantum phase transition in the 3D XY universality class), but by the fractional spinon fields \cite{XYstar1,XYstar2,earlyXYstar}.  This leads to the same exponents $z$ and $\nu$ as in the ordinary $XY$ critical point.  However, the exponent $\eta$ controlling the equal time correlation function $\langle b^\dagger(0) b(x) \rangle$ is modified as mentioned in Section~XXX, such that one expects a large $\eta \approx 1$.
 
 Previous estimates for $\eta$ were obtained from field-theoretic treatments.  From $1/N$ expansion, Ref.~\cite{XYstar2} obtains
@@ -750,9 +792,9 @@ Previous estimates for $\eta$ were obtained from field-theoretic treatments.  Fr
 which gives $\eta = 2.08$ for $N=1$.
 A more accurate value was obtained from a combination of field theoretic and Monte Carlo simulations of the correlation of a composite operator in the 3D XY model\cite{compositefieldtheory,compositeMC}, leading to $\eta\approx  1.47(3)$.
 
-The measurement of $\eta$ in the kagome BFG model is challenging, requiring measurement the equal time Green's function in real space: $G(x)\equiv G(\tau=0,r) = \langle b^\dagger(0) b(r) \rangle$ \cite{WormA,gfsse}, done by keeping track of the defects created in the non-local {\it loop} algorithm \cite{Syljuasen02} as it traverses the QMC's $d+1$ space-time simulation cell.  At the critical point, $G(r)$ should decay as $1/r^{1+\eta}$, and finite size effects can be minimized e.g. by measuring $G(L/6)$, which decays as $1/L^{1+\eta}$, as a function of $L$
+The measurement of $\eta$ in the kagome BFG model is challenging, requiring measurement the equal time Green's function in real space: $G(x)\equiv G(\tau=0,r) = \langle b^\dagger(0) b(r) \rangle$ \cite{WormA,gfsse}, done by keeping track of the defects created in the loop algorithm \cite{Syljuasen02} as it traverses the QMC's $d+1$ space-time simulation cell.  At the critical point, $G(r)$ should decay as $1/r^{1+\eta}$, and finite size effects can be minimized e.g.~by measuring $G(L/6)$, which decays as $1/L^{1+\eta}$, as a function of $L$.  Fig.~XXX show an algebraic decay with $\eta=1.493(10)$, a value that is consistent with $\eta$ for a composite operator in the 3D XY model.  The excellent agreement between QMC simulation results and the composite boson field theory is a remarkable confirmation of fractionalized universality in this model; synergetic work between QMC and quantum field theory is uniquely capable of positive identification of exotic quantum phase transitions in this model.
 
-Measurements of the Green's function in Fig.~XXX show an algebraic decay with $\eta=1.493(10)$, a value that is consistent with $\eta$ for a composite operator in the 3D XY model.  The excellent agreement between QMC simulation results and the composite boson field theory is a remarkable confirmation of fractionalized universality in this model, and highlights that synergetic work between simulation and quantum field theory is uniquiely capable of positive identification of exotic quantum phase transitions in condensed matter systems.
+As discussed in Ref.~\cite{XYstarQMC}, there are consequences of this novel fractionalization in other universal quantities.  Remarkably, even though the fractional excitations become gapless at the quantum critical point, there are still observable remnants of the topological order of the $Z_2$ spin liquid.  This can be seen by looking at the winding number distribution at the XY* point, and comparing it to the winding number distribution at a regular 3D XY transition.  Namely, since the fractional spinons are bosonic, they can be modelled by a "simulation within a simulation", achieved by projecting physical bosons at an XY transition to wind strictly in pairs around the periodic simulation cell.  Since this distribution is universal, it is expected to be the same (up to a non-universal velocity) as the winding number distribution of the physical (composite) bosons in the XY* transition.  Observation of this fact \cite{XYstarQMC} is a striking confirmation that topological properties can still be present even when fractional excitations are gapless.  These universal winding number distributions are possible to compute in principle in field theory; hence they are another example that synergetic work between simulation and quantum field theory is often led by the former.
 
 
 %\begin{enumerate}
@@ -815,6 +857,8 @@ VBS/critical/spin-liquid systems. One should be able to see some aspects of the 
 Mention meron algorithm---perhaps some more interesting designer hamiltonian can be constructed.
 
 - Non-equilibrium QMC
+
+- Using entanglement entropy to characterize non-Landau quantum critical points
 
 
 \bibliography{rev_bib.bib}
