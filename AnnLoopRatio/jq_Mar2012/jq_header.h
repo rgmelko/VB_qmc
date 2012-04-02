@@ -27,7 +27,7 @@ class LOOPS
   MTRand drand; //drand() gives you a random double precision number
   MTRand_int32 irand; // irand() gives you a random integer
 
-  int flip; // -1 for bare swap, 0 for ratio 1, etc
+  int flip; // CHANGED!! now 0 for bare swap, 1 for 1st ratio ...
 
   double J,Q;
   int Lx, Ly,  number_of_sites; //the dimensions and number of sites
@@ -101,7 +101,7 @@ LOOPS::LOOPS(double jay, double que, int xsites, int ysites, int flips,
 
   Lx = xsites; 
   Ly = ysites;
-  flip = flips;
+  flip = flips-1; //Changed so 0 is the bare swap
   number_of_sites = Lx*Ly; //calculates total number of sites
   //****changed**** multiplied by 2
   number_of_bondops = 2*2*bondops; /*the *real* number of bondops is multiplied
