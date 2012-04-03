@@ -342,13 +342,15 @@ extending the number of loop colors from 2 to $N$.
 \label{ss:renyi}
 
 
-In addition to conventional estimators such as correlation functions, it has recently been discovered that QMC methods are capable of measuring estimators related to the {\it entanglement} of a quantum system \cite{EntangleMeasure}.  Several quantities related to entanglement have recently been explored for their abilities to identify and characterize quantum phases and phase transitions such as concurrence \cite{conc1}, fluctuations \cite{fluc1,fluc2}, and fidelity \cite{fid1,fid2}.  In this review, we concentrate of measures of the entanglement entropy, specifically the {\it Renyi} entropies,
+In addition to conventional estimators discussed in Equations \ref{za1} and \ref{za2}, QMC methods have recently been developed that are capable of measuring estimators related to the {\it entanglement} of a quantum system \cite{EntangleMeasure}.  Several quantities related to entanglement have been explored in a QMC context for their abilities to identify and characterize quantum phases and phase transitions
+\cite{Tommaso1,Tommaso2,fluc1,fluc2,fid1,fid2}.  In this review, we concentrate of measures of the entanglement entropy, specifically the {\it Renyi} entropies \cite{renyi},
 \begin{equation}
 S_{\alpha} = \frac{1}{1-\alpha} \ln \Big[ {\rm Tr}\big( \rho_A^{\alpha} \big) \Big]
 \end{equation}
-which are defined for integer $\alpha \ge 1$.  Here, $\rho_A$ is the reduced density matrix, $\rho_A = {\rm Tr}_B (\rho)$, where $A$ is a subregion of a lattice system (with $B$ being its complement).  
+which are defined for integer $\alpha \ge 1$.  Here, $\rho_A$ is the reduced density matrix, $\rho_A = {\rm Tr}_B (\rho)$, and $A$ is a subregion of a lattice system (with $B$ being its complement).  
  
-The direct measure of Renyi entropies is not possible in QMC using conventional estimators, however recent work has demonstrated that it is possible to measure $S_{\alpha}$ using a {\it replica trick}.  Here, $\alpha$ copies of the simulation cell are used, with modified periodic boundaries in the expansion (or imaginary time) direction.  The evaluation of Renyi entropies proceeds in formally different ways for $T=0$ \cite{Hastings10} and $T>0$ \cite{Melko10} QMC methods; however, like the unified framework of QMC itself, when considered in the context of loop-cluster algorithms, the implementation for these two different techniques is practically identical.  It is easiest to understand in the context of the projector algorithm discussed above.  Here, the second-Renyi entropy (for example) is given by the mid-point evaluation of a {\it Swap}$_A$ operator on two replicas of the system (Figure \ref{swap}), that literally ``swaps'' basis states (spins or valence-bond endpoints) between replicas when they lie in region $A$.  Then
+The direct measure of Renyi entropies is not possible in QMC using conventional estimators, however recent work has demonstrated that it is possible to measure $S_{\alpha}$ using a {\it replica trick} \cite{Holz,Cardy, Fradkin, BP, Naka}.  Here, $\alpha$ copies of the simulation cell are used, with modified periodic boundaries in the expansion (or imaginary time) direction.  The evaluation of Renyi entropies proceeds in formally different ways for $T=0$ and $T>0$ QMC methods \cite{Hastings10,Melko10}.  Namely, for $T=0$, calculation of $S_{\alpha}$ proceeds in analogy to Equation \ref{za2} (where $\Psi$ is the wavefunction of the replicated system), with the operator $A$ replaced by a ``swap'' \cite{Hastings10} or ``permutation'' operator \cite{Kallin11}.
+This is easiest to understand in the context of the projector algorithm discussed above.  Here, the second-Renyi entropy (for example) is given by the mid-point evaluation of a {\it Swap}$_A$ operator on two replicas of the system (Figure \ref{swap}), that literally ``swaps'' basis states (spins or valence-bond endpoints) between replicas when they lie in region $A$.  Then
 \begin{equation}
  S_2 = -\ln \Big[ \langle Swap_A \rangle \Big]
 \end{equation}
@@ -358,8 +360,7 @@ The direct measure of Renyi entropies is not possible in QMC using conventional 
 \end{equation} 
 where $N_{\rm swap}$ is the number of loops at the mid-point of the swapped configuration, while $N_0$ is for the configuration before the swap operator is applied (Figure \ref{swap}).  
 
-We refer to Ref.~\cite{Kallin11} for further details of this particular $T=0$ projector implementation.  At finite temperature, the explicit evaluation of the {\it Swap}$_A$ operator can be replaced by an evaluate of the difference in free energies between a replicated system (similar to Figure \ref{swap}), and an un-replicated system \cite{Melko10}.  Although this technique looks quite different formally (and also in some implementations), both the $T=0$ and $T>0$ techniques can be viewed in a similar footing when considered in the context of SW loop or cluster algorithms.
-
+We refer to Ref.~\cite{Kallin11} for further details of this particular $T=0$ projector implementation.  At finite temperature, the explicit evaluation of the {\it Swap}$_A$ operator can be replaced by an evaluation of the difference in free energies between a replicated system (similar to Figure \ref{swap}), and an un-replicated system \cite{Melko10}, using Equation \ref{za1}.  Although this technique looks quite different formally, both the $T=0$ and $T>0$ techniques can be viewed in a similar footing when considered in the context of SW loop or cluster algorithms, much like the unified framework of the QMC itself.  In some cases, the implementation for these two different techniques can be made to be practically identical.  
 
 \begin{figure}
 \centerline{\psfig{figure=swap.eps,height=9cm}}
