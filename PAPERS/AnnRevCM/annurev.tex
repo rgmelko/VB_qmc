@@ -423,7 +423,7 @@ of pressure. The authors are not aware of any case where the phase transition ca
 of designer hamiltonians by focusing on universal properties \cite{Troyer97,Jin12,Oitmaa11}.
 
 \subsection{Deconfined N\'eel--VBS transition in J-Q models}
-
+\label{ss:jq2}
 While spontaneously formed VBS states in translationally invariant 2D spin systems have been discussed for more than two decades \cite{Chandra88,Dagotto89,Read89},
 most of the early worked focused on frustrated systems, for which it is very difficult to carry out unbiased numerical calculations. The proposal of a deconfined 
 quantum-critical point separating the N\'eel and VBS states motivated detailed numerical studies of this transition, and, thus, construction of suitable designer 
@@ -527,15 +527,15 @@ SU($N$). We note that for $N=2$ this reduces to the familiar
 Heisenberg model. The model $H_{J_1}$ does not suffer from the sign
 problem. The Hamiltonian Eq.~(\ref{ham:j1}) has been studied extensively. In
 one-dimension the well known critical Bethe state for $N=2$ gives way to a valence bond solid
-ordered state for all $N\geq 3$~\cite{barber1989:d1n3_vbs,klumper1989:d1n3_vbs}.   In two-dimensions, $H_{J_1}$ was shown to map onto a dimer model
+ordered state for all $N\geq 3$~\cite{barber1989:d1n3_vbs,klumper1989:d1n3_vbs}.   In two-dimensions, $H_{J_1}$ was shown in the large-$N$ limit to map onto a dimer model
 with only a kinetic term
-in the large-$N$ limit~\cite{read1989:nucphysB}. From direct numerical simulations
+~\cite{read1989:nucphysB}. From direct numerical simulations
 on the quantum dimer model, it is known that the kinetic only dimer model
-valence bond solid orders.  This implies that in $H_{J_1}$ there must be a transition
+valence bond solid orders~\cite{sachdev1989:qd_vbs}.  This implies that in $H_{J_1}$ there must be a transition
 between the magnetic state at $N=2$ and the valence bond solid at
-$N=\infty$.  The location of the transition was first
-determined~\cite{harada2003:sun} to lie between $N=4$ and $N=5$ by quantum Monte Carlo
-simulations of Eq.~(\ref{ham:j1}).
+$N=\infty$.  The location of the transition in Eq.~(\ref{ham:j1}) was first
+determined to lie between $N=4$ and $N=5$ by quantum Monte Carlo
+simulations~\cite{harada2003:sun}.
 
 
 \begin{figure}
@@ -560,31 +560,31 @@ anti-ferromagnet, Eq~(\ref{ham:j1}). In order to access the quantum
 phase transition at a given value of $N\leq 4$ one needs new
 ``designer'' couplings that
 destroy the N\'eel phase and result in the VBS. The first such term discovered was
-the so-called $Q$-interaction which can be written in the following
+the so-called $Q$-interaction introduced for SU(2) in Sec.~\ref{ss:jq2}, which can be written in the following
 form for any $N$,
 \begin{equation}
 H_{Q} = - Q \sum_{\langle ijkl \rangle}P_{ij} P_{kl} 
 \end{equation}
-Since the matrix elements of $T\cdot T^*$ are all positive, such a $Q$
+Since the matrix elements of $P_{ij}$ are all positive, such a $Q$
 coupling is free of the sign problem of quantum Monte Carlo
-simulations. Numerical simulations show that $J_1$-$Q$ has N\'eel-VBS
-phase transition for $N=2,3,4$. For $N\geq 5$, the $Q$ term strengthens
-the VBS that is already present in the $J_1$ only model, and hence to
-study the N\'eel-VBS transition for large-$N$, a new designer
-Hamiltonian is needed. Before turning to a discussion of such a model in
-Sec.~\ref{ss:j1j2N}, let us briefly summarize the nature of the
-N\'eel-VBS transition in the SU(2,3,4) $J_1$-$Q$ models.
+simulations. It turns out that the $Q$-only model is always VBS ordered, so that for the case of $N=2,3,4$, the $J_1$-$Q$ model has a N\'eel-VBS transition.
+Detailed numerical simulations of the $J_1$-$Q$ model for these $N$ show strong evidence for a continuous transition between N\'eel and VBS. The numerical data on these systems
+show deviations from simple scaling laws for the system sizes studied, that could either be due to conventional corrections to scaling or violations of simple scaling laws.
 
 
 \subsection{SU($N$) $J_1$-$J_2$ model for $N\geq 5$}
 \label{ss:j1j2N}
 
-For $N\geq 5$ the $J_1$ model VBS orders and we have seen that the
-addition of the $Q$ interaction only strengthens this tendency. We now
+For $N\geq 5$, the $Q$ term strengthens
+the VBS that is already present in the $J_1$ only model, and hence to
+study the N\'eel-VBS transition for large-$N$, a new designer
+Hamiltonian is needed. 
+ To supply such a model, we
 introduce an interaction between sites on the same sub-lattice $J_2$ which favors the N\'eel state,
 \begin{equation}
-H_{J_2}= -J_2 \sum_{\langle\langle ij\rangle\rangle} \Pi_{ij}
+H_{J_2}= -J_2 \sum_{\langle\langle ij\rangle\rangle} \Pi_{ij},
 \end{equation}
+where the $\Pi_{ij}$ interaction has been introduced in Sec.~\ref{ss:su2N}.
 In order to see that this interaction favors the N\'eel state, we note
 that in the $H_{J_2}$ model by itself, the two sublattices are
 decoupled. The ground state corresponds to having an independent SU($N$) ferromagnet on
