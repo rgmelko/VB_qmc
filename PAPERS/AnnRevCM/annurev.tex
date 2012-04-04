@@ -311,13 +311,13 @@ $1\leq \alpha \leq N$
 and the generators of the fundamental representation by $T^a$ (an
 $N\times N$ matrix). 
 The SU($N$) singlet between a spin $i$ on the A sub-lattice and a spin $j$ on the
-B sub-lattice is given by, $|s^N_{ij}\rangle = \sum_\alpha
+B sub-lattice is given by, $|s^N_{ij}\rangle = \frac{1}{\sqrt{N}}\sum_\alpha
 |\alpha_i\alpha_j\rangle$. We can use this state to rewrite the
 manifestly SU($N$) invariant interaction  $\sum_a T^a_i \cdot
 T^{*a}_j$, as an explicitly sign problem free projection operator,
 \begin{equation}
 \sum_a T^a_i \cdot
-T^{*a}_j + c = |s^N_{ij}\rangle \langle s^N_{ij}|\equiv P_{ij}
+T^{*a}_j + \frac{1}{N^2} = |s^N_{ij}\rangle \langle s^N_{ij}|\equiv P_{ij}
 \end{equation}
 This is an SU($N$) invariant generalization of the SU(2) Heisenberg interaction
 for two spins on {\em opposite} sub-lattices.
@@ -325,10 +325,10 @@ for two spins on {\em opposite} sub-lattices.
 Another interaction of interest is an SU($N$) invariant interaction
 between sites having the same representation, the permutation
 operator, which is defined by its action on a ket,
-$\Pi_{ij}|\alpha_i\beta_j\rangle = |\beta_i\alpha_j\rangle$. We can now relate this operator to the generators $T^a$,
+$\frac{\Pi_{ij}}{N}|\alpha_i\beta_j\rangle \equiv |\beta_i\alpha_j\rangle$. We can now relate this operator to the generators $T^a$,
 \begin{equation}
 \sum_a T^a_i \cdot
-T^{a}_j + c = \Pi_{ij}
+T^{a}_j +\frac{1}{N^2} =\Pi_{ij}
 \end{equation}
 This is an SU($N$) invariant generalization of the SU(2) Heisenberg
 interaction for two spins on the {\em same} sub-lattice.
@@ -521,7 +521,7 @@ solid.  The simplest SU($N$) invariant two-site Hamiltonian interaction one can 
 such models is given by,
 \begin{equation}
 \label{ham:j1}
-H_{J_1} = -J_1 \sum_{a,\langle ij\rangle} T^a_i\cdot T^{*a}_j
+H_{J_1} = -J_1 \sum_{a,\langle ij\rangle} P_{ij}
 \end{equation}
 The sum over $\langle ij \rangle$ is a sum over nearest neighbor
 pairs. $T^a_i$ are generators of the fundamental representation of SU($N$) defined on the
@@ -569,8 +569,7 @@ destroy the N\'eel phase and result in the VBS. The first such term discovered w
 the so-called $Q$-interaction which can be written in the following
 form for any $N$,
 \begin{equation}
-H_{Q} = - Q \sum_{ab,\langle ijkl \rangle} \left ( T^a_i\cdot
-  T^{*a}_j\right ) \left ( T^b_k\cdot T^{*b}_l \right )
+H_{Q} = - Q \sum_{\langle ijkl \rangle}P_{ij} P_{kl} 
 \end{equation}
 Since the matrix elements of $T\cdot T^*$ are all positive, such a $Q$
 coupling is free of the sign problem of quantum Monte Carlo
@@ -590,7 +589,7 @@ For $N\geq 5$ the $J_1$ model VBS orders and we have seen that the
 addition of the $Q$ interaction only strengthens this tendency. We now
 introduce an interaction between sites on the same sub-lattice $J_2$ which favors the N\'eel state,
 \begin{equation}
-H_{J_2}= -J_2 \sum_{a,\langle\langle ij\rangle\rangle} T^a_i\cdot T^{a}_j
+H_{J_2}= -J_2 \sum_{\langle\langle ij\rangle\rangle} \Pi_{ij}
 \end{equation}
 In order to see that this interaction favors the N\'eel state, we note
 that in the $H_{J_2}$ model by itself, the two sublattices are
