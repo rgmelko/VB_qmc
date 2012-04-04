@@ -303,14 +303,15 @@ the projected bra and ket states. Estimators for various correlation functions a
 
 The above methods for SU(2) can be extended to a certain
 class of spin models with an SU($N$) symmetry on bipartite
-lattices. These models consist of having an SU($N$) spin with a
+lattices. We can proceed by first recognizing that the Heisenberg operator is simply a singlet projector, $P_{ij}=\hbox{$\frac{1}{4}$}-{\bf S}_i\cdot {\bf S}_j = |s_{ij}\rangle\langle s_{ij}|$.
+In order to generalize this operation to SU($N$), we choose models that have an SU($N$) spin with a
 fundamental representation on the A sub-lattice and an SU($N$) spin with
-a conjugate to fundamental representation on the B sub-lattice. Let us
-denote the $N$ states on each site of our lattice by $|\alpha\rangle$ where
+a conjugate to fundamental representation on the B sub-lattice~\cite{affleck1985:lgN,Read89}.
+Denoting the $N$ states on each site of our lattice by $|\alpha\rangle$ where
 $1\leq \alpha \leq N$ 
 and the generators of the fundamental representation by $T^a$ (an
-$N\times N$ matrix). 
-The SU($N$) singlet between a spin $i$ on the A sub-lattice and a spin $j$ on the
+$N\times N$ matrix),
+the SU($N$) singlet between a spin $i$ on the A sub-lattice and a spin $j$ on the
 B sub-lattice is given by, $|s^N_{ij}\rangle = \frac{1}{\sqrt{N}}\sum_\alpha
 |\alpha_i\alpha_j\rangle$. We can use this state to rewrite the
 manifestly SU($N$) invariant interaction  $\sum_a T^a_i \cdot
@@ -320,9 +321,7 @@ T^{*a}_j$, as an explicitly sign problem free projection operator,
 T^{*a}_j + \frac{1}{N^2} = |s^N_{ij}\rangle \langle s^N_{ij}|\equiv P_{ij}
 \end{equation}
 This is an SU($N$) invariant generalization of the SU(2) Heisenberg interaction
-for two spins on {\em opposite} sub-lattices.
-
-Another interaction of interest is an SU($N$) invariant interaction
+for two spins on {\em opposite} sub-lattices. Another interaction of interest is an SU($N$) invariant interaction
 between sites having the same representation, the permutation
 operator, which is defined by its action on a ket,
 $\frac{\Pi_{ij}}{N}|\alpha_i\beta_j\rangle \equiv |\beta_i\alpha_j\rangle$. We can now relate this operator to the generators $T^a$,
@@ -332,10 +331,9 @@ T^{a}_j +\frac{1}{N^2} =\Pi_{ij}
 \end{equation}
 This is an SU($N$) invariant generalization of the SU(2) Heisenberg
 interaction for two spins on the {\em same} sub-lattice.
-
 In terms of the definitions of $P_{ij}$ and $\Pi_{ij}$, the algorithms presented in
 Sec.~\ref{ss:method} can be generalized from SU(2) to SU($N$) by
-extending the number of loop colors from 2 to $N$.
+extending the number of loop colors from 2 to $N$~\cite{harada2003:sun,beach2009:sun,kaul2011:j1j2}.
 
 
 \subsection{Renyi entropies in $T=0$ and $T>0$ simulations} 
@@ -501,9 +499,9 @@ lattice.
 A natural extension of the SU(2) Heisenberg model is to spin models with
 SU($N$) symmetry. Such generalizations were initially introduced to
 facilitate access to
-a solvable large-$N$ limit. In the meantime, new physical systems have
+a solvable large-$N$ limit~\cite{affleck1985:lgN,Read89}. In the meantime, new physical systems have
 motivated an interest in such models at arbitrary finite values of
-$N$, leading to extensive studies of SU($N$) spin systems. The physical degrees of freedom of a particular
+$N$~\cite{gorshkov2010:sun,kugel1982:kk}, leading to extensive studies of SU($N$) spin systems. The physical degrees of freedom of a particular
 spin model depend not only on the global symmetry but also on the
 chosen representation under which the spins transform. Thus there are
 a number of distinct extensions of the SU(2) model to SU($N$), depending on
@@ -521,26 +519,22 @@ solid.  The simplest SU($N$) invariant two-site Hamiltonian interaction one can 
 such models is given by,
 \begin{equation}
 \label{ham:j1}
-H_{J_1} = -J_1 \sum_{a,\langle ij\rangle} P_{ij}
+H_{J_1} = -J_1 \sum_{\langle ij\rangle} P_{ij}
 \end{equation}
 The sum over $\langle ij \rangle$ is a sum over nearest neighbor
-pairs. $T^a_i$ are generators of the fundamental representation of SU($N$) defined on the
-$i^{\rm th}$ site. The index $a$ labels the $N^2-1$ generators of
+pairs. $P_{ij}$ is the SU($N$) singlet projector defined in an Sec.~\ref{ss:su2N} The index $a$ labels the $N^2-1$ generators of
 SU($N$). We note that for $N=2$ this reduces to the familiar
 Heisenberg model. The model $H_{J_1}$ does not suffer from the sign
-problem.
-
-The Hamiltonian Eq.~(\ref{ham:j1}) with $T$ chosen to be the
-fundamental generators of SU($N$) has been studied extensively. In
+problem. The Hamiltonian Eq.~(\ref{ham:j1}) has been studied extensively. In
 one-dimension the well known critical Bethe state for $N=2$ gives way to a valence bond solid
-ordered state for all $N\geq 3$.   In two-dimensions, $H_{J_1}$ was shown to map onto a dimer model
+ordered state for all $N\geq 3$~\cite{barber1989:d1n3_vbs,klumper1989:d1n3_vbs}.   In two-dimensions, $H_{J_1}$ was shown to map onto a dimer model
 with only a kinetic term
-in the large-$N$ limit. From direct numerical simulations
+in the large-$N$ limit~\cite{read1989:nucphysB}. From direct numerical simulations
 on the quantum dimer model, it is known that the kinetic only dimer model
 valence bond solid orders.  This implies that in $H_{J_1}$ there must be a transition
 between the magnetic state at $N=2$ and the valence bond solid at
 $N=\infty$.  The location of the transition was first
-determined to lie between $N=4$ and $N=5$ by quantum Monte Carlo
+determined~\cite{harada2003:sun} to lie between $N=4$ and $N=5$ by quantum Monte Carlo
 simulations of Eq.~(\ref{ham:j1}).
 
 
