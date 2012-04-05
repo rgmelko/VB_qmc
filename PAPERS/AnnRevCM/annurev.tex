@@ -457,6 +457,8 @@ $C_{ij}$ on site pairs $ij$. The Hamiltonian contains all unique translations of
 \label{qterms}
 \end{figure}
 
+\subsubsection{Critical behavior}
+
 The critical behavior of both the $J$-$Q_2$ and $J$-$Q_3$ model on the simple 2D square lattice has been analyzed in detail in several different ways. 
 One useful quantity for studying the criticality of the N\'eel order parameter is the spin stiffness $\rho_s$. It should scale in the critical ground state 
 as $\rho_s \sim L^{2-d-z}$, where $z$ is the dynamic exponent. For a Lorenz-invariant critical theory $z=1$. One can test this by graphing $L\rho_s(L)$ versus 
@@ -482,6 +484,45 @@ calculations were done at inverse temperature $\beta=L$. The standard critical s
 (with $L_0=0.9$) in order to compensate for a wek drift of the crossing point (the critical coupling). The critical coupling $(J/Q)_c = 0.0447(2)$.}
 \label{jqrhos}
 \end{figure}
+
+\subsubsection{Emergent U($1$) gauge fluctuations}
+
+An important aspect of the DQC theory is the emergence of U($1$) symmetry as the critical point is approached from the VBS side. 
+The gauge field in the theory is U($1$) symmetric, but in the $J$-$Q$ model this symmetry is not apparent in the Hamiltonian; it
+only has explicit SU($2$) spin-rotational symmetry and the discrete symmetries of the square lattice. The emergent U($1$) symmetry 
+can be related to the fluctuations of the VBS order parameter. Naively one would expect these fluctuations to reflect the Z$_4$
+symmetry of the square lattice, but instead the symmetry group expands to U($1$) upon approach to the critical point.
+
+To understand this phenomenon, we have to consider the VBS (dimer-dimer) correlation function.
+\begin{equation}
+D_{\alpha} ({\bf r}_{ij}) = \bigl \langle B_\alpha({\bf r}_i)B_\alpha({\bf r}_j) \bigr \rangle, \label{cddef}
+\end{equation}
+where ${\bf r}_{ij}=|{\bf r}_{i}-{\bf r}_{j}|$ is the spatial separation between the $B$ operators and $B_\alpha$, $\alpha=\hat x,\hat y$,
+is the dimer operator on nearest-neighbor bonds oriented in the $\alpha$ direction, e.g., for $\alpha=\hat x$
+\begin{equation}
+B_{\hat x}({\bf r})={\bf S}({\bf r}) \cdot {\bf S}({\bf r}+\hat {\bf x}).
+\label{bxdef}
+\end{equation}
+For a VBS ordered with the dimers oriented in the $x$ direction $D_{\hat x}(x,y) = (-1)^{x}(a{\rm e}^{-r/\xi}+d^2)$, where $r=(x^2+y^2)$, $d$ the magnitude 
+of the order parameter, and $a$ is a constant. The rate of decay of the correlation function toward the non-zero value $d^2$ as $r\to \infty$ defines
+the correlation length $\xi$. This is the standatd definition of a correlation length, as the length-scale associated with the order parameter. Normally
+this is the longest length-scale (slowest decaying correlation) in the system. In the VBS, we can consider also the dimer correlations in the direction
+$\hat y$ perpenducular to the ordered dimers. These are not associated with the long-range order, but there is still a trivial constant contribution due to the
+fact that $b=\langle B_{\hat y}(x,y)\rangle \not = 0$ (the value being independent of $x$ and $y$). Thus, the asymptotic form of the $y$ bond correlations is
+$D_{\hat y}(x,y) = b^2 + c{\rm e}^{-r/\Lambda}$, where $c$ is another constant. Here the length-scale $\Lambda$ would normally not be referred to as 
+``the correlation length'', because it is not associated directly with {\it magnitude} pf the order parameter. However, $\Lambda$ can actually be larger than $x$, 
+and this is at the heart of the emergent U($1$) symmetry pf the VBS. According to the DQC theory, both lengths diverge as the critical point is approached, and 
+$\Lambda \sim \xi^(1+a)$ with $a>0$. One can also associate $\Lambda$ with the {\it angle} of the order parameter. Since the VBS order parameter is a $2D$
+vecor, ${\bf D}= (D_x,D_y)$, one can define a magnitude $D$ and an angle $\Theta$. We will se below that $\Lambda$ defines a length scale below which the
+order parameter exhibits U($1$) symmetry.
+
+This is in fact a general aspect of systems with {\it dangerously irrelevant} perturbations, in other words, perturbations that reduce the symmetry of a system
+in such a way that the standard critical exponents for a phase transition into an ordered state are unaffected by the perturbation, but the broken symmetry
+of the ordered state is reduced. A prototypical example is the 3D classical XY model, with an added on-site potential $h\cos(q\theta_i)$ on all sites $i$, 
+where $\theta_i$ is the spin angle. Regardless of the value of $h$, this model orders at a critical temperature $T_c(h)$, with critical exponents that do
+not depend on $h$. However, instead of breaking the continuous U($1$) symmetry, as the original $h=0$ model does, now only a $q$-foldd (Z$_q$) symmetry is
+broken. As in the VBS discussed above, there is a length-scale $\Lambda \sim \xi^{a(q)}$ in the ordered state, which is associated with fluctuations of
+the spins in directions different
 
 
 \section{N\'eel-VBS transition in SU($N$) spin models}
