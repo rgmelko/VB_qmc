@@ -525,9 +525,9 @@ The sum over $\langle ij \rangle$ is a sum over nearest neighbor
 pairs. $P_{ij}$ is the SU($N$) singlet projector defined in an Sec.~\ref{ss:su2N} The index $a$ labels the $N^2-1$ generators of
 SU($N$). We note that for $N=2$ this reduces to the familiar
 Heisenberg model. The model $H_{J_1}$ does not suffer from the sign
-problem. The Hamiltonian Eq.~(\ref{ham:j1}) has been studied extensively. In
-one-dimension the well known critical Bethe state for $N=2$ gives way to a valence bond solid
-ordered state for all $N\geq 3$~\cite{barber1989:d1n3_vbs,klumper1989:d1n3_vbs}.   In two-dimensions, $H_{J_1}$ was shown in the large-$N$ limit to map onto a dimer model
+problem. The Hamiltonian Eq.~(\ref{ham:j1}) has been studied extensively. For a 
+one-dimensional chain the well known critical Bethe state for $N=2$ gives way to a valence bond solid
+ordered state for all $N\geq 3$~\cite{barber1989:d1n3_vbs,klumper1989:d1n3_vbs,affleck1985:lgN}.   In two-dimensions, $H_{J_1}$ was shown in the large-$N$ limit to map onto a dimer model
 with only a kinetic term
 ~\cite{read1989:nucphysB}. From direct numerical simulations
 on the quantum dimer model, it is known that the kinetic only dimer model
@@ -553,23 +553,22 @@ simulations~\cite{harada2003:sun}.
 
 \subsection{SU($N$) $J_1$-$Q$ model for $N\leq 4$}
 \label{ss:jqN}
-In the previous subsection we saw that in two spatial dimensions the
+In the previous subsection we saw that on the square lattice the
 N\'eel-order found for $N=2,3,4$ gives way to valence bond solid
-ordered phases for $N\geq 5$ in the SU($N$) symmetric
+ordered phases for $N\geq 5$ in the SU($N$)
 anti-ferromagnet, Eq~(\ref{ham:j1}). In order to access the quantum
-phase transition at a given value of $N\leq 4$ one needs new
+phase transition by QMC simulations at a given value of $N\leq 4$ one needs new
 ``designer'' couplings that
 destroy the N\'eel phase and result in the VBS. The first such term discovered was
-the so-called $Q$-interaction introduced for SU(2) in Sec.~\ref{ss:jq2}, which can be written in the following
-form for any $N$,
+the so-called $Q$-interaction introduced for SU(2) in Sec.~\ref{ss:jq2}, which can be generalized for any $N$,
 \begin{equation}
-H_{Q} = - Q \sum_{\langle ijkl \rangle}P_{ij} P_{kl} 
+H_{Q} = - Q \sum_{\langle ijkl \rangle}P_{ij} P_{kl}, 
 \end{equation}
-Since the matrix elements of $P_{ij}$ are all positive, such a $Q$
+where $P_{ij}$ are again the SU($N$) singlet projectors. Since the matrix elements of $P_{ij}$ are all positive, such a $Q$
 coupling is free of the sign problem of quantum Monte Carlo
-simulations. It turns out that the $Q$-only model is always VBS ordered, so that for the case of $N=2,3,4$, the $J_1$-$Q$ model has a N\'eel-VBS transition.
-Detailed numerical simulations of the $J_1$-$Q$ model for these $N$ show strong evidence for a continuous transition between N\'eel and VBS. The numerical data on these systems
-show deviations from simple scaling laws for the system sizes studied, that could either be due to conventional corrections to scaling or violations of simple scaling laws.
+simulations. It turns out that the $Q$-only model is always VBS ordered, so that for the case of $N=2,3,4$, the $J_1$-$Q$ model has a N\'eel-VBS transition~\cite{Sandvik07,lou2009:sun}.
+Detailed numerical studies of the $J_1$-$Q$ model for these $N$ find strong evidence for a continuous transition between N\'eel and VBS~\cite{melko2008:jq,kaul2011:su34,banerjee2010:log,banerjee2010:su3}. The data for certain observables
+show deviations from simple scaling laws for the system sizes studied, that could either be due to conventional corrections to scaling or actual violations of simple scaling laws. This issues remains to be resolved.
 
 
 \subsection{SU($N$) $J_1$-$J_2$ model for $N\geq 5$}
@@ -592,14 +591,13 @@ each sublattice. Turning on a small $J_1\ll J_2$ interaction will clearly cause
 the sub-lattice degeneracy to be lifted, resulting in the
 two independent ferromagnets to lock into a single
 anti-ferromagnet state. These arguments are true independent of the
-value of $N$. We thus
-come to the conclusion that for every $N\geq 5$ the VBS state is
+value of $N$. Thus for every $N\geq 5$ the VBS state is
 realized when $J_1\gg J_2$ and the N\'eel state is obtained when $J_2
 \gg J_1$. Thus there must be at least one quantum phase transition as
 the ratio
-$J_2/J_1$ is tuned. From numerical simulations on $J_1$-$J_2$ model, we have found
-evidence for a direct transition between these two phases with no
-indication of an intervening phase. 
+$J_2/J_1$ is tuned. From numerical simulations on $J_1$-$J_2$ model, there is compelling evidence
+for a direct transition between these two phases with no
+indication of an intervening phase. The phase diagram of the $J_1$-$J_2$-$Q$ model as a functions of $N$ is summarized in Fig.~\ref{fig:pdj1j2q}.
 
 An important prediction of the deconfined criticality scenario at the
 N\'eel-VBS transition is that both N\'eel and VBS order parameters are
@@ -618,9 +616,7 @@ C_{N,V} ({\bf r},\tau) \sim  \frac{1}{~{(\bf r}^2+c^2\tau^2)^{\frac{(1+\eta_{V,N
  point is described by the non-compact CP$^{N-1}$ universality. Quantitative
  estimates for the universal indices that characterize this
  universality class are available only in the large-$N$
- limit~\footnote{Numerical simulations of lattice discretizations of
-   the field theory have been used to make estimates for $N=2$. See
-   XXX.}. The $\frac{1}{N}$ expansions for $\eta_N$ and $\eta_V$ are,
+ limit. The $\frac{1}{N}$ expansions for $\eta_N$ and $\eta_V$ are,
 \begin{eqnarray}
 \label{eq:oneonN}
 \eta_N &=& 1 - \frac{32}{\pi^2N}\nonumber\\
@@ -632,12 +628,12 @@ typically order parameters have very small values of the $\eta$
 exponent at the critical point. For reference, in the O($N$) model $\eta\rightarrow
 0$ in the $N\rightarrow\infty$ limit and $\eta=0.04$ for the O($N=3$) model.
 
-We now turn back to the study of our lattice designer $J_1$-$J_2$-$Q$
+We now turn back to the study of the lattice designer $J_1$-$J_2$-$Q$
 Hamiltonian. By studying the size dependence of correlation functions in Eq.~(\ref{eq:expdef})
- at the location of the critical points shown in Fig.~\ref{fig:pdj1j2q}, we can
+ at the location of the critical points shown in Fig.~\ref{fig:pdj1j2q}, it is possible to
  estimate values for $\eta_N$ and $\eta_V$ as a function
- of $N$. Our results for $2\leq N \leq 12$ are summarized in Fig.~\ref{fig:exp}. The
- agreement between the large-$N$ expansion and the values obtained from our
+ of $N$. Results for $2\leq N \leq 12$ are summarized in Fig.~\ref{fig:exp}. The
+ agreement between the large-$N$ expansion and the values obtained from the
  lattice Hamiltonian for a fixed $N$ is quantitative. The lattice
  Hamiltonian also appears to convincingly reproduce the ``smoking gun'' feature that
  $\eta_N=1$ and $\eta_V=\infty$ in the $N\rightarrow \infty$
@@ -669,7 +665,7 @@ section. Consider a bilayer in which each layer is described by some
 combination of the $J_1$-$J_2$-$Q$ interactions. Now consider the
 following coupling between the layers,
 \begin{equation}
- H_{J_\perp} = -J_\perp \sum_{a,[ij]} T^a_i\cdot T^{*a}_j
+ H_{J_\perp} = -J_\perp \sum_{a,[ij]} P_{ij}
 \end{equation}
 where the sum $[ij]$ is taken between spins vertically below each other
 in the bilayer. The $J_\perp$ only model has a featureless non-degenerate ground state
@@ -678,6 +674,7 @@ make the ground state deviate from a simple product state by
 increasing the amount of entanglement, but these couplings
  cannot destabilize the featureless paramagnetic
 state as long as they are small compared to $J_\perp$. 
+
 
 
 \begin{figure}
