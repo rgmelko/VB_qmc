@@ -557,16 +557,10 @@ as relative conjugate representations
  on each of the sublattices. In such models it is possible to form a singlet
 between two spins on opposite sub-lattices and hence a valence bond
 solid.  The simplest SU($N$) invariant two-site Hamiltonian interaction one can define for
-such models is given by,
-\begin{equation}
-\label{ham:j1}
-H_{J_1} = -J_1 \sum_{\langle ij\rangle} P_{ij}
-\end{equation}
-The sum over $\langle ij \rangle$ is a sum over nearest neighbor
-pairs. $P_{ij}$ is the SU($N$) singlet projector defined in an Sec.~\ref{ss:su2N} The index $a$ labels the $N^2-1$ generators of
-SU($N$). We note that for $N=2$ this reduces to the familiar
+such models is given by Eq.~(\ref{h1def}) with
+$P_{ij}$ the SU($N$) singlet projector defined in Sec.~\ref{ss:su2N}. We note that for $N=2$ this reduces to the familiar
 Heisenberg model. The model $H_{J_1}$ does not suffer from the sign
-problem. The Hamiltonian Eq.~(\ref{ham:j1}) has been studied extensively. For a 
+problem. The Hamiltonian Eq.~(\ref{h1def}) has been studied extensively. For a 
 one-dimensional chain the well known critical Bethe state for $N=2$ gives way to a valence bond solid
 ordered state for all $N\geq 3$~\cite{barber1989:d1n3_vbs,klumper1989:d1n3_vbs,affleck1985:lgN}.   In two-dimensions, $H_{J_1}$ was shown in the large-$N$ limit to map onto a dimer model
 with only a kinetic term
@@ -574,7 +568,7 @@ with only a kinetic term
 on the quantum dimer model, it is known that the kinetic only dimer model
 valence bond solid orders~\cite{sachdev1989:qd_vbs}.  This implies that in $H_{J_1}$ there must be a transition
 between the magnetic state at $N=2$ and the valence bond solid at
-$N=\infty$.  The location of the transition in Eq.~(\ref{ham:j1}) was first
+$N=\infty$.  The location of the transition in Eq.~(\ref{h1def}) was first
 determined to lie between $N=4$ and $N=5$ by quantum Monte Carlo
 simulations~\cite{harada2003:sun}.
 
@@ -597,15 +591,12 @@ simulations~\cite{harada2003:sun}.
 In the previous subsection we saw that on the square lattice the
 N\'eel-order found for $N=2,3,4$ gives way to valence bond solid
 ordered phases for $N\geq 5$ in the SU($N$)
-anti-ferromagnet, Eq~(\ref{ham:j1}). In order to access the quantum
+anti-ferromagnet, Eq~(\ref{h1def}). In order to access the quantum
 phase transition by QMC simulations at a given value of $N\leq 4$ one needs new
 ``designer'' couplings that
 destroy the N\'eel phase and result in the VBS. The first such term discovered was
-the so-called $Q$-interaction introduced for SU(2) in Sec.~\ref{ss:jq2}, which can be generalized for any $N$,
-\begin{equation}
-H_{Q} = - Q \sum_{\langle ijkl \rangle}P_{ij} P_{kl}, 
-\end{equation}
-where $P_{ij}$ are again the SU($N$) singlet projectors. Since the matrix elements of $P_{ij}$ are all positive, such a $Q$
+the so-called $Q$-interaction, Eq.~(\ref{hqdef}) introduced for SU(2) in Sec.~\ref{ss:jq2}. It can be generalized for any $N$,
+with $P_{ij}$ again the SU($N$) singlet projectors. Since the matrix elements of $P_{ij}$ are all positive, such a $Q$
 coupling is free of the sign problem of quantum Monte Carlo
 simulations. It turns out that the $Q$-only model is always VBS ordered, so that for the case of $N=2,3,4$, the $J_1$-$Q$ model has a N\'eel-VBS transition~\cite{Sandvik07,lou2009:sun}.
 Detailed numerical studies of the $J_1$-$Q$ model for these $N$ find strong evidence for a continuous transition between N\'eel and VBS~\cite{melko2008:jq,kaul2011:su34,banerjee2010:log,banerjee2010:su3}. The data for certain observables
@@ -705,7 +696,7 @@ understanding of the role of Berry phases at deconfined critical points, since t
 combination of the $J_1$-$J_2$ interactions. Now consider the
 following coupling between the layers,
 \begin{equation}
- H_{J_\perp} = -J_\perp \sum_{a,[ij]} P_{ij}
+ H_{J_\perp} = -J_\perp \sum_{[ij]} P_{ij}
 \end{equation}
 where the sum $[ij]$ is taken between spins vertically below each other
 in the bilayer. The $J_\perp$ only model has a featureless non-degenerate ground state
