@@ -263,6 +263,7 @@ delatiled balance \cite{Suwa10}. In addition, for some models where loop algorit
 Ising models), other efficient generalizations of the SW concept have been developed \cite{Rieger99,Sandvik03}.
 
 \subsection{Special techniques for SU(2)-symmetric models}
+\label{su2method}
 
 A particularly convenient class of trial states in projector QMC with SU($2$) invariant interactions is the amplitude-product states in the valence-bond
 (singlet pair) basis \cite{Liang88}, which were recently generalized to include bond correlations \cite{Lin12}. These overcomplete states for the singlet 
@@ -301,40 +302,36 @@ the projected bra and ket states. Estimators for various correlation functions a
 \subsection {Generalizations from SU(2) to SU(N)}
 \label{ss:su2N}
 
-The above methods for SU(2) can be extended to a certain
-class of spin models with an SU($N$) symmetry on bipartite
-lattices. We can proceed by first recognizing that the Heisenberg operator is simply a singlet projector, $P_{ij}=\hbox{$\frac{1}{4}$}-{\bf S}_i\cdot {\bf S}_j = |s_{ij}\rangle\langle s_{ij}|$.
-In order to generalize this operation to SU($N$), we choose models that have an SU($N$) spin with a
-fundamental representation on the A sub-lattice and an SU($N$) spin with
-a conjugate to fundamental representation on the B sub-lattice~\cite{affleck1985:lgN,Read89}.
-Denoting the $N$ states on each site of our lattice by $|\alpha\rangle$ where
-$1\leq \alpha \leq N$ 
-and the generators of the fundamental representation by $T^a$ (an
-$N\times N$ matrix),
-the SU($N$) singlet between a spin $i$ on the A sub-lattice and a spin $j$ on the
-B sub-lattice is given by, $|s^N_{ij}\rangle = \frac{1}{\sqrt{N}}\sum_\alpha
-|\alpha_i\alpha_j\rangle$. We can use this state to rewrite the
-manifestly SU($N$) invariant interaction  $\sum_a T^a_i \cdot
-T^{*a}_j$, as an explicitly sign problem free projection operator,
+The above methods for SU(2) can be extended to a certain class of spin models with an SU($N$) symmetry on bipartite lattices. We can proceed 
+by first noting again that the Heisenberg operator is simply a singlet projector, Eq.~(\ref{psinglet}). In order to generalize this operator
+to SU($N$), we choose models that have an SU($N$) spin with a fundamental representation on the A sub-lattice and an SU($N$) spin with a conjugate 
+to the fundamental representation on the B sub-lattice~\cite{affleck1985:lgN,Read89}. Denoting the $N$ states on each site of our lattice 
+by $|\alpha\rangle$ where $1\leq \alpha \leq N$ and the generators of the fundamental representation by $T^a$ (an $N\times N$ matrix),
+the SU($N$) singlet between a spin $i$ on the A sub-lattice and a spin $j$ on the B sub-lattice is given by, 
+\begin{equation}
+|s^N_{ij}\rangle = \frac{1}{\sqrt{N}}\sum_\alpha |\alpha_i\alpha_j\rangle. 
+\end{equation}
+We can use this state to rewrite the manifestly SU($N$) invariant version of Eq.~(\ref{psinglet}) as an explicitly sign-problem 
+free projection operator,
 \begin{equation}
 \sum_a T^a_i \cdot
-T^{*a}_j + \frac{1}{N^2} = |s^N_{ij}\rangle \langle s^N_{ij}|\equiv P_{ij}
+T^{*a}_j + \frac{1}{N^2} = |s^N_{ij}\rangle \langle s^N_{ij}|\equiv P_{ij},
 \end{equation}
-This is an SU($N$) invariant generalization of the SU(2) Heisenberg interaction
-for two spins on {\em opposite} sub-lattices. Another interaction of interest is an SU($N$) invariant interaction
-between sites having the same representation, the permutation
-operator, which is defined by its action on a ket,
-$\frac{\Pi_{ij}}{N}|\alpha_i\beta_j\rangle \equiv |\beta_i\alpha_j\rangle$. We can now relate this operator to the generators $T^a$,
+generalizing the Heisenberg interaction for two spins on {\em opposite} sub-lattices. 
+
+Another interaction of interest is an SU($N$) invariant interaction between sites having the same representation, the permutation
+operator, which is defined by its action on a ket, 
+\begin{equation}
+\frac{1}{N}\Pi_{ij}|\alpha_i\beta_j\rangle \equiv |\beta_i\alpha_j\rangle. 
+\end{equation}
+We can now relate this operator to the generators $T^a$:
 \begin{equation}
 \sum_a T^a_i \cdot
 T^{a}_j +\frac{1}{N^2} =\Pi_{ij}
 \end{equation}
-This is an SU($N$) invariant generalization of the SU(2) Heisenberg
-interaction for two spins on the {\em same} sub-lattice.
-In terms of the definitions of $P_{ij}$ and $\Pi_{ij}$, the algorithms presented in
-Sec.~\ref{ss:method} can be generalized from SU(2) to SU($N$) by
-extending the number of loop colors from 2 to $N$~\cite{harada2003:sun,beach2009:sun,kaul2011:j1j2}.
-
+This is an SU($N$) invariant generalization of the SU($2$) Heisenberg interaction for two spins on the {\em same} sub-lattice.
+In terms of the definitions of $P_{ij}$ and $\Pi_{ij}$, the algorithms presented in Sec.~\ref{ss:method} can be generalized from SU(2) 
+to SU($N$) by extending the number of colors (of the spins and the loops) from 2 to $N$~\cite{harada2003:sun,beach2009:sun,kaul2011:j1j2}.
 
 \subsection{Renyi entropies in $T=0$ and $T>0$ simulations} 
 \label{ss:renyi}
@@ -488,42 +485,65 @@ calculations were done at inverse temperature $\beta=L$. The standard critical s
 \subsubsection{Emergent U($1$) gauge fluctuations}
 
 An important aspect of the DQC theory is the emergence of U($1$) symmetry as the critical point is approached from the VBS side. 
-The gauge field in the theory is U($1$) symmetric, but in the $J$-$Q$ model this symmetry is not apparent in the Hamiltonian; it
-only has explicit SU($2$) spin-rotational symmetry and the discrete symmetries of the square lattice. The emergent U($1$) symmetry 
-can be related to the fluctuations of the VBS order parameter. Naively one would expect these fluctuations to reflect the Z$_4$
-symmetry of the square lattice, but instead the symmetry group expands to U($1$) upon approach to the critical point.
+The gauge field in the theory is U($1$) symmetric, but in the $J$-$Q$ model such a symmetry is not apparent in the Hamiltonian; it
+only has explicit SU($2$) spin-rotational symmetry and the discrete symmetries of the square lattice. An emergent U($1$) symmetry 
+can, however, be observed in the fluctuations of the VBS order parameter. Naively one would expect these fluctuations to reflect the 
+Z$_4$ symmetry of the square lattice, but instead the symmetry group expands to U($1$) upon approach to the critical point \cite{Sandvik07}.
+The interpretation natural interpretation of this emergent U($1$) symmetry is that it reflects the gauge field (``photon'') of the
+DQC theory. Here we will briefly review how the emergent symmetry is detected in simulations of the $J$-$Q$ model.
 
-To understand this phenomenon, we have to consider the VBS (dimer-dimer) correlation function.
+Consider the VBS (dimer-dimer) correlation function,
 \begin{equation}
-D_{\alpha} ({\bf r}_{ij}) = \bigl \langle B_\alpha({\bf r}_i)B_\alpha({\bf r}_j) \bigr \rangle, \label{cddef}
+D_{\alpha} ({\bf r}_{ij}) = \bigl \langle B_\alpha({\bf r}_i)B_\alpha({\bf r}_j) \bigr \rangle, \label{cddef},
 \end{equation}
-where ${\bf r}_{ij}=|{\bf r}_{i}-{\bf r}_{j}|$ is the spatial separation between the $B$ operators and $B_\alpha$, $\alpha=\hat x,\hat y$,
-is the dimer operator on nearest-neighbor bonds oriented in the $\alpha$ direction, e.g., for $\alpha=\hat x$
+where ${\bf r}_{ij}={\bf r}_{i}-{\bf r}_{j}$ is the spatial separation of the operators $B_\alpha$, $\alpha=\hat x,\hat y$,
+which measure the spin correlations on nearest-neighbor bonds oriented in the $\alpha$ direction, e.g., for $\alpha=\hat x$
 \begin{equation}
-B_{\hat x}({\bf r})={\bf S}({\bf r}) \cdot {\bf S}({\bf r}+\hat {\bf x}).
+B_{\hat x}({\bf r})={\bf S}({\bf r}) \cdot {\bf S}({\bf r}+\hat {\bf x}),
 \label{bxdef}
 \end{equation}
-For a VBS ordered with the dimers oriented in the $x$ direction $D_{\hat x}(x,y) = (-1)^{x}(a{\rm e}^{-r/\xi}+d^2)$, where $r=(x^2+y^2)$, $d$ the magnitude 
-of the order parameter, and $a$ is a constant. The rate of decay of the correlation function toward the non-zero value $d^2$ as $r\to \infty$ defines
-the correlation length $\xi$. This is the standatd definition of a correlation length, as the length-scale associated with the order parameter. Normally
-this is the longest length-scale (slowest decaying correlation) in the system. In the VBS, we can consider also the dimer correlations in the direction
-$\hat y$ perpenducular to the ordered dimers. These are not associated with the long-range order, but there is still a trivial constant contribution due to the
-fact that $b=\langle B_{\hat y}(x,y)\rangle \not = 0$ (the value being independent of $x$ and $y$). Thus, the asymptotic form of the $y$ bond correlations is
-$D_{\hat y}(x,y) = b^2 + c{\rm e}^{-r/\Lambda}$, where $c$ is another constant. Here the length-scale $\Lambda$ would normally not be referred to as 
-``the correlation length'', because it is not associated directly with {\it magnitude} pf the order parameter. However, $\Lambda$ can actually be larger than $x$, 
-and this is at the heart of the emergent U($1$) symmetry pf the VBS. According to the DQC theory, both lengths diverge as the critical point is approached, and 
-$\Lambda \sim \xi^(1+a)$ with $a>0$. One can also associate $\Lambda$ with the {\it angle} of the order parameter. Since the VBS order parameter is a $2D$
-vecor, ${\bf D}= (D_x,D_y)$, one can define a magnitude $D$ and an angle $\Theta$. We will se below that $\Lambda$ defines a length scale below which the
-order parameter exhibits U($1$) symmetry.
+where $\hat {\bf x}$ is the unit vector in the $x$ direction. For a VBS with the dimers (stronger bonds) oriented in the $x$ direction, 
+$D_{\hat x}(x,y) = (-1)^{x}(a{\rm e}^{-r/\xi}+d^2)$, where $r=(x^2+y^2)$, $d$ the magnitude of the order parameter, and $a$ is a constant. The 
+rate of decay of the correlation function toward the non-zero value $d^2$ as $r\to \infty$ defines the correlation length $\xi$. This is the standatd 
+definition of a correlation length, as the length-scale associated with the order parameter. Normally this is the longest length-scale (slowest decaying 
+correlation) in the system. 
 
-This is in fact a general aspect of systems with {\it dangerously irrelevant} perturbations, in other words, perturbations that reduce the symmetry of a system
-in such a way that the standard critical exponents for a phase transition into an ordered state are unaffected by the perturbation, but the broken symmetry
-of the ordered state is reduced. A prototypical example is the 3D classical XY model, with an added on-site potential $h\cos(q\theta_i)$ on all sites $i$, 
-where $\theta_i$ is the spin angle. Regardless of the value of $h$, this model orders at a critical temperature $T_c(h)$, with critical exponents that do
-not depend on $h$. However, instead of breaking the continuous U($1$) symmetry, as the original $h=0$ model does, now only a $q$-foldd (Z$_q$) symmetry is
-broken. As in the VBS discussed above, there is a length-scale $\Lambda \sim \xi^{a(q)}$ in the ordered state, which is associated with fluctuations of
-the spins in directions different
+In the VBS, we can consider also dimer correlations in the direction $\hat y$ perpenducular to the dimers. These are, at first sight, not associated with the 
+long-range order. There is a trivial constant contribution to these correlations due to the fact that $b=\langle B_{\hat y}(x,y)\rangle \not = 0$ (the value 
+being independent of $x$ and $y$). Thus, the asymptotic form of the $y$ bond correlations is $D_{\hat y}(x,y) = b^2 + c{\rm e}^{-r/\Lambda}$, where $c$ is 
+another constant. Here the length-scale $\Lambda$ would normally not be referred to as ``the correlation length'', because it is not associated directly 
+with the order-parameter ($x$) correlations. However, $\Lambda$ can actually be larger than $x$, and this is at the heart of the emergent U($1$) symmetry 
+of the VBS. According to the DQC theory, both lengths diverge as the critical point is approached, and $\Lambda \sim \xi^(1+a)$ with $a>0$. Close to
+the critical point, where the order parameter $d$ is small and $\Lambda \gg \xi$, on length scales less than $\Lambda$ the system will appear to have
+both $x$ and $y$ VBS order.
 
+One can also associate $\Lambda$ with fluctuations of the {\it angle} of the order parameter. Since the VBS order parameter is a $2D$ vector, ${\bf D}= (D_x,D_y)$, 
+one can define a magnitude $D$ and an angle $\Theta$. $\Lambda$ defines a length scale below which the order parameter exhibits U($1$) symmetry. The system
+not only has both $x$ and $y$ order up to this length scale, but one can thing of the angle as fluctuating uniformly, even though it has to take one of
+the values $n\pi/2$ when the order parameters $D_x$ and $D_y$ are averaged over regions of size $\gg \Lambda$.
+
+This phenomenon of an emergent symmetry higher than that of the order parameter in an ordered state is in fact a general aspect of systems with 
+{\it dangerously irrelevant} perturbations. Such perturbations reduce the symmetry of a system in such a way that the standard critical exponents 
+of a phase transition into an ordered state are unaffected, but the symmetry broken in the ordered state is reduced. A prototypical example is the 3D 
+classical XY model with an added on-site potential $h\cos(q\theta_i)$ on all sites $i$, where $\theta_i$ is the spin angle. This model orders at a critical 
+temperature $T_c(h)$, but regardless of the value of $h$ the critical exponents do not depend on $h$ and are those of the standard XY transition. However, 
+instead of breaking the continuous U($1$) symmetry, as the original $h=0$ model does, now only a $q$-foldd (Z$_q$) symmetry is broken. As in the VBS 
+discussed above, there is a length-scale $\Lambda \sim \xi^{a(q)}$ in the ordered state, which is associated with U($1$) symmetric fluctuations of a 
+course-grained order parameter (magnetization) $(m_x,m_y)$. Finite-size scaling procedures have been developed to access the exponent $a(q)$ directly
+based on the cross-over from U($1$) to Z$_q$ symmetry seen in the order-parameter distribution $P(m_x,m_y)$. Such techniques have also been employed 
+to study the VBS fluctuations of the $J$-$Q$ model.
+
+\subsubsection{Spinon deconfinement}
+
+The U($1$) lengt scale discussed above should also be reflected in the confinement of spinons in the VBS state. By utilizing properties of the
+valence-bond basis, discussed in Sec.~\ref{su2method}, and generalizations to non-zero total magnetization, it is possible to directly access $S=1$ excitations
+of VBS states and study its structure in terms of bound or unbound (deconfined spinons). Such calculations have already been used to characterize deconfined
+spinons using a designer hamiltonian with a VBS state and a N\'eel--VBS transition in one dimension. Such calculations for 2D J-Q models should shed
+further light on the nature of the spinons at the DQC point.
+
+Another approach that has already been employed for the 2D J-Q model is to study the thermodynamic properties at criticality and compare them
+with predictions for a simple model of a gas of thermally excited bosonic spinons. The results show a remarkable consistency among different 
+quantities which are related through expressions for the spinon gas.
 
 \section{N\'eel-VBS transition in SU($N$) spin models}
 \label{sec:sunmodels}
@@ -557,8 +577,8 @@ as relative conjugate representations
  on each of the sublattices. In such models it is possible to form a singlet
 between two spins on opposite sub-lattices and hence a valence bond
 solid.  The simplest SU($N$) invariant two-site Hamiltonian interaction one can define for
-such models is given by Eq.~(\ref{h1def}) with
-$P_{ij}$ the SU($N$) singlet projector defined in Sec.~\ref{ss:su2N}. We note that for $N=2$ this reduces to the familiar
+such models is given by Eq.~(\ref{h1def}) with $P_{ij}$ generalized to the SU($N$) 
+singlet projector defined in Sec.~\ref{ss:su2N}. We note that for $N=2$ this reduces to the familiar
 Heisenberg model. The model $H_{J_1}$ does not suffer from the sign
 problem. The Hamiltonian Eq.~(\ref{h1def}) has been studied extensively. For a 
 one-dimensional chain the well known critical Bethe state for $N=2$ gives way to a valence bond solid
@@ -595,13 +615,15 @@ anti-ferromagnet, Eq~(\ref{h1def}). In order to access the quantum
 phase transition by QMC simulations at a given value of $N\leq 4$ one needs new
 ``designer'' couplings that
 destroy the N\'eel phase and result in the VBS. The first such term discovered was
-the so-called $Q$-interaction, Eq.~(\ref{hqdef}) introduced for SU(2) in Sec.~\ref{ss:jq2}. It can be generalized for any $N$,
+the $Q$-interaction, Eq.~(\ref{hqdef}), introduced for SU(2) in Sec.~\ref{ss:jq2}. It can be generalized for any $N$,
 with $P_{ij}$ again the SU($N$) singlet projectors. Since the matrix elements of $P_{ij}$ are all positive, such a $Q$
-coupling is free of the sign problem of quantum Monte Carlo
-simulations. It turns out that the $Q$-only model is always VBS ordered, so that for the case of $N=2,3,4$, the $J_1$-$Q$ model has a N\'eel-VBS transition~\cite{Sandvik07,lou2009:sun}.
-Detailed numerical studies of the $J_1$-$Q$ model for these $N$ find strong evidence for a continuous transition between N\'eel and VBS~\cite{melko2008:jq,kaul2011:su34,banerjee2010:log,banerjee2010:su3}. The data for certain observables
-show deviations from simple scaling laws for the system sizes studied, that could either be due to conventional corrections to scaling or actual violations of simple scaling laws. This issues remains to be resolved.
-
+coupling is free of the sign problem of quantum Monte Carlo simulations. It turns out that the $Q$-only model, 
+with the projectors arranged as in Fig.~\ref{qterms}, is always VBS ordered, so that for the case of $N=2,3,4$, the $J_1$-$Q$ model 
+has a N\'eel-VBS transition~\cite{Sandvik07,lou2009:sun}. Detailed numerical studies of the $J_1$-$Q$ model for these $N$ find strong 
+evidence for a continuous transition between N\'eel and VBS~\cite{melko2008:jq,kaul2011:su34,banerjee2010:log,banerjee2010:su3}. The data 
+for certain observables show deviations from simple scaling laws for the system sizes studied, that could either be due to conventional 
+corrections to scaling or actual violations of simple scaling laws (but not resembling violations of the kind that would be expected
+at a first-order transition \cite{Sandvik10}]. The origin of these corrections remains to be resolved.
 
 \subsection{SU($N$) $J_1$-$J_2$ model for $N\geq 5$}
 \label{ss:j1j2N}
@@ -832,7 +854,7 @@ As discussed in Ref.~\cite{XYstarQMC}, there are consequences of this novel frac
 \section{Discussion}
 \label{sec:discussion}
 
-We have here given some examples of what can be accomplished with judiciously constructed designer Hamiltonians. Here we discuss
+We have presented some examples of what can be accomplished with judiciously constructed designer Hamiltonians. Here we discuss
 some further generic aspects of this approach, followed by an outlook on future directions.
 
 \subsection{Designer hamiltonians, stoquasticity, and the sign problem}
@@ -865,7 +887,7 @@ classical glassy systems with complicated energy landscapes. Whether or not the 
 designer hamiltonians) for translationally invariant systems such as fermionic Hubbard models without particle-hole symmetry and SU($2$) frustrated 
 quantum spins models remains and open question.
 
-\subsection{future prospects}
+\subsection{Future prospects}
 
 Within the classes of models we have discussed here, although the essential physics is now has been assertained, there still remains
 important work to be done to improve on the quantitative aspects, e.g., the critical exponents. In the case of the studies aiming to connect
