@@ -516,51 +516,58 @@ An important aspect of the DQC theory is the emergence of U($1$) symmetry as the
 The gauge field in the theory is U($1$) symmetric, but in the $J$-$Q$ model such a symmetry is not apparent in the Hamiltonian; it
 only has explicit SU($2$) spin-rotational symmetry and the discrete symmetries of the square lattice. An emergent U($1$) symmetry 
 can, however, be observed in the fluctuations of the VBS order parameter \cite{Sandvik07}. Naively one would expect these fluctuations 
-to reflect the Z$_4$ symmetry of the square lattice, but instead the symmetry group expands to U($1$) upon approach to the critical point.
-The interpretation natural interpretation of this emergent U($1$) symmetry is that it reflects the gauge field (``photon'') of the
-DQC theory. Here we will briefly review how the emergent symmetry is detected in simulations of the $J$-$Q$ model.
+to reflect the Z$_4$ symmetry of the VBS (which is dictated by thge square lattice), but instead the symmetry group expands to U($1$) 
+upon approach to the critical point. The interpretation of this emergent U($1$) symmetry is that it reflects the gauge field (``photon'') 
+of the DQC theory. Here we will briefly review how the emergent symmetry is detected in QMC simulations.
 
 Consider the VBS (dimer-dimer) correlation function,
 \begin{equation}
-D_{\alpha} ({\bf r}_{ij}) = \bigl \langle B_\alpha({\bf r}_i)B_\alpha({\bf r}_j) \bigr \rangle, \label{cddef},
+D_{\alpha} ({\bf r}_{ij}) = \bigl \langle B_\alpha({\bf r}_i)B_\alpha({\bf r}_j) \bigr \rangle, 
+\label{cddef}
 \end{equation}
 where ${\bf r}_{ij}={\bf r}_{i}-{\bf r}_{j}$ is the spatial separation of the operators $B_\alpha$, $\alpha=\hat x,\hat y$,
 which measure the spin correlations on nearest-neighbor bonds oriented in the $\alpha$ direction, e.g., for $\alpha=\hat x$
 \begin{equation}
-B_{\hat x}({\bf r})={\bf S}({\bf r}) \cdot {\bf S}({\bf r}+\hat {\bf x}),
+B_{\hat x}({\bf r})={\bf S}({\bf r}) \cdot {\bf S}({\bf r}+\hat {\bf x}).
 \label{bxdef}
 \end{equation}
-where $\hat {\bf x}$ is the unit vector in the $x$ direction. For a VBS with the dimers (stronger bonds) oriented in the $x$ direction, 
-$D_{\hat x}(x,y) = (-1)^{x}(a{\rm e}^{-r/\xi}+d^2)$, where $r=(x^2+y^2)$, $d$ the magnitude of the order parameter, and $a$ is a constant. The 
-rate of decay of the correlation function toward the non-zero value $d^2$ as $r\to \infty$ defines the correlation length $\xi$. This is the standatd 
-definition of a correlation length, as the length-scale associated with the order parameter. Normally this is the longest length-scale (slowest decaying 
-correlation) in the system. 
+We define the expectation value of this operator when averaged over all sites $i$; $b_\alpha=\langle B_{\alpha}(x,y)\rangle \not = 0$. For a VBS the expectation 
+value acquires a modulation. With the dimers (stronger bonds) oriented in the $x$ direction, the asymptotic form of the $x$ correlations is 
+$D_{\hat x}(x,y) = b_{\hat x}^2+(-1)^{x}(a{\rm e}^{-r/\xi}+\delta^2)$, where $r=(x^2+y^2)$, $d$ the magnitude of the order parameter, and $a$ is a constant. The 
+rate of decay of the oscillaing term toward the non-zero value $\delta^2$ as $r\to \infty$ defines the correlation length $\xi$. This is the standatd 
+definition of a correlation length, as the length-scale associated with the order parameter. Normally this is the largest length-scale in the system. 
 
-In the VBS, we can consider also dimer correlations in the direction $\hat y$ perpenducular to the dimers. These are, at first sight, not associated with the 
-long-range order. There is a trivial constant contribution to these correlations due to the fact that $b=\langle B_{\hat y}(x,y)\rangle \not = 0$ (the value 
-being independent of $x$ and $y$). Thus, the asymptotic form of the $y$ bond correlations is $D_{\hat y}(x,y) = b^2 + c{\rm e}^{-r/\Lambda}$, where $c$ is 
-another constant. Here the length-scale $\Lambda$ would normally not be referred to as ``the correlation length'', because it is not associated directly 
-with the order-parameter ($x$) correlations. However, $\Lambda$ can actually be larger than $x$, and this is at the heart of the emergent U($1$) symmetry 
-of the VBS. According to the DQC theory, both lengths diverge as the critical point is approached, and $\Lambda \sim \xi^(1+a)$ with $a>0$. Close to
-the critical point, where the order parameter $d$ is small and $\Lambda \gg \xi$, on length scales less than $\Lambda$ the system will appear to have
-both $x$ and $y$ VBS order.
+In the VBS, we can consider also dimer correlations in the direction $\hat y$ perpenducular to the dimers. The asymptotic form of these correlations is 
+$D_{\hat y}(x,y) = b_{\hat y}^2 + c{\rm e}^{-r/\Lambda}$, where $c$ is another constant. These correlations are, at first sight, not associated with the order
+parameter and the length-scale $\Lambda$ would normally not be referred to as ``the correlation length''. However, $\Lambda$ can actually be larger than 
+$\xi$, and this is at the heart of the emergent U($1$) symmetry of the VBS. According to the DQC theory, both lengths diverge as the critical point is 
+approached, and $\Lambda \sim \xi^{1+a}$ with $a>0$. Close to the critical point, where the order parameter $\delta$ is small and $\Lambda \gg \xi$, on 
+length scales less than $\Lambda$ the system will appear to have both $x$ and $y$ VBS order.
 
 One can also associate $\Lambda$ with fluctuations of the {\it angle} of the order parameter. Since the VBS order parameter is a $2D$ vector, ${\bf D}= (D_x,D_y)$, 
 one can define a magnitude $D$ and an angle $\Theta$. $\Lambda$ defines a length scale below which the order parameter exhibits U($1$) symmetry. The system
-not only has both $x$ and $y$ order up to this length scale, but one can thing of the angle as fluctuating uniformly, even though it has to take one of
-the values $n\pi/2$ when the order parameters $D_x$ and $D_y$ are averaged over regions of size $\gg \Lambda$.
+not only has both $x$ and $y$ order up to this length scale, but one can think of the angle as fluctuating uniformly, even though it has to take one of the 
+values $n\pi/2$ when the order parameters $D_x$ and $D_y$ are averaged over regions of size $\gg \Lambda$.
 
 This phenomenon of an emergent symmetry higher than that of the order parameter in an ordered state is in fact a general aspect of systems with 
 {\it dangerously irrelevant} perturbations. Such perturbations reduce the symmetry of a system in such a way that the standard critical exponents 
 of a phase transition into an ordered state are unaffected, but the symmetry broken in the ordered state is reduced. A prototypical example is the 3D 
 classical XY model with an added on-site potential $h\cos(q\theta_i)$ on all sites $i$, where $\theta_i$ is the spin angle and $q$ and integer. This model 
 orders at a critical temperature $T_c(h)$, but regardless of the value of $h$ the critical exponents do not depend on $h$ and are those of the standard 
-XY transition. However, 
-instead of breaking the continuous U($1$) symmetry, as the original $h=0$ model does, now only a $q$-foldd (Z$_q$) symmetry is broken. As in the VBS 
-discussed above, there is a length-scale $\Lambda \sim \xi^{a(q)}$ in the ordered state, which is associated with U($1$) symmetric fluctuations of a 
-course-grained order parameter (magnetization) $(m_x,m_y)$. Finite-size scaling procedures have been developed to access the exponent $a(q)$ directly
-based on the cross-over from U($1$) to Z$_q$ symmetry seen in the order-parameter distribution $P(m_x,m_y)$. Such techniques have also been employed 
-to study the VBS fluctuations of the $J$-$Q$ model.
+XY transition. However, instead of breaking the continuous U($1$) symmetry, as the original $h=0$ model does, now only a $q$-fold (Z$_q$) symmetry is 
+broken. As in the VBS discussed above, there is a length-scale $\Lambda \sim \xi^{1+a(q)}$ in the ordered state, which is associated with U($1$) symmetric 
+fluctuations of a course-grained order parameter (magnetization) $(m_x,m_y)$. Finite-size scaling procedures have been developed to access the exponent 
+$a(q)$ directly based on the cross-over from U($1$) to Z$_q$ symmetry seen in the order-parameter distribution $P(m_x,m_y)$. Such techniques have also 
+been employed to study the VBS fluctuations of the $J$-$Q$ model.
+
+In simulations of a VBS on a finite lattice, where the Z$_4$ symmetry is not broken, one can study the emergent U($1$) and the length-scale
+$\Lambda$ by accumulating the probability distribution $P(D_x,D_y)$, where $D_x$ and $D_y$ are defined on the whole system in terms of the expectation
+values of the operators $B_\alpha$ in Eq.~\ref{bxdef}, Fourier transformed at $(\pi,0)$ and $(0,\pi)$ for $\hat x$ and $\hat y$ correlations, respectively.
+Fig.~\ref{} shows results for the $J$-$Q_3$ model at two different ratios $J/Q_3$. Far away from the critical point the histogram exhibits a four-fold
+symmetry consistent with a columnar VBS, while closer to the transition point the distribution is ring-shaped. The radius of the ring corresponds
+to the magnitude $D$ of the order parameter, and the absence of four-fold symmetry implies that here the system size $L < \Lambda$. by analyzing the
+cross-over from Z$_4$ to U($1$) symmetry using finite-size scaling techniques, one can extract the exponent governing the length-scale $\Lambda$, with 
+the result that $\Lambda \sim \xi^{1+a}$, with $a=0.20 \pm 0.05$.
 
 \subsubsection{Spinon deconfinement}
 
