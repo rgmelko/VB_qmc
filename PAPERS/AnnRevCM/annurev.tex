@@ -547,27 +547,37 @@ length scales less than $\Lambda$ the system will appear to have both $x$ and $y
 One can also associate $\Lambda$ with fluctuations of the {\it angle} of the order parameter. Since the VBS order parameter is a $2D$ vector, ${\bf D}= (D_x,D_y)$, 
 one can define a magnitude $D$ and an angle $\Theta$. $\Lambda$ defines a length scale below which the order parameter exhibits U($1$) symmetry. The system
 not only has both $x$ and $y$ order up to this length scale, but one can think of the angle as fluctuating uniformly, even though it has to take one of the 
-values $n\pi/2$ when the order parameters $D_x$ and $D_y$ are averaged over regions of size $\gg \Lambda$.
+values $n\pi/2$ when the order parameters $D_x$ and $D_y$ are averaged over regions of size $\gg \Lambda$. There are many interesting consequences of the
+approximate U($1$) nature of the VBS order parameter, as further discussed in Ref.~\cite{Sandvik12}.
 
 This phenomenon of an emergent symmetry higher than that of the order parameter in an ordered state is in fact a general aspect of systems with 
 {\it dangerously irrelevant} perturbations. Such perturbations reduce the symmetry of a system in such a way that the standard critical exponents 
-of a phase transition into an ordered state are unaffected, but the symmetry broken in the ordered state is reduced. A prototypical example is the 3D 
-classical XY model with an added on-site potential $h\cos(q\theta_i)$ on all sites $i$, where $\theta_i$ is the spin angle and $q$ and integer. This model 
-orders at a critical temperature $T_c(h)$, but regardless of the value of $h$ the critical exponents do not depend on $h$ and are those of the standard 
-XY transition. However, instead of breaking the continuous U($1$) symmetry, as the original $h=0$ model does, now only a $q$-fold (Z$_q$) symmetry is 
-broken. As in the VBS discussed above, there is a length-scale $\Lambda \sim \xi^{1+a(q)}$ in the ordered state, which is associated with U($1$) symmetric 
-fluctuations of a course-grained order parameter (magnetization) $(m_x,m_y)$. Finite-size scaling procedures have been developed to access the exponent 
-$a(q)$ directly based on the cross-over from U($1$) to Z$_q$ symmetry seen in the order-parameter distribution $P(m_x,m_y)$. Such techniques have also 
-been employed to study the VBS fluctuations of the $J$-$Q$ model.
+of a phase transition into an ordered state are unaffected, but the symmetry broken in the ordered state is reduced \cite{Jose77,Oshikawa00}. A 
+prototypical example is the 3D classical XY model with an added on-site potential $h\cos(q\theta_i)$ on all sites $i$, where $\theta_i$ is the spin 
+angle and $q$ and integer \cite{Carmona00}. This model orders at a critical temperature $T_c(h)$, but regardless of the value of $h$ the critical exponents 
+do not depend on $h$ and are those of the standard XY transition. However, instead of breaking the continuous U($1$) symmetry, as the original $h=0$ model does, 
+now only a $q$-fold (Z$_q$) symmetry is broken. As in the VBS discussed above, there is a length-scale $\Lambda \sim \xi^{1+a(q)}$ in the ordered state, which 
+is associated with U($1$) symmetric fluctuations of a course-grained order parameter (magnetization) $(m_x,m_y)$. Finite-size scaling procedures have been 
+developed \cite{Lou07} to access the exponent $a(q)$ directly based on the cross-over from U($1$) to Z$_q$ symmetry seen in the order-parameter distribution 
+$P(m_x,m_y)$. Such techniques have also been employed to study the VBS fluctuations of the $J$-$Q$ model, as we discuss next.
 
 In simulations of a VBS on a finite lattice, where the Z$_4$ symmetry is not broken, one can study the emergent U($1$) and the length-scale
 $\Lambda$ by accumulating the probability distribution $P(D_x,D_y)$, where $D_x$ and $D_y$ are defined on the whole system in terms of the expectation
 values of the operators $B_\alpha$ in Eq.~\ref{bxdef}, Fourier transformed at $(\pi,0)$ and $(0,\pi)$ for $\hat x$ and $\hat y$ correlations, respectively.
-Fig.~\ref{} shows results for the $J$-$Q_3$ model at two different ratios $J/Q_3$. Far away from the critical point the histogram exhibits a four-fold
+Fig.~\ref{jq3histo} shows results for the $J$-$Q_3$ model at two different ratios $J/Q_3$. Far away from the critical point the histogram exhibits a four-fold
 symmetry consistent with a columnar VBS, while closer to the transition point the distribution is ring-shaped. The radius of the ring corresponds
-to the magnitude $D$ of the order parameter, and the absence of four-fold symmetry implies that here the system size $L < \Lambda$. by analyzing the
+to the magnitude $D$ of the order parameter, and the absence of four-fold symmetry implies that here the system size $L=32 < \Lambda$. By analyzing the
 cross-over from Z$_4$ to U($1$) symmetry using finite-size scaling techniques, one can extract the exponent governing the length-scale $\Lambda$, with 
-the result that $\Lambda \sim \xi^{1+a}$, with $a=0.20 \pm 0.05$.
+the result that $\Lambda \sim \xi^{1+a}$, with $a=0.20 \pm 0.05$ \cite{lou2009:sun}.
+
+
+\begin{figure}
+\centerline{\psfig{figure=jq3histo.eps,height=5cm}}
+  \caption{Probability distribution $P(D_x,D_y)$ of the VBS order parameter of the $J$-$Q_3$ model on a $32\times 32$
+           lattice at $J/Q_3 = 0.575$ in (a) and $0.1765$ in (b). The critical ratio is $(J/Q_3)_c \approx 0.67$. Adapted
+           from Ref.~\ref{lou2009:sun}.}  
+\label{jq3histo}
+\end{figure}
 
 \subsubsection{Spinon deconfinement}
 
