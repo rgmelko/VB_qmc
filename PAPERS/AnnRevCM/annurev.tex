@@ -33,11 +33,11 @@ We discuss designer Hamiltonians---lattice models tailored to be free from sign 
 Monte Carlo methods but still host complex  many-body states and quantum phase transitions of great interest in condensed matter 
 physics. We focus on quantum spin systems in which competing interactions lead to non-magnetic ground states. These states and 
 associated quantum phase transitions can be studied in great detail, enabling direct access to universal properties and connections 
-to be made with low-energy effective quantum field theories. As specific examples, we discuss the transition from a N\'eel antiferromagnet to 
-either a uniform quantum paramagnet or a spontaneously symmetry-broken valence-bond solid in SU($2$) and SU($N$) spin models. We also 
-discuss anisotropic (XXZ) systems harboring topological Z$_2$ spin liquids and the XY$^*$ transition. We briefly review recent progress 
-on quantum Monte Carlo algorithms, including ground state projection in the valence-bond basis and direct computation of the Renyi variants of the 
-entanglement entropy.
+with low-energy effective quantum field theories. As specific examples, we discuss the transition from a N\'eel antiferromagnet to 
+either a uniform quantum paramagnet or a spontaneously symmetry-broken valence-bond solid in SU($2$) and SU($N$) symmetric spin models. 
+We also discuss anisotropic (XXZ) systems harboring topological Z$_2$ spin liquids and the XY$^*$ transition. We briefly review recent 
+progress on quantum Monte Carlo algorithms, including ground state projection in the valence-bond basis and direct computation 
+of the Renyi variants of the entanglement entropy.
 \end{abstract}
 
 \maketitle
@@ -47,9 +47,9 @@ entanglement entropy.
 
 Quantum field theory is a powerful framework for studies of low-energy properties of complex strongly 
 correlated and entangled quantum matter systems \cite{Sachdev11}. There are potential pitfalls and difficulties 
-with this approach, however, and it is, therefore, important to also investigate systems directly based on the Hamiltonian 
-formulation. One of the most fruitful directions is to use numerical methods to study lattice Hamiltonians 
-in an unbiased way, and to extract from such calculations emergent low-energy properties which can be 
+with this approach, however, and it is, therefore, important to also investigate systems directly based on the 
+lattice-scale Hamiltonian formulation. One of the most fruitful directions is to use numerical methods to study 
+Hamiltonians in an unbiased way, and to extract from such calculations emergent low-energy properties which can be 
 compared with results for corresponding quantum field theories. Such connections between the two approaches 
 can have significant synergy effects in advancing our understanding of quantum many-body phenomena---as they
 have had and continue to have in classical statistical mechanics, especially in studies of phase transitions. 
@@ -70,19 +70,19 @@ methods \cite{Sandvik91,Evertz93,Beard96,WormA,Sandvik99,Sandvik10a} have made i
 low-energy limit of many important models without any approximations (beyond controllable statistical errors), and to compute 
 quantities of great current interest in condensed matter physics and quantum information theory, e.g., the fidelity 
 \cite{Schwandt09,Degrandi11} and the entanglement entropy \cite{Hastings10, Melko10}. We will brifly address some of these technical 
-aspects as well. We here first give some further remark on field theory and the philosophy of the synergistic use of 
+developments as well. We here first give some further remark on field theory and the philosophy of the synergistic use of 
 designer Hamiltonians, and then outline the topics covered in this review.
 
 \subsection{Field theory and numerical studies of Hamiltonians}
 
 A field theory can rarely be rigorously derived exactly from 
-an underlying Hamiltonian (which is the natural starting point for describing condensed matter systems). Instead
-it is constructed based on symmetries, in combination with insights or assumptions on the physical nature of the
-system. Some times the field theory can be derived in some well defined limit, e.g., the $(d+1)$-dimensional
+an underlying Hamiltonian (which is the natural starting point for describing condensed matter systems). Instead,
+it is normally constructed based on symmetries, in combination with insights or assumptions on the physical nature of 
+the system. Some times the field theory can be derived in some well defined limit, e.g., the $(d+1)$-dimensional
 nonlinear $\sigma$-model description of interacting quantum spins in $d$ dimensions was derived by Haldane in 
 the semi-classical limit of large spin $S$ by using coherent spin states \cite{Haldane83,Chakravarty89,Auerbach94}. 
 In other cases, the field theory is constructed heuristically, e.g., the non-compact CP$^{N-1}$ action
-proposed to describe the intriguing ``deconfined'' quantum-critical point in $d=2$ quantum magnets with 
+proposed to describe the intriguing ``deconfined'' quantum-critical point in $d=2$ quantum magnets hosting 
 transitions between a N\'eel antiferromagnet and a valence-bond solid (VBS) \cite{Senthil04a,Sachdev08}.
 
 %It is
@@ -102,17 +102,17 @@ and the $1/N$ expansion in the number of components $N$ (spin components, flavor
 extrapolation to the $\epsilon$ or $N$ of main interest is often challenging, however, because only low-order
 expansions are feasible in practice.
 
-Because of issues such as these, it is important to test the predictions of field theories in some unbiased way
+Because of issues such as these, it is important to test the predictions of field theories in some unbiased way,
 starting from a microscopic description of the system or phenomenon of interest. In some cases there are exact solutions, 
 e.g., the Bethe Ansatz solution of the $S=1/2$ Heisenberg chain \cite{Bethe31} has been immensely important for testing 
 the non-linear sigma model description of this class of critical spin chains. The exact AKLT state \cite{affleck88} for a special 
-version of the $S=1$ chain was similarly important in testing Haldane's prediction of the qualitative differences between 
-half-odd integer and integer spins \cite{Haldane83}. Exact solutions are rare, however, and essentially limited to 1D models. 
+version of the $S=1$ chain was similarly important in confirming Haldane's conjecture of the qualitative differences between 
+half-odd integer and integer spins \cite{Haldane83}. Exact solutions are rare, however, and mostly limited to 1D models. 
 Another, more general approach is to study Hamiltonians numerically. Exact diagonalization of the Hamiltonian is possible 
-only for very small systems; currently up to $\approx 42$ $S=1/2$ spins \cite{Nakano11,Lauchli11}. White's density matrix 
+only for very small systems; currently up to $42$ $S=1/2$ spins \cite{Nakano11,Lauchli11}. White's density matrix 
 renormalization (DMRG) scheme \cite{White92} and related approaches based on matrix-product states \cite{Schollwock05} 
 have enabled even more detailed studies of the low-energy physics of 1D systems (including also ``ladders'' of several 
-coupled chains). While there has been some progress for 2D systems, with DMRG \cite{Stoudenmire12} and tensor-product 
+coupled chains). While there has been some progress for 2D systems with DMRG \cite{Stoudenmire12} and tensor-product 
 \cite{Murg09} states (generalizations of matrix-product states), in general these approaches have not yet reached the 
 level where one can obtain unbiased results for large systems.
 
@@ -130,13 +130,13 @@ for discovering novel phenomena, and, thereby, stimulate further theoretical dev
 Note that the notion of designer Hamiltonians we consider here goes beyond the often used approach of investigating quantum phenomena 
 in $d$ dimensions by simply extending the same model to $d+1$ dimensions. While this works in some cases \cite{Rieger94,Sorensen92,Nahum11}, 
 it has in recent years been realized that this approach can miss important and intriguing quantum states that have no natural or familiar 
-classical analogues based just on a simple order parameter \cite{Senthil04a,Fradkin04,Sachdev08}. While a designer Hamiltonian effectively also {\it is} 
-a classical statistical-mechanics model (which arises out of the construction of the sampling space in the QMC scheme implemented), it is 
-often not one that would have come natural as a starting point just from the perspective of increasing the dimensionality of some
-classical model. Note, in particular, that it is now well established that symmetries alone do not uniquely determine the nature of a 
-quantum phase transition, but systems with the same symmetries can belong to different universality classes, depending on the role of topological 
-defects \cite{Motrunich04}. Thus, in our view the approach of using manifestly quantum mechanical designer Hamiltonians is an important direction
-in research on many-body ground states, quantum criticality, and other emergent phenomena.
+classical analogues based just on a simple order parameter \cite{Senthil04a,Fradkin04,Sachdev08}. A designer Hamiltonian {\it does} also
+correspond to an effective classical statistical-mechanics model (which arises out of the construction of the sampling space in the QMC 
+scheme implemented), it is often not one that would have come natural as a starting point just from the perspective of increasing the 
+dimensionality of some standard classical model. Note, in particular, that it is now well established that symmetries alone do not uniquely 
+determine the nature of a quantum phase transition, but systems with the same symmetries can belong to different universality classes, 
+depending on the role of topological defects \cite{Motrunich04}. Thus, in our view the approach of using manifestly quantum mechanical 
+designer Hamiltonians is an important direction in research on many-body ground states, quantum criticality, and other emergent phenomena.
 
 \subsection{Outline of the Review}
 
@@ -157,9 +157,10 @@ We conclude in Sec.~\ref{sec:discussion} with a discussion of future prospects a
 
 There is a wide range of QMC methods available for studies of different classes of models \cite{Assaad07,Evertz03,Sandvik10b}. In this review we 
 focus on spin models, and therefore restrict the discussion to the types of methods most suitable for them. These methods are also often well suited 
-for studies of bosons, where a substantial body of work has been carried out in the last few years stimulated by ultracold atoms in optical lattices. 
-For fermions, other approaches work much better in practice (except for 1D systems, where the methods discussed here also work well since the 
-signs from anticommutation normally do not appear in this geometry). We will here only give a rough overview of the methods.
+for studies of bosons, where a substantial body of work has been carried out in the past several years stimulated by ultracold atoms in optical 
+lattices \cite{Kashurnikov02,Wessel04,Kato08,Pollet10} For fermions, other approaches \cite{Hirsch82,Assaad07} work much better in practice (except 
+for 1D systems, where the methods discussed here also work well since the signs from anticommutation normally do not appear in this geometry). We 
+will here only give a rough overview of the methods.
 
 \subsection{The sign problem}
 \label{ss:sign}
@@ -188,9 +189,9 @@ from exponential to polynomial scaling) is then lost. This predicament is the QM
 We here consider classes of quantum Hamiltonians for which it is possible to choose a basis in which all 
 the $W_C\geq 0$. These sign-problem free models can generally be simulated in polynomial time by 
 importance sampling, allowing access to large system sizes (with the exception of ``glassy'' systems and
-other systems where even classical Monte Carlo simulations scale exponentially). In some cases, sign problems
-can be solved in more sophisticated ways, e.g., in the Meron algorithm \cite{Chandrasekharan99}. Here we 
-implicitly consider cases where the ``de-signing'' is essentially automatic, being related to the bipartiteness 
+other systems where even classical Monte Carlo simulations scale exponentially). In some cases, sign problems that
+appear intractable at first-sight can be solved in more sophisticated ways, e.g., in the Meron algorithm \cite{Chandrasekharan99}. 
+Here we implicitly consider cases where the ``de-signing'' is essentially automatic, being related to the bipartiteness 
 of the interactions.
  
 \subsection{$T>0$ and $T=0$ QMC methods}
@@ -206,7 +207,7 @@ where $\beta=1/T$. As an alternative to studying the ground state in the limit o
 operator $P(\beta)$  is applied to a ``trial state'' $|\Psi_0\rangle$, such that $|\Psi_\beta \rangle = P(\beta)|\Psi_0\rangle$ approaches the 
 ground state when $\beta \to \infty$. An expectation value
 \begin{equation}
-\langle A\rangle = \frac{1}{Z}\langle \Psi_\beta|A|\Psi_\beta\rangle,~~~~ Z = \langle \Psi(\beta)|\Psi(\beta)\rangle,
+\langle A\rangle = \frac{1}{Z}\langle \Psi_\beta|A|\Psi_\beta\rangle,~~~~ Z = \langle \Psi_\beta|\Psi_\beta\rangle,
 \label{za2}
 \end{equation}
 tends to the true ground state expectation value, $\langle A\rangle$ $\to$ $\langle 0| A|0\rangle$. For the projector, one can use the imaginary-ime
@@ -216,15 +217,15 @@ $\beta$ is dominated by powers of the order $n=\beta |E_0|$, where $E_0$ is the 
 
 \subsection{Path integrals and stochastic series expansion}
 
-The task is now to rewrite $Z$ in (\ref{za1}) or (\ref{za2}) into the form (\ref{eq:wc}), and expectation values as (\ref{expvalue}), with classical variables 
-without diagonalizing $H$. In practice, implementations of $T=0$ and $T>0$ approaches for a given model are often very similar. In either case, the exponential 
+The task is now to rewrite $Z$ in Eqs.~(\ref{za1}) or (\ref{za2}) into the form (\ref{eq:wc}), and expectation values as Eq.~(\ref{expvalue}), with classical variables 
+without diagonalizing $H$. In practice, $T=0$ and $T>0$ approaches for a given model are often very similar. In either case, the exponential 
 operator can be treated with path-integral methods---world lines in discrete \cite{Suzuki77,Hirsch82} or continuous \cite{Beard96,Prokofev96,Prokofev98} 
-imaginary time---starting from a product of ``time slices'',
+imaginary time---starting from a product of ``time slice'' evolution operators,
 \begin{equation}
 {\rm e}^{-\beta H}= \prod_{i=1}^M {\rm e}^{-\Delta H},~~~~ \Delta=\frac{\beta}{M}.
 \label{slicing}
 \end{equation}
-Complete sets of states are inserted between the exponentials (and the trace is further taken at $T>0$). For small $\Delta$, the
+Complete sets of states are then inserted between the exponentials (and the trace is further taken at $T>0$). For small $\Delta$, the
 matrix elements of the exponentials can be evaluated approximately, giving the form (\ref{eq:wc}) with $W_C$ a product of $M$ matrix elements. 
 In modern approaches the limit $\Delta \to 0$ is taken at the algorithmic level \cite{Prokofev96,WormA,Beard96} and the Monte Carlo sampling is of 
 paths in continuous imaginary time. Older approaches employed the Suzuki-Trotter decomposition \cite{Suzuki76} in Eq.~(\ref{slicing}), which 
@@ -236,10 +237,11 @@ An alternative way is to start from a series expansion \cite{Handscomb62,Sandvik
 \label{series}
 \end{equation}
 and inserting complete sets of states between each instance of $H$. The power $n$ itself is importance-sampled along with the terms of $H$ 
-(stochastic series expansion; SSE), and the expansion is sharply peaked around $\langle n\rangle = -\beta E_0$ (under the assumption that there 
-is no sign problem). Again, $W_c$ in (\ref{eq:wc}) is a product of matrix elements. The continuous-time path integral can also be seen as a variant 
-of SSE, where the evolution operator is written in the interaction picture, with $H=H_0+V$ and expanding only in $V$ \cite{Prokofev96,Sandvik97a}. 
-The full SSE is normally more efficient for spin systems, while the continuous-time variant should be better for certain boson systems.
+(stochastic series expansion; SSE). This expansion is sharply peaked around $\langle n\rangle = -\beta E_0$ (under the assumption that there 
+is no sign problem), which leads to a computational effort scaling as $\beta N$ (the same as in the path-integral approaches). Again, $W_c$ 
+in (\ref{eq:wc}) is a product of matrix elements. The continuous-time path integral can also be seen as a variant of SSE, where the evolution
+operator is written in the interaction picture, with $H=H_0+V$ and expanding only in $V$ \cite{Prokofev96,Sandvik97a}. The full SSE is normally 
+more efficient for spin systems, while the continuous-time variant should be better for certain boson systems.
 
 Regardless of how the exponential operator is treated, the difference between Eqs.~(\ref{za1}) and (\ref{za2}) is essentially only in the boundary 
 conditions in the imaginary time direction; periodic for $T>0$ (due to the trace being taken) and dictated by the nature of the trial state in $T=0$ 
@@ -260,7 +262,7 @@ loop algorithms cannot be applied to all cases (in analogy with the SW method, w
 generalized to ``worms'' \cite{Prokofev96,Prokofev98, WormA} and ``directed loops'' \cite{Sandvik99,Syljuasen02}, which are essentially loops that can self-intersect
 during their construction and incorporate the detailed-balance principle in a more general way. Recently such an algorithm was also formulated without
 delatiled balance \cite{Suwa10}. In addition, for some models where loop algorithms and their generalizations are not applicable (e.g., transeverse-field 
-Ising models), other efficient generalizations of the SW concept have been developed \cite{Rieger99,Sandvik03}.
+Ising models), other efficient generalizations of the SW cluster concept have been developed \cite{Rieger99,Sandvik03}.
 
 \subsection{Special techniques for SU(2)-symmetric models}
 \label{su2method}
@@ -311,6 +313,7 @@ the SU($N$) singlet between a spin $i$ on the A sub-lattice and a spin $j$ on th
 \begin{equation}
 |s^N_{ij}\rangle = \frac{1}{\sqrt{N}}\sum_\alpha |\alpha_i\alpha_j\rangle. 
 \end{equation}
+{\color{red} It may be useful to say explicitly here why the sign in the normal singlet is gone.}
 We can use this state to rewrite the manifestly SU($N$) invariant version of Eq.~(\ref{psinglet}) as an explicitly sign-problem 
 free projection operator,
 \begin{equation}
@@ -330,36 +333,57 @@ We can now relate this operator to the generators $T^a$:
 T^{a}_j +\frac{1}{N^2} =\Pi_{ij}
 \end{equation}
 This is an SU($N$) invariant generalization of the SU($2$) Heisenberg interaction for two spins on the {\em same} sub-lattice.
-In terms of the definitions of $P_{ij}$ and $\Pi_{ij}$, the algorithms presented in Sec.~\ref{ss:method} can be generalized from SU(2) 
-to SU($N$) by extending the number of colors (of the spins and the loops) from 2 to $N$~\cite{harada2003:sun,beach2009:sun,kaul2011:j1j2}.
+
+{\color{red} Hamiltonians based the SU($N$) operators $P_{ij}$ and $\Pi_{ij}$ are sign-problem free if they come with negative signs, i.e.,
+they generalize the SU($2$) antiferromagnetic and ferromagnetic Heisenberg exchange, respectively}. In terms of the definitions of $P_{ij}$ and 
+$\Pi_{ij}$, the algorithms presented in Sec.~\ref{ss:method} can be simply generalized from SU(2) to SU($N$) by extending the number of colors 
+(of the spins and the loops) from 2 to $N$~\cite{harada2003:sun,beach2009:sun,kaul2011:j1j2}.
 
 \subsection{Renyi entropies in $T=0$ and $T>0$ simulations} 
 \label{ss:renyi}
 
-
-In addition to conventional estimators discussed in Equations \ref{za1} and \ref{za2}, QMC methods have recently been developed that are capable of measuring estimators related to the {\it entanglement} of a quantum system \cite{EntangleMeasure}.  Several quantities related to entanglement have been explored in a QMC context for their abilities to identify and characterize quantum phases and phase transitions
-\cite{Tommaso1,Tommaso2,fluc1,fluc2,fid1,fid2}.  In this review, we concentrate of measures of the entanglement entropy, specifically the {\it Renyi} entropies \cite{renyi},
+In addition to conventional physical observables evaluated according to Eqs.~(\ref{za1}) and (\ref{za2}), e.g., various correlation functions, 
+QMC methods have recently been developed that are capable of measuring the degree of {\it entanglement} of a quantum system \cite{EntangleMeasure}. Several 
+quantities related to entanglement have been explored in a QMC context for their abilities to identify and characterize quantum phases and phase 
+transitions \cite{Tommaso1,Tommaso2,fluc1,fluc2,fid1,fid2}.  In this review, we concentrate of measures of the entanglement entropy, specifically 
+the {\it Renyi} entropies \cite{renyi},
 \begin{equation}
 S_{\alpha} = \frac{1}{1-\alpha} \ln \Big[ {\rm Tr}\big( \rho_A^{\alpha} \big) \Big]
 \end{equation}
-which are defined for integer $\alpha \ge 1$.  Here, $\rho_A$ is the reduced density matrix, $\rho_A = {\rm Tr}_B (\rho)$, and $A$ is a subregion of a lattice system (with $B$ being its complement).  
+which are defined for integer $\alpha \ge 1$.  Here, $\rho_A$ is the reduced density matrix, $\rho_A = {\rm Tr}_B (\rho)$, and $A$ is a subregion of 
+a lattice system (with $B$ being its complement).  
  
-The direct measure of Renyi entropies is not possible in QMC using conventional estimators, however recent work has demonstrated that it is possible to measure $S_{\alpha}$ using a {\it replica trick} \cite{Holz,Cardy, Fradkin, BP, Naka}.  Here, $\alpha$ copies of the simulation cell are used, with modified periodic boundaries in the expansion (or imaginary time) direction.  The evaluation of Renyi entropies proceeds in formally different ways for $T=0$ and $T>0$ QMC methods \cite{Hastings10,Melko10}.  Namely, for $T=0$, calculation of $S_{\alpha}$ proceeds in analogy to Equation \ref{za2} (where $\Psi$ is the wavefunction of the replicated system), with the operator $A$ replaced by a ``swap'' \cite{Hastings10} or ``permutation'' operator \cite{Kallin11}.
-This is easiest to understand in the context of the projector algorithm discussed above.  Here, the second-Renyi entropy (for example) is given by the mid-point evaluation of a {\it Swap}$_A$ operator on two replicas of the system (Figure \ref{swap}), that literally ``swaps'' basis states (spins or valence-bond endpoints) between replicas when they lie in region $A$.  Then
+The direct measure of Renyi entropies is not possible in QMC using conventional estimators, however recent work has demonstrated that it is possible to 
+measure $S_{\alpha}$ using a {\it replica trick} \cite{Holz,Cardy, Fradkin, BP, Naka}.  Here, $\alpha$ copies of the simulation cell are used, with modified 
+periodic boundaries in the expansion (or imaginary time) direction.  The evaluation of Renyi entropies proceeds in formally different ways for $T=0$ and $T>0$ 
+QMC methods \cite{Hastings10,Melko10}.  Namely, for $T=0$, calculation of $S_{\alpha}$ proceeds in analogy to Eq.~\ref{za2} (where $\Psi$ is the wavefunction 
+of the replicated system), with the operator $A$ replaced by a ``swap'' \cite{Hastings10} or ``permutation'' operator \cite{Kallin11}. This is easiest to 
+understand in the context of the projector algorithm discussed above in Sec.~\ref{su2method}.  Here, the second-Renyi entropy (for example) is given 
+by the mid-point evaluation of a {\it Swap}$_A$ operator {(\color{red} would ${\rm SWAP}_A$ look better?)}
+on two replicas of the system (see Fig.~\ref{swap}), that literally ``swaps'' basis states 
+(spins or valence-bond endpoints) between replicas when they lie in region $A$.  Then
 \begin{equation}
  S_2 = -\ln \Big[ \langle Swap_A \rangle \Big]
 \end{equation}
- where the expectation value is calculated at the mid-point of the configuration, and expressed using the loops of the transition graph formed when superimposing the projected bra and ket states.  Namely,
+ where the expectation value is calculated at the mid-point of the configuration, and expressed using the loops of the transition graph formed when 
+superimposing the projected bra and ket states.  Namely,
 \begin{equation}
 \langle Swap_A \rangle = 2^{N_{\rm swap} - N_{0}} 
 \end{equation} 
-where $N_{\rm swap}$ is the number of loops at the mid-point of the swapped configuration, while $N_0$ is for the configuration before the swap operator is applied (Figure \ref{swap}).  
+where $N_{\rm swap}$ is the number of loops at the mid-point of the swapped configuration, while $N_0$ is for the configuration before the swap operator 
+is applied (Figure \ref{swap}).  
 
-We refer to Ref.~\cite{Kallin11} for further details of this particular $T=0$ projector implementation.  At finite temperature, the explicit evaluation of the {\it Swap}$_A$ operator can be replaced by an evaluation of the difference in free energies between a replicated system (similar to Figure \ref{swap}), and an un-replicated system \cite{Melko10}, using Equation \ref{za1}.  Although this technique looks quite different formally, both the $T=0$ and $T>0$ techniques can be viewed in a similar footing when considered in the context of SW loop or cluster algorithms, much like the unified framework of the QMC itself.  In some cases, the implementation for these two different techniques can be made to be practically identical.  
+We refer to Ref.~\cite{Kallin11} for further details of this particular $T=0$ projector implementation.  At finite temperature, the explicit evaluation 
+of the {\it Swap}$_A$ operator can be replaced by an evaluation of the difference in free energies between a replicated system (similar to Figure \ref{swap}), 
+and an un-replicated system \cite{Melko10}, using Eq.~\ref{za1}.  Although this technique looks quite different formally, both the $T=0$ and $T>0$ techniques 
+can be viewed in a similar footing when considered in the context of SW loop or cluster algorithms, much like the unified framework of the QMC itself.  
+In some cases, the implementation for these two different techniques can be made to be practically identical.  
 
 \begin{figure}
 \centerline{\psfig{figure=swap.eps,height=9cm}}
-\caption{The {\it Swap}$_A$ operator for a simulation of Renyi entropy $S_2$, where $A$ consists of two sites.  The system is composed of two non-interacting replicas, top (compare to Fig.~\ref{loops}), and bottom, which is sampled independently.  Just to the right of the middle of the system (dashed line) the {\it Swap} operator (green) connects the spin in the top replica to the bottom, indicated by the color of the loops \cite{Kallin11}.  
+\caption{The {\it Swap}$_A$ operator for a simulation of Renyi entropy $S_2$, where $A$ consists of two sites.  The system is composed of two non-interacting 
+replicas, top (compare to Fig.~\ref{loops}), and bottom, which is sampled independently.  Just to the right of the middle of the system (dashed line) 
+the {\it Swap} operator (green) connects the spin in the top replica to the bottom, indicated by the color of the loops \cite{Kallin11}.  
 }
 \label{swap}
 \end{figure}
@@ -368,13 +392,13 @@ We refer to Ref.~\cite{Kallin11} for further details of this particular $T=0$ pr
 \label{sec:su2models}
 
 It has been a matter of debate for a long time whether the non-linear sigma model can correctly capture a phase transition from the N\'eel state 
-to a non-magnetic state in two dimensions for $S=1/2$ spins. Other terms, related to Berry phases, have to be added to the Lagrangian to describe the 
-formation of a spontaneously formed VBS. It was recently proposed that the N\'eel and VBS states are separated by a ``deconfined'' quantum-critical 
-point \cite{Senthil04a} corresponding to the {\it non-compact} CP$^1$ model. It  describing spinons weakly interacting with a U($1$) gauge field (in contrast 
-to the nonlinear $\sigma$-model, which is a description equivalent to the {\it compact} CP$^1$ model, i.e., the Berry phases make the gauge field non-compact). 
-The VBS and N\'eel order parameter form due to confinement and condensation, respectively, of spinons. 
+to a non-magnetic state in two dimensions for $S=1/2$ spins \cite{Chakravarty89}. Other terms, related to Berry phases, have to be added to the Lagrangian 
+to describe the formation of a spontaneously formed VBS \cite{Read90,murthy1990:mono}. It was recently proposed that the N\'eel and VBS states are separated 
+by a ``deconfined'' quantum-critical (DQC) point \cite{Senthil04a} corresponding to the {\it non-compact} CP$^1$ field throry. It describes spinons weakly interacting 
+with a U($1$) gauge field (in contrast to the nonlinear $\sigma$-model, which is a description equivalent to the {\it compact} CP$^1$ action, i.e., the 
+Berry phases make the gauge field non-compact). The VBS and N\'eel order parameter form due to confinement and condensation, respectively, of spinons. 
 
-In this section we first discuss the well-studied continuous quantum phase transition between the N\'eel state and a quantum paramagnet in systems 
+In this section we first discuss the rather well-studied continuous quantum phase transition between the N\'eel state and a quantum paramagnet in systems 
 with bimodal couplings forming a static pattern. In this case the paramagnet does not break any symmetries of the Hamiltonian and the transition 
 is believed to fall in the 3D O($3$) universality class. A VBS state with spontaneously broken lattice symmetries can be achived with frustrated 
 interactions, which, however, are sign problematic in QMC simulations. The J-Q model \cite{Sandvik07} is a designer Hamiltonian circumventing this 
@@ -397,22 +421,26 @@ H = H_1  -\lambda \sum_{[ i,j]} P_{ij} .
 If $\lambda>0$ and $J_1\to 0$, the ground state is clearly a product of singlets on the dimers, which is a quantum paramagnetic state, while if $\lambda=0$ 
 the system is the standard Heisenberg model (\ref{h1def}). There is, thus, a quantum phase transition between the N\'eel and paramagnetic ground states as a 
 function of the coupling ratio $g=(J_1+\lambda)/J_1$. The dimers can be arranged in different ways, and instead of dimers one can also use larger $J_1$-coupled 
-units of an even number of spins, e.g., $4$-site plaquettes , or one can use a bilayer, with $J_1$ and $J_2$ the inter-and intra-layer couplings, respectively.
+units of an even number of spins, e.g., $4$-site plaquettes, or one can use a bilayer, with $J_1$ and $J_2$ the inter-and intra-layer couplings, respectively.
 
+\subsubsection{$T=0$ criticality}
 Based on symmetry arguments alone, the N\'eel--paramagnetic transition should be in the standard classical 3D O($3$) universality class. Many QMC studies 
 have been devoted to checking the exponents against available results for the classical transition \cite{Sandvik94,Troyer96,Matsumoto01,Wang06,Wenzel08,Wenzel09}.
 For some of the systems, e.g., bilayers \cite{Wang06} and columnar dimers on the square lattice \cite{Matsumoto01,Wenzel09,Sandvik10b}, results have been 
 obtained that rival classical calculations in precision (statistical error bars) and in general the exponents agree very well with each other. In other 
 cases (e.g., with the dimers arranged in a staggered pattern), some studies initially indicated a new universality class \cite{Wenzel08}, while others
-supported the O($3$) transition \cite{Jiang12}.  Later it was realized that these cases, where the dimer pattern lack inversion symmetry, are associated with certain
-{\it irrelevant} operators (cubic interactions) in the field-theory formulation which are not present in systems with inversion symmetry \cite{Fritz11}. 
-These lead to substantial finite-size corrections, which can easily be mistaken for a different universality class.
+supported the O($3$) transition \cite{Jiang12}.  Later it was realized that these cases, where the dimer pattern lack inversion symmetry, are associated 
+with certain operators (cubic interactions) in the field-theory formulation  which are not present in systems with inversion symmetry \cite{Fritz11}. 
+These operators are asymptotically irrelevant in the RG sense, but can lead to substantial finite-size corrections which can easily be mistaken for a 
+different universality class.
 
+\subsubsection{$T>0$ quantum-critical scaling}
 Field-theoretical descriptions using the nonlinear $\sigma$-model \cite{Haldane83,Chakravarty89,Chubukov94} and other approaches have given a wealth of 
 predictions also for the $T>0$ quantum-critical ``fan'' extending out into the plane $(g,T)$  from the quantum-critical point $(g_c,0)$. Quantum-critical
 scaling in this extended $T>0$ region is an important characteristic of quantum phase transitions, in contrast with classical phase transitions, with typically 
 very narrow regions of critical scaling. This aspect of criticality dimerized models have also been investigated in detail with QMC studies \cite{Sandvik95,Brenig06,Sandvik11a}
 
+\subsubsection{Experimental realizations}
 A N\'eel--paramagnetic transition of the type discussed above can in principle be experimentally realized in systems consisting of coupled dimers as a function 
 of pressure. The authors are not aware of any case where the phase transition can be crossed in 2D geometry, but a well-studied case in 3D is TlCuCl$_3$ 
 \cite{Cavadini01,Ruegg04}. Here neutron scattering shows clear evidence of the phase transition from a paramagnet to a N\'eel state at a critical pressure 
@@ -422,12 +450,12 @@ of designer hamiltonians by focusing on universal properties \cite{Troyer97,Jin1
 \subsection{Deconfined N\'eel--VBS transition in J-Q models}
 \label{ss:jq2}
 While spontaneously formed VBS states in translationally invariant 2D spin systems have been discussed for more than two decades \cite{Chandra88,Dagotto89,Read89},
-most of the early worked focused on frustrated systems, for which it is very difficult to carry out unbiased numerical calculations. The proposal of a deconfined 
-quantum-critical point separating the N\'eel and VBS states motivated detailed numerical studies of this transition, and, thus, construction of suitable designer 
-hamiltonians to be studied with QMC simulations. Work preceeding the theory had already indicated the intriguing possibility of continuous order--order quantum 
-phase transitions (where standard arguments based on Landau-Ginzburg theory predict generically first-order transitions), but SU($2$) spin models exhibiting 
-N\'eel--VBS transitions were lacking until the introduction of the J-Q class of models, where $J$ refers to Heisenberg exchange on a bipartite lattice and $Q$ is 
-a multi-spin interaction which competes against N\'eel order but does not generate a sign problem. 
+most of the early worked focused on frustrated systems, for which it is very difficult to carry out unbiased numerical calculations. The proposal of a DQC 
+point separating the N\'eel and VBS states motivated detailed numerical studies of this transition, and, thus, construction of suitable designer 
+hamiltonians to be studied with QMC simulations. Numerical Work preceeding the theory \cite{Sandvik02} had already indicated the intriguing possibility of 
+a continuous magnetic--VBS quantum phase transitions (where standard arguments based on Landau-Ginzburg theory predict generically first-order transitions) in
+XY models, but SU($2$) spin models exhibiting N\'eel--VBS transitions were lacking until the introduction of the J-Q class of models, where $J$ refers to 
+Heisenberg exchange on a bipartite lattice and $Q$ is a multi-spin interaction which competes against N\'eel order but does not generate a sign problem. 
 
 The $Q$ terms are most conveniently expressed in terms of the singlet projectors (\ref{psinglet}); in the simplest case on a square lattice
 \begin{equation}
@@ -440,8 +468,8 @@ of projectors in the product, they way they are arranged on the lattice is also 
 states of the ``pure $Q$'' models (\ref{hqdef}) and, thus, N\'eel to VBS transitions in $J$-$Q$ models $H=H_J+H_Q$ where Heisenberg exchange of
 strength $J$ is added.
 
-A staggered $Q_3$ term on the square lattice was investigated in Ref.~X, and this leads to a first-order transition into the N\'eel state when
-$J/Q_3$ reaches a critical value. In contrast, the columnar arrangements in Fig.~\ref{qterms} lead to continuous transitions (or, in principle,
+A staggered $Q_3$ term on the square lattice was investigated in Ref.~\cite{Sen10}, and this leads to a first-order transition into the N\'eel state 
+when $J/Q_3$ reaches a critical value. In contrast, the columnar arrangements in Fig.~\ref{qterms} lead to continuous transitions (or, in principle,
 the transition could be very weakly first-order). Various types of $Q$ terms have also been investigated in the honeycomb lattice \cite{Banerjee11}, 
 with similar results. In analogy with quantum dimer models, the cases with clearly first-order transitions correspond to VBS states that do not
 support any local dimer fluctuations, while the continuous transitions into VBSs where such fluctuations exist. Alternatively, one can relate
@@ -454,7 +482,7 @@ $C_{ij}$ on site pairs $ij$. The Hamiltonian contains all unique translations of
 \label{qterms}
 \end{figure}
 
-\subsubsection{Critical behavior}
+\subsubsection{$T=0$ Critical behavior}
 
 The critical behavior of both the $J$-$Q_2$ and $J$-$Q_3$ model on the simple 2D square lattice has been analyzed in detail in several different ways. 
 One useful quantity for studying the criticality of the N\'eel order parameter is the spin stiffness $\rho_s$. It should scale in the critical ground state 
@@ -463,16 +491,16 @@ the coupling ratio $J/Q$ for different $L\times L$ lattices (in the ground state
 cross at the critical point. In practice, the crossing point often exhibit some drift with $L$, reflecting scaling corrections. Results for the $J$-$Q_2$ 
 model are graphed in Fig.~\ref{jqrhos} and discussed next.
 
-In the $J$-$Q$ models the drift is anomalously large, which had been interpreted as a weakly first-order transition (for which $L\rho_s$
-should eventually diverge as $L$, due to coexistence of a stiff and non-stiff phase). Another possibility is that the model in fact has unusually
-large scaling corrections, that could be intimately associated with the nature of the deconfined quantum-critical point. For example, in the
+In the $J$-$Q$ models the drift is anomalously large, which in one study \cite{Jiang08} had been interpreted as a weakly first-order transition (for which 
+$L\rho_s$ should eventually diverge as $L$, due to coexistence of a stiff and non-stiff phase). Another possibility is that the model in fact has unusually
+large scaling corrections, that could be intimately associated with the nature of the DQC point. For example, in the
 theory the perturbation to the critical point leading to VBS order is a dangerously irrelevant operator. It could potentially lead to large, but
-conventional, scaling corrections. Another possibility is that the corrections are logarithmic (multiplicative), similar to those known in the
-critical Heisenberg chain. Such corrections do not appear in the large-$N$ calculations of the CP$^{N-1}$ theory, but potentially they could
-appear for small $N$ (as has recently also been argued for based on a modified version of the deconfined-criticality theory).
-
-Numerical data for the $J$-$Q_2$ model, on lattices with $L$ up to $256$, can, in fact, be well accounted for by a log correction, as shown in 
-Fig.~\ref{jqrhos}, but also with a conventional correction of the form $(1+aL^{-\omega}$ with large $a$ and small $\omega$.
+conventional, scaling corrections. Another possibility is that the corrections are logarithmic (multiplicative) \cite{Sandvik10c,banerjee2010:log} 
+similar to those known in the critical Heisenberg chain. Such corrections do not appear in the large-$N$ calculations of the CP$^{N-1}$ theory, but 
+potentially they could appear for small $N$, as has recently also been argued for based on a modified version of the DQC theory \cite{Nogueira11}. 
+Numerical data for the $J$-$Q_2$ model \cite{Sandvik10c}, on lattices with $L$ up to $256$, can, in fact, be well accounted for by a log correction, 
+as shown in Fig.~\ref{jqrhos}, but the deviations from pure scaling can also be taken into account with a conventional correction of the form 
+$(1+aL^{-\omega})$ with large $a$ and small $\omega$.
 
 \begin{figure}
 \centerline{\psfig{figure=jqrhos.eps,height=8cm}}
@@ -487,8 +515,8 @@ calculations were done at inverse temperature $\beta=L$. The standard critical s
 An important aspect of the DQC theory is the emergence of U($1$) symmetry as the critical point is approached from the VBS side. 
 The gauge field in the theory is U($1$) symmetric, but in the $J$-$Q$ model such a symmetry is not apparent in the Hamiltonian; it
 only has explicit SU($2$) spin-rotational symmetry and the discrete symmetries of the square lattice. An emergent U($1$) symmetry 
-can, however, be observed in the fluctuations of the VBS order parameter. Naively one would expect these fluctuations to reflect the 
-Z$_4$ symmetry of the square lattice, but instead the symmetry group expands to U($1$) upon approach to the critical point \cite{Sandvik07}.
+can, however, be observed in the fluctuations of the VBS order parameter \cite{Sandvik07}. Naively one would expect these fluctuations 
+to reflect the Z$_4$ symmetry of the square lattice, but instead the symmetry group expands to U($1$) upon approach to the critical point.
 The interpretation natural interpretation of this emergent U($1$) symmetry is that it reflects the gauge field (``photon'') of the
 DQC theory. Here we will briefly review how the emergent symmetry is detected in simulations of the $J$-$Q$ model.
 
@@ -525,8 +553,9 @@ the values $n\pi/2$ when the order parameters $D_x$ and $D_y$ are averaged over 
 This phenomenon of an emergent symmetry higher than that of the order parameter in an ordered state is in fact a general aspect of systems with 
 {\it dangerously irrelevant} perturbations. Such perturbations reduce the symmetry of a system in such a way that the standard critical exponents 
 of a phase transition into an ordered state are unaffected, but the symmetry broken in the ordered state is reduced. A prototypical example is the 3D 
-classical XY model with an added on-site potential $h\cos(q\theta_i)$ on all sites $i$, where $\theta_i$ is the spin angle. This model orders at a critical 
-temperature $T_c(h)$, but regardless of the value of $h$ the critical exponents do not depend on $h$ and are those of the standard XY transition. However, 
+classical XY model with an added on-site potential $h\cos(q\theta_i)$ on all sites $i$, where $\theta_i$ is the spin angle and $q$ and integer. This model 
+orders at a critical temperature $T_c(h)$, but regardless of the value of $h$ the critical exponents do not depend on $h$ and are those of the standard 
+XY transition. However, 
 instead of breaking the continuous U($1$) symmetry, as the original $h=0$ model does, now only a $q$-foldd (Z$_q$) symmetry is broken. As in the VBS 
 discussed above, there is a length-scale $\Lambda \sim \xi^{a(q)}$ in the ordered state, which is associated with U($1$) symmetric fluctuations of a 
 course-grained order parameter (magnetization) $(m_x,m_y)$. Finite-size scaling procedures have been developed to access the exponent $a(q)$ directly
@@ -538,12 +567,12 @@ to study the VBS fluctuations of the $J$-$Q$ model.
 The U($1$) lengt scale discussed above should also be reflected in the confinement of spinons in the VBS state. By utilizing properties of the
 valence-bond basis, discussed in Sec.~\ref{su2method}, and generalizations to non-zero total magnetization, it is possible to directly access $S=1$ excitations
 of VBS states and study its structure in terms of bound or unbound (deconfined spinons). Such calculations have already been used to characterize deconfined
-spinons using a designer hamiltonian with a VBS state and a N\'eel--VBS transition in one dimension. Such calculations for 2D J-Q models should shed
+spinons using a designer hamiltonian with a VBS state and a N\'eel--VBS transition in one dimension. Similar calculations for 2D J-Q models should shed
 further light on the nature of the spinons at the DQC point.
 
-Another approach that has already been employed for the 2D J-Q model is to study the thermodynamic properties at criticality and compare them
-with predictions for a simple model of a gas of thermally excited bosonic spinons. The results show a remarkable consistency among different 
-quantities which are related through expressions for the spinon gas.
+Another approach to confirming spinon excitations, which has already been employed for the 2D J-Q model, is to study the thermodynamic properties at 
+criticality and compare them with predictions for a simple model of a gas of thermally excited bosonic spinons. The results show a remarkable consistency 
+among different quantities which are related through expressions for the spinon gas, thus lending strong support to the deconfinement scenario.
 
 \section{N\'eel-VBS transition in SU($N$) spin models}
 \label{sec:sunmodels}
@@ -623,7 +652,7 @@ has a N\'eel-VBS transition~\cite{Sandvik07,lou2009:sun}. Detailed numerical stu
 evidence for a continuous transition between N\'eel and VBS~\cite{melko2008:jq,kaul2011:su34,banerjee2010:log,banerjee2010:su3}. The data 
 for certain observables show deviations from simple scaling laws for the system sizes studied, that could either be due to conventional 
 corrections to scaling or actual violations of simple scaling laws (but not resembling violations of the kind that would be expected
-at a first-order transition \cite{Sandvik10}]. The origin of these corrections remains to be resolved.
+at a first-order transition \cite{Sandvik10c}]. The origin of these corrections remains to be resolved.
 
 \subsection{SU($N$) $J_1$-$J_2$ model for $N\geq 5$}
 \label{ss:j1j2N}
