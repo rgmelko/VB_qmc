@@ -324,11 +324,13 @@ Another interaction of interest is an SU($N$) invariant interaction between site
 which is defined by its action on a ket, 
 \begin{equation}
 \frac{1}{N}\Pi_{ij}|\alpha_i\beta_j\rangle \equiv |\beta_i\alpha_j\rangle. 
+\label{pija}
 \end{equation}
 We can now relate this operator to the generators $T^a$:
 \begin{equation}
 \sum_a T^a_i \cdot
 T^{a}_j +\frac{1}{N^2} =\Pi_{ij}.
+\label{pijb}
 \end{equation}
 This is an SU($N$) invariant generalization of the SU($2$) Heisenberg interaction for two spins on the {\em same} sub-lattice.
 
@@ -480,7 +482,7 @@ defects in the VBS \cite{Banerjee11}.
 
 \begin{figure}
 \centerline{\psfig{figure=qterms.eps,height=4.5cm}}
-\caption{$Q_2$ and $Q_3$ terms on the square lattice (from Ref.~X). The bars indicate the locations of singlet projectors 
+\caption{$Q_2$ and $Q_3$ terms on the square lattice; from Ref.~\cite{Sandvik12}. The bars indicate the locations of singlet projectors 
 $C_{ij}$ on site pairs $ij$. The Hamiltonian contains all unique translations of these operators.}
 \label{qterms}
 \end{figure}
@@ -512,10 +514,12 @@ to be of the form $\chi \sim T[1+a\ln(1/T)]$. These corrections, like those at $
 transition in the $J$-$Q$ models.
 
 \begin{figure}
-\centerline{\psfig{figure=jqrhos.eps,height=8cm}}
-\caption{Finite-size scaling of the spin stiffness of the $J$-$Q_2$ model in the vicinity of its quantum-critical point \cite{Sandvik10c}. The 
+\centerline{\psfig{figure=jqrhos.eps,height=9cm}}
+\caption{Finite-size scaling of the spin stiffness of the $J$-$Q_2$ model in the vicinity of its quantum-critical point; from Ref.~\cite{Sandvik10c}. The 
 calculations were done at inverse temperature $\beta=L$. The standard critical scaling form $\rho_s \sim L^{-1}$ has been modified by a log correction 
-(with $L_0=0.9$) in order to compensate for a wek drift of the crossing point (the critical coupling). The critical coupling $(J/Q)_c = 0.0447(2)$.}
+(with $L_0=0.9$) in order to compensate for a wek drift of the crossing point (the critical coupling). The critical coupling $(J/Q)_c = 0.0447(2)$. The
+red curves (which cross at a single point) represent a common scaling function (approximated by a polynomial fitted to the data points), $f[(q-q_c)L^{1/\nu}]$,
+for all systems with $L\ge 48$.}
 \label{jqrhos}
 \end{figure}
 
@@ -581,7 +585,7 @@ the result that $\Lambda \sim \xi^{1+a}$, with $a=0.20 \pm 0.05$ \cite{lou2009:s
 
 
 \begin{figure}
-\centerline{\psfig{figure=jq3histo.eps,height=5cm}}
+\centerline{\psfig{figure=jq3histo.eps,height=6cm}}
   \caption{Probability distribution $P(D_x,D_y)$ of the VBS order parameter of the $J$-$Q_3$ model on a $32\times 32$
            lattice at $J/Q_3 = 0.575$ in (a) and $0.1765$ in (b). The critical ratio is $(J/Q_3)_c \approx 0.67$. Adapted
            from Ref.~\cite{lou2009:sun}.}  
@@ -608,44 +612,31 @@ Secs.~\ref{ss:j1N},~\ref{ss:jqN},~\ref{ss:j1j2N} describe studies carried out on
 
 \subsection{SU($N$) Heisenberg models}
 \label{ss:j1N}
-A natural extension of the SU(2) Heisenberg model is to spin models with
-SU($N$) symmetry. Such generalizations were initially introduced to
-facilitate access to
-a solvable large-$N$ limit~\cite{affleck1985:lgN,Read89}. In the meantime, new physical systems have
-motivated an interest in such models at arbitrary finite values of
-$N$~\cite{gorshkov2010:sun,kugel1982:kk}, leading to extensive studies of SU($N$) spin systems. The physical degrees of freedom of a particular
-spin model depend not only on the global symmetry but also on the
-chosen representation under which the spins transform. Thus there are
-a number of distinct extensions of the SU(2) model to SU($N$), depending on
-what properties of the SU(2) model are intended to be retained in the
-generalization. In the context of the study of deconfined quantum criticality at the
-N\'eel-VBS transition, the ability of two spins to form a singlet is the most
-central characteristic required to form a VBS. It
-is possible to choose SU($N$) models which have this property by
-working on bipartite lattices and
-assigning SU($N$) spins that transform
-as relative conjugate representations
- on each of the sublattices. In such models it is possible to form a singlet
-between two spins on opposite sub-lattices and hence a valence bond
-solid.  The simplest SU($N$) invariant two-site Hamiltonian interaction one can define for
-such models is given by Eq.~(\ref{h1def}) with $P_{ij}$ generalized to the SU($N$) 
-singlet projector defined in Sec.~\ref{ss:su2N}. We note that for $N=2$ this reduces to the familiar
-Heisenberg model. The model $H_{J_1}$ does not suffer from the sign
-problem. The Hamiltonian Eq.~(\ref{h1def}) has been studied extensively. For a 
-one-dimensional chain the well known critical Bethe state for $N=2$ gives way to a valence bond solid
-ordered state for all $N\geq 3$~\cite{barber1989:d1n3_vbs,klumper1989:d1n3_vbs,affleck1985:lgN}.   In two-dimensions, $H_{J_1}$ was shown in the large-$N$ limit to map onto a dimer model
-with only a kinetic term
-~\cite{read1989:nucphysB}. From direct numerical simulations
-on the quantum dimer model, it is known that the kinetic only dimer model
-valence bond solid orders~\cite{sachdev1989:qd_vbs}.  This implies that in $H_{J_1}$ there must be a transition
-between the magnetic state at $N=2$ and the valence bond solid at
-$N=\infty$.  The location of the transition in Eq.~(\ref{h1def}) was first
-determined to lie between $N=4$ and $N=5$ by quantum Monte Carlo
-simulations~\cite{harada2003:sun}.
+A natural extension of the SU($2$) Heisenberg model is to spin models with SU($N$) symmetry. Such generalizations were initially introduced to
+facilitate access to a solvable large-$N$ limit~\cite{affleck1985:lgN,Read89}. In the meantime, new physical systems have motivated an interest 
+in such models at arbitrary finite values of $N$~\cite{gorshkov2010:sun,kugel1982:kk}, leading to extensive studies of SU($N$) spin systems. The 
+physical degrees of freedom of a particular spin model depend not only on the global symmetry but also on the chosen representation under which the 
+spins transform. Thus, there are a number of distinct extensions of the SU($2$) model to SU($N$), depending on what properties are intended to be retained 
+in the generalization. 
+
+In the context of the study of the DQC point at the N\'eel-VBS transition, the ability of two spins to form a singlet is the most
+central characteristic required to form a VBS. It is possible to choose SU($N$) models which have this property by working on bipartite lattices and
+assigning SU($N$) spins that transform as relative conjugate representations on each of the sublattices, as discussed in Sec.~\ref{ss:su2N}, In such 
+models it is possible to form a singlet between two spins on opposite sub-lattices, and hence a valence bond solid can in principle form.  The simplest 
+SU($N$) invariant two-site Hamiltonian interaction one can define for such models is given by Eq.~(\ref{h1def}) with $P_{ij}$ generalized to the SU($N$) 
+singlet projector defined in Sec.~\ref{ss:su2N}. We note again that for $N=2$ this reduces to the familiar Heisenberg model. The model $H_{J_1}$ does 
+not suffer from the sign problem. 
+
+The Hamiltonian Eq.~(\ref{h1def}) has been studied extensively. For a one-dimensional chain the well known critical Bethe state for $N=2$ gives way to a 
+valence bond solid ordered state for all $N\geq 3$~\cite{barber1989:d1n3_vbs,klumper1989:d1n3_vbs,affleck1985:lgN}.   In two-dimensions, $H_{J_1}$ was shown 
+in the large-$N$ limit to map onto a dimer model with only a kinetic term \cite{read1989:nucphysB}. From direct QMC simulations on the quantum dimer model, 
+it is known that the kinetic-only model orders into a VBS \cite{sachdev1989:qd_vbs}.  This implies that in $H_{J_1}$ there must be a transition between the 
+magnetic state at $N=2$ and the VBS at $N=\infty$.  The location of the transition in Eq.~(\ref{h1def}) was first determined to lie between $N=4$ and $N=5$ 
+by QMC simulations~\cite{harada2003:sun}.
 
 
 \begin{figure}
-\centerline{\psfig{figure=pdj1j2q_2.eps,height=9cm}}
+\centerline{\psfig{figure=pdj1j2q_2.eps,height=11cm}}
 %\includegraphics[width=3.5in]{pdj1j2q_2.eps}
   \caption{ \label{fig:pdj1j2q} Phase Diagram of the
     SU($N$) symmetric sign-problem free
@@ -659,22 +650,17 @@ simulations~\cite{harada2003:sun}.
 
 \subsection{SU($N$) $J_1$-$Q$ model for $N\leq 4$}
 \label{ss:jqN}
-In the previous subsection we saw that on the square lattice the
-N\'eel-order found for $N=2,3,4$ gives way to valence bond solid
-ordered phases for $N\geq 5$ in the SU($N$)
-anti-ferromagnet, Eq~(\ref{h1def}). In order to access the quantum
-phase transition by QMC simulations at a given value of $N\leq 4$ one needs new
-``designer'' couplings that
-destroy the N\'eel phase and result in the VBS. The first such term discovered was
-the $Q$-interaction, Eq.~(\ref{hqdef}), introduced for SU(2) in Sec.~\ref{ss:jq2}. It can be generalized for any $N$,
-with $P_{ij}$ again the SU($N$) singlet projectors. Since the matrix elements of $P_{ij}$ are all positive, such a $Q$
-coupling is free of the sign problem of quantum Monte Carlo simulations. It turns out that the $Q$-only model, 
-with the projectors arranged as in Fig.~\ref{qterms}, is always VBS ordered, so that for the case of $N=2,3,4$, the $J_1$-$Q$ model 
-has a N\'eel-VBS transition~\cite{Sandvik07,lou2009:sun}. Detailed numerical studies of the $J_1$-$Q$ model for these $N$ find strong 
-evidence for a continuous transition between N\'eel and VBS~\cite{melko2008:jq,kaul2011:su34,banerjee2010:log,banerjee2010:su3}. The data 
-for certain observables show deviations from simple scaling laws for the system sizes studied, that could either be due to conventional 
-corrections to scaling or actual violations of simple scaling laws (but not resembling violations of the kind that would be expected
-at a first-order transition \cite{Sandvik10c}]. The origin of these corrections remains to be resolved.
+In the previous section we saw that on the square lattice the N\'eel-order found for $N=2,3,4$ gives way to VBS
+order for $N\geq 5$ in the SU($N$) antiferromagnet, Eq~(\ref{h1def}). In order to access the quantum phase transition by QMC simulations at a 
+given value of $N\leq 4$ one needs new ``designer'' couplings that destroy the N\'eel phase and result in the VBS. The first such term discovered 
+was the $Q$-interaction, Eq.~(\ref{hqdef}), introduced for SU($2$) in Sec.~\ref{ss:jq2}. It can be generalized for any $N$, with $P_{ij}$ again 
+the SU($N$) singlet projectors. Since the matrix elements of $P_{ij}$ are all positive, such a $Q$ coupling is free of the QMC sign problem. 
+It turns out that the $Q$-only model, with the projectors arranged as in Fig.~\ref{qterms}, is always VBS ordered, so that for the cases of $N=2,3,4$, 
+the $J_1$-$Q$ model has a N\'eel-VBS transition~\cite{Sandvik07,lou2009:sun}. Detailed numerical studies of the $J_1$-$Q$ model for these $N$ find strong 
+evidence for a continuous transition between N\'eel and VBS~\cite{melko2008:jq,kaul2011:su34,banerjee2010:log,banerjee2010:su3}. The data for certain 
+observables show deviations from simple scaling laws for the system sizes studied, that could either be due to conventional corrections to scaling or 
+actual violations of simple scaling laws (but not resembling violations of the kind that would be expected at a first-order transition \cite{Sandvik10c}]. 
+The origin of these corrections remains to be resolved.
 
 \subsection{SU($N$) $J_1$-$J_2$ model for $N\geq 5$}
 \label{ss:j1j2N}
@@ -682,33 +668,24 @@ at a first-order transition \cite{Sandvik10c}]. The origin of these corrections 
 For $N\geq 5$, the $Q$ term strengthens
 the VBS that is already present in the $J_1$ only model, and hence to
 study the N\'eel-VBS transition for large-$N$, a new designer
-Hamiltonian is needed. 
- To supply such a model, we
+Hamiltonian is needed. To supply such a model, we
 introduce an interaction between sites on the same sub-lattice $J_2$ which favors the N\'eel state,
 \begin{equation}
 H_{J_2}= -J_2 \sum_{\langle\langle ij\rangle\rangle} \Pi_{ij},
 \end{equation}
-where the $\Pi_{ij}$ interaction has been introduced in Sec.~\ref{ss:su2N}.
-In order to see that this interaction favors the N\'eel state, we note
-that in the $H_{J_2}$ model by itself, the two sublattices are
-decoupled. The ground state corresponds to having an independent SU($N$) ferromagnet on
-each sublattice. Turning on a small $J_1\ll J_2$ interaction will clearly cause
-the sub-lattice degeneracy to be lifted, resulting in the
-two independent ferromagnets to lock into a single
-anti-ferromagnet state. These arguments are true independent of the
-value of $N$. Thus for every $N\geq 5$ the VBS state is
-realized when $J_1\gg J_2$ and the N\'eel state is obtained when $J_2
-\gg J_1$. Thus there must be at least one quantum phase transition as
-the ratio
-$J_2/J_1$ is tuned. From numerical simulations on $J_1$-$J_2$ model, there is compelling evidence
-for a direct transition between these two phases with no
-indication of an intervening phase. The phase diagram of the $J_1$-$J_2$-$Q$ model as a functions of $N$ is summarized in Fig.~\ref{fig:pdj1j2q}.
+where the $\Pi_{ij}$ interaction was introduced in Eqs.~\ref{pija} and \ref{pijb}.
+In order to see that this interaction favors the N\'eel state, we note that in the $H_{J_2}$ model by itself, the two sublattices 
+are decoupled. The ground state corresponds to having an independent SU($N$) ferromagnet on each sublattice. Turning on a small $J_1\ll J_2$ 
+interaction will clearly cause the sub-lattice degeneracy to be lifted, resulting in the two independent ferromagnets to lock into a single
+antiferromagnetic state. These arguments are true independent of the value of $N$. Thus, for every $N\geq 5$ the VBS state is realized when 
+$J_1\gg J_2$ and the N\'eel state is obtained when $J_2 \gg J_1$. Thus, there must be at least one quantum phase transition as the ratio
+$J_2/J_1$ is tuned. From numerical simulations on $J_1$-$J_2$ model, there is compelling evidence for a direct transition between these two 
+phases with no indication of an intervening phase. The phase diagram of the $J_1$-$J_2$-$Q$ model as a functions of $N$ is summarized 
+in Fig.~\ref{fig:pdj1j2q}.
 
-An important prediction of the deconfined criticality scenario~\cite{Senthil04a} at the
-N\'eel-VBS transition is that both N\'eel and VBS order parameters are
-simultaneously quantum critical at the phase transition and that space
-and time scale in the same way, {\em i.e.} the dynamic critical exponent $z=1$. This implies
-that both correlation functions decay as Lorentz-invariant power laws,
+An important prediction of the DQC scenario~\cite{Senthil04a} at the N\'eel-VBS transition is that both order parameters are
+simultaneously quantum critical at the phase transition and that space and time scale in the same way, {\em i.e.} the dynamic critical 
+exponent $z=1$. This implies that both correlation functions decay as Lorentz-invariant power laws,
 \begin{equation}
 \label{eq:expdef}
 C_{N,V} ({\bf r},\tau) \sim  \frac{1}{~{(\bf r}^2+c^2\tau^2)^{\frac{(1+\eta_{V,N})}{2}}}.
@@ -750,8 +727,7 @@ Hamiltonian. By studying the size dependence of correlation functions in Eq.~(\r
 
 \begin{figure}
 \centerline{\psfig{figure=fig_exp.eps,height=9cm}}
- \caption{ \label{fig:exp} Anomalous dimensions of the N\'eel (left)
-    and VBS (right)
+ \caption{ \label{fig:exp} Anomalous dimensions of the N\'eel (left) and VBS (right)
   order parameters as a function of $N$. The main panels show $\eta_N$ and $\eta_V$ versus $1/N$. For $N=2,3$ and $4$, the data are 
   for the J-Q model, and the results for $N>4$ are for the $J_1$-$J_2$ model. The analytic results 
   from the $1/N$ expansion of the CP$^{N-1}$ field theory are shown as thick red lines. The left and right insets 
@@ -801,7 +777,7 @@ In this section, we will explore one class of spin Hamiltonain that contains the
 effective field-theoretical description.  In addition, an associated order/QSL quantum critical point can be demonstrated to be of an exotic
 ``fractionalized'' type, based on comparisons of universal quantities calculated from QMC and a related quantum field theory.
 
-\subsection{BFG Hamiltonians with Z2 spin liquid phases}
+\subsection{BFG Hamiltonians with Z$_2$ spin liquid phases}
 
 
 One successful recipe for designing Hamiltonians with QSL phases amenable to QMC study was pioneered by Isakov and co-workers for certain Bose-Hubbard models on the kagome lattice \cite{Isakov1, Isakov2, TopoEE}.  Models in this class, first proposed analytically by Balents, Fisher and Girvin \cite{BFG} (BFG),
@@ -809,7 +785,7 @@ are constructed partly based on their relation to {\it quantum dimer models} (QD
 
 
 \begin{figure}
-\includegraphics[width=6in]{kagome}
+\centerline{\includegraphics[width=4.5in]{kagome}}
   \caption{ (a) Spins (black dots are $S^z = 1/2$) in a groundstate configuration satisfying $H_0$ on the kagome lattice.  The degenerate manifold of such configurations maps onto a triangular-lattice (dashed) classical three-dimer configuration, where each spin-up corresponds to a dimer on the dual lattice \cite{BFG}.  (b) At right, a plaquette-flip $H_{\rm ring}$ operation preserves the cluster-charging constraint, and can be seen to correspond to a rhombus-flip of dimers on the dual lattice.  A defect is created by flipping one spin (marked ``+'' in (a)).  This defect can be thought of as associating with two hexagonal plaquettes (grey in (b)), each with two spin-up per hexagon, corresponding to deconfined fractionalized spinons.} \label{kag_fig}
 \end{figure}
 
@@ -868,7 +844,7 @@ S_{\alpha} = a \ell - \gamma + \cdots \label{areaL}.
 Using the estimators described in Section~\ref{ss:renyi}, it is possible to isolate the topological entanglement entropy from the leading-order area-law, as well as subleading corrections due to effects such as corners, by taking measurements using several different geometries $A$ and performing additions or subtractions which isolate only $\gamma$.  For example, the {\it Levin-Wen} \cite{LW} regions isolate $2\gamma$ from Eq.~(\ref{areaL}), requiring measurement of four unique region $A$ geometries.  For a BFG Hamiltonian discussed in the last section, it is possible to extract the topological entanglement entropy in a QMC simulation.  As noted by Castelnovo and Chamon \cite{castelnovo} through direct calculation on the toric code (which realizes a $Z_2$ fractionalized spin liquid groundstate), the value of $2\gamma$ is approached through two temperature crossovers on a finite-size system, related to the energy of the quasiparticle excitations in the groundstate -- one $Z_2$ charge corresponding to the spinon; one $Z_2$ flux corresponding to the vison.  Each excitation contributes a value of $\ln(2)$ to the topological entanglement entropy.  As illustrated in Figure \ref{QSLfig}, the realization of one of these plateaus at finite-temperature gives positive identification that the groundstate of the model is a $Z_2$ QSL phase.
 
 \begin{figure}
-\includegraphics[width=5.5in]{QSL}
+\centerline{\includegraphics[width=4.5in]{QSL}}
 \caption{In the main figure, the temperature dependence of the topological entanglement entropy in the $Z_2$ QSL phase of the Hamiltonian $H_0 + H_1$ (reproduced from \cite{TopoEE}), for three different sizes of kagome lattice.  The quantization of the plateau at $\ln(2)$ (dashed line) identifies the emergent gauge symmetry; at $T=0$ one expect another temperature crossover to $2 \gamma = 2 \ln(2)$.  In the inset, finite-size scaling of
 $G(L/6)$ at the XY* quantum critical point, which scales as  $1/L^{2.493}$ (straight-line fit) giving $\eta = 1.493$ (reproduced from \cite{XYstarQMC})
 \label{QSLfig}}
@@ -924,17 +900,17 @@ light on this problem (and must be ``de-signed'' to be practically useful for st
 An important fundamental problem is whether it is always possible to construct such designer hamiltonians, or whether certain types of 
 states is beyond reach in practice because their physical properties are fundamentally tied to the difficulties in curcumventing the sign problem. 
 The $Z_2$ spin liquid [which itself is a broad class if states \cite{Wen03}] in SU($2$) variant models is potentially an example of such a state. 
-It is certainly possible that such a state cannot be realized with stoquastic hamiltonians in a simple basis, but one can still not exclude that 
+It is certainly possible that such states cannot be realized with sign-problem free hamiltonians in a simple basis, but one can still not exclude that 
 designer hamiltonians can be constructed for which some useful basis can be found, or for which the sign problem can be solved in some other way.
 Indeed, the recent discovery of a spin liquid in the Hubbard model on the honeycomb lattice \cite{Meng10} seems to provide an example, although it 
 remains to be seen whether this state really is a $Z_2$ topological state.
 
 Regarding the sign problem itself more broadly, Ref.~\cite{Troyer05} presents a proof that the sign problem cannot be solved in general. 
 The problem is here defined in terms of constructing a QMC algorithm for which the computational effort scales as a power-law in the system
-size. They show a particular problem for which the removal of the sign still leaves a problem for which the Monte Carlo sampling is believed 
+size. A particular problem is considered for which the removal of the sign still leaves a problem for which the Monte Carlo sampling is believed 
 to scale exponentially in the system size. However, the problem chosen is that of a spin glass, and the conclusion reached is equivalent to
-the statement that the quantum spin glass is not easier to solve than the corresponding classical spin glass. This is hardly a surprising result, 
-and the proof does not say anything about QMC solutions of systems that are not directly associated with the well known difficulties of simulating 
+the statement that the quantum spin glass is no easier to solve than the corresponding classical spin glass. This is hardly a surprising result. 
+The proof does not address QMC solutions of systems that are not directly associated with the well known difficulties of simulating 
 classical glassy systems with complicated energy landscapes. Whether or not the sign problem can be circumvented (at least for representative 
 designer hamiltonians) for translationally invariant systems such as fermionic Hubbard models without particle-hole symmetry and SU($2$) frustrated 
 quantum spins models remains and open question.
@@ -944,12 +920,12 @@ quantum spins models remains and open question.
 Within the classes of models we have discussed here, although the essential physics is now has been assertained, there still remains
 important work to be done to improve on the quantitative aspects, e.g., the critical exponents. In the case of the studies aiming to connect
 SU($N$) QMC simulations with large-$N$ expansions, summarized in Sec.~\ref{sec:sunmodels}, it would be very useful to go to still larger lattices, 
-to investigate the convergence of the computed exponents. This is importan, in particular, in light of the fact there there are significant scaling 
+to investigate the convergence of the computed exponents. This is important, in particular, in light of the fact there there are significant scaling 
 corrections in quantities such as the spin stiffness for $N=2$. Such corrections could potentially affect also the fitting procedures underlying 
-the exponents graphed in Fig.~X for small N. When higher-order $1/N$ analytical results eventually become available, it will be important to know 
+the exponents graphed in Fig.~\ref{fig:exp} for small N. When higher-order $1/N$ analytical results eventually become available, it will be important to know 
 the values of the exponents without possible remaining effects of scaling corrections. What is needed here is high-accuracy (small error bars) 
-results for the correlation functions on large lattices. It will also be very interesting to use the methods discussed in Sec.~X to quantify the
-entanglement in the SU($2$) and SU($N$) models.
+results for the correlation functions on large lattices. It will also be very interesting to use the methods discussed in Sec.~\ref{ss:renyi} to quantify 
+the degree of entanglement in the SU($2$) and SU($N$) models.
 
 Another very interesting aspect of the designer hamiltonians is that they can be doped with fermions. While this introduces a sign problem, it
 should be possible to study large lattices doped with a small number of dopants, since the magnitude of the sign problem only depends on the number
