@@ -197,7 +197,7 @@ of the interactions.
 
 In {\it finite-temperature} methods, the goal is to compute thermal averages
 \begin{equation}
-\langle A\rangle = \frac{1}{Z}{\bf Tr}\{ {\rm e}^{-\beta H}\},~~~
+\langle A\rangle = \frac{1}{Z}{\bf Tr}\{ A{\rm e}^{-\beta H}\},~~~
 Z = {\bf Tr}\{ {\rm e}^{-\beta H}\},
 \label{za1}
 \end{equation}
@@ -353,37 +353,37 @@ S_{\alpha} = \frac{1}{1-\alpha} \ln \Big[ {\rm Tr}\big( \rho_A^{\alpha} \big) \B
 which are defined for integer $\alpha \ge 1$.  Here, $\rho_A$ is the reduced density matrix, $\rho_A = {\rm Tr}_B (\rho)$, and $A$ is a subregion of 
 a lattice system (with $B$ being its complement).  
  
-The direct measure of Renyi entropies is not possible in QMC using conventional estimators, however recent work has demonstrated that it is possible to 
+The direct measure of Renyi entropies can not be done in QMC using conventional estimators, however recent work has demonstrated that it is possible to 
 measure $S_{\alpha}$ using a {\it replica trick} \cite{Holz,Cardy, Fradkin, BP, Naka}.  Here, $\alpha$ copies of the simulation cell are used, with modified 
 periodic boundaries in the expansion (or imaginary time) direction.  The evaluation of Renyi entropies proceeds in formally different ways for $T=0$ and $T>0$ 
 QMC methods \cite{Hastings10,Melko10}.  Namely, for $T=0$, the calculation of $S_{\alpha}$ proceeds in analogy to Eq.~(\ref{za2}) (where $\Psi$ is the wavefunction 
 of the replicated system), with the operator $A$ replaced by a ``swap'' \cite{Hastings10} or ``permutation'' operator \cite{Kallin11}. This is easiest to 
-understand in the context of the projector algorithm discussed above in Sec.~\ref{su2method}.  Here, the second-Renyi entropy (for example) is given by the
- mid-point evaluation of a {\it Swap}$_A$ operator {(\color{red} would ${\rm SWAP}_A$ look better?)}
+understand in the context of the projector algorithm discussed in Sec.~\ref{su2method}.  Here, the second-Renyi entropy (for example) is given by the
+ mid-point evaluation of a SWAP$_A$ operator
 on two replicas of the system (see Fig.~\ref{swap}), that literally ``swaps'' basis states 
 (spins or valence-bond endpoints) between replicas when they lie in region $A$.  Then
 \begin{equation}
- S_2 = -\ln \Big[ \langle Swap_A \rangle \Big]
+ S_2 = -\ln \Big[ \langle {\rm SWAP}_A \rangle \Big]
 \end{equation}
  where the expectation value is calculated at the mid-point of the configuration, and expressed using the loops of the transition graph formed when 
 superimposing the projected bra and ket states.  Namely,
 \begin{equation}
-\langle Swap_A \rangle = 2^{N_{\rm swap} - N_{0}} 
+\langle {\rm SWAP}_A \rangle = 2^{N_{\rm swap} - N_{0}} 
 \end{equation} 
 where $N_{\rm swap}$ is the number of loops at the mid-point of the swapped configuration, while $N_0$ is for the configuration before the swap operator 
 is applied (Fig.~\ref{swap}).  
 
 We refer to Ref.~\cite{Kallin11} for further details of this particular $T=0$ projector implementation.  At finite temperature, the explicit evaluation 
-of the {\it Swap}$_A$ operator can be replaced by an evaluation of the difference in free energies between a replicated system (similar to Fig.~\ref{swap}), 
+of the SWAP$_A$ operator can be replaced by an evaluation of the difference in free energies between a replicated system (similar to Fig.~\ref{swap}), 
 and an un-replicated system \cite{Melko10}, using Eq.~(\ref{za1}).  Although this technique looks quite different formally, both the $T=0$ and $T>0$ techniques 
 can be viewed on a similar footing when considered in the context of SW loop or cluster algorithms, much like the unified framework of the QMC itself, discussed
 above in Sec.~\ref{ss:method}. In some cases, the implementation for these two different techniques can be made to be practically identical.  
 
 \begin{figure}
 \centerline{\psfig{figure=swap.eps,height=9cm}}
-\caption{The {\it Swap}$_A$ operator for a simulation of Renyi entropy $S_2$, where $A$ consists of two sites.  The system is composed of two non-interacting 
+\caption{The {\rm SWAP}$_A$ operator for a simulation of Renyi entropy $S_2$, where $A$ consists of two sites.  The system is composed of two non-interacting 
 replicas, top (compare to Fig.~\ref{loops}), and bottom, which is sampled independently.  Just to the right of the middle of the system (dashed line) 
-the {\it Swap} operator (green) connects the spin in the top replica to the bottom, indicated by the color of the loops \cite{Kallin11}.}
+the {\rm SWAP}$_A$ operator (green) connects the spin in the top replica to the bottom, indicated by the color of the loops \cite{Kallin11}.}
 \label{swap}
 \end{figure}
 
@@ -772,21 +772,21 @@ That is, although there has been much progress in understanding properties of QS
 The recent spate of high-profile numerical studies identifying QSL candidates \cite{Yan, Meng,J1J2} has sparked intense theoretical study, highlighting that the synergy between analytical theory and numerics is often driven by the latter.  Thus, we are interested in finding the simplest models which harbour QSL states, that are also amenable to large-scale simulation by QMC.
 
 Much of the reason for the scarcity of microscopic models is that fundamental ingredients required to give rise to QSL phases, namely geometrical frustration, are also typical harbingers of the sign problem.  Despite this, the absence of the sign problem does not fundamentally {\it preclude} the existence of spin liquid physics.  This is most evident in Hamiltonians with U(1) symmetry -- anisotropic spin (or Bose-Hubbard) models specifically designed to capture the essential ingredients needed to promote a QSL phase without causing the sign-problem.  
-Examples of both 2D gapped \cite{Isakov1,Isakov2,Long,TopoEE} 3D and gapless \cite{Isakov3} spin liquids have recently been studied with large-scale, sign-problem free QMC simulations of such models.
+Examples of both 2D gapped \cite{Isakov1,Isakov2,Long,TopoEE} 3D and gapless \cite{Isakov3} spin liquids have recently been studied with large-scale QMC simulations of sign-problem free U(1) models.
 In this section, we will explore one class of spin Hamiltonain that contains the simplest type of QSL phase, which can be related to a $Z_2$ gauge theory.  We will demonstrate that universal properties of the QSL calculated in QMC can be compared to this
-effective field-theoretical description.  In addition, an associated order/QSL quantum critical point can be demonstrated to be of an exotic
+effective field-theoretical description.  In addition, an associated XY-ferromagnet /QSL quantum critical point can be demonstrated to be of an exotic
 ``fractionalized'' type, based on comparisons of universal quantities calculated from QMC and a related quantum field theory.
 
 \subsection{BFG Hamiltonians with Z$_2$ spin liquid phases}
 
 
 One successful recipe for designing Hamiltonians with QSL phases amenable to QMC study was pioneered by Isakov and co-workers for certain Bose-Hubbard models on the kagome lattice \cite{Isakov1, Isakov2, TopoEE}.  Models in this class, first proposed analytically by Balents, Fisher and Girvin \cite{BFG} (BFG),
-are constructed partly based on their relation to {\it quantum dimer models} (QDM), where a strong local constraint (the number of dimers emanating from a site being fixed) is coupled with a quantum tunneling that allows the state to fluctuate, while keeping the constraint satisfied.  QDM Hamiltonians can be constructed where the groundstate superposition of dimer configurations breaks no symmetry -- being a type of QSL (or resonating valence bond) phase, that has an emergent gauge symmetry and related topological order.
+are constructed partly based on their relation to {\it quantum dimer models} (QDM), where a strong local constraint (the number of dimers emanating from a site being fixed) is coupled with a quantum tunneling that allows the state to fluctuate, while keeping the constraint satisfied.  QDM Hamiltonians can be constructed where the groundstate superposition of dimer configurations breaks no symmetry -- being a type of QSL (or resonating valence bond) phase, that has an emergent gauge symmetry and related topological order \cite{Misguich1}.
 
 
 \begin{figure}
 \centerline{\includegraphics[width=4.5in]{kagome}}
-  \caption{ (a) Spins (black dots are $S^z = 1/2$) in a groundstate configuration satisfying $H_0$ on the kagome lattice.  The degenerate manifold of such configurations maps onto a triangular-lattice (dashed) classical three-dimer configuration, where each spin-up corresponds to a dimer on the dual lattice \cite{BFG}.  (b) At right, a plaquette-flip $H_{\rm ring}$ operation preserves the cluster-charging constraint, and can be seen to correspond to a rhombus-flip of dimers on the dual lattice.  A defect is created by flipping one spin (marked ``+'' in (a)).  This defect can be thought of as associating with two hexagonal plaquettes (grey in (b)), each with two spin-up per hexagon, corresponding to deconfined fractionalized spinons.} \label{kag_fig}
+  \caption{ (a) Spins (black dots are $S^z = 1/2$, empty sites $S^z = -1/2$) in a groundstate configuration satisfying $H_0$ (Equation \ref{H0}) on the kagome lattice.  The degenerate manifold of such configurations maps onto a triangular-lattice (dashed) classical three-dimer configuration, where each spin-up corresponds to a dimer on the dual lattice \cite{BFG}.  (b) At right, a plaquette-flip $H_{\rm ring}$ operation preserves the cluster-charging constraint, and can be seen to correspond to a rhombus-flip of dimers on the dual lattice.  A defect is created by flipping one spin (marked ``+'' in (a)).  This defect can be thought of as associating with two hexagonal plaquettes (grey in (b)), each with two spin-up per hexagon, corresponding to deconfined fractionalized spinons.} \label{kag_fig}
 \end{figure}
 
 The recipe to construct QSL phases in XXZ spin (or boson) models is to map the dimer constraint to a plaquette spin configuration on the dual lattice; the dimer may represent an $S^z$ spin configuration on a bond which is frustrated (or unsatisfied).  Then, the role of the quantum dimer tunnelling moves is done by a spin-exchange processes (which may {\it not} be a simple two-body term).  Such models have been called
@@ -794,20 +794,21 @@ The recipe to construct QSL phases in XXZ spin (or boson) models is to map the d
 \begin{eqnarray}
 %H &=& -t \sum_{\langle ij \rangle} [b^{\dagger}_i b_j + b_i b^{\dagger}_j] + V \sum_{\hexagon} (n_{\hexagon})^2 \\
 %H_0 &=& -t \sum_{( ij )} [b^{\dagger}_i b_j + b_i b^{\dagger}_j] + V \sum_{\hexagon} (n_{\hexagon})^2 
-H_0 &=& V \sum_{\hexagon} (S^z_{\hexagon})^2 
+H_0 &=& V \sum_{\hexagon} (S^z_{\hexagon})^2,  \label{H0}
 \end{eqnarray}
 with $S^z_{\hexagon} = \sum_{i \in \hexagon}S^z_i$,
 is a cluster-charging potential term which favors three spin up and three spins down per hexagonal plaquette.  This Hamiltonian alone will promote a highly degenerate manifold of groundstate configurations, where each lattice hexagon satisfies the plaquette constraint but is otherwise disordered.  
 Like all Hamiltonian operators which are entirely diagonal in the QMC basis, $H_0$ does not affect the simulation with a sign problem, no matter how the interaction is frustrated.
 
-In order to promote a QSL phase from this classical degenerate manifold, one desires to add quantum fluctuations to this Hamiltonian such that the cluster-charging constraint is not violated.  In this case, a {\it ring-exchange} term, 
+In order to promote a QSL phase from this classical degenerate manifold, one desires to add quantum fluctuations to the Hamiltonian such that the cluster-charging constraint is not violated.  In this case, a {\it ring-exchange} term, 
 \begin{eqnarray}
 %H_{\rm ring} = -K \sum_{\bowtie} ( b_i^{\dagger} b_j^{\phantom\dagger} b_k^{\dagger} b_l^{\phantom\dagger} + {\rm h.c.} )
-H_{\rm ring} = -K \sum_{\bowtie} ( S_i^{+} S_j^{-} S_k^{+} S_l^{-} + {\rm h.c.} )
+H_{\rm ring} = -K \sum_{\bowtie} ( S_i^{+} S_j^{-} S_k^{+} S_l^{-} + {\rm h.c.} ),
 \end{eqnarray} 
+which operates around a ``bow-tie'' plaquette on the kagome lattice (Figure \ref{kag_fig}),
 promotes quantum fluctuations while preserving the cluster-charging constraint $H_0$.  Thus, one expects the kagome lattice model with $H = H_0 + H_{\rm ring}$ to retain a disordered groundstate with quantum fluctuations - a good candidate for a quantum spin liquid phase.  In addition, with $K>0$, such terms do not have the sign problem for QMC \cite{JKqmc}.
 
-Balents, Fisher and Girvin \cite{BFG} were the first to show that variations of this kagome-lattice model support the simplest type of Z2 spin liquid -- in particular, at an exactly soluble Roksar-Kivelson point.  Subsequently, using QMC simuations, Isakov and co-workers showed that a variant of the cluster-charging Hamiltonian with different short-range exchanges: 
+Balents, Fisher and Girvin \cite{BFG} were the first to show that variations of this kagome-lattice model support the simplest type of $Z_2$ spin liquid -- in particular, at an exactly soluble Roksar-Kivelson point.  Subsequently, using QMC simuations, Isakov and co-workers showed that a variant of the cluster-charging Hamiltonian with different short-range spin exchanges: 
 \begin{eqnarray}
 H_{1,3} &=& -t_{1,3} \sum_{( ij )_{1,3}} [S^{+}_i S^-_j + S^-_i S^{+}_j]  
 %H_0 &=& -t \sum_{( ij )} [b^{\dagger}_i b_j + b_i b^{\dagger}_j] + V \sum_{\hexagon} (n_{\hexagon})^2 
@@ -821,12 +822,12 @@ In addition to  $H = H_0 + H_3$, $H = H_0 + H_1$, the $Z_2$ spin liquid has been
 
 %These examples are part of a broader class, originally identified to harbour the simplest Z(2) spin liquid phase at an exactly soluble RK-point, was introduced by Balents, Fisher and Girvin.\cite{BFG}  
 
-In the next section, we explore one procedure by which QMC simulations can positively identify such spin liquid phases.  In section \ref{XYstar}, we examine the FM (or ``superfluid'' in the boson language) to QSL phase transition, which is common to these models, as an different example of a deconfined or fractionalized quantum critical point.
+In the next section, we explore one procedure by which QMC simulations can positively identify such spin liquid phases.  In section \ref{XYstar}, we examine the XY-ferromagnet (or ``superfluid'' in the boson language) to QSL phase transition, which is common to these models, as an different example of a deconfined or fractionalized quantum critical point.
 
 \subsection{Identifying the $Z_2$ spin liquid: Topological Entanglement} \label{topoEEsec}
 
 The smoking gun signature for a gapped spin liquid phase could be argued to be the identification of an emergent gauge theory,
-and the associated topological order.  One manifestation is the existence of a ground state degeneracy, which is topological in nature, in the simplest ($Z_2$) case being four-fold on a torus.  Previous QMC studies of QSL states have demonstrated the difficulty in clearly identifying this degeneracy, due to the tendency for tunnelling between the equal-energy states on finite-size lattices with physical Hamiltonians \cite{Isakov1}.  Similarly, recent DMRG work purporting to identify candidate gapped spin liquid states have been unable to identify the associated topological degeneracy \cite{Yan,J1J2}.
+and the associated topological order \cite{Wenbook}.  One manifestation is the existence of a ground state degeneracy, which is topological in nature, in the simplest ($Z_2$) case being four-fold on a torus.  Previous QMC studies of QSL states have demonstrated the difficulty in clearly identifying this degeneracy, due to the tendency for tunnelling between the equal-energy states on finite-size lattices with physical Hamiltonians \cite{Isakov1}.  Similarly, recent DMRG work purporting to identify candidate gapped spin liquid states have been unable to identify the associated topological degeneracy \cite{Yan,J1J2}.
 
 Luckily, the community has another tool suited for the positive identification of this topological order, through measurements of the Renyi entanglement entropy, introduced in section \ref{ss:renyi}.  The $S_{\alpha}$ are well-studied quantities in quantum information science; they quantify correlations for a system in a basis-independent way, which makes them suitable in particular for characterizing phases that do not have an explicit broken symmetry (in particular QSL phases).  In fact, some authors have championed the entanglement entropy as a paradigmatic analog to symmetry breaking for non-Landau phases; here, the concept of {\it Long Range Entanglement} (LRE) replaces the concept of {\it Long Range Order} (LRO) \cite{Wenbook}.  For example, in a gapped phase with LRO (such as the VBS phases mentioned above),
 the entanglement entropy is expected to obey the ``area law''
@@ -838,15 +839,15 @@ scaling of entanglement entropy is predicted to be
 \begin{equation}
 S_{\alpha} = a \ell - \gamma + \cdots \label{areaL}.
 \end{equation}
- Here, the subleading term to the area law is a universal correction called the {\it topological entanglement entropy} \cite{Alioscia1,Alioscia2,LW,KP}.  In a gapped quantum spin liquid phase, it is related to the emergent gauge symmetry (independent \cite{Flammia} of Renyi index $\alpha$), e.g.~in the $Z_2$ spin liquid state $\gamma =  \ln(2)$ at $T=0$ \cite{LW}.   The addition of a universal subleading constant to the area law motivates the notion of LRE for a quantum spin liquid phase.
+ Here, the subleading term to the area law is a universal correction called the {\it topological entanglement entropy} \cite{Alioscia1,Alioscia2,LW,KP}.  In a gapped quantum spin liquid phase, it is related to the emergent gauge symmetry (independent \cite{Flammia} of Renyi index $\alpha$), e.g.~in the $Z_2$ spin liquid state $\gamma =  \ln(2)$ at $T=0$ \cite{LW}.   The addition of this universal subleading constant to the area law motivates the notion of LRE for a quantum spin liquid phase.
 
 
-Using the estimators described in Section~\ref{ss:renyi}, it is possible to isolate the topological entanglement entropy from the leading-order area-law, as well as subleading corrections due to effects such as corners, by taking measurements using several different geometries $A$ and performing additions or subtractions which isolate only $\gamma$.  For example, the {\it Levin-Wen} \cite{LW} regions isolate $2\gamma$ from Eq.~(\ref{areaL}), requiring measurement of four unique region $A$ geometries.  For a BFG Hamiltonian discussed in the last section, it is possible to extract the topological entanglement entropy in a QMC simulation.  As noted by Castelnovo and Chamon \cite{castelnovo} through direct calculation on the toric code (which realizes a $Z_2$ fractionalized spin liquid groundstate), the value of $2\gamma$ is approached through two temperature crossovers on a finite-size system, related to the energy of the quasiparticle excitations in the groundstate -- one $Z_2$ charge corresponding to the spinon; one $Z_2$ flux corresponding to the vison.  Each excitation contributes a value of $\ln(2)$ to the topological entanglement entropy.  As illustrated in Figure \ref{QSLfig}, the realization of one of these plateaus at finite-temperature gives positive identification that the groundstate of the model is a $Z_2$ QSL phase.
+Using the estimators described in Section~\ref{ss:renyi}, it is possible to isolate the topological entanglement entropy from the leading-order area-law, as well as subleading corrections due to effects such as corners, by taking measurements using several different geometries $A$ and performing additions or subtractions which isolate only $\gamma$.  For example, the {\it Levin-Wen} \cite{LW} construction isolates $2\gamma$ from Eq.~(\ref{areaL}), requiring measurement of four unique region $A$ geometries.  For a BFG Hamiltonian discussed in the last section, it is possible to extract the topological entanglement entropy in a QMC simulation using this construction.  As noted by Castelnovo and Chamon \cite{castelnovo} through direct calculation on the toric code (which realizes a $Z_2$ fractionalized spin liquid groundstate), the value of $2\gamma$ is approached through two temperature crossovers on a finite-size system, related to the energy of the quasiparticle excitations in the groundstate -- a $Z_2$ charge corresponding to the spinon, and a $Z_2$ flux corresponding to the vison.  Each excitation contributes a value of $\ln(2)$ to the topological entanglement entropy.  As illustrated in Figure \ref{QSLfig}, the realization of one of these plateaus at finite-temperature gives positive identification that the groundstate of the model is a $Z_2$ QSL phase.
 
 \begin{figure}
 \centerline{\includegraphics[width=4.5in]{QSL}}
-\caption{In the main figure, the temperature dependence of the topological entanglement entropy in the $Z_2$ QSL phase of the Hamiltonian $H_0 + H_1$ (reproduced from \cite{TopoEE}), for three different sizes of kagome lattice.  The quantization of the plateau at $\ln(2)$ (dashed line) identifies the emergent gauge symmetry; at $T=0$ one expect another temperature crossover to $2 \gamma = 2 \ln(2)$.  In the inset, finite-size scaling of
-$G(L/6)$ at the XY* quantum critical point, which scales as  $1/L^{2.493}$ (straight-line fit) giving $\eta = 1.493$ (reproduced from \cite{XYstarQMC})
+\caption{In the main figure, the temperature dependence of the topological entanglement entropy in the $Z_2$ QSL phase ($V/t_1 = 8$) of the Hamiltonian $H_0 + H_1$ for three different sizes ($L \times L \times 3$) of kagome lattice \cite{TopoEE}.  The quantization of the plateau at $\ln(2)$ (dashed line) identifies the emergent gauge symmetry; one expect another temperature crossover to $2 \gamma = 2 \ln(2)$ at some lower temperature.  In the inset, finite-size scaling of
+$G(L/6)$ at the XY* quantum critical point ($V/t_1 = 7.0665$), which scales as  $1/L^{2.493}$ (straight-line fit) giving $\eta = 1.493$ (reproduced from \cite{XYstarQMC})
 \label{QSLfig}}
 \end{figure}
 
@@ -863,9 +864,9 @@ Previous estimates for $\eta$ were obtained from field-theoretic treatments.  Fr
 \eta = 1 + \frac{32}{3 \pi^2 N}
 \end{equation}
 which gives $\eta = 2.08$ for $N=1$.
-A more accurate value was obtained from a combination of field theoretic and Monte Carlo simulations of the correlation of a composite operator in the 3D XY model\cite{compositefieldtheory,compositeMC}, leading to $\eta\approx  1.47(3)$.
+A more accurate value was obtained from a combination of field theoretic and Monte Carlo simulations of the correlation of a composite operator in the 3D XY model \cite{compositefieldtheory,compositeMC}, leading to $\eta\approx  1.47(3)$.
 
-The measurement of $\eta$ in the kagome BFG model is challenging, requiring measurement the equal time Green's function in real space: $G(x)\equiv G(\tau=0,r) = \langle b^\dagger(0) b(r) \rangle$ \cite{WormA,gfsse}, done by keeping track of the defects created in the loop algorithm \cite{Syljuasen02} as it traverses the QMC's $d+1$ space-time simulation cell.  At the critical point, $G(r)$ should decay as $1/r^{1+\eta}$, and finite size effects can be minimized e.g.~by measuring $G(L/6)$, which decays as $1/L^{1+\eta}$, as a function of $L$.  Fig.~\ref{QSLfig} show an algebraic decay with $\eta=1.493(10)$, a value that is consistent with $\eta$ for a composite operator in the 3D XY model.  The excellent agreement between QMC simulation results and the composite boson field theory is a remarkable confirmation of fractionalized universality in this model; synergetic work between QMC and quantum field theory is uniquely capable of positive identification of exotic quantum phase transitions in this model.
+The measurement of $\eta$ in the kagome BFG model is challenging, requiring measurement the equal time Green's function in real space: $G(x)\equiv G(\tau=0,r) = \langle b^\dagger(0) b(r) \rangle$ \cite{WormA,gfsse}, done by keeping track of the defects created in the loop algorithm \cite{Syljuasen02} as it traverses the QMC's $d+1$ space-time simulation cell.  At the critical point, $G(r)$ should decay as $1/r^{1+\eta}$, and finite size effects can be minimized e.g.~by measuring $G(L/6)$, which decays as $1/L^{1+\eta}$, as a function of $L$.  Fig.~\ref{QSLfig} show an algebraic decay with $\eta=1.493(10)$, a value that is consistent with $\eta$ for the composite operator in the 3D XY field theory mentioned above.  The excellent agreement between QMC simulation results and the composite boson field theory is a remarkable confirmation of fractionalized universality in this model; synergetic work between QMC and quantum field theory is uniquely capable of positive identification of exotic quantum phase transitions in this model.
 
 As discussed in Ref.~\cite{XYstarQMC}, there are consequences of this novel fractionalization in other universal quantities.  Remarkably, even though the fractional excitations become gapless at the quantum critical point, there are still observable remnants of the topological nature of the $Z_2$ spin liquid.  This can be seen by looking at the winding number distribution at the XY* point, and comparing it to the winding number distribution at a regular 3D XY transition.  Namely, since the fractional spinons are bosonic, they can be modelled by a ``simulation within a simulation'', achieved by projecting physical bosons at an XY transition to wind strictly in pairs around the periodic simulation cell.  Since this distribution is universal, it is expected to be the same (up to a non-universal velocity) as the winding number distribution of the physical (composite) bosons in the XY* transition.  Observation of this fact \cite{XYstarQMC} is a striking confirmation that topological properties can still be present even when fractional excitations are gapless.  These universal winding number distributions are possible to compute in principle in field theory; hence they are another example that synergetic work between and quantum field theory and simulation is often led by the latter.
 
@@ -887,10 +888,10 @@ outlook on future directions.
 
 \subsection{Designer hamiltonians, stoquasticity, and the sign problem}
 
-The concept of designer Hamiltonian we have introduced here is different from the ``stoquastic'' Hamiltonians \cite{Terhal08}; 
-those for which all off-diagonal matrix elements are non-positive (i.e., sign-problem free) in the standard basis, normally the standard $z$-component 
-basis for spin systems [although a broader definition with respect to an arbitrary basis has also been presented \cite{Terhal09}, which would seem to 
-indicate that any Hamiltonian could in principle be cast into this class]. Our criterion is more one of scientific utility than a strict mathematical 
+The concept of designer Hamiltonians we have introduced here is different from that of ``stoquastic'' Hamiltonians \cite{Terhal08}, which are
+those for which all off-diagonal matrix elements are non-positive (i.e., sign-problem free) in the standard basis.  This is normally the  $z$-component 
+basis for spin systems, although a broader definition with respect to an arbitrary basis has also been presented \cite{Terhal09}, which would seem to 
+indicate that any Hamiltonian could in principle be cast into this class. Our criterion is more one of scientific utility than a strict mathematical 
 definition---models that are free from sign problems either automatically (i.e., they are stoquastic in a practically useful basis), or through some 
 other way of circumventing it [i.e., the Meron algorithm \cite{Chandrasekharan99} or determinant-based QMC of particle-hole symmetric Hubbard 
 models \cite{White89,Assaad05,Assaad07}]. Importantly, to be considered a designer Hamiltonian, such a model should also represent a prototypical case of 
