@@ -297,7 +297,20 @@ to imposing periodic boundary conditions in the ``time'' direction, instead the 
 Evaluation of expectation values (``measurements'') in projector QMC simulations are carried out at the mid-point of the configuration, as indicated 
 in Fig.~\ref{loops}. In the valence-bond basis, when propagating the bra and ket states in the pure valence-bond basis (which corresponds to averaging 
 over all compatible spin configurations), most quantities of interest can be expressed using the loops of the transition graph formed when superimposing 
-the projected bra and ket states. Estimators for various correlation functions are discussed in Refs.~\cite{Beach06} and \cite{Tang11b}.
+the projected bra and ket bond configurations \cite{Liang88,Sutherland88}. Estimators for operators $A$ expressed in the space $\{\mathcal{L}\}$ of 
+transition-graph loops are typically of the form
+\begin{equation}
+A(\mathcal{L}) = \frac{\langle V_l|A|V_r\rangle}{\langle V_l|V_r \rangle},
+\label{aloop}
+\end{equation}
+where the overlap of the two valence-bond states is given by
+\begin{equation}
+\langle V_l|V_r\rangle = 2^{N_\circ - N/2},
+\label{vboverlap}
+\end{equation}
+where $N_\circ$ is the number of loops and $N$ the system size. The numerator depends on the loop structure, e.g., for $A={\bf S}_i \cdot {\bf S}_j$,
+the estimator $A(\mathcal{L})$ is $0$ if sites $i$ and $j$ belong to different loops and $\pm 3/4$ for sites in the same loop (with $+$ and $-$ for 
+the same and different sublattices, respectively). Higher-order correlation functions are discussed in Refs.~\cite{Beach06} and \cite{Tang11b}.
 
 \subsection {Generalizations from SU(2) to SU(N)}
 \label{ss:su2N}
