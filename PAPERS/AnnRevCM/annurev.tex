@@ -379,11 +379,11 @@ on two replicas of the system (see Fig.~\ref{swap}), that literally ``swaps'' ba
  S_2 = -\ln \Big[ \langle {\rm SWAP}_A \rangle \Big]
 \end{equation}
  where the expectation value is calculated at the mid-point of the configuration, and expressed using the loops of the transition graph formed when 
-superimposing the projected bra and ket states.  Namely,
+superimposing the projected bra and ket states (see Equation \ref{vboverlap}).  Namely,
 \begin{equation}
-\langle {\rm SWAP}_A \rangle = 2^{N_{\rm swap} - N_{0}} 
+\langle {\rm SWAP}_A \rangle = 2^{N_{\rm swap} - N_\circ } 
 \end{equation} 
-where $N_{\rm swap}$ is the number of loops at the mid-point of the swapped configuration, while $N_0$ is for the configuration before the swap operator 
+where $N_{\rm swap}$ is the number of loops at the mid-point of the swapped configuration, while $N_\circ$ is for the configuration before the swap operator 
 is applied (Fig.~\ref{swap}).  
 
 We refer to Ref.~\cite{Kallin11} for further details of this particular $T=0$ projector implementation.  At finite temperature, the explicit evaluation 
@@ -845,7 +845,7 @@ and the associated topological order \cite{Wenbook}.  One manifestation is the e
 Luckily, the community has another tool suited for the positive identification of this topological order, through measurements of the Renyi entanglement entropy, introduced in section \ref{ss:renyi}.  The $S_{\alpha}$ are well-studied quantities in quantum information science; they quantify correlations for a system in a basis-independent way, which makes them suitable in particular for characterizing phases that do not have an explicit broken symmetry (in particular QSL phases).  In fact, some authors have championed the entanglement entropy as a paradigmatic analog to symmetry breaking for non-Landau phases; here, the concept of {\it Long Range Entanglement} (LRE) replaces the concept of {\it Long Range Order} (LRO) \cite{Wenbook}.  For example, in a gapped phase with LRO (such as the VBS phases mentioned above),
 the entanglement entropy is expected to obey the ``area law''
 \begin{equation} 
-S_{\alpha} = a\ell + \cdots
+S_{\alpha} = a\ell + \cdots \label{arealaw}
 \end{equation}
 where $a$ is a non-universal constant, $\ell$ is the length of the boundary between regions $A$ and $B$, and terms denoted by $\cdots$ scale away at least as fast as $\mathcal{O} (1/\ell)$.  This can heuristically be considered as ``short-range'' entanglement.  In contrast, in a gapped spin liquid phase (with no broken symmetries)
 scaling of entanglement entropy is predicted to be
@@ -863,9 +863,6 @@ Using the estimators described in Section~\ref{ss:renyi}, it is possible to isol
 $G(L/6)$ at the XY* quantum critical point ($V/t_1 = 7.0665$), which scales as  $1/L^{2.493}$ (straight-line fit) giving $\eta = 1.493$ (reproduced from \cite{XYstarQMC})
 \label{QSLfig}}
 \end{figure}
-
-Interestingly, the existence of the $Z_2$ fractional phase in the kagome BFG Hamiltonian also raises the possibility that, with a suitable ``binding'' potential \cite{FermionBind}, an extension of the model with an emergent fermionic excitation might be created \cite{Wenbook}.  
-Future QMC simulations on designer Hamiltonians will be required to address the interesting question of whether fermions can be observed emerging as collective excitations of a purely bosonic microscopic model without the sign problem.
 
 \subsection{Deconfinement at the XY* transition} \label{XYstar}
 
@@ -947,8 +944,11 @@ of fermions. This low-density limit should already be sufficient for making conn
 that have been predicted to arise out of the DQC system upon doping.
 
 An important open question is whether one can more sophisticated ways to circumvent the sign problem, e.g., the Meron algorithm, for a wider
-range of fermionic models....
-
+range of fermionic models.
+An alternative conceptual approach may be suggested by the demonstrated existence of the $Z_2$ fractional phase in a purely bosonic model, which raises the possibility that, with a suitable ``binding'' potential \cite{FermionBind}, an extension of the model with an emergent fermionic excitation might be created \cite{Wenbook}.  
+%Future QMC simulations will be required to address question of whether fermions can be observed emerging as collective excitations of a purely bosonic designer Hamiltonian without the sign problem.
+The ability for QMC to measure the entanglement entropy in a state with an emergent fermion
+could also have wide implications for the purported application of tensor network algorithms as a ``solution'' to the sign problem, if such a state were found to violate the area law (Equation \ref{arealaw}). 
 
 \bibliography{rev_bib.bib}
 \bibliographystyle{Science}
