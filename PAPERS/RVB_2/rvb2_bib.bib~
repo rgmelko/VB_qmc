@@ -1,0 +1,685 @@
+@article{HaldaneLi
+
+}
+
+@article{Cardy_c,
+	author = "Blote, H. W. J and Cardy John. L. and Nightingale, M. P.",
+	title = "Conformal invariance, the central charge, and universal finite-size amplitudes at criticality",
+	journal = "Phys. Rev. Lett",
+	volume = "56",
+	pages = "742",
+	year = "1986",
+	doi = "10.1103/PhysRevLett.56.742",
+}
+@article{Affleck_c,
+	author = "Affleck, Ian",
+	title = "Universal term in the free energy at a critical point and the conformal anomaly",
+	journal = "Phys. Rev. Lett",
+	volume = "56",
+	pages = "746",
+	year = "1986",
+	doi = "10.1103/PhysRevLett.56.746",
+}
+
+@article{Bipartite_fidelity,
+		author = "Dubail, J\'er\^ome and St\'ephan, Jean-Marie",
+		title = "Universal behavior of a bipartite fidelity at quantum criticality",
+		journal = "J. Stat. Mech.",
+		volume = "L03002",
+		year = "2011",
+		doi = "10.1088/1742-5468/2011/03/L03002",
+}
+
+@article{Heights_1,
+		author = "Blote, H. W. J. and Hilhorst, H. J.",
+		title = "Roughening transitions and the zero-temperature triangular Ising antiferromagnet",
+		journal = "J. Phys. A: Math, Gen.",
+		volume = "15",
+		pages = "L631",
+		year = "1982",
+		doi= "10.1088/0305-4470/15/11/011",
+}
+
+@article{Heights_2,
+		author = "Nienhuis, B. and Blote, H. W. J and Hilhorst, H. J.",
+		title = "Triangular SOS models and cubic-crystal shapes",
+		journal = "J. Phys. A: Math, Gen.",
+		volume = "17",
+		pages = "3559",
+		year = "1984",
+		doi= "10.1088/0305-4470/17/18/025",
+}
+
+@article{Dimers_all,
+		author = "Izmaillian, N. Sh. and Oganesyan, K. B. and Hu, Chin-Kun",
+		title = "Exact finite-size corrections of the free energy for the square lattice dimer model under different boundary conditions",
+		journal = "Phys. Rev. E",
+		volume = "67",
+		pages = "066114",
+		year = "2003",
+		doi = "10.1103/PhysRevE.67.066114",
+}
+
+@article{Ruelledimers,
+		author = "Izmailian, N. Sh. and Priezzhev, V. B. and Ruelle, P. and Hu, Chin-Kun",
+		title = "Logarithmic Conformal Field Theory and Boundary Effects in the Dimer Model",
+		journal = "Phys. Rev. Lett",
+		volume = "95",
+		pages = "260602",
+		year = "2005",
+		doi = "10.1103/PhysRevLett.95.260602",
+}
+
+@article{Stephan12,
+		author = "St\'ephan, Jean-Marie and Misguich, Gr\'egoire and Pasquier, Vincent",
+		title = "R\'enyi entanglement entropies in quantum dimer models: from criticality to topological order ",
+		journal = "J. Stat. Mech.",
+		volume = "P02003",
+		year = "2012",
+		doi = "10.1088/1742-5468/2012/02/P02003",
+}
+
+@article{EggertAffleck,
+		author = "Eggert, Sebastian and Affleck, Ian",
+		title = "Magnetic impurities in half-integer-spin Heisenberg antiferromagnetic chains",
+		journal = "Phys. Rev. B",
+		volume = "46",
+		pages = "10866",
+		year = "1992",
+		doi = "10.1103/PhysRevB.46.10866",
+}
+
+@article{CC,
+		author = "Calabrese, Pasquale and Cardy, John",
+		title = "Entanglement entropy and quantum field theory",
+		journal = "J. Stat. Mech.",
+		volume = "P06002",
+		year = "2004",
+		doi = "10.1088/1742-5468/2004/06/P06002",
+		
+}
+
+@article{CCT1,
+		author = "Calabrese, Pasquale and Cardy, John and Tonni, Erik",
+		title = "Entanglement entropy of two disjoint intervals in conformal field theory",
+		journal = "J. Stat. Mech.",
+		volume = "P11001",
+		year = "2009",
+		doi = "10.1088/1742-5468/2009/11/P11001",
+}
+
+@article{CCT2,
+		author = "Calabrese, Pasquale and Cardy, John and Tonni, Erik",
+		title = "Entanglement entropy of two disjoint intervals in conformal field theory: II",
+		journal = "J. Stat. Mech.",
+		volume = "P01021",
+		year = "2011",
+		doi = "10.1088/1742-5468/2011/01/P01021",
+}
+
+@article{Coleman,
+		author = "Coleman, Sydney",
+		title = "Quantum sine-Gordon equation as the massive Thirring model",
+		journal = "Phys. Rev. D",
+		volume = "11",
+		pages = "2088",
+		year = "1975",
+		doi = "10.1103/PhysRevD.11.2088",
+		
+}
+
+@article{Kasteleyn,
+		author = "Kasteleyn, Pieter W.",
+		title = "The statistics of dimers on a lattice: I. The number of dimer arrangements on a quadratic lattice",
+		journal = "Physica",
+		volume = "27",
+		pages = "1209",
+		year = "1961",
+		doi = "10.1016/0031-8914(61)90063-5",
+}
+
+@article{FisherStephenson,
+		author = "Fisher, Michael. E. and Stephenson, John",
+		title = "Statistical Mechanics of Dimers on a Plane Lattice. II. Dimer Correlations and Monomers",
+		journal = "Phys. Rev.",
+		volume = "132",
+		pages = "1411",
+		year = "1963",
+		doi = "10.1103/PhysRev.132.1411",
+}
+
+@article{Poilblanc,
+		author = "Schuch, Norbert and Poilblanc, Didier and Cirac, J. Ignacio and Perez-Garcia, David",
+		title = "Resonating valence bonds states in the PEPS formalism",
+		eprint = "arXiv:1203.4816",
+		year = "2012",
+}
+
+@article{QuantumLifshitz,
+		author = "Ardonne, Eddy and Fendley, Paul and Fradkin, Eduardo",
+		title = "Topological order and conformal quantum critical points",
+		journal = "Ann. Phys.",
+		volume = "310",
+		pages = "493",
+		year = "2004",
+		doi = "10.1016/j.aop.2004.01.004",
+}
+
+@article{RokhsarKivelson,
+		author = "Rokhsar, Daniel. S. and Kivelson Steven A.",
+		title = "Superconductivity and the Quantum Hard-Core Dimer Gas",
+		journal = "Phys. Rev. Lett",
+		volume = "61",
+		pages = "2376",
+		year = "1988",
+		doi = "10.1103/PhysRevLett.61.2376",
+}
+
+@article{Boutillier,
+		author = "Boutillier, C\'edric and de Tilli\`ere, B\'eatrice",
+		title = "Loop statistics in the toroidal honeycomb dimer model",
+		journal = "Ann. Probab.",
+		volume = "37",
+		pages = "1747",
+		year = "2009",
+		doi = "10.1214/09-AOP453",
+}
+
+@article{FSW,
+		author = "Fendley, Paul and Saleur, Hubert and Warner, N.P",
+		title = "Exact solution of a massless scalar field with a relevant boundary interaction",
+		journal= "Nucl. Phys. B",
+		volume = "430",
+		pages = "577",
+		year = "1994",
+		doi = "10.1016/0550-3213(94)90160-0",
+}
+
+@article{Ferdinand,
+		author = "Ferdinand, Arthur. E.",
+		title = "Statistical Mechanics of Dimers on a Quadratic Lattice ",
+		journal = "J. Math. Phys",
+		volume = "8",
+		pages = "2332 ",
+		year = "1967",
+		doi = "10.1063/1.1705162",
+}
+
+@article{Sutherland_loops,
+		author = "Sutherland, Bill",
+		title = "Systems with resonating-valence-bond ground states: Correlations and excitations",
+		journal = "Phys. Rev. B",
+		volume = "37",
+		pages = "3786",
+		year = "1988",
+		doi = "10.1103/PhysRevB.37.3786",
+}
+
+@article{Sutherland_mc,
+		author = "Sutherland, Bill",
+		title = "Monte Carlo investigation of the resonating-valence-bond ground state and a lattice statistical model",
+		journal = "Phys. Rev. B",
+		volume = "38",
+		pages = "6855",
+		year = "1988",
+		doi = "10.1103/PhysRevB.38.6855",
+
+}
+
+@article{Alet_dimers1,
+		author = "Alet, Fabien and Jacobsen, Jesper Lykke and Misguich, Gr\'egoire and Pasquier, Vincent and Mila, Fr\'ed\'eric and Troyer, Matthias",
+		journal = "Phys. Rev. Lett",
+		title = "Interacting Classical Dimers on the Square Lattice",
+		volume = "94",
+		year = "2005",
+		pages = "235702",
+		doi = "10.1103/PhysRevLett.94.235702",
+}
+
+@article{Alet_dimers2,
+		author = "Alet, Fabien and Ikhlef, Yacine and Jacobsen, Jesper Lykke and Misguich, Gr\'egoire and Pasquier, Vincent",
+		title = "Classical dimers with aligning interactions on the square lattice",
+		journal = "Phys. Rev. E",
+		volume= "74",
+		year = "2006",
+		pages = "041124",
+		doi = "10.1103/PhysRevE.74.041124",
+}
+
+@article{Hastings_thm,
+		author= "Hastings, Matthew. B.",
+		title = "{Lieb-Schultz-Mattis in higher dimensions}",
+		journal = "Phys. Rev. B",
+		volume= "69",
+		pages = "104431",
+		year = "2004",
+		doi ="10.1103/PhysRevB.69.104431",
+}
+
+@article{Doucot,
+		author = "Liang, S. and Dou\c˽cot, B and Anderson, P. W.",
+		title = "{Some New Variational Resonating-Valence-Bond-Type Wave Functions for the Spin-1/2 Antiferromagnetic Heisenberg Model on a Square Lattice}",
+		journal = "Phys. Rev. Lett",
+		volume = "61",
+		pages = "365",
+		year = "1988",
+		doi = "10.1103/PhysRevLett.61.365",
+}
+@article{Fradkin_dimers,
+		author = "Fradkin, Eduardo and Huse, David and Moessner, Roderich and Oganesyan, V and Sondhi, S. L. ",
+		journal = "Phys. Rev. B",
+		volume = "69",
+		pages = "224415",
+		year = "2004",
+		doi = "10.1103/PhysRevB.69.224415",
+}
+
+
+@article{Beach,
+		author = "Beach, K. S. D and Alet, Fabien and Mambrini, Mathieu and Capponi, Sylvain",
+		title = "{SU(N) Heisenberg model on the square lattice: A continuous-N quantum Monte Carlo study}",
+		journal = "Phys. Rev. B",
+		volume = "80",
+		pages = "184401",
+		year = "2009",
+		doi = "10.1103/PhysRevB.80.184401",
+		SLACcitation   = "%%CITATION = ARXIV:0812.3657;%%",
+}
+
+@article{BigYellowBook,
+		author = "Di Franceso, Philippe and Mathieu, Pierre and S\'en\'echal David",
+		title = "Conformal Field Theory",
+		year = "1997",
+}
+
+@article{Ju2012,
+		author = "Ju, Hyejin and Kallin Ann. B. and Fendley P. and Hastings Matthew B. and Melko Roger G.",
+		title = "Universal large-scale entanglement in two-dimensional gapless systems",
+		journal = "Phys. Rev. B",
+		volume = "?",
+		pages = "?",
+		year = "2012",
+		doi = "?",
+}
+
+@article{Damle,
+		author = "Damle Kedar and Dhar Deepak and Ramola Kabir",
+		title = "{Resonating valence bond wavefunctions and classical interacting dimer models}",
+		year = "2011",
+		eprint = "arXiv:1112.4917",
+		SLACcitation = "%%CITATION = ARXIV:1112.4917;%%",
+}
+
+@article{Lieb1967,
+      author        = "Lieb, Elliott H.",
+      title         = "{Solution of the Dimer Problem by the Transfer Matrix Method}",
+      journal       = "J. Math. Phys.",
+      volume        = "8",
+      pages         = "2339",
+      year          = "1967",
+      doi           = "10.1063/1.1705163",
+}
+
+@article{Lindstrom1973,
+	author = "Lindstrom, B",
+	title = "{On the vector representation of induced matroids}",
+	journal = "Bull. London. Math. Soc.",
+	volume = "5",
+	pages = "85",
+	year = "1973",
+	doi = "",
+}
+
+@article{GesselViennot1989,
+      author         = "Gessel, I M. and Viennot, Xavier G.",
+      title          = "{Determinants, paths, and plane partitions}",
+      year           = "1989",
+      eprint         = "",
+      archivePrefix  = "",
+      primaryClass   = "",
+}
+
+
+@article{Hsu10,
+      author         = "Hsu, Benjamin and Fradkin, Eduardo",
+      title          = "{Universal Behavior of Entanglement in 2D Quantum
+                        Critical Dimer Models}",
+      journal        = "J.Stat.Mech.",
+      volume         = "1009",
+      pages          = "P09004",
+      doi            = "10.1088/1742-5468/2010/09/P09004",
+      year           = "2010",
+      primaryClass   = "cond-mat.stat-mech",
+      SLACcitation   = "%%CITATION = ARXIV:1006.1361;%%",
+}
+
+@article{Oshikawa,
+      author         = "Oshikawa, Masaki",
+      title          = "{Boundary Conformal Field Theory and Entanglement Entropy
+                        in Two-Dimensional Quantum Lifshitz Critical Point}",
+      year           = "2010",
+      eprint         = "arXiv:1007.3739",
+      archivePrefix  = "arXiv",
+      primaryClass   = "cond-mat.stat-mech",
+      SLACcitation   = "%%CITATION = ARXIV:1007.3739;%%",
+}
+
+
+@article{Zaletel,
+      author         = "Zaletel, Michael P. and Bardarson, Jens H. and Moore,
+                        Joel E.",
+      title          = "{Logarithmic terms in entanglement entropies of 2D
+                        quantum critical points and Shannon entropies of spin
+                        chains}",
+      journal        = "Phys.Rev.Lett.",
+      volume         = "107",
+      pages          = "020402",
+      doi            = "10.1103/PhysRevLett.107.020402",
+      year           = "2011",
+      primaryClass   = "cond-mat.str-el",
+      SLACcitation   = "%%CITATION = ARXIV:1103.5452;%%",
+}
+
+@article{Stephan11,
+      author         = "St\'ephan, Jean-Marie and Misguich, Gr\'egoire and Pasquier,
+                        Vincent",
+      title          = "{Phase transition in the R\'enyi-Shannon entropy of Luttinger liquids}",
+      year           = "2011",
+      journal     ="Phys. Rev. B",
+      volume={107},
+      pages={195128},
+      archivePrefix  = "arXiv",
+      primaryClass   = "cond-mat.stat-mech",
+      SLACcitation   = "%%CITATION = ARXIV:1108.1699;%%",
+}
+@article{Cardy,
+author={Pasquale Calabrese and John Cardy},
+journal={J. Stat. Mech.: Theor. Exp.},
+year ={2004},
+volume = {P06002}
+}
+@Article{Sandvik,
+  title = {Ground State Projection of Quantum Spin Systems in the Valence-Bond Basis},
+  author = {Sandvik, Anders W.},
+  journal = {Phys. Rev. Lett.},
+  volume = {95},
+  number = {20},
+  pages = {207203},
+  numpages = {4},
+  year = {2005},
+  month = {Nov},
+  doi = {10.1103/PhysRevLett.95.207203},
+  publisher = {American Physical Society}
+}
+
+@Article{Cano,
+  title = {Spin Hamiltonians with resonating-valence-bond ground states},
+  author = {Cano, Jennifer and Fendley, Paul},
+  journal = {Phys. Rev. Lett.},
+  volume = {105},
+  pages = {067205},
+  numpages = {4},
+  year = {2010},
+  publisher = {American Physical Society}
+}
+@article{wolf,
+author = {Michael M. Wolf and Frank Verstraete and Matthew B. Hastings and J. Ignacio Cirac},
+collaboration = {},
+title = {Area Laws in Quantum Systems: Mutual Information and Correlations},
+publisher = {APS},
+year = {2008},
+journal = {Phys. Rev. Lett.},
+volume = {100},
+numpages = {4},
+pages = {070502}
+}
+
+@article{KP,
+author = {Alexei Kitaev and John Preskill},
+collaboration = {},
+title = {Topological Entanglement Entropy},
+publisher = {APS},
+year = {2006},
+journal = {Phys. Rev. Lett.},
+volume = {96},
+number = {11},
+eid = {110404},
+pages = {110404}
+}
+@Article{heisenberg1,
+  title = {Valence Bond and von Neumann Entanglement Entropy in Heisenberg Ladders},
+  author = {Kallin, Ann B. and Gonz\'alez, Iv\'an  and Hastings, Matthew B. and Melko, Roger G.},
+  journal = {Phys. Rev. Lett.},
+  volume = {103},
+  number = {11},
+  pages = {117203},
+  numpages = {4},
+  year = {2009},
+  month = {Sep},
+  doi = {10.1103/PhysRevLett.103.117203},
+  publisher = {American Physical Society}
+}
+
+
+@article{swap,
+    title = {Measuring Renyi Entanglement Entropy in Quantum Monte Carlo Simulations},
+    author = {Hastings, Matthew B. and Gonz\'alez, Iv\'an  and Kallin, Ann B. and Melko, Roger G.},
+    journal = {Phys. Rev. Lett.},
+    volume = {104},
+    number = {15},
+    pages = {157201},
+    year = {2010}
+}
+
+@Article{XXZ,
+  title = {Finite-size scaling of mutual information in Monte Carlo simulations: Application to the spin- $\frac{1}{2}$   $XXZ$  model},
+  author = {Melko, Roger G. and Kallin, Ann B. and Hastings, Matthew B.},
+  journal = {Phys. Rev. B},
+  volume = {82},
+  number = {10},
+  pages = {100409},
+  numpages = {4},
+  year = {2010},
+  month = {Sep},
+  doi = {10.1103/PhysRevB.82.100409},
+  publisher = {American Physical Society}
+}
+
+@article{LW,
+author = {Michael Levin and Xiao-Gang Wen},
+collaboration = {},
+title = {Detecting Topological Order in a Ground State Wave Function},
+publisher = {APS},
+year = {2006},
+journal = {Phys. Rev. Lett},
+volume = {96},
+number = {11},
+eid = {110405},
+pages = {110405}
+}
+
+@article{ALreview,
+    journal = {Rev. Mod. Phys.},
+    author = {Eisert, J. and Cramer, M. and Plenio, M. B.},
+    title = {\textit{Colloquium}      : Area laws for the entanglement entropy},
+    year = {2010},
+    pages = {277--306},
+    volume = {82}
+}
+@Article{AffleckAndLudwig,
+  title = {Universal noninteger \char96{}\char96{}ground-state degeneracy\char39{}\char39{} in critical quantum systems},
+  author = {Affleck, Ian  and Ludwig, Andreas W. W.},
+  journal = {Phys. Rev. Lett.},
+  volume = {67},
+  number = {2},
+  pages = {161--164},
+  numpages = {3},
+  year = {1991},
+  month = {Jul},
+  doi = {10.1103/PhysRevLett.67.161},
+  publisher = {American Physical Society}
+}
+@article{PI,
+title={ Topological Entanglement R\'enyi Entropy and Reduced Density Matrix Structure},
+author = {Flammia, Steven T. and Hamma, Alioscia  and Hughes, Taylor L. and Wen, Xiao-Gang },
+journal = {Phys. Rev. Lett.},
+volume = {103},
+number = {26},
+pages = {261601},
+year = {2009}
+}
+@article{Moore06,
+title={Entanglement entropy of 2D conformal quantum critical points: hearing the shape of a quantum drum},
+author={E. Fradkin and J.E. Moore},
+journal={Phys. Rev. Lett},
+volume={97},
+year={2006},
+pages={050404}
+}
+
+@article{logcorner,
+title={Universal terms for the entanglement entropy in 2+1 dimensions},
+author={H. Casini and M. Huerta},
+journal={Nucl. Phys. B},
+volume={764},
+year={2007},
+pages={183}
+}
+@article{BP,
+author={P. B. Buividovich and M. I. Polikarpov},
+journal= {Nucl. Phys. B},
+volume={802},
+pages={458},
+year={2008}
+}
+@article{isakov,
+author={Sergei Isakov and Matthew B. Hastings and Roger G. Melko},
+title={Topological entanglement entropy of a BoseâHubbard spin liquid},
+journal={Nature Physics},
+volume={7}, 
+pages={772},
+year={2011}
+}
+@Article{Roderich,
+    title = {Resonating Valence Bond Phase in the Triangular Lattice Quantum Dimer Model},
+    author = {Moessner, R.  and Sondhi, S. L.},
+    journal = {Phys. Rev. Lett.},
+    volume = {86},
+    number = {9},
+    pages = {1881--1884},
+    numpages = {3},
+    year = {2001},
+    month = {Feb},
+    doi = {10.1103/PhysRevLett.86.1881},
+    publisher = {American Physical Society}
+}
+
+@article{Kitaev,
+author= {A. Kitaev},
+title={Fault-tolerant quantum computation by anyons},
+Journal={Ann. Physics}, 
+volume={303},
+pages={2},
+year={2003}
+}
+@Article{TriangTEE,
+    title = {Topological entanglement entropy in the quantum dimer model on the triangular lattice},
+    author = {Furukawa, Shunsuke  and Misguich, Gr\'egoire },
+    journal = {Phys. Rev. B},
+    volume = {75},
+    number = {21},
+    pages = {214407},
+    numpages = {10},
+    year = {2007},
+    month = {Jun},
+    doi = {10.1103/PhysRevB.75.214407},
+    publisher = {American Physical Society}
+}
+@Article{Quench,
+    title = {Measuring Entanglement Using Quantum Quenches},
+    author = {Cardy, John },
+    journal = {Phys. Rev. Lett.},
+    volume = {106},
+    pages = {150404},
+    year = {2011}
+}
+@article{EE_CFT,
+title={ Entanglement entropy and conformal field theory},
+author={Calabrese, Pasquale and Cardy, John},
+journal={J. Phys. A: Mathematical and Theoretical}, 
+volume={42},
+pages={504005},
+year={2009}
+}
+
+
+@article{Zamo,
+    author={A.B. Zamolodchikov},
+    title={Irreversibility of the flux of the renormalization group in a 2D field theory},
+    journal={JETP Lett.},
+    volume={43}, 
+    pages={731},
+    year={1986}
+}
+@article{RVB1,
+    title = {Critical correlations for short-range valence-bond wave functions on the square lattice},
+    author = {Albuquerque, A. Fabricio and Alet, Fabien},
+    year = {2010},
+    journal = {Phys. Rev. B},
+    pages = {180408},
+    volume = {82}
+}
+
+@article{RVB2,
+    journal = {Phys. Rev. B},
+    author = {Tang, Ying and Sandvik, Anders W. and Henley, Christopher L.},
+    title = {Properties of resonating-valence-bond spin liquids and critical dimer models},
+    year = {2011},
+    pages = {174427},
+    volume = {84}
+}
+
+
+@article{Hsu09,
+    title = {Universal entanglement entropy in 2D conformal quantum critical points},
+    author = {Hsu, Benjamin and Mulligan, Michael and Fradkin, Eduardo and Kim, Eun-Ah},
+    year = {2009},
+    journal = {Phys. Rev. B},
+    publisher = {American Physical Society},
+    pages = {115421},
+    volume = {79}
+}
+
+
+
+@article{Misguich,
+    title = {Shannon and entanglement entropies of one- and two-dimensional critical wave functions},
+    author = {St\'ephan, Jean-Marie and Furukawa, Shunsuke and Misguich, Gr\'egoire and Pasquier, Vincent},
+    year = {2009},
+    journal = {Phys. Rev. B},
+    publisher = {American Physical Society},
+    pages = {184421},
+    volume = {80}
+}
+
+@article{Holzhey,
+title = "Geometric and renormalized entropy in conformal field theory",
+journal = "Nucl. Phys. B",
+volume = "424",
+pages = "443 - 467",
+year = "1994",
+author = "Christoph Holzhey and Finn Larsen and Frank Wilczek"
+}
+
+@article{VidalC,
+    journal = {Phys. Rev. Lett.},
+    author = {Vidal, G. and Latorre, J. I. and Rico, E. and Kitaev, A.},
+    title = {Entanglement in Quantum Critical Phenomena},
+    year = {2003},
+    pages = {227902},
+    volume = {90}
+}
+
+
+
+
