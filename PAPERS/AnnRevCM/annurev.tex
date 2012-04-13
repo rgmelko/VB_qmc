@@ -902,9 +902,9 @@ The concept of designer Hamiltonians we have introduced here is different from t
 those for which all off-diagonal matrix elements are non-positive (i.e., sign-problem free) in the standard basis.  This is normally the  $z$-component 
 basis for spin systems, although a broader definition with respect to an arbitrary basis has also been presented \cite{Terhal09}, which would seem to 
 indicate that any Hamiltonian could in principle be cast into this class. Our criterion is more one of scientific utility than a strict mathematical 
-definition---models that are free from sign problems either automatically (i.e., they are stoquastic in a practically useful basis), or through some 
+definition---models that are free from sign problems either automatically (in a practically useful basis), or through some 
 other way of circumventing it [i.e., the Meron algorithm \cite{Chandrasekharan99} or determinant-based QMC of particle-hole symmetric Hubbard 
-models \cite{White89,Assaad05,Assaad07}]. Importantly, to be considered a designer Hamiltonian, such a model should also represent a prototypical case of 
+models \cite{White89,Assaad05,Assaad07}]. To be considered a designer Hamiltonian, such a model should also represent a prototypical case of 
 some interesting quantum-man body phenomenon which is difficult to access in an unbiased manner in other ways, i.e., the model is designed to shed
 light on this problem (and must be ``de-signed'' to be practically useful for studies on large scale).
 
@@ -931,17 +931,17 @@ quantum spins models remains and open question.
 Within the classes of models we have discussed here, although the essential physics is now has been assertained, there still remains
 important work to be done to improve on the quantitative aspects, e.g., the critical exponents. In the case of the studies aiming to connect
 SU($N$) QMC simulations with large-$N$ expansions, summarized in Sec.~\ref{sec:sunmodels}, it would be very useful to go to still larger lattices, 
-to investigate the convergence of the computed exponents. This is important, in particular, in light of the fact there there are significant scaling 
+to check the convergence of the computed exponents more precisely. This is important, in particular, in light of the fact there there are significant scaling 
 corrections in quantities such as the spin stiffness for $N=2$. Such corrections could potentially affect also the fitting procedures underlying 
 the exponents graphed in Fig.~\ref{fig:exp} for small N. When higher-order $1/N$ analytical results eventually become available, it will be important to know 
 the values of the exponents without possible remaining effects of scaling corrections. What is needed here is high-accuracy (small error bars) 
 results for the correlation functions on large lattices. It will also be very interesting to use the methods discussed in Sec.~\ref{ss:renyi} to quantify 
 the degree of entanglement in the SU($2$) and SU($N$) models.
 
-Another very interesting aspect of the designer hamiltonians is that they can be doped with fermions. While this introduces a sign problem, it
-should be possible to study large lattices doped with a small number of dopants, since the magnitude of the sign problem only depends on the number
-of fermions. This low-density limit should already be sufficient for making connections with theorises of ``holonic'' or ``strange'' metallic states,
-that have been predicted to arise out of the DQC system upon doping.
+Another very interesting aspect of the designer hamiltonians we have discussed here is that these SU($N$) models can also be doped with fermions. While this 
+introduces a sign problem, it should be possible to study large lattices doped with a small number of dopants, since the magnitude of the 
+sign problem only depends on the number of fermions. This low-density limit should already be sufficient for making connections with large-$N$ theories 
+of ``holonic'' or ``strange'' metallic states, that have been predicted to arise out of the DQC system upon doping \cite{kaul2008:u1}.
 
 An important open question is whether one can more sophisticated ways to circumvent the sign problem, e.g., the Meron algorithm, for a wider
 range of fermionic models.
@@ -949,6 +949,10 @@ An alternative conceptual approach may be suggested by the demonstrated existenc
 %Future QMC simulations will be required to address question of whether fermions can be observed emerging as collective excitations of a purely bosonic designer Hamiltonian without the sign problem.
 The ability for QMC to measure the entanglement entropy in a state with an emergent fermion
 could also have wide implications for the purported application of tensor network algorithms as a ``solution'' to the sign problem, if such a state were found to violate the area law (Equation \ref{arealaw}). 
+
+\section*{Acknowledgments}
+
+This work was supported by  ... and by the NSF under Grant No.~DMR-1104708 (AWS).
 
 \bibliography{rev_bib.bib}
 \bibliographystyle{Science}
