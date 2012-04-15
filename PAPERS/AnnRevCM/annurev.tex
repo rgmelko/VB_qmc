@@ -70,9 +70,9 @@ however, and we will here review some recent examples from the area of quantum m
 methods \cite{Sandvik91,Evertz93,Beard96,WormA,Sandvik99,Sandvik10a} have made it possible to truly approach the 
 low-energy limit of many important models without any approximations (beyond controllable statistical errors), and to compute 
 quantities of great current interest in condensed matter physics and quantum information theory, e.g., the fidelity 
-\cite{Schwandt09,Degrandi11} and the entanglement entropy \cite{Hastings10, Melko10}. We will briefly address some of these technical 
-developments as well. We first make some remarks on field theory and the philosophy of the synergistic use of 
-designer Hamiltonians, and then outline the topics covered in this review.
+\cite{Schwandt09}, the geometric tensor \cite{Degrandi11}, and the entanglement entropy \cite{Hastings10, Melko10}. We will 
+briefly address some of these technical developments as well. We first make some remarks on field theory and the philosophy 
+of the synergistic use of designer Hamiltonians, and then outline the topics covered in this review.
 
 \subsection{Field theory and numerical studies of Hamiltonians}
 
@@ -829,7 +829,8 @@ In addition to  $H = H_0 + H_3$, $H = H_0 + H_1$, the $Z_2$ spin liquid has been
 
 In the next section, we explore one procedure by which QMC simulations can positively identify such spin liquid phases.  In section \ref{XYstar}, we examine the XY-ferromagnet (or ``superfluid'' in the boson language) to QSL phase transition, which is common to these models, as an different example of a deconfined or fractionalized quantum critical point.
 
-\subsection{Identifying the $Z_2$ spin liquid: Topological Entanglement} \label{topoEEsec}
+\subsection{Identifying the $Z_2$ spin liquid: Topological Entanglement} 
+\label{topoEEsec}
 
 The smoking gun signature for a gapped spin liquid phase could be argued to be the identification of an emergent gauge theory,
 and the associated topological order \cite{Wenbook}.  One manifestation is the existence of a ground state degeneracy, which is topological in nature, in the simplest ($Z_2$) case being four-fold on a torus.  Previous QMC studies of QSL states have demonstrated the difficulty in clearly identifying this degeneracy, due to the tendency for tunnelling between the equal-energy states on finite-size lattices with physical Hamiltonians \cite{Isakov1}.  Similarly, recent DMRG work purporting to identify candidate gapped spin liquid states have been unable to identify the associated topological degeneracy \cite{Yan,J1J2}.
@@ -900,6 +901,8 @@ models \cite{White89,Assaad05,Assaad07}]. To be considered a designer Hamiltonia
 some interesting quantum-man body phenomenon which is difficult to access in an unbiased manner in other ways, i.e., the model is designed to shed
 light on this problem (and must be ``de-signed'' to be practically useful for studies on large scale).
 
+\subsubsection{Limitations of Designer Hamiltonians}
+
 An important fundamental problem is whether it is always possible to construct such designer hamiltonians, or whether certain types of 
 states is beyond reach in practice because their physical properties are fundamentally tied to the difficulties in curcumventing the sign problem. 
 The $Z_2$ spin liquid [which itself is a broad class if states \cite{Wen03}] in SU($2$) variant models is potentially an example of such a state. 
@@ -907,6 +910,8 @@ It is certainly possible that such states cannot be realized with sign-problem f
 designer hamiltonians can be constructed for which some useful basis can be found, or for which the sign problem can be solved in some other way.
 Indeed, the recent discovery of a spin liquid in the Hubbard model on the honeycomb lattice \cite{Meng10} seems to provide an example, although it 
 remains to be seen whether this state really is a $Z_2$ topological state.
+
+\subsubsection{The sign problem}
 
 Regarding the sign problem itself more broadly, Ref.~\cite{Troyer05} presents a proof that the sign problem cannot be solved in general. 
 The problem is here defined in terms of constructing a QMC algorithm for which the computational effort scales as a power-law in the system
@@ -918,6 +923,10 @@ classical glassy systems with complicated energy landscapes. Whether or not the 
 designer hamiltonians) for translationally invariant systems such as fermionic Hubbard models without particle-hole symmetry and SU($2$) frustrated 
 quantum spins models remains and open question.
 
+In some cases, local basis transformations can be used to solve sign problems \cite{Nakamura97}. An important open question is whether one 
+can apply more sophisticated ways to circumvent the sign problem, e.g., the Meron algorithm \cite{Chandrasekharan99}, for a wider range 
+of fermionic and frustrated  models.
+
 \subsection{Future prospects}
 
 Within the classes of models we have discussed here, although the essential physics is now has been assertained, there still remains
@@ -925,22 +934,39 @@ important work to be done to improve on the quantitative aspects, e.g., the crit
 SU($N$) QMC simulations with large-$N$ expansions, summarized in Sec.~\ref{sec:sunmodels}, it would be very useful to go to still larger lattices, 
 to check the convergence of the computed exponents more precisely. This is important, in particular, in light of the fact there there are significant scaling 
 corrections in quantities such as the spin stiffness for $N=2$. Such corrections could potentially affect also the fitting procedures underlying 
-the exponents graphed in Fig.~\ref{fig:exp} for small N. When higher-order $1/N$ analytical results eventually become available, it will be important to know 
+the exponents graphed in Fig.~\ref{fig:exp} for small $N$. When higher-order $1/N$ analytical results eventually become available, it will be important to know 
 the values of the exponents without possible remaining effects of scaling corrections. What is needed here is high-accuracy (small error bars) 
 results for the correlation functions on large lattices. It will also be very interesting to use the methods discussed in Sec.~\ref{ss:renyi} to quantify 
 the degree of entanglement in the SU($2$) and SU($N$) models.
 
+\subsubsection{Fermions}
+
 Another very interesting aspect of the designer hamiltonians we have discussed here is that these SU($N$) models can also be doped with fermions. While this 
 introduces a sign problem, it should be possible to study large lattices doped with a small number of dopants, since the magnitude of the 
-sign problem only depends on the number of fermions. This low-density limit should already be sufficient for making connections with large-$N$ theories 
-of ``holonic'' or ``strange'' metallic states, that have been predicted to arise out of the DQC system upon doping \cite{kaul2008:u1}.
+sign problem only depends on the number of fermions. This low-density limit should already be sufficient for making connections with 
+large-$N$ theories of ``holonic'' or ``strange'' metallic states, that have been predicted to arise out of the DQC system upon 
+doping \cite{kaul2008:u1}.
 
-An important open question is whether one can more sophisticated ways to circumvent the sign problem, e.g., the Meron algorithm, for a wider
-range of fermionic models.
-An alternative conceptual approach may be suggested by the demonstrated existence of the $Z_2$ fractional phase in a purely bosonic model, which raises the possibility that, with a suitable ``binding'' potential \cite{FermionBind}, an extension of the model with an emergent fermionic excitation might be created \cite{Wenbook}.  
+An interesting conceptual question is whether one can study bosonic systems in which fermions are emergent particles.
+A positive answer may be suggested by the demonstrated existence of the $Z_2$ fractional phase in a purely bosonic model, as we
+discussed here in Sec.~\ref{topoEEsec}. This raises the possibility that, with a suitable ``binding'' potential \cite{FermionBind}, an extension of 
+the model with an emergent fermionic excitation might be created \cite{Wenbook}.  
 %Future QMC simulations will be required to address question of whether fermions can be observed emerging as collective excitations of a purely bosonic designer Hamiltonian without the sign problem.
 The ability for QMC to measure the entanglement entropy in a state with an emergent fermion
-could also have wide implications for the purported application of tensor network algorithms as a ``solution'' to the sign problem, if such a state were found to violate the area law (Equation \ref{arealaw}). 
+could also have wide implications for the purported application of tensor network algorithms as a ``solution'' to the sign problem, 
+if such a state were found to violate the area law; Eq.~(\ref{arealaw}). 
+
+\subsubsection{Disordered systems}
+
+
+\subsubsection{Non-equilibrium dynamic scaling}
+
+A recent development on the methods front is the adaptation of QMC algorithms such as those discussed in \ref{sec:methods} to non-equilibrium 
+setups \cite{Degrandi11}. By studying time evolution out of a non-equilibrium state in imaginary time, standard sign-problem free systems
+can be analyzed in novel ways. For instance, it was found in Ref.~\cite{Degrandi11} that the dynamic scaling properties when quenching to
+a quantium-critical point is the same in real and imaginary time, and that such protocols are useful for extracting the dynamic critical
+exponent. Moreover, the fidelity and full geometric tensor, which characterize the geometrical properties of the state space, can be
+accessed this way. One can anticipate many fruitful applications of this extended QMC approach, e.g., in studies of quantum glasses.
 
 \section*{Acknowledgments}
 
