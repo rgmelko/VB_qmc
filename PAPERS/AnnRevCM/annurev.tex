@@ -51,7 +51,7 @@ with this approach, however, and it is, therefore, important to also investigate
 lattice-scale Hamiltonian formulation. One of the most fruitful directions is to use numerical methods to study 
 Hamiltonians in an unbiased way, and to extract from these calculations emergent low-energy properties which can be 
 compared with results for corresponding quantum field theories. Such connections between the two approaches 
-can have significant synergy effects in advancing our understanding of quantum many-body phenomena---as they
+can have significant synergistic effects in advancing our understanding of quantum many-body phenomena---as they
 have had and continue to have in classical statistical mechanics, especially in studies of phase transitions. 
 
 Computational research has its own challenges, however, and many quantum models of interest are currently beyond the reach 
@@ -69,34 +69,32 @@ however, and we will here review some recent examples from the area of quantum m
 methods \cite{Sandvik91,Evertz93,Beard96,WormA,Sandvik99,Sandvik10a} have made it possible to truly approach the 
 low-energy limit of many important models without any approximations (beyond controllable statistical errors), and to compute 
 quantities of great current interest in condensed matter physics and quantum information theory, e.g., the fidelity 
-\cite{Schwandt09,Degrandi11} and the entanglement entropy \cite{Hastings10, Melko10}. We will brifly address some of these technical 
+\cite{Schwandt09,Degrandi11} and the entanglement entropy \cite{Hastings10, Melko10}. We will briefly address some of these technical 
 developments as well. We here first give some further remark on field theory and the philosophy of the synergistic use of 
 designer Hamiltonians, and then outline the topics covered in this review.
 
 \subsection{Field theory and numerical studies of Hamiltonians}
 
-A field theory can rarely be rigorously derived exactly from 
-an underlying Hamiltonian (which is the natural starting point for describing condensed matter systems). Instead,
-it is normally constructed based on symmetries, in combination with insights or assumptions on the physical nature of 
-the system. Some times the field theory can be derived in some well defined limit, e.g., the $(d+1)$-dimensional
-nonlinear $\sigma$-model description of interacting quantum spins in $d$ dimensions was derived by Haldane in 
-the semi-classical limit of large spin $S$ by using coherent spin states \cite{Haldane83,Chakravarty89,Auerbach94}. 
-In other cases, the field theory is constructed heuristically, e.g., the non-compact CP$^{N-1}$ action
-proposed to describe the intriguing ``deconfined'' quantum-critical point in $d=2$ quantum magnets hosting 
-transitions between a N\'eel antiferromagnet and a valence-bond solid (VBS) \cite{Senthil04a,Sachdev08}.
+{\em Still working on this!}
 
-Having identified or proposed a field
-theory, the next step is to extract its properties. This is typically done using the renormalization group (RG)
-approach, which may result in flows to some previously known fixed point, or to some fixed point or effective
-model whose properties are not known. The RG itsef may have to rely on approximations that are not always easy
-to justify, and, if the flow is to some unknown state, it may be challenging to characterize it. Often the theory
-is modified in such a way that it can be rigoroulsy controlled and the physical situation of interest is studied 
+The natural starting point for a theoretical model of condensed matter systems are microscopic Hamiltonians.
+An effective field theoretic description  of a given Hamiltonian 
+is constructed based on a combination of insights and assumptions on the properties of the Hamiltonian that control the long distance physics according to the renormalization group (RG) approach. These properties most famously include symmetry and dimensionality, but more subtle properties like the nature of the topological defects also play an important role.  The fixed points of the field theory control long distance physics.
+The RG approach may result in flows to a previously known fixed point, or to some fixed point
+whose properties are not known. The RG itself may have to rely on approximations that are not always easy
+to justify, and, if the flow is to some unknown state, it is challenging to characterize it. Often the theory
+is modified in such a way that it can be rigorously controlled and the physical situation of interest is studied 
 by some expansion around it. Well known examples are the $\epsilon$ expansion around the upper critical dimension 
 and the $1/N$ expansion in the number of components $N$ (spin components, flavors of fermions, etc). The
 extrapolation to the $\epsilon$ or $N$ of main interest is often challenging, however, because only low-order
-expansions are feasible in practice.
+expansions are feasible in practice, or worse still the expansion may not converge at the value of $\epsilon$ or $N$ of most interest.
+One example of the above approach is the $(d+1)$-dimensional
+nonlinear $\sigma$-model description of interacting quantum spins in $d$ dimensions, which was derived by Haldane in 
+the semi-classical limit of large spin $S$ \cite{Haldane83,Chakravarty89,Auerbach94}. 
+Another example -- central to this review article -- is the non-compact CP$^{N-1}$
+description of the intriguing  N\'eel-valence-bond solid (VBS) ``deconfined'' quantum-critical point in two dimensional SU($N$) quantum magnets, which can be justified in the large-$N$ limit.\cite{Senthil04a,Sachdev08}.
 
-In view of issues such as these, it is important to test the predictions of field theories in some unbiased way,
+In view of the difficulties with analytic methods highlighted above, it is important to test the predictions of field theories in some unbiased way,
 starting from a microscopic description of the system or phenomenon of interest. In some cases there are exact solutions, 
 e.g., the Bethe Ansatz solution of the $S=1/2$ Heisenberg chain \cite{Bethe31} has been immensely important for testing 
 the non-linear sigma model description of this class of critical spin chains. The exact AKLT state \cite{affleck88} for a special 
@@ -189,8 +187,8 @@ These sign-problem free models can generally be simulated in polynomial time by
 importance sampling, allowing access to large system sizes (with the exception of ``glassy'' systems and
 other systems where even classical Monte Carlo simulations scale exponentially). In some cases, sign problems that
 appear intractable at first-sight can be solved in more sophisticated ways, e.g., in the Meron algorithm \cite{Chandrasekharan99}. 
-Here we implicitly consider cases where the ``de-signing'' is essentially automatic, being related to the bipartiteness 
-of the interactions.
+Here we implicitly consider cases where the ``de-signing'' is essentially automatic, being a direct consequence of the non-positivity of the  
+off-diagonal matrix elements of the Hamiltonian.
  
 \subsection{$T>0$ and $T=0$ QMC methods}
 \label{ss:method}
@@ -246,20 +244,18 @@ conditions in the imaginary time direction; periodic for $T>0$ (due to the trace
 projections. An equal superposition over all basis states corresponds to fully open boundaries, while other choices of the trial state leads to ``biased''
 boundaries with some weighting of the bra and ket states (depending on the details of the trial state). 
 
-There is no sign problem in these approaches for spin systems on bipartite lattices (for a properly chosen trial state in the case of the $T=0$ approach); 
-essentially because there is always an even number of the negative matrix elements in $W_C$, or, equivalently, all of them can be rendered positive by a 
-sublattice transformation. For details, see, e.g., Ref.~\cite{Henelius00}.
+There is no sign problem in these approaches for spin systems with non-positive definite off-diagonal matrix elements (for a properly chosen trial state in the case of the $T=0$ approach); For details, see, e.g., Ref.~\cite{Henelius00}.
 
 \subsection{Sampling with loop and cluster algorithms}
 
-A break-throug leading to today's efficient QMC algorithms of the types discussed above
+A breakthrough leading to today's efficient QMC algorithms of the types discussed above
 was the realization \cite{Evertz93} that generalizations of the classical Swendesn-Wang (SW) cluster 
 Monte Carlo method \cite{Swendsen88} could be generalized to loop algorithms (i.e., clusters in the form of one-dimensional loops) for vertex models, and that 
 these vertex models are very similar to the effective statistical mechanics problems arising in the transformations of the quantum problem discussed above. Such 
 loop algorithms cannot be applied to all cases (in analogy with the SW method, which also has limited applicability), but the loop concept has also been further 
 generalized to ``worms'' \cite{Prokofev96,Prokofev98, WormA} and ``directed loops'' \cite{Sandvik99,Syljuasen02}, which are essentially loops that can self-intersect
 during their construction and incorporate the detailed-balance principle in a more general way. Recently such an algorithm was also formulated without
-delatiled balance \cite{Suwa10}. In addition, for some models where loop algorithms and their generalizations are not applicable (e.g., transeverse-field 
+delatiled balance \cite{Suwa10}. In addition, for some models where loop algorithms and their generalizations are not applicable (e.g., transverse-field 
 Ising models), other efficient generalizations of the SW cluster concept have been developed \cite{Rieger99,Sandvik03}.
 
 \subsection{Special techniques for SU(2)-symmetric models}
@@ -278,7 +274,7 @@ where $s_{ij}$ denotes the singlet state of spins $i$ and $j$. A power of the Ha
 is expanded into all possible products of these projectors, which act on the ket trial state in (\ref{za2}). In early versions of this scheme, the resulting 
 paths of valence bond states were sampled \cite{Liang90,Santoro99,Sandvik05}, while in more recent formulations the diagonal and off-diagonal parts of the 
 projectors are also sampled, along with spin configurations compatible with the valence-bond configurations of the trial state (which are also sampled) 
-\cite{Sandvik10c}. An example of a configuration in such a simulation is shown in Fig.~\ref{loops}. This configuration space is amenable the very efficient 
+\cite{Sandvik10c}. An example of a configuration in such a simulation is shown in Fig.~\ref{loops}. This configuration space is amenable to the very efficient 
 loop updates discussed above \cite{Sandvik10a}. Apart from the boundary conditions in the ``propagation'' direction (and the associated sampling of the
 valence bonds in the trial state), this kind of projector method is in practice implemented in a very similar way as the SSE method for SU($2$) 
 models \cite{Sandvik10b}.
@@ -347,8 +343,8 @@ T^{a}_j +\frac{1}{N^2} =\Pi_{ij}.
 \end{equation}
 This is an SU($N$) invariant generalization of the SU($2$) Heisenberg interaction for two spins on the {\em same} sub-lattice.
 
-{\color{red} Hamiltonians based the SU($N$) operators $P_{ij}$ and $\Pi_{ij}$ are sign-problem free if they come with negative signs, i.e.,
-they generalize the SU($2$) antiferromagnetic and ferromagnetic Heisenberg exchange, respectively}. In terms of the definitions of $P_{ij}$ and 
+Hamiltonians based the SU($N$) operators $P_{ij}$ and $\Pi_{ij}$ are sign-problem free if they come with negative signs, i.e.,
+they generalize the SU($2$) antiferromagnetic and ferromagnetic Heisenberg exchange, respectively. In terms of the definitions of $P_{ij}$ and 
 $\Pi_{ij}$, the algorithms presented in Sec.~\ref{ss:method} can be simply generalized from SU(2) to SU($N$) by extending the number of colors 
 (of the spins and the loops) from 2 to $N$~\cite{harada2003:sun,beach2009:sun,kaul2011:j1j2}.
 
@@ -404,16 +400,15 @@ the {\rm SWAP}$_A$ operator (green) connects the spin in the top replica to the 
 \label{sec:su2models}
 
 It has been a matter of debate for a long time whether the non-linear sigma model can correctly capture a phase transition from the N\'eel state 
-to a non-magnetic state in two dimensions for $S=1/2$ spins \cite{Chakravarty89}. Other terms, related to Berry phases, have to be added to the Lagrangian 
-to describe the formation of a spontaneously formed VBS \cite{Read90,murthy1990:mono}. It was recently proposed that the N\'eel and VBS states are separated 
-by a ``deconfined'' quantum-critical (DQC) point \cite{Senthil04a} corresponding to the {\it non-compact} CP$^1$ field throry (in contrast to the nonlinear 
-$\sigma$-model, which is a description equivalent to the {\it compact} CP$^1$ action, i.e., the  Berry phases make the gauge field non-compact).
-It describes spinons weakly interacting with a U($1$) gauge field  The VBS and N\'eel order parameter form due to confinement and condensation, 
+to a non-magnetic state in two dimensions for $S=1/2$ spins \cite{Chakravarty89}. Other terms, related to Berry phases of the spins, have to be included in the long wavelength description to obtain a VBS state \cite{Read90,murthy1990:mono}. It was recently proposed that the N\'eel and VBS states are separated 
+by a ``deconfined'' quantum-critical (DQC) point \cite{Senthil04a} described by the {\it non-compact} CP$^1$ field theory (in contrast to the nonlinear 
+$\sigma$-model, which is equivalent to the {\it compact} CP$^1$ description, {\em i.e.}, in the deconfined scenario the Berry phases render the gauge field non-compact at the critical point).
+This field theory describes two flavors of spinons interacting with a non-compact U($1$) gauge field  The VBS and N\'eel order parameter form due to confinement and condensation, 
 respectively, of spinons. 
 
 In this section we first discuss the rather well-studied continuous quantum phase transition between the N\'eel state and a quantum paramagnet in systems 
 with bimodal couplings forming a static pattern. In this case the paramagnet does not break any symmetries of the Hamiltonian and the transition 
-is believed to fall in the 3D O($3$) universality class. A VBS state with spontaneously broken lattice symmetries can be achived with frustrated 
+is believed to fall in the 3D O($3$) universality class. A VBS state with spontaneously broken lattice symmetries can be achieved with frustrated 
 interactions, which, however, are sign problematic in QMC simulations. The J-Q model \cite{Sandvik07} is a designer Hamiltonian circumventing this 
 problem. We will review some of the recent work aimed at characterizing its VBS state and  N\'eel--VBS transition.
 
@@ -538,12 +533,12 @@ for all systems with $L\ge 48$.}
 
 \subsubsection{Emergent U($1$) gauge fluctuations}
 
-An important aspect of the DQC theory is the emergence of U($1$) symmetry as the critical point is approached from the VBS side. 
-The gauge field in the critical theory is U($1$) symmetric, but in the $J$-$Q$ model such a symmetry is not apparent in the Hamiltonian; it
-only has explicit SU($2$) spin-rotational symmetry and the discrete symmetries of the square lattice. An emergent U($1$) symmetry 
+An important aspect of the DQC theory is the emergent conservation law of the gauge flux, due to the irrelevance of monopoles at the critical point. 
+Remarkably, the  U($1$) symmetry associated with the conservation law at the critical point is emergent, and is not contained in the $J$-$Q$ model, which
+only has an SU($2$) spin-rotational symmetry, the discrete symmetries of the square lattice and time reversal. An emergent U($1$) symmetry 
 can, however, be observed in the fluctuations of the VBS order parameter \cite{Sandvik07}. Naively one would expect these fluctuations 
-to reflect the Z$_4$ symmetry of the VBS (which is dictated by thge square lattice), but instead the symmetry group expands to U($1$) 
-upon approach to the critical point. The interpretation of this emergent U($1$) symmetry is that it reflects the gauge field (``photon'') 
+to reflect the Z$_4$ symmetry of the VBS (which is dictated by the square lattice), but instead the symmetry group expands to U($1$) 
+upon approach to the critical point. The interpretation of this emergent U($1$) symmetry is that it reflects the non-compactness of the gauge field (``photon'') 
 of the DQC theory. Here we will briefly review how this emergent symmetry is detected in QMC simulations.
 
 Consider the VBS (dimer-dimer) correlation function,
