@@ -81,10 +81,12 @@ An effective field theoretic description  of a given Hamiltonian
 is constructed based on a combination of insights and assumptions on the properties of the Hamiltonian that control the long distance physics according to the renormalization group (RG) approach. These properties most famously include symmetry and dimensionality, but more subtle effects like the nature of the topological defects also play an important role.  The fixed points of the field theory control long distance physics.
 The RG approach may result in flows to a previously known fixed point, or to some fixed point
 whose properties are not known. The RG itself often relies on approximations that are not easy
-to justify, and, if the flow is to some unknown state, it is challenging to characterize it. Often to control the RG flows, analytic expansion around some special simplifying limits are considered. Well known examples are the $\epsilon$ expansion around the upper critical dimension 
-and the $1/N$ expansion in the number of components $N$ (spin components, flavors of fermions, etc). The
+to justify, and, if the flow is to some unknown state, it is challenging to characterize it. Often to control the RG flows, analytic expansion around some special simplifying limits are considered. Well known examples are the $\epsilon$ expansion {\color{red}[References]} 
+around the upper critical dimension and the $1/N$ expansion in the number of components $N$ (spin components, flavors of fermions, etc)
+{\color{red}[References]}. The
 extrapolation to the $\epsilon$ or $N$ of interest is often challenging, however, because only low-order
 expansions are feasible in practice, or worse still the expansion may not converge at the value of $\epsilon$ or $N$ of most interest.
+
 One example of the above approach of deriving effective field theories from microscopic Hamiltonians by a limiting expansion, is the $(d+1)$-dimensional
 nonlinear $\sigma$-model description of interacting quantum spins in $d$ dimensions, which was derived by Haldane in 
 the semi-classical limit of large spin $S$ \cite{Haldane83,Chakravarty89,Auerbach94}. 
@@ -104,12 +106,13 @@ renormalization (DMRG) scheme \cite{White92} and related approaches based on mat
 have enabled more detailed studies of the low-energy physics of 1D systems (including also ``ladders'' of several 
 coupled chains). QMC studies are also are also competitive in 1D in the absence of sign problems \cite{Sandvik04,Jeckelmann02,Mund09}.
 
-While there has been some progress for 2D systems with DMRG \cite{Stoudenmire12} and tensor-product 
-\cite{Murg09} states (generalizations of matrix-product states), in general these approaches have not yet reached the 
-level where one can obtain unbiased results for large systems.
+While there has been some progress for 2D systems with DMRG \cite{Stoudenmire12} and tensor-product \cite{Murg09,Gu08,Xie09} states (generalizations 
+of matrix-product states), in general these methods have not yet reached the point where one can obtain unbiased results for generic 
+nontrivial models. There are encouraging signs, however, of calculations addressing challenging systems and approaching the level of accuracy 
+where definite conclusions can be drawn \cite{Bauer12}.
 
-The only numerical approach with which one can routinely reach sufficiently large 2D and 3D lattices is QMC simulations 
-\cite{Evertz03,Sandvik10b}, but, as already noted, they are restricted to systems free from sign problems. The class of models 
+The only numerical approach with which one can currently reach sufficiently large 2D and 3D lattices in a completely unbiased way is QMC 
+simulations \cite{Evertz03,Sandvik10b}, but, as already noted, they are restricted to systems free from sign problems. The class of models 
 for which there is no sign problem, or it is known how to circumvent it, still contains a vast range of models with non-trivial 
 and interesting ground states and quantum phase transitions. To study low-energy emergent 
 properties, the interactions do not necessarily have to correspond closely to any particular material (although some 
