@@ -30,7 +30,7 @@ Anders W. Sandvik
 
 \begin{abstract}
 We discuss designer Hamiltonians---lattice models tailored to be free from sign problems (``de-signed'') when simulated with quantum 
-Monte Carlo methods but still host complex  many-body states and quantum phase transitions of great interest in condensed matter 
+Monte Carlo methods but still host complex  many-body states and quantum phase transitions of interest in condensed matter 
 physics. We focus on quantum spin systems in which competing interactions lead to non-magnetic ground states. These states and 
 associated quantum phase transitions can be studied in great detail, enabling direct access to universal properties and connections 
 with low-energy effective quantum field theories. As specific examples, we discuss the transition from a N\'eel antiferromagnet to 
@@ -44,6 +44,7 @@ of the Renyi variants of the entanglement entropy.
 
 \section{Introduction}
 \label{sec:intro}
+
 
 Quantum field theory is a powerful framework for studies of low-energy properties of complex strongly 
 correlated and entangled quantum matter systems \cite{Sachdev11}. There are potential pitfalls and difficulties 
@@ -70,7 +71,7 @@ methods \cite{Sandvik91,Evertz93,Beard96,WormA,Sandvik99,Sandvik10a} have made i
 low-energy limit of many important models without any approximations (beyond controllable statistical errors), and to compute 
 quantities of great current interest in condensed matter physics and quantum information theory, e.g., the fidelity 
 \cite{Schwandt09,Degrandi11} and the entanglement entropy \cite{Hastings10, Melko10}. We will briefly address some of these technical 
-developments as well. We here first give some further remark on field theory and the philosophy of the synergistic use of 
+developments as well. We first make some remarks on field theory and the philosophy of the synergistic use of 
 designer Hamiltonians, and then outline the topics covered in this review.
 
 \subsection{Field theory and numerical studies of Hamiltonians}
@@ -79,7 +80,7 @@ The natural starting point for theoretical models of condensed matter systems ar
 An effective field theoretic description  of a given Hamiltonian 
 is constructed based on a combination of insights and assumptions on the properties of the Hamiltonian that control the long distance physics according to the renormalization group (RG) approach. These properties most famously include symmetry and dimensionality, but more subtle effects like the nature of the topological defects also play an important role.  The fixed points of the field theory control long distance physics.
 The RG approach may result in flows to a previously known fixed point, or to some fixed point
-whose properties are not known. The RG itself may have to rely on approximations that are not always easy
+whose properties are not known. The RG itself often relies on approximations that are not easy
 to justify, and, if the flow is to some unknown state, it is challenging to characterize it. Often to control the RG flows, analytic expansion around some special simplifying limits are considered. Well known examples are the $\epsilon$ expansion around the upper critical dimension 
 and the $1/N$ expansion in the number of components $N$ (spin components, flavors of fermions, etc). The
 extrapolation to the $\epsilon$ or $N$ of interest is often challenging, however, because only low-order
@@ -118,16 +119,13 @@ QMC simulations of such designer hamiltonians one can test field theories propos
 states or quantum phase transitions. Moreover, explorations of designer hamiltonians can also serve as ``experiments'' for 
 discovering novel phenomena, and, thereby, stimulate further theoretical developments.
 
-Note that the notion of designer Hamiltonians we consider here goes beyond the often used approach of investigating quantum phenomena 
-in $d$ dimensions by simply extending the same model to $d+1$ dimensions. While this works in some cases \cite{Rieger94,Sorensen92,Nahum11}, 
-it has in recent years been realized that this approach can miss important and intriguing quantum states that have no natural or familiar 
-classical analogues based just on a simple order parameter \cite{Senthil04a,Fradkin04,Sachdev08}. A designer Hamiltonian {\it does} also
-correspond to an effective classical statistical-mechanics model (which arises out of the construction of the sampling space in the QMC 
-scheme implemented), but often not one that would have come natural as a starting point just from the perspective of increasing the 
-dimensionality of some standard classical model. Note, in particular, that it is now well established that symmetries alone do not uniquely 
-determine the nature of a quantum phase transition, but systems with the same symmetries can belong to different universality classes, 
-depending on the role of topological defects \cite{Motrunich04}. Thus, in our view the approach of using manifestly quantum mechanical 
-designer Hamiltonians is an important direction in research on many-body ground states, quantum criticality, and other emergent phenomena.
+A designer Hamiltonian
+corresponds to an effective classical statistical-mechanics model (with a real action), which arises out of the construction of the sampling space in the QMC 
+scheme implemented. Often however the resulting classical models have unusual degrees of freedom and interactions, unanticipated in the study of classical statistical mechanics. In particular, while in some cases quantum phenomena in $d$ dimensions can be studied in the simplest generalization to a classical model with the same global symmetries in $d+1$ dimensions \cite{Rieger94,Sorensen92,Nahum11} ({\em e.g.} the quantum critical point in the transverse field Ising chain is described by the 1+1-dimensional Ising field theory \cite{Sachdev11}), in other cases a very naive mapping can miss important and intriguing phenomena special to quantum mechanics \cite{Senthil04a,Fradkin04,Sachdev08}. For instance, it is well established that symmetries alone do not uniquely 
+determine the nature of a critical point, but systems with the same symmetries can belong to different universality classes, 
+depending on the role of topological defects \cite{Motrunich04}. Thus, in our view the approach of directly studying manifestly quantum mechanical 
+designer Hamiltonians is an important direction in forming an unbiased picture of quantum criticality and emergent phenomena.
+
 
 \subsection{Outline of the Review}
 
