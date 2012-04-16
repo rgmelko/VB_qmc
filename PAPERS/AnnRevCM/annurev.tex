@@ -61,7 +61,7 @@ of difficult systems. They are generally associated with the infamous ``sign pro
 \cite{Loh90,Henelius00,Nyfeler08}, i.e., the weight function in the configuration space constructed using the Euclidean path 
 integral or other mappings to an effective statistical-mechanics problem is not positive definite (and hence cannot be directly 
 used as a probability distribution for importance sampling). The approach we advocate and review here is to construct particular 
-``designer hamiltonians'', which host interesting ground states and quantum phase transitions but still are amenable to 
+``designer Hamiltonians'', which host interesting ground states and quantum phase transitions but still are amenable to 
 large-scale QMC studies without sign problems (i.e., they are ``de-signed'' by design). 
 
 A common misconception is that interesting designer Hamiltonians should not exist---if a model is sign-problem 
@@ -118,8 +118,8 @@ and interesting ground states and quantum phase transitions. To study low-energy
 properties, the interactions do not necessarily have to correspond closely to any particular material (although some 
 times that is also possible). The idea is to design a sign-problem free Hamiltonian in such a way that it contains a 
 particular macroscopic (low-energy) phenomenon of interest---so that universal physics is captured. With unbiased large-scale 
-QMC simulations of such designer hamiltonians one can test field theories proposed to capture specific classes of quantum many-body 
-states or quantum phase transitions. Moreover, explorations of designer hamiltonians can also serve as ``experiments'' for 
+QMC simulations of such designer Hamiltonians one can test field theories proposed to capture specific classes of quantum many-body 
+states or quantum phase transitions. Moreover, explorations of designer Hamiltonians can also serve as ``experiments'' for 
 discovering novel phenomena, and, thereby, stimulate further theoretical developments.
 
 A designer Hamiltonian
@@ -206,7 +206,7 @@ evolution operator $P(\beta)={\rm e}^{-\beta H}$ or a high power of the hamilton
 convergence for the two choises for a given system size $N$. This follows from a Taylor expansion of the time evolution operator, which for large 
 $\beta$ is dominated by powers of the order $n=\beta |E_0|$, where $E_0$ is the ground state energy (which is proportional to $N$).
 
-\subsection{Path integrals and stochastic series expansion}
+\subsection{Path integrals and stochastic series expansions}
 
 The task is now to rewrite $Z$ in Eqs.~(\ref{za1}) or (\ref{za2}) into the form (\ref{eq:wc}), and expectation values as Eq.~(\ref{expvalue}), with classical variables 
 without diagonalizing $H$. In practice, $T=0$ and $T>0$ approaches for a given model are often very similar. In either case, the exponential 
@@ -250,7 +250,7 @@ these vertex models are very similar to the effective statistical mechanics prob
 loop algorithms cannot be applied to all cases (in analogy with the SW method, which also has limited applicability), but the loop concept has also been further 
 generalized to ``worms'' \cite{Prokofev96,Prokofev98, WormA} and ``directed loops'' \cite{Sandvik99,Syljuasen02}, which are essentially loops that can self-intersect
 during their construction and incorporate the detailed-balance principle in a more general way. Recently such an algorithm was also formulated without
-delatiled balance \cite{Suwa10}. In addition, for some models where loop algorithms and their generalizations are not applicable (e.g., transverse-field 
+detailed balance \cite{Suwa10}. In addition, for some models where loop algorithms and their generalizations are not applicable (e.g., transverse-field 
 Ising models), other efficient generalizations of the SW cluster concept have been developed \cite{Rieger99,Sandvik03}.
 
 \subsection{Special techniques for SU(2)-symmetric models}
@@ -259,7 +259,7 @@ Ising models), other efficient generalizations of the SW cluster concept have be
 A particularly convenient class of trial states in projector QMC with SU($2$) invariant interactions is the amplitude-product states in the valence-bond
 (singlet pair) basis \cite{Liang88}, which were recently generalized to include bond correlations \cite{Lin12}. These overcomplete states for the singlet 
 sector incorporate Marshall's sign rule in a convenient way and also automatically have the appropriate momentum for the ground state of a periodic system 
-(thereby from the outset filtering out a significant fraction of the excited states). The hamiltonian in this case can typically be expressed in terms of 
+(thereby from the outset filtering out a significant fraction of the excited states). The Hamiltonian in this case can typically be expressed in terms of 
 two-spin singlet-projector operators  (individual ones or products of two or more of them);
 \begin{equation}
 P_{ij}=\hbox{$\frac{1}{4}$}-{\bf S}_i\cdot {\bf S}_j = |s_{ij}\rangle\langle s_{ij}|,
@@ -306,8 +306,8 @@ the same and different sublattices, respectively). Higher-order correlation func
 \subsection {Generalizations from SU(2) to SU(N)}
 \label{ss:su2N}
 
-The above methods for SU($2$) models can be extended to a certain class of spin models with an SU($N$) symmetry on bipartite lattices. First, note again 
-that the Heisenberg operator is simply a singlet projector, Eq.~(\ref{psinglet}). In order to generalize this operator to SU($N$), we choose models 
+The above methods for SU($2$) models can be extended to a certain class of spin models with an SU($N$) symmetry on bipartite lattices. First, note 
+that the SU(2) Heisenberg operator is simply a singlet projector, Eq.~(\ref{psinglet}). In order to generalize this operator to SU($N$), we choose models 
 that have an SU($N$) spin with a fundamental representation on the A sub-lattice and an SU($N$) spin with a conjugate to the fundamental representation 
 on the B sub-lattice~\cite{affleck1985:lgN,Read89}. Denoting the $N$ states on each site of our lattice 
 by $|\alpha\rangle$, where $1\leq \alpha \leq N$, and the generators of the fundamental representation by $T^a$ (an $N\times N$ matrix),
@@ -481,7 +481,7 @@ the columnar arrangements in Fig.~\ref{qterms} lead to continuous transitions (o
 Various types of $Q$ terms have also been investigated in the honeycomb lattice \cite{Banerjee11}, with similar results. In analogy with quantum 
 dimer models, first-order transitions correspond to VBS states that do not support any local dimer fluctuations, while the continuous transitions 
 are into VBSs where such fluctuations exist. Alternatively, one can relate the different behaviors to different types of topological 
-defects in the VBS \cite{Banerjee11}.
+defects in the VBS \cite{levin2004:vbs,Banerjee11}.
 
 \begin{figure}
 \centerline{\psfig{figure=qterms.eps,height=4.5cm}}
@@ -600,7 +600,7 @@ the result that $\Lambda \sim \xi^{1+a}$, with $a=0.20 \pm 0.05$ \cite{lou2009:s
 The U($1$) lengt scale discussed above should also be reflected in the confinement of spinons (i.e., the soze of a bound state) in the VBS state. By utilizing 
 properties of the valence-bond basis, discussed in Sec.~\ref{su2method}, and generalizations to non-zero total magnetization \cite{Banerjee10b,Wang10}, it is 
 possible to directly access $S=1$ excitations of VBS states and study its structure in terms of bound or unbound (deconfined spinons). Such calculations have 
-already been used to characterize deconfined spinons using a designer hamiltonian with a VBS state and a N\'eel--VBS transition in one dimension \cite{Tang11a}. 
+already been used to characterize deconfined spinons using a designer Hamiltonian with a VBS state and a N\'eel--VBS transition in one dimension \cite{Tang11a}. 
 Similar calculations for 2D J-Q models should shed further light on the nature of the spinons at the DQC point.
 
 Another approach to confirming spinon excitations, which has already been employed for the 2D J-Q model, is to study the thermodynamic properties at 
@@ -901,11 +901,11 @@ light on this problem (and must be ``de-signed'' to be practically useful for st
 
 \subsubsection{Limitations of Designer Hamiltonians}
 
-An important fundamental problem is whether it is always possible to construct such designer hamiltonians, or whether certain types of 
+An important fundamental problem is whether it is always possible to construct such designer Hamiltonians, or whether certain types of 
 states is beyond reach in practice because their physical properties are fundamentally tied to the difficulties in curcumventing the sign problem. 
 The $Z_2$ spin liquid [which itself is a broad class if states \cite{Wen03}] in SU($2$) variant models is potentially an example of such a state. 
-It is certainly possible that such states cannot be realized with sign-problem free hamiltonians in a simple basis, but one can still not exclude that 
-designer hamiltonians can be constructed for which some useful basis can be found, or for which the sign problem can be solved in some other way.
+It is certainly possible that such states cannot be realized with sign-problem free Hamiltonians in a simple basis, but one can still not exclude that 
+designer Hamiltonians can be constructed for which some useful basis can be found, or for which the sign problem can be solved in some other way.
 Indeed, the recent discovery of a spin liquid in the Hubbard model on the honeycomb lattice \cite{Meng10} seems to provide an example, although it 
 remains to be seen whether this state really is a $Z_2$ topological state.
 
@@ -918,7 +918,7 @@ to scale exponentially in the system size. However, the problem chosen is that o
 the statement that the quantum spin glass is no easier to solve than the corresponding classical spin glass. This is hardly a surprising result. 
 The proof does not address QMC solutions of systems that are not directly associated with the well known difficulties of simulating 
 classical glassy systems with complicated energy landscapes. Whether or not the sign problem can be circumvented (at least for representative 
-designer hamiltonians) for translationally invariant systems such as fermionic Hubbard models without particle-hole symmetry and SU($2$) frustrated 
+designer Hamiltonians) for translationally invariant systems such as fermionic Hubbard models without particle-hole symmetry and SU($2$) frustrated 
 quantum spins models remains and open question.
 
 In some cases, local basis transformations can be used to solve sign problems \cite{Nakamura97}. An important open question is whether one 
@@ -939,7 +939,7 @@ the degree of entanglement in the SU($2$) and SU($N$) models.
 
 \subsubsection{Fermions}
 
-Another very interesting aspect of the designer hamiltonians we have discussed here is that these SU($N$) models can also be doped with fermions. While this 
+Another very interesting aspect of the designer Hamiltonians we have discussed here is that these SU($N$) models can also be doped with fermions. While this 
 introduces a sign problem, it should be possible to study large lattices doped with a small number of dopants, since the magnitude of the 
 sign problem only depends on the number of fermions. This low-density limit should already be sufficient for making connections with 
 large-$N$ theories of ``holonic'' or ``strange'' metallic states, that have been predicted to arise out of the DQC system upon 
