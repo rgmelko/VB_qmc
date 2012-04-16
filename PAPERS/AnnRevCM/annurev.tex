@@ -30,8 +30,8 @@ Anders W. Sandvik
 
 \begin{abstract}
 We discuss designer Hamiltonians---lattice models tailored to be free from sign problems (``de-signed'') when simulated with quantum 
-Monte Carlo methods but still host complex  many-body states and quantum phase transitions of interest in condensed matter 
-physics. We focus on quantum spin systems in which competing interactions lead to non-magnetic ground states. These states and 
+Monte Carlo methods but which still host complex  many-body states and quantum phase transitions of interest in condensed matter 
+physics. We focus on quantum spin systems in which competing interactions lead to non-magnetic ground states. These states and the 
 associated quantum phase transitions can be studied in great detail, enabling direct access to universal properties and connections 
 with low-energy effective quantum field theories. As specific examples, we discuss the transition from a N\'eel antiferromagnet to 
 either a uniform quantum paramagnet or a spontaneously symmetry-broken valence-bond solid in SU($2$) and SU($N$) invariant spin models. 
@@ -46,16 +46,14 @@ of the Renyi variants of the entanglement entropy.
 \label{sec:intro}
 
 
-Quantum field theory is a powerful framework for studies of low-energy properties of complex strongly 
-correlated and entangled quantum matter systems \cite{Sachdev11}. There are potential pitfalls and difficulties 
-with this approach, however, and it is, therefore, important to also investigate systems directly based on the 
-lattice-scale Hamiltonian formulation. One of the most fruitful directions is to use numerical methods to study 
-Hamiltonians in an unbiased way, and to extract from these calculations emergent low-energy properties which can be 
-compared with results for corresponding quantum field theories. Such connections between the two approaches 
+Understanding the ground states of interacting microscopic quantum Hamiltonians is one of the central defining challenges of quantum condensed matter physics.
+Quantum field theory is a powerful and general framework for studies of low-energy properties of complex, strongly 
+correlated and entangled quantum matter \cite{Sachdev11}. However, the continuum approach has potential pitfalls due to its generality and significant limitations since it cannot capture many features of lattice scale physics. It is, therefore, important to study microscopic lattice Hamiltonians directly. One of the most fruitful directions is to combine the advantages of both methods by analyzing data from unbiased numerical investigations of lattice Hamiltonians with quantum field theoretic predictions of emergent low energy properties. 
+Such connections between the two approaches 
 can have significant synergistic effects in advancing our understanding of quantum many-body phenomena---as they
 have had and continue to have in classical statistical mechanics, especially in studies of phase transitions. 
 
-Computational research has its own challenges, however, and many quantum models of interest are currently beyond the reach 
+Computational research faces important challenges since many quantum models of interest are currently beyond the reach 
 of existing algorithms. Frustrated quantum spin systems and fermions in two and three dimensions are the two main groups 
 of difficult systems. They are generally associated with the infamous ``sign problem'' in quantum Monte Carlo (QMC) simulation
 \cite{Loh90,Henelius00,Nyfeler08}, i.e., the weight function in the configuration space constructed using the Euclidean path 
