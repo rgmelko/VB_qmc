@@ -53,16 +53,16 @@ insensitivity to lattice scale physics, making it important to also carry out di
 has been to combine the advantages of both methods by analyzing data from unbiased numerical investigations of lattice Hamiltonians with quantum field 
 theoretic predictions of emergent low energy properties. Such connections between the two approaches can have significant synergistic effects in advancing 
 our understanding of quantum many-body phenomena---as they have had and continue to have in classical statistical mechanics, especially in studies 
-of phase transitions {[\color{red} Refs]}. 
+of phase transitions \cite{Chaikin00}. 
 
 Computational many-body research faces important challenges since the quantum models of interest are often beyond the reach 
-of existing algorithms. Frustrated quantum spin systems and fermions in two and three dimensions are the two main groups 
+of existing algorithms. Two-dimensional (2D) and 3D frustrated quantum spin systems and fermion systems are the main groups 
 of difficult systems. They are generally associated with the infamous ``sign problem'' in quantum Monte Carlo (QMC) simulation
 \cite{Loh90,Henelius00,Nyfeler08}, i.e., the weight function in the configuration space constructed using the Euclidean path 
 integral or other mappings to an effective statistical-mechanics problem is not positive definite (and hence cannot be directly 
 used as a probability distribution for importance sampling). The approach we advocate and review here is to construct particular 
 ``designer Hamiltonians'', which host interesting ground states and quantum phase transitions but still are amenable to 
-large-scale QMC studies without sign problems (i.e., they are ``de-signed'' by design). 
+large-scale QMC studies without sign problems (i.e., they are designed and ``de-signed'' to be practically useful). 
 
 A common misconception is that interesting designer Hamiltonians should not exist---if a model is sign-problem 
 free it must be trivial or uninteresting. There are already many counter-examples to this pessimistic view, 
@@ -127,9 +127,8 @@ discovering novel phenomena, and, thereby, stimulate further theoretical develop
 A designer Hamiltonian corresponds to an effective classical statistical-mechanics model (with a real action), which arises out of the construction of the sampling 
 space in the QMC scheme implemented. Often, however, the resulting classical models have unusual degrees of freedom and interactions, unanticipated in the study 
 of classical statistical mechanics. In particular, while in some cases quantum phenomena in $d$ dimensions can be studied in the simplest generalization to a 
-classical model with the same global symmetries in $d+1$ dimensions \cite{Rieger94,Sorensen92,Nahum11} (e.g., the quantum-critical point of the transverse field 
-Ising chain is described by the ($1+1$)-dimensional Ising field theory \cite{Sachdev11}) {\color{red} [Is it just the critical point? Is this ft also
-not describing the two phases?]}, in other cases this naive mapping can miss important and intriguing 
+classical model with the same global symmetries in $d+1$ dimensions \cite{Rieger94,Sorensen92,Nahum11} (e.g., the quantum phase transition of the transverse field 
+Ising chain is described by the ($1+1$)-dimensional Ising field theory \cite{Sachdev11}), in other cases this naive mapping can miss important and intriguing 
 phenomena special to quantum mechanics \cite{Senthil04a,Fradkin04,Sachdev08}. Thus, in our view the approach of directly studying manifestly quantum mechanical 
 designer Hamiltonians is an important direction in forming an unbiased picture of quantum criticality and emergent phenomena.
 
@@ -373,7 +372,8 @@ The direct measure of Renyi entropies can not be done in QMC using conventional 
 measure $S_{\alpha}$ using a {\it replica trick} \cite{Holz,Cardy, Fradkin, BP, Naka}.  Here, $\alpha$ copies of the simulation cell are used, with modified 
 periodic boundaries in the expansion (or imaginary time) direction.  The evaluation of Renyi entropies proceeds in formally different ways for $T=0$ and $T>0$ 
 QMC methods \cite{Hastings10,Melko10}.  Namely, for $T=0$, the calculation of $S_{\alpha}$ proceeds in analogy with Eq.~(\ref{za2}) (where $\Psi$ is the wavefunction 
-of the $\alpha$ times replicated system), with the operator $A$ replaced by a ``swap'' \cite{Hastings10} or ``permutation'' operator \cite{Kallin11}. This is easiest to 
+of the $\alpha$ times replicated system), with the operator $A$ replaced by a ``swap'' operator for $\alpha=2$ \cite{Hastings10} or ``permutation'' 
+operator for $\alpha \ge 3$ \cite{Kallin11}. This is easiest to 
 understand in the context of the projector algorithm discussed in Sec.~\ref{su2method}.  Here, the second-Renyi entropy (for example) is given by the
  mid-point evaluation of a SWAP$_A$ operator
 on two replicas of the system (see Fig.~\ref{swap}), that literally swaps states 
@@ -421,6 +421,7 @@ interactions, which, however, are sign problematic in QMC simulations. The J-Q m
 problem. We will review some of the recent work aimed at characterizing its VBS state and  N\'eel--VBS transition.
 
 \subsection{N\'eel--paramagnetic transition in dimerized systems}
+\label{sec:dimermodels}
 
 Consider $S=1/2$ spins on a 2D bipartite lattice (e.g., the simple square lattice), interacting with antiferromagnetic Heisenberg exchange of 
 strength $J_1$, written using the singlet projectors (\ref{psinglet}),
@@ -434,9 +435,9 @@ let there be additional intra-dimer couplings of strength $\lambda$ (i.e., the t
 \begin{equation}
 H = H_1  -\lambda \sum_{[ i,j]} P_{ij} .
 \end{equation}
-If $\lambda>0$ and $J_1\to 0$, the ground state is clearly a product of singlets on the dimers, which is a quantum paramagnetic state, while if $\lambda=0$ 
+If $\lambda>0$ and $J_1\to 0$, the ground state is clearly a product of singlets on the dimers, a quantum paramagnetic state, while if $\lambda=0$ 
 the system is the standard Heisenberg model (\ref{h1def}). There is, thus, a quantum phase transition between N\'eel and paramagnetic ground states as a 
-function of the coupling ratio $g=(J_1+\lambda)/J_1$. The dimers can be arranged in different ways, and instead of dimers one can also use larger $J_1$-coupled 
+function of the ratio $g=(J_1+\lambda)/J_1$. The dimers can be arranged in different ways, and instead of dimers one can also use larger $J_1$-coupled 
 units of an even number of spins, e.g., $4$-site plaquettes, or one can use a bilayer, with $J_1$ and $J_2$ the inter-and intra-layer couplings, respectively.
 
 \subsubsection{$T=0$ criticality}
@@ -445,25 +446,26 @@ should be in the standard classical 3D O($3$) universality class. Many QMC studi
 have been devoted to checking the exponents against available results for the classical transition \cite{Sandvik94,Troyer96,Matsumoto01,Wang06,Wenzel08,Wenzel09}.
 For some of the systems, e.g., bilayers \cite{Wang06} and columnar dimers on the square lattice \cite{Matsumoto01,Wenzel09,Sandvik10b}, results have been 
 obtained that rival classical calculations in precision (statistical error bars) and in general the exponents agree very well with each other. In other 
-cases (e.g., with the dimers arranged in a staggered pattern), some studies initially indicated a new universality class \cite{Wenzel08}, while others
-supported the O($3$) transition \cite{Jiang12}.  Later it was realized that these cases, where the dimer pattern lack inversion symmetry, are associated 
+cases, e.g., with the dimers arranged in a staggered pattern, some studies initially indicated a new universality class \cite{Wenzel08}, while others
+supported the O($3$) transition \cite{Jiang12}.  Later it was realized that these cases, where the dimer pattern lacks inversion symmetry, are associated 
 with certain operators (cubic interactions) in the field-theory formulation  which are not present in systems with inversion symmetry \cite{Fritz11}. 
-These operators are asymptotically irrelevant in the RG sense, but can lead to substantial finite-size corrections which can easily be mistaken for a 
+These operators are asymptotically irrelevant in the RG sense, but can lead to substantial finite-size corrections that can easily be mistaken for a 
 different universality class.
 
 \subsubsection{$T>0$ quantum-critical scaling}
 Field-theoretical descriptions using the nonlinear $\sigma$-model \cite{Haldane83,Chakravarty89,Chubukov94} have given a wealth of 
 predictions also for the $T>0$ quantum-critical ``fan'' extending out into the plane $(g,T)$  from the quantum-critical point $(g_c,0)$. Quantum-critical
-scaling in this extended $T>0$ region is an important characteristic of quantum phase transitions, in contrast to classical phase transitions with typically 
-very narrow regions of critical scaling. This aspect of criticality dimerized models have also been investigated in detail with QMC 
+scaling in this extended $T>0$ region is an important generic characteristic of quantum phase transitions, in contrast to classical phase transitions with typically 
+very narrow regions of critical scaling. This aspect of criticality in dimerized models have also been investigated in detail with QMC 
 studies \cite{Sandvik95,Brenig06,Sandvik11a}
 
 \subsubsection{Experimental realizations}
 A N\'eel--paramagnetic transition of the type discussed above can in principle be experimentally realized in systems consisting of coupled dimers as a function 
-of pressure. The authors are not aware of any case where the phase transition can be crossed in 2D geometry, but a well-studied 3D case is TlCuCl$_3$ 
-\cite{Cavadini01,Ruegg04}. Here neutron scattering shows clear evidence of the phase transition from a paramagnet to a N\'eel state at a critical pressure 
-\cite{Ruegg08}. In this case the values of the couplings and their pressure dependence are are not in detail, but one can still learn a lot from studies 
-of designer Hamiltonians by focusing on universal properties [Daoxin] \cite{Troyer97,Yao07,Jin12,Oitmaa11}.
+of pressure. The authors are not aware of any case where the phase transition can be crossed in 2D geometry (or in quasi-2D systems consisting of weakly 
+coupled planes), but a well-studied 3D case is TlCuCl$_3$ \cite{Cavadini01,Ruegg04}. Here neutron scattering shows clear evidence of the phase transition 
+from a paramagnet to a N\'eel state at a critical pressure \cite{Ruegg08}, including the analogue of the Higgs boson (longitudinal mode) in the ordered 
+state \cite{Sachdev09}. In this case the values of the couplings and their pressure dependence are are not in detail, but one can still learn a lot from 
+studies of designer Hamiltonians by focusing on universal properties \cite{Troyer97,Yao07,Jin12,Oitmaa11}.
 
 \subsection{Deconfined N\'eel--VBS transition in J-Q models}
 \label{ss:jq2}
@@ -473,28 +475,27 @@ calculations. The proposal of a DQC point separating the N\'eel and VBS states m
 of suitable designer 
 Hamiltonians amenable to QMC simulations. Numerical work preceeding the theory \cite{Sandvik02} had already indicated the intriguing possibility of 
 a continuous magnetic--VBS quantum phase transitions (where standard arguments based on Landau-Ginzburg theory predict generically first-order transitions) in
-U($1$) (quantum XY models), but SU($2$) spin models exhibiting N\'eel--VBS transitions were lacking until the introduction of the J-Q class of models, where 
-$J$ refers to Heisenberg exchange on a bipartite lattice and $Q$ is a multi-spin interaction which competes against N\'eel order but does not generate 
+U($1$) (quantum XY models), but tractable SU($2$) spin models exhibiting N\'eel--VBS transitions were lacking until the introduction of the J-Q class of models, 
+where $J$ refers to Heisenberg exchange on a bipartite lattice and $Q$ is a multi-spin interaction which competes against N\'eel order but does not generate 
 a sign problem. 
 
-The $Q$ terms are most conveniently expressed in terms of the singlet projectors (\ref{psinglet}); in the simplest case on the 2D square lattice
+The $Q$ interactions are most conveniently expressed in terms of the singlet projectors (\ref{psinglet}), in the simplest case on the 2D square lattice;
 \begin{equation}
 H_Q = - Q\sum_{\langle ijkl\rangle } P_{ij}P_{kl},
 \label{hqdef}
 \end{equation}
-where $ij$ and $kl$ form parallel edges (with both horizontal and vertical arrangements included) on a $2\times 2$ plaquette. 
-One can also use more than two projector in the product, and often the notation $Q_p$ is used for an interaction with $p$ projectors. 
-Fig.~\ref{qterms} illustrates $Q_2$ and $Q_3$ terms leading to columnar VBS ground states. In addition to the number of projectors in the product, 
-they way the $p$ individual projectors are arranged relative to each other on the lattice is also crucial, with different patterns leading to different 
-VBS ground states of the ``pure $Q$'' models (\ref{hqdef}). N\'eel to VBS transitions can be studied in $J$-$Q$ models, $H=H_J+H_Q$, as a function of
-the ratio $J/Q$ of multi-spin and standard Heisenberg exchange. 
+where the site pairs $ij$ and $kl$ form parallel edges (with both horizontal and vertical arrangements included) on a $2\times 2$ plaquette. 
+One can also consider more than two projectors in the product and denote by $Q_p$ an interaction with $p$ projectors. Fig.~\ref{qterms} illustrates $Q_2$ 
+and $Q_3$ terms leading to columnar VBS ground states. In addition to the number of projectors in the product, they way they are arranged relative to each 
+other on the lattice is also crucial, with different patterns leading to different VBS ground states of the ``pure $Q$'' models (\ref{hqdef}). N\'eel to 
+VBS transitions can be studied in $J$-$Q$ models, $H=H_J+H_Q$, as a function of the ratio $J/Q$ of multi-spin and standard Heisenberg exchange. 
 
 A staggered $Q_3$ term on the square lattice was investigated in Ref.~\cite{Sen10}. This leads to a strongly first-order transition. In contrast, 
 the columnar arrangements in Fig.~\ref{qterms} lead to continuous transitions (or, in principle, the transition could be very weakly first-order). 
 Various types of $Q$ terms have also been investigated in the honeycomb lattice \cite{Banerjee11}, with similar results. In analogy with quantum 
-dimer models, first-order transitions correspond to VBS states that do not support any local dimer fluctuations, while the continuous transitions 
-are into VBSs where such fluctuations exist. Alternatively, one can relate the different behaviors to different types of topological 
-defects in the VBS \cite{levin2004:vbs,Banerjee11}.
+dimer models \cite{Rokhsar88,Moessner01}, first-order transitions correspond to VBS states that do not support any local dimer fluctuations, while 
+the continuous transitions are into VBSs where such fluctuations exist. Alternatively, one can relate the different behaviors to different types of 
+topological defects in the VBS \cite{levin2004:vbs,Banerjee11}.
 
 \begin{figure}
 \centerline{\psfig{figure=qterms.eps,height=4.5cm}}
@@ -507,21 +508,21 @@ $C_{ij}$ on site pairs $ij$. The Hamiltonian contains all unique translations of
 
 The critical behavior of both the $J$-$Q_2$ and $J$-$Q_3$ models (with dimer arrangements as in Fig.~\ref{qterms}) on the simple 2D square 
 lattice has been analyzed in detail in several different ways \cite{Sandvik07,Jiang08,melko2008:jq,lou2009:sun,Sandvik10c}. One useful quantity 
-for studying the criticality of the N\'eel order parameter is the spin stiffness $\rho_s$. It should scale in the critical ground state as 
-$\rho_s \sim L^{2-d-z}$, where $z$ is the dynamic exponent. The DQC theory is Lorenz-invariant, i.e., $z=1$. One can test this prediction by graphing 
+for studying the N\'eel state is the spin stiffness $\rho_s$. It should scale at a critical point as $\rho_s \sim L^{2-d-z}$, 
+where $z$ is the dynamic exponent. The DQC theory is Lorenz-invariant, i.e., $z=1$. One can test this prediction by graphing 
 $L\rho_s(L)$ versus the coupling ratio $J/Q$ for different $L\times L$ lattices (in the ground state or with the inverse temperature $\beta \propto L^z$). 
-Such curves should cross at the critical point. In practice, the crossing point often exhibit some drift with $L$ \cite{melko2008:jq}, reflecting scaling 
+Such curves should cross at the critical point. In practice, crossing points often exhibit some drift with $L$ \cite{melko2008:jq}, reflecting scaling 
 corrections \cite{Sandvik10c}. Results for the $J$-$Q_2$ model are graphed in Fig.~\ref{jqrhos} and discussed next.
 
 In the $J$-$Q$ models the drift is anomalously large, which in one study \cite{Jiang08} had been interpreted as a weakly first-order transition (for which 
-$L\rho_s$ should eventually diverge as $L$, due to coexistence of a stiff and non-stiff phase). Another possibility is that the model in fact has unusually
+$L\rho_s$ should eventually diverge as $L$, due to coexistence of a stiff and a non-stiff phase). Another possibility is that the model in fact has unusually
 large scaling corrections, that could be intimately associated with the nature of the DQC point. For example, in the DQC theory the perturbation to the 
 critical point leading to VBS order (a quadrupled monopole operator) is dangerously irrelevant. It could potentially lead to large, but ultimately conventional
 scaling corrections. Another possibility is that the corrections are logarithmic (multiplicative) \cite{Sandvik10c,banerjee2010:log}, similar to those known 
 in the critical Heisenberg chain \cite{Giamarchi89}. Such corrections do not appear in the large-$N$ calculations of the CP$^{N-1}$ theory, but potentially they could 
 appear for small $N$, as has recently also been argued for based on a modified version of the DQC theory \cite{Nogueira11}. Numerical data for the $J$-$Q_2$ 
-model \cite{Sandvik10c}, on lattices with $L$ up to $256$, can, in fact, be well accounted for by a log correction, as shown in Fig.~\ref{jqrhos}, but the 
-deviations from pure scaling can also be taken into account with a conventional correction of the form $(1+aL^{-\omega})$ with large $a$ and small $\omega$.
+model \cite{Sandvik10c}, on lattices with $L$ up to $256$, can be well accounted for by a log correction, as shown in Fig.~\ref{jqrhos}, but the 
+deviations from pure scaling can also be fitted with a conventional multiplicative correction of the form $(1+aL^{-\omega})$ with large $a$ and small $\omega$.
 
 \subsubsection{$T>0$ critical scaling} The quantum-critical ``fan'' in the $(J/Q,T)$ plane has also been investigated. Initial calculations confirmed that
 the scaling is governed by a $z=1$ critical point \cite{melko2008:jq}. Later studies \cite{Sandvik10c,Sandvik11a} noted log-like corrections also here, e.g., 
@@ -541,13 +542,13 @@ for all systems with $L\ge 48$.}
 
 \subsubsection{Emergent U($1$) gauge fluctuations}
 
-An important aspect of the DQC theory is the emergent conservation law of the gauge flux, due to the irrelevance of monopoles at the critical point. 
-Remarkably, the  U($1$) symmetry associated with the conservation law at the critical point is emergent, and is not contained in the $J$-$Q$ model, which
-only has an SU($2$) spin-rotational symmetry, the discrete symmetries of the square lattice and time reversal. An emergent U($1$) symmetry 
-can, however, be observed in the fluctuations of the VBS order parameter \cite{Sandvik07}. Naively one would expect these fluctuations 
-to reflect the Z$_4$ symmetry of the VBS (which is dictated by the square lattice), but instead the symmetry group expands to U($1$) 
-upon approach to the critical point. The interpretation of this emergent U($1$) symmetry is that it reflects the non-compactness of the gauge field (``photon'') 
-of the DQC theory. Here we will briefly review how this emergent symmetry is detected in QMC simulations.
+An important and remarkable aspect of the DQC theory is the emergent conservation law of the gauge flux, due to the irrelevance of monopoles at the critical point. 
+There is an associated U($1$) symmetry associated with this conservation law at the critical point, which is also emergent and not explicitly contained in 
+the $J$-$Q$ model, which only has an SU($2$) spin-rotational symmetry, the discrete symmetries of the square lattice and time reversal. The emergent U($1$) 
+symmetry can, however, be observed in the fluctuations of the VBS order parameter \cite{Sandvik07}. Naively one would expect these fluctuations 
+to reflect the Z$_4$ symmetry of the VBS (which is dictated by the square lattice), but instead the symmetry group expands to U($1$) upon approach to the 
+critical point. The interpretation of this emergent U($1$) VBS symmetry is that it reflects the non-compactness of the gauge field (``photon'') 
+of the DQC theory. Here we will review how this emergence is detected in QMC simulations.
 
 Consider the VBS (dimer-dimer) correlation function,
 \begin{equation}
@@ -555,49 +556,50 @@ C_{\alpha} ({\bf r}_{ij}) = \bigl \langle B_\alpha({\bf r}_i)B_\alpha({\bf r}_j)
 \label{cddef}
 \end{equation}
 where ${\bf r}_{ij}={\bf r}_{i}-{\bf r}_{j}$ is the spatial separation of the operators $B_\alpha$, $\alpha=\hat x,\hat y$,
-which measure the spin correlations on nearest-neighbor bonds oriented in the $\alpha$ direction, e.g., for $\alpha=\hat x$
+which measure the spin correlations on nearest-neighbor bonds oriented in the $\alpha$ lattice direction, e.g., for $\alpha=\hat x$
 \begin{equation}
 B_{\hat x}({\bf r})={\bf S}({\bf r}) \cdot {\bf S}({\bf r}+\hat {\bf x}).
 \label{bxdef}
 \end{equation}
-We define the expectation value of this operator when averaged over all sites $i$; $b_\alpha=\langle B_{\alpha}(x,y)\rangle \not = 0$. In a VBS, the 
-expectation value acquires a modulation. With the dimers (stronger bonds) oriented in the $x$ direction, the asymptotic form of the $x$ dimer correlations 
-is $C_{\hat x}(x,y) = b_{\hat x}^2+(-1)^{x}(a{\rm e}^{-r/\xi}+D^2)$, where $r=(x^2+y^2)$, $D$ is the magnitude of the order parameter, and $a$ 
-is a constant. The rate of decay of the oscillaing term toward the non-zero value $D^2$ as $r\to \infty$ defines the correlation length $\xi$. This is the 
-standard definition of a correlation length, as the length-scale associated with the order parameter. Normally this is the largest length-scale in the system. 
+We define the expectation value of this operator when averaged over all sites ${\bf r}=(x,y)$; $b_\alpha=\langle B_{\alpha}(x,y)\rangle \not = 0$. In a VBS, the 
+expectation value acquires a spatial modulation. With the dimers (stronger bonds) oriented in the $x$ direction, the asymptotic form of the $x$ dimer correlations 
+in a columnar VBS is $C_{\hat x}(x,y) = b_{\hat x}^2+(-1)^{x}(D^2+a{\rm e}^{-r/\xi})$, where $r=(x^2+y^2)$, $D$ is the magnitude of the order parameter, and $a$ 
+is a constant. The rate of decay of the oscillaing term toward the non-zero value $D^2$ as $r\to \infty$ defines the correlation length $\xi$ (and we have
+suppressed the directional dependence on $\xi$---which can be parametrized by $\xi_x$ and $\xi_y$). This is the standard definition of a correlation 
+length, as the length-scale associated with the order parameter. Normally this (the larger of $\xi_x,\xi_y$) is the largest length-scale in the system. 
 
 In a symmetry-broken VBS, we can consider also dimer correlations in the direction $\hat y$ perpenducular to the dimers. The asymptotic form of these correlations 
-is $C_{\hat y}(x,y) = b_{\hat y}^2 + c{\rm e}^{-r/\Lambda}$, where $c$ is another constant. These correlations are, at first sight, not associated with the order
-parameter and the length-scale $\Lambda$ would normally not be referred to as ``the correlation length''. However, $\Lambda$ can actually be larger than 
-$\xi$, and this is at the heart of the emergent U($1$) symmetry of the VBS. According to the DQC theory, both lengths diverge as the critical point is 
-approached, and $\Lambda \sim \xi^{1+a}$ with $a>0$. Close to the critical point, where the order parameter $D$ is small and $\Lambda \gg \xi$, on 
-length scales less than $\Lambda$ the system will appear to have both $x$ and $y$ VBS order.
+is $C_{\hat y}(x,y) = b_{\hat y}^2 + c{\rm e}^{-r/\Lambda}$, where $c$ is another constant (and again there are really two decay constants; $\Lambda_x$ and
+$\Lambda_y$). These correlations are, at first sight, not associated with the order parameter and the length-scale $\Lambda$ would normally not be referred to 
+as ``the correlation length''. However, $\Lambda$ can actually be larger than $\xi$, and this is at the heart of the emergent U($1$) symmetry of the VBS. 
+According to the DQC theory, both lengths diverge as the critical point is approached, and $\Lambda \sim \xi^{1+a}$ with $a>0$. Close to the critical point, 
+where the order parameter $D$ is small and $\Lambda \gg \xi$, on length scales less than $\Lambda$ the system will appear to have both $x$ and $y$ VBS order.
 
 One can also associate $\Lambda$ with fluctuations of the {\it angle} of the order parameter. Since the VBS order parameter is a $2D$ vector, ${\bf D}= (D_x,D_y)$, 
 one can define a magnitude $D$ and an angle $\Theta$. $\Lambda$ defines a length scale below which the order parameter exhibits U($1$) symmetry---the system
 not only has both $x$ and $y$ order up to this length scale, but one can think of the angle as fluctuating uniformly, even though it has to take one of the 
 values $n\pi/2$ when the order parameters $D_x$ and $D_y$ of a symmetry-broken state are averaged over regions of size $\gg \Lambda$. There are many interesting 
-consequences of the approximate U($1$) nature of the VBS order parameter, as further discussed in Ref.~\cite{Sandvik12}.
+consequences of the emergent U($1$) symmetry of the VBS order parameter, as further discussed in Ref.~\cite{Sandvik12}.
 
 This phenomenon of an emergent symmetry higher than that of the order parameter in an ordered state is in fact a general aspect of systems with 
 dangerously irrelevant perturbations. These perturbations reduce the symmetry of a system in such a way that the standard critical exponents 
-of a phase transition into an ordered state are unaffected, but the symmetry broken in the ordered state is reduced \cite{Jose77,Oshikawa00}. A 
+at a phase transition into an ordered state are unaffected, but the symmetry broken in the ordered state is reduced \cite{Jose77,Oshikawa00}. A 
 prototypical example is the 3D classical XY model with an added on-site potential $h\cos(q\theta_i)$ on all sites $i$, where $\theta_i$ is the spin 
-angle and $q$ and integer \cite{Carmona00}. This model orders at a critical temperature $T_c(h)$, but, regardless of the value of $h$, the critical exponents 
-do not depend on $h$ and are those of the standard XY transition. However, instead of breaking the continuous U($1$) symmetry, as the original $h=0$ model does, 
+angle and $q$ an integer \cite{Carmona00}. This model orders at a critical temperature $T_c(h)$, but, regardless of the value of $h$, the critical exponents 
+are those of the standard XY transition. However, instead of breaking the continuous U($1$) symmetry, as the original $h=0$ model does, 
 now only a $q$-fold (Z$_q$) symmetry is broken. As in the VBS discussed above, there is a length-scale $\Lambda \sim \xi^{1+a(q)}$ in the ordered state, which 
 is associated with U($1$) symmetric fluctuations of a course-grained order parameter (magnetization) $(m_x,m_y)$. Finite-size scaling procedures have been 
 developed \cite{Lou07} to access the exponent $a(q)$ directly based on the cross-over from U($1$) to Z$_q$ symmetry seen in the order-parameter distribution 
 $P(m_x,m_y)$. Such techniques have also been employed to study the VBS fluctuations of the $J$-$Q$ model, as we discuss next.
 
-In simulations of a VBS on a finite lattice, where the Z$_4$ symmetry is not broken, one can study the emergent U($1$) and the length-scale
-$\Lambda$ by accumulating the probability distribution $P(D_x,D_y)$, where $D_x$ and $D_y$ are defined on the whole system in terms of the expectation
-values of the operators $B_\alpha$ in Eq.~(\ref{bxdef}), Fourier transformed at $(\pi,0)$ and $(0,\pi)$ for $\hat x$ and $\hat y$ correlations, respectively.
+In simulations of a VBS on a finite lattice, where the Z$_4$ symmetry is not broken, one can study the emergent U($1$) and the length-scale $\Lambda$ by 
+accumulating the probability distribution $P(D_x,D_y)$, where $D_x$ and $D_y$ are defined on the whole system in terms of the expectation values of the 
+operators $B_\alpha$ in Eq.~(\ref{bxdef}), Fourier transformed at $(\pi,0)$ and $(0,\pi)$ for $\alpha=\hat x$ and $\alpha=\hat y$ correlations, respectively.
 Fig.~\ref{jq3histo} shows results for the $J$-$Q_3$ model at two different ratios $J/Q_3$. Far away from the critical point the histogram exhibits a four-fold
 symmetry consistent with a columnar VBS, while closer to the transition point the distribution is ring-shaped. The radius of the ring corresponds
 to the magnitude $D$ of the order parameter, and the absence of four-fold symmetry implies that here the system size $L=32 < \Lambda$. By analyzing the
 cross-over from Z$_4$ to U($1$) symmetry using finite-size scaling techniques, one can extract the exponent governing the length-scale $\Lambda$, with 
-the result that $\Lambda \sim \xi^{1+a}$, with $a=0.20 \pm 0.05$ \cite{lou2009:sun}.
+the result that $\Lambda \sim \xi^{1+a}$, with $a \approx 0.2$ \cite{lou2009:sun}.
 
 
 \begin{figure}
@@ -610,11 +612,11 @@ the result that $\Lambda \sim \xi^{1+a}$, with $a=0.20 \pm 0.05$ \cite{lou2009:s
 
 \subsubsection{Spinon deconfinement}
 
-The U($1$) lengt scale discussed above should also be reflected in the confinement of spinons (i.e., the soze of a bound state) in the VBS state. By utilizing 
+The U($1$) lengt scale discussed above should also be reflected in the confinement of spinons (i.e., the size of a bound state) in the VBS state. By utilizing 
 properties of the valence-bond basis, discussed in Sec.~\ref{su2method}, and generalizations to non-zero total magnetization \cite{Banerjee10b,Wang10}, it is 
-possible to directly access $S=1$ excitations of VBS states and study its structure in terms of bound or unbound (deconfined spinons). Such calculations have 
+possible to directly access $S=1$ excitations of VBS states and study their structure in terms of bound or unbound (deconfined spinons). Such calculations have 
 already been used to characterize deconfined spinons using a designer Hamiltonian with a VBS state and a N\'eel--VBS transition in one dimension \cite{Tang11a}. 
-Similar calculations for 2D J-Q models should shed further light on the nature of the spinons at the DQC point.
+Similar calculations for 2D J-Q models should shed further light on the nature of the spinons in the vicinity of the DQC point.
 
 Another approach to confirming spinon excitations, which has already been employed for the 2D J-Q model, is to study the thermodynamic properties at 
 criticality and compare them with predictions for a simple model of a gas of thermally excited bosonic spinons \cite{Sandvik11a}. The results show a remarkable 
@@ -623,13 +625,14 @@ consistency among different quantities which are related through expressions for
 \section{N\'eel-VBS transition in SU($N$) spin models}
 \label{sec:sunmodels}
 
-In this section we will discuss quantum criticality in SU($N$) spin models on 2D square lattices, as generalizations of the cases discussed above. 
-Secs.~\ref{ss:j1N},~\ref{ss:jqN},~\ref{ss:j1j2N} describe studies carried out on a single layer and Sec.~\ref{ss:bilN} describes a study on a bilayer. 
+In this section we will discuss quantum criticality in SU($N$) spin models on 2D square lattices, as systematic generalizations of the SU($2$) systems 
+discussed above. Secs.~\ref{ss:j1N},~\ref{ss:jqN},~\ref{ss:j1j2N} describe studies carried out on a single layer and Sec.~\ref{ss:bilN} describes a study 
+on a bilayer. 
 
 \subsection{SU($N$) Heisenberg models}
 \label{ss:j1N}
 A natural extension of the SU($2$) Heisenberg model is to spin models with SU($N$) symmetry. Such generalizations were initially introduced to
-facilitate access to a solvable large-$N$ limit~\cite{affleck1985:lgN,Read89}. In the meantime, new physical systems have motivated an interest 
+facilitate access to a solvable large-$N$ limit~\cite{affleck1985:lgN,Read89}. In the meantime, new physical systems have also motivated an interest 
 in such models at arbitrary finite values of $N$~\cite{gorshkov2010:sun,kugel1982:kk}, leading to extensive studies of SU($N$) spin systems. The 
 physical degrees of freedom of a particular spin model depend not only on the global symmetry but also on the chosen representation under which the 
 spins transform. Thus, there are a number of distinct extensions of the SU($2$) model to SU($N$), depending on what properties are intended to be retained 
@@ -639,15 +642,15 @@ In the context of the study of the DQC point at the N\'eel-VBS transition, the a
 central characteristic required to form a VBS. It is possible to choose SU($N$) models which have this property by working on bipartite lattices and
 assigning SU($N$) spins that transform as relative conjugate representations on each of the sublattices, as discussed in Sec.~\ref{ss:su2N}, In such 
 models it is possible to form a singlet between two spins on opposite sub-lattices, and hence a valence bond solid can in principle form.  The simplest 
-SU($N$) invariant two-site Hamiltonian interaction one can define for such models is given by Eq.~(\ref{h1def}) with $P_{ij}$ generalized to the SU($N$) 
-singlet projector defined in Sec.~\ref{ss:su2N}. We note again that for $N=2$ this reduces to the familiar Heisenberg model. The model $H_{J_1}$ does 
-not suffer from the sign problem. 
+SU($N$) invariant two-site sign-problem free Hamiltonian interaction one can define for such models is given by $H_1$ in Eq.~(\ref{h1def}), with $P_{ij}$ 
+generalized to the SU($N$) singlet projector defined in Sec.~\ref{ss:su2N}. We note again that for $N=2$ this reduces to the familiar Heisenberg model. 
 
-The Hamiltonian Eq.~(\ref{h1def}) has been studied extensively. For a one-dimensional chain the well known critical Bethe state for $N=2$ gives way to a 
-valence bond solid ordered state for all $N\geq 3$~\cite{barber1989:d1n3_vbs,klumper1989:d1n3_vbs,affleck1985:lgN}.   In two-dimensions, $H_{J_1}$ was shown 
+The Hamiltonian Eq.~(\ref{h1def})
+has been studied extensively. On a 1D chain the well known critical Bethe state for $N=2$ gives way to a 
+valence bond solid ordered state for all $N\geq 3$~\cite{barber1989:d1n3_vbs,klumper1989:d1n3_vbs,affleck1985:lgN}. The 2D version of $H_{1}$ was shown 
 in the large-$N$ limit to map onto a dimer model with only a kinetic term \cite{read1989:nucphysB}. From direct QMC simulations on the quantum dimer model, 
-it is known that the kinetic-only model orders into a VBS \cite{sachdev1989:qd_vbs}.  This implies that in $H_{J_1}$ there must be a transition between the 
-magnetic state at $N=2$ and the VBS at $N=\infty$.  The location of the transition in Eq.~(\ref{h1def}) was first determined to lie between $N=4$ and $N=5$ 
+it is known that the kinetic-only model orders into a VBS \cite{sachdev1989:qd_vbs}.  This implies that in $H_{1}$ there must be a transition between the 
+magnetic state at $N=2$ and the VBS at $N=\infty$.  The location of the transition was first determined to lie between $N=4$ and $N=5$ 
 by QMC simulations~\cite{harada2003:sun}.
 
 
@@ -671,75 +674,71 @@ order for $N\geq 5$ in the SU($N$) antiferromagnet, Eq~(\ref{h1def}). In order t
 given value of $N\leq 4$ one needs new ``designer'' couplings that destroy the N\'eel phase and result in the VBS. The first such term discovered 
 was the $Q$-interaction, Eq.~(\ref{hqdef}), introduced for SU($2$) in Sec.~\ref{ss:jq2}. It can be generalized for any $N$, with $P_{ij}$ again 
 the SU($N$) singlet projectors. Since the matrix elements of $P_{ij}$ are all positive, such a $Q$ coupling is free of the QMC sign problem. 
+
 It turns out that the $Q$-only model, with the projectors arranged as in Fig.~\ref{qterms}, is always VBS ordered, so that for the cases of $N=2,3,4$, 
-the $J_1$-$Q$ model has a N\'eel-VBS transition~\cite{Sandvik07,lou2009:sun}. Detailed numerical studies of the $J_1$-$Q$ model for these $N$ find strong 
-evidence for a continuous transition between N\'eel and VBS~\cite{melko2008:jq,kaul2011:su34,banerjee2010:log,banerjee2010:su3}. The data for certain 
-observables show deviations from simple scaling laws for the system sizes studied, that could either be due to conventional corrections to scaling or 
-actual violations of simple scaling laws (but not resembling violations of the kind that would be expected at a first-order transition \cite{Sandvik10c}]. 
-The origin of these corrections remains to be resolved.
+the $J_1$-$Q$ model has a N\'eel-VBS transition~\cite{Sandvik07,lou2009:sun}. Detailed QMC studies for these $N$ find strong evidence for a 
+continuous transition between the N\'eel and VBS ground states\cite{melko2008:jq,kaul2011:su34,banerjee2010:log,banerjee2010:su3}. 
+As discussed above for the SU($2$) case, certain observables show deviations from simple scaling laws for the system sizes studied, that could either 
+be due to conventional corrections to scaling or actual violations of simple scaling laws (but not resembling violations of the kind that would be 
+expected at a first-order transition \cite{Sandvik10c}]. The origin of these corrections remains to be resolved.
 
 \subsection{SU($N$) $J_1$-$J_2$ model for $N\geq 5$}
 \label{ss:j1j2N}
 
-For $N\geq 5$, the $Q$ term strengthens
-the VBS that is already present in the $J_1$ only model, and hence to
-study the N\'eel-VBS transition for large-$N$, a new designer
-Hamiltonian is needed. To supply such a model, we
-introduce an interaction between sites on the same sub-lattice $J_2$ which favors the N\'eel state,
+For $N\geq 5$, the $Q$ term strengthens the VBS that is already present in the $J_1$ only model, and hence to study the N\'eel-VBS transition 
+for large-$N$, a new designer Hamiltonian is needed. To supply such a model, an interaction can be included
+between sites on the same sub-lattice $J_2$ which favors the N\'eel state \cite{kaul2011:j1j2},
 \begin{equation}
-H_{J_2}= -J_2 \sum_{\langle\langle ij\rangle\rangle} \Pi_{ij},
+H_{2}= -J_2 \sum_{\langle\langle ij\rangle\rangle} \Pi_{ij},
 \end{equation}
-where the $\Pi_{ij}$ interaction was introduced in Eqs.~\ref{pija} and \ref{pijb}.
-In order to see that this interaction favors the N\'eel state, we note that in the $H_{J_2}$ model by itself, the two sublattices 
+where the $\Pi_{ij}$ interaction was introduced in Eqs.~(\ref{pija}) and (\ref{pijb}).
+In order to see that this interaction favors the N\'eel state, we note that in the $H_{2}$ model by itself, the two sublattices 
 are decoupled. The ground state corresponds to having an independent SU($N$) ferromagnet on each sublattice. Turning on a small $J_1\ll J_2$ 
 interaction will clearly cause the sub-lattice degeneracy to be lifted, resulting in the two independent ferromagnets to lock into a single
 antiferromagnetic state. These arguments are true independent of the value of $N$. Thus, for every $N\geq 5$ the VBS state is realized when 
 $J_1\gg J_2$ and the N\'eel state is obtained when $J_2 \gg J_1$. Thus, there must be at least one quantum phase transition as the ratio
-$J_2/J_1$ is tuned. From numerical simulations on $J_1$-$J_2$ model, there is compelling evidence for a direct transition between these two 
-phases with no indication of an intervening phase. The phase diagram of the $J_1$-$J_2$-$Q$ model as a functions of $N$ is summarized 
-in Fig.~\ref{fig:pdj1j2q}.
+$J_2/J_1$ is tuned. From numerical simulations of $J_1$-$J_2$ model, there is compelling evidence for a direct transition between these two 
+phases with no indication of an intervening phase. One can also include a $Q$ term. The phase diagram of the $J_1$-$J_2$-$Q_2$ model as a functions 
+of $N$ is summarized in Fig.~\ref{fig:pdj1j2q}.
 
 An important prediction of the DQC scenario~\cite{Senthil04a} at the N\'eel-VBS transition is that both order parameters are
-simultaneously quantum critical at the phase transition and that space and time scale in the same way, {\em i.e.} the dynamic critical 
+simultaneously quantum critical at the phase transition and that space and time scale in the same way, i.e., the dynamic critical 
 exponent $z=1$. This implies that both correlation functions decay as Lorentz-invariant power laws,
 \begin{equation}
 \label{eq:expdef}
-C_{N,V} ({\bf r},\tau) \sim  \frac{1}{~{(\bf r}^2+c^2\tau^2)^{\frac{(1+\eta_{V,N})}{2}}}.
+C_{N,V} ({\bf r},\tau) \sim  \frac{1}{~(r^2+c^2\tau^2)^{(1+\eta_{V,N})/2}}.
 \end{equation}
  where $C_N$ and $C_V$ are the two point correlation functions of the
  N\'eel and VBS order parameters. The indices $\eta_N$ and $\eta_V$
  are the so-called anomalous dimensions of the N\'eel and VBS order
- parameters. The deconfined quantum criticality scenario predicts that
+ parameters. The DQC scenario predicts that
  the continuum field theoretic universality of the N\'eel-VBS critical
  point is described by the non-compact CP$^{N-1}$ universality. Quantitative
  estimates for the universal indices that characterize this
  universality class are available only in the large-$N$
- limit~\cite{halperin1974:largeN}. The $\frac{1}{N}$ expansions for $\eta_N$~\cite{kaul2008:u1} and $\eta_V$~\cite{murthy1990:mono,metlitski2008:mono} are,
-\begin{eqnarray}
+ limit~\cite{halperin1974:largeN}. The ${1}/{N}$ expansions for $\eta_N$~\cite{kaul2008:u1} and $\eta_V$~\cite{murthy1990:mono,metlitski2008:mono} are,
+\begin{equation}
 \label{eq:oneonN}
-\eta_N &=& 1 - \frac{32}{\pi^2N}\nonumber\\
-1+\eta_V &=& 2 \delta_1 N
-\end{eqnarray}
+\eta_N = 1 - \frac{32}{\pi^2N},~~~~
+1+\eta_V = 2 \delta_1 N.
+\end{equation}
 We note here that as $N\rightarrow\infty$, $\eta_N \rightarrow 1$ and
 $\eta_V\rightarrow \infty$. Both results are very unusual since
 typically order parameters have very small values of the $\eta$
 exponent at the critical point. For reference, in the O($N$) model $\eta\rightarrow
 0$ in the $N\rightarrow\infty$ limit and $\eta=0.0375(5)$ for the O($N=3$) model~\cite{campostrini2002:o3}.
 
-We now turn back to the study of the lattice designer $J_1$-$J_2$-$Q$
+We now turn back to the study of the lattice designer $J_1$-$J_2$-$Q_2$
 Hamiltonian. By studying the size dependence of correlation functions in Eq.~(\ref{eq:expdef})
- at the location of the critical points shown in Fig.~\ref{fig:pdj1j2q}, it is possible to
- estimate values for $\eta_N$ and $\eta_V$ as a function
- of $N$~\cite{lou2009:sun,kaul2011:j1j2}. Results for $2\leq N \leq 12$ are summarized in Fig.~\ref{fig:exp}. The
- agreement between the large-$N$ expansion and the values obtained from the
- lattice Hamiltonian for a fixed $N$ is quantitative. The lattice
- Hamiltonian also appears to convincingly reproduce the ``smoking gun'' feature that
- $\eta_N=1$ and $\eta_V=\infty$ in the $N\rightarrow \infty$
- limit. All these features lend strong positive support in favor of
- the deconfined quantum criticality scenario at the N\'eel-VBS
- transition in the SU($N$) models considered here.
-
-
+at the location of the critical points shown in Fig.~\ref{fig:pdj1j2q}, it is possible to
+estimate values for $\eta_N$ and $\eta_V$ as a function
+of $N$~\cite{lou2009:sun,kaul2011:j1j2}. Results for $2\leq N \leq 12$ are summarized in Fig.~\ref{fig:exp}. 
+The lattice Hamiltonians reproduce the ``smoking gun'' feature that $\eta_N=1$ and $\eta_V=\infty$ in 
+the $N\rightarrow \infty$ limit. Beyond these limiting behaviors, the agreement between the corrections
+derived in the large-$N$ expansions and the values obtained from the lattice models for a fixed $N$ is quantitative. 
+These features lend strong positive support in favor of the DQC scenario at the N\'eel-VBS transition in 
+the SU($N$) models considered here for large $N$. Clearly, it would be very interesting to compute further $1/N$ 
+corrections analytically, to quantitatively test the theory down to the smallest $N$.
 
 \begin{figure}
 \centerline{\psfig{figure=fig_exp.eps,height=9cm}}
@@ -756,19 +755,16 @@ Hamiltonian. By studying the size dependence of correlation functions in Eq.~(\r
 \subsection{SU($N$) Bilayer}
 \label{ss:bilN}
 
-The study of the destruction of SU($N$) magnetic order in the bilayer geometry (see Fig.~\ref{fig:pd_bil}(a)) provides an interesting example to test our
-understanding of the role of Berry phases at deconfined critical points, since the Berry phases cancel between the two square lattice layers. Consider a bilayer in which each layer is described by some
-combination of the $J_1$-$J_2$ interactions. Now consider the
-following coupling between the layers,
+The study of the destruction of SU($N$) magnetic order in the bilayer geometry, illustrated in Fig.~\ref{fig:pd_bil}(a), provides an interesting 
+example to test our understanding of the role of Berry phases at DQC points, since the Berry phases should cance between the two square lattice layers. 
+Consider a bilayer in which each layer is described by some combination of the $J_1$-$J_2$ interactions and the following coupling between the layers,
 \begin{equation}
- H_{J_\perp} = -J_\perp \sum_{[ij]} P_{ij}
+ H_{J_\perp} = -J_\perp \sum_{[ij]} P_{ij},
 \end{equation}
-where the sum $[ij]$ is taken between spins vertically below each other
-in the bilayer. The $J_\perp$ only model has a featureless non-degenerate ground state
-consisting of a product of vertical valence bonds, {\em i.e.}, a valence-bond liquid (VBL). The introduction of small intra-layer couplings like the $J_1$-$J_2$ interactions will
-make the ground state deviate from a simple product state by
-increasing the amount of entanglement, but these couplings
- cannot destabilize the featureless paramagnetic
+where the sum over $[ij]$ is taken between spins vertically below each other in the bilayer (i.e., dimers, as in Sec.~\ref{sec:dimermodels}). 
+The $J_\perp$ only model has a featureless non-degenerate ground state consisting of a product of vertical valence bonds (singlets), which we here
+refer to as a valence-bond liquid (VBL). The introduction of small intra-layer couplings like the $J_1$-$J_2$ interactions will make the 
+ground state deviate from a simple product state by increasing the amount of entanglement, but these couplings  cannot destabilize the featureless paramagnetic
 state as long as they are small compared to $J_\perp$ (see Fig.~\ref{fig:pd_bil}(b)). When $J_\perp$ is sufficiently small there is a transition into the N\'eel state. The transition between N\'eel and VBL in the SU(2) case is found as expected to belong to the O(3) universality class. For $N>3$, the N\'eel-VBL transition is first order, as predicted by a mean field theory. For $N=3$ the N\'eel-VBL transition appears continuous on the largest system sizes studied. If this is indeed the case, it would be in the universality class of the compact CP$^2$ model~\cite{nahum2011:loops}.  In the opposite limit when $J_\perp$ is weak, what is the fate of the $J_\perp=0$ deconfined N\'eel-VBS transition? 
 Remarkably, it is found that the transition between the very same N\'eel and VBS phases is first order in the bilayer geometry. This finding can be understood as a restoration of the Landau paradigm due to the cancellation of Berry phases between layers~\cite{kaul2012:sun_bil}.
 
