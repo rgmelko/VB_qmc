@@ -372,21 +372,22 @@ a lattice system (with $B$ being its complement).
  
 The direct measure of Renyi entropies can not be done in QMC using conventional estimators, however recent work has demonstrated that it is possible to 
 measure $S_{\alpha}$ using a {\it replica trick} \cite{Holz,Cardy, Fradkin, BP, Naka}.  Here, $\alpha$ copies of the simulation cell are used, with modified 
-periodic boundaries in the expansion (or imaginary time) direction.  The evaluation of Renyi entropies proceeds in formally different ways for $T=0$ and $T>0$ 
+periodic boundaries in the ``propagation'' (or imaginary time) direction.  The evaluation of Renyi entropies proceeds in formally different ways for $T=0$ and $T>0$ 
 QMC methods \cite{Hastings10,Melko10}.  Namely, for $T=0$, the calculation of $S_{\alpha}$ proceeds in analogy with Eq.~(\ref{za2}) (where $\Psi$ is the wavefunction 
 of the $\alpha$ times replicated system), with the operator $A$ replaced by a ``swap'' operator for $\alpha=2$ \cite{Hastings10} or ``permutation'' 
 operator for $\alpha \ge 3$ \cite{Kallin11}. This is easiest to 
 understand in the context of the projector algorithm discussed in Sec.~\ref{su2method}.  Here, the second-Renyi entropy (for example) is given by the
  mid-point evaluation of a SWAP$_A$ operator
 on two replicas of the system (see Fig.~\ref{swap}), that literally swaps states 
-(spins or valence-bond endpoints) between replicas when they lie in region $A$.  Then
+(spins or valence-bond endpoints) between replicas when they lie in region $A$.  Then,
 \begin{equation}
- S_2 = -\ln \Big[ \langle {\rm SWAP}_A \rangle \Big],
+ S_2 = -\ln \Big[ \langle {\rm SWAP}_A (\mathcal{L})  \rangle \Big],
 \end{equation}
-where the expectation value is calculated at the mid-point of the configuration, and expressed using the loops of the transition graph formed when 
+where the expectation value is calculated at the mid-point of the configuration, and expressed using the loops of the transition graph  $\mathcal{L}$ formed when 
 superimposing the projected bra and ket states; Eq.~(\ref{vboverlap}).  Namely,
 \begin{equation}
-\langle {\rm SWAP}_A \rangle = 2^{N_{\rm swap} - N_\circ } ,
+%\langle {\rm SWAP}_A \rangle = 2^{N_{\rm swap} - N_\circ } ,
+\frac{\langle V_l| {\rm SWAP}_A | V_r\rangle}{\langle V_l| V_r\rangle} = 2^{N_{\rm swap} - N_\circ } ,
 \end{equation} 
 where $N_{\rm swap}$ is the number of loops at the mid-point of the swapped configuration, while $N_\circ$ is for the configuration before the swap operator 
 is applied (Fig.~\ref{swap}).  
