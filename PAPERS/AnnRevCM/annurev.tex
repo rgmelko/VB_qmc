@@ -701,7 +701,7 @@ interaction will clearly cause the sub-lattice degeneracy to be lifted, resultin
 antiferromagnetic state. These arguments are true independent of the value of $N$. Thus, for every $N\geq 5$ the VBS state is realized when 
 $J_1\gg J_2$ and the N\'eel state is obtained when $J_2 \gg J_1$. Thus, there must be at least one quantum phase transition as the ratio
 $J_2/J_1$ is tuned. From numerical simulations of $J_1$-$J_2$ model, there is compelling evidence for a direct transition between these two 
-phases with no indication of an intervening phase. One can also include a $Q$ term. The phase diagram of the $J_1$-$J_2$-$Q_2$ model as a functions 
+phases with no indication of an intervening phase. One can also include a $Q$ term. The phase diagram of the $J_1$-$J_2$-$Q$ model as a functions 
 of $N$ is summarized in Fig.~\ref{fig:pdj1j2q}.
 
 An important prediction of the DQC scenario~\cite{Senthil04a} at the N\'eel-VBS transition is that both order parameters are
@@ -731,28 +731,28 @@ typically order parameters have very small values of the $\eta$
 exponent at the critical point. For reference, in the O($N$) model $\eta\rightarrow
 0$ in the $N\rightarrow\infty$ limit and $\eta=0.0375(5)$ for the O($N=3$) model~\cite{campostrini2002:o3}.
 
-We now turn back to the study of the lattice designer $J_1$-$J_2$-$Q_2$
-Hamiltonian. By studying the size dependence of correlation functions in Eq.~(\ref{eq:expdef})
-at the location of the critical points shown in Fig.~\ref{fig:pdj1j2q}, it is possible to
-estimate values for $\eta_N$ and $\eta_V$ as a function
-of $N$~\cite{lou2009:sun,kaul2011:j1j2}. Results for $2\leq N \leq 12$ are summarized in Fig.~\ref{fig:exp}. 
-The lattice Hamiltonians reproduce the ``smoking gun'' feature that $\eta_N=1$ and $\eta_V=\infty$ in 
-the $N\rightarrow \infty$ limit. Beyond these limiting behaviors, the agreement between the corrections
-derived in the large-$N$ expansions and the values obtained from the lattice models for a fixed $N$ is quantitative. 
-These features lend strong positive support in favor of the DQC scenario at the N\'eel-VBS transition in 
-the SU($N$) models considered here for large $N$. Clearly, it would be very interesting to compute further $1/N$ 
-corrections analytically, to quantitatively test the theory down to the smallest $N$.
+We now turn back to the study of the lattice designer $J_1$-$J_2$-$Q$ Hamiltonian. By studying the size dependence of correlation 
+functions in Eq.~(\ref{eq:expdef}) at the location of the critical points shown in Fig.~\ref{fig:pdj1j2q}, it is possible to
+estimate values for $\eta_N$ and $\eta_V$ as a function of $N$~\cite{lou2009:sun,kaul2011:j1j2}. Results for $2\leq N \leq 12$ are 
+summarized in Fig.~\ref{fig:exp}. The lattice Hamiltonians reproduce the ``smoking gun'' feature that $\eta_N \to 1$ and $\eta_V \to \infty$ in 
+the $N\rightarrow \infty$ limit. Furthermore, extrapolations of the data, with the constant terms subtracted off, show quantitative 
+agreement, within a few percent, with the corrections derived in the large-$N$ expansions. Note that the correct description for large 
+$N$ is far from trivial, since the continuum theory was not derived from the microscopic Hamiltonians considered here but was posited as a 
+generic theory of the N\'eel--VBS transition. The fact that the exponents agree so well lends strong positive support in favor of the DQC 
+scenario for large $N$. Clearly, it would be very interesting to compute further $1/N$ corrections analytically, to quantitatively test the 
+theory in this quantitative way down to the smallest $N$.
 
 \begin{figure}
 \centerline{\psfig{figure=fig_exp.eps,height=9cm}}
  \caption{ \label{fig:exp} Anomalous dimensions of the N\'eel (left) and VBS (right)
   order parameters as a function of $N$. The main panels show $\eta_N$ and $\eta_V$ versus $1/N$. For $N=2,3$ and $4$, the data are 
-  for the J-Q model, and the results for $N>4$ are for the $J_1$-$J_2$ model. The analytic results 
-  from the $1/N$ expansion of the CP$^{N-1}$ field theory are shown as thick red lines. The left and right insets 
+  for the $J$-$Q$ model \cite{lou2009:sun}, and the results for $N>4$ are for the $J_1$-$J_2$ model \cite{kaul2011:j1j2}. The analytic 
+  results from the $1/N$ expansion of the CP$^{N-1}$ field theory are shown as thick red lines. The left and right insets 
   show $N(1-\eta_N)$ and $(1+\eta_V)/N$, respectively. These quantities must be finite in the  $N\rightarrow \infty$ 
-  limit according to the DQC theory and should be given by Eq.~(\ref{eq:oneonN}) (solid straight lines in the insets). 
+  limit according to the DQC theory and should be given by Eq.~(\ref{eq:oneonN}), indicated by the solid horizontal lines. 
   The next corrections to the exponents have not been computed analytically yet, but we can estimate them approximately 
-  as $1+\eta_V = 0.2492 N + 0.68(4)$, $\eta_N = 1+32/(\pi^2 N)-3.6(5)/N^2$ (shown as dashed lines).}
+  as $1+\eta_V = 0.2492 N + 0.68(4)$, $\eta_N = 1+32/(\pi^2 N)-3.6(5)/N^2$ (shown as dashed lines). Graphs reproduced 
+  from Ref.~\cite{kaul2011:j1j2}.}
 \end{figure}
 
 \subsection{SU($N$) Bilayer}
@@ -768,10 +768,19 @@ where the sum over $[ij]$ is taken between spins vertically below each other in 
 The $J_\perp$ only model has a featureless non-degenerate ground state consisting of a product of vertical valence bonds (singlets), which we here
 refer to as a valence-bond liquid (VBL). The introduction of small intra-layer couplings like the $J_1$-$J_2$ interactions will make the 
 ground state deviate from a simple product state by increasing the amount of entanglement, but these couplings  cannot destabilize the featureless paramagnetic
-state as long as they are small compared to $J_\perp$ (see Fig.~\ref{fig:pd_bil}(b)). When $J_\perp$ is sufficiently small there is a transition into the N\'eel state. The transition between N\'eel and VBL in the SU(2) case is found as expected to belong to the O(3) universality class. For $N>3$, the N\'eel-VBL transition is first order, as predicted by a mean field theory. For $N=3$ the N\'eel-VBL transition appears continuous on the largest system sizes studied. If this is indeed the case, it would be in the universality class of the compact CP$^2$ model~\cite{nahum2011:loops}.  In the opposite limit when $J_\perp$ is weak, what is the fate of the $J_\perp=0$ deconfined N\'eel-VBS transition? 
-Remarkably, it is found that the transition between the very same N\'eel and VBS phases is first order in the bilayer geometry. This finding can be understood as a restoration of the Landau paradigm due to the cancellation of Berry phases between layers~\cite{kaul2012:sun_bil}.
+state as long as they are small compared to $J_\perp$; see Fig.~\ref{fig:pd_bil}(b). 
 
+When $J_\perp$ is sufficiently small and the value of $J_2/J_1$ places the system within the N\'eel phase when $J_\perp=0$, there is a transition  from
+the N\'eel into the VBL for increasing $J_\perp$. This transition in the SU($2$) case is continuous and belongs to the O($3$) universality class,
+as discussed in Sec.~\ref{sec:dimermodels}. For $N>3$, the calculations show that transition is first-order, however, as also predicted by a mean-field 
+theory. For $N=3$ the transition appears continuous based on the largest system sizes studied. If this is indeed the case, it would be in the universality 
+class of the compact CP$^2$ model~\cite{nahum2011:loops}. Further studies of the $N=3$ should be carried out to shed further light on this case.
 
+A very interesting aspect of the SU($N$) bilayer models is the limit where $J_\perp$ is weak and there is a N\'eel--VBS transition as a function of $J_2/J_1$.
+What is the fate of the $J_\perp=0$ deconfined N\'eel-VBS transition in the presence of the bilayer coupling? Remarkably, the QMC simulations show that the 
+transition between the very same N\'eel and VBS phases becomes first-order in the bilayer geometry. This finding can be understood as a restoration of the 
+Landau paradigm, due to the cancellation of Berry phases between the layers of this system~\cite{kaul2012:sun_bil}. This is another piece of strong evidence 
+for the correctness of the DQC theory, as well as the more general field-theoretical understanding of the role of Barry phases.
 
 \begin{figure}
 \centerline{\psfig{figure=pd_su6_bil.eps,height=9cm}}
