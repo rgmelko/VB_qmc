@@ -293,7 +293,8 @@ $m=2$ \cite{Sandvik10a}. The vertical bars indicate singlet-projectors operators
 valence bond configurations of the sampled trial state. Open and closed circles indicate up and down spins, which are unchanged between 
 operators and represented by horizontal lines there. These lines, along with the valence bonds, form loops that can be flipped (i.e., 
 all spins traversed by the loop are flipped) without changing the configuration weight. A configuration in a $T>0$ simulation corresponds 
-to imposing periodic boundary conditions in the ``time'' direction, instead the independent boundaries terminated by valence bonds.}
+to imposing periodic boundary conditions in the ``time'' direction (reflecting the trace operation), instead the independent boundaries 
+terminated by valence bonds.}
 \label{loops}
 \end{figure}
 
@@ -399,9 +400,10 @@ above in Sec.~\ref{ss:method}. In some cases, the implementation for these two d
 
 \begin{figure}
 \centerline{\psfig{figure=swap.eps,height=9cm}}
-\caption{The {\rm SWAP}$_A$ operator for a simulation of Renyi entropy $S_2$, where $A$ consists of two sites.  The system is composed of two non-interacting 
-replicas, top (compare to Fig.~\ref{loops}), and bottom, which is sampled independently.  Just to the right of the middle of the system (dashed line) 
-the {\rm SWAP}$_A$ operator (green) connects the spin in the top replica to the bottom, indicated by the color of the loops \cite{Kallin11}.}
+\caption{The {\rm SWAP}$_A$ operator for calculating the Renyi entropy $S_2$, where subsystem $A$ consists of the two top sites. The simulated system is 
+composed of two non-interacting replicas, top (compare to Fig.~\ref{loops}), and bottom, which are sampled independently. Just to the right of the mid-point 
+of the configuration (dashed line) the {\rm SWAP}$_A$ operator (green vertical bar) connects the A spins in the top replica to the bottom one, as indicated by 
+the colors of the loops \cite{Kallin11}.}
 \label{swap}
 \end{figure}
 
@@ -537,9 +539,9 @@ transition in the $J$-$Q$ models.
 \centerline{\psfig{figure=jqrhos.eps,height=9cm}}
 \caption{Finite-size scaling of the spin stiffness of the $J$-$Q_2$ model in the vicinity of its quantum-critical point; from Ref.~\cite{Sandvik10c}. The 
 calculations were done at inverse temperature $\beta=L$. The standard critical scaling form $\rho_s \sim L^{-1}$ has been modified by a log correction 
-(with $L_0=0.9$) in order to compensate for a wek drift of the crossing point (the critical coupling). The critical coupling $(J/Q)_c = 0.0447(2)$. The
-red curves (which cross at a single point) represent a common scaling function (approximated by a polynomial fitted to the data points), $f[(q-q_c)L^{1/\nu}]$,
-for all systems with $L\ge 48$.}
+(with $L_0=0.9$) in order to compensate for a wek drift of the crossing point (the critical coupling). The critical coupling $q_c=(J/Q)_c = 0.0447(2)$. The
+red curves (which cross at a single point) represent a common scaling function (approximated by a common polynomial fitted to all the data points), 
+$f[(q-q_c)L^{1/\nu}]$, with $\nu=0.59$, for all systems with $L\ge 48$.}
 \label{jqrhos}
 \end{figure}
 
@@ -608,8 +610,8 @@ the result that $\Lambda \sim \xi^{1+a}$, with $a \approx 0.2$ \cite{lou2009:sun
 \begin{figure}
 \centerline{\psfig{figure=jq3histo.eps,height=6cm}}
   \caption{Probability distribution $P(D_x,D_y)$ of the VBS order parameter of the $J$-$Q_3$ model on a $32\times 32$
-           lattice at $J/Q_3 = 0.575$ in (a) and $0.1765$ in (b). The critical ratio is $(J/Q_3)_c \approx 0.67$. Adapted
-           from Ref.~\cite{lou2009:sun}.}  
+           lattice at $J/Q_3 = 0.575$ in (a) and $0.1765$ in (b). The critical ratio is $(J/Q_3)_c \approx 0.67$. Brighter colors
+           correspond to higher probability. Adapted from Ref.~\cite{lou2009:sun}.}  
 \label{jq3histo}
 \end{figure}
 
@@ -660,13 +662,12 @@ by QMC simulations~\cite{harada2003:sun}.
 \begin{figure}
 \centerline{\psfig{figure=pdj1j2q_2.eps,height=11cm}}
 %\includegraphics[width=3.5in]{pdj1j2q_2.eps}
-  \caption{ \label{fig:pdj1j2q} Phase Diagram of the
-    SU($N$) symmetric sign-problem free
+  \caption{ \label{fig:pdj1j2q} Phase Diagram of the SU($N$) symmetric sign-problem free
     $J_1$-$J_2$-$Q$ model as a function of $N$. Each of the couplings has been introduced
-    in the text: $J_1$ in Sec.~\ref{ss:j1N}; $Q$ in Sec.~\ref{ss:jqN};
-  and $J_2$ in Sec.~\ref{ss:j1j2N}. The generalized antiferromagnet
-  allows for an unbiased study of deconfined quantum
-  criticality at the N\'eel-VBS transition for each value of $N$. }
+    in the text: the generalized nearest-neighbor antiferromagnetic exchange $J_1$ in Sec.~\ref{ss:j1N}, the four-spin coupling $Q=Q_2$ in 
+    Sec.~\ref{ss:jqN} and Fig.~\ref{qterms}, and the generalized ferromagnetic next-nearest-neighbor coupling $J_2$ in Sec.~\ref{ss:j1j2N}. 
+    This SU($N$) antiferromagnet allows for an unbiased study of deconfined quantum
+    criticality at the N\'eel-VBS transition for each value of $N$. }
 \end{figure}
 
 
@@ -747,12 +748,12 @@ theory in this quantitative way down to the smallest $N$.
  \caption{ \label{fig:exp} Anomalous dimensions of the N\'eel (left) and VBS (right)
   order parameters as a function of $N$. The main panels show $\eta_N$ and $\eta_V$ versus $1/N$. For $N=2,3$ and $4$, the data are 
   for the $J$-$Q$ model \cite{lou2009:sun}, and the results for $N>4$ are for the $J_1$-$J_2$ model \cite{kaul2011:j1j2}. The analytic 
-  results from the $1/N$ expansion of the CP$^{N-1}$ field theory are shown as thick red lines. The left and right insets 
-  show $N(1-\eta_N)$ and $(1+\eta_V)/N$, respectively. These quantities must be finite in the  $N\rightarrow \infty$ 
-  limit according to the DQC theory and should be given by Eq.~(\ref{eq:oneonN}), indicated by the solid horizontal lines. 
-  The next corrections to the exponents have not been computed analytically yet, but we can estimate them approximately 
-  as $1+\eta_V = 0.2492 N + 0.68(4)$, $\eta_N = 1+32/(\pi^2 N)-3.6(5)/N^2$ (shown as dashed lines). Graphs reproduced 
-  from Ref.~\cite{kaul2011:j1j2}.}
+  results from the $1/N$ expansion of the CP$^{N-1}$ field theory, Eq.~\ref{eq:oneonN}, are shown as thick red lines. The left and 
+  right insets show $N(1-\eta_N)$ and $(1+\eta_V)/N$, respectively. These quantities must be finite in the  $N\rightarrow \infty$ 
+  limit according to the DQC theory and should be given by the prefactors of the $N$-dependent terms in Eq.~(\ref{eq:oneonN}). The values
+  are indicated by the solid horizontal lines. The next corrections to the exponents have not been computed analytically yet, but we can estimate 
+  them approximately as $1+\eta_V = 0.2492 N + 0.68(4)$, $\eta_N = 1+32/(\pi^2 N)-3.6(5)/N^2$ (shown as dashed fitted lines in the insets). 
+  Graphs reproduced from Ref.~\cite{kaul2011:j1j2}.}
 \end{figure}
 
 \subsection{SU($N$) Bilayer}
@@ -785,8 +786,12 @@ for the correctness of the DQC theory, as well as the more general field-theoret
 
 \begin{figure}
 \centerline{\psfig{figure=pd_su6_bil.eps,height=9cm}}
-  \caption{ \label{fig:pd_bil}  Physics of the SU($N$) bilayer model  of Sec.~\ref{ss:bilN}.  (a) Illustration of the bilayer model. White sites are the A sub-lattice with SU($N$) spins that transform in the fundamental representation. Black sites on the B sub-lattice transform as the conjugate to fundamental. (b) Phase diagram of the
-    SU($6$) bilayer model as a function of $g_\perp =J_\perp/J_1$ and $g_2=J_2/J_1$. The black circle at $g_\perp=0$ is the N\'eel-VBS quantum critical point. Remarkably, in the bilayer geometry with $g_\perp\neq 0$ this continuous transition becomes first order (shown as open circles) due to the cancellation of Berry phases between the layers. The VBL phase at large $g_\perp$ corresponds to a valence-bond liquid. Cartoons of the basic singlet physics in the VBS and VBL phases are shown. The SU($N$) N\'eel-VBL transition is discussed at length in Ref.~\cite{kaul2012:sun_bil}.}
+  \caption{ \label{fig:pd_bil}  Physics of the SU($N$) bilayer model  of Sec.~\ref{ss:bilN}.  (a) Illustration of the bilayer model. White sites are the A sub-lattice with 
+  SU($N$) spins that transform in the fundamental representation. Black sites on the B sub-lattice transform as the conjugate to this representation. (b) Phase diagram of the
+  SU($6$) bilayer model as a function of $g_\perp =J_\perp/J_1$ and $g_2=J_2/J_1$. The black circle at $g_\perp=0$ is the N\'eel-VBS quantum critical point. Remarkably, 
+  in the bilayer geometry with $g_\perp\neq 0$ this continuous transition becomes first-order (indicated by open circles), due to the cancellation of Berry phases between 
+  the layers. The VBL phase at large $g_\perp$ is a featureless paramegnet with singlets predominantly forming between the planes. Cartoons of the basic singlet physics 
+  both in the symmetry-broken VBS and uniform VBL phases are shown. The SU($N$) N\'eel-VBL transition is discussed at length in Ref.~\cite{kaul2012:sun_bil}.}
 \end{figure}
 
 \section{Spin liquids and deconfinement in U($1$) models}
@@ -820,7 +825,11 @@ are constructed partly based on their relation to {\it quantum dimer models} (QD
 
 \begin{figure}
 \centerline{\includegraphics[width=4.5in]{kagome}}
-  \caption{ (a) Spins (black dots are $S^z = 1/2$, empty sites $S^z = -1/2$) in a groundstate configuration satisfying $H_0$ (Equation \ref{H0}) on the kagome lattice.  The degenerate manifold of such configurations maps onto a triangular-lattice (dashed) classical three-dimer configuration, where each spin-up corresponds to a dimer on the dual lattice \cite{BFG}.  (b) At right, a plaquette-flip $H_{\rm ring}$ operation preserves the cluster-charging constraint, and can be seen to correspond to a rhombus-flip of dimers on the dual lattice.  A defect is created by flipping one spin (marked ``+'' in (a)).  This defect can be thought of as associating with two hexagonal plaquettes (grey in (b)), each with two spin-up per hexagon, corresponding to deconfined fractionalized spinons.} \label{kag_fig}
+\caption{ (a) Spins (black dots are $S^z = 1/2$, empty sites $S^z = -1/2$) in a groundstate configuration satisfying $H_0$, Eq.~\ref{H0}, on the kagome lattice.  
+The degenerate manifold of such configurations maps onto a triangular-lattice (dashed) classical three-dimer configuration, where each spin-up corresponds to a dimer 
+on the dual lattice \cite{BFG}.  (b) To the right, a plaquette-flip $H_{\rm ring}$ operation preserves the cluster-charging constraint, and can be seen to correspond 
+to a rhombus-flip of dimers on the dual lattice.  A defect is created by flipping one spin, marked ``+'' in (a).  This defect can be thought of as associating with 
+two hexagonal plaquettes, indicated in grey in (b), each with two spin-up per hexagon, corresponding to deconfined fractionalized spinons.} \label{kag_fig}
 \end{figure}
 
 The recipe to construct QSL phases in XXZ spin (or boson) models is to map the dimer constraint to a plaquette spin configuration on the dual lattice; the dimer may represent an $S^z$ spin configuration on a bond which is frustrated (or unsatisfied).  Then, the role of the quantum dimer tunnelling moves is done by a spin-exchange processes (which may {\it not} be a simple two-body term).  Such models have been called
@@ -877,7 +886,7 @@ S_{\alpha} = a \ell - \gamma + \cdots \label{areaL}.
  Here, the subleading term to the area law is a universal correction called the {\it topological entanglement entropy} \cite{Alioscia1,Alioscia2,LW,KP}.  In a gapped quantum spin liquid phase, it is related to the emergent gauge symmetry (independent \cite{Flammia} of Renyi index $\alpha$), e.g.~in the $Z_2$ spin liquid state $\gamma =  \ln(2)$ at $T=0$ \cite{LW}.   The addition of this universal subleading constant to the area law motivates the notion of LRE for a quantum spin liquid phase.
 
 
-Using the estimators described in Section~\ref{ss:renyi}, it is possible to isolate the topological entanglement entropy from the leading-order area-law, as well as subleading corrections due to effects such as corners, by taking measurements using several different geometries $A$ and performing additions or subtractions which isolate only $\gamma$.  For example, the {\it Levin-Wen} \cite{LW} construction isolates $2\gamma$ from Eq.~(\ref{areaL}), requiring measurement of four unique region $A$ geometries.  For a BFG Hamiltonian discussed in the last section, it is possible to extract the topological entanglement entropy in a QMC simulation using this construction.  As noted by Castelnovo and Chamon \cite{castelnovo} through direct calculation on the toric code (which realizes a $Z_2$ fractionalized spin liquid groundstate), the value of $2\gamma$ is approached through two temperature crossovers on a finite-size system, related to the energy of the quasiparticle excitations in the groundstate -- a $Z_2$ charge corresponding to the spinon, and a $Z_2$ flux corresponding to the vison.  Each excitation contributes a value of $\ln(2)$ to the topological entanglement entropy.  As illustrated in Figure \ref{QSLfig}, the realization of one of these plateaus at finite-temperature gives positive identification that the groundstate of the model is a $Z_2$ QSL phase.
+Using the estimators described in Section~\ref{ss:renyi}, it is possible to isolate the topological entanglement entropy from the leading-order area-law, as well as subleading corrections due to effects such as corners, by taking measurements using several different geometries $A$ and performing additions or subtractions which isolate only $\gamma$.  For example, the {\it Levin-Wen} \cite{LW} construction isolates $2\gamma$ from Eq.~(\ref{areaL}), requiring measurement of four unique region $A$ geometries.  For a BFG Hamiltonian discussed in the last section, it is possible to extract the topological entanglement entropy in a QMC simulation using this construction.  As noted by Castelnovo and Chamon \cite{castelnovo} through direct calculation on the toric code (which realizes a $Z_2$ fractionalized spin liquid groundstate), the value of $2\gamma$ is approached through two temperature crossovers on a finite-size system, related to the energy of the quasiparticle excitations in the groundstate -- a $Z_2$ charge corresponding to the spinon, and a $Z_2$ flux corresponding to the vison.  Each excitation contributes a value of $\ln(2)$ to the topological entanglement entropy.  As illustrated in Fig.~\ref{QSLfig}, the realization of one of these plateaus at finite-temperature gives positive identification that the groundstate of the model is a $Z_2$ QSL phase.
 
 \begin{figure}
 \centerline{\includegraphics[width=4.5in]{QSL}}
