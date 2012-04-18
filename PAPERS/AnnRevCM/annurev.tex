@@ -132,7 +132,6 @@ Ising chain is described by the $(1+1)$-dimensional Ising field theory \cite{Sac
 phenomena special to quantum mechanics \cite{Senthil04a,Fradkin04,Sachdev08}. Thus, in our view the approach of directly studying manifestly quantum mechanical 
 designer Hamiltonians is an important direction in forming an unbiased picture of quantum criticality and emergent phenomena.
 
-
 \subsection{Outline of the Review}
 
 In this review, we will focus on some recent concrete examples where it has been possible to study quantum phase transitions in detail 
@@ -966,13 +965,27 @@ if such a state were found to violate the area law, Eq.~(\ref{arealaw}).
 \subsubsection{Disordered systems}
 
 In this review we have focused on translationally invariant systems. Systems with disorder, i.e., random couplings, dilution, etc., is another area
-where designer Hamiltonians can give unique insights. To mention one example where the standard classical--quantum correspondence fails, in the 2D $S=1/2$ 
-Heisenberg antiferromagnet diluted with non-magnetic impurities, the interplay of classical percolation and quantum fluctuations lead to low-energy 
-excitations not anticipated based on the $d$ $\to$ $(d+1)$-dimensional mapping. More on randomness.... cite T. Vojta. Also single-impurity physics.
+where designer Hamiltonians can provide unique insights. To mention one example of a spin system for which the standard classical--quantum correspondence 
+fails, in the 2D $S=1/2$ Heisenberg antiferromagnet diluted with non-magnetic impurities, the interplay of classical percolation and quantum fluctuations 
+lead to low-energy excitations \cite{Wang10} not captured \cite{Vojta05} within the conventional $d$ $\to$ $(d+1)$-dimensional mapping. Other unanticipated effects
+of dilutaion on quantum-critical scaling have also been observed that still lack explanation and deserve further study \cite{Sandvik06,Yao10}. For the systems 
+discussed in this review, disorder effects have not yet been studied. One can anticipate interesting behaviors in VBS states, at the N\'eel--VBS transition,
+and in the Z$_2$ spin liquids. Beyond spins, various manifestations of the ``dirty boson'' problem remain intriguing and challenging \cite{Pollet09,Iyer12}, 
+and provide excellent examples of the indispensible role of QMC studies of designer Hamiltonians \cite{Gurarie09}.
+
+In addition to extensive disorder, single-impurity problems are also interesting and important. Effects of a single missing or added spin have been
+investigated with QMC in the 2D and 3D N\'eel states \cite{Hoglund04} and at conventional quantum-critical points in dimerized models \cite{Hoglund07}. 
+QMC studies have also been done on vacancies in the VBS state of the 2D $J$-$Q$ model \cite{Kaul08}, where one can observe a vortex in the order parameter, 
+and at the SU($2$) and SU($3$) critical points \cite{banerjee2010:log,banerjee2010:su3}, where impurities provide an interesting way to probe the anomalously 
+large corrections to scaling in thse systems. Impurities in 1D chains (with open edges) have also been studied \cite{Sanyal11}.
+
+In general, impurities and disorder in interacting quantum systems present rich opportunities for exploring exotic states and phase transitions.
+Synergistic combinations of low-energy field theories, RG schemes for impurities \cite{Vojta12} and disorder \cite{Hoyos08,Vojta10,Altman10,Iyer12}, 
+and QMC studies of designer Hamiltonians will be needed to make progress here.
 
 \subsubsection{Non-equilibrium dynamic scaling}
 
-A recent development on the methods front is the adaptation of QMC algorithms such as those discussed in Sec. \ref{sec:methods} to non-equilibrium 
+A recent development on the methods front is the adaptation of QMC algorithms such as those discussed in Sec.~\ref{sec:methods} to non-equilibrium 
 setups \cite{Degrandi11}. By studying time evolution out of a non-equilibrium state in imaginary time, standard sign-problem free systems
 can be analyzed in novel ways. For instance, it was found in Ref.~\cite{Degrandi11} that the dynamic scaling properties when quenching to
 a quantum-critical point is the same in real and imaginary time, and that such protocols are useful for extracting the dynamic critical
