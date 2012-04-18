@@ -759,22 +759,23 @@ theory in this quantitative way down to the smallest $N$.
 \label{ss:bilN}
 
 The study of the destruction of SU($N$) magnetic order in the bilayer geometry, illustrated in Fig.~\ref{fig:pd_bil}(a), provides an interesting 
-example to test our understanding of the role of Berry phases at DQC points, since the Berry phases should cance between the two square lattice layers. 
-Consider a bilayer in which each layer is described by some combination of the $J_1$-$J_2$ interactions and the following coupling between the layers,
+example to test our understanding of the role of Berry phases at DQC points, since these should cancel between the two square lattice layers. 
+Consider a bilayer in which each layer is described by some combination of the $J_1$-$J_2$ interactions discussed in the previous section and the 
+following coupling between the layers,
 \begin{equation}
  H_{J_\perp} = -J_\perp \sum_{[ij]} P_{ij},
 \end{equation}
-where the sum over $[ij]$ is taken between spins vertically below each other in the bilayer (i.e., dimers, as in Sec.~\ref{sec:dimermodels}). For any
-$N$, the $J_\perp$-only model has a featureless non-degenerate ground state consisting of a product of vertical valence bonds (singlets)---the SU($N$)
+where the sum over $[ij]$ is taken between spins vertically below each other in the bilayer (i.e., $[ij]$ form dimers, as in Sec.~\ref{sec:dimermodels}). For 
+any $N$, the $J_\perp$-only model has a featureless non-degenerate ground state consisting of a product of vertical valence bonds (singlets)---the SU($N$)
 generalization of the VBL state discussed in Sec.~\ref{sec:dimermodels}. The introduction of small intra-layer couplings like the $J_1$-$J_2$ interactions will 
-make the ground state deviate from a simple product state by increasing the amount of entanglement, but these couplings  cannot destabilize the featureless paramagnetic
-state as long as they are small compared to $J_\perp$; see Fig.~\ref{fig:pd_bil}(b). 
+make the ground state deviate from a simple product state by increasing the amount of entanglement, but these couplings cannot destabilize the VBL paramagnet,
+as long as they are small compared to $J_\perp$; see Fig.~\ref{fig:pd_bil}(b). 
 
-When $J_\perp$ is sufficiently small and the value of $J_2/J_1$ places the system within the N\'eel phase when $J_\perp=0$, there is a transition  from
+When the value of $J_2/J_1$ places the system within the N\'eel phase when $J_\perp=0$, there is a transition  from
 the N\'eel into the VBL for increasing $J_\perp$. This transition in the SU($2$) case is continuous and belongs to the O($3$) universality class,
 as discussed in Sec.~\ref{sec:dimermodels}. For $N>3$, the calculations show that transition is first-order, however, as also predicted by a mean-field 
 theory. For $N=3$ the transition appears continuous based on the largest system sizes studied. If this is indeed the case, it would be in the universality 
-class of the compact CP$^2$ model~\cite{nahum2011:loops}. Further studies of the $N=3$ should be carried out to shed further light on this case.
+class of the compact CP$^2$ model~\cite{nahum2011:loops}. Further studies of the $N=3$ model should be carried out to resolve this issue.
 
 A very interesting aspect of the SU($N$) bilayer models is the limit where $J_\perp$ is weak and there is a N\'eel--VBS transition as a function of $J_2/J_1$.
 What is the fate of the $J_\perp=0$ deconfined N\'eel-VBS transition in the presence of the bilayer coupling? Remarkably, the QMC simulations show that the 
@@ -791,15 +792,23 @@ for the correctness of the DQC theory, as well as the more general field-theoret
 \section{Spin liquids and deconfinement in U($1$) models}
 \label{sec:u1models}
 
-One of the main foci of research into designer Hamiltonians is the search, detection and characterization of quantum spin liquid (QSL) phases.  
-That is, although there has been much progress in understanding properties of QSL states from effective field theories, there are very few microscopic models amenable to study by QMC that can be argued to exhibit a QSL without controversy.
-The recent spate of high-profile numerical studies identifying QSL candidates \cite{Yan, Meng,J1J2} has sparked intense theoretical study, highlighting that the synergy between analytical theory and numerics is often driven by the latter.  Thus, we are interested in finding the simplest models which harbour QSL states, that are also amenable to large-scale simulation by QMC.
+One of the main foci of research into designer Hamiltonians is the search, detection and characterization of quantum spin liquid (QSL) phases.  That is, although there 
+has been much progress in understanding properties of QSL states from effective field theories, there are very few microscopic models amenable to unbiased calculations 
+that can be argued to exhibit a QSL without controversy. The recent spate of high-profile numerical studies identifying QSL candidates \cite{Yan, Meng,J1J2} has sparked 
+intense activities on the theory side, highlighting that the synergy between analytical theory and numerics is often driven by the latter.  Thus, we are interested in 
+finding the simplest models which harbour QSL states, that are also amenable to large-scale simulation by QMC.
 
-Much of the reason for the scarcity of microscopic models is that fundamental ingredients required to give rise to QSL phases, namely geometrical frustration, are also typical harbingers of the sign problem.  Despite this, the absence of the sign problem does not fundamentally {\it preclude} the existence of spin liquid physics.  This is most evident in Hamiltonians with U(1) symmetry -- anisotropic spin (or Bose-Hubbard) models specifically designed to capture the essential ingredients needed to promote a QSL phase without causing the sign-problem.  
-Examples of both 2D gapped \cite{Isakov1,Isakov2,Long,TopoEE} 3D and gapless \cite{Isakov3} spin liquids have recently been studied with large-scale QMC simulations of sign-problem free U(1) models.
-In this section, we will explore one class of spin Hamiltonain that contains the simplest type of QSL phase, which can be related to a $Z_2$ gauge theory.  We will demonstrate that universal properties of the QSL calculated in QMC can be compared to this
-effective field-theoretical description.  In addition, an associated XY-ferromagnet /QSL quantum critical point can be demonstrated to be of an exotic
-``fractionalized'' type, based on comparisons of universal quantities calculated from QMC and a related quantum field theory.
+Much of the reason for the scarcity of microscopic models is that fundamental ingredients required to give rise to QSL phases, namely geometrical frustration, are also typical 
+harbingers of the sign problem.  Despite this, the absence of the sign problem does not fundamentally {\it preclude} the existence of spin liquid physics.  This is most evident 
+in Hamiltonians with U($1$) symmetry---anisotropic spin (or Bose-Hubbard) models specifically designed to capture the essential ingredients needed to promote a QSL phase without 
+causing the sign-problem. A crucial aspect in this regard is that there are no limitations on the diagonal couplings, becayse the sign problem is only cause by the off-diagonal
+matrix elements in the chosen QMC basis (see Sec.~\ref{sec:methods}). Thus, diagonal frustration can be studied,
+
+Examples of both 2D gapped \cite{Isakov1,Isakov2,Long,TopoEE} 3D and gapless \cite{Isakov3} spin liquids have recently been studied with large-scale QMC simulations of 
+such sign-problem free U($1$) models. In this section, we will explore one class of spin Hamiltonain that contains the simplest type of QSL phase, which can be related to a 
+$Z_2$ gauge theory.  We will demonstrate that universal properties of the QSL calculated in QMC can be compared to this effective field-theoretical description.  In addition, 
+an associated critical point separating an XY-ferromagnet and a QSL can be demonstrated to be of an exotic ``fractionalized'' type, based on comparisons of universal 
+quantities calculated from QMC and a related quantum field theory.
 
 \subsection{BFG Hamiltonians with Z$_2$ spin liquid phases}
 
