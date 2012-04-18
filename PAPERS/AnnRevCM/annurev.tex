@@ -58,9 +58,9 @@ of thermal phase transitions \cite{cardy1988:fss,Chaikin00}.
 Computational many-body research faces important challenges since the quantum models of interest are often beyond the reach 
 of existing algorithms. Two-dimensional (2D) and 3D frustrated quantum spin systems and fermion systems are the main groups 
 of difficult systems, since they suffer from the infamous ``sign problem'' in quantum Monte Carlo (QMC) simulations
-\cite{Loh90,Henelius00,Nyfeler08}, i.e., the weight function in the configuration space constructed using the Euclidean path 
-integral or other mappings to an effective statistical-mechanics problem is not positive definite (and hence cannot be directly 
-used as a probability distribution for importance sampling). The approach we advocate and review here is to construct particular 
+\cite{Loh90,Henelius00,Nyfeler08}. The sign problem arises when the weight function in the configuration space constructed using the Euclidean path 
+integral or other mappings to an effective statistical-mechanics problem is not positive definite and hence the weights cannot be directly 
+used as a probability distribution for importance sampling. The approach we advocate and review here is to construct particular 
 ``designer Hamiltonians'', which host interesting ground states and quantum phase transitions but still are amenable to 
 large-scale QMC studies without sign problems ({\em i.e.}, they are designed and ``de-signed'' to be practically useful). 
 
@@ -163,7 +163,7 @@ We will only give a brief overview of the methods here, with references to more 
 
 Solving many-body quantum mechanical problems on a computer is {\em generally} exponentially hard (in computing time versus system size) 
 with known algorithms. The statistical mechanics of a $d$-dimensional quantum Hamiltonian can be rewritten in terms of some classical variables 
-$C$ in $d+1$ dimensions, i.e., the partition function ($T>0$) or the normalization ($T=0$) can be cast into the form
+$C$ in $d+1$ dimensions, {\em i.e.}, the partition function ($T>0$) or the normalization ($T=0$) can be cast into the form
 \begin{equation}
 \label{eq:wc}
 Z=\sum_C W_C.
@@ -291,7 +291,7 @@ models \cite{Sandvik10b}.
 \caption{A configuration in a valence-bond projector simulation of a 4-site Heisenberg chain; here with a small projection power, 
 $m=2$ \cite{Sandvik10a}. The vertical bars indicate singlet-projectors operators, while the arcs on the left (bra) and right (ket) represent 
 valence bond configurations of the sampled trial state. Open and closed circles indicate up and down spins, which are unchanged between 
-operators and represented by horizontal lines there. These lines, along with the valence bonds, form loops that can be flipped (i.e., 
+operators and represented by horizontal lines there. These lines, along with the valence bonds, form loops that can be flipped ({\em i.e.}, 
 all spins traversed by the loop are flipped) without changing the configuration weight. A configuration in a $T>0$ simulation corresponds 
 to imposing periodic boundary conditions in the ``time'' direction (reflecting the trace operation), instead the independent boundaries 
 terminated by valence bonds.}
@@ -352,8 +352,8 @@ T^{a}_j +\frac{1}{N^2} =\Pi_{ij}.
 \end{equation}
 This is an SU($N$) invariant generalization of the SU($2$) Heisenberg interaction for two spins on the {\em same} sub-lattice.
 
-Hamiltonians based the SU($N$) operators $P_{ij}$ and $\Pi_{ij}$ are sign-problem free if they come with negative signs, i.e.,
-they generalize the SU($2$) antiferromagnetic and ferromagnetic Heisenberg exchange, respectively. In terms of the definitions of $P_{ij}$ and 
+Hamiltonians based the SU($N$) operators $P_{ij}$ and $\Pi_{ij}$ are sign-problem free if they come with negative signs,
+they respectively generalize the SU($2$) antiferromagnetic and ferromagnetic Heisenberg exchange. In terms of the definitions of $P_{ij}$ and 
 $\Pi_{ij}$, the algorithms presented in Sec.~\ref{ss:method} can be simply generalized from SU(2) to SU($N$) by extending the number of ``colors'' 
 (of the spins and the loops) from 2 to $N$~\cite{harada2003:sun,beach2009:sun,kaul2011:j1j2}.
 
@@ -434,8 +434,8 @@ H_1 = -J_1 \sum_{\langle i,j\rangle} P_{ij}.
 \label{h1def}
 \end{equation}
 Here $\langle i,j\rangle$ denotes nearest-neighbor spins. This system has long-range N\'eel order at $T=0$. Now introduce {\it dimerization}, 
-i.e., consider pairs (dimers) of spins $[i,j]$ such that each spin belongs exactly to one dimer. In addition to the nearest-neighbor couplings (\ref{h1def}),
-let there be additional intra-dimer couplings of strength $\lambda$ (i.e., the total intra-dimer coupling is $J_1+\lambda$), such that the Hamiltonian is
+by considering pairs (dimers) of spins $[i,j]$ such that each spin belongs exactly to one dimer. In addition to the nearest-neighbor couplings (\ref{h1def}),
+let there be additional intra-dimer couplings of strength $\lambda$ (the total intra-dimer coupling is $J_1+\lambda$), such that the Hamiltonian is
 \begin{equation}
 H = H_1  -\lambda \sum_{[ i,j]} P_{ij} .
 \end{equation}
