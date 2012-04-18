@@ -47,7 +47,7 @@ of the Renyi variants of the entanglement entropy.
 
 
 Understanding the ground states of interacting quantum Hamiltonians is one of the central defining challenges of condensed matter physics. On the one
-hand, quantum field theory is a powerful and general framework for studies of low-energy properties of many complex, strongly correlated and entangled 
+hand, quantum field theory is a powerful and general framework for studies of low-energy properties of complex, strongly correlated and entangled 
 quantum matter \cite{Sachdev11}. On the other hand, this continuum approach has potential pitfalls due to its generality, and limitations due to its 
 insensitivity to lattice scale physics, making it important to also carry out direct studies of microscopic lattice Hamiltonians. A fruitful direction 
 has been to combine the advantages of both methods by analyzing data from unbiased numerical investigations of lattice Hamiltonians with quantum field 
@@ -57,19 +57,22 @@ of phase transitions \cite{Chaikin00}.
 
 Computational many-body research faces important challenges since the quantum models of interest are often beyond the reach 
 of existing algorithms. Two-dimensional (2D) and 3D frustrated quantum spin systems and fermion systems are the main groups 
-of difficult systems. They are generally associated with the infamous ``sign problem'' in quantum Monte Carlo (QMC) simulation
+of difficult systems, since they suffer from the infamous ``sign problem'' in quantum Monte Carlo (QMC) simulations
 \cite{Loh90,Henelius00,Nyfeler08}, i.e., the weight function in the configuration space constructed using the Euclidean path 
 integral or other mappings to an effective statistical-mechanics problem is not positive definite (and hence cannot be directly 
 used as a probability distribution for importance sampling). The approach we advocate and review here is to construct particular 
 ``designer Hamiltonians'', which host interesting ground states and quantum phase transitions but still are amenable to 
-large-scale QMC studies without sign problems (i.e., they are designed and ``de-signed'' to be practically useful). 
+large-scale QMC studies without sign problems ({\em i.e.}, they are designed and ``de-signed'' to be practically useful). 
+
 
 A common misconception is that interesting designer Hamiltonians should not exist---if a model is sign-problem 
-free it must be trivial or uninteresting. There are already many counter-examples to this pessimistic view, 
-however, and we will here review some recent examples from the area of quantum magnetism. Moreover, advances in QMC 
+free it must be trivial or uninteresting. 
+In this article, we will review some recent counter-examples to this pessimistic view, 
+from the area of quantum magnetism. 
+Moreover, advances in QMC 
 methods \cite{Sandvik91,Evertz93,Beard96,WormA,Sandvik99,Sandvik10a} have made it possible to truly approach the 
 low-energy limit of many important models without any approximations (beyond controllable statistical errors), and to compute 
-quantities of great current interest in condensed matter physics and quantum information theory, e.g., the fidelity 
+quantities of current interest in condensed matter physics and quantum information theory, e.g., the fidelity 
 \cite{Schwandt09}, the geometric tensor \cite{Degrandi11}, and the entanglement entropy \cite{Hastings10, Melko10}. We will 
 briefly address some of these technical developments as well. We first make some further remarks on field theory and the philosophy 
 of the synergistic use of designer Hamiltonians, and then outline the topics covered in this review.
@@ -97,7 +100,7 @@ small $N$, in particular $N=2$, remains a challenging question.
 
 In view of the uncertainties with analytic methods highlighted above, it is important to test the predictions of field theories in some unbiased way,
 starting from a microscopic description of the system or phenomenon of interest. In some cases there are exact solutions, 
-e.g., the Bethe Ansatz solution of the $S=1/2$ Heisenberg chain \cite{Bethe31} has been immensely important for testing 
+e.g., the Bethe Ansatz solution of the $S=1/2$ Heisenberg chain \cite{Bethe31} has been crucial for testing 
 the non-linear sigma model description of this class of critical spin chains. The exact AKLT state \cite{affleck88} for a special 
 version of the $S=1$ chain was similarly important in confirming Haldane's conjecture of the qualitative differences between 
 half-odd integer and integer spins \cite{Haldane83}. Exact solutions are rare, however, and mostly limited to 1D models.
@@ -110,7 +113,7 @@ have enabled more detailed studies of the low-energy physics of 1D systems, incl
 
 While there has been some progress for 2D systems with DMRG \cite{Stoudenmire12} and tensor-product \cite{Murg09,Gu08,Xie09} states, which are
 higher-dimensional generalizations of the  matrix-product states generated in DMRG \cite{Rommer97}, in general these methods have not yet reached the point 
-where one  can obtain unbiased results for generic nontrivial models. There are encouraging signs, however, of calculations addressing challenging systems and 
+where one  can obtain unbiased results for generic nontrivial models. There are encouraging developments, however, of calculations addressing challenging systems and 
 approaching the level of accuracy where definite conclusions can be drawn \cite{Yan11,Bauer12}.
 
 Presently, however, the only numerical approach with which one can routinely reach sufficiently large 2D and 3D lattices in a completely unbiased way 
@@ -134,10 +137,9 @@ designer Hamiltonians is an important direction in forming an unbiased picture o
 
 \subsection{Outline of the Review}
 
-In this review, we will focus on some recent concrete examples where it has been possible to study quantum phase transitions in detail 
-by QMC simulations and to make contact with corresponding field theories by, e.g., comparing analytical and numerical results for critical 
-exponents. We also discuss other fascinating quantum phenomena, e.g., emergent gauge fields and entanglement, where QMC studies are
-playing a critical role in establishing bench-marks and gaining insights that are hard or impossible to exctract from the field theories.
+In this review, we will focus on some recent examples where it has been possible to study quantum phase transitions in detail 
+by QMC simulations and to make quantitative comparisons of extracted universal quantities with field theoretic results. We also discuss other fascinating quantum phenomena, e.g., emergent gauge fields and entanglement, where QMC studies are
+playing a critical role in establishing bench-marks and gaining insights that are hard or impossible to extract from the field theories.
 
 In Sec.~\ref{sec:methods} we discuss the sign problem and some of the QMC schemes used in large-scale studies of quantum spin systems, 
 including treatments of SU($N$) symmetry and recent progress in computing the Renyi entanglement entropy. In Sec.~\ref{sec:su2models} 
@@ -154,7 +156,7 @@ focus on spin models, and therefore restrict the discussion to the types of meth
 for studies of bosons, where a substantial body of work has been carried out in the past several years stimulated by ultracold atoms in optical 
 lattices \cite{Kashurnikov02,Wessel04,Kato08,Pollet10}. For fermions, other approaches \cite{Hirsch82,Assaad07} work much better in practice (with
 the exception of 1D systems, where the methods discussed here also work well since the signs from anticommutation normally do not appear in this geometry). 
-We will here only give a brief overview of the methods, with references to more detailed accounts.
+We will only give a brief overview of the methods here, with references to more detailed accounts.
 
 \subsection{The sign problem}
 \label{ss:sign}
@@ -212,8 +214,8 @@ $\beta$ is dominated by powers of the order $n=\beta |E_0|$, where $E_0$ is the 
 
 \subsection{Path integrals and stochastic series expansions}
 
-The task is now to rewrite $Z$ in Eqs.~(\ref{za1}) or (\ref{za2}) into the form (\ref{eq:wc}), and expectation values as Eq.~(\ref{expvalue}), with classical variables 
-without diagonalizing $H$. In practice, $T=0$ and $T>0$ approaches for a given model are often very similar. In either case, the exponential 
+The task is now to rewrite $Z$ in Eqs.~(\ref{za1}) or (\ref{za2}) in the form (\ref{eq:wc}), and expectation values as Eq.~(\ref{expvalue}), with classical variables 
+without diagonalizing $H$. In practice, $T=0$ and $T>0$ approaches for a given model are often very similar. In both cases, the exponential 
 operator can be treated with path-integral methods---world lines in discrete \cite{Suzuki77,Hirsch82} or continuous \cite{Beard96,Prokofev96,Prokofev98} 
 imaginary time---starting from a product of ``time slice'' evolution operators,
 \begin{equation}
@@ -253,8 +255,8 @@ so that one can study, e.g., boson systems in which the potential energy is high
 \subsection{Sampling with loop and cluster algorithms}
 
 A breakthrough leading to today's efficient QMC algorithms of the types discussed above
-was the realization \cite{Evertz93} that generalizations of the classical Swendesn-Wang (SW) cluster 
-Monte Carlo method \cite{Swendsen88} could be generalized to loop algorithms (i.e., clusters in the form of loops) for vertex models, and that 
+was the realization \cite{Evertz93} that the classical Swendesn-Wang (SW) cluster 
+Monte Carlo method \cite{Swendsen88} could be generalized to loop algorithms ({\em i.e.}, clusters in the form of loops) for vertex models, and that 
 these are very similar to the effective statistical mechanics problems arising in the transformations of quantum problems discussed above. Such 
 loop algorithms cannot be applied to all cases (in analogy with the SW method, which also has limited applicability), but the loop concept has also been further 
 generalized to ``worms'' \cite{Prokofev96,Prokofev98, WormA} and ``directed loops'' \cite{Sandvik99,Syljuasen02}, which are essentially loops that can self-intersect
@@ -262,7 +264,8 @@ during their construction and incorporate the detailed-balance principle in a mo
 detailed balance \cite{Suwa10}. In addition, for some models where loop algorithms and their generalizations are not applicable (e.g., transverse-field 
 Ising models), other efficient generalizations of the SW cluster concept have been developed \cite{Rieger99,Sandvik03}.
 
-\subsection{Special techniques for SU(2)-symmetric models}
+%\subsection{Special techniques for SU(2)-symmetric models}
+\subsection{SU(2)-symmetric models}
 \label{su2method}
 
 A particularly convenient class of trial states in projector QMC studies of SU($2$) invariant interactions is the amplitude-product states in the valence-bond
@@ -460,11 +463,12 @@ studies \cite{Sandvik95,Brenig06,Sandvik11a}
 
 \subsubsection{Experimental realizations}
 A N\'eel--paramagnetic transition of the type discussed above can in principle be experimentally realized in systems consisting of coupled dimers as a function 
-of pressure. The authors are not aware of any case where the phase transition can be crossed in 2D geometry (or in quasi-2D systems consisting of weakly 
-coupled planes), but a well-studied 3D case is TlCuCl$_3$ \cite{Cavadini01,Ruegg04}. Here neutron scattering shows clear evidence of the phase transition 
+of pressure. The authors are not aware of any material where the phase transition can be crossed in a quasi-2D systems of weakly 
+coupled planes, but a well-studied 3D case is TlCuCl$_3$ \cite{Cavadini01,Ruegg04}. Here neutron scattering shows clear evidence of the phase transition 
 from a paramagnet to a N\'eel state at a critical pressure \cite{Ruegg08}, including the analogue of the Higgs boson (longitudinal mode) in the ordered 
-state \cite{Sachdev09}. In this case the values of the couplings and their pressure dependence are are not in detail, but one can still learn a lot from 
+state \cite{Sachdev09}. In this case the values of the couplings and their pressure dependence are not known in detail, but one can still learn a lot from 
 studies of designer Hamiltonians by focusing on universal properties \cite{Troyer97,Yao07,Jin12,Oitmaa11}.
+
 
 \subsection{Deconfined N\'eel--VBS transition in J-Q models}
 \label{ss:jq2}
