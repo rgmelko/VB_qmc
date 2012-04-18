@@ -437,13 +437,14 @@ let there be additional intra-dimer couplings of strength $\lambda$ (i.e., the t
 \begin{equation}
 H = H_1  -\lambda \sum_{[ i,j]} P_{ij} .
 \end{equation}
-If $\lambda>0$ and $J_1\to 0$, the ground state is clearly a product of singlets on the dimers, a quantum paramagnetic state, while if $\lambda=0$ 
-the system is the standard Heisenberg model (\ref{h1def}). There is, thus, a quantum phase transition between N\'eel and paramagnetic ground states as a 
-function of the ratio $g=(J_1+\lambda)/J_1$. The dimers can be arranged in different ways, and instead of dimers one can also use larger $J_1$-coupled 
+If $\lambda>0$ and $J_1\to 0$, the ground state is clearly a product of singlets on the dimers---a quantum paramagnetic state that we will refer
+to as a valence-bond-liquid (VBL), motivated by the fact that the state breaks no symmetries and is strongly interaction away from the large-$\lambda$
+limit. When $\lambda=0$  the system is the standard Heisenberg model (\ref{h1def}). There is, thus, a quantum phase transition between N\'eel and VBL ground 
+states as a function of $g=(J_1+\lambda)/J_1$. The dimers can be arranged in different ways, and instead of dimers one can also use larger $J_1$-coupled 
 units of an even number of spins, e.g., $4$-site plaquettes, or one can use a bilayer, with $J_1$ and $J_2$ the inter-and intra-layer couplings, respectively.
 
 \subsubsection{$T=0$ criticality}
-Based on symmetry arguments alone, the N\'eel--paramagnetic transition in these dimerized systems
+Based on symmetry arguments alone, the N\'eel--VBL transition in these dimerized systems
 should be in the standard classical 3D O($3$) universality class. Many QMC studies 
 have been devoted to checking the exponents against available results for the classical transition \cite{Sandvik94,Troyer96,Matsumoto01,Wang06,Wenzel08,Wenzel09}.
 For some of the systems, e.g., bilayers \cite{Wang06} and columnar dimers on the square lattice \cite{Matsumoto01,Wenzel09,Sandvik10b}, results have been 
@@ -462,13 +463,12 @@ very narrow regions of critical scaling. This aspect of criticality in dimerized
 studies \cite{Sandvik95,Brenig06,Sandvik11a}
 
 \subsubsection{Experimental realizations}
-A N\'eel--paramagnetic transition of the type discussed above can in principle be experimentally realized in systems consisting of coupled dimers as a function 
+A N\'eel--VBL transition of the type discussed above can in principle be experimentally realized in systems consisting of coupled dimers as a function 
 of pressure. The authors are not aware of any material where the phase transition can be crossed in a quasi-2D systems of weakly 
 coupled planes, but a well-studied 3D case is TlCuCl$_3$ \cite{Cavadini01,Ruegg04}. Here neutron scattering shows clear evidence of the phase transition 
 from a paramagnet to a N\'eel state at a critical pressure \cite{Ruegg08}, including the analogue of the Higgs boson (longitudinal mode) in the ordered 
 state \cite{Sachdev09}. In this case the values of the couplings and their pressure dependence are not known in detail, but one can still learn a lot from 
 studies of designer Hamiltonians by focusing on universal properties \cite{Troyer97,Yao07,Jin12,Oitmaa11}.
-
 
 \subsection{Deconfined N\'eel--VBS transition in J-Q models}
 \label{ss:jq2}
@@ -764,10 +764,10 @@ Consider a bilayer in which each layer is described by some combination of the $
 \begin{equation}
  H_{J_\perp} = -J_\perp \sum_{[ij]} P_{ij},
 \end{equation}
-where the sum over $[ij]$ is taken between spins vertically below each other in the bilayer (i.e., dimers, as in Sec.~\ref{sec:dimermodels}). 
-The $J_\perp$ only model has a featureless non-degenerate ground state consisting of a product of vertical valence bonds (singlets), which we here
-refer to as a valence-bond liquid (VBL). The introduction of small intra-layer couplings like the $J_1$-$J_2$ interactions will make the 
-ground state deviate from a simple product state by increasing the amount of entanglement, but these couplings  cannot destabilize the featureless paramagnetic
+where the sum over $[ij]$ is taken between spins vertically below each other in the bilayer (i.e., dimers, as in Sec.~\ref{sec:dimermodels}). For any
+$N$, the $J_\perp$-only model has a featureless non-degenerate ground state consisting of a product of vertical valence bonds (singlets)---the SU($N$)
+generalization of the VBL state discussed in Sec.~\ref{sec:dimermodels}. The introduction of small intra-layer couplings like the $J_1$-$J_2$ interactions will 
+make the ground state deviate from a simple product state by increasing the amount of entanglement, but these couplings  cannot destabilize the featureless paramagnetic
 state as long as they are small compared to $J_\perp$; see Fig.~\ref{fig:pd_bil}(b). 
 
 When $J_\perp$ is sufficiently small and the value of $J_2/J_1$ places the system within the N\'eel phase when $J_\perp=0$, there is a transition  from
