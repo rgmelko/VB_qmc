@@ -116,8 +116,10 @@ where one  can obtain unbiased results for generic nontrivial models. There are 
 approaching the level of accuracy where definite conclusions can be drawn \cite{Yan11,Bauer12}.
 
 Presently, however, the only numerical approach with which one can routinely reach sufficiently large 2D and 3D lattices in a completely unbiased way 
-is QMC simulations \cite{Evertz03,Sandvik10b}, but, as already noted, they are restricted to systems free from sign problems. The class of models 
-for which there is no sign problem, or it is known how to circumvent it, still contains a vast range of Hamiltonians with non-trivial and interesting 
+is QMC simulations \cite{Evertz03,Sandvik10b}; but, as already noted, they are restricted to systems free from sign problems. The class of models 
+for which the sign problem is either absent, or evadable,
+% there is no sign problem, or it is known how to circumvent it, 
+still contains a vast range of Hamiltonians with non-trivial and interesting 
 ground states and quantum phase transitions. To study low-energy emergent properties, the interactions do not necessarily have to correspond in detail to 
 any particular real material (although some times that is also possible). The idea is to design a sign-problem free Hamiltonian in such a way that it contains 
 a particular macroscopic (low-energy) phenomenon of interest---so that universal physics is captured. 
@@ -140,7 +142,7 @@ is an important direction in forming an unbiased picture of quantum criticality 
 
 In this review, we will focus on some recent examples where it has been possible to study quantum phase transitions in detail 
 by QMC simulations and to make quantitative comparisons of extracted universal quantities with field theoretic results. We also discuss other fascinating quantum phenomena, e.g., emergent gauge fields and entanglement, where QMC studies are
-playing a critical role in establishing bench-marks and gaining insights that are hard or impossible to extract from the field theories.
+playing a critical role in establishing benchmarks and gaining insights that are hard or impossible to extract from the field theories.
 
 In Sec.~\ref{sec:methods} we discuss the sign problem and some of the QMC schemes used in large-scale studies of quantum spin systems, 
 including treatments of SU($N$) symmetry and recent progress in computing the Renyi entanglement entropy. In Sec.~\ref{sec:su2models} 
@@ -236,7 +238,7 @@ An alternative to Eq.~\ref{slicing} is to start from a series expansion \cite{Ha
 \end{equation}
 and inserting complete sets of states between each instance of $H$. The power $n$ itself is importance-sampled along with the terms of $H$ 
 (stochastic series expansion; SSE). This expansion is sharply peaked around $\langle n\rangle = -\beta E_0$ (under the assumption that there 
-is no sign problem), which leads to a computational effort scaling as $\beta N$, which is the same as in the path-integral approaches. Again, $W_c$ 
+is no sign problem), which leads to a computational effort scaling as $\beta N$, which is the same as in the path-integral approaches. Again, $W_C$ 
 in (\ref{eq:wc}) is a product of matrix elements. 
 
 The continuous-time path integral can also be seen as a variant of SSE, where the evolution operator is written in the interaction picture, 
@@ -257,7 +259,7 @@ basis, so that one can study, e.g., boson systems in which the potential energy 
 
 \subsection{Sampling with loop and cluster algorithms}
 
-A breakthrough leading to today's efficient QMC algorithms of the types discussed above
+A breakthrough leading to today's efficient QMC algorithms %of the types discussed above
 was the realization \cite{Evertz93} that the classical Swendsen-Wang (SW) cluster 
 Monte Carlo method \cite{Swendsen88} could be generalized to loop algorithms (i.e., clusters in the form of loops) for vertex models, and that 
 these are very similar to the effective statistical mechanics problems arising in the transformations of quantum problems discussed above. Such 
@@ -364,21 +366,21 @@ $\Pi_{ij}$, the algorithms presented in Sec.~\ref{ss:method} can be simply gener
 \label{ss:renyi}
 
 In addition to conventional physical observables evaluated according to Eqs.~(\ref{za1}) and (\ref{za2}), e.g., various correlation functions, 
-QMC methods have recently been developed that are capable of measuring the degree of {\it entanglement} of quantum systems \cite{EntangleMeasure}. Several 
+QMC methods have recently been developed that are capable of measuring the degree of {\it entanglement} in a quantum system \cite{EntangleMeasure}. Several 
 quantities related to entanglement have been explored in the QMC context for their abilities to identify and characterize quantum phases and phase 
 transitions \cite{Tommaso1,Tommaso2,fluc1,fluc2,fid1,fid2}.  In this review, we concentrate of measures of the entanglement entropy, specifically 
 the {\it Renyi} entropies \cite{renyi},
 \begin{equation}
 S_{\alpha} = \frac{1}{1-\alpha} \ln \Big[ {\rm Tr}\big( \rho_A^{\alpha} \big) \Big],
 \end{equation}
-which are defined for integer $\alpha \ge 1$.  Here, $\rho_A$ is the reduced density matrix, $\rho_A = {\rm Tr}_B (\rho)$, and $A$ is a subregion of 
+for integer $\alpha \ge 1$.  Here, $\rho_A$ is the reduced density matrix, $\rho_A = {\rm Tr}_B (\rho)$, and $A$ is a subregion of 
 a lattice system (with $B$ being its complement). The von Neumann entanglement entropy corresponds to the limit $\alpha \to 1$.
  
 The direct measure of Renyi entropies can not be done in QMC using conventional estimators, however recent work has demonstrated that it is possible to measure 
 $S_{\alpha}$ for $\alpha \ge 2$ using a {\it replica trick} \cite{Holz,Cardy, Fradkin, BP, Naka}.  Here, $\alpha$ copies of the simulation cell are used, with modified 
 periodic boundaries in the ``propagation'' (or imaginary time) direction.  The evaluation of Renyi entropies proceeds in formally different ways for $T=0$ and $T>0$ 
 QMC methods \cite{Hastings10,Melko10}.  Namely, for $T=0$, the calculation of $S_{\alpha}$ proceeds in analogy with Eq.~(\ref{za2}) (where $\Psi$ is the wavefunction 
-of the $\alpha$ times replicated system), with the operator $A$ replaced by a ``swap'' operator for $\alpha=2$ \cite{Hastings10} or permutation operator for 
+of the $\alpha$-times replicated system), with the operator $A$ replaced by a ``swap'' operator for $\alpha=2$ \cite{Hastings10} or permutation operator for 
 $\alpha \ge 3$ \cite{Kallin11}. 
 
 The actual simulation procedures are easiest to understand in the context of the projector algorithm discussed in Sec.~\ref{su2method}.  Here, the second Renyi 
@@ -850,7 +852,7 @@ The recipe to construct QSL phases in XXZ spin (or boson) models is to map the d
 H_0 &=& V \sum_{\hexagon} (S^z_{\hexagon})^2,  \label{H0}
 \end{eqnarray}
 where $S^z_{\hexagon} = \sum_{i \in \hexagon}S^z_i$,
-is a cluster-charging potential term which favors three spin up and three spins down per hexagonal plaquette.  This Hamiltonian alone will promote a highly degenerate manifold of groundstate configurations, where each lattice hexagon satisfies the plaquette constraint but is otherwise disordered.  
+is a cluster-charging potential term which favors three spin up and three spins down per hexagonal plaquette.  This Hamiltonian alone will promote a highly degenerate manifold of groundstate configurations, where each kagome-lattice hexagon satisfies the plaquette constraint but is otherwise disordered.  
 Like all operators which are entirely diagonal in the chosen QMC basis, $H_0$ does not affect the simulation with a sign problem, no matter how the interaction is frustrated, making it a suitable ingredient for a designer Hamiltonian.
 
 In order to promote a QSL phase from this classical degenerate manifold, one desires to add quantum fluctuations to the Hamiltonian such that the cluster-charging constraint is not violated.  In this case, a {\it ring-exchange} term, 
@@ -933,7 +935,7 @@ As discussed in Ref.~\cite{XYstarQMC}, there are consequences of this novel frac
 \label{sec:discussion}
 
 We have presented some examples of the use of judiciously constructed designer Hamiltonians for testing field theories
-end exploring various quantum many-body phenomena. Here we discuss some further generic aspects of this approach, followed by an 
+and exploring various quantum many-body phenomena. Here we discuss some further generic aspects of this approach, followed by an 
 outlook on future directions.
 
 \subsection{Designer Hamiltonian, ``stoquasticity'', and the sign problem}
@@ -961,7 +963,7 @@ remains to be seen whether this state really is a $Z_2$ topological state.
 \subsubsection{The sign problem}
 
 Regarding the sign problem itself more broadly, Ref.~\cite{Troyer05} presents a proof that the sign problem cannot be solved in general. 
-The problem is here defined in terms of constructing a QMC algorithm for which the computational effort scales as a power-law in the system
+The problem here is defined in terms of constructing a QMC algorithm for which the computational effort scales as a power-law in the system
 size. A particular problem is considered for which the removal of the sign still leaves a problem for which the Monte Carlo sampling is believed 
 to scale exponentially in the system size. However, the problem chosen is that of a spin glass, and the conclusion reached is equivalent to
 the statement that the quantum spin glass is no easier to solve than the corresponding classical spin glass. This is hardly a surprising result. 
@@ -980,7 +982,7 @@ Within the classes of models we have discussed here, although the essential phys
 important work to be done to improve on the quantitative aspects, e.g., the critical exponents. In the case of the studies aiming to connect
 SU($N$) QMC simulations with large-$N$ expansions, summarized in Sec.~\ref{sec:sunmodels}, it would be very useful to go to still larger lattices, 
 to check the convergence of the computed exponents more precisely. This is important, in particular, in light of the fact there there are significant scaling 
-corrections in quantities such as the spin stiffness for $N=2$. Such corrections could potentially affect also the fitting procedures underlying 
+corrections in quantities such as the spin stiffness for $N=2$. Such corrections could potentially also affect the fitting procedures underlying 
 the exponents graphed in Fig.~\ref{fig:exp} for small $N$. When higher-order $1/N$ analytical results eventually become available, it will be important to know 
 the values of the exponents without possible remaining effects of scaling corrections. What is needed here is high-accuracy (small error bars) 
 results for the correlation functions on large lattices. It will also be very interesting to use the methods discussed in Sec.~\ref{ss:renyi} to quantify 
@@ -996,7 +998,9 @@ doping \cite{kaul2008:u1}.
 
 An interesting conceptual question is whether one can study bosonic systems in which fermions are emergent particles.
 A positive answer may be suggested by the demonstrated existence of the $Z_2$ fractional phase in a purely bosonic model, as we
-discussed here in Sec.~\ref{topoEEsec}. This raises the possibility that, with a suitable ``binding'' potential \cite{FermionBind}, an extension of 
+discussed here in Sec.~\ref{topoEEsec}. 
+The finite-temperature structure of the topological entanglement entropy identifies that both a $Z_2$ charge (a spinon) and a $Z_2$ flux (a vison) are realized as excitations in this model \cite{TopoEE}.
+This raises the possibility that, with a suitable ``binding'' potential \cite{FermionBind} coupling these two, an extension of 
 the model with an emergent fermionic excitation might be created \cite{Wenbook}.  
 %Future QMC simulations will be required to address question of whether fermions can be observed emerging as collective excitations of a purely bosonic designer Hamiltonian without the sign problem.
 The ability for QMC to measure the entanglement entropy in a state with an emergent fermion
@@ -1014,7 +1018,7 @@ For the designer Hamiltonians discussed in this review, disorder effects have no
 at the N\'eel--VBS transition, and in the Z$_2$ spin liquids. 
 
 Beyond spin models, various manifestations of the ``dirty boson'' problem remain intriguing and challenging \cite{Pollet09,Meier12,Iyer12}, and provide excellent 
-examples of the indispensable role of QMC studies of designer Hamiltonians \cite{Gurarie09}. Another example is the extended hardcore Bose-Hubbard model with 
+examples of the indispensable role of QMC studies of designer Hamiltonians \cite{Gurarie09}. An example is the extended hardcore Bose-Hubbard model with 
 random frustrating interactions on a 3D cubic lattice. QMC simulations have been instrumental in discovering that glassiness can coexist with superfluidity, 
 and that quantum fluctuations and random frustration are both crucial ingredients needed to stabilize a ``superglass'' state \cite{superglass1,superglass2}.
 
