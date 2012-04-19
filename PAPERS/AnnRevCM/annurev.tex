@@ -156,7 +156,7 @@ interacting hard-core bosons). We conclude in Sec.~\ref{sec:discussion} with som
 
 There is a wide range of QMC methods available for studies of different classes of lattice models \cite{Assaad07,Evertz03,Sandvik10b}. In this review we 
 focus on spin models, and therefore restrict the discussion to the types of methods most suitable for them. These methods are also often well suited 
-for studies of bosons, where a substantial body of work has been carried out in the past several years stimulated by ultracold atoms in optical 
+for studies of bosons, where a substantial body of work has been carried out in the past several years, stimulated by ultracold atoms in optical 
 lattices \cite{Kashurnikov02,Wessel04,Kato08,Pollet10}. For fermions, other approaches \cite{Hirsch82,Assaad07} work much better in practice (with
 the exception of 1D systems, where the methods discussed here also work well since the signs from anticommutation normally do not appear in this geometry). 
 We will only give a brief overview of the methods here, with references to more detailed accounts.
@@ -231,15 +231,15 @@ In modern approaches the limit $\Delta \to 0$ is taken at the algorithmic level 
 paths in continuous imaginary time. Older approaches employed the Suzuki-Trotter decomposition \cite{Suzuki76} in Eq.~(\ref{slicing}), which 
 typically leads to an error $\mathcal{O}(\Delta^2)$.
 
-An alternative to Eq.~\ref{slicing} is to start from a series expansion \cite{Handscomb62,Sandvik91},
+An alternative to Eq.~(\ref{slicing}) is to start from a series expansion \cite{Handscomb62,Sandvik91},
 \begin{equation}
 {\rm e}^{-\beta H}= \sum_{n=0}^\infty \frac{\beta^n}{n}(-H)^n,
 \label{series}
 \end{equation}
-and inserting complete sets of states between each instance of $H$. The power $n$ itself is importance-sampled along with the terms of $H$ 
+and insert complete sets of states between each instance of $H$. The power $n$ itself is importance-sampled along with the terms of $H$ 
 (stochastic series expansion; SSE). This expansion is sharply peaked around $\langle n\rangle = -\beta E_0$ (under the assumption that there 
 is no sign problem), which leads to a computational effort scaling as $\beta N$, which is the same as in the path-integral approaches. Again, $W_C$ 
-in (\ref{eq:wc}) is a product of matrix elements. 
+in Eq.~(\ref{eq:wc}) is a product of matrix elements. 
 
 The continuous-time path integral can also be seen as a variant of SSE, where the evolution operator is written in the interaction picture, 
 with $H=H_0+V$ and expanding only in the perturbation $V$ to some conveniently chosen $H_0$ \cite{Prokofev96,Sandvik97a}. The full SSE, where $H_0=0$, $V=H$, 
@@ -248,7 +248,8 @@ is normally more efficient for spin systems, while the continuous-time variant s
 Regardless of how the exponential operator is treated, the difference between Eqs.~(\ref{za1}) and (\ref{za2}) is essentially only in the boundary 
 conditions in the imaginary time direction; periodic for $T>0$ (due to the trace being taken) and dictated by the nature of the trial state in $T=0$ 
 projections. An equal superposition over all basis states corresponds to fully open boundaries, while other choices of the trial state leads to ``biased''
-boundaries with some weighting of the bra and ket states (depending on the details of the trial state). 
+boundaries with some weighting of the bra and ket states (depending on the details of the trial state). The projector approach with $P(\beta)={\rm e^{-\beta H}}$
+is often called the Path Integral Ground State'' method (PIGS) in the context of continuous systems \cite{Sarsa00,Vitali08}.
 
 There is no sign problem in these approaches for spin systems with non-positive definite off-diagonal matrix elements (for a properly chosen trial state in the 
 case of the $T=0$ approach). For bipartite antiferromagnetic interactions a sublattice rotation can accomplish this, or, equivalently, one can note that
@@ -259,17 +260,16 @@ basis, so that one can study, e.g., boson systems in which the potential energy 
 
 \subsection{Sampling with loop and cluster algorithms}
 
-A breakthrough leading to today's efficient QMC algorithms %of the types discussed above
-was the realization \cite{Evertz93} that the classical Swendsen-Wang (SW) cluster 
-Monte Carlo method \cite{Swendsen88} could be generalized to loop algorithms (i.e., clusters in the form of loops) for vertex models, and that 
-these are very similar to the effective statistical mechanics problems arising in the transformations of quantum problems discussed above. Such 
-loop algorithms cannot be applied to all cases (in analogy with the SW method, which also has limited applicability), but the loop concept has also been further 
-generalized to ``worms'' \cite{Prokofev96,Prokofev98, WormA} and ``directed loops'' \cite{Sandvik99,Syljuasen02}, which are essentially loops that can self-intersect
-during their construction and incorporate the detailed-balance principle in a more general way. Recently such an algorithm was also formulated without
-detailed balance \cite{Suwa10}. In addition, for some models where loop algorithms and their generalizations are not applicable (e.g., transverse-field 
-Ising models), other efficient generalizations of the SW cluster concept have been developed \cite{Rieger99,Sandvik03}.
+A breakthrough leading to today's efficient QMC algorithms was the realization \cite{Evertz93} that the classical Swendsen-Wang (SW) cluster 
+Monte Carlo method \cite{Swendsen88} could be generalized to loop algorithms (i.e., generating clusters in the form of loops) for vertex models, and that 
+these are very similar to the effective statistical mechanics problems arising in the transformations of quantum problems discussed above. While these
+loop algorithms have been adapted to many different models, both within the path-integral and SSE frameworks \cite{Kawashima94,Beard96,Sandvik99,Evertz03}, 
+they cannot be applied to all cases (in analogy with the SW method, which also has limited applicability). The loop concept has also been further generalized, 
+however, to ``worms'' \cite{Prokofev96,Prokofev98, WormA} and ``directed loops'' \cite{Sandvik99,Syljuasen02}, which are essentially loops that can self-intersect 
+during their construction and incorporate the detailed-balance principle in a more general way. Recently such 
+an algorithm was also formulated without detailed balance \cite{Suwa10}. In addition, for some models where loop algorithms and their generalizations are not 
+applicable (e.g., transverse-field Ising models), other efficient generalizations of the SW cluster concept have been developed \cite{Rieger99,Sandvik03}.
 
-%\subsection{Special techniques for SU(2)-symmetric models}
 \subsection{SU(2)-symmetric models}
 \label{su2method}
 
@@ -360,7 +360,9 @@ This is an SU($N$) invariant generalization of the SU($2$) Heisenberg interactio
 Hamiltonians based the SU($N$) operators $P_{ij}$ and $\Pi_{ij}$ are sign-problem free if they come with negative signs, in which case
 they generalize the SU($2$) antiferromagnetic and ferromagnetic Heisenberg exchange, respectively. In terms of the definitions of $P_{ij}$ and 
 $\Pi_{ij}$, the algorithms presented in Sec.~\ref{ss:method} can be simply generalized from SU(2) to SU($N$) by extending the number of ``colors'' 
-(of the spins and the loops) from 2 to $N$~\cite{harada2003:sun,beach2009:sun,kaul2011:j1j2}.
+(of the spins and the loops) from 2 to $N$~\cite{harada2003:sun,beach2009:sun,kaul2011:j1j2}. As a consequence of this, estimators expressed in terms
+of transition-graph loops are also modified, e.g., in the state overlap Eq.~(\ref{vboverlap}) $2$ is replaced by $N$. One can even generalize
+simulations in the pure valence-bond basis to non-integer $N$ \cite{beach2009:sun}.
 
 \subsection{Renyi entropies via the replica trick} 
 \label{ss:renyi}
@@ -373,7 +375,7 @@ the {\it Renyi} entropies \cite{renyi},
 \begin{equation}
 S_{\alpha} = \frac{1}{1-\alpha} \ln \Big[ {\rm Tr}\big( \rho_A^{\alpha} \big) \Big],
 \end{equation}
-for integer $\alpha \ge 1$.  Here, $\rho_A$ is the reduced density matrix, $\rho_A = {\rm Tr}_B (\rho)$, and $A$ is a subregion of 
+for integer $\alpha \ge 1$.  Here, $\rho_A$ is the reduced density matrix, $\rho_A = {\rm Tr}_B \{\rho\}$, and $A$ is a subregion of 
 a lattice system (with $B$ being its complement). The von Neumann entanglement entropy corresponds to the limit $\alpha \to 1$.
  
 The direct measure of Renyi entropies can not be done in QMC using conventional estimators, however recent work has demonstrated that it is possible to measure 
@@ -419,7 +421,7 @@ the colors of the loops \cite{Kallin11}.}
 It has been a matter of debate for a long time whether the non-linear $\sigma$-model can correctly capture a phase transition from the N\'eel state 
 to a non-magnetic state in two dimensions for $S=1/2$ spins \cite{Chakravarty89}. Other terms, related to Berry phases of the spins, have to be included in the long wavelength description to obtain a VBS state \cite{Read90,murthy1990:mono}. It was recently proposed that the N\'eel and VBS states are separated
 by a ``deconfined'' quantum-critical (DQC) point \cite{Senthil04a} described by the {\it non-compact} CP$^1$ field theory~\cite{Motrunich04} (in contrast to the nonlinear 
-$\sigma$-model, which is equivalent to the {\it compact} CP$^1$ description, {\em i.e.}, in the deconfined scenario the Berry phases render the gauge field effectively
+$\sigma$-model, which is equivalent to the {\it compact} CP$^1$ description, i.e., in the deconfined scenario the Berry phases render the gauge field effectively
 non-compact at the critical point).
 This field theory describes two flavors of spinons interacting with a non-compact U($1$) gauge field.  The VBS and N\'eel order parameter form due to confinement and condensation, 
 respectively, of spinons, and therefore cannot be regarded as two separate order parameters at the phase transition.
@@ -441,7 +443,7 @@ H_1 = -J_1 \sum_{\langle i,j\rangle} P_{ij}.
 \end{equation}
 Here $\langle i,j\rangle$ denotes nearest-neighbor spins. This system has long-range N\'eel order at $T=0$. Now introduce {\it dimerization}, 
 by considering pairs (dimers) of spins $[i,j]$ such that each spin belongs exactly to one dimer. In addition to the nearest-neighbor couplings (\ref{h1def}),
-let there be additional intra-dimer couplings of strength $\lambda$ (the total intra-dimer coupling is $J_1+\lambda$), such that the Hamiltonian is
+let there be additional intra-dimer couplings of strength $\lambda$ (i.e., the total intra-dimer coupling is $J_1+\lambda$), such that the Hamiltonian is
 \begin{equation}
 H = H_1  -\lambda \sum_{[ i,j]} P_{ij} .
 \end{equation}
@@ -467,7 +469,7 @@ different universality class.
 Field-theoretical descriptions using the nonlinear $\sigma$-model \cite{Haldane83,Chakravarty89,Chubukov94} have given a wealth of 
 predictions also for the $T>0$ quantum-critical ``fan'' extending out into the plane $(g,T)$  from the quantum-critical point $(g_c,0)$. Quantum-critical
 scaling in this extended $T>0$ region is an important generic characteristic of quantum phase transitions, in contrast to classical phase transitions with typically 
-very narrow regions of critical scaling. This aspect of criticality in dimerized models have also been investigated in detail with QMC 
+very narrow regions of critical scaling. This aspect of criticality in dimerized models have also been investigated in detail in QMC 
 studies \cite{Sandvik95,Brenig06,Sandvik11a}
 
 \subsubsection{Experimental realizations}
@@ -483,12 +485,11 @@ studies of designer Hamiltonians by focusing on universal properties \cite{Troye
 While spontaneously formed VBS states in translationally invariant 2D spin systems have been discussed for more than two decades \cite{Chandra88,Dagotto89,Read89},
 most of the early work focused on frustrated systems \cite{Dagotto89,Schulz96,Capriotti01}, for which it is very difficult to carry out unbiased numerical 
 calculations. The proposal of a DQC point separating the N\'eel and VBS states motivated detailed numerical studies of this transition, and, thus, construction 
-of suitable designer 
-Hamiltonians amenable to QMC simulations. Numerical work preceding the theory \cite{Sandvik02} had already indicated the intriguing possibility of 
-a continuous magnetic--VBS quantum phase transitions (where standard arguments based on Landau-Ginzburg theory predict generically first-order transitions) in
-U($1$) (quantum XY models). Tractable SU($2$) spin models exhibiting N\'eel--VBS transitions were lacking until the introduction of the J-Q class of models, 
-where $J$ refers to Heisenberg exchange on a bipartite lattice and $Q$ is a multi-spin interaction which competes against N\'eel order but does not generate 
-a sign problem. 
+of suitable designer Hamiltonians amenable to QMC simulations. Numerical work preceding the theory \cite{Sandvik02} had already indicated the intriguing possibility 
+of a continuous magnetic--VBS quantum phase transitions (where standard arguments based on Landau-Ginzburg theory predict generically first-order transitions) in
+U($1$) (quantum XY models). Tractable SU($2$) spin models exhibiting N\'eel--VBS transitions were lacking until the introduction of the J-Q class of 
+models \cite{Sandvik07}, where $J$ refers to Heisenberg exchange on a bipartite lattice and $Q$ is a multi-spin interaction which competes against N\'eel 
+order but does not generate a sign problem. 
 
 The $Q$ interactions are most conveniently expressed in terms of the singlet projectors (\ref{psinglet}), in the simplest case on the 2D square lattice;
 \begin{equation}
@@ -527,7 +528,7 @@ Such curves should cross at the critical point. In practice, crossing points oft
 corrections \cite{Sandvik10c}. Results for the $J$-$Q_2$ model are graphed in Fig.~\ref{jqrhos} and discussed next.
 
 In the $J$-$Q$ models the drift is anomalously large, which in one study \cite{Jiang08} had been interpreted as a weakly first-order transition (for which 
-$L\rho_s$ should eventually diverge as $L$, due to coexistence of a stiff and a non-stiff phase). Another possibility is that the model in fact has unusually
+$L\rho_s$ should eventually diverge as $L$, due to coexistence of a stiff and a non-stiff phase). Another possibility is that the model has unusually
 large scaling corrections, that could be intimately associated with the nature of the DQC point. For example, in the DQC theory the perturbation to the 
 critical point leading to VBS order (a quadrupled monopole operator) is dangerously irrelevant. It could potentially lead to large, but ultimately conventional
 scaling corrections. Another possibility is that the corrections are logarithmic (multiplicative) \cite{Sandvik10c,banerjee2010:log}, similar to those known 
@@ -555,7 +556,7 @@ with $L\ge 48$.}
 \subsubsection{Emergent U($1$) gauge fluctuations}
 
 An important and remarkable aspect of the DQC theory is the emergent conservation law of the gauge flux, due to the irrelevance of monopoles at the critical point. 
-There is an associated U($1$) symmetry associated with this conservation law at the critical point, which is also emergent and not explicitly contained in 
+There is a U($1$) symmetry associated with this conservation law at the critical point, which is also emergent and not explicitly contained in 
 the $J$-$Q$ model, which only has an SU($2$) spin-rotational symmetry, the discrete symmetries of the square lattice and time reversal. The emergent U($1$) 
 symmetry can, however, be observed in the fluctuations of the VBS order parameter \cite{Sandvik07}. Naively one would expect these fluctuations 
 to reflect the Z$_4$ symmetry of the VBS (which is dictated by the square lattice), but instead the symmetry group expands to U($1$) upon approach to the 
@@ -574,20 +575,20 @@ B_{\hat x}({\bf r})={\bf S}({\bf r}) \cdot {\bf S}({\bf r}+\hat {\bf x}),~~~~~~B
 \label{bxdef}
 \end{equation}
 We define the expectation value of this operator when averaged over all sites ${\bf r}=(x,y)$; $b_\alpha=\langle B_{\alpha}(x,y)\rangle \not = 0$. In a VBS, the 
-expectation value acquires a spatial modulation. With the dimers (stronger bonds) oriented in the $x$ direction, the asymptotic form of the $x$ dimer correlations 
-in a columnar VBS is $C_{\hat x}(x,y) = b_{\hat x}^2+(-1)^{x}(D^2+a{\rm e}^{-r/\xi})$, where $r=(x^2+y^2)$, $D$ is the magnitude of the order parameter, and $a$ 
-is a constant. The rate of decay of the oscillating term toward the non-zero value $D^2$ as $r\to \infty$ defines the correlation length $\xi$ (where we suppressed 
+expectation value acquires a spatial modulation. With the dimers (stronger bonds) oriented in the $x$ direction, the asymptotic form of the spatially averaged 
+$x$ dimer correlations in a columnar VBS is $C_{\hat x}(x,y) = b_{\hat x}^2+(-1)^{x}(\hbox{$\frac{1}{2}$}D^2+a{\rm e}^{-r/\xi})$, where $r=(x^2+y^2)$, $D$ is the magnitude of the order 
+parameter, and $a$ is a constant. The rate of decay of the oscillating term toward a non-zero value as $r\to \infty$ defines the correlation length $\xi$ (where we suppressed 
 the directional dependence on $\xi$, which can be parameterized by $\xi_x$ and $\xi_y$). This is the standard definition of a correlation length, as the 
 length-scale associated with the order parameter. Normally this (the larger of $\xi_x,\xi_y$) is the largest length-scale in the system. 
 
 In a symmetry-broken $x$-oriented VBS, we can consider also dimer correlations in the direction $y$ perpendicular to the dimers. The asymptotic form of these 
-correlations is $C_{\hat y}(x,y) = b_{\hat y}^2 + c{\rm e}^{-r/\Lambda}$, where $c$ is another constant (and again there are really two decay constants; $\Lambda_x$ and
-$\Lambda_y$). These correlations are, at first sight, not associated with the order parameter and the length-scale $\Lambda$ would normally not be referred to 
-as ``the correlation length''. However, $\Lambda$ can actually be larger than $\xi$, and this is at the heart of the emergent U($1$) symmetry of the VBS. 
+correlations is $C_{\hat y}(x,y) = b_{\hat y}^2 + k{\rm e}^{-r/\Lambda}$, where $k$ is another constant (and again there are really two decay constants; $\Lambda_x$ and
+$\Lambda_y$). These correlations are, at first sight, not associated with the order parameter, and the length-scale $\Lambda$ would then normally not be referred 
+to as ``the correlation length''. However, $\Lambda$ can actually be larger than $\xi$, and this is at the heart of the emergent U($1$) symmetry of the VBS. 
 According to the DQC theory, both lengths diverge as the critical point is approached, and $\Lambda \sim \xi^{1+a}$ with $a>0$. Close to the critical point, 
 where the order parameter $D$ is small and $\Lambda \gg \xi$, on length scales less than $\Lambda$ the system will appear to have both $x$ and $y$ VBS order.
 
-One can also associate $\Lambda$ with fluctuations of the {\it angle} of the order parameter. Since the VBS order parameter is a $2D$ vector, ${\bf D}= (D_x,D_y)$, 
+One can also associate $\Lambda$ with fluctuations of the {\it angle} of the order parameter. Since the VBS order parameter is a vector, ${\bf D}= (D_x,D_y)$, 
 one can define a magnitude $D$ and an angle $\Theta$. $\Lambda$ defines a length scale below which the order parameter exhibits U($1$) symmetry---the system
 not only has both $x$ and $y$ order up to this length scale, but one can think of the angle as fluctuating uniformly, even though it has to take one of the 
 values $n\pi/2$ when the order parameters $D_x$ and $D_y$ of a symmetry-broken state are averaged over regions of size $\gg \Lambda$. There are many interesting 
@@ -605,13 +606,14 @@ developed \cite{Lou07} to access the exponent $a(q)$ directly based on the cross
 $P(m_x,m_y)$. Such techniques have also been employed to study the VBS fluctuations of the $J$-$Q$ model, as we discuss next.
 
 In simulations of a VBS on a finite lattice, where the Z$_4$ symmetry is not broken, one can study the emergent U($1$) and the length-scale $\Lambda$ by 
-accumulating the probability distribution $P(D_x,D_y)$, where $D_x$ and $D_y$ are defined on the whole system in terms of the expectation values of the 
-operators $B_\alpha$ in Eq.~(\ref{bxdef}), Fourier transformed at $(\pi,0)$ and $(0,\pi)$ for $\alpha=\hat x$ and $\alpha=\hat y$ correlations, respectively.
-Fig.~\ref{jq3histo} shows results for the $J$-$Q_3$ model at two different ratios $J/Q_3$. Far away from the critical point the histogram exhibits a four-fold
-symmetry consistent with a columnar VBS, while closer to the transition point the distribution is ring-shaped. The radius of the ring corresponds
-to the magnitude $D$ of the order parameter, and the absence of four-fold symmetry implies that here the system size $L=32 < \Lambda$. By analyzing the
-cross-over from Z$_4$ to U($1$) symmetry using finite-size scaling techniques, one can extract the exponent governing the length-scale $\Lambda$, with 
-the result that $\Lambda \sim \xi^{1+a}$, with $a \approx 0.2$ \cite{lou2009:sun}.
+accumulating the probability distribution $P(D_x,D_y)$, where $D_x$ and $D_y$ are defined on the whole system in terms of matrix elements of the operators 
+$B_\alpha$ in Eq.~(\ref{bxdef}), evaluated for individual configurations using transition-graph loops as explained in Sec.~\ref{sec:su2models} and Fourier 
+transformed at $(\pi,0)$ and $(0,\pi)$ for $\alpha=\hat x$ and $\alpha=\hat y$ correlations, respectively. Fig.~\ref{jq3histo} shows results for the $J$-$Q_3$ 
+model at two different ratios $J/Q_3$ \cite{lou2009:sun}. Far away from the critical point the histogram exhibits a four-fold symmetry consistent with a columnar 
+VBS, while closer to the transition point the distribution is ring-shaped. The radius of the ring corresponds to the magnitude $D$ of the order parameter, and the 
+absence of four-fold symmetry implies that here the system size $L=32 < \Lambda$. By analyzing the cross-over from Z$_4$ to U($1$) symmetry using 
+finite-size scaling techniques, one can extract the exponent governing the length-scale $\Lambda$, with the result that $\Lambda \sim \xi^{1+a}$, with $a 
+\approx 0.2$ \cite{lou2009:sun}.
 
 
 \begin{figure}
@@ -627,7 +629,7 @@ the result that $\Lambda \sim \xi^{1+a}$, with $a \approx 0.2$ \cite{lou2009:sun
 The emergent U($1$) length scale discussed above should also be reflected in the confinement of spinons (i.e., the size of a bound state) in the VBS state. By utilizing 
 properties of the valence-bond basis, discussed in Sec.~\ref{su2method}, and generalizations to non-zero total magnetization \cite{Banerjee10b,Wang10}, it is 
 possible to directly access $S=1$ excitations of VBS states and study their structure in terms of bound or unbound (deconfined spinons). Such calculations have 
-already been used to characterize deconfined spinons using a designer Hamiltonian with a VBS state and a N\'eel--VBS transition in one dimension \cite{Tang11a}. 
+already been used to characterize deconfined spinons using a designer Hamiltonian with a VBS state in one dimension \cite{Tang11a}. 
 Similar calculations for 2D J-Q models should shed further light on the nature of the spinons in the vicinity of the DQC point.
 
 Another approach to confirming spinon excitations, which has already been employed for the 2D J-Q model, is to study the thermodynamic properties at 
@@ -653,15 +655,14 @@ in the generalization.
 In the context of the study of the DQC point at the N\'eel-VBS transition, the ability of two spins to form a singlet is the most
 central characteristic required to form a VBS. It is possible to choose SU($N$) models which have this property by working on bipartite lattices and
 assigning SU($N$) spins that transform as relative conjugate representations on each of the sublattices, as discussed in Sec.~\ref{ss:su2N}. In such 
-models two spins on opposite sub-lattices can form a singlet, allowing for the possibility of a valence-bond solid.  The simplest 
+models two spins on opposite sublattices can form a singlet, allowing for the possibility of a valence-bond solid.  The simplest 
 SU($N$) invariant two-site sign-problem free Hamiltonian interaction one can define for such models is given by $H_1$ in Eq.~(\ref{h1def}), with $P_{ij}$ 
 generalized to the SU($N$) singlet projector defined in Sec.~\ref{ss:su2N}. We note again that for $N=2$ this reduces to the familiar $S=1/2$ 
 antiferromagnetic Heisenberg model. 
 
-The Hamiltonian Eq.~(\ref{h1def})
-has been studied extensively as a function of $N$. On a 1D chain the well known critical Bethe state for $N=2$ gives way to a 
-valence bond solid ordered state for all $N\geq 3$~\cite{barber1989:d1n3_vbs,klumper1989:d1n3_vbs,affleck1985:lgN}. The 2D version of $H_{1}$ was shown 
-in the large-$N$ limit to map onto a quantum dimer model with only a kinetic term \cite{read1989:nucphysB}. From direct QMC simulations on the quantum dimer model, 
+The Hamiltonian Eq.~(\ref{h1def}) has been studied extensively as a function of $N$. On a 1D chain the well known critical Bethe state for $N=2$ gives way to a 
+VBS ordered state for all $N\geq 3$~\cite{barber1989:d1n3_vbs,klumper1989:d1n3_vbs,affleck1985:lgN}. The 2D version of $H_{1}$ was shown 
+in the large-$N$ limit to map onto a quantum dimer model with only a kinetic term \cite{read1989:nucphysB}. From direct QMC simulations of the quantum dimer model, 
 it is known that the kinetic-only model orders into a VBS \cite{sachdev1989:qd_vbs}.  This implies that in $H_{1}$ there must be a transition between the 
 magnetic state at $N=2$ and the VBS at $N=\infty$.  The location of the transition was first determined to lie between $N=4$ and $N=5$ 
 by QMC simulations~\cite{harada2003:sun}.
@@ -689,16 +690,16 @@ the SU($N$) singlet projectors. Since the matrix elements of $P_{ij}$ are all po
 It turns out that the $Q$-only model, with the projectors arranged as in Fig.~\ref{qterms}, is always VBS ordered, so that for the cases of $N=2,3,4$, 
 the $J_1$-$Q$ model has a N\'eel-VBS transition~\cite{Sandvik07,lou2009:sun}. Detailed QMC studies for these $N$ find strong evidence for a 
 continuous transition between the N\'eel and VBS ground states \cite{melko2008:jq,kaul2011:su34,banerjee2010:log,banerjee2010:su3}. 
-As discussed above for the SU($2$) case, certain observables show deviations from simple scaling laws for the system sizes studied, that could either 
-be due to conventional corrections to scaling or actual violations of simple scaling laws (but not resembling violations of the kind that would be 
+As discussed above for the SU($2$) case, certain observables show deviations from standard scaling laws for the system sizes studied, that could either 
+be due to conventional corrections to scaling or actual violations of the scaling laws (but they do not resemble violations of the kind that would be 
 expected at a first-order transition \cite{Sandvik10c}]. The origin of these corrections remains to be resolved.
 
 \subsection{SU($N$) $J_1$-$J_2$ model for $N\geq 5$}
 \label{ss:j1j2N}
 
 For $N\geq 5$, the $Q$ term strengthens the VBS that is already present in the $J_1$ only model, and hence to study the N\'eel-VBS transition 
-for large-$N$, a new designer Hamiltonian is needed. To supply such a model, an interaction can be included
-between sites on the same sub-lattice $J_2$ which favors the N\'eel state \cite{kaul2011:j1j2},
+for large-$N$, a new designer Hamiltonian is needed. To supply such a model, an interaction $J_2$ can be included between sites on the same sublattice 
+which stabilizes the N\'eel state \cite{kaul2011:j1j2},
 \begin{equation}
 H_{2}= -J_2 \sum_{\langle\langle ij\rangle\rangle} \Pi_{ij},
 \end{equation}
