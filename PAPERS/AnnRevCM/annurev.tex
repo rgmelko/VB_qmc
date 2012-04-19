@@ -88,12 +88,12 @@ Often to control the RG flows, analytic expansion around some special simplifyin
 around the upper critical dimension and the $1/N$ expansion in the number of components $N$ (spin components, flavors of fermions, etc.)
 \cite{herbut2007:book,barber1972:lgNeps}. The
 extrapolation to the $\epsilon$ or $N$ of interest is often problematic, however, because only low-order
-expansions are feasible in practice, or worse still the expansion may not converge at the value of $\epsilon$ or $N$ of primary interest.
+expansions are feasible in practice---or worse still, the expansion may not converge at the value of $\epsilon$ or $N$ of primary interest.
 
 One example of the above approach of deriving effective field theories from microscopic Hamiltonians by a limiting expansion is the $(d+1)$-dimensional
 nonlinear $\sigma$-model description of interacting quantum spins in $d$ dimensions, which was derived by Haldane in 
 the semi-classical limit of large spin $S$ \cite{Haldane83,Chakravarty89,Auerbach94}.  Another example---central to this review article---is the 
-non-compact CP$^{N-1}$ description of the intriguing  N\'eel to valence-bond solid (VBS) ``deconfined'' quantum-critical point in two dimensional 
+non-compact CP$^{N-1}$ description of the intriguing  N\'eel to valence-bond solid (VBS) ``deconfined'' quantum-critical point in 2D 
 SU($N$) quantum magnets, which can be justified in the large-$N$ limit \cite{Senthil04a,Sachdev08}. Whether or not the theory remains correct down to 
 small $N$, in particular $N=2$, remains a challenging question.
 
@@ -117,22 +117,24 @@ approaching the level of accuracy where definite conclusions can be drawn \cite{
 
 Presently, however, the only numerical approach with which one can routinely reach sufficiently large 2D and 3D lattices in a completely unbiased way 
 is QMC simulations \cite{Evertz03,Sandvik10b}, but, as already noted, they are restricted to systems free from sign problems. The class of models 
-for which there is no sign problem, or it is known how to circumvent it, still contains a vast range of models with non-trivial 
-and interesting ground states and quantum phase transitions. To study low-energy emergent 
-properties, the interactions do not necessarily have to correspond closely to any particular material (although some 
-times that is also possible). The idea is to design a sign-problem free Hamiltonian in such a way that it contains a 
-particular macroscopic (low-energy) phenomenon of interest---so that universal physics is captured. With unbiased large-scale 
-QMC simulations of such designer Hamiltonians one can test field theories proposed to capture specific classes of quantum many-body 
-states or quantum phase transitions. Moreover, explorations of designer Hamiltonians can also serve as ``experiments'' for 
-discovering novel phenomena, and, thereby, stimulate further theoretical developments.
+for which there is no sign problem, or it is known how to circumvent it, still contains a vast range of Hamiltonians with non-trivial and interesting 
+ground states and quantum phase transitions. To study low-energy emergent properties, the interactions do not necessarily have to correspond in detail to 
+any particular real material (although some times that is also possible). The idea is to design a sign-problem free Hamiltonian in such a way that it contains 
+a particular macroscopic (low-energy) phenomenon of interest---so that universal physics is captured. 
 
-A designer Hamiltonian corresponds to an effective classical statistical-mechanics problem (with a real action), which arises out of the construction of the sampling 
-space in the QMC scheme implemented. Often, however, the resulting classical models have unusual degrees of freedom and interactions, unanticipated in the study 
-of classical statistical mechanics. In particular, while in some cases quantum phenomena in $d$ dimensions can be studied in the simplest generalization to a 
-classical model with the same global symmetries in $d+1$ dimensions \cite{Rieger94,Sorensen92,Nahum11} [e.g., the continuum limit of the transverse field 
-Ising chain is described by the $(1+1)$-dimensional Ising field theory \cite{Sachdev11}], in other cases this naive mapping can miss important and intriguing 
-phenomena special to quantum mechanics \cite{Senthil04a,Fradkin04,Sachdev08}. Thus, in our view the approach of directly studying manifestly quantum mechanical 
-designer Hamiltonians is an important direction in forming an unbiased picture of quantum criticality and emergent phenomena.
+Bench-mark results obtained from such designer Hamiltonians, representing various physical phenomena in a prototypical manner, can be very useful experimentally. 
+Here our main focus will be on the theory side. With unbiased large-scale QMC simulations, one can test field theories proposed to capture specific classes of 
+quantum many-body states or quantum phase transitions. Moreover, explorations of designer Hamiltonians can also serve as ``experiments'' for discovering 
+novel phenomena, and, thereby, stimulate further theoretical developments.
+
+A designer Hamiltonian corresponds to an effective classical statistical-mechanics problem (with a real action), which arises out of the construction 
+of the sampling space in the QMC scheme implemented. Often, however, the resulting classical models have unusual degrees of freedom and interactions, 
+unanticipated in the study of classical statistical mechanics. In some cases quantum phenomena in $d$ dimensions can be studied using Monte Carlo 
+simulations with the simplest generalization to a classical model with the same global symmetries in $d+1$ dimensions \cite{Rieger94,Sorensen92,Nahum11} 
+[e.g., the thermal phase transition of the 2D classical Ising model is in the same universality class as the quantum phase transition of the transverse-field 
+Ising chain \cite{Suzuki76,Sachdev11}]. In other cases, this naive mapping of just $d \to d+1$ can miss important and intriguing phenomena special to quantum 
+mechanics \cite{Senthil04a,Fradkin04,Sachdev08}. Thus, in our view the approach of directly studying manifestly quantum mechanical designer Hamiltonians 
+is an important direction in forming an unbiased picture of quantum criticality and emergent phenomena.
 
 \subsection{Outline of the Review}
 
@@ -144,8 +146,8 @@ In Sec.~\ref{sec:methods} we discuss the sign problem and some of the QMC scheme
 including treatments of SU($N$) symmetry and recent progress in computing the Renyi entanglement entropy. In Sec.~\ref{sec:su2models} 
 we give examples of conventional and deconfined quantum-critical points in SU(2) invariant models, and in Sec.~\ref{sec:sunmodels} 
 we show how generalization to SU($N$) symmetry can be used to directly connect to large-$N$ studies within field theory. In Sec.~\ref{sec:u1models} 
-we discuss spin liquid states and associated quantum phase transitions in U($1$) symmetric ``XXZ'' spin models (or, equivalently, interacting hard-core 
-bosons). We conclude in Sec.~\ref{sec:discussion} with some further discussion and an outlook on future prospects and challenges.
+we discuss spin liquid states and associated quantum phase transitions in U($1$) symmetric, highly frustrated ``XXZ'' spin models (or, equivalently, 
+interacting hard-core bosons). We conclude in Sec.~\ref{sec:discussion} with some further discussion and an outlook on future prospects and challenges.
 
 \section{Modern QMC methods}
 \label{sec:methods}
