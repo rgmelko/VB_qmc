@@ -159,9 +159,10 @@ interacting hard-core bosons). We conclude in Sec.~\ref{sec:discussion} with som
 There is a wide range of QMC methods available for studies of different classes of lattice models \cite{Assaad07,Evertz03,Sandvik10b}. In this review we 
 focus on spin models, and therefore restrict the discussion to the types of methods most suitable for them. These methods are also often well suited 
 for studies of bosons, where a substantial body of work has been carried out in the past several years, stimulated by ultracold atoms in optical 
-lattices \cite{Kashurnikov02,Wessel04,Kato08,Pollet10}. For fermions, other approaches \cite{Hirsch82,Assaad07} work much better in practice (with
-the exception of 1D systems, where the methods discussed here also work well since the signs from anticommutation normally do not appear in this geometry). 
-We will only give a brief overview of the methods here, with references to more detailed accounts.
+lattices \cite{Kashurnikov02,Wessel04,Kato08,Pollet10}. For fermions, other approaches, based upon auxiliary fields decoupling the interactions and 
+subsequent analytical tracing-out of the fermions \cite{Hirsch82,Assaad07}, work much better in practice (with the exception of 1D systems, where the methods 
+discussed here also work well since the signs from anticommutation normally do not appear in this geometry). We will only give a brief non-techical 
+overview of QMC methods here, with references to more detailed accounts.
 
 \subsection{The sign problem}
 \label{ss:sign}
@@ -809,12 +810,12 @@ understanding of the role of Berry phases.
 
 \begin{figure}
 \centerline{\psfig{figure=pd_su6_bil.eps,height=9cm}}
-  \caption{ \label{fig:pd_bil}  Physics of the SU($N$) bilayer model  of Sec.~\ref{ss:bilN}.  (a) Illustration of the bilayer model. White sites are the A sub-lattice with 
+  \caption{ \label{fig:pd_bil}  Physics of the SU($N$) bilayer model.  (a) Lattice and couplings. White sites form the A sub-lattice with 
   SU($N$) spins that transform in the fundamental representation. Black sites on the B sub-lattice transform as the conjugate to this representation. (b) Phase diagram of the
   SU($6$) bilayer model as a function of $g_\perp =J_\perp/J_1$ and $g_2=J_2/J_1$. The black circle at $g_\perp=0$ is the N\'eel-VBS quantum critical point. Remarkably, 
   in the bilayer geometry with $g_\perp\neq 0$ this continuous transition becomes first-order (indicated by open circles), due to the cancellation of Berry phases between 
   the layers. The VBL phase at large $g_\perp$ is a featureless paramagnet with singlets predominantly forming between the planes. Cartoons of the basic singlet physics 
-  both in the symmetry-broken VBS and uniform VBL phases are shown. The SU($N$) N\'eel-VBL transition is discussed at length in Ref.~\cite{kaul2012:sun_bil}.}
+  in the symmetry-broken VBS (left) and uniform VBL (right) phases are shown. The SU($N$) N\'eel-VBL transition is discussed at length in Ref.~\cite{kaul2012:sun_bil}.}
 \end{figure}
 
 \section{Spin liquids and deconfinement in U($1$) models}
@@ -848,9 +849,9 @@ symmetry---being a type of QSL (or resonating valence bond) phase, that has an e
 
 \begin{figure}
 \centerline{\includegraphics[width=4.5in]{kagome}}
-\caption{ (a) Spins (black dots are $S^z = 1/2$, empty sites $S^z = -1/2$) in a groundstate configuration satisfying $H_0$, Eq.~\ref{H0}, on the kagome lattice.  
+\caption{ (a) Spins (black dots are $S^z = 1/2$, empty sites $S^z = -1/2$) in a groundstate configuration satisfying $H_0$, Eq.~(\ref{H0}), on the kagome lattice.  
 The degenerate manifold of such configurations maps onto a triangular-lattice (dashed) classical three-dimer configuration, where each spin-up corresponds to a dimer 
-on the dual lattice \cite{BFG}.  (b) To the right, a plaquette-flip $H_{\rm ring}$ operation preserves the cluster-charging constraint, and can be seen to correspond 
+on the dual lattice \cite{BFG}. (b) A plaquette-flip $H_{\rm ring}$ operation preserves the cluster-charging constraint, and can be seen to correspond 
 to a rhombus-flip of dimers on the dual lattice.  A defect is created by flipping one spin, marked ``+'' in (a).  This defect can be thought of as associating with 
 two hexagonal plaquettes, indicated in grey in (b), each with two spin-up per hexagon, corresponding to deconfined fractionalized spinons.} \label{kag_fig}
 \end{figure}
@@ -917,9 +918,11 @@ previous section, it is possible to extract the topological entanglement entropy
 
 \begin{figure}
 \centerline{\includegraphics[width=4.5in]{QSL}}
-\caption{In the main figure, the temperature dependence of the topological entanglement entropy in the $Z_2$ QSL phase ($V/t_1 = 8$) of the Hamiltonian $H_0 + H_1$ for three different sizes ($L \times L \times 3$) of kagome lattice \cite{TopoEE}.  The quantization of the plateau at $\ln(2)$ (dashed line) identifies the emergent gauge symmetry; one expect another temperature crossover to $2 \gamma = 2 \ln(2)$ at some lower temperature.  In the inset, finite-size scaling of
-$G(L/6)$ at the XY* quantum critical point ($V/t_1 = 7.0665$), which scales as  $1/L^{2.493}$ (straight-line fit) giving $\eta = 1.493$ (reproduced from \cite{XYstarQMC})
-\label{QSLfig}}
+\caption{Main graph: Temperature dependence of the topological entanglement entropy in the $Z_2$ QSL phase ($V/t_1 = 8$) of the Hamiltonian $H_0 + H_1$ 
+for three different $L \times L \times 3$ kagome lattices \cite{TopoEE}.  The quantization of the plateau at $\ln(2)$ (dashed line) identifies the emergent 
+gauge symmetry; one expect another temperature crossover to $2 \gamma = 2 \ln(2)$ at some lower temperature. Inset: finite-size scaling of $G(L/6)$ at the 
+XY* quantum critical point ($V/t_1 = 7.0665$), which scales as  $1/L^{2.493}$ (straight-line fit) giving $\eta = 1.493$. Reproduced from \cite{XYstarQMC}.}
+\label{QSLfig}
 \end{figure}
 
 \subsection{Deconfinement at the XY* transition} \label{XYstar}
