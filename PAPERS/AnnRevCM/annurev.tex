@@ -273,10 +273,10 @@ applicable (e.g., transverse-field Ising models), other efficient generalization
 \subsection{SU(2)-symmetric models}
 \label{su2method}
 
-A particularly convenient class of trial states in projector QMC studies of SU($2$) invariant interactions is the amplitude-product states in the valence-bond
-(singlet pair) basis \cite{Liang88}, which were recently generalized to include bond correlations \cite{Lin12}. These overcomplete states for the singlet 
-sector incorporate Marshall's sign rule in a convenient way and also automatically have the appropriate momentum for the ground state of a periodic system 
-(thereby from the outset filtering out a significant fraction of the excited states). The Hamiltonian in this case can typically be expressed in terms of 
+A particularly convenient class of trial states in projector QMC studies of SU($2$) invariant interactions is the amplitude-product states in the overcomplete
+valence-bond (singlet pair) basis \cite{Liang88}, which were recently generalized to include bond correlations \cite{Lin12}. These total-singlet states incorporate 
+Marshall's sign rule in a convenient way and also automatically have the appropriate momentum for the ground state of a periodic system (thereby from the outset 
+filtering out a significant fraction of the excited states). The Hamiltonian in this case can typically be expressed in terms of 
 two-spin singlet-projector operators  (individual ones or products of two or more of them);
 \begin{equation}
 P_{ij}=\hbox{$\frac{1}{4}$}-{\bf S}_i\cdot {\bf S}_j = |s_{ij}\rangle\langle s_{ij}|,
@@ -465,18 +465,18 @@ with certain operators (cubic interactions) in the field-theory formulation  whi
 These operators are asymptotically irrelevant in the RG sense, but can lead to substantial finite-size corrections that can easily be mistaken for a 
 different universality class.
 
-\subsubsection{$T>0$ quantum-critical scaling}
+\subsubsection{$T>0$ scaling}
 Field-theoretical descriptions using the nonlinear $\sigma$-model \cite{Haldane83,Chakravarty89,Chubukov94} have given a wealth of 
-predictions also for the $T>0$ quantum-critical ``fan'' extending out into the plane $(g,T)$  from the quantum-critical point $(g_c,0)$. Quantum-critical
-scaling in this extended $T>0$ region is an important generic characteristic of quantum phase transitions, in contrast to classical phase transitions with typically 
-very narrow regions of critical scaling. This aspect of criticality in dimerized models have also been investigated in detail in QMC 
+predictions also for the $T>0$ quantum-critical ``fan'' extending out into the plane $(g,T)$  from the critical point $(g_c,0)$. Scaling 
+behavior in this extended $T>0$ region is an important generic characteristic of quantum phase transitions, in contrast to classical phase transitions 
+with typically very narrow regions of criticality. This aspect of dimerized models has also been investigated in detail in QMC 
 studies \cite{Sandvik95,Brenig06,Sandvik11a}
 
 \subsubsection{Experimental realizations}
 A N\'eel--VBL transition of the type discussed above can in principle be experimentally realized in systems consisting of coupled dimers as a function 
 of pressure. The authors are not aware of any material where the phase transition can be crossed in a quasi-2D systems of weakly 
-coupled planes, but a well-studied 3D case is TlCuCl$_3$ \cite{Cavadini01,Ruegg04}. Here neutron scattering shows clear evidence of the phase transition 
-from a paramagnet to a N\'eel state at a critical pressure \cite{Ruegg08}, including the analogue of the Higgs boson (longitudinal mode) in the ordered 
+coupled planes, but a well-studied 3D case is TlCuCl$_3$ \cite{Cavadini01,Ruegg04}. Here neutron scattering shows a transition from a paramagnet 
+to a N\'eel state at a critical pressure \cite{Ruegg08}, including the analogue of the Higgs boson (longitudinal mode) in the ordered 
 state \cite{Sachdev09}. In this case the values of the couplings and their pressure dependence are not known in detail, but one can still learn a lot from 
 studies of designer Hamiltonians by focusing on universal properties \cite{Troyer97,Yao07,Jin12,Oitmaa11}.
 
@@ -830,9 +830,9 @@ in Hamiltonians with U($1$) symmetry---anisotropic spin (or Bose-Hubbard) models
 causing the sign-problem. A crucial fact in this regard is that there are no limitations on the diagonal couplings, because the sign problem is only caused by the off-diagonal
 matrix elements in the chosen QMC basis (see Sec.~\ref{sec:methods}). Thus, diagonal frustration can be simulated in any form.
 
-Examples of both 2D gapped \cite{Isakov1,Isakov2,Long,TopoEE} 3D and gapless \cite{Isakov3} spin liquids have recently been studied with large-scale QMC simulations of 
-such sign-problem free U($1$) models. In this section, we will explore one class of spin Hamiltonians that contains the simplest type of QSL phase, which can be related to a 
-$Z_2$ gauge theory.  We will demonstrate that universal topological properties of the QSL calculated in QMC can be compared to this effective field-theoretical description.  
+Examples of both 2D gapped \cite{Isakov1,Isakov2,Long,TopoEE} and 3D and gapless \cite{Isakov3} QSLs have recently been studied with large-scale QMC simulations of 
+such sign-problem free U($1$) models. In this section, we will explore one class of Hamiltonians that contains the simplest type of QSL phase, which can be related to a 
+$Z_2$ gauge theory. We will demonstrate that universal topological properties calculated in QMC can be compared to this effective field-theoretical description.  
 In addition, an associated critical point separating an XY-ferromagnet and a QSL can be demonstrated to be of an exotic ``fractionalized'' type, based on comparisons of 
 universal quantities calculated from QMC and a related quantum field theory.
 
