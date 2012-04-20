@@ -23,7 +23,7 @@ quantum Monte Carlo simulations}
 \author{Ribhu K. Kaul
 \affiliation{Department of Physics and Astronomy, University of Kentucky, Lexington, Kentucky 40506, USA}
 Roger G. Melko
-\affiliation{Department of Physics and Astronomy, University of Waterloo, Ontario, N2L 3G1, Canada, and \\
+\affiliation{Department of Physics and Astronomy, University of Waterloo, \\ Ontario, N2L 3G1, Canada, and \\
 Perimeter Institute for Theoretical Physics, Waterloo, Ontario N2L 2Y5, Canada}
 Anders W. Sandvik
 \affiliation{Department of Physics, Boston University, 590 Commonwealth Avenue, Boston, Massachusetts 02215, USA}
@@ -76,7 +76,7 @@ low-energy limit of many important models without any approximations (beyond con
 quantities of current interest in condensed matter physics and quantum information theory, e.g., the fidelity 
 \cite{Schwandt09}, the geometric tensor \cite{Degrandi11}, and the entanglement entropy \cite{Hastings10, Melko10}. We will 
 briefly address some of these technical developments as well. We first make some further remarks on field theory and the philosophy 
-of the synergistic use of designer Hamiltonians, and then outline the topics covered in this review.
+of the synergistic use of designer Hamiltonians, and then outline the topics covered in this Review.
 
 \subsection{Field theory and numerical studies of Hamiltonians}
 
@@ -132,13 +132,14 @@ quantum many-body states or quantum phase transitions. Moreover, explorations of
 novel phenomena, and, thereby, stimulate further theoretical developments.
 
 A designer Hamiltonian corresponds to an effective classical statistical-mechanics problem (with a real action), which arises out of the construction 
-of the sampling space in the QMC scheme implemented. Often, however, the resulting classical models have unusual degrees of freedom and interactions, 
-unanticipated in the study of classical statistical mechanics. In some cases quantum phenomena in $d$ dimensions can be studied using Monte Carlo 
-simulations with the simplest generalization to a classical model with the same global symmetries in $d+1$ dimensions \cite{Rieger94,Sorensen92,Nahum11} 
-[e.g., the thermal phase transition of the 2D classical Ising model is in the same universality class as the quantum phase transition of the transverse-field 
-Ising chain \cite{Suzuki76,Sachdev11}]. In other cases, this naive mapping of just $d \to d+1$ can miss important and intriguing phenomena special to quantum 
-mechanics \cite{Senthil04a,Fradkin04,Sachdev08}. Thus, in our view the approach of directly studying manifestly quantum mechanical designer Hamiltonians 
-is an important direction in forming an unbiased picture of quantum criticality and emergent phenomena.
+of the sampling space in the QMC scheme implemented. In some cases quantum phenomena in $d$ dimensions can be studied using Monte Carlo simulations with 
+the simplest generalization to a classical model with the same global symmetries in $d+1$ dimensions \cite{Rieger94,Sorensen92,Nahum11} [e.g., the thermal 
+phase transition of the 2D classical Ising model is in the same universality class as the quantum phase transition of the transverse-field Ising chain 
+\cite{Suzuki76,Sachdev11}]. Often, however, the effective classical models resulting from the construction of a QMC configuration space, in a complete treatment
+of a given a quantum Hamiltonian, have unusual degrees of freedom and interactions, unanticipated in the study of classical statistical mechanics. The naive 
+mapping with just $d \to d+1$ can then miss important and intriguing phenomena special to quantum mechanics \cite{Senthil04a,Fradkin04,Sachdev08}. Thus, in our 
+view the approach of directly studying quantum mechanical designer Hamiltonians is an important direction in forming an unbiased picture of quantum 
+criticality and emergent phenomena.
 
 \subsection{Outline of the Review}
 
@@ -157,12 +158,13 @@ interacting hard-core bosons). We conclude in Sec.~\ref{sec:discussion} with som
 \label{sec:methods}
 
 There is a wide range of QMC methods available for studies of different classes of lattice models \cite{Assaad07,Evertz03,Sandvik10b}. In this review we 
-focus on spin models, and therefore restrict the discussion to the types of methods most suitable for them. These methods are also often well suited 
-for studies of bosons, where a substantial body of work has been carried out in the past several years, stimulated by ultracold atoms in optical 
-lattices \cite{Kashurnikov02,Wessel04,Kato08,Pollet10}. For fermions, other approaches, based upon auxiliary fields decoupling the interactions and 
-subsequent analytical tracing-out of the fermions \cite{Hirsch82,Assaad07}, work much better in practice (with the exception of 1D systems, where the methods 
-discussed here also work well since the signs from anticommutation normally do not appear in this geometry). We will only give a brief non-techical 
-overview of QMC methods here, with references to more detailed accounts.
+focus on spin models, and therefore restrict the discussion to the types of methods most suitable for them. These methods are also often well suited for studies 
+of bosons, where a substantial body of work has been carried out in the past several years, stimulated by ultracold atoms in optical 
+lattices \cite{Kashurnikov02,Wessel04,Kato08,Pollet10}. For fermions, there are alternative approaches, based upon auxiliary fields decoupling the interactions and 
+subsequent analytical tracing-out of the fermions \cite{Hirsch82,Assaad07}. These methods have a much less severe fermion sign problem (in some cases completely 
+avoiding it, e.g., for particle-gole symmetric systems)---with the exception of 1D systems, where the methods discussed here also work well (since the signs 
+from anticommutation normally do not appear in this geometry). We will only give a brief non-techical overview of QMC methods here, with references to 
+more detailed accounts.
 
 \subsection{The sign problem}
 \label{ss:sign}
@@ -240,9 +242,9 @@ An alternative to Eq.~(\ref{slicing}) is to start from a series expansion \cite{
 \label{series}
 \end{equation}
 and insert complete sets of states between each instance of $H$. The power $n$ itself is importance-sampled along with the terms of $H$ 
-(stochastic series expansion; SSE). This expansion is sharply peaked around $\langle n\rangle = -\beta E_0$ (under the assumption that there 
-is no sign problem), which leads to a computational effort scaling as $\beta N$, which is the same as in the path-integral approaches. Again, $W_C$ 
-in Eq.~(\ref{eq:wc}) is a product of matrix elements. 
+(stochastic series expansion; SSE). This expansion is sharply peaked around $\langle n\rangle = -\beta E$, where $E$ is the total internal energy 
+(under the assumption that there is no sign problem), which leads to a computational effort scaling as $\beta N$, which is the same as in the 
+path-integral approaches. Again, $W_C$ in Eq.~(\ref{eq:wc}) is a product of matrix elements. 
 
 The continuous-time path integral can also be seen as a variant of SSE, where the evolution operator is written in the interaction picture, 
 with $H=H_0+V$ and expanding only in the perturbation $V$ to some conveniently chosen $H_0$ \cite{Prokofev96,Sandvik97a}. The full SSE, where $H_0=0$, $V=H$, 
@@ -252,24 +254,25 @@ Regardless of how the exponential operator is treated, the difference between Eq
 conditions in the imaginary time direction; periodic for $T>0$ (due to the trace being taken) and dictated by the nature of the trial state in $T=0$ 
 projections. An equal superposition over all basis states corresponds to fully open boundaries, while other choices of the trial state leads to ``biased''
 boundaries with some weighting of the bra and ket states (depending on the details of the trial state). The projector approach with $P(\beta)={\rm e^{-\beta H}}$
-is often called the Path Integral Ground State'' method (PIGS) in the context of continuous systems \cite{Sarsa00,Vitali08}.
+is often called the Path Integral Ground State method (PIGS) in the context of continuous-space systems \cite{Sarsa00,Vitali08}.
 
 There is no sign problem in these approaches for spin systems with non-positive definite off-diagonal matrix elements (for a properly chosen trial state in the 
 case of the $T=0$ approach). For bipartite antiferromagnetic interactions a sublattice rotation can accomplish this, or, equivalently, one can note that
 for such models the signs are ``invisible'', because all non-vanishing terms of the path integral or series expansion have an even number of off-diagonal 
-matrix elements. For further details, see, e.g., Ref.~\cite{Henelius00}. Note that there are no restrictions on the diagonal interactions in the chosen 
-basis, so that one can study, e.g., boson systems in which the potential energy is highly frustrated (as we will discuss below in Sec.~\ref{sec:u1models}).
+matrix elements. For further details of the signs, see, e.g., Refs.~\cite{Henelius00,Evertz03,Nyfeler08}. Note that there are no restrictions on the diagonal 
+interactions in the chosen basis, so that one can study, e.g., spin and boson systems in which the potential energy is highly frustrated (as we will discuss below 
+in Sec.~\ref{sec:u1models}).
 
 
 \subsection{Sampling with loop and cluster algorithms}
 
-A breakthrough leading to today's efficient QMC algorithms was the realization \cite{Evertz93} that the classical Swendsen-Wang (SW) cluster 
+A breakthrough leading to today's efficient QMC algorithms was the realization by Evertz {\it et al.}~\cite{Evertz93} that the classical Swendsen-Wang (SW) cluster 
 Monte Carlo method \cite{Swendsen88} could be generalized to loop algorithms (i.e., generating clusters in the form of loops) for vertex models, and that 
 these are very similar to the effective statistical mechanics problems arising in the transformations of quantum problems discussed above. While these
-loop algorithms have been adapted to many different models, both within the path-integral and SSE frameworks \cite{Kawashima94,Beard96,Sandvik99,Evertz03}, 
+loop algorithms have been adapted to many different models, both within the path-integral and SSE frameworks \cite{Kawashima94,Beard96,Sandvik99,Harada02,Evertz03}, 
 they cannot be applied to all cases (in analogy with the SW method, which also has limited applicability). The loop concept has also been further generalized, 
 however, to ``worms'' \cite{Prokofev96,Prokofev98, WormA} and ``directed loops'' \cite{Sandvik99,Syljuasen02}, which are essentially loops that can self-intersect 
-during their construction and incorporate the detailed-balance principle in a more general way. Recently such 
+during their construction and incorporate the detailed-balance principle in a more general manner. Recently such 
 an algorithm was also formulated without detailed balance \cite{Suwa10}. In addition, for some models where loop algorithms and their generalizations are not 
 applicable (e.g., transverse-field Ising models), other efficient generalizations of the SW cluster concept have been developed \cite{Rieger99,Sandvik03}.
 
@@ -332,9 +335,9 @@ in Refs.~\cite{Beach06} and \cite{Tang11b}.
 The above methods for SU($2$) models can be extended to a certain class of spin models with an SU($N$) symmetry on bipartite lattices. First, note again 
 that the SU(2) Heisenberg operator is simply a singlet projector, Eq.~(\ref{psinglet}). In order to generalize this operator to SU($N$), we choose models 
 that have an SU($N$) spin with a fundamental representation on the A sub-lattice and an SU($N$) spin with a conjugate to the fundamental representation 
-on the B sub-lattice~\cite{affleck1985:lgN,Read89}. Denoting the $N$ states on each site of our lattice 
-by $|\alpha\rangle$, where $1\leq \alpha \leq N$, and the generators of the fundamental representation by $T^a$ ($N\times N$ matrices),
-the SU($N$) singlet of a spin $i$ on the A sub-lattice and $j$ on the B sub-lattice is given by, 
+on the B sub-lattice~\cite{affleck1985:lgN,Read89}. Denoting the $N$ states on each site by $|\alpha\rangle$, where $1\leq \alpha \leq N$, 
+and the generators of the fundamental representation by $T^a$ ($N\times N$ matrices), the SU($N$) singlet of a spin $i$ on the A sub-lattice and $j$ 
+on the B sub-lattice is given by, 
 \begin{equation}
 |s^N_{ij}\rangle = \frac{1}{\sqrt{N}}\sum_\alpha |\alpha_i\alpha_j\rangle. 
 \end{equation}
@@ -373,7 +376,7 @@ simulations in the pure valence-bond basis to non-integer $N$ \cite{beach2009:su
 In addition to conventional physical observables evaluated according to Eqs.~(\ref{za1}) and (\ref{za2}), e.g., various correlation functions, 
 QMC methods have recently been developed that are capable of measuring the degree of {\it entanglement} in a quantum system \cite{EntangleMeasure}. Several 
 quantities related to entanglement have been explored in the QMC context for their abilities to identify and characterize quantum phases and phase 
-transitions \cite{Tommaso1,Tommaso2,fluc1,fluc2,fid1,fid2}.  In this review, we concentrate of measures of the entanglement entropy, specifically 
+transitions \cite{Tommaso1,Tommaso2,fluc1,fluc2,fid1,fid2}.  In this Review, we concentrate of measures of the entanglement entropy, specifically 
 the {\it Renyi} entropies \cite{renyi},
 \begin{equation}
 S_{\alpha} = \frac{1}{1-\alpha} \ln \Big[ {\rm Tr}\big( \rho_A^{\alpha} \big) \Big],
@@ -382,7 +385,7 @@ for integer $\alpha \ge 1$.  Here, $\rho_A$ is the reduced density matrix, $\rho
 a lattice system (with $B$ being its complement). The von Neumann entanglement entropy corresponds to the limit $\alpha \to 1$.
  
 The direct measure of Renyi entropies can not be done in QMC using conventional estimators, however recent work has demonstrated that it is possible to measure 
-$S_{\alpha}$ for $\alpha \ge 2$ using a {\it replica trick} \cite{Holz,Cardy, Fradkin, BP, Naka}.  Here, $\alpha$ copies of the simulation cell are used, with modified 
+$S_{\alpha}$ for $\alpha \ge 2$ using a {\it replica trick} \cite{Holz,Cardy,Fradkin,BP,Naka}.  Here, $\alpha$ copies of the simulation cell are used, with modified 
 periodic boundaries in the ``propagation'' (or imaginary time) direction.  The evaluation of Renyi entropies proceeds in formally different ways for $T=0$ and $T>0$ 
 QMC methods \cite{Hastings10,Melko10}.  Namely, for $T=0$, the calculation of $S_{\alpha}$ proceeds in analogy with Eq.~(\ref{za2}) (where $\Psi$ is the wavefunction 
 of the $\alpha$-times replicated system), with the operator $A$ replaced by a ``swap'' operator for $\alpha=2$ \cite{Hastings10} or permutation operator for 
@@ -400,8 +403,8 @@ superimposing the projected bra and ket states; Eq.~(\ref{vboverlap}).  Namely,
 %\langle {\rm SWAP}_A \rangle = 2^{N_{\rm swap} - N_\circ } ,
 \frac{\langle V_l| {\rm SWAP}_A | V_r\rangle}{\langle V_l| V_r\rangle} = 2^{N_{\rm swap} - N_\circ } ,
 \end{equation} 
-where $N_{\rm swap}$ is the number of loops at the mid-point of the swapped configuration, while $N_\circ$ is for the configuration before the swap operator 
-is applied (Fig.~\ref{swap}). We refer to Ref.~\cite{Kallin11} for further details of this particular $T=0$ projector implementation.  
+where $N_{\rm swap}$ is the number of transition-graph loops of the swapped configuration, while $N_\circ$ is for the configuration before the swap 
+operator is applied (Fig.~\ref{swap}). We refer to Ref.~\cite{Kallin11} for further details of this particular $T=0$ projector QMC implementation.  
 
 At finite temperature, the explicit evaluation 
 of the SWAP$_A$ operator can be replaced by an evaluation of the difference in free energies between a replicated system (similar to Fig.~\ref{swap}), 
@@ -457,8 +460,8 @@ states as a function of $g=(J_1+\lambda)/J_1$. The dimers can be arranged in dif
 units of an even number of spins, e.g., $4$-site plaquettes, or one can use a bilayer, with $J_1$ and $J_2$ the inter-and intra-layer couplings, respectively.
 
 \subsubsection{$T=0$ criticality}
-Based on symmetry arguments alone, the N\'eel--VBL transition in these dimerized systems
-should be in the standard classical 3D O($3$) universality class. Many QMC studies 
+Based on symmetry arguments alone, the N\'eel--VBL transition in these dimerized (or polymerized) systems should be in the classical 3D O($3$) 
+universality class. Many QMC studies 
 have been devoted to checking the exponents against available results for the classical transition \cite{Sandvik94,Troyer96,Matsumoto01,Wang06,Wenzel08,Wenzel09}.
 For some of the systems, e.g., bilayers \cite{Wang06} and columnar dimers on the square lattice \cite{Matsumoto01,Wenzel09,Sandvik10b}, results have been 
 obtained that rival classical calculations in precision (statistical error bars) and in general the exponents agree very well with each other. In other 
@@ -668,7 +671,7 @@ VBS ordered state for all $N\geq 3$~\cite{barber1989:d1n3_vbs,klumper1989:d1n3_v
 in the large-$N$ limit to map onto a quantum dimer model with only a kinetic term \cite{read1989:nucphysB}. From direct QMC simulations of the quantum dimer model, 
 it is known that the kinetic-only model orders into a VBS \cite{sachdev1989:qd_vbs}.  This implies that in $H_{1}$ there must be a transition between the 
 magnetic state at $N=2$ and the VBS at $N=\infty$.  The location of the transition was first determined to lie between $N=4$ and $N=5$ 
-by QMC simulations~\cite{harada2003:sun}.
+by QMC simulations~\cite{harada2003:sun,Kawashima07}.
 
 \begin{figure}
 \centerline{\psfig{figure=pdj1j2q_2.eps,height=11cm}}
@@ -921,11 +924,11 @@ previous section, it is possible to extract the topological entanglement entropy
 \caption{Main graph: Temperature dependence of the topological entanglement entropy in the $Z_2$ QSL phase ($V/t_1 = 8$) of the Hamiltonian $H_0 + H_1$ 
 for three different $L \times L \times 3$ kagome lattices \cite{TopoEE}.  The quantization of the plateau at $\ln(2)$ (dashed line) identifies the emergent 
 gauge symmetry; one expect another temperature crossover to $2 \gamma = 2 \ln(2)$ at some lower temperature. Inset: finite-size scaling of $G(L/6)$ at the 
-XY* quantum critical point ($V/t_1 = 7.0665$), which scales as  $1/L^{2.493}$ (straight-line fit) giving $\eta = 1.493$. Reproduced from \cite{XYstarQMC}.}
+XY$^*$ quantum critical point ($V/t_1 = 7.0665$), which scales as  $1/L^{2.493}$ (straight-line fit) giving $\eta = 1.493$. Reproduced from \cite{XYstarQMC}.}
 \label{QSLfig}
 \end{figure}
 
-\subsection{Deconfinement at the XY* transition} \label{XYstar}
+\subsection{Deconfinement at the XY$^*$ transition} \label{XYstar}
 
 The fractional spinons of the $Z_2$ spin liquid phase (illustrated in Fig.~\ref{kag_fig}) can be thought of as a ``square-root'' operator of the physical spins.  Employing the mapping from $S=1/2$ spins to hard-core bosons, we can regard the physical spin $S^+$ or (equivalently) boson operator $b^{\dagger}=\phi^\dagger\phi^\dagger$ as being composed of two creation
 operators $\phi^\dagger$ for the fractionalized spinon particles.  Surprisingly, it is predicted that the quantum phase transition between the XY-ferromagnet 
@@ -945,7 +948,8 @@ as it traverses the QMC's $d+1$ space-time simulation cell.  At the critical poi
 
 \subsubsection{Detection of fractionalization}
 
-As discussed in Ref.~\cite{XYstarQMC}, there are consequences of this novel fractionalization in other universal quantities.  Remarkably, even though the fractional spinons become gapless at the quantum critical point, there are still observable remnants of the topological nature of the $Z_2$ spin liquid.  This can be seen by looking at the winding number distribution at the XY* point, and comparing it to the winding number distribution at a regular 3D XY transition.  Namely, since the fractional spinons are bosonic, they can be modeled by a ``simulation within a simulation'', achieved by projecting physical bosons at an XY transition to wind strictly in pairs around the space- and time-periodic simulation cell.  Since this distribution is universal, it is expected to be the same (up to a non-universal velocity) as the winding number distribution of the physical (composite) bosons in the XY* transition.  Observation of this fact \cite{XYstarQMC} is a striking confirmation that topological properties can still be present even when fractional excitations are gapless.  These universal winding number distributions are possible to compute in principle in field theory; hence they are another example of the synergetic connection between and quantum field theory and QMC simulations on designer Hamiltonians.
+As discussed in Ref.~\cite{XYstarQMC}, there are consequences of this novel fractionalization in other universal quantities.  Remarkably, even though the fractional spinons become gapless at the quantum critical point, there are still observable remnants of the topological nature of the $Z_2$ spin liquid.  This can be seen by looking at the winding number distribution at the 
+XY$^*$ point, and comparing it to the winding number distribution at a regular 3D XY transition.  Namely, since the fractional spinons are bosonic, they can be modeled by a ``simulation within a simulation'', achieved by projecting physical bosons at an XY transition to wind strictly in pairs around the space- and time-periodic simulation cell.  Since this distribution is universal, it is expected to be the same (up to a non-universal velocity) as the winding number distribution of the physical (composite) bosons in the XY$^*$ transition.  Observation of this fact \cite{XYstarQMC} is a striking confirmation that topological properties can still be present even when fractional excitations are gapless.  These universal winding number distributions are possible to compute in principle in field theory; hence they are another example of the synergetic connection between and quantum field theory and QMC simulations on designer Hamiltonians.
 
 %\begin{enumerate}
 %\item We have 4 or 5 Hamiltonians (with Z2 \cite{Isakov1} and U(1) spin liquids)
@@ -1000,9 +1004,14 @@ In some cases, local basis transformations can be used to solve sign problems \c
 the sign problem, e.g., with the Meron algorithm \cite{Chandrasekharan99} or the newly discovered fermion bag approach~\cite{chandrasekharan2010:fbag}.
 It remains to be seen whether these exiting developments can be applied to a wider range of fermionic and frustrated designer Hamiltonians.
 
-\subsection{Future prospects}
+\subsection{Other systems and future prospects}
 
 \subsubsection{Spin models}
+
+The models and quantum states discussed here only represent a small sample of recent research into fascinating topics in quantum magnetism. Other noteworthy 
+examples include systems exhibiting Bose-Einstein condensation of magnons \cite{Nohadani04}, spin supersolids \cite{Sengupta07}, systems with qudrupolar order 
+\cite{Harada02b,Harada07}, and quantum compass models \cite{Wenzel08b}. Here as well, QMC studies of designer Hamiltonians played a crucial role in uncovering 
+novel physics, and unresolved issues will require the kind of synergistic interplay between low-energy theories and QMC simulations that we have emphasized.
 
 Within the classes of spin models we have discussed here, although the essential physics is now has been ascertained, there still remains
 important work to be done to improve on the quantitative aspects, e.g., the critical exponents. In the case of the studies aiming to connect
@@ -1013,6 +1022,7 @@ the exponents graphed in Fig.~\ref{fig:exp} for small $N$. When higher-order $1/
 the values of the exponents without possible remaining effects of scaling corrections. What is needed here is high-accuracy (small error bars) 
 results for the correlation functions on large lattices. It will also be very interesting to use the methods discussed in Sec.~\ref{ss:renyi} to quantify 
 the degree of entanglement in the SU($2$) and SU($N$) models.
+
 
 \subsubsection{Fermions}
 
