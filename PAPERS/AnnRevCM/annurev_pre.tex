@@ -1,4 +1,4 @@
-\documentclass[10pt,pre,aps,twocolumn,showpacs,subscriptaddresses,floatfix]{revtex4}
+\documentclass[10pt,pre,aps,twocolumn,showpacs,superscriptaddress,floatfix]{revtex4-1}
 
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -15,13 +15,13 @@
 
 \begin{document}
 
-\title{Bridging lattice-scale physics and continuum field theory with quantum Monte Carlo simulations} 
+\title{Bridging lattice-scale physics and continuum field theory \\ with quantum Monte Carlo simulations} 
 
 \author{Ribhu K. Kaul}
 \affiliation{Department of Physics and Astronomy, University of Kentucky, Lexington, Kentucky 40506, USA}
 
 \author{Roger G. Melko}
-\affiliation{Department of Physics and Astronomy, University of Waterloo, \\ Ontario, N2L 3G1, Canada, and \\
+\affiliation{Department of Physics and Astronomy, University of Waterloo, Ontario, N2L 3G1, Canada, and \\
 Perimeter Institute for Theoretical Physics, Waterloo, Ontario N2L 2Y5, Canada}
 
 \author{Anders W. Sandvik}
@@ -51,7 +51,7 @@ Understanding ground states of interacting quantum systems is one of the central
 hand, quantum field theory is a powerful and general framework for studies of low-energy properties of complex, strongly correlated and entangled 
 quantum matter \cite{Sachdev11}. On the other hand, this continuum approach has potential pitfalls due to its generality, and limitations due to its 
 insensitivity to lattice scale physics, making it important to also carry out direct studies of microscopic lattice Hamiltonians. A fruitful direction 
-has been to combine the advantages of both methods by analyzing data from unbiased numerical investigations of lattice Hamiltonians with quantum field 
+is to combine the advantages of both methods by analyzing data from unbiased numerical investigations of lattice Hamiltonians with quantum field 
 theoretic predictions of emergent low energy properties. Such connections between the two approaches can have significant synergistic effects in advancing 
 our understanding of quantum many-body phenomena---as they have had and continue to have in classical statistical mechanics, especially in studies 
 of thermal phase transitions \cite{cardy1988:fss,Chaikin00}. 
@@ -176,12 +176,11 @@ Systems of interest can, for practical, known ways of transforming into this for
 invalidating the usual interpretation of $W_C/Z$ as a probability distribution in Monte Carlo simulations. Formally, this difficulty 
 can be side-stepped by not including the sign in the probability, using $P_C \propto |W_C|$, and compensating for this by weighting 
 observables with the sign;
-\begin{equation}
-\langle O \rangle = \frac{\sum_C W_C O_C}{\sum_C W_C} =
-\frac{\sum_C O_C {\rm Sign}(W_C) |W_C|}{\sum_C {\rm Sign}(W_C)|W_C|} = 
-\frac{\langle {\rm Sign} \cdot O\rangle_{|W|}}{\langle {\rm Sign}\rangle_{|W|}}.
+\begin{eqnarray}
+\langle O \rangle & = & \frac{\sum_C W_C O_C}{\sum_C W_C} = \frac{\sum_C O_C {\rm Sign}(W_C) |W_C|}{\sum_C {\rm Sign}(W_C)|W_C|} \nonumber\\
+& = & \frac{\langle {\rm Sign} \cdot O\rangle_{|W|}}{\langle {\rm Sign}\rangle_{|W|}}.
 \label{expvalue}
-\end{equation}
+\end{eqnarray}
 The problem here is that the numerator and denominator in the last expression both approach zero
 exponentially in system size and inverse temperature, and, hence, resolving the ratio within 
 statistical noise is exponentially hard. The advantage of importance sampling (time speed-up from exponential 
@@ -516,7 +515,7 @@ the continuous transitions are into VBSs where such fluctuations exist. Alternat
 topological defects in the VBS \cite{levin2004:vbs,Banerjee11}.
 
 \begin{figure}
-\includegraphics[width=8cm, clip]{fig03.eps}
+\includegraphics[width=7cm, clip]{fig03.eps}
 %\centerline{\psfig{figure=fig03.eps,height=4.5cm}}
 \caption{$Q_2$ and $Q_3$ interactions on the square lattice. The bars indicate the locations of singlet projectors 
 $C_{ij}$ on site pairs $ij$. The $Q_2$ and $Q_3$ arrangements in the left and center panels lead to columnar VBS states,
@@ -552,7 +551,7 @@ to be of the form $\chi \sim T[1+a\ln(1/T)]$. These corrections, like those at $
 transition in the $J$-$Q$ models.
 
 \begin{figure}
-\includegraphics[width=7.5cm, clip]{fig04.eps}
+\includegraphics[width=8cm, clip]{fig04.eps}
 %\centerline{\psfig{figure=fig04.eps,height=9cm}}
 \caption{Finite-size scaling of the spin stiffness of the $J$-$Q_2$ model in the vicinity of its quantum-critical point; from Ref.~\cite{Sandvik10c}. The 
 calculations were done at inverse temperature $\beta=L$. The standard critical scaling form $L\rho_s \sim {\rm constant}$ has been modified by a log correction 
@@ -626,7 +625,7 @@ $a \approx 0.2$
 
 
 \begin{figure}
-\includegraphics[width=7.5cm, clip]{fig05.eps}
+\includegraphics[width=6.5cm, clip]{fig05.eps}
 %\centerline{\psfig{figure=fig05.eps,height=6cm}}
 \caption{Probability distribution $P(D_x,D_y)$ of the VBS order parameter of the $J$-$Q_3$ model on a $32\times 32$
 lattice at $J/Q_3 = 0.575$ in (a) and $0.1765$ in (b). The critical ratio is $(J/Q_3)_c \approx 0.67$. Brighter colors
@@ -678,7 +677,7 @@ magnetic state at $N=2$ and the VBS at $N=\infty$.  The location of the transiti
 by QMC simulations~\cite{harada2003:sun,Kawashima07}.
 
 \begin{figure}
-\includegraphics[width=7.5cm, clip]{fig06.eps}
+\includegraphics[width=8.25cm, clip]{fig06.eps}
 %\centerline{\psfig{figure=fig06.eps,height=11cm}}
   \caption{ \label{fig:pdj1j2q} Phase Diagram of the SU($N$) symmetric sign-problem free
     $J_1$-$J_2$-$Q$ model as a function of $N$. Each of the couplings has been introduced
@@ -849,6 +848,7 @@ In addition, an associated critical point separating an XY-ferromagnet and a QSL
 universal quantities calculated from QMC and a related quantum field theory.
 
 \subsection{BFG Hamiltonians with Z$_2$ spin liquid phases}
+\label{sec:bfgz2}
 
 One successful recipe for designing Hamiltonians with QSL phases amenable to QMC study was pioneered by Isakov and co-workers for certain Bose-Hubbard models on the kagome 
 lattice \cite{Isakov1, Isakov2, TopoEE}.  Models in this class, first proposed analytically by Balents, Fisher and Girvin \cite{BFG} (BFG), are constructed partly based on their 
@@ -857,7 +857,7 @@ the state to fluctuate, while keeping the constraint satisfied. QDM Hamiltonians
 symmetry---being a type of QSL (or resonating valence bond) phase, that has an emergent gauge symmetry and related topological order \cite{Misguich1}.
 
 \begin{figure}
-\includegraphics[width=7cm, clip]{fig09.eps}
+\includegraphics[width=8cm, clip]{fig09.eps}
 %\centerline{\includegraphics[width=4.5in]{fig09.eps}}
 \caption{ (a) Spins (black dots are $S^z = 1/2$, empty sites $S^z = -1/2$) in a groundstate configuration satisfying $H_0$, Eq.~(\ref{H0}), on the kagome lattice.  
 The degenerate manifold of such configurations maps onto a triangular-lattice (dashed) classical three-dimer configuration, where each spin-up corresponds to a dimer 
@@ -922,7 +922,7 @@ Using the QMC estimators described in Section~\ref{ss:renyi}, it is possible to 
 previous section, it is possible to extract the topological entanglement entropy in a QMC simulation using this construction.  As noted by Castelnovo and Chamon \cite{castelnovo} through direct calculation on the toric code (which realizes a $Z_2$ fractionalized spin liquid groundstate), the value of $2\gamma$ is approached through two temperature crossovers on a finite-size system, related to the energy of the quasiparticle excitations in the groundstate---a $Z_2$ charge corresponding to the spinon, and a $Z_2$ flux corresponding to the vison.  Each excitation contributes a value of $\ln(2)$ to the topological entanglement entropy.  As illustrated in Fig.~\ref{QSLfig}, the realization of one of these plateaus at finite-temperature gives positive identification that the groundstate of the model is indeed in a topological $Z_2$ QSL phase.
 
 \begin{figure}
-\includegraphics[width=7.5cm, clip]{fig10.eps}
+\includegraphics[width=8cm, clip]{fig10.eps}
 %\centerline{\includegraphics[width=4.5in]{fig10.eps}}
 \caption{Main graph: Temperature dependence of the topological entanglement entropy in the $Z_2$ QSL phase ($V/t_1 = 8$) of the Hamiltonian $H_0 + H_1$ 
 for three different $L \times L \times 3$ kagome lattices \cite{TopoEE}.  The quantization of the plateau at $\ln(2)$ (dashed line) identifies the emergent 
