@@ -443,7 +443,6 @@ If it is a bond operator and we choose a bond where the local spin configuration
 \item After the diagonal operator insertion suceeds or fails, we go to the next propogation step in $M$, and return to step (1).
 %\item If $H_{-1,a}$ is chosen, a site $a$ is chosen at random, and the operator is placed there.
 %\item If, however, $H_{1,a}$ is chosen a {\rm bond} a is chosen.  The configurations of the two spins on this bond must be opposite for the matrix element to be nonzero.  If they are not, then the insertion is rejected.  The operator at this propagation step is therefore $H_{0,0}$ (null).
-\item If an off-diagonal operator is encountered ($H_{-1,a}$), the local spin configuratio is updated and we go to the next propogation step in $M$, and return to step (1).
 \end{enumerate}
 It's clear that these local updates are again instrumental in changing the expansion order $n$, however do not sample off-diagonal operators $H_{-1,a}$, and therefore must be combined with the use of some non-local update.
 
