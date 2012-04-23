@@ -353,8 +353,12 @@ At this stage, one sees that it is advantageous to consider the simulation to be
 
 The diagonal update is significantly modified from the finite-temperature case, in part because no null ($H_{0,0}$) operators are included in the $T=0$ projection.  Then, the update proceeds from looping through the $2m$ operators in the projection and attempting the following transitions:
 \begin{enumerate}
-\item If a diagonal operator $H_{1,a}$ is present on bond $a$, attempt to move it with probability ...{\bf ANN!}
-\item If an off-diagonal operator $H_{2,a}$ is present on bond $a$, do not change it.
+\item Traverse the operator list $\prod_{i=1}^{M} {H_{t_i,a_i}}$.
+\item If an off-diagonal operator $H_{2,a}$ acting on a bond $a$ is encountered move on to the next operator.
+\item If a diagonal operator $H_{1,b}$ is present on a bond $b$, pick a random bond $c$ to move it to.
+\item If bond $c$ does not have antiparallel spins, choose another random bond.
+\item Repeat this process until the diagonal operator is successfully placed.
+\item Move on to the next operator in the list.
 \end{enumerate}
 Throughout this update, the spin state should be propagated from $\langle \alpha_{\ell} |$ to $| \alpha_r \rangle$ in a way consistent with the off-diagonal operators.  Otherwise, one would sample a zero-contributing normalization, Equation \ref{Zproj2b}.
 
