@@ -250,18 +250,15 @@ H = \sum_{\langle i j \rangle} {\bf S}_i \cdot {\bf S}_j \label{Heis}
 \end{equation}
 is extensive \cite{Melko:Handscomb62, Melko:Henelius00, Melko:Sandvik91, Melko:Sandvik99,  Melko:SandvikHeis,Melko:Syljuasen02}.  We encourage the reader interested in implementation of the Heisenberg model to consult the appropriate authoritative reference. Here, we discuss the basic ideas of the SSE representation, together with the important local and loop updates, as a way of grounding the discussion.  We therefore focus on the unifying framework of the zero- and finite-temperature simulations, instead of all possible implementation details for the plethora of variants of this important quantum many-body model.
 
-
-\subsection{Finite-T $S^z$ basis} \label{HeisfiniteT}
-
-The absolute standard approach to simulating Hamiltonian \ref{Heis} with a finite-temperature QMC is to use the SSE representation Equation \ref{Zsse3} in the $S^z$ basis.  
-We begin by specifying the appropriate bond-decomposition for $H_{t,a}$ (from Equation \ref{Hdecomp}) for the Heisenberg Hamiltonian.
+The  standard approach to simulating the Heisenberg Hamiltonian using an SSE representation is to employ the $S^z$ basis.  
+Using this basis, we begin by specifying the appropriate bond-decomposition for $H_{t,a}$ (from Equation \ref{Hdecomp}) for Equation \ref{Heis}.
 Namely, we use,
 \begin{eqnarray}
 H_{0,0} &=&I \\
 H_{1,a} &=& \frac{1}{4} - S^z_i S^z_j \label{H1a} \label{diagB} \\
 H_{2,a} &=& \frac{1}{2} (S^+_i S^-_j + S^-_i S^+_j) \label{odB}
 \end{eqnarray}
-from which matrix element-weights can be constructed to give $W(x)$.  In the above SSE representation, two facts are evident:
+from which matrix element-weights can be constructed to give $W(x)$.  In the above bond decomposition, two facts are evident:
 \begin{enumerate}
 \item There has been a constant term $1/4$ added to the diagonal operator $H_{1,a}$.  This eliminates the offensive negative sign: however it adds a constant $1/4 \times N_b$, were $N_b$ is the number of nearest-neighbor bonds, to the expectation value of the Hamiltonian (i.e.~the energy).
 \item There has been a {\em sublattice rotation} of the spin operators by $\pi/2$ around the $z$-axis on one of the sublattices of a bipartite lattice.  This ensures that the off-diagonal part of the Hamiltonian, $H_{2,a}$, remains positive definitely are required.  Note however that this ``trick'' of eliminating the negative sign is only possible on bipartite lattices.\footnote{A generalization of this basis rotation on non-bipartite lattices would amount to a solution to the aforementioned ``sign-problem'' -- and a likely nobel prize for its architect.}
@@ -275,7 +272,10 @@ The weight $W(x)$ of a sampled configuration $x$ is proportional to the product 
 \langle \hspace{1mm} \circ \hspace{1mm}  \bullet \hspace{1mm}  | H_{2,a} | \hspace{1mm} \bullet \hspace{1mm} \circ \hspace{1mm} \rangle =
 \frac{1}{2} \label{Hod}
 \end{eqnarray} 
-We now see the choice of $1/4$ in Equation \ref{H1a} to be judicious: the matrix elements contributing to the total weight of a configuration, $W(x)$, are equal when non-zero.  This will significantly simplify sampling, we we will now see.
+We now see the choice of $1/4$ in Equation \ref{H1a} to be judicious: the matrix elements contributing to the total weight of a configuration, $W(x)$, are equal when non-zero.  This will significantly simplify sampling, we we will now see for both the finite-$T$ and $T=0$ cases.
+
+
+\subsection{Finite-T $S^z$ basis} \label{HeisfiniteT}
 
 \begin{figure}[t]
 \centering
@@ -283,6 +283,7 @@ We now see the choice of $1/4$ in Equation \ref{H1a} to be judicious: the matrix
 \caption[]{In (a), a particle wordline (blue) that encounters a two-site diagonal operator $\langle \hspace{1mm} \bullet \hspace{1mm}  \circ \hspace{1mm}  | H_{1,a} | \hspace{1mm} \bullet \hspace{1mm} \circ \hspace{1mm} \rangle$ continues unabated.  In (b), a worldline that encounters an off-diagonal operator $\langle \hspace{1mm} \bullet \hspace{1mm}  \circ \hspace{1mm}  | H_{2,a} | \hspace{1mm} \circ \hspace{1mm} \bullet \hspace{1mm} \rangle $ is translated by one lattice unit.  If world-lines are to remain periodic in imaginary time, another off-diagonal operator $\langle \hspace{1mm} \circ \hspace{1mm}  \bullet \hspace{1mm}  | H_{2,a} | \hspace{1mm} \bullet \hspace{1mm} \circ \hspace{1mm} \rangle$ is needed to translate the worldline back.}
 \label{fig:1}       % Give a unique label
 \end{figure} 
+
 
 It is common to call the space-time path that a $S^z=+1/2$ state traces out in the $D+1$ dimension expansion as a ``world-line''.  Figure \ref{fig:1} makes it evident that the diagonal ($H_{1,a}$) and off-diagonal ($H_{2,a}$) operators affect the world-line path quite differently -- diagonal operators affect it with no translation, while off-diagonal operators do.  Because of this, diagonal operators can be sampled in each propagation time-slice with {\em local} updates that replace $H_{1,a}$ on a specific lattice bond $a$ with the null operator $H_{0,0}$, or vice versa.  The transition probabilities (in the Metropolis sense) associated with these ``diagonal updates'' are derived directly from Equations \ref{Zsse3} and \ref{detb}, by considering the ratio of weights $W(x')/W(x)$. Thus,
 to add an operator (thereby changing the power in the propagator list from $n$ to $n+1$),
