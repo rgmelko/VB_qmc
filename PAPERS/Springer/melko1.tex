@@ -380,7 +380,7 @@ The transverse field Ising model (TFIM) is perhaps the most well-studied quantum
 \begin{equation}
 H = -J\sum_{\langle i,j \rangle} \sigma^z_i \sigma^z_j - h \sum_{i} \sigma^x_i
 \end{equation}
-where ${\bf \sigma}_i$ is a Pauli spin operator, so that $\sigma^z$ can be $\pm 1$.  In this equation, the first sum is a sum over lattice {\em bonds}, while the second sum is over lattice sites.  An SSE procedure for simulating the TFIM was first developed by Sandvik for the finite-$T$ representation; this was subsequently adopted to a $T=0$ projector method, discussed in section XXX.
+where ${\bf \sigma}_i$ is a Pauli spin operator, so that $\sigma^z$ has eigenvalues $\pm 1$.  In this equation, the first sum is a sum over lattice {\em bonds}, while the second sum is over lattice sites.  An SSE procedure for simulating the TFIM was first developed by Sandvik for the finite-$T$ representation; this was subsequently adopted to a $T=0$ projector method, discussed in section XXX.
 
 As with the Heisenberg model, both representations have a common starting point in the decomposition of the lattice Hamiltonian to bond (and site) operators.  In this case, 
 \begin{eqnarray}
@@ -399,7 +399,7 @@ Note that unlike the Heisneberg case, for the TFIM, the Hamiltonian decompositio
 and the latter ensures that the only non-zero matrix element for the bond operators are
 \begin{eqnarray}
 \langle \hspace{1mm} \bullet \hspace{1mm}  \bullet \hspace{1mm}  | H_{1,a} | \hspace{1mm} \bullet \hspace{1mm} \bullet \hspace{1mm} \rangle = 
-\langle \hspace{1mm} \circ \hspace{1mm}  \circ \hspace{1mm}  | H_{1,a} | \hspace{1mm} \circ \hspace{1mm} \circ \hspace{1mm} \rangle = 1 \label {Tfimdiag} 
+\langle \hspace{1mm} \circ \hspace{1mm}  \circ \hspace{1mm}  | H_{1,a} | \hspace{1mm} \circ \hspace{1mm} \circ \hspace{1mm} \rangle = 2J \label {Tfimdiag} 
 \end{eqnarray}
 We will see below that a non-local update analogous to the deterministic loops will be possible; in this case however they will be branching {\it clusters} flipped with a SW procedure.  As such, these weights form the starting point for both the zero- and finite-temperature SSE procedures, outlined in the next two sections.
 
@@ -410,15 +410,39 @@ The sampling of Equation \ref{Zsse3} can then be carried out in a two-part updat
 
 The diagonal update proceeds in the same spirit as Section \ref{HeisfiniteT}.  One loops through all $M$ operators in the propagation direction in sequence. If an off-diagonal operator $H_{-1,a}$ is encountered, it is ignored (but the $S^z$ spin associated with that site is flipped in the propagation).  However, if another operator type is encountered, then a new Metropolis procedure is performed:
 \begin{enumerate}
-\item The present diagonal operator,  $H_{-1,a}$ or  $H_{2,a}$, is removed.  If  $H_{0,0}$ (null) is present, nothing is done.
-\item A new operator {\em type} is chosen, $t=0$ or $t=2$, corresponding to the insertion of either a diagonal $h$ or a diagonal $J$ operator.  The transition probability to add $H_{-1,a}$ is (STEPHEN???)
+%\item The present diagonal operator,  $H_{-1,a}$ or  $H_{2,a}$, is removed.  If  $H_{0,0}$ (null) is present, nothing is done.
+\item If a diagonal operator is encountered ($H_{0,a}$ or $H_{1,a}$), then it is removed with probability
 \begin{equation}
-P(h) = \frac{h N}{hN + JN_b}
+P = \mathrm{min}\left( \frac{M-n+1}{\beta(hN + (2J)N_b)},1\right)
 \end{equation}
-Note, $P(J) = 1- P(h)$.  Comparison to a random number between 0 and 1 decides which operator type is chosen.
-\item If $H_{-1,a}$ is chosen, a site $a$ is chosen at random, and the operator is placed there.
-\item If, however, $H_{1,a}$ is chosen a {\rm bond} a is chosen.  The configurations of the two spins on this bond must be opposite for the matrix element to be nonzero.  If they are not, then the insertion is rejected.  The operator at this propagation step is therefore $H_{0,0}$ (null).
-\item The algorithm proceed to the next propagation step in $M$, and returns to step (1).
+and we go to the next operator in the list (regardless of whether the operator is removed or not).
+%\item A new operator {\em type} is chosen, $t=0$ or $t=2$, corresponding to the insertion of either a diagonal $h$ or a diagonal $J$ operator.  The transition probability to add $H_{-1,a}$ is (STEPHEN???)
+%\begin{equation}
+%P(h) = \frac{h N}{hN + JN_b}
+%\end{equation}
+%Note, $P(J) = 1- P(h)$.  Comparison to a random number between 0 and 1 decides which operator type is chosen.
+\item If a null operator ($H_{0,0}$) is encountered, then we try to insert a diagonal operator
+\begin{enumerate}
+\item First we decide what type of operator we are going to insert. We choose to insert an operator of type $H_{0,a}$ with probability
+\begin{equation}
+P(h) = \frac{h N}{hN + (2J)N_b}
+\end{equation}
+or an operator of type $H_{1,a}$ with probability
+\begin{equation}
+P(J) = \frac{(2J)N_b}{hN + (2J)N_b} .
+\end{equation}
+Note that $P(h) + P(J) = 1$
+\item After choosing a type, we accept the addition of an operator with probability
+\begin{equation}
+P = \mathrm{min}\left(\frac{\beta(hN + (2J)N_b)}{M-n},1\right)
+\end{equation}
+and randomly choose an appropriate bond or site to insert it.
+If it is a bond operator and we choose a bond where the local spin configuration prevents the insertion of the operator (e.g. antiparallel spins) then we do not insert the operator and consider the move failed.
+\end{enumerate}
+\item After the diagonal operator insertion suceeds or fails, we go to the next propogation step in $M$, and return to step (1).
+%\item If $H_{-1,a}$ is chosen, a site $a$ is chosen at random, and the operator is placed there.
+%\item If, however, $H_{1,a}$ is chosen a {\rm bond} a is chosen.  The configurations of the two spins on this bond must be opposite for the matrix element to be nonzero.  If they are not, then the insertion is rejected.  The operator at this propagation step is therefore $H_{0,0}$ (null).
+\item If an off-diagonal operator is encountered ($H_{-1,a}$), the local spin configuratio is updated and we go to the next propogation step in $M$, and return to step (1).
 \end{enumerate}
 It's clear that these local updates are again instrumental in changing the expansion order $n$, however do not sample off-diagonal operators $H_{-1,a}$, and therefore must be combined with the use of some non-local update.
 
