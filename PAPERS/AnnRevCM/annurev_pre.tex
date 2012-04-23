@@ -295,7 +295,7 @@ valence bonds in the trial state), this kind of projector method is in practice 
 models \cite{Sandvik10b}.
 
 \begin{figure}
-\includegraphics[width=7.5cm, clip]{fig01.eps}
+\includegraphics[width=7.0cm, clip]{fig01.eps}
 %\centerline{\psfig{figure=fig01.eps,height=4.5cm}}
 \caption{A configuration in a valence-bond projector simulation of a 4-site Heisenberg chain; here with a small projection power, 
 $m=2$ \cite{Sandvik10a}. The vertical bars indicate singlet-projectors operators, while the arcs on the left (bra) and right (ket) represent 
@@ -412,7 +412,7 @@ can be viewed on a similar footing when considered in the context of SW loop or 
 above in Sec.~\ref{ss:method}. In some cases, the implementation for these two different techniques can be made to be practically identical.  
 
 \begin{figure}
-\includegraphics[width=7.5cm, clip]{fig02.eps}
+\includegraphics[width=7.0cm, clip]{fig02.eps}
 %\centerline{\psfig{figure=fig02.eps,height=9cm}}
 \caption{The {\rm SWAP}$_A$ operator for calculating the Renyi entropy $S_2$, where subsystem $A$ consists of the two top sites. The simulated system is 
 composed of two non-interacting replicas, top (compare to Fig.~\ref{loops}), and bottom, which are sampled independently. Just to the right of the mid-point 
@@ -628,7 +628,7 @@ $a \approx 0.2$
 
 
 \begin{figure}
-\includegraphics[width=7cm, clip]{fig05.eps}
+\includegraphics[width=7.5cm, clip]{fig05.eps}
 %\centerline{\psfig{figure=fig05.eps,height=6cm}}
 \caption{Probability distribution $P(D_x,D_y)$ of the VBS order parameter of the $J$-$Q_3$ model on a $32\times 32$
 lattice at $J/Q_3 = 0.575$ in (a) and $0.1765$ in (b). The critical ratio is $(J/Q_3)_c \approx 0.67$. Brighter colors
@@ -758,6 +758,20 @@ We note here that as $N\rightarrow\infty$, $\eta_N \rightarrow 1$ and $\eta_V\ri
 $\eta$-exponents are small. For reference, in the O($N$) model $\eta\rightarrow0$ in the $N\rightarrow\infty$ limit and $\eta \approx 0.037$ 
 for the O($N=3$) model~\cite{campostrini2002:o3}.
 
+\begin{figure}
+\includegraphics[width=8.4cm, clip]{fig07.eps}
+%\centerline{\psfig{figure=fig07.eps,height=9cm}}
+ \caption{ \label{fig:exp} Anomalous dimensions of the N\'eel (left) and VBS (right)
+  order parameters as a function of $N$. The main panels show $\eta_N$ and $\eta_V$ versus $1/N$. For $N=2,3$ and $4$, the data are 
+  for the $J$-$Q$ model \cite{lou2009:sun}, and the results for $N>4$ are for the $J_1$-$J_2$ model \cite{kaul2011:j1j2}. The analytic 
+  results from the $1/N$ expansion of the CP$^{N-1}$ field theory, Eq.~(\ref{eq:oneonN}), are shown as thick red lines. The left and 
+  right insets show $N(1-\eta_N)$ and $(1+\eta_V)/N$, respectively. These quantities must be finite in the  $N\rightarrow \infty$ 
+  limit according to the DQC theory and should be given by the prefactors of the $N$-dependent terms in Eq.~(\ref{eq:oneonN}). The values
+  are indicated by the solid horizontal lines. The next corrections to the exponents have not been computed analytically yet, but we can estimate 
+  them approximately as $\eta_N = 1+32/(\pi^2 N)-3.6(5)/N^2$ , $1+\eta_V = 0.2492 N + 0.68(4)$ (shown as dashed fitted lines in the insets). 
+  Graphs reproduced from Ref.~\cite{kaul2011:j1j2}.}
+\end{figure}
+
 We now turn back to the study of the lattice designer $J_1$-$J_2$-$Q$ Hamiltonian. By analyzing the size dependence of the correlation 
 functions in Eq.~(\ref{eq:expdef}) at the location of the critical points shown in Fig.~\ref{fig:pdj1j2q}, it is possible to
 estimate values for $\eta_N$ and $\eta_V$ as a function of $N$~\cite{lou2009:sun,kaul2011:j1j2}. Results for $2\leq N \leq 12$ are 
@@ -776,17 +790,14 @@ higher precision as well. Another study of a classical model argued to realize t
 transition \cite{Kuklov08}.
 
 \begin{figure}
-\includegraphics[width=8.3cm, clip]{fig07.eps}
-%\centerline{\psfig{figure=fig07.eps,height=9cm}}
- \caption{ \label{fig:exp} Anomalous dimensions of the N\'eel (left) and VBS (right)
-  order parameters as a function of $N$. The main panels show $\eta_N$ and $\eta_V$ versus $1/N$. For $N=2,3$ and $4$, the data are 
-  for the $J$-$Q$ model \cite{lou2009:sun}, and the results for $N>4$ are for the $J_1$-$J_2$ model \cite{kaul2011:j1j2}. The analytic 
-  results from the $1/N$ expansion of the CP$^{N-1}$ field theory, Eq.~(\ref{eq:oneonN}), are shown as thick red lines. The left and 
-  right insets show $N(1-\eta_N)$ and $(1+\eta_V)/N$, respectively. These quantities must be finite in the  $N\rightarrow \infty$ 
-  limit according to the DQC theory and should be given by the prefactors of the $N$-dependent terms in Eq.~(\ref{eq:oneonN}). The values
-  are indicated by the solid horizontal lines. The next corrections to the exponents have not been computed analytically yet, but we can estimate 
-  them approximately as $\eta_N = 1+32/(\pi^2 N)-3.6(5)/N^2$ , $1+\eta_V = 0.2492 N + 0.68(4)$ (shown as dashed fitted lines in the insets). 
-  Graphs reproduced from Ref.~\cite{kaul2011:j1j2}.}
+\includegraphics[width=8.4cm, clip]{fig08.eps}
+%\centerline{\psfig{figure=fig08.eps,height=9cm}}
+  \caption{ \label{fig:pd_bil}  Physics of the SU($N$) bilayer model.  (a) Lattice and couplings. White sites form the A sublattice with 
+  SU($N$) spins that transform in the fundamental representation. Black sites on the B sublattice transform as the conjugate to this representation. (b) Phase diagram of the
+  SU($6$) bilayer model as a function of $g_\perp =J_\perp/J_1$ and $g_2=J_2/J_1$. The black circle at $g_\perp=0$ is the N\'eel-VBS quantum critical point. Remarkably, 
+  in the bilayer geometry with $g_\perp\neq 0$ this continuous transition becomes first-order (indicated by open circles), due to the cancellation of Berry phases between 
+  the layers. The VBL phase at large $g_\perp$ is a featureless paramagnet with singlets predominantly forming between the planes. Cartoons of the basic singlet physics 
+  in the symmetry-broken VBS (left) and uniform VBL (right) phases are shown. The SU($N$) N\'eel-VBL transition is discussed at length in Ref.~\cite{kaul2012:sun_bil}.}
 \end{figure}
 
 \subsection{SU($N$) Bilayer}
@@ -821,17 +832,6 @@ the QMC simulations show that the transition between the very same N\'eel and VB
 understood as a restoration of the Landau paradigm, due to the cancellation of Berry phases which is a relevant perturbation at the deconfined critical 
 point \cite{kaul2012:sun_bil}. This is another piece of strong evidence for the correctness of the DQC theory, as well as the more general field-theoretical 
 understanding of the role of Berry phases.
-
-\begin{figure}
-\includegraphics[width=8.3cm, clip]{fig08.eps}
-%\centerline{\psfig{figure=fig08.eps,height=9cm}}
-  \caption{ \label{fig:pd_bil}  Physics of the SU($N$) bilayer model.  (a) Lattice and couplings. White sites form the A sublattice with 
-  SU($N$) spins that transform in the fundamental representation. Black sites on the B sublattice transform as the conjugate to this representation. (b) Phase diagram of the
-  SU($6$) bilayer model as a function of $g_\perp =J_\perp/J_1$ and $g_2=J_2/J_1$. The black circle at $g_\perp=0$ is the N\'eel-VBS quantum critical point. Remarkably, 
-  in the bilayer geometry with $g_\perp\neq 0$ this continuous transition becomes first-order (indicated by open circles), due to the cancellation of Berry phases between 
-  the layers. The VBL phase at large $g_\perp$ is a featureless paramagnet with singlets predominantly forming between the planes. Cartoons of the basic singlet physics 
-  in the symmetry-broken VBS (left) and uniform VBL (right) phases are shown. The SU($N$) N\'eel-VBL transition is discussed at length in Ref.~\cite{kaul2012:sun_bil}.}
-\end{figure}
 
 \section{Spin liquids and deconfinement in U($1$) models}
 \label{sec:u1models}
@@ -925,16 +925,6 @@ S_{\alpha} = a \ell - \gamma + \cdots \label{areaL}.
 Using the QMC estimators described in Section~\ref{ss:renyi}, it is possible to isolate the topological entanglement entropy from the leading-order boundary law, as well as subleading corrections due to effects such as corners, by taking measurements using several different geometries $A$ and performing additions or subtractions which isolate only $\gamma$.  For example, the {\it Levin-Wen} \cite{LW} construction isolates $2\gamma$ from Eq.~(\ref{areaL}), requiring measurement of four unique region $A$ geometries.  For a BFG Hamiltonian discussed in the 
 previous section, it is possible to extract the topological entanglement entropy in a QMC simulation using this construction.  As noted by Castelnovo and Chamon \cite{castelnovo} through direct calculation on the toric code (which realizes a $Z_2$ fractionalized spin liquid groundstate), the value of $2\gamma$ is approached through two temperature crossovers on a finite-size system, related to the energy of the quasiparticle excitations in the groundstate---a $Z_2$ charge corresponding to the spinon, and a $Z_2$ flux corresponding to the vison.  Each excitation contributes a value of $\ln(2)$ to the topological entanglement entropy.  As illustrated in Fig.~\ref{QSLfig}, the realization of one of these plateaus at finite-temperature gives positive identification that the groundstate of the model is indeed in a topological $Z_2$ QSL phase.
 
-\begin{figure}
-\includegraphics[width=8cm, clip]{fig10.eps}
-%\centerline{\includegraphics[width=4.5in]{fig10.eps}}
-\caption{Main graph: Temperature dependence of the topological entanglement entropy in the $Z_2$ QSL phase ($V/t_1 = 8$) of the Hamiltonian $H_0 + H_1$ 
-for three different $L \times L \times 3$ kagome lattices \cite{TopoEE}.  The quantization of the plateau at $\ln(2)$ (dashed line) identifies the emergent 
-gauge symmetry; one expect another temperature crossover to $2 \gamma = 2 \ln(2)$ at some lower temperature. Inset: finite-size scaling of $G(L/6)$ at the 
-XY$^*$ quantum critical point ($V/t_1 = 7.0665$), which scales as  $1/L^{2.493}$ (straight-line fit) giving $\eta = 1.493$. Reproduced from Ref.~\cite{XYstarQMC}.}
-\label{QSLfig}
-\end{figure}
-
 \subsection{Deconfinement at the XY$^*$ transition} 
 \label{XYstar}
 
@@ -958,6 +948,16 @@ model \cite{compositefieldtheory,compositeMC}, leading to $\eta\approx  1.47(3)$
 The measurement of $\eta$ in the kagome BFG model is challenging, requiring measurement the equal time Green's function in real space: 
 $G(x)\equiv G(\tau=0,r) = \langle b^\dagger(0) b(r) \rangle$ \cite{WormA,gfsse}, done by keeping track of the defects created in the SSE directed-loop algorithm \cite{Syljuasen02} 
 as it traverses the $(d+1)$-dimensional space-time QMC simulation cell.  At the critical point, $G(r)$ should decay as $1/r^{1+\eta}$, and finite size effects can be minimized, e.g., by measuring $G(L/6)$, which decays as $1/L^{1+\eta}$, as a function of $L$.  Fig.~\ref{QSLfig} show an algebraic decay with $\eta=1.493(10)$; a value consistent with $\eta$ for the composite operator in the 3D XY field theory mentioned above.  The excellent agreement between the QMC simulation results and the composite-boson field theory is a remarkable confirmation of fractionalized universality in this model; synergetic work between QMC and quantum field theory is uniquely capable of positive identification of the exotic quantum phase transitions in this model.
+
+\begin{figure}
+\includegraphics[width=8cm, clip]{fig10.eps}
+%\centerline{\includegraphics[width=4.5in]{fig10.eps}}
+\caption{Main graph: Temperature dependence of the topological entanglement entropy in the $Z_2$ QSL phase ($V/t_1 = 8$) of the Hamiltonian $H_0 + H_1$ 
+for three different $L \times L \times 3$ kagome lattices \cite{TopoEE}.  The quantization of the plateau at $\ln(2)$ (dashed line) identifies the emergent 
+gauge symmetry; one expect another temperature crossover to $2 \gamma = 2 \ln(2)$ at some lower temperature. Inset: finite-size scaling of $G(L/6)$ at the 
+XY$^*$ quantum critical point ($V/t_1 = 7.0665$), which scales as  $1/L^{2.493}$ (straight-line fit) giving $\eta = 1.493$. Reproduced from Ref.~\cite{XYstarQMC}.}
+\label{QSLfig}
+\end{figure}
 
 \subsubsection{Detecting fractionalization}
 
@@ -984,7 +984,7 @@ models \cite{White89,Assaad05,Assaad07}). To be considered a designer Hamiltonia
 some interesting quantum-man body phenomenon which is difficult to access in an unbiased manner in other ways, i.e., the model is designed to shed
 light on this problem (and must be ``de-signed'' to be practically useful for studies on large scale).
 
-\subsubsection{Limitations of Designer Hamiltonians}
+\subsubsection{Limitations of designer Hamiltonians}
 
 An important fundamental problem is whether it is always possible to construct such designer Hamiltonians, or whether certain types of
 states are beyond reach in practice because their physical properties are fundamentally tied to the difficulties in circumventing the sign problem.
@@ -1090,6 +1090,9 @@ accessed this way. One can anticipate many fruitful applications of this unconve
 \section*{Acknowledgments}
 
 This work was supported in part by the NSF under Grants DMR-1056536~(RKK) and DMR-1104708~(AWS), and by the Natural Sciences and Engineering Research Council of Canada (RGM).
+We also gratefully acknowledge support from the NSF I2CAM International Materials Institute Award, Grant DMR-0844115, as well as the International Center for Theoretical 
+Physics (ICTP), Trieste, Italy, for support for the workshop {\it Synergies between Field Theory and Exact Computational Methods in Strongly Correlated Quantum Matter}, 
+at ICTP in July 2011, where the foundations for this article were laid.
 
 \bibliography{rev_bib}
 
