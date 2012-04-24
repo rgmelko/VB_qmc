@@ -217,7 +217,7 @@ ground state when $\beta \to \infty$. An expectation value
 tends to the true ground state expectation value, $\langle A\rangle$ $\to$ $\langle 0| A|0\rangle$. For the projector, one can use the imaginary-time
 evolution operator $P(\beta)={\rm e}^{-\beta H}$ or a high power of the Hamiltonian; $P(m)=H^m$. Here $m \propto \beta N$ gives the same rate of 
 convergence for the two choices of projectors for a given system size $N$. This follows from a Taylor expansion of the time evolution operator, which for large 
-$\beta$ is dominated by powers of the order $n=\beta |E_0|$, where $E_0$ is the ground state energy (which is proportional to $N$).
+$\beta$ is dominated by powers of the order $n=\beta |E_0|$, where $E_0$ is the ground state energy.
 
 \subsection{Path integrals and stochastic series expansions}
 
@@ -291,7 +291,7 @@ where $s_{ij}$ denotes the singlet state of spins $i$ and $j$. A power of the Ha
 is expanded into all possible products of these projectors, which act on the ket trial state in (\ref{za2}). In early versions of this scheme, the resulting 
 paths of valence bond states were sampled directly \cite{Liang90,Santoro99,Sandvik05}, while in more recent formulations the diagonal and off-diagonal parts of the 
 projectors are also sampled, along with spin configurations compatible with the valence-bond configurations of the trial state (which are also sampled) 
-\cite{Sandvik10c}. An example of a configuration in such a simulation is shown in Fig.~\ref{loops}. This configuration space is amenable to the very efficient 
+\cite{Sandvik10a}. An example of a configuration in such a simulation is shown in Fig.~\ref{loops}. This configuration space is amenable to the very efficient 
 loop updates discussed above \cite{Sandvik10a}. Apart from the boundary conditions in the ``propagation'' direction (and the associated sampling of the
 valence bonds in the trial state), this kind of projector method is in practice implemented in a very similar way as the SSE method for SU($2$) 
 models \cite{Sandvik10b}.
@@ -538,6 +538,15 @@ $L\rho_s(L)$ versus the coupling ratio $J/Q$ for different $L\times L$ lattices 
 Such curves should cross at the critical point. In practice, crossing points often exhibit some drift with $L$ \cite{melko2008:jq}, reflecting scaling 
 corrections \cite{Sandvik10c}. Results for the $J$-$Q_2$ model are graphed in Fig.~\ref{jqrhos} and discussed next.
 
+\begin{figure}
+\centerline{\psfig{figure=fig04.eps,height=9cm}}
+\caption{Finite-size scaling of the spin stiffness of the $J$-$Q_2$ model in the vicinity of its quantum-critical point; from Ref.~\cite{Sandvik10c}. The 
+calculations were done at inverse temperature $\beta=L$. The standard critical scaling form $L\rho_s \sim {\rm constant}$ has been modified by a log-correction 
+(with $L_0=0.9$) in order to compensate for a weak drift of the crossing points. The red curves, which cross at a single point, the critical point $q_c=(J/Q)_c = 0.0447(2)$, represent a common scaling function for $L\ge 48$ (approximated by a common polynomial fitted to all the data points), $f[(q-q_c)L^{1/\nu}]$, 
+with $\nu=0.59$.}
+\label{jqrhos}
+\end{figure}
+
 In the $J$-$Q$ models the $L\rho_s$-crossing drift is anomalously large, which in one study \cite{Jiang08} had been interpreted as a weakly first-order transition (for which 
 $L\rho_s$ should eventually diverge as $L$, due to coexistence of a stiff and a non-stiff phase). Another possibility is that the model has unusually
 large scaling corrections, that could be intimately associated with the nature of the DQC point. For example, in the DQC theory the perturbation to the 
@@ -548,21 +557,13 @@ appear for small $N$, as has recently also been argued for based on a modified v
 model \cite{Sandvik10c}, on $L\times L$ lattices with $L$ up to $256$, can be well accounted for by a log-correction, as shown in Fig.~\ref{jqrhos}, but the 
 deviations from pure scaling can also be fitted with a conventional multiplicative correction of the form $(1+aL^{-\omega})$ with large $a$ and small $\omega$.
 
-\subsubsection{$T>0$ critical scaling} The quantum-critical ``fan'' in the $(J/Q,T)$ plane has also been investigated. Initial calculations confirmed that
+\subsubsection{$T>0$ critical scaling} 
+
+The quantum-critical ``fan'' in the $(J/Q,T)$ plane has also been investigated. Initial calculations confirmed that
 the scaling is governed by a $z=1$ critical point \cite{melko2008:jq}. Later studies \cite{Sandvik10c,Sandvik11a} noted log-like corrections also here, e.g., 
 while the conventional $z=1$ scaling implies that the uniform magnetic susceptibility scales linearly in $T$ \cite{Chakravarty89}, the behavior actually appears 
 to be of the form $\chi \sim T[1+a\ln(1/T)]$. These corrections, like those at $T=0$ discussed above, remain an intriguing unexplained aspect of the N\'eel--VBS 
 transition in the $J$-$Q$ models.
-
-\begin{figure}
-\centerline{\psfig{figure=fig04.eps,height=9cm}}
-\caption{Finite-size scaling of the spin stiffness of the $J$-$Q_2$ model in the vicinity of its quantum-critical point; from Ref.~\cite{Sandvik10c}. The 
-calculations were done at inverse temperature $\beta=L$. The standard critical scaling form $L\rho_s \sim {\rm constant}$ has been modified by a log-correction 
-(with $L_0=0.9$) in order to compensate for a weak drift of the crossing points. The red curves, which cross at a single point, the critical point $q_c=(J/Q)_c = 0.0447(2)$, 
-represent a common scaling function (approximated by a common polynomial fitted to all the data points), $f[(q-q_c)L^{1/\nu}]$, with $\nu=0.59$, for all systems 
-with $L\ge 48$.}
-\label{jqrhos}
-\end{figure}
 
 \subsubsection{Emergent U($1$) gauge fluctuations}
 
@@ -651,7 +652,7 @@ consistency among different quantities which are related through expressions for
 \label{sec:sunmodels}
 
 In this section we will discuss quantum criticality in SU($N$) spin models on 2D square lattices, as systematic generalizations of the SU($2$) systems 
-discussed above. Secs.~\ref{ss:j1N}, \ref{ss:jqN},\ref{ss:j1j2N}, and \ref{ss:j1j2q} describe several studies carried out on a single 
+discussed above. Secs.~\ref{ss:j1N}, \ref{ss:jqN}, \ref{ss:j1j2N}, and \ref{ss:j1j2q} describe several studies carried out on a single 
 layer, and Sec.~\ref{ss:bilN} summarizes a recent study on a bilayer. 
 
 \subsection{SU($N$) Heisenberg models}
@@ -730,7 +731,7 @@ phases, with no indication of an intervening phase \cite{kaul2011:j1j2}.
 
 One can also combine the $J_1$-$J_2$ and $J$-$Q$ model. The phase diagram of the resulting $J_1$-$J_2$-$Q$ model as a functions of $N$ is 
 summarized in Fig.~\ref{fig:pdj1j2q}. So far, the phase boundaries have only been computed in the two perpendicular planes shown in the figures. 
-We here discuss some aspects of the critical behavior for $N \in \{2,3,\ldots,12\}$ obtained in these calculations and related the results to 
+We here discuss some aspects of the critical behavior for $N \in \{2,3,\ldots,12\}$ obtained in these calculations and relate the results to 
 large-$N$ expansions within the DQC theory.
 
 An important prediction of the DQC scenario~\cite{Senthil04a} at the N\'eel-VBS transition is that both order parameters are
@@ -915,7 +916,7 @@ scaling of entanglement entropy is predicted to be of the form
 \begin{equation}
 S_{\alpha} = a \ell - \gamma + \cdots \label{areaL}.
 \end{equation}
- Here, the subleading term to the boundary law is a universal correction called the {\it topological entanglement entropy} \cite{Alioscia1,Alioscia2,LW,KP}.  In a gapped quantum spin liquid phase, it is related to the emergent gauge symmetry, independent of Renyi index $\alpha$ \cite{Flammia}.  In particular, in the $Z_2$ spin liquid state, $\gamma =  \ln(2)$ at $T=0$ \cite{LW}.   The addition of this universal subleading constant to the boundary law motivates the notion of LRE for a gapped quantum spin liquid phase.
+ Here, the subleading term to the boundary law is a universal correction called the {\it topological entanglement entropy} \cite{Alioscia1,Alioscia2,LW,KP}.  In a gapped quantum spin liquid phase, it is related to the emergent gauge symmetry, independent of the Renyi index $\alpha$ \cite{Flammia}.  In particular, in the $Z_2$ spin liquid state, $\gamma =  \ln(2)$ at $T=0$ \cite{LW}.   The addition of this universal subleading constant to the boundary law motivates the notion of LRE for a gapped quantum spin liquid phase.
 
 \subsubsection{Calculating the topological entanglement entropy}
 
@@ -965,10 +966,10 @@ XY$^*$ point, and comparing it to the winding number distribution at a regular 3
 
 We have presented several examples of the use of judiciously constructed designer Hamiltonians for testing field theories
 and exploring various quantum many-body phenomena related to quantum-criticality and exotic ground states. Here we discuss some further 
-generic aspects of this approach, followed by a brief discussion of other intereesting related studies of systems not covered in this 
+generic aspects of this approach, followed by a brief discussion of other interesting related studies of systems not covered in this 
 Review, and an outlook on future directions.
 
-\subsection{Designer Hamiltonian, stoquasticity, and sign problems}
+\subsection{Designer Hamiltonian, stoquasticity, and the sign problem}
 
 The concept of designer Hamiltonians that we have introduced here is different from that of ``stoquastic'' Hamiltonians \cite{Terhal08}, which are
 those for which all off-diagonal matrix elements are non-positive (i.e., sign-problem free) in the standard basis.  This is normally the  $z$-component 
@@ -992,16 +993,16 @@ in a simple basis, but one can still not exclude that designer Hamiltonians can 
 sign problem can be solved in some other way. Indeed, the recent discovery of a spin liquid in the Hubbard model on the honeycomb lattice \cite{Meng10} seems 
 to provide an example, although it remains to be seen whether this state really is a $Z_2$ topological state.
 
-\subsubsection{The sign problem}
+\subsubsection{Computational complexity}
 
-Regarding the sign problem itself more broadly, Ref.~\cite{Troyer05} presents a proof that the sign problem cannot be solved in general. 
-The problem here is defined in terms of constructing a QMC algorithm for which the computational effort scales as a power-law in the system
-size. A particular problem is considered for which the removal of the sign still leaves a problem for which the Monte Carlo sampling is believed 
-to scale exponentially in the system size and, thus, the sign problem was not solved, only recast into a different form. However, the problem chosen in
-this demonstration was that of a spin glass, and the conclusion reached is equivalent to the statement that the quantum spin glass is no easier 
-to solve than the corresponding classical spin glass. This is hardly a surprising result. The proof does not address QMC solutions of systems that 
-are not directly associated with the well known difficulties of simulating classical frustrated ``glassy'' systems with complicated energy 
-landscapes. Whether or not the sign problem can be circumvented (at least for representative designer Hamiltonians) for translationally invariant 
+Regarding the sign problem itself more broadly, Ref.~\cite{Troyer05} presented a proof that the sign problem cannot be solved in general.
+The problem here was defined in terms of constructing a QMC algorithm for which the computational effort scales as a power-law in the system
+size. A particular problem is considered for which the removal of the negative signs still leaves a problem for which the Monte Carlo sampling is believed
+to scale exponentially in the system size and, thus, the sign problem was not solved, only recast into a different form. However, the model system chosen in
+this demonstration was that of a spin glass, and the conclusion reached is equivalent to the statement that the quantum spin glass is no easier
+to solve than the corresponding classical spin glass. This is hardly a surprising result. The proof does not address QMC solutions of systems that
+are not directly associated with the well known difficulties of simulating classical frustrated ``glassy'' systems with complicated energy
+landscapes. Whether or not the sign problem can be circumvented (at least for representative designer Hamiltonians) for translationally invariant
 systems such as fermionic Hubbard models without particle-hole symmetry and SU($2$) frustrated quantum spins models remains an important open question.
 
 Some non-trivial solutions of sign problems are worth mentioning.
@@ -1022,7 +1023,7 @@ we have emphasized in this Review.
 
 Within the classes of spin models we have discussed here, although the essential physics now has been ascertained, there still remains
 important work to be done to improve on the quantitative aspects, e.g., the critical exponents. In the case of the studies aiming to connect
-SU($N$) QMC simulations with large-$N$ expansions, summarized in Sec.~\ref{sec:sunmodels}, it would be very useful to go to still larger lattices, 
+SU($N$) QMC simulations with large-$N$ expansions, summarized in Sec.~\ref{ss:j1j2q} and Fig.~\ref{fig:exp}, it would be very useful to go to still larger lattices, 
 to check the convergence of the computed exponents more precisely. This is important, in particular, in light of the fact there there are significant scaling 
 corrections in quantities such as the spin stiffness for $N=2$. Such corrections could potentially also affect the fitting procedures underlying 
 the exponents graphed in Fig.~\ref{fig:exp} for small $N$. When higher-order $1/N$ analytical results eventually become available, it will be important to know 
@@ -1034,7 +1035,7 @@ the degree of entanglement in the SU($2$) and SU($N$) models.
 \subsubsection{Fermions}
 
 Another very interesting aspect of the designer Hamiltonians we have discussed here is that they can also be doped with fermions. While this 
-introduces a sign problem, it should be possible to study large lattices doped with a small number of dopants, since the magnitude of the 
+introduces a sign problem, it should be possible to study large lattices doped with a small number of holes, since the magnitude of the 
 sign problem only depends on the number of fermions. This low-density limit of the SU($N$) models should already be sufficient for making connections 
 with large-$N$ theories of ``holonic'' or ``strange'' metallic states, that have been predicted to arise out of the DQC system upon 
 doping \cite{kaul2008:u1}.
@@ -1057,7 +1058,7 @@ Hamiltonians can provide unique insights. To mention one example of a spin syste
 Heisenberg antiferromagnet diluted with non-magnetic impurities, the interplay of classical percolation and quantum fluctuations lead to low-energy 
 excitations \cite{Wang10} not captured \cite{Vojta05} within the conventional $d$ $\to$ $(d+1)$-dimensional mapping. Other unanticipated effects of dilution 
 on quantum-critical scaling have also been observed that still lack explanation and deserve further study \cite{Yu06,Roscilde06,Sandvik06,Roscilde07,Yao10}. 
-For the designer Hamiltonians discussed in this review, disorder effects have not yet been studied. One can anticipate interesting behaviors in VBS states, 
+For the designer Hamiltonians discussed in this Review, disorder effects have not yet been studied. One can anticipate interesting behaviors in VBS states, 
 at the N\'eel--VBS transition, and in the Z$_2$ spin liquids. 
 
 Beyond disordered spin models, various manifestations of the ``dirty boson'' problem remain intriguing and challenging \cite{Pollet09,Meier12,Iyer12}, and provide 
@@ -1092,7 +1093,7 @@ Physics (ICTP), Trieste, Italy, for support for the workshop {\it Synergies betw
 at ICTP in July 2011, where the foundations for this article were laid.
 
 \bibliography{rev_bib.bib}
-\bibliographystyle{Science}
+\bibliographystyle{arnuke_revised}
 
 \end{document}
 
