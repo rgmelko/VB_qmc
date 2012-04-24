@@ -32,7 +32,7 @@ A continuum description of a lattice model which captures certain asymptotic
 unbiased numerical method: 
 A numerical method in which quantitative calculations of observables are possible for 
 a microscopic model of finite size without invoking any approximation or asymptotic 
-condition, and for which numerical errors can be estimated with certainty. For example, in the stochastic series expansion Monte Carlo based methods 
+condition, and for which numerical errors can be estimated with certainty. For example, in the Monte Carlo based methods 
 discussed in this review the numerical errors are purely statistical, and can hence be estimated quantitatively,
 and reduced to an arbitrary low level by increasing computation time.
 
