@@ -33,8 +33,8 @@ unbiased numerical method:
 A numerical method in which quantitative calculations of observables are possible for 
 a microscopic model of finite size without invoking any approximation or asymptotic 
 condition, with the exception of statistical errors (in Monte Carlo based methods) 
-for which the numerical errors are purely statistical and can be estimated 
-quantitatively.
+for which the numerical errors are purely statistical, can be estimated quantitatively,
+and reduced to an arbitrary low level with increasing computation time.
 
 
 Acronyms
@@ -119,7 +119,6 @@ Annotated references
 
 [101] Introduced the J-Q model, the first sign-problem free SU(2) model exhibiting a 
       Neel-VBS transition; results suggested a continuous transition. 
-
 
 [164] Presented the first study of SU(N) bilayer models and through numerical
       simulations demonstrated the importance of Berry phases at Neel-VBS transitions.    
