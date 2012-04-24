@@ -91,7 +91,7 @@ For the purposes of this Chapter, the form of this expectation value provides a 
 for two different QMC formalisms with separate goals: calculating physical estimators at finite temperature, or at zero temperature.  
 
 We note here that the procedure we call ``quantum Monte Carlo'' simulation actually consists of two distinct steps.  First, we must derive the appropriate {\it representation} of the quantum mechanical model (i.e. lattice, basis states, and operators) such that this representation can be coded appropriately on a classical computer.
-This involves mapping a $D$-dimensional quantum lattice model to a $D+2$-dimensional classical representation, which can be thought of as a highly non-trivial classical statistical mechanics problem.
+This involves mapping a $D$-dimensional quantum lattice model to a $D+1$-dimensional classical representation, which can be thought of as a highly non-trivial classical statistical mechanics problem.
 Strictly speaking, SSE can be thought of as a representation of $\exp(-\beta H)$ applied to some lattice basis; other representations exist, such as continuous-time or interaction-representation \cite{Melko:Assaad07}.
 Second, we must devise {\it updating schemes} that sample configurations of this representation, usually through some Metropolis procedure.  Similar updating schemes may be used for different representations.
 In the next two sections, we will discuss the finite-$T$ and $T=0$ representations.  In Section \ref{Melko:updates}, we'll outline some basic ideas behind updating schemes employed in the SSE, emphasizing the necessity of non-local updates.  
