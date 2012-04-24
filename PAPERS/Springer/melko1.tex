@@ -133,7 +133,7 @@ The next step is to write the Hamiltonian as a sum of elementary lattice operato
 H=-\sum_t \sum_a H_{t,a}, \label{Hdecomp}
 \label{Hsum}
 \end{equation}
-where in our chosen representation the operators propagate the basis $H_{t,a} |\alpha_i \rangle \rightarrow | \alpha_{i+1} \rangle$.  The indices $t$ and $a$ refer to the operator ``types'' and the ``lattice units'' (e.g.~bonds) over which the terms will be sampled (specific examples will be given below).  We write the partition function as
+where in our chosen representation the operators propagate the basis $H_{t,a} |\alpha_i \rangle \rightarrow | \alpha_{i+1} \rangle$, and all of the $H_{t,a}$ are positive.  The indices $t$ and $a$ refer to the operator ``types'' and the ``lattice units'' (e.g.~bonds) over which the terms will be sampled (specific examples will be given below).  We write the partition function as {\color{red}[CONSIDER USING THE ABOVE NOTATION (INSERTIONS OF IDENTITY) FOR ALL EQUATIONS (S)]}
 \begin{equation}
 Z=\sum_{ \{ \alpha_i \} } \sum_{n=0}^{\infty} \sum_{S_n} \frac{ (\beta)^n}{n !}
  \left\langle{\alpha_0  \left|  \prod_{i=1}^{n} {H_{t_i,a_i}} \right| \alpha_0   }\right\rangle,
@@ -296,7 +296,7 @@ P(n \rightarrow n-1) = {\rm min} \left({ \frac{2(M-n+1)}{N_b \beta}, 1 }\right)
 \end{eqnarray}
 These local updates are instrumental in changing the expansion order $n$ (necessary to sample the sum $\sum_n$ in Equation \ref{Zsse3}).  They also illustrate an important point: diagonal updates alone do nothing to sample {\em off-diagonal} operators $H_{2,a}$.  For this, we must devise another updating scheme.
 
-Antiquated methods devised to sample $H_{2,a}$ involved identifying diagonal operators that were ``nearby'' in the propagation direction, and updating them both to produce two off-diagonal operators such as in Figure \ref{fig:1}(b) \cite{Melko:SandvikHeis}.  Such approaches are the equivalent of local updates: they are found to be inefficient, as well as non-ergodic e.g.~in the all-important winding number.  With the advent of the global {\it loop} move, such problems are relegated to history \cite{Melko:Sandvik99,Melko:Syljuasen02}.  
+Antiquated methods devised to sample $H_{2,a}$ involved identifying diagonal operators that were ``nearby'' in the propagation direction, and updating them both to produce two off-diagonal operators such as in Figure \ref{fig:1}(b) \cite{Melko:SandvikHeis}.  Such approaches are the equivalent of local updates: they are found to be inefficient, as well as non-ergodic e.g.~in the all-important winding number {\color{red}[ADD A REFERENCE?(S)]}.  With the advent of the global {\it loop} move, such problems are relegated to history \cite{Melko:Sandvik99,Melko:Syljuasen02}.  
 
 In general, a loop move is constructed by creating a ``defect'' (or ``head'') in the worldline configuration, and propagating that defect until it closes upon itself (i.e.~finds it's ``tail'').  The path of the defect through the space-time simulation cell passes through basis states (spins) and operators in $D+1$.  This path defines the loop, which itself is just a list of space-time lattice coordinates.  A loop is said to be ``flipped'' if all spins on the path are flipped - which also changes the operator types associated with flipped spins (i.e.~the matrix elements).
 This loop flipping typically accrues some change in weight.  This weight changes can be absorbed into the process of creating the loop path, such that the propagation of the defect is subject to the Metropolis condition at every step (this is the {\em directed} loop \cite{Melko:Syljuasen02}).  
@@ -317,14 +317,14 @@ This allows for the straightforward application of the SW algorithm to determine
 %In the Heisenberg model (and all models discussed in this review), deterministic loops are flipped according to a SW algorithm, with probability 1/2.  
 Note the dashed lines in Figure~\ref{fig:2} highlighting one loop structure involving the bottom two lattice sites.  The worldline for this configuration, which is not illustrated, would look similar to Figure \ref{fig:1}(b).  However, upon flipping the dashed loop, the worldline would straighten out to be entirely contained on the second-from-bottom site.  By examining the structure of the other loops in this example, one can see that loop algorithms such as this are capable of making large-scale changes in the worldline configuration.  Hence, among other features, loop updates are expected to vastly increase the efficiency of worldline sampling in a SSE QMC simulation.
 
-The interested reader can distill many of the nuances regarding implementation of the Heisenberg model with finite-$T$ SSE from the literature.    In particular, the loop updates occur within an abstracted simulation cell called a ``linked list' \cite{Melko:Syljuasen02}.  The topology of the loop structure is fixed in each linked list; it is only the diagonal update which modifies the operator positions.  Hence one again sees the necessity of both types of updates in a full ergodic sampling of the Heisenberg model.  The full SSE update procedure typically involves a three-step process: diagonal update, creation of the linked-list, and loop update.  
+The interested reader can distill many of the nuances regarding implementation of the Heisenberg model with finite-$T$ SSE from the literature.    In particular, the loop updates occur within an abstracted simulation cell called a ``linked list'' \cite{Melko:Syljuasen02}.  The topology of the loop structure is fixed in each linked list; it is only the diagonal update which modifies the operator positions.  Hence one again sees the necessity of both types of updates in a full ergodic sampling of the Heisenberg model.  The full SSE update procedure typically involves a three-step process: diagonal update, creation of the linked-list, and loop update.  
 
 We note that expectation values of physical quantities can be taken at various steps in this procedure.  The simplest measurements involve quantities diagonal in the basis, such as the magnetization, that can be measured at any step in the periodic propagation direction.  Expectation values of Hamiltonian operators, such as the energy, can be performed by counting the number and position of operators in the $D+1$ simulation cell; e.g.
 \begin{equation}
 E = - \frac{\langle n \rangle}{\beta}
 \end{equation}
 is the internal energy per spin, up to the constant factor added to $H_{1,a}$  \cite{Melko:Sandvik99}.
-Other quantities are determined by the change in world-line structure, and are easiest measured in the loop update itself.  The simplest example the spin stiffness, which is proportional the the squared winding number $\langle W^2 \rangle$ \cite{Melko:PC}, sampled in the loop update.  More sophisticated examples include equal-time Green's functions, which are measured during the loop update by keeping track of the position of the propagating defect in the $D+1$ dimensional simulation cell.
+Other quantities are determined by the change in world-line structure, and are easiest measured in the loop update itself {\color{red}[ISN'T $W^2$ MEASURED AFTER EVERY UPDATE, NOT DURING? (S)]}.  The simplest example the spin stiffness, which is proportional the the squared winding number $\langle W^2 \rangle$ \cite{Melko:PC}, sampled in the loop update.  More sophisticated examples include equal-time Green's functions, which are measured during the loop update by keeping track of the position of the propagating defect in the $D+1$ dimensional simulation cell.
 
 %We only briefly mention measurement techniques, which from Equation (\ref{finiteTmeas}) correspond to... XXX
 It would be possible to discuss many more interesting and important details of the SSE representation, updating, and measurement procedure, however we refer the interested reader to the literature for these.  Instead, we now turn to a comparison of the basic structure of the loop-algorithm SSE code, described above, to the zero-temperature formulation of the same model.  As we will see, despite the formally different starting points of the two methods, this comparison reveals the underlying similarity of the two methods in the SSE QMC paradigm.
@@ -365,7 +365,7 @@ Throughout this update, the spin state should be propagated from $\langle \alpha
 \begin{figure}[t]
 \centering
 \includegraphics*[width=.85\textwidth]{zeroT_heis.eps}
-\caption[]{A $D+1$ projector simulation cell snapshot for a six-site Heisenberg model.  Lattice sites are arranged vertically in one-dimension: 
+\caption[]{{\color{red}[CHECK THE RHS BC'S -- ARE THEY CORRECT? (S)]} A $D+1$ projector simulation cell snapshot for a six-site Heisenberg model.  Lattice sites are arranged vertically in one-dimension: 
 $| \alpha_{\ell} \rangle = |  \hspace{1mm} \bullet  \hspace{1mm} \bullet  \hspace{1mm} \circ  \hspace{1mm} \circ  \hspace{1mm} \circ  \hspace{1mm} \bullet  \rangle$, and  $| \alpha_{r} \rangle = |  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \bullet  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \circ  \rangle$.
 The propagation direction is horizontal, with $m=3$ operators.  Solid lines are the fully-determined loop structure, which, when they encounter the trial states at the ends, propagate through the valence bonds.  The dashed line indicates the middle of the simulation cell, where expectation values must be measured.}
 \label{fig:3}       % Give a unique label
@@ -381,7 +381,7 @@ The transverse field Ising model (TFIM) is perhaps the most well-studied quantum
 \begin{equation}
 H = -J\sum_{\langle i,j \rangle} \sigma^z_i \sigma^z_j - h \sum_{i} \sigma^x_i
 \end{equation}
-where ${\bf \sigma}_i$ is a Pauli spin operator, so that $\sigma^z$ has eigenvalues $\pm 1$.  In this equation, the first sum is a sum over lattice {\em bonds}, while the second sum is over lattice sites.  An SSE procedure for simulating the TFIM was first developed by Sandvik for the finite-$T$ representation; this was subsequently adopted to a $T=0$ projector method, discussed in section XXX.
+where ${\bf \sigma}_i$ is a Pauli spin operator, so that $\sigma^z$ has eigenvalues $\pm 1$.  In this equation, the first sum is a sum over lattice {\em bonds}, while the second sum is over lattice sites.  An SSE procedure for simulating the TFIM was first developed by Sandvik for the finite-$T$ representation; this was subsequently adopted to a $T=0$ projector method, discussed in section {\color{red}XXX}.
 
 As with the Heisenberg model, both representations have a common starting point in the decomposition of the lattice Hamiltonian to bond (and site) operators.  In this case, 
 \begin{eqnarray}
@@ -456,7 +456,7 @@ The importance of including the trivial operator $H_{0,a}$ now becomes apparent,
 \caption[]{A $D+1$ SSE simulation cell snapshot for a six-site TFIM model.  Lattice sites are arranged vertically in one-dimension: the propagation direction (imaginary time) is horizontal, with $n=12$ operators.  
 Vertical bars are Ising bond operators $H_{1,a}$.  Filled squares are off-diagonal site operators, $H_{-1,a}$, and open squares are diagonal site operators $H_{0,a}$.
 Arrows represent periodic boundary conditions in the propagation direction.  
-Clusters are represented by solid or dashed lines, which illustrates their associated spin states (spin up or down).  Flipping all the spins associated with a cluster can be done with probability 1/2.  This changes site operators $H_{-1,a} \leftrightarrow H_{0,a}$, but doesn't affect the bond operator.}
+Clusters are represented by solid or dashed lines, which illustrates their associated spin states (spin up or down).  Flipping all the spins associated with a cluster can be done with probability 1/2.  This changes terminal site operators $H_{-1,a} \leftrightarrow H_{0,a}$, but doesn't affect the bond operator or internal site operators.}
 \label{fig:4}      
 \end{figure} 
 
