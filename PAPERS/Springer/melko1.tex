@@ -358,20 +358,19 @@ Indeed, the primary differences between this scheme and the finite temperature S
 
 Motivated by the loop algorithm of the finite-$T$ SSE, one can then proceed with a very similar sampling scheme.  First, the singlet projection operator is broken up into diagonal and off-diagonal bond operators, Equations \ref{diagB} and \ref{odB}.
 At this stage, one sees that it is advantageous to consider the simulation to be taking place in a {\em combined} VB-spin basis, since these operators will only give non-zero matrix elements when spin states on the respective sublattices are opposite \cite{Melko:Sandvik10a}.  
-As a consequence of point 2 above, we will be interested in the ``middle'' states of the projection to take our expectation values.  These can be seen to be dependent on the particular list of bond operators for a particular sample $r$: 
+As a consequence of point 2 above, we will be interested in the ``middle'' states of the projection to take our expectation values.  
+{\color{red}These can be seen to be dependent on the particular list of bond operators for a particular sample $r$: 
 \begin{equation}
 \big( \prod_{j=1}^{m} {H_{t_j,a_j}} \big)_r | \alpha_r \rangle = W_r |V_r \rangle, \label{midV}
 \end{equation}
- where $W_r$ is the numerical value for the weight of the projection.  One can show that $W_r = 2^{m_{\rm off}}$, where $m_{\rm off}$ is the number of off-diagonal operators in the projection \cite{Melko:Sandvik05,Melko:AWSBeach}.
+ where $W_r$ is the numerical value for the weight of the projection.  One can show that $W_r = 2^{m_{\rm off}}$, where $m_{\rm off}$ is the number of off-diagonal operators in the projection \cite{Melko:Sandvik05,Melko:AWSBeach}.}
 
 Now, sampling can occur in analogy to the finite-$T$ SSE with both a diagonal and a loop update.
 The diagonal update is significantly modified from the finite-temperature case, in part because no null ($H_{0,0}$) operators are included in the $T=0$ projection.  Then, the update proceeds from looping through the $2m$ operators in the projection, one by one, and attempting the following transitions:
 \begin{enumerate}
 %\item Traverse the operator list $\prod_{i=1}^{2m} {H_{t_i,a_i}}$.
 \item If an off-diagonal operator $H_{2,a}$ acting on some bond $a$ is encountered, move on to the next operator.
-\item If a diagonal operator $H_{1,a}$ is present on some bond $a$, pick a random bond $a^\prime$ to move it to.
-\item If bond $a^\prime$ does not have antiparallel spins, choose another random bond, and repeat this process until the diagonal operator is successfully placed.
-\item Move on to the next operator in the list.
+\item If a diagonal operator $H_{1,a}$ is present on some bond $a$, pick a random bond $a^\prime$ containing antiparallel spins to move it to.
 \end{enumerate}
 Throughout this update, the spin state should be propagated from $\langle \alpha_{\ell} |$ to $| \alpha_r \rangle$ in a way consistent with the off-diagonal operators.  Otherwise, one would sample a zero-contributing normalization, Equation \ref{Zproj2b}.
 
