@@ -201,14 +201,18 @@ Z = \langle \alpha | (-H)^m (-H)^m | \alpha \rangle, \label{normZ2}
 %\begin{equation}
 %\langle \mathcal{O} \rangle  = \frac{1}{Z} \alpha | (C-H)^m \mathcal{O} (C-H)^m | \alpha \rangle,
 %\end{equation}
-for large $m$.  Motivated by Section \ref{finiteT}, we see that this can be cast in a form similar to Equation \ref{Zsse2b},
+for large $m$.  
+Hamiltonian is again written as a (negative) sum of elementary lattice interactions (Equation \ref{Hdecomp}), the indices $t$ and $a$ referring to the operator ``types'' and lattice ``units'' over which the terms will be sampled.  
+In order to represent the normalization as a sum of weights crucial to the QMC formalism, $Z = \sum_x W(x)$, motivated by Section \ref{finiteT},
+we insert a compete resolution of the identity between each $H_{t_i,a_i}$:
 \begin{equation}
 Z=\sum_{ \{ \alpha\} } \sum_{S_m} 
- \left\langle{\alpha_{\ell}  \left| \prod_{j=1}^{m} {H_{t_j,a_j}}   \prod_{i=1}^{m} {H_{t_i,a_i}} \right| \alpha_r  }\right\rangle,
+% \left\langle{\alpha_{\ell}  \left| \prod_{j=1}^{m} {H_{t_j,a_j}}   \prod_{i=1}^{m} {H_{t_i,a_i}} \right| \alpha_r  }\right\rangle,
+\prod_{j=1}^{2m}   \left\langle{\alpha_{\ell}  \left| H_{t_j,a_j}\right| \alpha_r  }\right\rangle
+%\prod_{j=1}^{m}   \left\langle{\alpha_{m}  \left| H_{t_j,a_j}\right| \alpha_r  }\right\rangle
  \label{Zproj2b}
 \end{equation}
-where the Hamiltonian is again written as a (negative) sum of elementary lattice interactions (Equation \ref{Hdecomp}), the indices $t$ and $a$ referring to the operator ``types'' and lattice ``units'' over which the terms will be sampled.  
-In order to represent the normalization as a sum of weights crucial to the QMC formalism, $Z = \sum_x W(x)$, we insert a compete resolution of the identity between each $H_{t_i,a_i}$; the sum over the set $\{ \alpha \}$ must be done with importance sampling. 
+We see that this has been cast in a form similar to Equation \ref{Zsse2b}, where the  the sum over the set $\{ \alpha \}$ and the operator list $S_m$ must be done with importance sampling. 
 
 Note that, despite the similarity of Equation \ref{Zproj2b} to its finite-$T$ analog, several important differences exist in this $T=0$ representation.  First, although the convergence parameter $2m$ is similar in magnitude to $n$ in the ``equivalent'' finite-$T$ simulation, 
 generally speaking this projector formalism only produces meaningful observables from Equation \ref{zeroExpet} when the simulation is converged in $m$.  Thus, although it is reasonable to think that the projector representation will result in a more efficient simulation for $T=0$, in general one loses the advantage of interpreting $m$ smaller than the converged value with some physical significance (like finite temperature).
