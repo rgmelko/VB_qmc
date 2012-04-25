@@ -124,23 +124,25 @@ We next insert a set of complete basis states as resolutions of the identity, $\
 \end{equation}
 where, importantly,  $\alpha_{n}=\alpha_0$ to keep the trace nonzero.  
 Note the set of basis states $\{ \alpha_i \}$ in the sum is practically impossible to evaluate exactly; this motivates the use of an importance-sampling scheme.  Then,
-the ``weight'' of a configuration, $W(x)$, is derived from this expression, and can be seen to be proportional to the product of $n$ matrix elements.  Each individual matrix element $\langle{\alpha_{i} \left| {-H} \right| \alpha_{i+1}   }\rangle$ are evaluated as real numbers, and must be {\em positive} to be interpreted as a probability  for use in a Metropolis scheme.  
+the ``weight'' of a configuration, $W(x)$, is derived from this expression, and can be seen to be proportional to the product of $n$ matrix elements.  Each individual matrix element $\langle{\alpha_{i} \left| {-H} \right| \alpha_{i+1}   }\rangle$ is evaluated as a real number, and must be {\em positive} to be interpreted as a probability  for use in a Metropolis scheme.  
 
 %Note that the term $(-1)^n$ in the above has the possibility to be negative for odd $n$, meaning in principle one may have individual negative weight factors in the expression Eq.~(\ref{MarkZ}).  
 Note however that it is very possible for the above matrix elements to be negative, depending on the precise form of $H$.
 This is a manifestation of the so called ``sign problem'' \cite{Melko:Henelius00}.  It can 
-essentially be avoided only in the case where all terms in the Hamiltonian have (or can be made to have) a negative sign in front of them, 
-either intrinsically (e.g.~ferromagnetic interactions) or through a clever basis rotation (e.g.~possible for antiferromagnetic interactions on bipartite lattices).  In the examples we will consider in this Chapter, resolutions of the sign problem will be straightforward -- however in general quantum lattice models, it can be quite inhibitive.
+essentially be avoided only in the case where all terms in the Hamiltonian have (or can be made to have) a negative sign in front of them. 
+This can happen either intrinsically, e.g.~with ferromagnetic interactions, or through a clever basis rotation, which is possible e.g.~for antiferromagnetic interactions on bipartite lattices.  In the examples we will consider in this Chapter, resolutions of the sign problem will be straightforward -- however in general quantum lattice models, it can be quite inhibitive.
 
 The next step is to write the Hamiltonian as a sum of elementary lattice operators,
 \begin{equation}
 H=-\sum_t \sum_a H_{t,a}, \label{Hdecomp}
 \label{Hsum}
 \end{equation}
-where in our chosen representation the operators propagate the basis $H_{t,a} |\alpha_i \rangle \rightarrow | \alpha_{i+1} \rangle$, and all of the $H_{t,a}$ are positive.  The indices $t$ and $a$ refer to the operator ``types'' and the ``lattice units'' (e.g.~bonds) over which the terms will be sampled (specific examples will be given below).  We write the partition function as {\color{red}[CONSIDER USING THE ABOVE NOTATION (INSERTIONS OF IDENTITY) FOR ALL EQUATIONS (S)]}
+where in our chosen representation the operators propagate the basis $H_{t,a} |\alpha_i \rangle \rightarrow | \alpha_{i+1} \rangle$, and all of the $H_{t,a}$ are positive.  The indices $t$ and $a$ refer to the operator ``types'' and the ``lattice units'' (e.g.~bonds) over which the terms will be sampled (specific examples will be given below).  We write the partition function as 
+%{\color{red}[CONSIDER USING THE ABOVE NOTATION (INSERTIONS OF IDENTITY) FOR ALL EQUATIONS (S)]}
 \begin{equation}
 Z=\sum_{ \{ \alpha_i \} } \sum_{n=0}^{\infty} \sum_{S_n} \frac{ (\beta)^n}{n !}
- \left\langle{\alpha_0  \left|  \prod_{i=1}^{n} {H_{t_i,a_i}} \right| \alpha_0   }\right\rangle,
+% \left\langle{\alpha_0  \left|  \prod_{i=1}^{n} {H_{t_i,a_i}} \right| \alpha_0   }\right\rangle,
+ \prod_{i=1}^{n}  \left\langle{\alpha_{i-1}  \left|  {H_{t_i,a_i}}  \right| \alpha_i   }\right\rangle,
  \label{Zsse2b}
 \end{equation}
 where $S_n$ now denotes a sequence of operator-indices specifying the $n$ operators,
@@ -154,13 +156,14 @@ which must be importance sampled, along with the basis state $\alpha$, and the e
 %\label{BaseProp}
 %\end{equation}
 
-As the final step, one can truncate the Taylor expansion at a maximum power $n=M$.  This is not strictly necessary in principle, however it significantly facilitates implementation of the updating scheme.  The truncation can be justified 
+As the final step, one can truncate the Taylor expansion at a maximum power $M$.  This is not strictly necessary in principle, however it significantly facilitates implementation of the updating scheme.  The truncation can be justified 
 %by noting the fact \cite{sse3} that only a finite distribution of $n$ values contributes to the partition function, peaked around some mean value $\langle n \rangle$, with a decaying tail for large $n$.  Therefore, $M$ can easily be chosen 
-by ensuring that the chosen $M$ is always greater than the largest $n$ to occur in a numerical simulation for a given parameter set \cite{Melko:SandvikHeis}.  
+by ensuring that the chosen $M$ is always greater than the largest $n$ to occur in a numerical simulation, $M>n_{\rm max}$, for a given parameter set \cite{Melko:SandvikHeis}.  
 %This decay of the distribution for large $n$ can also be understood as the regime where the $n !$ 
 %dominates in the denominator of Eq.~(\ref{Zsse1}).
 Working with a fixed $M$ is possible to do if one inserts $M-n$ ``fill-in'', or null, operators $H_{0,0} \equiv I$ into the operator list (where $I$ is the identity operator).  However, these operators do not occur in the evaluation of the partition function, and must be accounted for by dividing the final expression for $Z$ by their contribution.  To do so note that, statistically, the number of different way of picking the placement of the null operators in the expansion list is given by the binomial coefficient,
-${M \choose n}= M!/(M-n)!n!$.  One is thus required to divide our truncated partition function by this value, giving\begin{equation}Z=\sum_{\alpha} \sum_{S_M} \frac{ (\beta)^n (M-n)!}{M !}  \left\langle{\alpha \left| \prod_{i=1}^{M} {H_{t_i,a_i}} \right| \alpha   }\right\rangle.
+${M \choose n}= M!/(M-n)!n!$.  One is required to divide our truncated partition function by this value, giving\begin{equation}Z=\sum_{\alpha} \sum_{S_M} \frac{ (\beta)^n (M-n)!}{M !}  %\left\langle{\alpha \left| \prod_{i=1}^{M} {H_{t_i,a_i}} \right| \alpha   }\right\rangle.
+ \prod_{i=1}^{M}  \left\langle{\alpha_{i-1}  \left|  {H_{t_i,a_i}}  \right| \alpha_i   }\right\rangle,
  \label{Zsse3}
 \end{equation}
 
@@ -179,17 +182,17 @@ The denominator of Equation \ref{est2} is then the normalization, or inner produ
 \begin{equation}
 Z =  \langle \Psi | \Psi \rangle.
 \end{equation}
-In a ``projector'' QMC representation, the ground state wavefunction is estimated by a procedure where a large power of the Hamiltonian is applied to a {\it trial} state, call it $|\alpha \rangle$.  This can be seen by writing the trial state in terms of energy eigenstates $|n \rangle$, $n=0,1,2 \ldots$,
+In a ``projector'' QMC representation, the ground state wavefunction is estimated by a procedure where a large power\footnote{Alternatively, with the imaginary-time evolution operator $e^{-\beta H}$, with $\beta$ large.  The two methods are essentially equivalent however, since the exponential can be Taylor expanded.} of the Hamiltonian is applied to a {\it trial} state, call it $|\alpha \rangle$.  This can be seen by writing the trial state in terms of energy eigenstates $|n \rangle$, $n=0,1,2 \ldots$,
 %\begin{equation}
 $|\alpha \rangle= \sum_n c_n |n \rangle$, so that 
 %\end{equation}
-a large power of the Hamiltonian can be used to project out the groundstate.  
+a large power of the Hamiltonian will project out the groundstate.  
 
 \begin{eqnarray}
 (-H)^m |\alpha \rangle &=& c_0|E_0|^m \left[{  |0 \rangle + \frac{c_1}{c_0} \left({ \frac{E_1}{E_0} }\right)^m|1 \rangle \cdots  }\right] \\
 &\rightarrow& c_0|E_0|^m |0 \rangle \hspace{2mm} {\rm as} \hspace{2mm} m \rightarrow \infty. \nonumber
 \end{eqnarray}
-where we have assumed that that the magnitude of the lowest eigenvalue $|E_0|$ is {\it largest} of all the eigenvalues.  To achieve this, one may be forced to add a sufficiently large negative constant to the overall Hamiltonian (that we have not explicitly included).
+Here, we have assumed that that the magnitude of the lowest eigenvalue $|E_0|$ is {\it largest} of all the eigenvalues.  To achieve this, one may be forced to add a sufficiently large negative constant to the overall Hamiltonian (that we have not explicitly included).
 Then, from this expression, one can write the normalization of the groundstate wavefunction, $Z=\langle 0 | 0 \rangle$ with two projected states (bra and ket) as
 \begin{equation}
 Z = \langle \alpha | (-H)^m (-H)^m | \alpha \rangle, \label{normZ2}
