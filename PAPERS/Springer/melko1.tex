@@ -372,7 +372,7 @@ The diagonal update is significantly modified from the finite-temperature case, 
 \item If an off-diagonal operator $H_{2,a}$ acting on some bond $a$ is encountered, move on to the next operator.
 \item If a diagonal operator $H_{1,a}$ is present on some bond $a$, pick a random bond $a^\prime$ containing antiparallel spins to move it to.
 \end{enumerate}
-Throughout this update, the spin state should be propagated from $\langle \alpha_{\ell} |$ to $| \alpha_r \rangle$ in a way consistent with the off-diagonal operators.  Otherwise, one would sample a normalization weight, Equation \ref{Zproj2b}, equal to zero.
+Throughout this update, the spin state should be propagated from $\langle \alpha_{\ell} |$ to $| \alpha_r \rangle$ in a way consistent with the off-diagonal operators and valence bonds.  Otherwise, one would sample a normalization weight, Equation \ref{Zproj2b}, equal to zero.
 
 \begin{figure}[t]
 \centering
