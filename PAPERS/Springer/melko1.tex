@@ -11,6 +11,7 @@
 
 % RECOMMENDED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[vecphys]{svmult}
+\usepackage{color}
 
 % choose options for [] as required from the list
 % in the Reference Guide, Sect. 2.2
@@ -296,7 +297,7 @@ P(n \rightarrow n-1) = {\rm min} \left({ \frac{2(M-n+1)}{N_b \beta}, 1 }\right)
 \end{eqnarray}
 These local updates are instrumental in changing the expansion order $n$ (necessary to sample the sum $\sum_n$ in Equation \ref{Zsse3}).  They also illustrate an important point: diagonal updates alone do nothing to sample {\em off-diagonal} operators $H_{2,a}$.  For this, we must devise another updating scheme.
 
-Antiquated methods devised to sample $H_{2,a}$ involved identifying diagonal operators that were ``nearby'' in the propagation direction, and updating them both to produce two off-diagonal operators such as in Figure \ref{fig:1}(b) \cite{Melko:SandvikHeis}.  Such approaches are the equivalent of local updates: they are found to be inefficient, as well as non-ergodic e.g.~in the all-important winding number {\color{red}[ADD A REFERENCE?(S)]}.  With the advent of the global {\it loop} move, such problems are relegated to history \cite{Melko:Sandvik99,Melko:Syljuasen02}.  
+Antiquated methods devised to sample $H_{2,a}$ involved identifying diagonal operators that were ``nearby'' in the propagation direction, and updating them both to produce two off-diagonal operators such as in Figure \ref{fig:1}(b) \cite{Melko:SandvikHeis}.  Such approaches are the equivalent of local updates: they are found to be inefficient, as well as non-ergodic e.g.~in the all-important winding number \cite{Melko:PC}.  With the advent of the global {\it loop} move, such problems are relegated to history \cite{Melko:Sandvik99,Melko:Syljuasen02}.  
 
 In general, a loop move is constructed by creating a ``defect'' (or ``head'') in the worldline configuration, and propagating that defect until it closes upon itself (i.e.~finds it's ``tail'').  The path of the defect through the space-time simulation cell passes through basis states (spins) and operators in $D+1$.  This path defines the loop, which itself is just a list of space-time lattice coordinates.  A loop is said to be ``flipped'' if all spins on the path are flipped - which also changes the operator types associated with flipped spins (i.e.~the matrix elements).
 This loop flipping typically accrues some change in weight.  This weight changes can be absorbed into the process of creating the loop path, such that the propagation of the defect is subject to the Metropolis condition at every step (this is the {\em directed} loop \cite{Melko:Syljuasen02}).  
@@ -336,26 +337,32 @@ For the Heisenberg (or other SU(2) Hamiltonians) a particularly convenient class
 \begin{equation}
 | \alpha \rangle = | (a_1,b_1)(a_2,b_1) \ldots (a_{N/2}, b_{N/2})  \rangle,
 \end{equation}
-where each index $(a,b)$ labels the $a$ and $b$ sublattice coordinate associated with a singlet state $(|\uparrow \downarrow \rangle  - | \downarrow \uparrow \rangle)/\sqrt{2}$ connecting two of the $N$ sites.  This basis happens to non-orthogonal and massively overcomplete.  Also, one can quickly see that it is suitable for sampling bond operators of the Heisenberg Hamiltonian, which can be written in the form of a singlet projection operator,
+where each index $(a,b)$ labels the $a$ and $b$ sublattice coordinate associated with a singlet state $(|\uparrow \downarrow \hspace{1mm} \rangle  - | \downarrow \uparrow \hspace{1mm} \rangle)/\sqrt{2}$ connecting two of the $N$ sites.  This basis happens to non-orthogonal and massively overcomplete.  Also, one can quickly see that it is suitable for sampling bond operators of the Heisenberg Hamiltonian, which can be written in the form of a singlet projection operator,
 \begin{equation}
 \frac{1}{4} - {\bf  S}_i \cdot {\bf S}_j = \frac{1}{\sqrt{2}} (|\uparrow \downarrow \rangle  - |\downarrow \uparrow \rangle)
  \frac{1}{\sqrt{2}}  (\langle \uparrow \downarrow |  - \langle \downarrow \uparrow |),
 \end{equation}
 where the minus sign can again be removed by an operator rotation on bipartite lattices.
-With this, a $T=0$ QMC scheme satisfying Equation \ref{normZ2} can quickly be constructed by noting that the projection operator serves to re-arrange the end-points of the valence bonds.  The resulting picture becomes very much like the finite-temperature SSE, where up-spins propagating from $\langle \alpha_{\ell} |$ to $| \alpha_r \rangle$ form lines that are re-arranged by the $2m$ operators that occur in the propagation, Equation \ref{Zproj2b}.
-Indeed, the primary differences between this scheme and the finite temperature SSE become simply:
+With this, a $T=0$ QMC scheme satisfying Equation \ref{normZ2} can quickly be constructed by noting that the projection operator serves to re-arrange the end-points of the valence bonds \cite{Melko:Sandvik05}.  The resulting picture becomes very much like the finite-temperature SSE, where up-spins propagating from $\langle \alpha_{\ell} |$ to $| \alpha_r \rangle$ form lines that are re-arranged by the $2m$ operators that occur in the propagation, Equation \ref{Zproj2b}.
+Indeed, the primary differences between this scheme and the finite temperature SSE are simply:
 \begin{enumerate}
 \item A fixed value of $m$ is used in the $T=0$ projector method, whereas $n$ in the finite-$T$ SSE necessarily fluctuates.
 \item The $T=0$ simulation cell is not periodic in the propagation direction; rather, particle ``worldlines'' terminate at the boundaries  $\langle \alpha_{\ell} |$ and $| \alpha_r \rangle$.
 \end{enumerate}
 
 Motivated by the loop algorithm of the finite-T SSE, one can then proceed with a very similar sampling scheme.  First, the singlet projection operator is broken up into diagonal and off-diagonal bond operators, Equations \ref{diagB} and \ref{odB}.
-At this stage, one sees that it is advantageous to consider the simulation to be taking place in a {\em combined} VB-spin basis, since these operators will only give non-zero matrix elements when spin states on the respective sublattices are opposite \cite{Melko:Sandvik10a}.  Then, sampling can occur in analogy to the finite-$T$ SSE with both a diagonal and a loop update.
+At this stage, one sees that it is advantageous to consider the simulation to be taking place in a {\em combined} VB-spin basis, since these operators will only give non-zero matrix elements when spin states on the respective sublattices are opposite \cite{Melko:Sandvik10a}.  
+As a consequence of point 2 above, we will be interested in the ``middle'' states of the projection to take our expectation values.  These can be seen to be dependent on the particular list of bond operators for a particular sample $r$: 
+\begin{equation}
+\big( \prod_{j=1}^{m} {H_{t_j,a_j}} \big)_r | \alpha_r \rangle = W_r |V_r \rangle, \label{midV}
+\end{equation}
+ where $W_r$ is the numerical value for the weight of the projection.  One can show that $W_r = 2^{m_{\rm off}}$, where $m_{\rm off}$ is the number of off-diagonal operators in the projection \cite{Melko:Sandvik05,Melko:AWSBeach}.
 
-The diagonal update is significantly modified from the finite-temperature case, in part because no null ($H_{0,0}$) operators are included in the $T=0$ projection.  Then, the update proceeds from looping through the $2m$ operators in the projection and attempting the following transitions:
+Now, sampling can occur in analogy to the finite-$T$ SSE with both a diagonal and a loop update.
+The diagonal update is significantly modified from the finite-temperature case, in part because no null ($H_{0,0}$) operators are included in the $T=0$ projection.  Then, the update proceeds from looping through the $2m$ operators in the projection, one by one, and attempting the following transitions:
 \begin{enumerate}
-\item Traverse the operator list $\prod_{i=1}^{2m} {H_{t_i,a_i}}$.
-\item If an off-diagonal operator $H_{2,a}$ acting on some bond $a$ is encountered move on to the next operator.
+%\item Traverse the operator list $\prod_{i=1}^{2m} {H_{t_i,a_i}}$.
+\item If an off-diagonal operator $H_{2,a}$ acting on some bond $a$ is encountered, move on to the next operator.
 \item If a diagonal operator $H_{1,a}$ is present on some bond $a$, pick a random bond $a^\prime$ to move it to.
 \item If bond $a^\prime$ does not have antiparallel spins, choose another random bond, and repeat this process until the diagonal operator is successfully placed.
 \item Move on to the next operator in the list.
@@ -366,14 +373,27 @@ Throughout this update, the spin state should be propagated from $\langle \alpha
 \centering
 \includegraphics*[width=.85\textwidth]{zeroT_heis.eps}
 \caption[]{{\color{red}[CHECK THE RHS BC'S -- ARE THEY CORRECT? (S)]} A $D+1$ projector simulation cell snapshot for a six-site Heisenberg model.  Lattice sites are arranged vertically in one-dimension: 
-$| \alpha_{\ell} \rangle = |  \hspace{1mm} \bullet  \hspace{1mm} \bullet  \hspace{1mm} \circ  \hspace{1mm} \circ  \hspace{1mm} \circ  \hspace{1mm} \bullet  \rangle$, and  $| \alpha_{r} \rangle = |  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \bullet  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \circ  \rangle$.
-The propagation direction is horizontal, with $m=3$ operators.  Solid lines are the fully-determined loop structure, which, when they encounter the trial states at the ends, propagate through the valence bonds.  The dashed line indicates the middle of the simulation cell, where expectation values must be measured.}
+at left, $ |  \hspace{1mm} \bullet  \hspace{1mm} \bullet  \hspace{1mm} \circ  \hspace{1mm} \circ  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \rangle$, and at right,  $ |  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \bullet  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \circ \hspace{1mm}  \rangle$.
+The propagation direction is horizontal, with $m=3$ operators.  Solid lines are the fully-determined loop structure, which, when they encounter the trial states at the ends, propagate through the valence bonds (curved lines).  The dashed line indicates the middle of the simulation cell, where expectation values must be measured.}
 \label{fig:3}       % Give a unique label
 \end{figure} 
 
 The diagonal update being complete, one now performs loop updates, which because of the equal matrix elements of $H_{1,a}$ and $H_{2,a}$, is performed in direct analogy to the finite-$T$ SSE case.  The only difference is that loops no longer connect periodically in the propagation direction; instead, they follow the valence bonds when they encounter the trial states $\langle \alpha_{\ell} |$ or $| \alpha_r \rangle$.  As illustrated in Figure \ref{fig:3}, the resulting schematic picture of the $D+1$ simulation cell is, besides this lack of periodicity, entirely equivalent to Figure \ref{fig:2}.
 
 One other important difference occurs in the calculation of observables, Equation \ref{zeroExpet}, which based on the fact that our trial states have been projected from the left and right by $m$ operators, must be measured in the {\em middle} of the simulation cell.
+Expectation values of the form Equation \ref{zeroExpet} are therefore written
+\begin{equation}
+\langle \mathcal{O} \rangle = \frac{\langle V_{\ell} | \mathcal{O} | V_r \rangle}{\langle V_{\ell} |   V_r \rangle}
+\end{equation}
+where the states are the result of a projection from each endpoint, Equation \ref{midV}.  Remarkably, many estimators can be written as a function of the loop structure that crosses the middle of the simulation cell as in Figure \ref{fig:3}, where two distinct loops cross the dashed line in the middle \cite{Melko:Beach06,Melko:AWSBeach,Melko:Sandvik10a}.  Examples are the sublattice magnetization, the spin-spin correlation function, and even the Renyi entanglement entropy in an extended simulation cell.  The reader is left to scour the literature for the precise procedure for calculating the expectation value of their favourite operator; we simply note here the important result that 
+the overlap of the two valence-bond states is given by
+\begin{equation}
+\langle V_{\ell} |   V_r \rangle = 2^{N_{\rm loop} - N/2}
+\end{equation}
+where $N_{\rm loop}$ is the number of loops (two in Figure \ref{fig:3}), and $N$ the number of sites. 
+
+Much more discussion of the VB projector algorithm is possible, including using efficient trial states and state update, details of convergence, advanced measurement techniques, etc. However, we forgo these to continue with the broad theme of this review, connecting finite-$T$ and $T=0$ SSE.  We therefore turn next to a specific implementation of a different model, to compare and contrast with the ideas introduced in this section.
+
 
 \section{Transverse field Ising model} \label{Melko:TFIMSec}
 
