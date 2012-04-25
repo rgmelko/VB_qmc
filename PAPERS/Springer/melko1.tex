@@ -331,7 +331,7 @@ We note that expectation values of physical quantities can be taken at various s
 E = - \frac{\langle n \rangle}{\beta}
 \end{equation}
 is the internal energy per spin, up to the constant factor added to $H_{1,a}$  \cite{Melko:Sandvik99}.
-Other quantities are determined by the change in world-line structure, and are easiest measured in the loop update itself {\color{red}[ISN'T $W^2$ MEASURED AFTER EVERY UPDATE, NOT DURING? (S)]}.  The simplest example the spin stiffness, which is proportional the the squared winding number $\langle W^2 \rangle$ \cite{Melko:PC}, sampled in the loop update.  More sophisticated examples include equal-time Green's functions, which are measured during the loop update by keeping track of the position of the propagating defect in the $D+1$ dimensional simulation cell.
+Other quantities are determined by the change in world-line structure, and are easiest measured in the loop update itself {\color{red}[(Steve) Isn't $W^2$ measured after each update, not during?]}.  The simplest example the spin stiffness, which is proportional the the squared winding number $\langle W^2 \rangle$ \cite{Melko:PC}, sampled in the loop update.  More sophisticated examples include equal-time Green's functions, which are measured during the loop update by keeping track of the position of the propagating defect in the $D+1$ dimensional simulation cell.
 
 %We only briefly mention measurement techniques, which from Equation (\ref{finiteTmeas}) correspond to... XXX
 It would be possible to discuss many more interesting and important details of the SSE representation, updating, and measurement procedure, however we refer the interested reader to the literature for these.  Instead, we now turn to a comparison of the basic structure of the loop-algorithm SSE code, described above, to the zero-temperature formulation of the same model.  As we will see, despite the formally different starting points of the two methods, this comparison reveals the underlying similarity of the two methods in the SSE QMC paradigm.
@@ -378,7 +378,7 @@ Throughout this update, the spin state should be propagated from $\langle \alpha
 \begin{figure}[t]
 \centering
 \includegraphics*[width=.85\textwidth]{zeroT_heis.eps}
-\caption[]{{\color{red}[CHECK THE RHS BC'S -- ARE THEY CORRECT? (S)]} A $D+1$ projector simulation cell snapshot for a six-site Heisenberg model.  Lattice sites are arranged vertically in one-dimension: 
+\caption[]{{\color{red}[(Steve) Are the RHS BC's correct?]} A $D+1$ projector simulation cell snapshot for a six-site Heisenberg model.  Lattice sites are arranged vertically in one-dimension: 
 at left, $ |  \hspace{1mm} \bullet  \hspace{1mm} \bullet  \hspace{1mm} \circ  \hspace{1mm} \circ  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \rangle$, and at right,  $ |  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \bullet  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \circ \hspace{1mm}  \rangle$.
 The propagation direction is horizontal, with $m=3$ operators.  Solid lines are the fully-determined loop structure, which, when they encounter the trial states at the ends, propagate through the valence bonds (curved lines).  The dashed line indicates the middle of the simulation cell, where expectation values must be measured.}
 \label{fig:3}       % Give a unique label
@@ -475,7 +475,7 @@ If it is a bond operator and the chosen bond has a local spin configuration prev
 \end{enumerate}
 It's clear that these local updates are again instrumental in changing the expansion order $n$, however do not sample off-diagonal operators $H_{-1,a}$, and therefore must be combined with the use of some non-local update to produce an ergodic simulation.
 
-We require a non-local update in analogy to the loop update of the Heisenberg model above.  However, in this case, a branching {\it cluster} update is constructed.  A cluster is formed in the $D+1$ simulation cell by grouping spins and operators together.  It is built by starting e.g. with a site or bond operator, then tracing out all the links in the simulation cell (Figure \ref{fig:4}).  The two rules governing the building of clusters is: 1) clusters terminate on site-operators $H_{-1,a}$ or $H_{0,a}$; and 2) bond operators $H_{2,a}$ belong to one cluster.
+We require a non-local update in analogy to the loop update of the Heisenberg model above.  However, in this case, a branching {\it cluster} update is constructed.  A cluster is formed in the $D+1$ simulation cell by grouping spins and operators together.  It is built by starting e.g. with a site or bond operator, then find the cluster that operator is a part of, according to a set of rules (Figure \ref{fig:4}).  The two rules governing the building of clusters is: 1) clusters terminate on site-operators $H_{-1,a}$ or $H_{0,a}$; and 2) bond operators $H_{2,a}$ belong to one cluster. This procedure continues until all clusters are identified.
 
 The importance of including the trivial operator $H_{0,a}$ now becomes apparent, since the matrix element of both the diagonal and off-diagonal single-site operators is $h$.  Hence, switching between $H_{0,a}$ and $H_{-1,a}$ involves no weight change.  With this, clusters constructed using the algorithm can be flipped with a SW procedure, as discussed previously for the Heisenberg model.
 
@@ -507,7 +507,7 @@ P(h) = \frac{h N}{hN + (2J)N_b}
 \end{equation}
 where $N$ is the number of sites, and $N_b$ the number of bonds.  Note, $P(J) = 1- P(h)$ as before.  %Comparison to a random number between 0 and 1 decides which operator type is chosen.
 \item If $H_{-1,a}$ is chosen, a site $a$ is chosen at random, and the operator is placed there.
-\item If, however, $H_{1,a}$ is chosen a {\rm bond} a is chosen.  The configurations of the two spins on this bond must be opposite for the matrix element to be nonzero.  If they are not, then the insertion is rejected.   Since no null operators are possible, steps (2) to (4) are repeated until a success choice is made.
+\item If, however, $H_{1,a}$ is chosen a random {\rm bond} $a$ is chosen.  The configurations of the two spins on this bond must be opposite for the matrix element to be nonzero.  If they are not, then the insertion is rejected.   Since no null operators are possible, steps (2) to (4) are repeated until a success choice is made.
 \item The algorithm proceed to the next propagation step in $2m$, and returns to step (1).
 \end{enumerate}
 The main differences between this diagonal update and that of Section \ref{Melko:TFIMfiniteT} is the presence of null operators in the expansion list in the latter.  However, like for the finite-$T$ SSE, one can see that this diagonal update is necessary in order to change the topology of the operator sequence in the simulation cell.  In order to get fully ergodic sampling of the TFIM Hamiltonian operators, one must employ cluster updates as before.
@@ -517,7 +517,7 @@ The main differences between this diagonal update and that of Section \ref{Melko
 \includegraphics*[width=.85\textwidth]{zeroT_tfim.eps}
 \caption[]{A $D+1$ projector simulation cell snapshot for a six-site TFIM model.  Lattice sites are arranged vertically in one-dimension: the propagation direction (imaginary time) is horizontal, with $m=6$ operators.  
 Vertical bars are Ising bond operators $H_{1,a}$.  Filled squares are off-diagonal site operators, $H_{-1,a}$, and open squares are diagonal site operators $H_{0,a}$.
-Clusters are represented by solid or dashed lines, which illustrates their associated spin states (spin up or down).  Flipping all the spins associated with a cluster can be done with probability 1/2.  This changes site operators $H_{-1,a} \leftrightarrow H_{0,a}$, and also the spin states associated with  $|\alpha \rangle$ and $|\alpha' \rangle$.}
+{\color{red}[(Steve) This isn't true for this picture -- solid and dash represent spin configurations, not unique clusters]} Clusters are represented by solid or dashed lines, which illustrates their associated spin states (spin up or down).  Flipping all the spins associated with a cluster can be done with probability 1/2.  This changes site operators $H_{-1,a} \leftrightarrow H_{0,a}$, and also the spin states associated with  $|\alpha \rangle$ and $|\alpha' \rangle$.}
 \label{fig:5}      
 \end{figure} 
 
