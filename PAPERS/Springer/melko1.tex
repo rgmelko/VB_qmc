@@ -335,7 +335,7 @@ We note that expectation values of physical quantities can be taken at various s
 E = - \frac{\langle n \rangle}{\beta}
 \end{equation}
 is the internal energy per spin, up to the constant factor added to $H_{1,a}$  \cite{Melko:Sandvik99}.
-Other quantities are determined by the change in world-line structure, and are easiest measured in the loop update itself {\color{red}[(Steve) Isn't $W^2$ measured after each update, not during?]}.  The simplest example the spin stiffness, which is proportional the the squared winding number $\langle W^2 \rangle$ \cite{Melko:PC}, sampled in the loop update.  More sophisticated examples include equal-time Green's functions, which are measured during the loop update by keeping track of the position of the propagating defect in the $D+1$ dimensional simulation cell.
+Other quantities are determined by the change in world-line structure, and are easiest measured in the loop update itself - for example the equal-time Green's function, which is measured by keeping track of the position of the loop propagating defect in the $D+1$ dimensional simulation cell \cite{Melko:WormA,Melko:gfsse,Melko:Assaad07}.
 
 %We only briefly mention measurement techniques, which from Equation (\ref{finiteTmeas}) correspond to... XXX
 It would be possible to discuss many more interesting and important details of the SSE representation, updating, and measurement procedure, however we refer the interested reader to the literature for these.  Instead, we now turn to a comparison of the basic structure of the loop-algorithm SSE code, described above, to the zero-temperature formulation of the same model.  As we will see, despite the formally different starting points of the two methods, this comparison reveals the underlying similarity of the two methods in the SSE QMC paradigm.
@@ -381,7 +381,7 @@ Throughout this update, the spin state should be propagated from $\langle \alpha
 \begin{figure}[t]
 \centering
 \includegraphics*[width=.85\textwidth]{zeroT_heis.eps}
-\caption[]{{\color{red}[(Steve) Are the RHS BC's correct?]} A $D+1$ projector simulation cell snapshot for a six-site Heisenberg model.  Lattice sites are arranged vertically in one-dimension: 
+\caption[]{ A $D+1$ projector simulation cell snapshot for a six-site Heisenberg model.  Lattice sites are arranged vertically in one-dimension: 
 at left, $ |  \hspace{1mm} \bullet  \hspace{1mm} \bullet  \hspace{1mm} \circ  \hspace{1mm} \circ  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \rangle$, and at right,  $ |  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \bullet  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \circ \hspace{1mm}  \rangle$.
 The propagation direction is horizontal, with $m=3$ operators.  Solid lines are the fully-determined loop structure, which, when they encounter the trial states at the ends, propagate through the valence bonds (curved lines).  The dashed line indicates the middle of the simulation cell, where expectation values must be measured.}
 \label{fig:3}       % Give a unique label
@@ -520,7 +520,7 @@ The main differences between this diagonal update and that of Section \ref{Melko
 \includegraphics*[width=.85\textwidth]{zeroT_tfim.eps}
 \caption[]{A $D+1$ projector simulation cell snapshot for a six-site TFIM model.  Lattice sites are arranged vertically in one-dimension: the propagation direction (imaginary time) is horizontal, with $m=6$ operators.  
 Vertical bars are Ising bond operators $H_{1,a}$.  Filled squares are off-diagonal site operators, $H_{-1,a}$, and open squares are diagonal site operators $H_{0,a}$.
-{\color{red}[(Steve) This isn't true for this picture -- solid and dash represent spin configurations, not unique clusters]} Clusters are represented by solid or dashed lines, which illustrates their associated spin states (spin up or down).  Flipping all the spins associated with a cluster can be done with probability 1/2.  This changes site operators $H_{-1,a} \leftrightarrow H_{0,a}$, and also the spin states associated with  $|\alpha \rangle$ and $|\alpha' \rangle$.}
+Spin states are represented by solid or dashed lines (spin up or down).  Flipping all the spins associated with each cluster can be done with probability 1/2.  This changes site operators $H_{-1,a} \leftrightarrow H_{0,a}$, and also the spin states associated with  $|\alpha \rangle$ and $|\alpha' \rangle$.}
 \label{fig:5}      
 \end{figure} 
 
@@ -533,22 +533,15 @@ However, unlike the VB basis, for off-diagonal operators, the naive expectation 
 \section{Discussion}
 
 This Chapter has aspired to give a basic flavor for the modern conceptual framework for Stochastic Series Expansion quantum Monte Carlo.  Far from its first incarnations by Handscomb which were highly limited in scope, under Sandvik's tutelage it has blossomed into
-a widely adopted, highly general numerical framework for solving sign-problem free quantum lattice models.  Remarkably, the pace of algorithmic development ceases to abate, as evident from the large number of new systems, symmetries, measurements, and models tackled almost daily with new manifestations of the original SSE idea.  Although this Chapter focussed on a pedagogical introduction to the framework of the simplest SSE simulations, the reader should not be fooled by the apparent simplicity;
-these methods can quickly be expanded to tackle very sophisticated quantum lattice models of real interest to modern physics.  Some of the most exciting recent research on exotic quantum phases and phase transitions has employed new variations of the SSE method; notable advances have recently been reviewed elsewhere.
+a widely adopted, highly general numerical framework for solving sign-problem free quantum lattice models.  Remarkably, the pace of algorithmic development ceases to abate, as evident from the large number of new systems, symmetries, measurements, and models tackled almost daily with novel manifestations of the original SSE idea.  Although this Chapter focussed on a pedagogical introduction to the framework of the simplest SSE simulations, the reader should not be fooled by the apparent simplicity;
+these methods can quickly be expanded to tackle very sophisticated quantum lattice models of real interest to modern physics.  Some of the most exciting recent research on exotic quantum phases and phase transitions has employed new variations of the SSE method; notable advances have recently been reviewed elsewhere \cite{Melko:Designer}.
 
-Perhaps the most important take-home message of this Chapter is the recent conceptual advances in unifying the traditional finite-$T$, partition function-based SSE framework, with Sandvik's new zero-temperature projector perspective.  Despite the initial apparent differences, particularly upon introduction of the valence bond projector method \cite{Melko:Sandvik05}, the two paradigms have now almost completely converged, largely due to the understanding gained by considering the $T=0$ representation and updating procedure in terms of non-local loop structures \cite{Melko:Sandvik10a}.
+Perhaps the most important take-home message of this Chapter is the recent conceptual advances in unifying the traditional finite-$T$, partition function-based SSE framework, with Sandvik's new zero-temperature projector perspective.  Despite the initial apparent differences, particularly upon introduction of the valence bond projector method \cite{Melko:Sandvik05}, the two paradigms have now almost completely converged, largely due to the understanding gained by considering the $T=0$ representation and updating procedure in terms of non-local loop structures \cite{Melko:Sandvik10a}.  It was the purpose of this review to emphasize this fact; the reader should be struck by the similarities between Figures \ref{fig:2} and \ref{fig:3} for the Heisenberg SSE, and also Figures \ref{fig:4} and \ref{fig:5} for the TFIM, which essentially differ from each other {\em only} in the periodicity of the boundary condition in the propagation direction.
 
-XY model?
-
-Hence, as we move forward as a community, relying undoubtedly more and more on SSE QMC as a mainstay of our research on quantum lattice models, we can expect to have our choice...
-
-%\subsection{Unification of finite-$T$ and $T=0$ methods}
-
-%\subsection{The future of SSE}
-
+As we move forward as a community, we can undoubtedly expect to rely more and more on SSE QMC as a mainstay of our research on quantum lattice models.   This progress will likely come with a choice of $T=0$ or finite-$T$ frameworks for most Hamiltonians of interest.  This, coupled with advanced sampling techniques, hardware advances, and of course unforeseen algorithm breakthroughs, will ensure the golden years of quantum many-body simulation still lie ahead.
 
 \section{Acknowledgments}  
-This work would not have been possible without the continuing collaboration of A. Sandvik, who is sole proprietor of almost every algorithmic advance outlined in the Chapter, and without whom's willingness to communicate these ideas privately would have made this work impossible.
+This work would not have been possible without the continuing collaboration of A. Sandvik, who is proprietor of almost every algorithmic advance outlined in the Chapter, and without whom's willingness to communicate these ideas privately would have made this work impossible.
 I am also indebted to A. Kallin and S. Inglis for contributions to all sections of this Chapter, especially the figures, and many critical readings.
 
 % BibTeX users please use
