@@ -492,7 +492,7 @@ The importance of including the trivial operator $H_{0,a}$ now becomes apparent,
 \caption[]{A $D+1$ SSE simulation cell snapshot for a six-site TFIM model.  Lattice sites are arranged vertically in one-dimension: the propagation direction (imaginary time) is horizontal, with $n=12$ operators.  
 Vertical bars are Ising bond operators $H_{1,a}$.  Filled squares are off-diagonal site operators, $H_{-1,a}$, and open squares are diagonal site operators $H_{0,a}$.
 Arrows represent periodic boundary conditions in the propagation direction.  
-Clusters are represented by solid or dashed lines, which illustrates their associated spin states (spin up or down).  Flipping all the spins associated with a cluster can be done with probability 1/2.  This changes terminal site operators $H_{-1,a} \leftrightarrow H_{0,a}$, but doesn't affect the bond operator or internal site operators.}
+Solid and dashed lines illustrates the spin states (spin up or down).  Flipping all the spins associated with a cluster can be done with probability 1/2.  This changes terminal site operators $H_{-1,a} \leftrightarrow H_{0,a}$, but doesn't affect the bond operators or internal site operators.}
 \label{fig:4}      
 \end{figure} 
 
@@ -515,7 +515,7 @@ P(h) = \frac{h N}{hN + (2J)N_b}.
 %where $N$ is the number of sites, and $N_b$ the number of bonds.  
 Note, $P(J) = 1- P(h)$ as before.  %Comparison to a random number between 0 and 1 decides which operator type is chosen.
 \item If $H_{0,a}$ is chosen, a site $a$ is chosen at random, and the operator is placed there.
-\item If, however, $H_{1,a}$ is chosen a random {\rm bond} $a$ is chosen.  The configurations of the two spins on this bond must be opposite for the matrix element to be nonzero.  If they are not, then the insertion is rejected.   Since no null operators are possible, steps (2) to (4) are repeated until a success choice is made.
+\item If, however, $H_{1,a}$ is chosen a random {\rm bond} $a$ is chosen.  The configurations of the two spins on this bond must be parallel for the matrix element to be nonzero.  If they are not, then the insertion is rejected.   Since no null operators are possible, steps (2) to (4) are repeated until a success choice is made.
 \item The algorithm proceed to the next propagation step in $2m$, and returns to step (1).
 \end{enumerate}
 The main differences between this diagonal update and that of Section \ref{Melko:TFIMfiniteT} is the presence of null operators in the expansion list in the latter.  However, like for the finite-$T$ SSE, one can see that this diagonal update is necessary in order to change the topology of the operator sequence in the simulation cell.  In order to get fully ergodic sampling of the TFIM Hamiltonian operators, one must employ cluster updates as before.
