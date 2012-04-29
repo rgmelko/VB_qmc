@@ -65,18 +65,18 @@ recast in the formalism of a zero-temperature projector method, where a large po
 \label{sec:1}
 In the quest to understand the phenomenon of quantum systems in the thermodynamic limit, it is often one's ambition to simulate
 microscopic models on lattices of the largest sizes practically possible.  In the context of quantum Monte Carlo (QMC), this means
-constructing a simulation methodology that is highly efficient, with favorable scaling properties, free of systematic errors or bias, yet capable of attacking the cornucopia of interesting quantum models which entice modern condensed matter, materials, and quantum information scientists.
+constructing a simulation methodology that is highly efficient, with favorable scaling properties, free of systematic errors or bias, yet capable of attacking the cornucopia of interesting quantum models which entice modern condensed matter, materials, atomic, molecular and optics, and quantum information scientists.
 Since QMC involves mapping a $D$ dimensional quantum system to $D+1$ dimensions, the symmetry of the quantum Hamiltonian is often encoded directly into the structure of the simulation cell.  Therefore, in order to facilitate a practitioner's ability to examine a variety of physical Hamiltonians of interest, a QMC program should also be transparent, and easy to implement, allowing flexibility to code in a wide range of different lattice models. 
 
 For many applications, the industry standard for simulation of lattice models of quantum spins and bosons (without the sign problem) has become SSE QMC, which stands for Stochastic Series Expansion.\footnote{or alternatively, \textit{Sandvik's Simple and Efficient} QMC}   Often, SSE simulations for \lq typical' Hamiltonians can be straightforwardly implemented in a few thousand lines of code.
 This allows the programmer a high degree of control, facilitates optimization, and encourages algorithmic development.
-SSE programs scale highly efficiently, typically linearly with the number of lattice sites and the inverse temperature: $\mathcal{O}(N\beta)$.  This combination of favorable quantities enables a power, utility, and ease of use that is testified to by SSE QMC's widespread adoption in a variety of applications in the physical sciences.
+SSE programs scale with high efficiency, typically linear in the number of lattice sites and the inverse temperature: $\mathcal{O}(N\beta)$.  This combination of favorable quantities enables a power, utility, and ease of use that is testified to by SSE QMC's widespread adoption in a variety of applications in the physical sciences.
 
 Modern SSE is based on some of the same principles as Handscomb's approach, namely Taylor expanding the partition function \cite{Melko:Handscomb62}.  However, Handscomb (and others after him) only considered cases where the trace of the Hamiltonian could be computed analytically --  a fact that caused the method to be considered limited in scope.
 The major advance, which propelled Handscomb's method towards wide-spread applicability, was the realization that this trace could be stochastically {\em sampled}, like in worldline methods.
-Thus dubbed SSE, Sandvik \cite{Melko:Sandvik91,Melko:Sandvik92} pioneered not only the original, spin 1/2 version (used extensively to study the Heisenberg model \cite{Melko:SandvikHeis}), but many extensions of the versatile framework, including the important recent recasting as a $T=0$ projector method \cite{Melko:Sandvik05,Melko:Beach06}.  The SSE method has been applied to both spin 1/2 and higher spin models \cite{Melko:Sandvik91,Melko:Henel} on a large variety of lattices, including partially-frustrated systems \cite{Melko:Melko07}, models with long-range interactions\cite{Melko:Sandvik03}, and a whole host of other manifestations of quantum magnetism.  It has been adapted to boson Hamiltonians, both hard-core and soft-core, which has caused a proliferation of application on models of cold atoms trapped in optical lattices \cite{Melko:Wessel04,Melko:CA3,Melko:CA2}.  It has been generalized to study SU($N$) symmetric models \cite{Melko:harada2003:sun,Melko:Kawashima07}, which has been instrumental in making connection with field-theoretic studies of universality and quantum phase transitions \cite{Melko:kaul2011:j1j2,Melko:Designer}.  Today, SSE simulations can routinely access simulation cells with a space-time volume $L^2\beta$ larger than $10^7$ \cite{Melko:Sandvik10c};  its limitations it seems are only the imagination of the practitioner.\footnote{and, of course, the infamous ``sign-problem''}
+Thus dubbed SSE, Sandvik \cite{Melko:Sandvik91,Melko:Sandvik92} pioneered not only the original, spin 1/2 version (used extensively to study the Heisenberg model \cite{Melko:SandvikHeis}), but many extensions of the versatile framework, including the important recent recasting as a $T=0$ projector method \cite{Melko:Sandvik05,Melko:Beach06}.  The SSE method has been applied to both spin 1/2 and higher spin models \cite{Melko:Sandvik91,Melko:Henel} on a large variety of lattices, including partially-frustrated systems \cite{Melko:Melko07}, models with long-range interactions\cite{Melko:Sandvik03}, and a whole host of other manifestations of quantum magnetism.  It has been adapted to boson Hamiltonians, both hard-core and soft-core, which has caused a proliferation of application on models of cold atoms trapped in optical lattices \cite{Melko:Wessel04,Melko:CA3,Melko:CA2}.  It has been generalized to study SU($N$) symmetric models \cite{Melko:harada2003:sun,Melko:Kawashima07}, which has been instrumental in making connection with field-theoretic studies of universality and quantum phase transitions \cite{Melko:kaul2011:j1j2,Melko:Designer}.  Today, SSE simulations can routinely access simulation cells with a space-time volume $N\beta$ larger than $10^7$ \cite{Melko:Sandvik10c};  its limitations it seems are only the imagination of the practitioner.\footnote{and, of course, the infamous ``sign-problem''}
 
-The above are but a few examples of the success of SSE over the past twenty years.  An exhaustive list would quickly fill all the pages available in this volume.  Instead, in this Chapter, we describe the current broad framework of understanding of the SSE QMC method, outlining the modern approach to designing and implementing both $T>0$ and $T=0$ programs.  The two simplest cases for spin 1/2 models, the SU(2)-symmetric Heisenberg model, and the Ising model in an applied transverse field, are discussed in detail.  
+The above are but a few examples of the success of SSE over the past twenty years.  An exhaustive list would quickly fill all of the pages available in this volume.  Instead, in this Chapter, we describe the current broad framework of understanding of the SSE QMC method, outlining the modern approach to designing and implementing both $T>0$ and $T=0$ programs.  The two simplest cases for spin 1/2 models, the isotropic Heisenberg model, and the Ising model in an applied transverse field, are discussed in detail.  
 
 \section{Quantum Monte Carlo formalism}
 
@@ -102,7 +102,7 @@ In the next two sections, we will discuss the finite-$T$ and $T=0$ representatio
 
 \subsection{Finite-temperature representation} \label{finiteT}
 
-For finite-temperature, Equation \ref{est2} corresponds to the thermal average
+For finite-temperature, Equation \ref{est2} corresponds to the thermal average,
 \begin{equation}
 \langle \mathcal{O} \rangle  = \frac{1}{Z} {\rm Tr} \{ \mathcal{O} e^{- \beta H} \}, \label{finiteTmeas}
 \end{equation}
@@ -115,7 +115,7 @@ The first step in the SSE approach is to write the trace in the partition functi
 Z={\rm Tr} \{ {\rm e}^{-\beta H} \}=\sum_{\alpha_0} \left\langle{ \alpha_0 \left|{ \sum_{n=0}^{\infty} \frac{ \beta^n}{n !} (-H)^n} \right| \alpha_0   }\right\rangle.
  \label{Zsse1}
 \end{equation}
-We next insert a set of complete basis states as resolutions of the identity, $\sum_{\alpha} |\alpha \rangle  \langle \alpha |$ between the $n$ products of $H$;
+We next insert a set of complete basis states as resolutions of the identity, $\sum_{\alpha} |\alpha \rangle  \langle \alpha |$ between the $n$ products of $-H$;
 \begin{equation}
  Z=\sum_{\{ \alpha_i \}} \sum_{n=0}^{\infty} \frac{\beta^n}{n !} 
 \langle \alpha_{0} | -H | \alpha_{1} \rangle \langle \alpha_1 | -H | \alpha_2\rangle  \cdots \langle \alpha_{n-1} | -H| \alpha_{n} \rangle
@@ -128,21 +128,21 @@ the ``weight'' of a configuration, $W(x)$, is derived from this expression, and 
 Note however that it is very possible for the above matrix elements to be negative, depending on the precise form of $H$.
 This is a manifestation of the so called ``sign problem'' \cite{Melko:Henelius00}.  It can 
 essentially be avoided only in the case where all terms in the Hamiltonian have (or can be made to have) a negative sign in front of them. 
-This can happen either intrinsically, e.g.~with ferromagnetic interactions, or through a clever basis rotation, which is possible e.g.~for antiferromagnetic interactions on bipartite lattices.  In the examples we will consider in this Chapter, resolutions of the sign problem will be straightforward -- however in general quantum lattice models, it can be quite inhibitive.
+This can happen either intrinsically, e.g.~with ferromagnetic interactions, or through a clever basis rotation, which is possible e.g.~for antiferromagnetic interactions on bipartite lattices.  In the examples we will consider in this Chapter, resolution of the sign problem will be straightforward -- however in general quantum lattice models, it can be quite inhibitive.
 
 The next step is to write the Hamiltonian as a sum of elementary lattice operators,
 \begin{equation}
 H=-\sum_t \sum_a H_{t,a}, \label{Hdecomp}
 \label{Hsum}
 \end{equation}
-where in our chosen representation the operators propagate the basis $H_{t,a} |\alpha_i \rangle \rightarrow | \alpha_{i+1} \rangle$, and all of the $H_{t,a}$ are positive.  The indices $t$ and $a$ refer to the operator ``types'' and the ``lattice units'' (e.g.~bonds) over which the terms will be sampled (specific examples will be given below).  We write the partition function as 
+where in our chosen representation the operators propagate the basis $H_{t,a} |\alpha_i \rangle \rightarrow | \alpha_{i+1} \rangle$, and all of the $H_{t,a}$ are positive.  The indices $t$ and $a$ refer to the operator ``types'' and the ``lattice units'' (e.g.~bonds) over which the terms will be sampled (specific examples will be given below).  We write the partition function as, 
 \begin{equation}
 Z=\sum_{ \{ \alpha_i \} } \sum_{n=0}^{\infty} \sum_{S_n} \frac{ \beta^n}{n !}
 % \left\langle{\alpha_0  \left|  \prod_{i=1}^{n} {H_{t_i,a_i}} \right| \alpha_0   }\right\rangle,
  \prod_{i=1}^{n}  \left\langle{\alpha_{i-1}  \left|  {H_{t_i,a_i}}  \right| \alpha_i   }\right\rangle,
  \label{Zsse2b}
 \end{equation}
-where $S_n$ now denotes a sequence of operator-indices specifying the $n$ operators,
+where $S_n$ denotes a sequence of operator-indices specifying the $n$ operators,
 \begin{equation}
 S_n = [t_1,a_1],[t_2,a_2], \ldots ,[t_n,a_n],
 \end{equation}
@@ -151,7 +151,8 @@ which must be importance sampled, along with the basis state $\alpha$, and the e
 As the final step, one can truncate the Taylor expansion at a maximum power $M$.  This is not strictly necessary in principle, however it significantly facilitates implementation of the updating scheme.  The truncation can be justified 
 by ensuring that the chosen $M$ is always greater than the largest $n$ to occur in a numerical simulation, $M>n_{\rm max}$, for a given parameter set \cite{Melko:SandvikHeis}.  
 Working with a fixed $M$ is possible to do if one inserts $M-n$ ``fill-in'', or null, operators $H_{0,0} \equiv I$ into the operator list (where $I$ is the identity operator).  However, these operators do not occur in the evaluation of the partition function, and must be accounted for by dividing the final expression for $Z$ by their contribution.  To do so note that, statistically, the number of different way of picking the placement of the null operators in the expansion list is given by the binomial coefficient,
-${M \choose n}= M!/(M-n)!n!$.  One is required to divide our truncated partition function by this value, giving\begin{equation}Z=\sum_{\alpha} \sum_{S_M} \frac{ (\beta)^n (M-n)!}{M !}  %\left\langle{\alpha \left| \prod_{i=1}^{M} {H_{t_i,a_i}} \right| \alpha   }\right\rangle.
+${M \choose n}= M!/(M-n)!n!$.  One is required to divide our truncated partition function by this value, giving,
+\begin{equation}Z=\sum_{\alpha} \sum_{S_M} \frac{ (\beta)^n (M-n)!}{M !}  %\left\langle{\alpha \left| \prod_{i=1}^{M} {H_{t_i,a_i}} \right| \alpha   }\right\rangle.
  \prod_{i=1}^{M}  \left\langle{\alpha_{i-1}  \left|  {H_{t_i,a_i}}  \right| \alpha_i   }\right\rangle.
  \label{Zsse3}
 \end{equation}
@@ -162,7 +163,7 @@ With this SSE representation, we are free to devise updating methods adopted fro
 
 \subsection{Zero-temperature projector representation} \label{secT0}
 
-At $T=0$, Equation \ref{est2} can alternatively be used as an estimate for the operator expectation value
+At $T=0$, Equation \ref{est2} can alternatively be used as an estimate for the operator expectation value,
 \begin{equation}
 \langle \mathcal{O} \rangle  = \frac{1}{Z} \langle \Psi | \mathcal{O} | \Psi \rangle, \label{zeroExpet}
 \end{equation}
@@ -175,10 +176,9 @@ In a ``projector'' QMC representation, the ground state wavefunction is estimate
 %\begin{equation}
 $|\alpha \rangle= \sum_n c_n |n \rangle$, so that 
 %\end{equation}
-a large power of the Hamiltonian will project out the groundstate.  
-
+a large power of the Hamiltonian will project out the groundstate,
 \begin{eqnarray}
-(-H)^m |\alpha \rangle &=& c_0|E_0|^m \left[{  |0 \rangle + \frac{c_1}{c_0} \left({ \frac{E_1}{E_0} }\right)^m|1 \rangle \cdots  }\right] \\
+(-H)^m |\alpha \rangle &=& c_0|E_0|^m \left[{  |0 \rangle + \frac{c_1}{c_0} \left({ \frac{E_1}{E_0} }\right)^m|1 \rangle \cdots  }\right], \\
 &\rightarrow& c_0|E_0|^m |0 \rangle \hspace{2mm} {\rm as} \hspace{2mm} m \rightarrow \infty. \nonumber
 \end{eqnarray}
 Here, we have assumed that that the magnitude of the lowest eigenvalue $|E_0|$ is {\it largest} of all the eigenvalues.  To achieve this, one may be forced to add a sufficiently large negative constant to the overall Hamiltonian (that we have not explicitly included).
@@ -188,7 +188,7 @@ Z = \langle \alpha | (-H)^m (-H)^m | \alpha \rangle, \label{normZ2}
 \end{equation}
 for large $m$.  
 The Hamiltonian is again written as a (negative) sum of elementary lattice interactions (Equation \ref{Hdecomp}), the indices $t$ and $a$ referring to the operator ``types'' and lattice ``units'' over which the terms will be sampled.  
-In order to represent the normalization as a sum of weights, $Z = \sum_x W(x)$, motivated by Section \ref{finiteT} we insert a compete resolution of the identity between each $H_{t_i,a_i}$,
+In order to represent the normalization as a sum of weights, $Z = \sum_x W(x)$, motivated by Section \ref{finiteT} we can insert a compete resolution of the identity between each $H_{t_i,a_i}$,
 \begin{equation}
 Z=\sum_{ \{ \alpha\} } \sum_{S_m} 
 % \left\langle{\alpha_{\ell}  \left| \prod_{j=1}^{m} {H_{t_j,a_j}}   \prod_{i=1}^{m} {H_{t_i,a_i}} \right| \alpha_r  }\right\rangle,
@@ -217,11 +217,10 @@ The formation of any QMC simulation corresponds to addressing two questions in t
 We will assume that, for sign-problem free models, an updating scheme can always be found that satisfies detailed balance (indeed, all updates are constructed as such).  The question of ergodicity is more subtle.  
 In particular, since in the SSE representation the Hamiltonian is broken up into ``types'', $H_{t,a}$, different update procedures are typically needed to properly sample each operator type (e.g. diagonal or off-diagonal).  These updates are roughly categorized into {\em local} and {\em non-local}, referring to the extent of the spatial or temporal region of the simulation cell that the update influences.
 
-Local updates are familiar from classical Monte Carlo on spin systems, where the prototypical site update is simply the spin-flip $\uparrow$ to $\downarrow$.  These updates are possible (and recommended) in the SSE, but only at very high temperatures (or small $m$) on physical lattice sites that remain unconnected by operators over the entire propagation direction.  Rather, the term ``local'' update in QMC is generally referred to as such for involving one lattice unit (e.g.~a bond).  Local updates are typically used to sample diagonal operators in the $S^z$ basis; however they can be used to sample SU(2) singlet operators in the valence-bond basis (discussed below).
+Local updates are familiar from classical Monte Carlo on spin systems, where the prototypical site update is simply the spin-flip $\uparrow$ to $\downarrow$.  These updates are possible (and recommended) in the SSE, but only at very high temperatures (or small $m$), on physical lattice sites that remain unconnected by operators over the entire propagation direction.  Rather, the term ``local'' update in QMC is generally referred to as such for involving one lattice unit (e.g.~a bond).  Local updates are typically used to sample diagonal operators in the $S^z$ basis; however they can be used to sample SU(2) singlet operators in the valence-bond basis (discussed below).
 
 The term ``non-local'' update is also a blanket term that can refer to several different procedures.  Most common are so-called ``loop'' updates \cite{Melko:Evertz93},
-which are essentially non-branching closed strings,
-typically employed when a Hamiltonian enjoys $S^z$ symmetry \cite{Melko:Sandvik99}.  Loop updates have several functions: they facilitate sampling of off-diagonal operators, and also allow for fluctuations between different operators types in the simulation cell.  Importantly, they are sometimes necessary for the ergodic sampling of certain estimators, such as the winding numbers, which spatially are related to quantities like the helicity modulus \cite{Melko:PC}, and temporally to the uniform spin susceptibility or compressibily \cite{Melko:HGEloop}.  A variety of loop and worm algorithms have been discussed in the literature, the most important for SSE being the {\em directed loop} update \cite{Melko:Syljuasen02}.  In this review we will forgo a detailed discussion of transition probabilities in the construction of loop moves: instead we will focus entirely on so-called ``deterministic'' loop updates, which are available for certain Hamiltonians, discussed in the next section in the context of the Heisenberg model.
+which are essentially non-branching closed strings \cite{Melko:Sandvik99}.  Loop updates have several functions: they facilitate sampling of off-diagonal operators, and also allow for fluctuations between different operators types in the simulation cell.  Importantly, they are sometimes necessary for the ergodic sampling of certain estimators, such as the winding numbers, which spatially are related to quantities like the helicity modulus \cite{Melko:PC}, and temporally to the uniform spin susceptibility or compressibily \cite{Melko:HGEloop}.  A variety of loop and worm algorithms have been discussed in the literature, the most important for SSE being the {\em directed loop} update \cite{Melko:Syljuasen02}.  In this review we will forgo a detailed discussion of transition probabilities in the construction of loop moves: instead we will focus entirely on so-called ``deterministic'' loop updates, which are available for certain Hamiltonians, discussed in the next section in the context of the Heisenberg model.
 
 In addition to loop moves, the term ``non-local'' can also refer to updates in the $D+1$ simulation cell that do not form non-branching closed loops, but share the property of being extended over a larger space-time region.  The most important of these are ``cluster'' updates,
 which unlike loops are allowed to branch with many legs over the simulation cell.
@@ -234,7 +233,7 @@ Remarkably, the form of the loop or cluster update depends very little on which 
 
 Due to its important place in the history of the development of SSE, the literature describing algorithms for the spin-1/2 Heisenberg model,
 \begin{equation}
-H = \sum_{\langle i j \rangle} {\bf S}_i \cdot {\bf S}_j \label{Heis}
+H = \sum_{\langle i j \rangle} {\bf S}_i \cdot {\bf S}_j, \label{Heis}
 \end{equation}
 is extensive \cite{Melko:Handscomb62, Melko:Henelius00, Melko:Sandvik91, Melko:Sandvik99,  Melko:SandvikHeis,Melko:Syljuasen02}.  We encourage the reader interested in implementation of the Heisenberg model to consult the appropriate authoritative reference. Here, we discuss the basic ideas of the SSE representation, together with the important local and loop updates, as a way of grounding the discussion.  We therefore focus on the unifying framework of the zero- and finite-temperature simulations, instead of all possible implementation details for the plethora of variants of this important quantum many-body model.
 
@@ -242,9 +241,9 @@ The  standard approach to simulating the Heisenberg Hamiltonian using an SSE rep
 Using this basis, we begin by specifying the appropriate bond-decomposition for $H_{t,a}$ (from Equation \ref{Hdecomp}) for Equation \ref{Heis}.
 Namely, we use,
 \begin{eqnarray}
-H_{0,0} &=&I \\
-H_{1,a} &=& \frac{1}{4} - S^z_i S^z_j \label{H1a} \label{diagB} \\
-H_{2,a} &=& \frac{1}{2} (S^+_i S^-_j + S^-_i S^+_j) \label{odB}
+H_{0,0} &=&I, \\
+H_{1,a} &=& \frac{1}{4} - S^z_i S^z_j \label{H1a}, \label{diagB} \\
+H_{2,a} &=& \frac{1}{2} (S^+_i S^-_j + S^-_i S^+_j), \label{odB}
 \end{eqnarray}
 from which matrix-element weights can be constructed to give $W(x)$.  In the above bond decomposition, two facts are evident:
 \begin{enumerate}
@@ -282,12 +281,12 @@ where the number of lattice bonds, $N_b$, enters in since the bond index $a$ mus
 \begin{eqnarray}
 P(n \rightarrow n-1) = {\rm min} \left({ \frac{2(M-n+1)}{N_b \beta}, 1 }\right).
 \end{eqnarray}
-These local updates are instrumental in changing the expansion order $n$ (necessary to sample the sum $\sum_n$ in Equation \ref{Zsse3}).  They also illustrate an important point: diagonal updates alone do nothing to sample {\em off-diagonal} operators $H_{2,a}$.  For this, we must devise another updating scheme.
+These local updates are instrumental in changing the expansion order $n$ (necessary to sample the sum $\sum_n$ in Equation \ref{Zsse2b}).  They also illustrate an important point: diagonal updates alone do nothing to sample {\em off-diagonal} operators $H_{2,a}$.  For this, we must devise another updating scheme.
 
 Antiquated methods devised to sample $H_{2,a}$ involved identifying diagonal operators that were ``nearby'' in the propagation direction, and updating them both to produce two off-diagonal operators such as in Figure \ref{Melko:fig:1}(b) \cite{Melko:SandvikHeis}.  Such approaches are the equivalent of local updates: they are found to be inefficient, as well as non-ergodic e.g.~in the all-important winding number \cite{Melko:PC}.  With the advent of the global {\it loop} move, such problems are relegated to history \cite{Melko:Sandvik99,Melko:Syljuasen02}.  
 
 In general, a loop move is constructed by creating a ``defect'' (or ``head'') in the worldline configuration, and propagating that defect until it closes upon itself (i.e.~finds its ``tail'').  The path of the defect through the space-time simulation cell passes through basis states (spins) and operators in $D+1$.  This path defines the loop, which itself is just a list of space-time lattice coordinates.  A loop is said to be ``flipped'' if all spins on the path are flipped - which also changes the operator types associated with flipped spins (i.e.~the matrix elements).
-This loop flipping typically accrues some change in weight.  These weight changes can be absorbed into the process of creating the loop path, such that the propagation of the defect is subject to the Metropolis condition at every step (this is the {\em directed} loop \cite{Melko:Syljuasen02}).  
+This loop flipping generally accrues some change in weight.  These weight changes can be absorbed into the process of creating the loop path, such that the propagation of the defect is subject to the Metropolis condition at every step (this is the {\em directed} loop \cite{Melko:Syljuasen02}).  
 
 Quite generally, loop updates hold their power in the fact that one can typically avoid the cases where the algorithm samples ``zero'' (or low weight) contributions to the partition function.  In some cases of higher symmetry like the Heisenberg model, simple loop algorithms can be constructed that have optimal properties in this regard.  This comes from our choice of Equations \ref{Hdiag} and \ref{Hod}, which forces non-zero matrix elements have equal weights.  In other words, if loops are constructed to only transition between non-zero matrix elements, the entire loop flip will involve no weight change: $W(x')/W(x) = 1$.  Thus, a Swendsen-Wang (SW) algorithm can be employed, were
 all loops can be constructed, and each flipped with probability 1/2 \cite{Melko:Swendsen88}
@@ -308,12 +307,12 @@ The interested reader can distill many of the nuances regarding implementation o
 
 We note that expectation values of physical quantities can be taken at various steps in this procedure.  The simplest measurements involve quantities diagonal in the basis, such as the magnetization, that can be measured at any step in the periodic propagation direction.  Expectation values of Hamiltonian operators, such as the energy, can be performed by counting the number and position of operators in the $D+1$ simulation cell; e.g.
 \begin{equation}
-E = - \frac{\langle n \rangle}{\beta}
+E = - \frac{\langle n \rangle}{\beta},
 \end{equation}
 is the internal energy per spin, up to the constant factor added to $H_{1,a}$  \cite{Melko:Sandvik99}.
 Other quantities are determined by the change in worldline structure, and are easiest measured in the loop update itself - for example the equal-time Green's function, which is measured by keeping track of the position of the loop propagating defect in the $D+1$ dimensional simulation cell \cite{Melko:WormA,Melko:gfsse,Melko:Assaad07}.
 
-It would be possible to discuss many more interesting and important details of the SSE representation, updating, and measurement procedure, however we refer the interested reader to the literature for these.  Instead, we turn to a comparison of the basic structure of the loop-algorithm SSE code, described above, to the zero-temperature formulation of the same model.  As we will see, despite the formally different starting points of the two methods, this comparison reveals the underlying similarity of the two methods in the SSE QMC paradigm.
+It would be possible to discuss many more interesting and important details of the SSE representation, updating, and measurement procedure, however we refer the interested reader to the literature for these.  Instead, we turn to a comparison of the basic structure of the loop-algorithm SSE code, described above, to the zero-temperature formulation of the same model.  As we will see, despite their formally different starting points, this comparison reveals the underlying similarity of the two methods in the SSE QMC paradigm.
 
 \subsection{$T=0$ valence-bond basis} \label{Melko:VBB}
 
@@ -322,7 +321,7 @@ For the Heisenberg (or other SU(2) Hamiltonians) a particularly convenient class
 \begin{equation}
 | \alpha \rangle = | (a_1,b_1)(a_2,b_1) \ldots (a_{N/2}, b_{N/2})  \rangle,
 \end{equation}
-where each index $(a,b)$ labels the $a$ and $b$ sublattice coordinate associated with a singlet state $(|\uparrow \downarrow \hspace{1mm} \rangle  - | \downarrow \uparrow \hspace{1mm} \rangle)/\sqrt{2}$ connecting two of the $N$ sites.  This basis happens to non-orthogonal and massively overcomplete.  Also, one can quickly see that it is suitable for sampling bond operators of the Heisenberg Hamiltonian, which can be written in the form of a singlet projection operator,
+where each index $(a,b)$ labels the $a$ and $b$ sublattice coordinate associated with a singlet state $(|\uparrow \downarrow \hspace{1mm} \rangle  - | \downarrow \uparrow \hspace{1mm} \rangle)/\sqrt{2}$ connecting two of the $N$ sites.  This basis happens to be non-orthogonal and massively overcomplete.  Also, one can see that it is suitable for sampling bond operators of the Heisenberg Hamiltonian, which can be written in the form of a singlet projection operator,
 \begin{equation}
 \frac{1}{4} - {\bf  S}_i \cdot {\bf S}_j = \frac{1}{\sqrt{2}} (|\uparrow \downarrow \rangle  - |\downarrow \uparrow \rangle)
  \frac{1}{\sqrt{2}}  (\langle \uparrow \downarrow |  - \langle \downarrow \uparrow |),
@@ -338,7 +337,7 @@ Indeed, the primary differences between this scheme and the finite temperature S
 Motivated by the loop algorithm of the finite-$T$ SSE, one can then proceed with a very similar sampling scheme.  First, the singlet projection operator is broken up into diagonal and off-diagonal bond operators, Equations \ref{diagB} and \ref{odB}.
 At this stage, one sees that it is advantageous to consider the simulation to be taking place in a {\em combined} VB-spin basis, since these operators will only give non-zero matrix elements when spin states on the respective sublattices are opposite \cite{Melko:Sandvik10a}.  
 As a consequence of point 2 above, we will be interested in the ``middle'' states of the projection to take our expectation values.  
-These can be seen to be dependent on the particular list of bond operators for a particular sample $r$: 
+These can be seen to be dependent on the particular list of bond operators for a given sample $r$: 
 \begin{equation}
 \big( \prod_{j=1}^{m} {H_{t_j,a_j}} \big)_r | \alpha_r \rangle \propto |V_r \rangle, \label{midV}
 \end{equation}
@@ -355,17 +354,17 @@ The diagonal update is significantly modified from the finite-temperature case, 
 \centering
 \includegraphics*[width=.85\textwidth]{zeroT_heis.eps}
 \caption[]{ A $D+1$ projector simulation cell snapshot for a six-site Heisenberg model.  Lattice sites are arranged vertically in one-dimension: 
-at left, $ |  \hspace{1mm} \bullet  \hspace{1mm} \bullet  \hspace{1mm} \circ  \hspace{1mm} \circ  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \rangle$, and at right,  $ |  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \bullet  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \circ \hspace{1mm}  \rangle$.
+at left, spin states are $ |  \hspace{1mm} \bullet  \hspace{1mm} \bullet  \hspace{1mm} \circ  \hspace{1mm} \circ  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \rangle$, and at right,  $ |  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \bullet  \hspace{1mm} \circ  \hspace{1mm} \bullet  \hspace{1mm} \circ \hspace{1mm}  \rangle$.
 The propagation direction is horizontal, with $m=3$ operators.  Solid lines are the fully-determined loop structure, which, when they encounter the trial states at the ends, propagate through the valence bonds (curved lines).  The dashed line indicates the middle of the simulation cell, where expectation values must be measured.}
 \label{Melko:fig:3}       
 \end{figure} 
 
-The diagonal update being complete, one now performs the loop update, which because of the equal matrix elements of $H_{1,a}$ and $H_{2,a}$, is performed in direct analogy to the finite-$T$ SSE case.  The only difference is that loops no longer connect periodically in the propagation direction; instead, they follow the valence bonds when they encounter the trial states $\langle \alpha_{\ell} |$ or $| \alpha_r \rangle$.  As illustrated in Figure \ref{Melko:fig:3}, the resulting schematic picture of the $D+1$ simulation cell is, besides this lack of periodicity, essentially equivalent to Figure \ref{Melko:fig:2}.
+The diagonal update being complete, one now performs the loop update, which because of the equal matrix elements of $H_{1,a}$ and $H_{2,a}$, is executed in direct analogy to the finite-$T$ SSE case.  The only difference is that loops no longer connect periodically in the propagation direction; instead, they follow the valence bonds when they encounter the trial states $\langle \alpha_{\ell} |$ or $| \alpha_r \rangle$.  As illustrated in Figure \ref{Melko:fig:3}, the resulting schematic picture of the $D+1$ simulation cell is, besides this lack of periodicity, essentially equivalent to Figure \ref{Melko:fig:2}.
 
 One other important difference occurs in the calculation of observables, Equation \ref{zeroExpet}, which based on the fact that our trial states have been projected from the left and right by $m$ operators, must be measured in the {\em middle} of the simulation cell.
-Expectation values of the form Equation \ref{zeroExpet} are therefore written
+Expectation values of the form Equation \ref{zeroExpet} are therefore written,
 \begin{equation}
-\langle \mathcal{O} \rangle = \frac{\langle V_{\ell} | \mathcal{O} | V_r \rangle}{\langle V_{\ell} |   V_r \rangle}
+\langle \mathcal{O} \rangle = \frac{\langle V_{\ell} | \mathcal{O} | V_r \rangle}{\langle V_{\ell} |   V_r \rangle},
 \end{equation}
 where the states are the result of a projection from each endpoint, Equation \ref{midV}.  
 Remarkably, many estimators can be written as a function of the loop structure that crosses the middle of the simulation cell as in Figure \ref{Melko:fig:3}, where two distinct loops cross the dashed line in the middle \cite{Melko:Beach06,Melko:AWSBeach,Melko:Sandvik10a}.
@@ -378,12 +377,12 @@ the overlap of the two valence-bond states is given by
 \end{equation}
 where $N_{\rm loop}$ is the number of loops crossing the middle of the projection (two in Figure \ref{Melko:fig:3}), and $N$ the number of sites. 
 
-Much more discussion of the VB projector algorithm is possible, including using efficient trial states and state update, details of convergence, advanced measurement techniques, etc. However, we forgo these to continue with the broad theme of this review, connecting finite-$T$ and $T=0$ SSE.  We therefore turn next to a specific implementation of a different model, to compare and contrast with the ideas introduced in this section.
+Much more discussion of the VB projector algorithm is possible, including using efficient trial states and state update, details of convergence, advanced measurement techniques, etc. However, we forgo these to continue with the broad theme of this Chapter, connecting finite-$T$ and $T=0$ SSE.  We therefore turn next to a specific implementation of a different model, to compare and contrast with the ideas introduced in this section.
 
 
 \section{Transverse field Ising model} \label{Melko:TFIMSec}
 
-The transverse field Ising model (TFIM) is one of the most well-studied quantum lattice model, due to its applicability to quantum phase transitions \cite{Melko:Sachdev11}, and its well-known mapping to a $D+1$ dimensional classical statistical mechanics problem.  A standard form for the Hamiltonian is,
+The transverse field Ising model (TFIM) is one of the most well-studied quantum lattice model, due to the well-known mapping to a $D+1$ dimensional classical statistical mechanics problem, and its applicability to the field of quantum phase transitions \cite{Melko:Sachdev11}.  A standard form for the Hamiltonian is,
 \begin{equation}
 H = -J\sum_{\langle i,j \rangle} \sigma^z_i \sigma^z_j - h \sum_{i} \sigma^x_i
 \end{equation}
@@ -391,7 +390,7 @@ where ${\bf \sigma}_i$ is a Pauli spin operator, so that $\sigma^z$ has eigenval
 
 As with the Heisenberg model, both representations have a common starting point in the decomposition of the lattice Hamiltonian to bond (and site) operators.  In this case, 
 \begin{eqnarray}
-H_{0,0} &=& I \label {TFIM00} \\
+H_{0,0} &=& I, \label {TFIM00} \\
 H_{-1,a} &=& h(\sigma^+_a + \sigma^-_b), \label{TFIM-1a} \\
 H_{0,a} &=& h, \\
 H_{1,a} &=& J (\sigma^z_i \sigma^z_j + 1).  \label{TFIM1a}
@@ -403,7 +402,7 @@ Note that unlike the Heisenberg case, for the TFIM, the index $a$ has two differ
 \langle \hspace{1mm}  \bullet \hspace{1mm}  | H_{0,a} | \hspace{1mm} \bullet \hspace{1mm} \rangle = 
 \langle \hspace{1mm}  \circ \hspace{1mm}  | H_{0,a} | \hspace{1mm} \circ \hspace{1mm} \rangle = h. \label{Tw2}
 \end{eqnarray} 
-The latter ensures that the only non-zero matrix element for the bond operators are
+The latter ensures that the only non-zero matrix element for the bond operators are,
 \begin{eqnarray}
 \langle \hspace{1mm} \bullet \hspace{1mm}  \bullet \hspace{1mm}  | H_{1,a} | \hspace{1mm} \bullet \hspace{1mm} \bullet \hspace{1mm} \rangle = 
 \langle \hspace{1mm} \circ \hspace{1mm}  \circ \hspace{1mm}  | H_{1,a} | \hspace{1mm} \circ \hspace{1mm} \circ \hspace{1mm} \rangle = 2J. \label {Tfimdiag} 
@@ -416,14 +415,14 @@ We will see below that a non-local update analogous to the deterministic loops w
 The finite-$T$ simulation cell is constructed in analogy to the Heisenberg model above, with $n$ operators (of type \ref{TFIM-1a} to \ref{TFIM1a}) propagating the $S^z$ basis state, and $M-n$ null operators, \ref{TFIM00}.
 The sampling of Equation \ref{Zsse3} can then be carried out in a two-part update sequence, similar to the Heisenberg model, but with several important differences.  First, we discuss the equivalent of the {\em diagonal} update, and second, modifications of the non-local updating scheme which give us a {\em cluster} algorithm.
 
-The diagonal update proceeds in the same spirit as Section \ref{HeisfiniteT}.  One loops through all $M$ operators in the propagation direction in sequence. If an off-diagonal operator $H_{-1,a}$ is encountered, it is ignored (but the $S^z$ spin associated with that site is flipped in the propagation).  However, if another operator type is encountered, then a new Metropolis procedure is performed:
+The diagonal update proceeds in the same spirit as Section \ref{HeisfiniteT}.  One traverses the list of all $M$ operators in the propagation in sequence. If an off-diagonal operator $H_{-1,a}$ is encountered, it is ignored (but the $S^z$ spin associated with that site is flipped in the propagation).  However, if another operator type is encountered, then a new Metropolis procedure is performed:
 \begin{enumerate}
-\item If a diagonal operator is encountered ($H_{0,a}$ or $H_{1,a}$), then it is removed with probability
+\item If a diagonal operator is encountered ($H_{0,a}$ or $H_{1,a}$), then it is removed with probability,
 \begin{equation}
 P = \mathrm{min}\left( \frac{M-n+1}{\beta(hN + (2J)N_b)},1\right)
 \end{equation}
 where $N$ is the number of sites, and $N_b$ the number of bonds.  
-One then goes to the next operator in the list (regardless of whether the operator is removed or not).
+One then goes to the next operator in the list (regardless of whether the removal is accepted or not).
 \item If a null operator ($H_{0,0}$) is encountered,  try to insert a diagonal operator with the following procedure:
 \begin{enumerate}
 \item First the decision of what operator type to insert is made.  One chooses to insert an operator of type $H_{0,a}$ with probability,
@@ -440,9 +439,9 @@ Note that $P(h) + P(J) = 1$
 P = \mathrm{min}\left(\frac{\beta(hN + (2J)N_b)}{M-n},1\right),
 \end{equation}
 and randomly choose an appropriate bond or site to insert it.
-If it is a bond operator and the chosen bond has a local spin configuration that prevents the insertion of the operator (e.g. antiparallel spins) then we do not insert the operator and consider the move failed.
+If it is a bond operator and the chosen bond has a local spin configuration that prevents the insertion of the operator (i.e.~antiparallel spins) then we do not insert the operator and consider the move failed.
 \end{enumerate}
-\item After the diagonal operator insertion succeeds or fails,  go to the next propagation step in $M$, and return to step (1).
+%\item After the diagonal operator insertion succeeds or fails,  go to the next propagation step in $M$, and return to step (1).
 \end{enumerate}
 It is clear that these local updates are again instrumental in changing the expansion order $n$, however they do not sample off-diagonal operators $H_{-1,a}$, and therefore must be combined with the use of some non-local update to produce an ergodic simulation.
 
@@ -456,7 +455,7 @@ The importance of including the trivial operator $H_{0,a}$ now becomes apparent,
 \caption[]{A $D+1$ SSE simulation cell snapshot for a six-site TFIM model.  Lattice sites are arranged vertically in one-dimension: the propagation direction (imaginary time) is horizontal, with $n=12$ operators.  
 Vertical bars are Ising bond operators $H_{1,a}$.  Filled squares are off-diagonal site operators, $H_{-1,a}$, and open squares are diagonal site operators $H_{0,a}$.
 Arrows represent periodic boundary conditions in the propagation direction.  
-Solid and dashed lines illustrates the spin states (spin up or down).  Flipping all the spins associated with a cluster can be done with probability 1/2.  This changes terminal site operators $H_{-1,a} \leftrightarrow H_{0,a}$, but doesn't affect the bond operators or internal site operators.}
+Solid and dashed lines illustrates the spin states (spin up or down).  Flipping all the spins associated with a cluster can be done with probability 1/2.  This changes loop-terminating site operators $H_{-1,a} \leftrightarrow H_{0,a}$, but doesn't affect the bond operators or loop-internal site operators.}
 \label{Melko:fig:4}      
 \end{figure} 
 
@@ -469,17 +468,17 @@ We again refer the reader to seminal references for details of implementation, i
 
 As realized recently\cite{Melko:unpub}, the finite-T SSE representation of the TFIM can be straightforwardly cast in the form of a $T=0$ projector method.  Unlike the Heisenberg model of Section \ref{Melko:VBB}, TFIM Hamiltonian operators cannot be represented as some generalized singlet projection operator, hence there is no analogous choice of basis which simplifies the sampling procedure.  However, one can use a trial state which is an equal superposition of all spin states, $| \alpha \rangle = \sum_{\{ \sigma^z \}} \sigma^z$, which simply involves storing a list of $N$ spin states for the ``left'' and ``right'' trial state $| \alpha_{\ell}\rangle$ and $| \alpha_r \rangle$.  Note that $\sigma^z$ configurations in the trial state are modified during the simulation by the cluster updates, as described below.
 
-The $D+1$ dimensional projected simulation cell is built in a way similar to Section \ref{Melko:VBB}, where $2m$ operators of the type \ref{TFIM-1a} to \ref{TFIM1a}  are sampled between the ``end points'' (i.e. the trial states).  Recall, there are no null operators $H_{0,0}$ in the projection scheme.  Then, sampling occurs via two separate procedures as previously.  First, the {\em diagonal update} where one loops through all $2m$ operators in the propagation direction in sequence. If an off-diagonal operator $H_{-1,a}$ is encountered the $\sigma^z$ spin associated with that site is flipped but no operator change is made.  If another diagonal operator is encountered, the Metropolis procedure is:
+The $D+1$ dimensional projected simulation cell is built in a way similar to Section \ref{Melko:VBB}, where $2m$ operators of the type \ref{TFIM-1a} to \ref{TFIM1a}  are sampled between the ``end points'' (i.e. the trial states).  Recall, there are no null operators $H_{0,0}$ in the projection scheme.  Then, sampling occurs via two separate procedures as previously.  First, the {\em diagonal update} where one traverses the list of all $2m$ operators in the propagation direction in sequence. If an off-diagonal operator $H_{-1,a}$ is encountered the $\sigma^z$ spin associated with that site is flipped but no operator change is made.  If a diagonal operator is encountered, the Metropolis procedure is:
 \begin{enumerate}
 \item The present diagonal operator,  $H_{0,a}$ or  $H_{1,a}$, is removed. 
-\item A new operator {\em type} is chosen, $t=0$ or $t=1$, corresponding to the insertion of either a diagonal $h$ or a diagonal $J$ operator.  The transition probability to add $H_{0,a}$ is 
+\item A new operator {\em type} is chosen, $t=0$ or $t=1$, corresponding to the insertion of either a diagonal $h$ or a diagonal $J$ operator.  The transition probability to add $H_{0,a}$ is,
 \begin{equation}
 P(h) = \frac{h N}{hN + (2J)N_b}.
 \end{equation}
 Note, $P(J) = 1- P(h)$ as before. 
 \item If $H_{0,a}$ is chosen, a site $a$ is chosen at random, and the operator is placed there.
-\item If, however, $H_{1,a}$ is chosen a random {\rm bond} $a$ is chosen.  The configurations of the two spins on this bond must be parallel for the matrix element to be nonzero.  If they are not, then the insertion is rejected.   Since no null operators are possible, steps (2) to (4) are repeated until a success choice is made.
-\item The algorithm proceeds to the next propagation step, and returns to (1) above.
+\item If, however, $H_{1,a}$ is chosen a random {\rm bond} $a$ is chosen.  The configurations of the two spins on this bond must be parallel for the matrix element to be nonzero.  If they are not, then the insertion is rejected.   Since no null operators are possible, steps (2) to (4) are repeated until a successful choice is made.
+%\item The algorithm proceeds to the next propagation step, and returns to (1) above.
 \end{enumerate}
 The main differences between this diagonal update and that of Section \ref{Melko:TFIMfiniteT} is the presence of null operators in the expansion list in the latter.  However, as for the finite-$T$ SSE, one can see that this diagonal update is necessary in order to change the topology of the operator sequence in the simulation cell.  In order to get fully ergodic sampling of the TFIM Hamiltonian operators, one must employ cluster updates as before.
 
@@ -488,7 +487,7 @@ The main differences between this diagonal update and that of Section \ref{Melko
 \includegraphics*[width=.85\textwidth]{zeroT_tfim.eps}
 \caption[]{A $D+1$ projector simulation cell snapshot for a six-site TFIM model.  Lattice sites are arranged vertically in one-dimension: the propagation direction (imaginary time) is horizontal, with $m=6$ operators.  
 Vertical bars are Ising bond operators $H_{1,a}$.  Filled squares are off-diagonal site operators, $H_{-1,a}$, and open squares are diagonal site operators $H_{0,a}$.
-Spin states are represented by solid or dashed lines (spin up or down).  Flipping all the spins associated with each cluster can be done with probability 1/2.  This changes site operators $H_{-1,a} \leftrightarrow H_{0,a}$, and also the spin states associated with  $|\alpha \rangle$ and $|\alpha' \rangle$.}
+Spin states are represented by solid or dashed lines (spin up or down).  Flipping all the spins associated with each cluster can be done with probability 1/2.  This changes site operators $H_{-1,a} \leftrightarrow H_{0,a}$, and also the spin states associated with  $|\alpha_{\ell} \rangle$ and $|\alpha_r \rangle$.}
 \label{Melko:fig:5}      
 \end{figure} 
 
@@ -496,7 +495,7 @@ In the $T=0$ projection, the cluster update is carried out in almost complete an
 
 Similar to Section \ref{Melko:VBB}, measurements are made in principle in the middle of the projection, satisfying Equation \ref{zeroExpet}.  
 For estimators involving basis states (e.g.~the magnetization) or diagonal operators, the procedure is straightforward, and in some cases can incorporate the cluster structure at the middle of the projection.
-However, unlike the VB basis, for off-diagonal operators, the naive expectation value can easily lead to an overlap of zero.  This problem can be circumvented when operators are part of the Hamiltonian (e.g. the energy); in the interests of space however, we must leave the interested reader in suspense \cite{Melko:unpub}, or better yet, entice him or her to put down this volume, and discover the rewarding process of devising such estimators in this versatile and transparent SSE method.
+However, unlike the non-orthogonal VB basis, for off-diagonal operators, the naive expectation value can easily lead to an overlap of zero.  This problem can be circumvented when operators are part of the Hamiltonian (e.g. the energy); in the interests of space however, we must leave the interested reader in suspense \cite{Melko:unpub}, or better yet, entice him or her to put down this volume, and discover the rewarding process of devising such estimators in this versatile and transparent SSE method.
 
 \section{Discussion}
 
@@ -506,7 +505,7 @@ these methods can quickly be expanded to tackle very sophisticated quantum latti
 
 Perhaps the most important take-home message of this Chapter is the recent conceptual advances in unifying the traditional finite-$T$, partition function-based SSE framework, with Sandvik's new zero-temperature projector perspective.  Despite the initial apparent differences, particularly upon introduction of the valence bond projector method \cite{Melko:Sandvik05}, the two paradigms have now almost completely converged, largely due to the understanding gained by considering the $T=0$ representation and updating procedure in terms of non-local loop structures \cite{Melko:Sandvik10a}.  It was the purpose of this review to emphasize this fact; the reader should be struck by the similarities between Figures \ref{Melko:fig:2} and \ref{Melko:fig:3} for the Heisenberg SSE, and also Figures \ref{Melko:fig:4} and \ref{Melko:fig:5} for the TFIM, which essentially differ from each other {\em only} in the periodicity of the boundary condition in the propagation direction.
 
-As we move forward as a community, we can undoubtedly expect to rely more and more on SSE QMC as a mainstay of our research on quantum lattice models.   This progress will likely come with a choice of $T=0$ or finite-$T$ frameworks for most Hamiltonians of interest.  This, coupled with advanced sampling techniques, hardware advances, and of course unforeseen algorithm breakthroughs, will ensure the golden years of quantum many-body simulation still lie ahead.
+As we move forward as a community, we can undoubtedly expect to rely more and more on SSE QMC as a mainstay of our research on quantum lattice models.   This progress will likely come with a choice of $T=0$ or finite-$T$ frameworks for most Hamiltonians of interest.  This, coupled with innovative sampling techniques, hardware advances, and of course unforeseen algorithm breakthroughs, will ensure the golden years of quantum many-body simulation still lie ahead.
 
 \section{Acknowledgments}  
 This work would not have been possible without the continuing collaboration of A. Sandvik, who is proprietor of almost every algorithmic advance outlined in the Chapter, and without who's willingness to communicate these ideas privately would have made this work impossible.
