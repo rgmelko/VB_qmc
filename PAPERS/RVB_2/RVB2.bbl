@@ -18,6 +18,23 @@ Ying Tang, Anders~W. Sandvik, and Christopher~L. Henley.
   models.
 \newblock {\em Phys. Rev. B}, 84:174427, 2011.
 
+\bibitem{RokhsarKivelson}
+Daniel.~S. Rokhsar and Kivelson~Steven A.
+\newblock Superconductivity and the quantum hard-core dimer gas.
+\newblock {\em Phys. Rev. Lett}, 61:2376, 1988.
+
+\bibitem{Kasteleyn}
+Pieter~W. Kasteleyn.
+\newblock The statistics of dimers on a lattice: I. the number of dimer
+  arrangements on a quadratic lattice.
+\newblock {\em Physica}, 27:1209, 1961.
+
+\bibitem{FisherStephenson}
+Michael.~E. Fisher and John Stephenson.
+\newblock Statistical mechanics of dimers on a plane lattice. ii. dimer
+  correlations and monomers.
+\newblock {\em Phys. Rev.}, 132:1411, 1963.
+
 \bibitem{Hastings_thm}
 Matthew.~B. Hastings.
 \newblock {Lieb-Schultz-Mattis in higher dimensions}.
@@ -27,26 +44,6 @@ Matthew.~B. Hastings.
 Jennifer Cano and Paul Fendley.
 \newblock Spin hamiltonians with resonating-valence-bond ground states.
 \newblock {\em Phys. Rev. Lett.}, 105:067205, 2010.
-
-\bibitem{RokhsarKivelson}
-Daniel.~S. Rokhsar and Kivelson~Steven A.
-\newblock Superconductivity and the quantum hard-core dimer gas.
-\newblock {\em Phys. Rev. Lett}, 61:2376, 1988.
-
-\bibitem{FisherStephenson}
-Michael.~E. Fisher and John Stephenson.
-\newblock Statistical mechanics of dimers on a plane lattice. ii. dimer
-  correlations and monomers.
-\newblock {\em Phys. Rev.}, 132:1411, 1963.
-
-\bibitem{Fradkin_dimers}
-Eduardo Fradkin, David Huse, Roderich Moessner, V~Oganesyan, and S.~L. Sondhi.
-\newblock {\em Phys. Rev. B}, 69:224415, 2004.
-
-\bibitem{QuantumLifshitz}
-Eddy Ardonne, Paul Fendley, and Eduardo Fradkin.
-\newblock Topological order and conformal quantum critical points.
-\newblock {\em Ann. Phys.}, 310:493, 2004.
 
 \bibitem{Heights_1}
 H.~W.~J. Blote and H.~J. Hilhorst.
@@ -58,6 +55,15 @@ H.~W.~J. Blote and H.~J. Hilhorst.
 B.~Nienhuis, H.~W.~J Blote, and H.~J. Hilhorst.
 \newblock Triangular sos models and cubic-crystal shapes.
 \newblock {\em J. Phys. A: Math, Gen.}, 17:3559, 1984.
+
+\bibitem{Fradkin_dimers}
+Eduardo Fradkin, David Huse, Roderich Moessner, V~Oganesyan, and S.~L. Sondhi.
+\newblock {\em Phys. Rev. B}, 69:224415, 2004.
+
+\bibitem{QuantumLifshitz}
+Eddy Ardonne, Paul Fendley, and Eduardo Fradkin.
+\newblock Topological order and conformal quantum critical points.
+\newblock {\em Ann. Phys.}, 310:493, 2004.
 
 \bibitem{Damle}
 Damle Kedar, Dhar Deepak, and Ramola Kabir.
@@ -111,11 +117,22 @@ Benjamin Hsu, Michael Mulligan, Eduardo Fradkin, and Eun-Ah Kim.
   points.
 \newblock {\em Phys. Rev. B}, 79:115421, 2009.
 
-\bibitem{Kasteleyn}
-Pieter~W. Kasteleyn.
-\newblock The statistics of dimers on a lattice: I. the number of dimer
-  arrangements on a quadratic lattice.
-\newblock {\em Physica}, 27:1209, 1961.
+\bibitem{sandvik2010loop}
+A.W. Sandvik and H.G. Evertz.
+\newblock Loop updates for variational and projector quantum monte carlo
+  simulations in the valence-bond basis.
+\newblock {\em Physical Review B}, 82(2):024407, 2010.
+
+\bibitem{beach2006some}
+KSD Beach and A.W. Sandvik.
+\newblock Some formal results for the valence bond basis.
+\newblock {\em Nuclear Physics B}, 750(3):142--178, 2006.
+
+\bibitem{beach2009n}
+KSD Beach, F.~Alet, M.~Mambrini, and S.~Capponi.
+\newblock Su (n) heisenberg model on the square lattice: A continuous-n quantum
+  monte carlo study.
+\newblock {\em Physical Review B}, 80(18):184401, 2009.
 
 \bibitem{BigYellowBook}
 Philippe Di~Franceso, Pierre Mathieu, and S\'en\'echal David.

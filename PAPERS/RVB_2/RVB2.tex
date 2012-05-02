@@ -133,6 +133,7 @@ Let us start with a two-dimensional lattice, which will be the square lattice fo
 Just as in the classical dimer model, one can define a dimer configuration ${\cal C}$, which is a covering of the lattice by dimers $(i_\alpha,j_\alpha)$ such that each site be occupied by one dimer and one dimer only: ${\cal C}=\{(i_1,j_1),(i_2,j_2),\ldots ,(i_{M},j_{M})\}$. 
 A valence bond state is a tensor product of these dimer states
 \begin{equation}
+\label{eq:vbbasis}
  |V_{\cal C}\rangle=[i_1,j_1] \otimes [i_2,j_2] \otimes \ldots \otimes [i_{M},j_{M}]
 \end{equation}
 The nearest-neighbor RVB wave function is then defined as an equally weighted superposition of these valence-bond states:
@@ -146,6 +147,7 @@ where the sum runs over all possible dimer configurations of the lattice. Notice
 \subsection{Non orthogonality and simulations}
 One of the main features of valence bond states is that they are not orthogonal
 \begin{equation}
+\label{eq:overlap}
  \langle V_{\cal C}|V_{{\cal C}^\prime}\rangle=\pm (2S+1)^{{\cal L}-M},
 \end{equation}
 where ${\cal L}$ is the number of loops in the transition graph formed by superimposing the two dimer configurations ${\cal C}$ and ${\cal C}^\prime$. Notice that ${\cal L}$ can be at most $M$, and this happens only when all the loops are trivially flat, i.e when the two dimer configurations are identical. We have however
@@ -155,6 +157,49 @@ where ${\cal L}$ is the number of loops in the transition graph formed by superi
  in the limit $S\to \infty$ (or equivalently $N \to \infty$). As a result, any correlation calculated in the limit $N\to \infty$ will be identical to that in the corresponding dimer model. It is however important to stress that this argument only holds at the level of correlation functions.
 \paragraph{}
 \textcolor{blue}{\bf [Add explanations about QMC simulations, windings, and other stuff.]}
+
+%
+%%
+%%%
+%Hyejin's changes
+
+\subsection{Numerics}
+
+In our Monte Carlo simulation, we employ a loop sampling algorithm that moves through the ensemble of states by creating a defect at some lattice site and propagating it through the system until the defect reaches its initial point and closes the loop ~\cite{sandvik2010loop}. We compute various correlation functions, namely the spin-spin and the dimer-dimer correlations in our valence bond basis Monte Carlo. The matrix elements, first derived in~\cite{beach2006some} and generalized in~\cite{beach2009n} for $SU(N)$ spins, are shown below, using the notation $(ij)_L$ for two sites $i,j$ in the same loop and $(i)_L(j)_L$~\cite{RVB2}.
+\[ 
+\displaystyle
+\frac{\langle V_\mathcal{C} | \mathbf{S}_i \cdot \mathbf{S}_j | V_{\mathcal{C}'} \rangle}{\langle V_\mathcal{C} | V_{\mathcal{C}'} \rangle} = \left\{ \begin{array}{ccc}
+0 & (i)_L (j)_L\\
+\epsilon_{ij} \, S (S+1) & (ij)_L   \end{array}. \right.
+\] 
+Here, $\epsilon_{ij} = 1$ if $(i,j)$ are on the same sublattice and $\epsilon_{ij} = -1$ if they are on different sublattices.
+We measure \textit{parallel} nearest neighbor dimer-dimer correlations, i.e.
+\[ 
+\displaystyle
+\frac{\langle V_\mathcal{C} | \left( \mathbf{S}_i \cdot \mathbf{S}_j \right) \left( \mathbf{S}_k \cdot \mathbf{S}_l  \right) | V_{\mathcal{C}'} \rangle}{\langle V_\mathcal{C} | V_{\mathcal{C}'} \rangle} = \left\{ \begin{array}{ccc}
+\frac{1}{3} S^2 (S+1)^2 & (ik)_L (jl)_L, \,(il)_L (jk)_L\\
+S^2 (S+1)^2 & (ij)_L (kl)_L \end{array}, \right.
+\] 
+for $j = i + \hat{e}_\alpha, \, l = k + \hat{e}_\alpha$ and where $\alpha = x, y$.
+
+%\cite{beach2009n} (sun)
+%\cite{beach2006some} (formal valence bond MC paper)
+%\cite{sandvik2010loop} (loop updates for vb basis)
+
+
+
+
+
+%End of Hyejin's changes
+%%%
+%%
+%
+
+
+
+
+
+
  \section{Correlations}
 In this section we compute numerically the spin-spin correlations, as well as the dimer-dimer correlations, on a torus of size $L_x=L_y=L=64$. For simplicity we look at correlations along the $x$ direction, the two spins or dimer being separated by a distance $\ell_x$ (so that $\ell_y=0$). For convenience we will sometimes express the results in terms of the reduced parameter
 \begin{equation}

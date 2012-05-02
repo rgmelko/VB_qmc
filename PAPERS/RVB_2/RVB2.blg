@@ -1,7 +1,13 @@
-This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2010)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: RVB2.aux
 The style file: unsrt.bst
 Database file #1: rvb2_bib.bib.bib
+Warning--I didn't find a database entry for "Nienhuis"
+Warning--I didn't find a database entry for "Fisher"
+Warning--I didn't find a database entry for "RMS"
+Warning--I didn't find a database entry for "Henley"
+Warning--I didn't find a database entry for "Ginsparg"
 Warning--empty title in Fradkin_dimers
 Warning--empty journal in Damle
 Warning--empty journal in Poilblanc
@@ -12,45 +18,45 @@ Warning--empty title in HaldaneLi
 Warning--empty journal in HaldaneLi
 Warning--empty year in HaldaneLi
 Warning--empty journal in GesselViennot1989
-You've used 44 entries,
+You've used 47 entries,
             1791 wiz_defined-function locations,
-            717 strings with 10005 characters,
-and the built_in function-call counts, 8673 in all, are:
-= -- 711
-> -- 424
+            745 strings with 10522 characters,
+and the built_in function-call counts, 9375 in all, are:
+= -- 773
+> -- 454
 < -- 0
-+ -- 159
-- -- 115
-* -- 588
-:= -- 1493
-add.period$ -- 129
-call.type$ -- 44
-change.case$ -- 42
++ -- 170
+- -- 123
+* -- 646
+:= -- 1606
+add.period$ -- 138
+call.type$ -- 47
+change.case$ -- 45
 chr.to.int$ -- 0
-cite$ -- 54
-duplicate$ -- 385
-empty$ -- 846
-format.name$ -- 115
-if$ -- 1863
+cite$ -- 57
+duplicate$ -- 412
+empty$ -- 916
+format.name$ -- 123
+if$ -- 2015
 int.to.chr$ -- 0
-int.to.str$ -- 44
-missing$ -- 44
-newline$ -- 220
-num.names$ -- 43
-pop$ -- 72
+int.to.str$ -- 47
+missing$ -- 47
+newline$ -- 235
+num.names$ -- 46
+pop$ -- 75
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 151
+skip$ -- 162
 stack$ -- 0
-substring$ -- 491
-swap$ -- 38
+substring$ -- 552
+swap$ -- 41
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 10
-while$ -- 78
-width$ -- 46
-write$ -- 467
-(There were 10 warnings)
+while$ -- 85
+width$ -- 49
+write$ -- 500
+(There were 15 warnings)
