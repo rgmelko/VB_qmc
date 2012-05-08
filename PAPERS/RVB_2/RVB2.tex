@@ -123,6 +123,7 @@ Since the boundary between $A$ and $B$ is smooth and assuming a Coulomb gas desc
 \subsection{Definition}
 Let us start with a two-dimensional lattice, which will be the square lattice for us. An $SU(N)$ singlet between sites $i$ and $j$ is given by
 \begin{equation}
+\label{eq:rvb}
   [i,j]=\frac{1}{\sqrt{2S+1}}\sum_{m\in \{-S,-S+1,\ldots,S\}}^{}(-1)^{m-S}\,|m\rangle_i \otimes |-m\rangle_j,
  \end{equation}
  with $N=2S+1$. When $i$ and $j$ are nearest neighbors,
@@ -165,7 +166,9 @@ where ${\cal L}$ is the number of loops in the transition graph formed by superi
 
 \subsection{Numerics}
 
-In our Monte Carlo simulation, we employ a loop sampling algorithm that moves through the ensemble of states by creating a defect at some lattice site and propagating it through the system until the defect reaches its initial point and closes the loop ~\cite{sandvik2010loop}. We compute various correlation functions, namely the spin-spin and the dimer-dimer correlations in our valence bond basis Monte Carlo. The matrix elements, first derived in~\cite{beach2006some} and generalized in~\cite{beach2009n} for $SU(N)$ spins, are shown below, using the notation $(ij)_L$ for two sites $i,j$ in the same loop in the transition graph and $(i)_L(j)_L$ for sites not in the same loop~\cite{RVB2}.
+In our Monte Carlo simulation, we employ a loop sampling algorithm that moves through the ensemble of states by creating a defect at some lattice site and propagating it through the system until the defect reaches its initial point and closes the loop~\cite{sandvik2010loop}. Our algorithm is very similar to the $SU(2)$ updates used in ~\cite{RVB2}; however, we need to generalize to account for $SU(N)$ RVB wavefunctions. At each Monte Carlo step, we form the transition graphs to compute Eq.(~\ref{eq:overlap}). Using this transition graph, we sample the value of $m \equiv S^z$ at each site. This gives us a larger set of constraints in that the loop can only update within a compatible $m$ as defined in Eq.(~\ref{eq:rvb}). Then, the case of $N=2$ is equivalent to having two independent subset that can only be updated within each subset. For a larger $N$, the number of updates that one can make becomes much smaller, and the error bars become much harder to converge, which can be cured by using a smarter update that satisfies detailed balance to allow the simulation to make more updates.
+
+In our valence bond basis Monte Carlo simulation, we compute various correlation functions, namely the spin-spin and the dimer-dimer correlations. The matrix elements, first derived in~\cite{beach2006some} and generalized in~\cite{beach2009n} for $SU(N)$ spins, are shown below, using the notation $(ij)_L$ for two sites $i,j$ in the same loop in the transition graph and $(i)_L(j)_L$ for sites not in the same loop~\cite{RVB2}.
 \[ 
 \displaystyle
 \frac{\langle V_\mathcal{C} | \mathbf{S}_i \cdot \mathbf{S}_j | V_{\mathcal{C}'} \rangle}{\langle V_\mathcal{C} | V_{\mathcal{C}'} \rangle} = \left\{ \begin{array}{ccc}
