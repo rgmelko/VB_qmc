@@ -86,9 +86,10 @@ class LOOPS
   void calculate_stuff(); //calculates energy at the moment
   void print_bops(); //prints the bond operators after every loop of iterations
   void read_bops(); //reads in bondops if theyre there, or runs generate_ops()
-  vector <long long> ratio_flip(vector <long long>, int runnum); //switches connections
-  vector <int> ratio_flip(vector <int>, int runnum);
-
+  vector <long long> ratio_flip(vector <long long>, int end); //switches connections
+  vector <int> ratio_flip(vector <int>, int end);
+  vector <int> swap_flip(vector <int>, int flipnum);
+  
 };
 
 //*************** CONSTRUCTOR ******************************************
@@ -579,19 +580,6 @@ void LOOPS::create__Hlinks()
   
   last = ratio_flip(last,flip);
 
-    /*  long long a,b,c;
-	
-    //flip 1 column of Ly at a time
-    for(int iz=0; iz<=flip; iz++){
-    //flip each site in the column
-    for(int jz=0; jz<Ly; jz++){
-    c = iz*Ly+jz;
-    a = last[c];
-    b = last[c + number_of_sites/2];
-    last[c] = b;
-    last[c+number_of_sites/2]=a;
-    }
-    }*/
   /*************************************************************
     End of switching the connections within region A
    *************************************************************/
@@ -998,19 +986,6 @@ void LOOPS::change__operators()
   
   spins = ratio_flip(spins,flip);
 
-  /* long long a,b,c;
-  
-  //flip 1 column of Ly at a time
-  for(int iz=0; iz<=flip; iz++){
-  //flip each site in the column
-  for(int jz=0; jz<Ly; jz++){
-  c = iz*Ly+jz;
-  a = spins[c];
-  b = spins[c + number_of_sites/2];
-  spins[c] = b;
-  spins[c+number_of_sites/2]=a;
-  }
-  } */
 
   /*******************************************************************
                                end of that
@@ -1093,25 +1068,13 @@ void LOOPS::swaperator()
 {
   vector <int> tempbonds;
   tempbonds = VR;
-  int a,b,c,d;
+  //  int a,b,c,d;
 
   
   //flip 1 column of Ly at a time
   for(int iz=flip+1; iz<Lx; iz++){
     
-    //flip each site in the column
-    for(int jz=0; jz<Ly; jz++){
-      a = iz*Ly+jz;
-      d = a+number_of_sites/2;
-      b = tempbonds[d];
-      c = tempbonds[a];
-
-      tempbonds[a] = b;
-      tempbonds[b] = a;
-      tempbonds[d] = c;
-      tempbonds[c] = d;
-      
-    }
+    tempbonds = swap_flip(tempbonds,iz);
 
     //take measurement for each flipped column
     int counter(0), temploopnum(0), startsite(0), mite(-99), which(0);
@@ -1233,13 +1196,13 @@ void LOOPS::read_bops()
     }  
   }
 }
-vector <long long> LOOPS::ratio_flip(vector <long long> flipVect, int runNumber)
+vector <long long> LOOPS::ratio_flip(vector <long long> flipVect, int End)
 {
   long long a,b,c;
   
-  for(int iz=0; iz<=runNumber; iz++){
-    for(int jz=0; jz<Ly; jz++){
-      c = iz*Ly+jz;
+  for(int iz1=0; iz1<=End; iz1++){
+    for(int jz1=0; jz1<Ly; jz1++){
+      c = iz1*Ly+jz1;
       a = flipVect[c];
       b = flipVect[c + number_of_sites/2];
       flipVect[c] = b;
@@ -1248,13 +1211,13 @@ vector <long long> LOOPS::ratio_flip(vector <long long> flipVect, int runNumber)
   }
   return flipVect;
 }
-vector <int> LOOPS::ratio_flip(vector <int> flipVect, int runNumber)
+vector <int> LOOPS::ratio_flip(vector <int> flipVect, int End)
 {
   int a,b,c;
   
-  for(int iz=0; iz<=runNumber; iz++){
-    for(int jz=0; jz<Ly; jz++){
-      c = iz*Ly+jz;
+  for(int iz1=0; iz1<=End; iz1++){
+    for(int jz1=0; jz1<Ly; jz1++){
+      c = iz1*Ly+jz1;
       a = flipVect[c];
       b = flipVect[c + number_of_sites/2];
       flipVect[c] = b;
@@ -1263,5 +1226,20 @@ vector <int> LOOPS::ratio_flip(vector <int> flipVect, int runNumber)
   }
   return flipVect;
 }
-
+vector <int> LOOPS::swap_flip(vector<int> flipVect, int column)
+{
+  int a,b,c,d;
+  for(int jz1=0; jz1<Ly; jz1++){
+    a = column*Ly+jz1;
+    d = a+number_of_sites/2;
+    b = flipVect[d];
+    c = flipVect[a];
+    
+    flipVect[a] = b;
+    flipVect[b] = a;
+    flipVect[d] = c;
+    flipVect[c] = d;
+  }
+  return flipVect;
+}
 #endif
