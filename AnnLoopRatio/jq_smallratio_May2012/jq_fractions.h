@@ -86,9 +86,9 @@ class LOOPS
   void calculate_stuff(); //calculates energy at the moment
   void print_bops(); //prints the bond operators after every loop of iterations
   void read_bops(); //reads in bondops if theyre there, or runs generate_ops()
-  vector <long long> ratio_flip(vector <long long>, int end); //switches connections
-  vector <int> ratio_flip(vector <int>, int end);
-  vector <int> swap_flip(vector <int>, int flipnum);
+  void ratio_flip(vector <long long> &vec, int end); //switches connections
+  void ratio_flip(vector <int> &vec, int end);
+  void swap_flip(vector <int> &vec, int flipnum);
   
 };
 
@@ -578,7 +578,7 @@ void LOOPS::create__Hlinks()
     NOW stop to switch the connections within region A
    *************************************************************/
   
-  last = ratio_flip(last,flip);
+  ratio_flip(last,flip);
 
   /*************************************************************
     End of switching the connections within region A
@@ -984,7 +984,7 @@ void LOOPS::change__operators()
                Swap some of the spins and stuff, y'know?
   ********************************************************************/
   
-  spins = ratio_flip(spins,flip);
+  ratio_flip(spins,flip);
 
 
   /*******************************************************************
@@ -1074,7 +1074,7 @@ void LOOPS::swaperator()
   //flip 1 column of Ly at a time
   for(int iz=flip+1; iz<Lx; iz++){
     
-    tempbonds = swap_flip(tempbonds,iz);
+    swap_flip(tempbonds,iz);
 
     //take measurement for each flipped column
     int counter(0), temploopnum(0), startsite(0), mite(-99), which(0);
@@ -1196,7 +1196,7 @@ void LOOPS::read_bops()
     }  
   }
 }
-vector <long long> LOOPS::ratio_flip(vector <long long> flipVect, int End)
+void LOOPS::ratio_flip(vector <long long> &flipVect, int End)
 {
   long long a,b,c;
   
@@ -1209,9 +1209,8 @@ vector <long long> LOOPS::ratio_flip(vector <long long> flipVect, int End)
       flipVect[c+number_of_sites/2]=a;
     }
   }
-  return flipVect;
 }
-vector <int> LOOPS::ratio_flip(vector <int> flipVect, int End)
+void LOOPS::ratio_flip(vector <int> &flipVect, int End)
 {
   int a,b,c;
   
@@ -1224,9 +1223,8 @@ vector <int> LOOPS::ratio_flip(vector <int> flipVect, int End)
       flipVect[c+number_of_sites/2]=a;
     }
   }
-  return flipVect;
 }
-vector <int> LOOPS::swap_flip(vector<int> flipVect, int column)
+void LOOPS::swap_flip(vector<int> &flipVect, int column)
 {
   int a,b,c,d;
   for(int jz1=0; jz1<Ly; jz1++){
@@ -1240,6 +1238,5 @@ vector <int> LOOPS::swap_flip(vector<int> flipVect, int column)
     flipVect[d] = c;
     flipVect[c] = d;
   }
-  return flipVect;
 }
 #endif
