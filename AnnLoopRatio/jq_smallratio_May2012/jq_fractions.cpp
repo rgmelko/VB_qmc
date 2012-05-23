@@ -10,7 +10,7 @@
 //Jan 18, 2010 --- starting loop code
 
 #include "header.h"
-#include "jq_header.h"
+#include "jq_fractions.h"
 
 int main(){
 
@@ -43,7 +43,7 @@ int main(){
   cout << "J=" << J << " Q=" << Q <<" Lx="<< dim1 << " x Ly=" << dim2 
        << " system,  N = " 
        << dim1*dim2 << " sites \n" << bops_per_site << " bops/site,  " 
-       << total_bops << " bops total" << endl;
+       << total_bops << " bops for each copy" << endl;
   cout << "------------------------------------------------ \n"; 
 
   if(dim1==2|dim2==2){cout<<"warning! nnbonds get screwed up for a x 2 \n";}

@@ -13,8 +13,8 @@
 //Jan 18, 2010 --- starting loop code
 
 
-#ifndef jq_header
-#define jq_header
+#ifndef jq_fractions
+#define jq_fractions
 
 #include "header.h"
 #include "matrix.h"
@@ -86,6 +86,8 @@ class LOOPS
   void calculate_stuff(); //calculates energy at the moment
   void print_bops(); //prints the bond operators after every loop of iterations
   void read_bops(); //reads in bondops if theyre there, or runs generate_ops()
+  vector <long long> ratio_flip(vector <long long>, int runnum); //switches connections
+  vector <int> ratio_flip(vector <int>, int runnum);
 
 };
 
@@ -574,19 +576,22 @@ void LOOPS::create__Hlinks()
   /*************************************************************
     NOW stop to switch the connections within region A
    *************************************************************/
-  long long a,b,c;
   
-  //flip 1 column of Ly at a time
-  for(int iz=0; iz<=flip; iz++){
+  last = ratio_flip(last,flip);
+
+    /*  long long a,b,c;
+	
+    //flip 1 column of Ly at a time
+    for(int iz=0; iz<=flip; iz++){
     //flip each site in the column
     for(int jz=0; jz<Ly; jz++){
-      c = iz*Ly+jz;
-      a = last[c];
-      b = last[c + number_of_sites/2];
-      last[c] = b;
-      last[c+number_of_sites/2]=a;
+    c = iz*Ly+jz;
+    a = last[c];
+    b = last[c + number_of_sites/2];
+    last[c] = b;
+    last[c+number_of_sites/2]=a;
     }
-  }
+    }*/
   /*************************************************************
     End of switching the connections within region A
    *************************************************************/
@@ -990,19 +995,23 @@ void LOOPS::change__operators()
   /*******************************************************************
                Swap some of the spins and stuff, y'know?
   ********************************************************************/
-  long long a,b,c;
+  
+  spins = ratio_flip(spins,flip);
+
+  /* long long a,b,c;
   
   //flip 1 column of Ly at a time
   for(int iz=0; iz<=flip; iz++){
-    //flip each site in the column
-    for(int jz=0; jz<Ly; jz++){
-      c = iz*Ly+jz;
-      a = spins[c];
-      b = spins[c + number_of_sites/2];
-      spins[c] = b;
-      spins[c+number_of_sites/2]=a;
-    }
+  //flip each site in the column
+  for(int jz=0; jz<Ly; jz++){
+  c = iz*Ly+jz;
+  a = spins[c];
+  b = spins[c + number_of_sites/2];
+  spins[c] = b;
+  spins[c+number_of_sites/2]=a;
   }
+  } */
+
   /*******************************************************************
                                end of that
   ********************************************************************/
@@ -1224,4 +1233,35 @@ void LOOPS::read_bops()
     }  
   }
 }
+vector <long long> LOOPS::ratio_flip(vector <long long> flipVect, int runNumber)
+{
+  long long a,b,c;
+  
+  for(int iz=0; iz<=runNumber; iz++){
+    for(int jz=0; jz<Ly; jz++){
+      c = iz*Ly+jz;
+      a = flipVect[c];
+      b = flipVect[c + number_of_sites/2];
+      flipVect[c] = b;
+      flipVect[c+number_of_sites/2]=a;
+    }
+  }
+  return flipVect;
+}
+vector <int> LOOPS::ratio_flip(vector <int> flipVect, int runNumber)
+{
+  int a,b,c;
+  
+  for(int iz=0; iz<=runNumber; iz++){
+    for(int jz=0; jz<Ly; jz++){
+      c = iz*Ly+jz;
+      a = flipVect[c];
+      b = flipVect[c + number_of_sites/2];
+      flipVect[c] = b;
+      flipVect[c+number_of_sites/2]=a;
+    }
+  }
+  return flipVect;
+}
+
 #endif
