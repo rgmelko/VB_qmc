@@ -27,7 +27,8 @@ class LOOPS
   MTRand drand; //drand() gives you a random double precision number
   MTRand_int32 irand; // irand() gives you a random integer
 
-  int flip; // CHANGED!! now 0 for bare swap, 1 for 1st ratio ...
+  vector <int> swapSegment;
+  int swapSize, flipSite;
 
   double J,Q;
   int Lx, Ly,  number_of_sites; //the dimensions and number of sites
@@ -86,25 +87,72 @@ class LOOPS
   void calculate_stuff(); //calculates energy at the moment
   void print_bops(); //prints the bond operators after every loop of iterations
   void read_bops(); //reads in bondops if theyre there, or runs generate_ops()
-  void ratio_flip(vector <long long> &vec, int end); //switches connections
-  void ratio_flip(vector <int> &vec, int end);
-  void swap_flip(vector <int> &vec, int flipnum);
+  void ratio_flip(vector <long long> &vec); //switches connections
+  void ratio_flip(vector <int> &vec);
+  void swap_flip(vector <int> &vec, int swaplocation);
   
 };
 
 //*************** CONSTRUCTOR ******************************************
-LOOPS::LOOPS(double jay, double que, int xsites, int ysites, int flips, 
+LOOPS::LOOPS(double jay, double que, int xsites, int ysites, int runNum, 
 	     int bondops, long long its, long long rseed, string bondopfile)
 {
   irand.seed(rseed); //uses the random seed from the parameter file
   drand.seed(rseed); //enabling us to run fakely parallelize simulations
-  
+ 
+ 
   J = jay;
   Q = que;
 
   Lx = xsites; 
   Ly = ysites;
-  flip = flips-1; //Changed so 0 is the bare swap
+
+
+  //the maximum size of a block added to the ratio
+  int maxSitesAdded = 10;
+  //the number of segments added per column
+  int runsPerCol = (Ly-1)/maxSitesAdded+1;
+  //the size of a segment (except the last one could be bigger)
+  int Q=Ly/runsPerCol;
+  
+  //Construct the vector addSites, which contains the start & end 
+  // points for flipping the various regions
+  // of a column
+  vector <int> addSites, bareSites;
+  addSites.resize(runsPerCol+1);
+  bareSites.resize(runsPerCol+1);
+  addSites[0]=0;
+  
+  for(int i=1;i<runsPerCol;i++){addSites[i]=addSites[i-1]+Q; bareSites[i-1]=Q;}
+  
+  addSites[runsPerCol]=Ly;
+  bareSites[runsPerCol-1] = Ly-Q*(runsPerCol-1);
+
+  for(int i=0;i<addSites.size();i++) cout << addSites[i] << endl;
+  
+  //this is the endpoint for ratio flipping and the startpoint
+  //for swap flipping
+  // Is it easier to do this in terms of sites? a start site????
+  int flipCol=runNum/runsPerCol;
+  int flipFrac=runNum%runsPerCol;
+  
+  //Check this!!!! The last site to get flipped?  Or the one before the last??
+  flipSite=flipCol*Ly+addSites[flipFrac];
+  cout << "flipSite = " <<flipSite << endl;
+
+  cout << "flipCol = " << flipCol << endl;
+  cout << "flipFrac = " << flipFrac << endl;
+  swapSize = (Lx-flipCol)*runsPerCol - flipFrac;
+  cout << "swapSize = " << swapSize << endl;
+
+  swapSegment.resize(swapSize+1);
+  swapSegment[0]=flipSite;
+  for(int i=1; i<=swapSize;i++){
+    swapSegment[i]=swapSegment[i-1]+bareSites[(flipFrac+i-1)%runsPerCol];
+  }
+  
+
+  
   number_of_sites = Lx*Ly; //calculates total number of sites
   //****changed**** multiplied by 2
   number_of_bondops = 2*2*bondops; /*the *real* number of bondops is multiplied
@@ -116,7 +164,7 @@ LOOPS::LOOPS(double jay, double que, int xsites, int ysites, int flips,
   //name of the bond operator file
   bopfile = bondopfile; 
 
-  entropy.assign(xsites,0);
+  entropy.assign(swapSize,0);
   entropy_final = entropy;
 
   int maxVlegs =  2*4*number_of_sites + 8*number_of_bondops;
@@ -578,7 +626,7 @@ void LOOPS::create__Hlinks()
     NOW stop to switch the connections within region A
    *************************************************************/
   
-  ratio_flip(last,flip);
+  ratio_flip(last);
 
   /*************************************************************
     End of switching the connections within region A
@@ -984,7 +1032,7 @@ void LOOPS::change__operators()
                Swap some of the spins and stuff, y'know?
   ********************************************************************/
   
-  ratio_flip(spins,flip);
+  ratio_flip(spins);
 
 
   /*******************************************************************
@@ -1072,7 +1120,7 @@ void LOOPS::swaperator()
 
   
   //flip 1 column of Ly at a time
-  for(int iz=flip+1; iz<Lx; iz++){
+  for(int iz=0; iz<swapSize; iz++){
     
     swap_flip(tempbonds,iz);
 
@@ -1196,39 +1244,37 @@ void LOOPS::read_bops()
     }  
   }
 }
-void LOOPS::ratio_flip(vector <long long> &flipVect, int End)
+void LOOPS::ratio_flip(vector <long long> &flipVect)
 {
-  long long a,b,c;
+  long long a,b;
+
+  for(int c=0; c<flipSite; c++){
+    a = flipVect[c];
+    b = flipVect[c + number_of_sites/2];
+    flipVect[c] = b;
+    flipVect[c+number_of_sites/2]=a;
+  }
   
-  for(int iz1=0; iz1<=End; iz1++){
-    for(int jz1=0; jz1<Ly; jz1++){
-      c = iz1*Ly+jz1;
-      a = flipVect[c];
-      b = flipVect[c + number_of_sites/2];
-      flipVect[c] = b;
-      flipVect[c+number_of_sites/2]=a;
-    }
+}
+void LOOPS::ratio_flip(vector <int> &flipVect)
+{
+  int a,b;
+  
+  for(int c=0; c<flipSite; c++){
+    a = flipVect[c];
+    b = flipVect[c + number_of_sites/2];
+    flipVect[c] = b;
+    flipVect[c+number_of_sites/2]=a;
   }
 }
-void LOOPS::ratio_flip(vector <int> &flipVect, int End)
+
+void LOOPS::swap_flip(vector<int> &flipVect, int swapSite)
 {
-  int a,b,c;
+  int b,c,d;
+  int start = swapSegment[swapSite];
+  int end = swapSegment[swapSite+1];
   
-  for(int iz1=0; iz1<=End; iz1++){
-    for(int jz1=0; jz1<Ly; jz1++){
-      c = iz1*Ly+jz1;
-      a = flipVect[c];
-      b = flipVect[c + number_of_sites/2];
-      flipVect[c] = b;
-      flipVect[c+number_of_sites/2]=a;
-    }
-  }
-}
-void LOOPS::swap_flip(vector<int> &flipVect, int column)
-{
-  int a,b,c,d;
-  for(int jz1=0; jz1<Ly; jz1++){
-    a = column*Ly+jz1;
+  for(int a=start; a<end; a++){
     d = a+number_of_sites/2;
     b = flipVect[d];
     c = flipVect[a];
