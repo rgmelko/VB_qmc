@@ -28,7 +28,7 @@ class LOOPS
   MTRand_int32 irand; // irand() gives you a random integer
 
   vector <int> swapSegment;
-  int swapSize, flipSite;
+  int flipSite, runNum, totalRuns;
 
   double J,Q;
   int Lx, Ly,  number_of_sites; //the dimensions and number of sites
@@ -94,7 +94,7 @@ class LOOPS
 };
 
 //*************** CONSTRUCTOR ******************************************
-LOOPS::LOOPS(double jay, double que, int xsites, int ysites, int runNum, 
+LOOPS::LOOPS(double jay, double que, int xsites, int ysites, int runNumber, 
 	     int bondops, long long its, long long rseed, string bondopfile)
 {
   irand.seed(rseed); //uses the random seed from the parameter file
@@ -114,6 +114,7 @@ LOOPS::LOOPS(double jay, double que, int xsites, int ysites, int runNum,
   int runsPerCol = (Ly-1)/maxSitesAdded+1;
   //the size of a segment (except the last one could be bigger)
   int Q=Ly/runsPerCol;
+  runNum = runNumber;
   
   //Construct the vector addSites, which contains the start & end 
   // points for flipping the various regions
@@ -142,13 +143,16 @@ LOOPS::LOOPS(double jay, double que, int xsites, int ysites, int runNum,
 
   cout << "flipCol = " << flipCol << endl;
   cout << "flipFrac = " << flipFrac << endl;
-  swapSize = (Lx-flipCol)*runsPerCol - flipFrac;
-  cout << "swapSize = " << swapSize << endl;
 
-  swapSegment.resize(swapSize+1);
-  swapSegment[0]=flipSite;
-  for(int i=1; i<=swapSize;i++){
-    swapSegment[i]=swapSegment[i-1]+bareSites[(flipFrac+i-1)%runsPerCol];
+
+  totalRuns = runsPerCol*Lx;
+  cout << "totalRuns = " << totalRuns << endl;
+
+  swapSegment.resize(totalRuns+1);
+  swapSegment[0]=0;
+  for(int i=1; i<=totalRuns;i++){
+    swapSegment[i]=swapSegment[i-1]+bareSites[(i)%runsPerCol];
+    cout << "swapSegment["<<i<<"] = " << swapSegment[i] << endl;
   }
   
 
@@ -164,7 +168,7 @@ LOOPS::LOOPS(double jay, double que, int xsites, int ysites, int runNum,
   //name of the bond operator file
   bopfile = bondopfile; 
 
-  entropy.assign(swapSize,0);
+  entropy.assign(totalRuns,0);
   entropy_final = entropy;
 
   int maxVlegs =  2*4*number_of_sites + 8*number_of_bondops;
@@ -1117,13 +1121,12 @@ void LOOPS::swaperator()
   vector <int> tempbonds;
   tempbonds = VR;
   //  int a,b,c,d;
-
   
   //flip 1 column of Ly at a time
-  for(int iz=0; iz<swapSize; iz++){
+  for(int iz=runNum; iz<totalRuns; iz++){
     
+    //  cout <<"iz "<< iz << endl;
     swap_flip(tempbonds,iz);
-
     //take measurement for each flipped column
     int counter(0), temploopnum(0), startsite(0), mite(-99), which(0);
     vector <int> site(number_of_sites+2,0);
@@ -1159,7 +1162,7 @@ void LOOPS::swaperator()
     }
     int loopdiff = temploopnum - cross;
     entropy[iz] += pow(2,loopdiff);
-    // cout << "temploopnum " << temploopnum << "    loopdiff " << loopdiff << endl;    
+    //cout << "temploopnum " << temploopnum << "    loopdiff " << loopdiff << endl;    
   }
   //exit (1);
 }
@@ -1273,7 +1276,7 @@ void LOOPS::swap_flip(vector<int> &flipVect, int swapSite)
   int b,c,d;
   int start = swapSegment[swapSite];
   int end = swapSegment[swapSite+1];
-  
+
   for(int a=start; a<end; a++){
     d = a+number_of_sites/2;
     b = flipVect[d];
