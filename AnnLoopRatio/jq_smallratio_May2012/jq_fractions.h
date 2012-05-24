@@ -129,7 +129,6 @@ LOOPS::LOOPS(double jay, double que, int xsites, int ysites, int runNumber,
   addSites[runsPerCol]=Ly;
   bareSites[runsPerCol-1] = Ly-Q*(runsPerCol-1);
 
-  for(int i=0;i<addSites.size();i++) cout << addSites[i] << endl;
   
   //this is the endpoint for ratio flipping and the startpoint
   //for swap flipping
@@ -139,20 +138,13 @@ LOOPS::LOOPS(double jay, double que, int xsites, int ysites, int runNumber,
   
   //Check this!!!! The last site to get flipped?  Or the one before the last??
   flipSite=flipCol*Ly+addSites[flipFrac];
-  cout << "flipSite = " <<flipSite << endl;
-
-  cout << "flipCol = " << flipCol << endl;
-  cout << "flipFrac = " << flipFrac << endl;
-
 
   totalRuns = runsPerCol*Lx;
-  cout << "totalRuns = " << totalRuns << endl;
 
   swapSegment.resize(totalRuns+1);
   swapSegment[0]=0;
   for(int i=1; i<=totalRuns;i++){
     swapSegment[i]=swapSegment[i-1]+bareSites[(i)%runsPerCol];
-    cout << "swapSegment["<<i<<"] = " << swapSegment[i] << endl;
   }
   
 
