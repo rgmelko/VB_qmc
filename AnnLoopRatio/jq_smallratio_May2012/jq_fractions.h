@@ -139,12 +139,14 @@ LOOPS::LOOPS(double jay, double que, int xsites, int ysites, int runNumber,
   //Check this!!!! The last site to get flipped?  Or the one before the last??
   flipSite=flipCol*Ly+addSites[flipFrac];
 
+  cout << "flipSite = " << flipSite << endl;
+
   totalRuns = runsPerCol*Lx;
 
   swapSegment.resize(totalRuns+1);
   swapSegment[0]=0;
   for(int i=1; i<=totalRuns;i++){
-    swapSegment[i]=swapSegment[i-1]+bareSites[(i)%runsPerCol];
+    swapSegment[i]=swapSegment[i-1]+bareSites[(i-1)%runsPerCol];
   }
   
 
@@ -1268,6 +1270,7 @@ void LOOPS::swap_flip(vector<int> &flipVect, int swapSite)
   int b,c,d;
   int start = swapSegment[swapSite];
   int end = swapSegment[swapSite+1];
+  //cout << "start = " << start << "  end = " << end-1 << endl;
 
   for(int a=start; a<end; a++){
     d = a+number_of_sites/2;
