@@ -291,7 +291,7 @@ to add a diagonal operator (thereby changing the power in the propagator list fr
 \begin{eqnarray}
 P(n \rightarrow n+1) = {\rm min} \left({ \frac{1}{2}\frac{N_b \beta}{(M-n)}, 1 }\right),
 \end{eqnarray}
-where the number of lattice bonds, $N_b$, enters in since the bond index $a$ must be chosen at random for the insertion.  The factor of $1/2$ comes from the matrix elements \ref{Melko:Hdiag}.  Similarly, to remove an operator $H_{1,a}$ from the list, the transition probability is
+where the number of lattice bonds, $N_b$, enters in since the bond index $a$ must be chosen at random for the insertion.  The factor of $1/2$ comes from the matrix elements \ref{Melko:Hdiag} -- meaning one only inserts the operator if the $S^z$ basis states are anti-aligned.  If however the $S^z$ states are aligned on the chosen bond index $a$, the matrix element (and hence the transition probability) is zero.  Thus, the insertion is rejected and the algorithm moves on to the next propagation step.  In a similar way, we can calculate the transition probably to remove an operator $H_{1,a}$ from the list, 
 \begin{eqnarray}
 P(n \rightarrow n-1) = {\rm min} \left({ \frac{2(M-n+1)}{N_b \beta}, 1 }\right).
 \end{eqnarray}
