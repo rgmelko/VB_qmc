@@ -70,8 +70,41 @@ the ``subsystem ratio''. It plays the same role as the $x/L$ in 1d. We are inter
 Since the boundary between $A$ and $B$ is smooth and assuming a Coulomb gas description, we expect no subleading logarithmic corrections\cite{Hsu2009}. The first subleading term should be a universal constant $s_n(y,\tau)$, which depends only on the two aspect ratios for a given universality class. At this stage it is important to notice that although $a_n$ is non-universal -- and therefore depends on the specifics of the lattice model -- this area law term should \emph{not} depend on the two aspect ratios. This simple fact has an important practical consequence: one can read off the $y$ (or $\tau$) dependence of $s_n(y,\tau)$ by just looking at the numerical data $S_n(L,y,\tau)$ for sufficiently large $L$. We will use this method\cite{Ju2012} throughout the paper, therefore sidestepping any  (possibly difficult in practice) fitting procedure.    
 \subsection{Coulomb gas states}
 \label{sec:cg}
-\textcolor{blue}{Focus on a class of special quantum critical points in 2d, which are described by a 2d CFT. Simplest is the quantum dimer model, but also $SU(2)$ RVB. 
-Interpolating between QDM and $SU(2)$ gives us the $SU(N)$ idea. Free compactified boson CFT (or Coulomb Gas, or Luttinger liquid)}
+\textcolor{red}{\bf [This is the old intro, as a starting point for this section.]}
+The nearest-neighbor resonating valence-bond wavefunction on the square lattice has striking if somewhat schizophrenic behavior. Correlators in this state can be written in terms of the correlators of a two-dimensional classical loop model where loops longer than length two have a weight of $4$ per loop. A spin-spin correlator corresponds to having a strand of loop end at the sites of the spins \cite{Doucot}. Such a correlator is exponentially decaying  whenever the weight per loop is greater than 2 \cite{Nienhuis}.  Moreover, extensive numerics indicate \cite{RVB1,RVB2} have not found any  spin order. In this sense, the spins are ``deconfined'' and this state perhaps represents a sort of spin liquid.
+
+On the other hand, the RVB wave function bears an obvious similarity to the ground state of the
+ the quantum dimer model (QDM)\cite{RokhsarKivelson}: a nearest-neighbor spin-singlet in the RVB wave function can be thought of as a dimer connecting the two sites. In the QDM one forgets the underlying spins: the only degrees of freedom in the quantum dimer model are the nearest-neighbor dimers. Different dimer configurations are orthogonal in the QDM, but  not in the RVB case. One very convenient feature of the QDM is that  correlators in its ground state here can be computed exactly even on the lattice, because they are exactly those of the two-dimensional classical dimer model. This can be mapped on to a free fermion problem (i.e.\ computing the Pfaffian of a specific matrix \cite{Kasteleyn,Fisher}), and their asymptotic behavior easily obtained. On the square lattice, dimer-dimer correlators were long ago shown to be algebraically decaying \cite{FisherStephenson}.
+
+This similarity makes it plausible the the correlator of two ``dimers'' (i.e. two nearest-neighbor spin singles) in the RVB case will behave in a similar fashion to the dimer-dimer correlator in the QDM. This expectation is further supported by the fact that one can interpolate between the two wave functions, either by studying an $SU(N)$ version as described below, or by dressing the lattice itself \cite{RMS}, and there is no evidence for any phase transition. Such algebraic decay of   ``dimer-dimer'' correlations  in the RVB state was convincingly demonstrated numerically
+\cite{RVB1,RVB2}:
+ \begin{equation}
+  C_{dd}(\vec{r}_1,\vec{r}_2) \sim \left|\vec{r}_1-\vec{r}_2\right|^{-\alpha}
+ \end{equation}
+The exponent was found to be close to $\alpha \approx 1.2$. This is an even weaker falloff than in the QDM, where $\alpha_D=2$ \cite{FisherStephenson}. By the theorem of \cite{Hastings_thm}, algebraic decay of local operators in a two-dimensional ground state requires that any local Hamiltonian with this ground state be gapless. Thus the QDM at its RK point is gapless, as is the Hamiltonian of Ref.~\cite{Cano}, whose ground-state is exactly the RVB state. 
+
+%\paragraph{}
+
+A very useful fact about the classical dimer model is that long-distance properties of the dimers are described by a free bosonic field theory. This can be seen by either by bosonizing the fermions, or by rewriting the dimers in terms of an integer ``height'' degree of freedom \cite{Heights_1,Heights_2,Henley}. Either approach implies that the scaling limit of the classical dimer model is a free scalar field $h(x,y)$ with euclidean action
+ \begin{equation}\label{eq:free_field}
+  S=\frac{\kappa}{4\pi}\int \left(\nabla h\right)^2 dx dy,
+ \end{equation}
+ where $h$ is compactified on a circle of radius $1$: $h=h+2\pi$. The coupling $\kappa$ is often known as the ``stiffness''. Such a field theory description is also known as a ``Coulomb Gas'', and is an example of a two-dimensional conformal field theory, the free boson CFT, with central charge $c=1$ \cite{Nienhuis,Ginsparg}. It is ubiquitous in two-dimensional statistical models, as well as in condensed matter, where it describes Luttinger liquids.   This model is critical but not Lorentz-invariant, with dynamical critical exponent $z=2$.  The dimers are viewed as elementary electric charges, and the dimer-dimer exponent in the ground state is given in general by
+\begin{equation}
+ \alpha=\frac{1}{\kappa}.
+\end{equation}
+This yields the stiffness for the dimer model $\kappa_D=1/2$. Elementary magnetic charges can also identified with monomers, and the corresponding exponent describing their two-point function is given by $\beta=\kappa$, so $\beta_D=1/2$.
+Once the stiffness fixed to its right value, Eq.~(\ref{eq:free_field}) describes all the universal properties of the dimer model.
+In this framework the quantum dimer model can also be written as in terms of a free scalar field in the 2+1 dimensional ``quantum Lifshitz'' model \cite{Henley,Fradkin_dimers}. This is an example of a conformal quantum critical point, where the equal-time correlators of a 2d {\em quantum} model are those of a 2d conformal field theory.
+
+\paragraph{} Given the substantial difference in the exponents, the RVB wave function is obviously not identical to that for dimers. However, Ref.~\cite{RVB2} found however that long-distance properties of the $SU(2)$ RVB wave function are still described by a Coulomb gas, albeit with a different stiffness, yielding different exponents. This was shown by computing numerically several universal quantities, including the dimer-dimer and monomer-monomer exponent. With appropriate identification of the operators, each yields a independent value for the the stiffness, $\kappa_{RVB}\approx .83$. The numerics gave approximately the same value of the stiffness for each, providing strong evidence that the Coulomb gas description applies to correlators of {\em spin singlets} in the RVB wave function. The $SU(2)$ RVB wave function, just like its QDM counterpart, therefore enjoys a very special property. Although it is a $2$d quantum system, equal-time ground-state properties of spin-singlets correspond to a 2d 
+conformal field theory\cite{QuantumLifshitz} and 
+Notice that while the height representation can be understood from simple lattice arguments in the dimer model, no such intuitive argument exists for the RVB state. 
+
+It is purpose of this paper to explore these critical properties of the RVB state.
+
+
+\paragraph{}To help understand the emergence of the height field description, it is useful to generalize this study to the $SU(N)$ case. Any correlator calculated in the $N\to \infty$ limit reduces to the same correlation in the dimer model. Such a correspondence can actually be pushed further: Ref.~\cite{Damle} defined a cluster expansion of the RVB ``loop gas''\cite{Sutherland_loops} in terms of interacting dimers in the large $N$ limit. Remarkably, one recovers to first non trivial order the model studied in \cite{Alet_dimers1,Alet_dimers2}, for which the height description is more natural. The $\alpha$ exponent extrapolated to $N=2$ turned out to be in good agreement with the previous numerical studies\cite{RVB1,RVB2}.
 \subsection{Outline}
 \label{sec:outline}
 The paper is organized as follows:
