@@ -43,15 +43,15 @@ In the world of condensed matter physics, no state of matter is more elusive, ex
 Such properties emerge from a perspective which views the spin liquid wavefunction in the language of a fluctuating ``loop gas''.
 A vast literature of phenomenological theories of gapped spin liquid states connects with a growing body of simulation work on microscopic models which harbour them; a theoretical field which seemed distastefully exotic less than a decade ago is now teeming with synergy as more examples of models with gapped spin liquids seem to appear daily.
 
-There is however a single dissatisfying element to the current research on quantum spin liquid states: the fact that no experimental systems are currently identified as good candidates for a gapped spin liquids.  Rather, all current experimental candidate phases appear to be {\it gapless}.  Compared to their gapped counterparts, these phases are less amenable to simple unifying attributes such as topological order.  Although it is likely that other quantities, related perhaps to correlations or manifestations of long-range entanglement, can be used to characterize gapless phases, in this case the community suffers the difficulty that few viable examples of {\it models} -- particularly those tractable by large-scale numerical simulation -- are known to contain gapless spin liquids.
+There is however a single dissatisfying element to the current research on quantum spin liquid states: the fact that no experimental systems are currently identified as good candidates for a gapped spin liquid.  Rather, all current experimental candidate phases appear to be {\it gapless}.  Compared to their gapped counterparts, these phases are less amenable to simple unifying attributes such as topological order.  Although it is likely that other quantities, related perhaps to correlations or manifestations of long-range entanglement, can be used to characterize gapless phases, in this case the community suffers the difficulty that few viable examples of {\it models} -- particularly those tractable by large-scale numerical simulation -- are known to contain gapless spin liquids.
 
-In this paper, we examine correlations and entanglement in a Resonating Valence Bond (RVB) wavefunction, which is a paradigmatic model for spin liquid behavior introduced by Pauling and Anderson.  Despite breaking no symmetry and leaving spins disordered (hence allowing the epithet ``spin liquid''), this wavefuncntion is known to have algebraically decaying dimer-dimer correlations.  Recently, it has been shown that this wavefunction is the exact groundstate of a quantum spin Hamiltonian with local interactions \cite{Cano}.
+In this paper, we examine correlations and entanglement in a Resonating Valence Bond (RVB) wavefunction, which is a paradigmatic model for spin liquid behavior introduced by Pauling and Anderson.  Consisting of fluctuating valence bonds (or singlets), the wavefunction breaks no symmetry, leaving spins disordered, and can also be viewed as a type of fluctuating loop gas -- hence allowing the epithet ``spin liquid''.  The  wavefunction is also known to have algebraically decaying dimer-dimer correlations, which in combination with the fact that it has been shown that this wavefunction is the exact groundstate of a quantum spin Hamiltonian with local interactions \cite{Cano}, leads to the analogy between the RVB phase and a gapless spin liquid state.  
 
-%In the study of quantum many-body systems, the Renyi entropies
-%\begin{equation}
-%S_n=(1-n)^{-1}\ln {\rm Tr}\, \rho_A^n
-%\end{equation}
-%are rapidly emerging as the most utilitarian 
+Since recent algorithmic advances allow for the large-scale simulation of the RVB wavefunction through quantum Monte Carlo procedures, we are able to calculate correlation function exactly on finite-size system.  In addition, we calculate the Renyi entropies
+\begin{equation}
+S_n=(1-n)^{-1}\ln {\rm Tr}\, \rho_A^n
+\end{equation}
+which are rapidly emerging as the most utilitarian measure of quantum entanglement in a many-body wavefunction.  Through these calculations, we hope to characterize in detail the correlations and entanglement in the important paradigmatic RVB phase, described more below.
 
 \textcolor{blue}{
 \begin{itemize}
@@ -62,31 +62,32 @@ In this paper, we examine correlations and entanglement in a Resonating Valence 
  \item Focus on Quantum dimers, $SU(2)$-RVB, and trying to interpolate between the two (less studied $SU(N)$).
 \end{itemize}
 }
-\subsection{Torus geometry}
-\label{sec:geometry}
-This paper presents a detailed study of the torus geometry introduced in \cite{Ju2012}, for RK-type states. The torus has dimensions $L_x$ and $L_y$, and is cut into two cylinders of dimensions $L_x \times \ell_y$ and $ L_x \times (L_y-\ell_y)$, as is shown in Fig.~\ref{fig:torus}.
-\begin{figure}[ht]
- \begin{center}
-  \includegraphics[width=7cm,angle=-90]{./figures/16x8b.pdf}
-  \end{center}
-  \caption{Torus geometry studied in this paper, with $L_x=8$ and $L_y=16$. We mainly focus on entanglement aspects. The system is cut into two parts $A$ and $B$. Here subsystem $A$ is a cylinder of height $\ell_y=4$, and is drawn in bold blue. Subsystem $B$ is a cylinder of height $L_y-\ell_y=12$. We are particularly interested in the dependence of entanglement on the shape $\ell_y/L_y$, $L_x/L_y$ of the torus.}
-\label{fig:torus}
- \end{figure}
-Physical results are expected to only depend on the two possible dimensionless ratios $L_y/L_x$ and $\ell_y/L_y$. The first is encoded in the modulus $\tau$ of the torus:
-\begin{equation}
- \tau=i\frac{L_y}{L_x}.
-\end{equation}
-The imaginary number is there for later convenience, as it allows to make contact with standard results from conformal field theory. Most of the numerical studies will be performed for the most natural $L_y=L_x$ case, but we expect our results to be valid for any aspect ratio. We call the other ratio
-\begin{equation}
- y=\frac{\ell_y}{L_y}
-\end{equation}
-the ``subsystem ratio''. It plays the same role as the $x/L$ in 1d. We are interested in the scaling behavior of the entropy with $L$, while keeping both ratios $y$ and $\tau$ finite. 
-\paragraph{}
- It is well known that the R\'enyi entanglement entropy of such quantum systems exhibits an area law\cite{ALreview}:
- \begin{equation}
- S_n(L,y,\tau)= a_{n} L+s_{n}(y,\tau)+\mathcal{O}(1/L)
-\end{equation}
-Since the boundary between $A$ and $B$ is smooth and assuming a Coulomb gas description, we expect no subleading logarithmic corrections\cite{Hsu2009}. The first subleading term should be a universal constant $s_n(y,\tau)$, which depends only on the two aspect ratios for a given universality class. At this stage it is important to notice that although $a_n$ is non-universal -- and therefore depends on the specifics of the lattice model -- this area law term should \emph{not} depend on the two aspect ratios. This simple fact has an important practical consequence: one can read off the $y$ (or $\tau$) dependence of $s_n(y,\tau)$ by just looking at the numerical data $S_n(L,y,\tau)$ for sufficiently large $L$. We will use this method\cite{Ju2012} throughout the paper, therefore sidestepping any  (possibly difficult in practice) fitting procedure.    
+% \subsection{Torus geometry}
+% \label{sec:geometry}
+% This paper presents a detailed study of the torus geometry introduced in \cite{Ju2012}, for RK-type states. The torus has dimensions $L_x$ and $L_y$, and is cut into two cylinders of dimensions $L_x \times \ell_y$ and $ L_x \times (L_y-\ell_y)$, as is shown in Fig.~\ref{fig:torus}.
+% \begin{figure}[ht]
+%  \begin{center}
+%   \includegraphics[width=7cm,angle=-90]{./figures/16x8b.pdf}
+%   \end{center}
+%   \caption{Torus geometry studied in this paper, with $L_x=8$ and $L_y=16$. We mainly focus on entanglement aspects. The system is cut into two parts $A$ and $B$. Here subsystem $A$ is a cylinder of height $\ell_y=4$, and is drawn in bold blue. Subsystem $B$ is a cylinder of height $L_y-\ell_y=12$. We are particularly interested in the dependence of entanglement on the shape $\ell_y/L_y$, $L_x/L_y$ of the torus.}
+% \label{fig:torus}
+%  \end{figure}
+% Physical results are expected to only depend on the two possible dimensionless ratios $L_y/L_x$ and $\ell_y/L_y$. The first is encoded in the modulus $\tau$ of the torus:
+% \begin{equation}
+%  \tau=i\frac{L_y}{L_x}.
+% \end{equation}
+% The imaginary number is there for later convenience, as it allows to make contact with standard results from conformal field theory. Most of the numerical studies will be performed for the most natural $L_y=L_x$ case, but we expect our results to be valid for any aspect ratio. We call the other ratio
+% \begin{equation}
+%  y=\frac{\ell_y}{L_y}
+% \end{equation}
+% the ``subsystem ratio''. It plays the same role as the $x/L$ in 1d. We are interested in the scaling behavior of the entropy with $L$, while keeping both ratios $y$ and $\tau$ finite. 
+% \paragraph{}
+%  It is well known that the R\'enyi entanglement entropy of such quantum systems exhibits an area law\cite{ALreview}:
+%  \begin{equation}
+%  S_n(L,y,\tau)= a_{n} L+s_{n}(y,\tau)+\mathcal{O}(1/L)
+% \end{equation}
+% Since the boundary between $A$ and $B$ is smooth and assuming a Coulomb gas description, we expect no subleading logarithmic corrections\cite{Hsu2009}. The first subleading term should be a universal constant $s_n(y,\tau)$, which depends only on the two aspect ratios for a given universality class. At this stage it is important to notice that although $a_n$ is non-universal -- and therefore depends on the specifics of the lattice model -- this area law term should \emph{not} depend on the two aspect ratios. This simple fact has an important practical consequence: one can read off the $y$ (or $\tau$) dependence of $s_n(y,\tau)$ by just looking at the numerical data $S_n(L,y,\tau)$ for sufficiently large $L$. We will use this method\cite{Ju2012} throughout the paper, therefore sidestepping any  (possibly difficult in practice) fitting procedure.    
+
 \subsection{Coulomb gas states}
 \label{sec:cg}
 \textcolor{red}{\bf [This is the old intro, as a starting point for this section.]}
