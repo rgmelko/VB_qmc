@@ -112,7 +112,8 @@ where, hard-core dimers are defined with binary operators,
 \begin{equation}
  |D_{\alpha} \rangle = \prod_{i=1}^{N/2} \big( \sigma_{i,j_{\alpha}}  \big).
  \end{equation}
- Here, a nearest-neighbor spin-singlet in the RVB wave function can be thought of as a dimer connecting the two sites. In the QDM one forgets the underlying spins: the only degrees of freedom in the quantum dimer model are the nearest-neighbor dimers. Different dimer configurations are orthogonal in the QDM, $\langle D_{\beta} | D_{\alpha} \rangle = \delta_{\beta,\alpha}$, but  not in the RVB case, where  $\langle V_{\beta} | V_{\alpha} \rangle = 2^{n_l - N/2}$ with $n_l$ being the number of loops in the transition graph. One very convenient feature of the QDM is that  correlators in its ground state here can be computed exactly even on the lattice, because they are exactly those of the two-dimensional classical dimer model (\textcolor{red}{NEED TO DEFINE THE DIFFERENCE BETWEEN CLASSICAL AND QUANTUM DIMER MODELS} )\textcolor{blue}{[JM: I would prefer to define first a classical dimer model (counting dimers on the square lattice) and then constructing a Hilbert space by associating a ket $|D_\alpha\rangle$ to each dimer configuration, arbitrarily deciding $\langle D_\alpha|D_{\beta}\rangle=\delta_{\alpha \beta}$ to make life easier.]}. This can be mapped on to a free fermion problem (i.e.\ computing the Pfaffian of a specific matrix \cite{Kasteleyn,Fisher}), and their asymptotic behavior easily obtained. On the square lattice, 
+ Here, a nearest-neighbor spin-singlet in the RVB wave function can be thought of as a dimer connecting the two sites. In the QDM one forgets the underlying spins: the only degrees of freedom in the quantum dimer model are the nearest-neighbor dimers. Different dimer configurations are orthogonal in the QDM, $\langle D_{\beta} | D_{\alpha} \rangle = \delta_{\beta,\alpha}$, but  not in the RVB case, where  $\langle V_{\beta} | V_{\alpha} \rangle = 2^{n_l - N/2}$ with $n_l$ being the number of loops in the transition graph. One very convenient feature of the QDM is that  correlators in its ground state here can be computed exactly even on the lattice, because they are exactly those of the two-dimensional classical dimer model (\textcolor{red}{NEED TO DEFINE THE DIFFERENCE BETWEEN CLASSICAL AND QUANTUM DIMER MODELS} )\textcolor{blue}{[JM: I would prefer to define first a classical dimer model (counting dimers on the square lattice) and then constructing a Hilbert space by associating a ket $|D_\alpha\rangle$ to 
+each dimer configuration, arbitrarily deciding $\langle D_\alpha|D_{\beta}\rangle=\delta_{\alpha \beta}$ to make life easier.]}. This can be mapped on to a free fermion problem (i.e.\ computing the Pfaffian of a specific matrix \cite{Kasteleyn,Fisher}), and their asymptotic behavior easily obtained. On the square lattice, 
 dimer-dimer correlators were long ago shown to be algebraically decaying \cite{FisherStephenson}.
 
 This similarity makes it plausible the the correlator of two ``dimers'' (i.e. two nearest-neighbor spin singles) in the RVB case will behave in a similar fashion to the dimer-dimer correlator in the QDM. This expectation is further supported by the fact that one can interpolate between the two wave functions, either by studying an $SU(N)$ version as described below, or by dressing the lattice itself \cite{RMS}, and there is no evidence for any phase transition. Such algebraic decay of   ``dimer-dimer'' correlations  in the RVB state was convincingly demonstrated numerically
@@ -395,13 +396,6 @@ Let us first look at the spin correlations. As is shown in Fig.~\ref{fig:corrspi
  \langle S(0)S(\ell_x) \rangle \sim \exp \left(-\frac{\ell_x}{\xi}\right)
 \end{equation}
 with a finite correlation length $\xi$. This is well known\cite{Doucot,RVB1} for the $SU(2)$, and our data generalizes these previous results. This short-range N\'eel order supports a quantum spin-liquid  behavior. We also observe that $\xi$ decreases with $N$, compatible with the intuition that the RVB state becomes more and more spin-disordered as $N$ increases.
-\begin{figure}[ht]
- \begin{center}
-  \includegraphics{./figures/spin_corr.pdf}
- \end{center}
-\caption{Spin-spin correlation function on the torus. They decay exponentially, with an exponent that diminishes with $N$. We have $\xi(N=2)=1.30(5)$ (compatible with \cite{RVB1}) and the new $\xi(N=3)=0.68(5)$, $\xi(N=4)=0.56(3)$ and $\xi(N=5)=0.46(2)$.}
-\label{fig:corr_su2}
-\end{figure}
 
 \subsection{Dimer-dimer correlations and the Coulomb-gas picture}
 \label{sec:dimerdimer}
