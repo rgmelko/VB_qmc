@@ -46,17 +46,36 @@ We also show how the entanglement entropy behaves qualitatively differently for 
 
 %In the world of condensed matter physics, no state of matter is more elusive, exotic, or intriguing as the coveted quantum spin liquid.  A sanctuary for some of the most pivotal ideas relating to emergence, such as topological order and fractionalization, spin liquids are sought after in theory, simulation, and experiment alike.
 
-A vast amount of theoretical and experimental effort has been devoted to the study of and search for spin liquids. A spin-liquid phase typically exhibits exotic behavior such as quasiparticles 
+A vast amount of recent theoretical and experimental effort has been devoted to the study of and search for spin liquids. A spin-liquid phase typically exhibits exotic behavior such as quasiparticles 
 with fractionalized quantum numbers, or spin-charge separation. Such behavior is manifestly non-perturbative, and so requires advanced theoretical tools to analyze. 
 
-One such method of increasing importance is the study of the entanglement properties of a particular state.  The behavior of quantities such as the Renyi entropy can be used to characterize spin-liquid states, without requiring knowledge of any specific Hamiltonian with this as an exact ground state.  This is often advantageous, since typically to know that a specific state is an exact ground state, the Hamiltonian needs to be highly fine-tuned. It is widely believed that many properties of a gapped phase are robust under (small enough) perturbations of the Hamiltonian and its ground state. Since studying entanglement properties of a model state is often both analytically and numerically more tractable than analyzing a model Hamiltonian, much recent progress has been made in condensed matter physics from the former.
+A vast amount of recent theoretical effort has been devoted to understanding how the entanglement properties of a particular state illuminate its physical properties. Since a major lesson of condensed matter physics in recent decades was that a phase often can be characterized well by a model state, a feature of studying entanglement is that states can be studied directly, without needing to know a specific Hamiltonian. 
+It is widely believed that many properties of a gapped phase are robust under (small enough) perturbations of the Hamiltonian and its ground state. Since studying entanglement properties of a model state is often both analytically and numerically more tractable than analyzing a model Hamiltonian, much recent progress has been made in condensed matter physics from the former.
 
- The most well-characterized quantum spin liquids are indeed {\it gapped}, where a gauge symmetry typically emerges.
+
+
+
+The behavior of quantities such as the Renyi entropy thus can be used to characterize spin-liquid states, without requiring knowledge of any specific Hamiltonian. The quantum spin liquids best characterized theoretically are{\it gapped}, where a gauge symmetry typically emerges.
  % is protected by an energy gap from excitations, which typically take the form of exotic fractionalized quasiparticles.
-Such gapped spin liquids can be classified by the concept of topological order, which relates the emergent gauge symmetry to a topological degeneracy, and the related concept of {\it long-range entanglement}???refs???.  
+An important and useful concept applicable here is topological order, which relates the emergent gauge symmetry to a topological degeneracy, and the related concept of {\it long-range entanglement}???refs???.  
 %Such properties emerge from a perspective which views the spin liquid wavefunction in the language of a fluctuating ``loop gas''.
 %A vast literature of phenomenological theories of gapped spin liquid states connects with a growing body of simulation work on microscopic models which harbour them; a theoretical field which seemed distastefully exotic less than a decade ago is now teeming with synergy as more examples of models with gapped spin liquids seem to appear daily.
-However, many experimental systems are currently identified as good candidates for spin liquids appear to be {\it gapless}.  Compared to their gapped counterparts, these phases are less amenable to simple unifying attributes such as topological order.  Although it is likely that other quantities, related perhaps to correlations or manifestations of long-range entanglement, can be used to characterize gapless phases, in this case the community suffers the difficulty that few viable examples of {\it models} -- particularly those tractable by large-scale numerical simulation -- are known to contain gapless spin liquids.
+However, many experimental systems currently identified as good candidates for spin liquids appear to be {\it gapless}.  Compared to their gapped counterparts, these phases are less amenable to simple unifying attributes such as topological order.  Although it is likely that other quantities, related perhaps to correlations or manifestations of long-range entanglement, can be used to characterize gapless phases, in this case the community suffers the difficulty that few viable examples of {\it models} -- particularly those tractable by large-scale numerical simulation -- are known to contain gapless spin liquids.
+
+We study a particular family of states, resonating-valence-bond (RVB) states on the square lattice, that are gapless and exhibit spin-liquid-type behavior \cite{RK,Sandvik,Alet}. Our main (but not only) tool is to analyze a subleading term in the Renyi entropy particularly useful for characterizing gapless systems \cite{Ju2012}.  This term arises in the entanglement between two regions formed by cutting a torus into two cylinders. This geometry is useful for studying gapless systems because the length of the boundaries separating the cylinders is independent of the area of the cylinders. Because of the long-range correlations, the entanglement entropy of gapless systems will be sensitive to varying the size of the cylinders. This dependence was studied for three systems in \cite{Ju2012}, and argued to have universal behavior. One of the results of this paper is to provide additional evidence in support of this assertion.
+
+One model with a gapless RVB ground state, the square-lattice quantum dimer model, is quite amenable to an analytic treatment. For example, long ago it was shown that all equal-time correlators diagonal in the dimer basis are those of a classical dimer model \cite{RK}. These can be computed exactly directly in the dimer model by using Pfaffian techniques \cite{Kasteleyn,Fisher,FisherStephenson}, or in the continuum limit by utilizing a two-dimensional classical free-boson field theory \cite{KivelsonFradkin,Henley}. Such exact computations have been done for entanglement quantities as well >>> references JM???. In this paper we extend these methods to compute the two-cylinder entanglement entropy for the quantum dimer model exactly in the scaling limit. We find for example that the striking even-odd effect observed numerically in \cite{Ju2012} for the $SU(2)$-invariant RVB state also occurs for the quantum dimer model, and our computation illuminates its origin.
+
+It is possible to interpolate between the $SU(2)$-invariant RVB state and the quantum dimer state by considering $SU(N)$-invariant generalizations of the former; many aspects of the quantum dimer state then can be extracted from the $N\to\infty$ limit. Whereas one cannot do exact computations directly in these models outside of the dimer case, the field theory computation can be extended to a full line of critical points by varying the stiffness of the classical boson. This line of critical points describes the scaling limit of a model of interacting quantum dimers \cite{cite{Alet_dimers1,Alet_dimers2,Damle}, and by universality one point on this line will describe universal properties of the $SU(2)$-invariant RVB state \cite{Alet,Sandvik}. We study the $SU(N)$ version, and by comparing our numerical results to the expansion developed in \cite{Damle}, provide strong evidence that that universal properties of the $N=2,3,4,5$ theories also are described by points on this line. Moreover, we provide consistency checks that the two-cylinder entanglement entropy also behaves universally for $N=2,3,4$.
+
+We extend the analytic results to 
+
+
+
+
+universality
+
+
 
 A paradigm for a spin liquid is the two-dimensional resonating-valence-bond (RVB) state \cite{Pauling,Anderson}.  A valence bond is a spin singlet, and the RVB state is a sum over states where each of the spins is paired into a spln singlet with some other spin. The RVB state breaks no symmetry, and so no local order parameter characterizes the spins. This state exhibits several of the hallmarks of topological order, for example a non-local order parameter, and having the number of ground states depending on the genus of the surface of space.
 %, and can also be viewed as a type of fluctuating loop gas -- hence allowing the epithet ``spin liquid''.  
@@ -64,7 +83,7 @@ However, the physics depends crucially on the underlying spatial lattice. For ne
 In the exponential case, it is not guaranteed that any local Hamiltonian is gapped (indeed, there are counterexamples), but typically they are.
 
 In this paper we study nearest-neighbor RVB states on the square lattice. The valence bonds here are typically referred to as dimers, and so the RVB state is the equal-amplitude sum over all dimer states. 
-Dimer-dimer correlators in this state are algebraically decaying, so Hastings' theorem requires that any model with this ground state be gapless. Nevertheless, it has long been known that spin-spin correlators are exponentially decaying, thus raising the possibility of  a spin gap. Moreover, recent results have given strong evidence that in the $SU(2)$-invariant case, there is no order, and so...
+Dimer-dimer correlators in this state are algebraically decaying, so Hastings' theorem requires that any model with this ground state be gapless. Nevertheless, it has long been known that spin-spin correlators are exponentially decaying \cite{LDA}, thus raising the possibility of  a spin gap. Moreover, recent results have given strong evidence that in the $SU(2)$-invariant case, there is no order, and so...
 
 This wavefunction is the exact groundstate of a quantum spin Hamiltonian with local interactions \cite{Cano}, leads to the analogy between the RVB phase and a gapless spin liquid state. 
   
@@ -76,16 +95,16 @@ S_n=\frac{1}{1-n} \ln {\rm Tr}\, \rho_A^n
 \end{equation}
 for $n>1$, which are rapidly emerging as the most utilitarian measure of quantum entanglement in a many-body wavefunction.  Through these calculations, we hope to characterize in detail the correlations and entanglement in the important paradigmatic RVB phase, described more below.
 
-
-We study the entanglement between two regions formed by cutting a torus into two cylinders. This geometry is particularly useful for studying gapless systems, because the length of the boundaries separating the cylinders is independent of the area of the cylinders. Because of the long-range correlations, the entanglement entropy of gapless systems will be sensitive to varying the size of the cylinders. This dependence was studied for three systems in \cite{Ju2012}, and argued to have universal behavior. One of the results of this paper is to provide additional evidence in support of this assertion.
-
 Focus on the RVB case...
 
 
 
 
-On the other hand, the RVB wave function bears an obvious similarity to the ground state of the
- the quantum dimer model (QDM)\cite{RokhsarKivelson}: 
+The RVB wave function bears an obvious similarity to the ground state of the
+ the quantum dimer model (QDM)\cite{RokhsarKivelson}.
+ 
+ 
+ 
  \begin{equation}
 | \Psi \rangle = \sum_{\alpha} |D_{\alpha} \rangle
 \end{equation}
