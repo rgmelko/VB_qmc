@@ -10,7 +10,7 @@
 
 \begin{document}
  
-\title[Entanglement and Correlations in the 2D RVB wave function]{Entanglement and correlations in the two-dimensional resonating valence bond wave-function}
+\title[Entanglement in  RVB and quantum dimer states]{Entanglement in the gapless resonating valence bond and quantum dimer states}
  
 \author{Jean-Marie St\'ephan$^1$, Hyejin Ju$^2$, Paul Fendley$^1$ and Roger G. Melko$^{3,4}$}
 
@@ -28,7 +28,11 @@
 \date{\today}
 \submitto{NJP}
 \begin{abstract}
- Entanglement and correlations in simple 2d wave function. Focus on RVB type. Followup paper to \cite{Ju2012} for the $SU(2)$ case.
+
+We study the two-dimensional resonating-valence-bond (RVB) and quantum dimer states on the square lattice,  as well as states that interpolate between the two. These states have algebraically decaying correlators of local quantities, and so describe gapless theories, although the RVB state is also believed to be a gapped liquid in its spinful sector. We show that the gapless behavior in the two states is qualitatively similar by studying a particular subleading term in the Renyi entropy. We compute it exactly for the quantum dimer models, showing   it behaves similarly to the familiar one-dimensional $\ln L$ term, although not identically. We extend the exact computation to an effective theory believed to interpolate the two. By numerical calculations for the $SU(2)$-invariant RVB state and its $SU(N)$-invariant generalizations, we provide further support for this belief.
+We also show how the entanglement entropy behaves qualitatively differently for different values of the Renyi index $n$, with large values of $n$ proving a more sensitive probe here, by virtue of exhibiting a striking even/odd effect.
+
+
 \end{abstract}
 \maketitle
 
@@ -39,13 +43,16 @@
 %\subsection{Entanglement for critical 2d quantum wave functions}
 \subsection{Gapless spin liquids, critical 2D wavefunctions, and entanglement}
 
-In the world of condensed matter physics, no state of matter is more elusive, exotic, or intriguing as the coveted quantum spin liquid.  A sanctuary for some of the most pivotal ideas relating to emergence, such as topological order and fractionalization, spin liquids are sought after in theory, simulation, and experiment alike.  The most well-characterized quantum spin liquids are the {\it gapped} spin liquid phases, where a discrete emergent gauge symmetry (the simplest being $Z_2$) is protected by an energy gap from excitations, which typically take the form of exotic fractionalized quasiparticles.  These gapped spin liquids can be classified by the concept of topological order, which relates the emergent gauge symmetry to a topological degeneracy, and the related concept of {\it long-range entanglement}.  
-Such properties emerge from a perspective which views the spin liquid wavefunction in the language of a fluctuating ``loop gas''.
-A vast literature of phenomenological theories of gapped spin liquid states connects with a growing body of simulation work on microscopic models which harbour them; a theoretical field which seemed distastefully exotic less than a decade ago is now teeming with synergy as more examples of models with gapped spin liquids seem to appear daily.
+Studying the entanglement of quantum states has proved to be a useful
 
-There is however a single dissatisfying element to the current research on quantum spin liquid states: the fact that no experimental systems are currently identified as good candidates for a gapped spin liquid.  Rather, all current experimental candidate phases appear to be {\it gapless}.  Compared to their gapped counterparts, these phases are less amenable to simple unifying attributes such as topological order.  Although it is likely that other quantities, related perhaps to correlations or manifestations of long-range entanglement, can be used to characterize gapless phases, in this case the community suffers the difficulty that few viable examples of {\it models} -- particularly those tractable by large-scale numerical simulation -- are known to contain gapless spin liquids.
 
-In this paper, we examine correlations and entanglement in a Resonating Valence Bond (RVB) wavefunction, which is a paradigmatic model for spin liquid behavior introduced by Pauling and Anderson.  Consisting of fluctuating valence bonds (or singlets), the wavefunction breaks no symmetry, leaving spins disordered, and can also be viewed as a type of fluctuating loop gas -- hence allowing the epithet ``spin liquid''.  The  wavefunction is also known to have algebraically decaying dimer-dimer correlations, which in combination with the fact that it has been shown that this wavefunction is the exact groundstate of a quantum spin Hamiltonian with local interactions \cite{Cano}, leads to the analogy between the RVB phase and a gapless spin liquid state.  
+%In the world of condensed matter physics, no state of matter is more elusive, exotic, or intriguing as the coveted quantum spin liquid.  A sanctuary for some of the most pivotal ideas relating to emergence, such as topological order and fractionalization, spin liquids are sought after in theory, simulation, and experiment alike.  The most well-characterized quantum spin liquids are the {\it gapped} spin liquid phases, where a discrete emergent gauge symmetry (the simplest being $Z_2$) is protected by an energy gap from excitations, which typically take the form of exotic fractionalized quasiparticles.  These gapped spin liquids can be classified by the concept of topological order, which relates the emergent gauge symmetry to a topological degeneracy, and the related concept of {\it long-range entanglement}.  
+%Such properties emerge from a perspective which views the spin liquid wavefunction in the language of a fluctuating ``loop gas''.
+%A vast literature of phenomenological theories of gapped spin liquid states connects with a growing body of simulation work on microscopic models which harbour them; a theoretical field which seemed distastefully exotic less than a decade ago is now teeming with synergy as more examples of models with gapped spin liquids seem to appear daily.
+
+%There is however a single dissatisfying element to the current research on quantum spin liquid states: the fact that no experimental systems are currently identified as good candidates for a gapped spin liquid.  Rather, all current experimental candidate phases appear to be {\it gapless}.  Compared to their gapped counterparts, these phases are less amenable to simple unifying attributes such as topological order.  Although it is likely that other quantities, related perhaps to correlations or manifestations of long-range entanglement, can be used to characterize gapless phases, in this case the community suffers the difficulty that few viable examples of {\it models} -- particularly those tractable by large-scale numerical simulation -- are known to contain gapless spin liquids.
+
+%In this paper, we examine correlations and entanglement in a Resonating Valence Bond (RVB) wavefunction, which is a paradigmatic model for spin liquid behavior introduced by Pauling and Anderson.  Consisting of fluctuating valence bonds (or singlets), the wavefunction breaks no symmetry, leaving spins disordered, and can also be viewed as a type of fluctuating loop gas -- hence allowing the epithet ``spin liquid''.  The  wavefunction is also known to have algebraically decaying dimer-dimer correlations, which in combination with the fact that it has been shown that this wavefunction is the exact groundstate of a quantum spin Hamiltonian with local interactions \cite{Cano}, leads to the analogy between the RVB phase and a gapless spin liquid state.  
 
 Since recent algorithmic advances allow for the large-scale simulation of the RVB wavefunction through quantum Monte Carlo procedures, we are able to calculate correlation function exactly on finite-size system.  In addition, we calculate the Renyi entropies
 \begin{equation}
