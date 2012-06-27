@@ -284,15 +284,16 @@ In the even case $a=0$, one recovers, upon setting $\kappa=1/2$ and after modula
 \end{equation}
 We finally remark that such a strong even-odd effect has been subject to several studies in the dimer model\cite{Ferdinand,Dimers_all,Ruelledimers}, although it has to our knowledge never been interpreted in the context of the height mapping. Plugging these results in Eq.~(\ref{eq:shape_general}), and using the torus partition funtion\cite{BigYellowBook} also given in the appendix, one finally gets
 \begin{eqnarray}\label{eq:cft_prediction}
- s_n^{\rm (even)}(y,\tau)&=&\frac{n}{1-n}\ln \left(\frac{\eta(\tau)^2}{\theta_3(2\tau)\theta_3(\tau/2)}\times\frac{\theta_3(2y \tau)\theta_3(2(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\
+ s_n^{\rm (even)}(y,\tau)&=&\frac{n}{1-n}\ln \left(\frac{\eta(\tau)^2}{\theta_3(2\tau)\theta_3(\tau/2)}\times\frac{\theta_3(2y \tau)\theta_3(2(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_prediction_odd}
  s_n^{\rm (odd)}(y,\tau)&=&\frac{n}{1-n}\ln \left(\frac{\eta(\tau)^2}{\theta_3(2\tau)\theta_3(\tau/2)}\times\frac{\theta_4(2y \tau)\theta_4(2(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)
 \end{eqnarray}
 Fig.~\ref{fig:dimers_shape} shows a numerical test of the universal shape Eq.~(\ref{eq:cft_prediction}) for quantum dimers, for two different aspect ratios $L_y/L_x=1$ and $L_y/L_x=2$.  
 \begin{figure}[ht]
 \begin{center}
- \includegraphics[width=10cm]{./figures/dimers_shape.pdf}
+ \includegraphics[width=8cm]{./figures/dimers_shape.pdf}
+ \includegraphics[width=8cm]{./figures/dimers_shape2.pdf}
  \end{center}
- \caption{Numerical results for the second R\'enyi entropy $S_2$ as a function of the subsystem-ratio $y$ for $L_x=20$ and two torus aspect ratios $L_y/L_x=1,2$. The CFT prediction is given by Eq.~(\ref{eq:cft_prediction}) up to a \emph{single} overall constant representing the area law term. For $L_y\gg L_x$, $S_2$ goes exponentially fast to a perfectly flat curve, and the even-odd effect disappears.}
+ \caption{Numerical results for the second R\'enyi entropy $S_2$ as a function of the subsystem-ratio $y=\ell_y/L_y$ for $L_x=20$. The CFT predictions are given by Eq.~(\ref{eq:cft_prediction}) in the even case and Eq.~(\ref{eq:cft_prediction_odd}) in the odd case. \emph{Left:} Torus with aspect ratio $L_y/L_x=1$. Black dots are the data for quantum dimers on the square lattice. \emph{Right:} Torus with aspect ratio $L_y/L_x=2$. The even-odd effect is much less promouced in this case, compatible with the fact that for $L_y\gg L_x$, $S_2$ goes exponentially fast to a single flat curve. The relatively large finite-size effects should disappear in the thermodynamic limit.}
  \label{fig:dimers_shape}
 \end{figure}
 \paragraph{}
@@ -308,7 +309,7 @@ Several interesting observations can be made:
 To illustrate the slowness of the convergence, we also perform simulations in the exactly solvable case $S_\infty=-\ln p_{\rm max}$ (Eq.~(\ref{eq:pmax})), where the agreement between CFT and the lattice can be made rigorous. $s_{\infty}$ is obtained by taking the $n\to \infty$ limit in Eq.~(\ref{eq:cft_prediction}). 
 As an additional test one can also compute $s_\infty$ in the $W=(0,0)$ winding sector. The calculation is performed in the appendix. The result reads:
 \begin{eqnarray}\label{eq:cft_w0}
- s_\infty^{\rm (even)}&=&-\ln \left(\frac{\eta(\tau)^2\theta_3(2y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\
+ s_\infty^{\rm (even)}&=&-\ln \left(\frac{\eta(\tau)^2\theta_3(2y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_w0_odd}
  s_\infty^{\rm (odd)}&=&-\ln \left(\frac{\eta(2\tau)^2\theta_4(2y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)
 \end{eqnarray}
 Notice that even in this sector there are still contributions coming from the compactified nature of the height field. This can be explained by the fact that while the total winding number has to be zero, there can still be winding fluctuations at the boundaries between $A$ and $B$. 
@@ -319,7 +320,7 @@ A comparison between the numerical and analytical results is performed in Fig.~\
   \includegraphics[width=8cm]{./figures/sinfty_16.pdf}
   \includegraphics[width=8cm]{./figures/sinfty_704.pdf}
  \end{center}
-\caption{Comparison numerics/analytics in the exactly solvable case $S_\infty$. Black points are the numerical data for the all sector, and blue crosses represents the numerical data in the $W=(0,0)$ sector. \emph{Left:} $L_x=16$, the data is compared with Eqs.~(\ref{eq:cft_prediction}) and (\ref{eq:cft_w0}) up to a single constant. The agreement is fair, but still far from converged. \emph{Right:} Same procedure for $L=704$. The agreement is close to perfect, as expected. }
+\caption{Comparison numerics/analytics in the exactly solvable case $S_\infty$. Black points are the numerical data for the all sector, and blue crosses represents the numerical data in the $W=(0,0)$ sector. \emph{Left:} $L_x=16$, the data is compared with Eqs.~(\ref{eq:cft_prediction}), (\ref{eq:cft_prediction_odd}),  (\ref{eq:cft_w0}) and (\ref{eq:cft_w0_odd}) up to a single constant. The agreement is fair, but still far from converged. \emph{Right:} Same procedure for $L=704$. The agreement is close to perfect, as expected. }
 \label{fig:Sinfty}
 \end{figure}
 \section{Correlations in the $SU(N)$ RVB wave function}
