@@ -64,7 +64,7 @@ However, the physics depends crucially on the underlying spatial lattice. For ne
 In the exponential case, it is not guaranteed that any local Hamiltonian is gapped (indeed, there are counterexamples), but typically they are.
 
 In this paper we study nearest-neighbor RVB states on the square lattice. The valence bonds here are typically referred to as dimers, and so the RVB state is the equal-amplitude sum over all dimer states. 
-Dimer-dimer correlators in this state are algebraically decaying, so Hastings' theorem requires that any model with this ground state be gapless. 
+Dimer-dimer correlators in this state are algebraically decaying, so Hastings' theorem requires that any model with this ground state be gapless. Nevertheless, it has long been known that spin-spin correlators are exponentially decaying, thus raising the possibility of  a spin gap. Moreover, recent results have given strong evidence that in the $SU(2)$-invariant case, there is no order, and so...
 
 This wavefunction is the exact groundstate of a quantum spin Hamiltonian with local interactions \cite{Cano}, leads to the analogy between the RVB phase and a gapless spin liquid state. 
   
@@ -76,18 +76,37 @@ S_n=\frac{1}{1-n} \ln {\rm Tr}\, \rho_A^n
 \end{equation}
 for $n>1$, which are rapidly emerging as the most utilitarian measure of quantum entanglement in a many-body wavefunction.  Through these calculations, we hope to characterize in detail the correlations and entanglement in the important paradigmatic RVB phase, described more below.
 
-\textcolor{blue}{
-\begin{itemize}
-\item R\'enyi entanglement entropy (REE) $S_n=(1-n)^{-1}\ln {\rm Tr}\, \rho^n$
- \item Study of entanglement for a finite critical system in $d>1$, trying to generalize the celebrated $\frac{c}{3}\ln\left| (L/\pi)\sin (\pi x /L)\right|$. Idea: entanglement sensible to the full geometry, because of long range correlations. 
- \item Relation with topological stuff (Kitaev \& Preskill\cite{KP} and also Levin \& Wen\cite{LW})
- \item Entanglement entropy is very difficult to calculate numerically, \emph{but} we have access to $S_2$ in QMC\cite{swap}.
- \item Focus on Quantum dimers, $SU(2)$-RVB, and trying to interpolate between the two (less studied $SU(N)$).
-\end{itemize}
-}
-% \subsection{Torus geometry}
-% \label{sec:geometry}
-% This paper presents a detailed study of the torus geometry introduced in \cite{Ju2012}, for RK-type states. The torus has dimensions $L_x$ and $L_y$, and is cut into two cylinders of dimensions $L_x \times \ell_y$ and $ L_x \times (L_y-\ell_y)$, as is shown in Fig.~\ref{fig:torus}.
+
+We study the entanglement between two regions formed by cutting a torus into two cylinders. This geometry is particularly useful for studying gapless systems, because the length of the boundaries separating the cylinders is independent of the area of the cylinders. Because of the long-range correlations, the entanglement entropy of gapless systems will be sensitive to varying the size of the cylinders. This dependence was studied for three systems in \cite{Ju2012}, and argued to have universal behavior. One of the results of this paper is to provide additional evidence in support of this assertion.
+
+Focus on the RVB case...
+
+
+
+
+On the other hand, the RVB wave function bears an obvious similarity to the ground state of the
+ the quantum dimer model (QDM)\cite{RokhsarKivelson}: 
+ \begin{equation}
+| \Psi \rangle = \sum_{\alpha} |D_{\alpha} \rangle
+\end{equation}
+where, hard-core dimers are defined with binary operators,
+\begin{equation}
+ |D_{\alpha} \rangle = \prod_{i=1}^{N/2} \big( \sigma_{i,j_{\alpha}}  \big).
+ \end{equation}
+ Here, a nearest-neighbor spin-singlet in the RVB wave function can be thought of as a dimer connecting the two sites. In the QDM one forgets the underlying spins: the only degrees of freedom in the quantum dimer model are the nearest-neighbor dimers. Different dimer configurations are orthogonal in the QDM, $\langle D_{\beta} | D_{\alpha} \rangle = \delta_{\beta,\alpha}$, but  not in the RVB case, where  $\langle V_{\beta} | V_{\alpha} \rangle = 2^{n_l - N/2}$ with $n_l$ being the number of loops in the transition graph. One very convenient feature of the QDM is that  correlators in its ground state here can be computed exactly even on the lattice, because they are exactly those of the two-dimensional classical dimer model (\textcolor{red}{NEED TO DEFINE THE DIFFERENCE BETWEEN CLASSICAL AND QUANTUM DIMER MODELS} )\textcolor{blue}{[JM: I would prefer to define first a classical dimer model (counting dimers on the square lattice) and then constructing a Hilbert space by associating a ket $|D_\alpha\rangle$ to 
+each dimer configuration, arbitrarily deciding $\langle D_\alpha|D_{\beta}\rangle=\delta_{\alpha \beta}$ to make life easier.]}. This can be mapped on to a free fermion problem (i.e.\ computing the Pfaffian of a specific matrix \cite{Kasteleyn,Fisher}), and their asymptotic behavior easily obtained. On the square lattice, 
+dimer-dimer correlators were long ago shown to be algebraically decaying \cite{FisherStephenson}.
+
+This similarity makes it plausible the the correlator of two ``dimers'' (i.e. two nearest-neighbor spin singles) in the RVB case will behave in a similar fashion to the dimer-dimer correlator in the QDM. This expectation is further supported by the fact that one can interpolate between the two wave functions, either by studying an $SU(N)$ version as described below, or by dressing the lattice itself \cite{RMS}, and there is no evidence for any phase transition. Such algebraic decay of   ``dimer-dimer'' correlations  in the RVB state was convincingly demonstrated numerically
+\cite{RVB1,RVB2}:
+ \begin{equation}
+  C_{dd}(\vec{r}_1,\vec{r}_2) \sim \left|\vec{r}_1-\vec{r}_2\right|^{-\alpha}
+ \end{equation}
+The exponent was found to be close to $\alpha \approx 1.2$. This is an even weaker falloff than in the QDM, where $\alpha_D=2$ \cite{FisherStephenson}. By the theorem of \cite{Hastings_thm}, algebraic decay of local operators in a two-dimensional ground state requires that any local Hamiltonian with this ground state be gapless. Thus the QDM at its RK point is gapless, as is the Hamiltonian of Ref.~\cite{Cano}, whose ground-state is exactly the RVB state. 
+
+
+
+% utilized in \cite{Ju2012}, for RK-type states. The torus has dimensions $L_x$ and $L_y$, and is cut i%nto two cylinders of dimensions $L_x \times \ell_y$ and $ L_x \times (L_y-\ell_y)$
 % \begin{figure}[ht]
 %  \begin{center}
 %   \includegraphics[width=7cm,angle=-90]{./figures/16x8b.pdf}
@@ -111,6 +130,19 @@ for $n>1$, which are rapidly emerging as the most utilitarian measure of quantum
 % \end{equation}
 % Since the boundary between $A$ and $B$ is smooth and assuming a Coulomb gas description, we expect no subleading logarithmic corrections\cite{Hsu2009}. The first subleading term should be a universal constant $s_n(y,\tau)$, which depends only on the two aspect ratios for a given universality class. At this stage it is important to notice that although $a_n$ is non-universal -- and therefore depends on the specifics of the lattice model -- this area law term should \emph{not} depend on the two aspect ratios. This simple fact has an important practical consequence: one can read off the $y$ (or $\tau$) dependence of $s_n(y,\tau)$ by just looking at the numerical data $S_n(L,y,\tau)$ for sufficiently large $L$. We will use this method\cite{Ju2012} throughout the paper, therefore sidestepping any  (possibly difficult in practice) fitting procedure.    
 
+\textcolor{blue}{
+\begin{itemize}
+\item R\'enyi entanglement entropy (REE) $S_n=(1-n)^{-1}\ln {\rm Tr}\, \rho^n$
+ \item Study of entanglement for a finite critical system in $d>1$, trying to generalize the celebrated $\frac{c}{3}\ln\left| (L/\pi)\sin (\pi x /L)\right|$. Idea: entanglement sensible to the full geometry, because of long range correlations. 
+ \item Relation with topological stuff (Kitaev \& Preskill\cite{KP} and also Levin \& Wen\cite{LW})
+ \item Entanglement entropy is very difficult to calculate numerically, \emph{but} we have access to $S_2$ in QMC\cite{swap}.
+ \item Focus on Quantum dimers, $SU(2)$-RVB, and trying to interpolate between the two (less studied $SU(N)$).
+\end{itemize}
+}
+
+
+
+
 \subsection{The RVB and Coulomb gas states}
 \label{sec:cg}
 The nearest-neighbor RVB wavefunction on the square lattice is defined as an equal-amplitude superposition of all nearest-neighbor valence-bond (or singlet) states:
@@ -126,25 +158,6 @@ This wavefunction can also be written as a superposition of classical ``loop'' s
 Correlators in the RVB can be written in terms of the correlators of this 2D classical loop model, where loops longer than length two have a weight of $4$ per loop (\textcolor{red}{THE DEFINITION OF ``WEIGHT'' NEEDS EXPLAINING}). A spin-spin correlator corresponds to having a strand of loop end at the sites of the spins \cite{Doucot}. Such a correlator is exponentially decaying  whenever the weight per loop is greater than 2 \cite{Nienhuis}.  Moreover, extensive numerics indicate \cite{RVB1,RVB2} have not found any  spin order. 
 %In this sense, the spins are ``deconfined'' and this state perhaps represents a sort of spin liquid.
 
-On the other hand, the RVB wave function bears an obvious similarity to the ground state of the
- the quantum dimer model (QDM)\cite{RokhsarKivelson}: 
- \begin{equation}
-| \Psi \rangle = \sum_{\alpha} |D_{\alpha} \rangle
-\end{equation}
-where, hard-core dimers are defined with binary operators,
-\begin{equation}
- |D_{\alpha} \rangle = \prod_{i=1}^{N/2} \big( \sigma_{i,j_{\alpha}}  \big).
- \end{equation}
- Here, a nearest-neighbor spin-singlet in the RVB wave function can be thought of as a dimer connecting the two sites. In the QDM one forgets the underlying spins: the only degrees of freedom in the quantum dimer model are the nearest-neighbor dimers. Different dimer configurations are orthogonal in the QDM, $\langle D_{\beta} | D_{\alpha} \rangle = \delta_{\beta,\alpha}$, but  not in the RVB case, where  $\langle V_{\beta} | V_{\alpha} \rangle = 2^{n_l - N/2}$ with $n_l$ being the number of loops in the transition graph. One very convenient feature of the QDM is that  correlators in its ground state here can be computed exactly even on the lattice, because they are exactly those of the two-dimensional classical dimer model (\textcolor{red}{NEED TO DEFINE THE DIFFERENCE BETWEEN CLASSICAL AND QUANTUM DIMER MODELS} )\textcolor{blue}{[JM: I would prefer to define first a classical dimer model (counting dimers on the square lattice) and then constructing a Hilbert space by associating a ket $|D_\alpha\rangle$ to 
-each dimer configuration, arbitrarily deciding $\langle D_\alpha|D_{\beta}\rangle=\delta_{\alpha \beta}$ to make life easier.]}. This can be mapped on to a free fermion problem (i.e.\ computing the Pfaffian of a specific matrix \cite{Kasteleyn,Fisher}), and their asymptotic behavior easily obtained. On the square lattice, 
-dimer-dimer correlators were long ago shown to be algebraically decaying \cite{FisherStephenson}.
-
-This similarity makes it plausible the the correlator of two ``dimers'' (i.e. two nearest-neighbor spin singles) in the RVB case will behave in a similar fashion to the dimer-dimer correlator in the QDM. This expectation is further supported by the fact that one can interpolate between the two wave functions, either by studying an $SU(N)$ version as described below, or by dressing the lattice itself \cite{RMS}, and there is no evidence for any phase transition. Such algebraic decay of   ``dimer-dimer'' correlations  in the RVB state was convincingly demonstrated numerically
-\cite{RVB1,RVB2}:
- \begin{equation}
-  C_{dd}(\vec{r}_1,\vec{r}_2) \sim \left|\vec{r}_1-\vec{r}_2\right|^{-\alpha}
- \end{equation}
-The exponent was found to be close to $\alpha \approx 1.2$. This is an even weaker falloff than in the QDM, where $\alpha_D=2$ \cite{FisherStephenson}. By the theorem of \cite{Hastings_thm}, algebraic decay of local operators in a two-dimensional ground state requires that any local Hamiltonian with this ground state be gapless. Thus the QDM at its RK point is gapless, as is the Hamiltonian of Ref.~\cite{Cano}, whose ground-state is exactly the RVB state. 
 
 %\paragraph{}
 
