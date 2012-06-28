@@ -78,7 +78,8 @@ One lesson from our results is that universal entanglement properties can be qua
 
 
 It is possible to interpolate between the $SU(2)$-invariant RVB state and the quantum dimer state by considering $SU(N)$-invariant generalizations of the former; many aspects of the quantum dimer state then can be extracted from the $N\to\infty$ limit. Such a correspondence can be pushed further: Ref.~\cite{Damle} defined a cluster expansion of the RVB ``loop gas''\cite{Sutherland_loops} in terms of interacting dimers in the large $N$ limit. One recovers to first non-trivial order the interacting generalization of the quantum dimer model studied in  \cite{Alet_dimers1,Alet_dimers2}. Most strikingly, the critical exponent $\alpha$ extrapolated to $N=2$ turned out to be in good agreement with the previous numerical studies\cite{RVB1,RVB2}.
-Whereas one cannot do exact computations directly in these models outside of the dimer case, the field theory computation can be extended to a full line of critical points by varying the stiffness of the classical boson. This line of critical points likely describes the scaling limit of the interacting quantum dimer model\cite{Alet_dimers1,Alet_dimers2,Damle}.  We expect that  the $SU(N)$ version studied here also will have the same universal behavior, and by comparing our quantum Monte Carlo results to the expansion developed in \cite{Damle}, we provide strong evidence that that the scaling limit of the $N=2,3,4,5$ theories indeed are points on this line. Moreover, we provide consistency checks that the two-cylinder entanglement entropy also behaves universally for $N=2,3,4$.
+
+Whereas one cannot do exact computations directly in these models outside of the dimer case, the field theory computation can be extended to a full line of critical points by varying the stiffness of the classical boson. This line of critical points likely describes the scaling limit of the interacting quantum dimer model\cite{Alet_dimers1,Alet_dimers2,Damle}.  We expect that the $SU(N)$ version studied here also will have the same universal behavior, and by comparing our quantum Monte Carlo results to the expansion developed in \cite{Damle}, we provide strong evidence that that the scaling limit of the $N=2,3,4,5$ theories indeed are points on this line. Moreover, we provide consistency checks that the two-cylinder entanglement entropy also behaves universally for $N=2,3,4$. Our results therefore strongly imply that at least the gapless part of the square-lattice RVB state behaves qualitatively similar to the quantum dimer model; there is no phase transition as $N$ is varied.
 
 
 The paper is organized as follows:
@@ -103,31 +104,44 @@ Finally, Sec.~\ref{sec:rvb_entanglement} presents numerical simulations of entan
 \label{sec:RVB}
 
 
-A paradigm for a spin liquid is the two-dimensional resonating-valence-bond (RVB) state \cite{Pauling,Anderson}.  A valence bond is a spin singlet, and the RVB state is a sum over states where each of the spins is paired into a spln singlet with some other spin. The RVB state breaks no symmetry, and so no local order parameter characterizes the spins. This state exhibits several of the hallmarks of topological order, for example a non-local order parameter, and having the number of ground states depending on the genus of the surface of space.
-%, and can also be viewed as a type of fluctuating loop gas -- hence allowing the epithet ``spin liquid''.  
-However, the physics depends crucially on the underlying spatial lattice. For nearest-neighbor RVB states (where the paired spins are nearest neighbors), correlators of local operators in this state typically decay algebraically when the the lattice is bipartite, and exponentially when it is not \cite{Moessner}. A theorem of Hastings guarantees that in the algebraic case, any local Hamiltonian with this as a ground state must be gapless \cite{Hastings_thm}. 
-In the exponential case, it is not guaranteed that any local Hamiltonian is gapped (indeed, there are counterexamples), but typically they are.
-
-In this paper we study nearest-neighbor RVB states on the square lattice. The valence bonds here are typically referred to as dimers, and so the RVB state is the equal-amplitude sum over all dimer states. 
-Dimer-dimer correlators in this state are algebraically decaying, so Hastings' theorem requires that any model with this ground state be gapless. Nevertheless, it has long been known that spin-spin correlators are exponentially decaying \cite{LDA}, thus raising the possibility of  a spin gap. Moreover, recent results have given strong evidence that in the $SU(2)$-invariant case, there is no order, and so...
-
-This wavefunction is the exact groundstate of a quantum spin Hamiltonian with local interactions \cite{Cano}, leads to the analogy between the RVB phase and a gapless spin liquid state. 
-  
-
-
-The RVB wave function bears an obvious similarity to the ground state of the
- the quantum dimer model (QDM)\cite{RokhsarKivelson}.
- 
- 
- 
- \begin{equation}
-| \Psi \rangle = \sum_{\alpha} |D_{\alpha} \rangle
+A paradigm for a spin liquid is the two-dimensional resonating-valence-bond (RVB) state \cite{Anderson}. Much effort has gone into its study, since the classic work in the late '80s \cite{LDA,Sutherland,???}.  A valence bond is a spin singlet, and the RVB state is a sum over states where each of the spins is paired into a spln singlet with some other spin. Precisely,
+the nearest-neighbor $SU(2)$ RVB wavefunction is the equal-amplitude superposition of all nearest-neighbor valence-bond (or singlet) states of spin-1/2 particles fixed at the sites of some lattice. For the ${\cal N}$-site square lattice, the RVB state is
+\begin{equation}
+| \Psi \rangle = \sum_{\alpha} |V_{\alpha} \rangle
+\label{RVBdef}
 \end{equation}
-where, hard-core dimers are defined with binary operators,
+where
+\begin{equation}
+ |V_{\alpha} \rangle = \frac{1}{2^{{\cal N}/4}} \prod_{i=1}^{{\cal N}/2} \big( | \uparrow_i \downarrow_{j_{\alpha}} \rangle  - | \downarrow_i \uparrow_{j_{\alpha}} \rangle  \big)
+\label{RVBdef2}
+\end{equation}
+so each spin $i$ on one sublattice is in a singlet with one of its nearest neighbors $j_{\alpha}$. For obvious reasons, the nearest-neighbor valence bonds are often called ``dimers'', and so the RVB state is the equal amplitude sum over all possible dimer configurations. Our entanglement probes require knowledge only of this state, and so we do not require a Hamiltonian. However, it is worth noting that this wavefunction is the exact ground state of a quantum spin Hamiltonian with local interactions \cite{Cano}.
+
+The RVB state breaks no symmetry, and so it is a natural candidate for a state exhibiting spin-liquid behavior.  For example, if the two-dimensional square lattice is periodic and has an even number of sites in both directions (i.e.\ is a torus), there is a winding number for each direction. These are defined simply by counting the dimers around a closed path going straight around a cycle, weighting each dimer by $+1$ for an even number of steps along the path, $-1$ for an odd number of steps, with no contribution from empty links. An RVB state can be defined for each value of the winding numbers, and 
+each will be the ground state of any local Hamiltonian. The number of ground states will then depend on the number of non-trivial cycles, a basic characteristic of topological order. 
+
+For the square lattice, extensive numerical analysis indicates that dimer-dimer correlators in the RVB state decay algebraically \cite{RVB1,RVB2}. A theorem of Hastings guarantees that when any local operators have an algebraically decaying correlator, any local Hamiltonian with this as a ground state must be gapless \cite{Hastings_thm}. Thus the square-lattice RVB state, could only describe a gapless system. However, it has long been known, both from numerics and strong analytic arguments, that spin-spin correlators are exponentially decaying \cite{LDA}. Coupled with the fact that no local order parameter has been found \cite{RVB1,RVB2}, it seems very possible that there is a spin gap, and that the state is effectively behaves as a spin liquid.
+
+In this paper we do not address this question directly. Instead we focus on the gapless behavior of nearest-neighbor RVB states on the square lattice. One key tool is to study RVB state of the quantum dimer model. The Hilbert space of the quantum dimer model is spanned by dimer states, i.e.\ each dimer configuration is a basis element of this Hilbert space. The RVB state for dimers is then the equal-amplitude sum over all these states: cite{RokhsarKivelson}.
+\begin{equation}
+| \Psi \rangle_D = \sum_{\alpha} |D_{\alpha} \rangle
+\end{equation}
+where hard-core dimers are defined with binary operators,
 \begin{equation}
  |D_{\alpha} \rangle = \prod_{i=1}^{N/2} \big( \sigma_{i,j_{\alpha}}  \big).
  \end{equation}
- Here, a nearest-neighbor spin-singlet in the RVB wave function can be thought of as a dimer connecting the two sites. In the QDM one forgets the underlying spins: the only degrees of freedom in the quantum dimer model are the nearest-neighbor dimers. Different dimer configurations are orthogonal in the QDM, $\langle D_{\beta} | D_{\alpha} \rangle = \delta_{\beta,\alpha}$, but  not in the RVB case, where  $\langle V_{\beta} | V_{\alpha} \rangle = 2^{n_l - N/2}$ with $n_l$ being the number of loops in the transition graph. One very convenient feature of the QDM is that  correlators in its ground state here can be computed exactly even on the lattice, because they are exactly those of the two-dimensional classical dimer model (\textcolor{red}{NEED TO DEFINE THE DIFFERENCE BETWEEN CLASSICAL AND QUANTUM DIMER MODELS} )\textcolor{blue}{[JM: I would prefer to define first a classical dimer model (counting dimers on the square lattice) and then constructing a Hilbert space by associating a ket $|D_\alpha\rangle$ to 
+In the QDM one essentially forgets the underlying spins: the only degrees of freedom in the quantum dimer model are the nearest-neighbor dimers.
+
+
+
+The important difference between the $SU(2)$ RVB state (\ref{RVBdef1},\ref{RVBdef2}) is the inner product. 
+In the quantum dimer model, different dimer configurations are defined to be orthogonal:
+$$\langle D_{\beta} | D_{\alpha} \rangle = \delta_{\beta,\alpha}\ .$$ 
+In the RVB state, the inner product is the usual one for spins: each different spin state in the $S^z$ diagonal basis is orthogonal to the others. As is easily shown \cite{Sutherland}, this means that different dimer configurations in the spin model are {\em not} orthogonal. In fact, there is a convenient loop-gas description to represent their inner product. One places the two dimer graphs on top of each other. Because of the requirement that there be exactly one dimer per site, this means that the dimers of the two graphs put together form closed loops. The shortest loops are of length two, when both graphs have a dimer on the same link. Using the spin inner product then gives 
+$$\langle V_{\beta} | V_{\alpha} \rangle = 2^{n_l - N/2}\ ,$$ 
+where $n_l$ being the number of loops in the transition graph.
+
+ One very convenient feature of the QDM is that  correlators in its ground state here can be computed exactly even on the lattice, because they are exactly those of the two-dimensional classical dimer model (\textcolor{red}{NEED TO DEFINE THE DIFFERENCE BETWEEN CLASSICAL AND QUANTUM DIMER MODELS} )\textcolor{blue}{[JM: I would prefer to define first a classical dimer model (counting dimers on the square lattice) and then constructing a Hilbert space by associating a ket $|D_\alpha\rangle$ to 
 each dimer configuration, arbitrarily deciding $\langle D_\alpha|D_{\beta}\rangle=\delta_{\alpha \beta}$ to make life easier.]}. This can be mapped on to a free fermion problem (i.e.\ computing the Pfaffian of a specific matrix \cite{Kasteleyn,Fisher}), and their asymptotic behavior easily obtained. On the square lattice, 
 dimer-dimer correlators were long ago shown to be algebraically decaying \cite{FisherStephenson}.
 
@@ -142,15 +156,7 @@ The exponent was found to be close to $\alpha \approx 1.2$. This is an even weak
 
 \subsection{The RVB and Coulomb gas states}
 \label{sec:cg}
-The nearest-neighbor RVB wavefunction on the square lattice is defined as an equal-amplitude superposition of all nearest-neighbor valence-bond (or singlet) states:
-\begin{equation}
-| \Psi \rangle = \sum_{\alpha} |V_{\alpha} \rangle
-\end{equation}
-where
-\begin{equation}
- |V_{\alpha} \rangle = \frac{1}{2^{N/4}} \prod_{i=1}^{N/2} \big( | \uparrow_i \downarrow_{j_{\alpha}} \rangle  - | \downarrow_i \uparrow_{j_{\alpha}} \rangle  \big)
-\end{equation}
-defined such that each spin $i$ on one sublattice is in a singlet with one of its nearest neighbors $j_{\alpha}$.
+
 This wavefunction can also be written as a superposition of classical ``loop'' states, defined by the transition graph formed by superimposing one element of the sum over $\alpha$ with some reference state.\footnote{\textcolor{blue}{This can be seen by computing the norm $\langle \Psi|\Psi\rangle=\sum_{{\rm loops}}2^{{\cal N}+2{\cal L}}$, where the sum runs over all the possible loop configurations. ${\cal N}$ is the number of double-edges and ${\cal L}$ is the number of non trivial loops.}}
 Correlators in the RVB can be written in terms of the correlators of this 2D classical loop model, where loops longer than length two have a weight of $4$ per loop (\textcolor{red}{THE DEFINITION OF ``WEIGHT'' NEEDS EXPLAINING}). A spin-spin correlator corresponds to having a strand of loop end at the sites of the spins \cite{LDA}. Such a correlator is exponentially decaying  whenever the weight per loop is greater than 2 \cite{Nienhuis}.  Moreover, extensive numerics indicate \cite{RVB1,RVB2} have not found any  spin order. 
 %In this sense, the spins are ``deconfined'' and this state perhaps represents a sort of spin liquid.
