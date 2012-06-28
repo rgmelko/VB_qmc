@@ -55,20 +55,25 @@ It is widely believed that many properties of a gapped phase are robust under (s
 
 
 
-The behavior of quantities such as the Renyi entropy thus can be used to characterize spin-liquid states, without requiring knowledge of any specific Hamiltonian. The quantum spin liquids best characterized theoretically are{\it gapped}, where a gauge symmetry typically emerges.
+The behavior of quantities such as the Renyi entropy thus can be used to characterize spin-liquid states, without requiring knowledge of any specific Hamiltonian. The quantum spin liquids best characterized theoretically are {\it gapped}, where a gauge symmetry typically emerges.
  % is protected by an energy gap from excitations, which typically take the form of exotic fractionalized quasiparticles.
 An important and useful concept applicable here is topological order, which relates the emergent gauge symmetry to a topological degeneracy, and the related concept of {\it long-range entanglement}???refs???.  
 %Such properties emerge from a perspective which views the spin liquid wavefunction in the language of a fluctuating ``loop gas''.
 %A vast literature of phenomenological theories of gapped spin liquid states connects with a growing body of simulation work on microscopic models which harbour them; a theoretical field which seemed distastefully exotic less than a decade ago is now teeming with synergy as more examples of models with gapped spin liquids seem to appear daily.
 However, many experimental systems currently identified as good candidates for spin liquids appear to be {\it gapless}.  Compared to their gapped counterparts, these phases are less amenable to simple unifying attributes such as topological order.  Although it is likely that other quantities, related perhaps to correlations or manifestations of long-range entanglement, can be used to characterize gapless phases, in this case the community suffers the difficulty that few viable examples of {\it models} -- particularly those tractable by large-scale numerical simulation -- are known to contain gapless spin liquids.
 
-We study a particular family of states, resonating-valence-bond (RVB) states on the square lattice, that are gapless and exhibit spin-liquid-type behavior \cite{RokhsarKivelson,Sandvik,Alet}. Our main (but not only) tool is to analyze a subleading term in the Renyi entropy particularly useful for characterizing gapless systems \cite{Ju2012}.  This term arises in the entanglement between two regions formed by cutting a torus into two cylinders. This geometry is useful for studying gapless systems because the length of the boundaries separating the cylinders is independent of the area of the cylinders. Because of the long-range correlations, the entanglement entropy of gapless systems will be sensitive to varying the size of the cylinders. This dependence was studied for three systems in \cite{Ju2012}, and argued to have universal behavior. One of the results of this paper is to provide additional evidence in support of this assertion.
+We study a particular family of states, resonating-valence-bond (RVB) states on the square lattice, that are gapless and exhibit spin-liquid-type behavior \cite{RokhsarKivelson,Sandvik,Alet}. Our main (but not only) tool is to analyze a subleading term in the Renyi entropy particularly useful for characterizing gapless systems \cite{Ju2012}. The Renyi entropies $S_n$ are defined for $n>1$
+\begin{equation}
+S_n=\frac{1}{1-n} \ln {\rm Tr}\, \rho_A^n
+\end{equation}
+where $\rho_A$ is the reduced density matrix for a region $A$. The term we analyze describes 
+the entanglement between two regions formed by cutting a torus into two cylinders. This geometry is useful for studying gapless systems because the length of the boundaries separating the cylinders is independent of the area of the cylinders. Because of the long-range correlations, the entanglement entropy of gapless systems will be sensitive to varying the size of the cylinders. This dependence was studied for three completely different gapless systems in \cite{Ju2012}, and argued to have universal behavior. One of the results of this paper is to provide additional evidence in support of this assertion.
 
-One model with a gapless RVB ground state, the square-lattice quantum dimer model, is quite amenable to an analytic treatment. For example, long ago it was shown that all equal-time correlators diagonal in the dimer basis are those of a classical dimer model \cite{RokhsarKivelson}. These can be computed exactly directly in the dimer model by using Pfaffian techniques \cite{Kasteleyn,Fisher,FisherStephenson}, or in the continuum limit by utilizing a two-dimensional classical free-boson field theory \cite{KivelsonFradkin,Henley}. Such exact computations have been done for entanglement quantities as well >>> references JM???. In this paper we extend these methods to compute the two-cylinder entanglement entropy for the quantum dimer model exactly in the scaling limit. For large enough values of the Renyi index, it is simply given by a ratio of cylindrical partition functions. From this we find for example that the striking even-odd effect observed numerically in \cite{Ju2012} for the $SU(2)$-invariant RVB state was not a finite-size effect; it also occurs for the quantum dimer model, and our computation illuminates its origin.
+One model with a gapless RVB ground state, the square-lattice quantum dimer model, is quite amenable to an analytic treatment. For example, long ago it was shown that all equal-time correlators diagonal in the dimer basis are those of a classical dimer model \cite{RokhsarKivelson}. These can be computed exactly directly in the dimer model by using Pfaffian techniques \cite{Kasteleyn,Fisher,FisherStephenson}, or in the continuum limit by utilizing a two-dimensional classical free-boson field theory \cite{KivelsonFradkin,Henley}. Such exact computations have been done for entanglement quantities as well >>> references JM???. In this paper we extend these methods to compute the two-cylinder entanglement entropy for the quantum dimer model exactly in the scaling limit. For Renyi index $n$ greater than a specific (non-universal) value $n_c$, it is simply given by a ratio of cylindrical partition functions. From this we find for example that the striking even-odd effect observed numerically in \cite{Ju2012} for the $SU(2)$-invariant RVB state was not a finite-size effect; it also occurs for the quantum dimer model, and our computation illuminates its origin.
 
 
 
-One lesson from our results is that universal entanglement properties can be qualitatively different for values of the Renyi index $n$. For $n$ greater than a critical value $n_c$, the two-cylinder entanglement entropy depends strongly on whether the cylinders are of odd or even length. This is not shocking from the point of view of the quantum dimer state, because the correlators exhibit similar behavior. However, strong subadditivity for the von Neumann entropy (the $n\to 1$ limit of the Renyi entropy) requires that the curve be concave, and thus prohibit the odd/even effect we see. Thus only for $n>n_c$ is the Renyi entropy sensitive enough to include this effect. This is reminiscent of... >>> Roger ???
+One lesson from our results is that universal entanglement properties can be qualitatively different for values of the Renyi index $n$. For $n>n_c$, the two-cylinder entanglement entropy depends strongly on whether the cylinders are of odd or even length. This is not shocking from the point of view of the quantum dimer state, because the correlators exhibit similar behavior. However, strong subadditivity for the von Neumann entropy (the $n\to 1$ limit of the Renyi entropy) requires that the curve be concave, and thus prohibit the odd/even effect we see. Thus only for $n>n_c$ is the Renyi entropy sensitive enough to include this effect. This is reminiscent of... >>> Roger ???
 
 
 It is possible to interpolate between the $SU(2)$-invariant RVB state and the quantum dimer state by considering $SU(N)$-invariant generalizations of the former; many aspects of the quantum dimer state then can be extracted from the $N\to\infty$ limit. Such a correspondence can be pushed further: Ref.~\cite{Damle} defined a cluster expansion of the RVB ``loop gas''\cite{Sutherland_loops} in terms of interacting dimers in the large $N$ limit. One recovers to first non-trivial order the interacting generalization of the quantum dimer model studied in  \cite{Alet_dimers1,Alet_dimers2}. Most strikingly, the critical exponent $\alpha$ extrapolated to $N=2$ turned out to be in good agreement with the previous numerical studies\cite{RVB1,RVB2}.
@@ -80,9 +85,20 @@ In sec.\ \ref{sec:RVB}, we review the definition and important properties of the
 Finally, Sec.~\ref{sec:rvb_entanglement} presents numerical simulations of entanglement for the $SU(N)$ RVB wave function, and tries to provide physical intuition, as well as a field-theoretical description of the results. In particular, we find striking similarities with the QDM behavior, and therefore strong evidence of universal behavior, in agreement with our main result of Sec.~\ref{sec:shape_general}. 
 
 
+\textcolor{blue}{
+\begin{itemize}
+\item R\'enyi entanglement entropy (REE) $S_n=(1-n)^{-1}\ln {\rm Tr}\, \rho^n$
+ \item Study of entanglement for a finite critical system in $d>1$, trying to generalize the celebrated $\frac{c}{3}\ln\left| (L/\pi)\sin (\pi x /L)\right|$. Idea: entanglement sensible to the full geometry, because of long range correlations. 
+ \item Relation with topological stuff (Kitaev \& Preskill\cite{KP} and also Levin \& Wen\cite{LW})
+ \item Entanglement entropy is very difficult to calculate numerically, \emph{but} we have access to $S_2$ in QMC\cite{swap}.
+ \item Focus on Quantum dimers, $SU(2)$-RVB, and trying to interpolate between the two (less studied $SU(N)$).
+\end{itemize}
+}
+
 
 
 \section{The RVB states}
+\label{sec:RVB}
 
 
 A paradigm for a spin liquid is the two-dimensional resonating-valence-bond (RVB) state \cite{Pauling,Anderson}.  A valence bond is a spin singlet, and the RVB state is a sum over states where each of the spins is paired into a spln singlet with some other spin. The RVB state breaks no symmetry, and so no local order parameter characterizes the spins. This state exhibits several of the hallmarks of topological order, for example a non-local order parameter, and having the number of ground states depending on the genus of the surface of space.
@@ -95,17 +111,6 @@ Dimer-dimer correlators in this state are algebraically decaying, so Hastings' t
 
 This wavefunction is the exact groundstate of a quantum spin Hamiltonian with local interactions \cite{Cano}, leads to the analogy between the RVB phase and a gapless spin liquid state. 
   
-
-
-Since recent algorithmic advances allow for the large-scale simulation of the RVB wavefunction through quantum Monte Carlo procedures, we are able to calculate correlation function exactly on finite-size system.  In addition, we calculate the Renyi entropies
-\begin{equation}
-S_n=\frac{1}{1-n} \ln {\rm Tr}\, \rho_A^n
-\end{equation}
-for $n>1$, which are rapidly emerging as the most utilitarian measure of quantum entanglement in a many-body wavefunction.  Through these calculations, we hope to characterize in detail the correlations and entanglement in the important paradigmatic RVB phase, described more below.
-
-Focus on the RVB case...
-
-
 
 
 The RVB wave function bears an obvious similarity to the ground state of the
@@ -130,43 +135,6 @@ This similarity makes it plausible the the correlator of two ``dimers'' (i.e. tw
   C_{dd}(\vec{r}_1,\vec{r}_2) \sim \left|\vec{r}_1-\vec{r}_2\right|^{-\alpha}
  \end{equation}
 The exponent was found to be close to $\alpha \approx 1.2$. This is an even weaker falloff than in the QDM, where $\alpha_D=2$ \cite{FisherStephenson}. By the theorem of \cite{Hastings_thm}, algebraic decay of local operators in a two-dimensional ground state requires that any local Hamiltonian with this ground state be gapless. Thus the QDM at its RK point is gapless, as is the Hamiltonian of Ref.~\cite{Cano}, whose ground-state is exactly the RVB state. 
-
-
-
-% utilized in \cite{Ju2012}, for RK-type states. The torus has dimensions $L_x$ and $L_y$, and is cut i%nto two cylinders of dimensions $L_x \times \ell_y$ and $ L_x \times (L_y-\ell_y)$
-% \begin{figure}[ht]
-%  \begin{center}
-%   \includegraphics[width=7cm,angle=-90]{./figures/16x8b.pdf}
-%   \end{center}
-%   \caption{Torus geometry studied in this paper, with $L_x=8$ and $L_y=16$. We mainly focus on entanglement aspects. The system is cut into two parts $A$ and $B$. Here subsystem $A$ is a cylinder of height $\ell_y=4$, and is drawn in bold blue. Subsystem $B$ is a cylinder of height $L_y-\ell_y=12$. We are particularly interested in the dependence of entanglement on the shape $\ell_y/L_y$, $L_x/L_y$ of the torus.}
-% \label{fig:torus}
-%  \end{figure}
-% Physical results are expected to only depend on the two possible dimensionless ratios $L_y/L_x$ and $\ell_y/L_y$. The first is encoded in the modulus $\tau$ of the torus:
-% \begin{equation}
-%  \tau=i\frac{L_y}{L_x}.
-% \end{equation}
-% The imaginary number is there for later convenience, as it allows to make contact with standard results from conformal field theory. Most of the numerical studies will be performed for the most natural $L_y=L_x$ case, but we expect our results to be valid for any aspect ratio. We call the other ratio
-% \begin{equation}
-%  y=\frac{\ell_y}{L_y}
-% \end{equation}
-% the ``subsystem ratio''. It plays the same role as the $x/L$ in 1d. We are interested in the scaling behavior of the entropy with $L$, while keeping both ratios $y$ and $\tau$ finite. 
-% \paragraph{}
-%  It is well known that the R\'enyi entanglement entropy of such quantum systems exhibits an area law\cite{ALreview}:
-%  \begin{equation}
-%  S_n(L,y,\tau)= a_{n} L+s_{n}(y,\tau)+\mathcal{O}(1/L)
-% \end{equation}
-% Since the boundary between $A$ and $B$ is smooth and assuming a Coulomb gas description, we expect no subleading logarithmic corrections\cite{Hsu2009}. The first subleading term should be a universal constant $s_n(y,\tau)$, which depends only on the two aspect ratios for a given universality class. At this stage it is important to notice that although $a_n$ is non-universal -- and therefore depends on the specifics of the lattice model -- this area law term should \emph{not} depend on the two aspect ratios. This simple fact has an important practical consequence: one can read off the $y$ (or $\tau$) dependence of $s_n(y,\tau)$ by just looking at the numerical data $S_n(L,y,\tau)$ for sufficiently large $L$. We will use this method\cite{Ju2012} throughout the paper, therefore sidestepping any  (possibly difficult in practice) fitting procedure.    
-
-\textcolor{blue}{
-\begin{itemize}
-\item R\'enyi entanglement entropy (REE) $S_n=(1-n)^{-1}\ln {\rm Tr}\, \rho^n$
- \item Study of entanglement for a finite critical system in $d>1$, trying to generalize the celebrated $\frac{c}{3}\ln\left| (L/\pi)\sin (\pi x /L)\right|$. Idea: entanglement sensible to the full geometry, because of long range correlations. 
- \item Relation with topological stuff (Kitaev \& Preskill\cite{KP} and also Levin \& Wen\cite{LW})
- \item Entanglement entropy is very difficult to calculate numerically, \emph{but} we have access to $S_2$ in QMC\cite{swap}.
- \item Focus on Quantum dimers, $SU(2)$-RVB, and trying to interpolate between the two (less studied $SU(N)$).
-\end{itemize}
-}
-
 
 
 
@@ -215,6 +183,41 @@ The goal of this section is to show that for $n$ larger than a certain critical 
  s_{n>n_c}=\frac{n}{1-n}\ln \left(\frac{{\cal Z}_{\rm cyl}[y\tau]{\cal Z}_{\rm cyl}[(1-y)\tau]}{{\cal Z}_{\rm torus}[\tau]}\right),
 \end{equation}
 where the ${\cal Z}_{\rm cyl}$ are 2d CFT partition functions on cylinders with aspect ratios $\ell_y/L_x\sim y\tau$ and $(L_y-\ell_y)/L_x\sim (1-y)\tau$ respectively and. ${\cal Z}_{\rm torus}$ is a torus partition function with aspect ratio $L_y/L_x\sim \tau$. $n_c$ depends on the specifics of the model, but $n_c<2$ in all the examples we will consider, and Eq.~(\ref{eq:shape_general}) applies to $S_2$.
+
+
+
+
+
+% utilized in \cite{Ju2012}, for RK-type states. The torus has dimensions $L_x$ and $L_y$, and is cut i%nto two cylinders of dimensions $L_x \times \ell_y$ and $ L_x \times (L_y-\ell_y)$
+% \begin{figure}[ht]
+%  \begin{center}
+%   \includegraphics[width=7cm,angle=-90]{./figures/16x8b.pdf}
+%   \end{center}
+%   \caption{Torus geometry studied in this paper, with $L_x=8$ and $L_y=16$. We mainly focus on entanglement aspects. The system is cut into two parts $A$ and $B$. Here subsystem $A$ is a cylinder of height $\ell_y=4$, and is drawn in bold blue. Subsystem $B$ is a cylinder of height $L_y-\ell_y=12$. We are particularly interested in the dependence of entanglement on the shape $\ell_y/L_y$, $L_x/L_y$ of the torus.}
+% \label{fig:torus}
+%  \end{figure}
+% Physical results are expected to only depend on the two possible dimensionless ratios $L_y/L_x$ and $\ell_y/L_y$. The first is encoded in the modulus $\tau$ of the torus:
+% \begin{equation}
+%  \tau=i\frac{L_y}{L_x}.
+% \end{equation}
+% The imaginary number is there for later convenience, as it allows to make contact with standard results from conformal field theory. Most of the numerical studies will be performed for the most natural $L_y=L_x$ case, but we expect our results to be valid for any aspect ratio. We call the other ratio
+% \begin{equation}
+%  y=\frac{\ell_y}{L_y}
+% \end{equation}
+% the ``subsystem ratio''. It plays the same role as the $x/L$ in 1d. We are interested in the scaling behavior of the entropy with $L$, while keeping both ratios $y$ and $\tau$ finite. 
+% \paragraph{}
+%  It is well known that the R\'enyi entanglement entropy of such quantum systems exhibits an area law\cite{ALreview}:
+%  \begin{equation}
+%  S_n(L,y,\tau)= a_{n} L+s_{n}(y,\tau)+\mathcal{O}(1/L)
+% \end{equation}
+% Since the boundary between $A$ and $B$ is smooth and assuming a Coulomb gas description, we expect no subleading logarithmic corrections\cite{Hsu2009}. The first subleading term should be a universal constant $s_n(y,\tau)$, which depends only on the two aspect ratios for a given universality class. At this stage it is important to notice that although $a_n$ is non-universal -- and therefore depends on the specifics of the lattice model -- this area law term should \emph{not} depend on the two aspect ratios. This simple fact has an important practical consequence: one can read off the $y$ (or $\tau$) dependence of $s_n(y,\tau)$ by just looking at the numerical data $S_n(L,y,\tau)$ for sufficiently large $L$. We will use this method\cite{Ju2012} throughout the paper, therefore sidestepping any  (possibly difficult in practice) fitting procedure.    
+
+
+
+
+
+
+
 \paragraph{}Before explaining how to get this result, let us make the following important remarks:
 \begin{itemize}
  \item We expect this formula to be valid for any critical Rokhsar-Kivelson wave function. 
