@@ -132,28 +132,26 @@ Different dimer are defined to be orthogonal:
 \end{equation} 
 The ``RK'' Hamiltonian is a simple local Hamiltonian with this dimer RVB state as its ground state.
 
-
-
-One very convenient feature of the dimer RVB state is that any correlator diagonal in the dimer basis can be computed exactly, because they are exactly those of the two-dimensional classical dimer model. This follows immediately from the definitions of the state and the inner product. A classic result of classical statistical mechanics is that any correlator in the classical dimer model on the planar lattice can be expressed as the Pfaffian of a matrix \cite{Kasteleyn,Fisher}). In modern language, the model can be rewritten in terms of free fermions. For the dimer-dimer correlation function, the asymptotic behavior can be easily be obtained. For the square lattice long ago this was shown to be algebraically decaying \cite{FisherStephenson}:
+One very convenient feature of the dimer RVB state is that any correlator diagonal in the dimer basis can be computed exactly, because they are exactly those of the two-dimensional classical dimer model. This follows immediately from the definitions of the state and the inner product. A classic result of classical statistical mechanics is that any correlator in the classical dimer model on the planar lattice can be expressed as the Pfaffian of a matrix \cite{Kasteleyn,Fisher}). This is equivalent to saying that model can be rewritten in terms of free fermions \cite{Samuel}. For the dimer-dimer correlation function, the asymptotic behavior can be easily be obtained. For the square lattice long ago this was shown to be algebraically decaying \cite{FisherStephenson}:
 \begin{equation}
   C_{dd}(\vec{r}_1,\vec{r}_2) \sim \left|\vec{r}_1-\vec{r}_2\right|^{-\alpha} \.
+ \label{dimerdimer}
  \end{equation}
-When $\vec{r}_1$ and $\vec{r}_2$ are an even distance apart (i.e. any path along the links of the lattice has an even number of steps), the exponent $\alpha=2$. In fermionic language the dimer creation operator is a fermion bilinear, and so is of dimension 1. 
+When $\vec{r}_1$ and $\vec{r}_2$ are an even distance apart (i.e. any path along the links of the lattice has an even number of steps), the exponent $\alpha=2$\cite{FisherStephenson}. In fermionic language the dimer creation operator is a fermion bilinear, and so is of dimension 1. 
+>>> For an odd number of sites, is $\alpha=4$ ???
 Note that algebraic decay occurs because the square lattice being bipartite; for non-bipartite lattices, they are exponentially decaying, a fact crucial in showing that the triangular-lattice quantum dimer model is in a gapped RVB phase, i.e.\ has topological order \cite{Moessner}.
 
-
-
 The inner product is an important difference between the dimer and $SU(2)$ RVB states.
-In the RVB state (\ref{RVBdef1},\ref{RVBdef2}), the inner product is the usual one for spins: each different spin state in the $S^z$ diagonal basis is orthogonal to the others. As is easily shown \cite{Sutherland}, this means that different dimer configurations in the spin model are {\em not} orthogonal. There is a convenient loop-gas description to represent their inner product. One places the two dimer graphs on top of each other, obtaining the ``transition'' graph. Because of the requirement that there be exactly one dimer per site, this means that the transition graph is comprised of closed loops. The shortest loops are of length two, when both graphs have a dimer on the same link. Using the spin inner product then gives 
+In the RVB state (\ref{RVBdef1},\ref{RVBdef2}), the inner product is the usual one for spins: each different spin state in the $S^z$ diagonal basis is orthogonal to the others. As is easily shown \cite{Sutherland}, this means that different valence-bond states in the spin model are {\em not} orthogonal. There is a convenient loop-gas description to represent their inner product. One places the two dimer graphs on top of each other, obtaining the ``transition'' graph. Because of the requirement that there be exactly one dimer per site, this means that the transition graph is comprised of closed loops. The shortest loops are of length two, when both graphs have a dimer on the same link. Using the spin inner product then gives 
 $$\langle V_{\beta} | V_{\alpha} \rangle = 2^{n_l - N/2}\ ,$$ 
 where $n_l$ being the number of loops in the transition graph.
+Despite this making matter more complications, this overlap between dimer configurations is essential to the algorithm used for computing the second Renyi entropy using quantum Monte Carlo simulations.... >>>Roger, a comment???
  
-The obvious similarity between the dimer and $SU(2)$ RVB states makes it plausible the the correlator of two ``dimers'' (i.e. two nearest-neighbor spin singles) in the RVB case will behave in a similar fashion to the dimer-dimer correlator in the QDM. This expectation is further supported by the fact that one can interpolate between the two wave functions, either by studying an $SU(N)$ version as described below, or by dressing the lattice itself \cite{RMS}, and there is no evidence for any phase transition. Such algebraic decay of   ``dimer-dimer'' correlations  in the RVB state was convincingly demonstrated numerically
-\cite{RVB1,RVB2}:
- \begin{equation}
-  C_{dd}(\vec{r}_1,\vec{r}_2) \sim \left|\vec{r}_1-\vec{r}_2\right|^{-\alpha}
- \end{equation}
-The exponent was found to be close to $\alpha \approx 1.2$. This is an even weaker falloff than in the QDM, where $\alpha_D=2$ \cite{FisherStephenson}. By the theorem of \cite{Hastings_thm}, algebraic decay of local operators in a two-dimensional ground state requires that any local Hamiltonian with this ground state be gapless. Thus the QDM at its RK point is gapless, as is the Hamiltonian of Ref.~\cite{Cano}, whose ground-state is exactly the RVB state. 
+ Despite this important difference between the dimer and $SU(2)$ RVB states, their obvious similarity makes it plausible that the dimer-dimer correlator will behave similarly in the two cases. loops expon...
+ 
+ . This expectation is further supported by the fact that one can interpolate between the two wave functions, either by studying an $SU(N)$ version as described below, or by dressing the lattice itself \cite{RMS}, and there is no evidence for any phase transition. Such algebraic decay of   ``dimer-dimer'' correlations  in the RVB state was convincingly demonstrated numerically
+\cite{RVB1,RVB2} to be of the form (\ref{dimerdimer}) with
+exponent close to $\alpha \approx 1.2$. This is an even weaker falloff than in the dimer RVB state. By the theorem of \cite{Hastings_thm}, algebraic decay of local operators in a two-dimensional ground state requires that any local Hamiltonian with this ground state be gapless. Thus the QDM at its RK point is gapless, as is the Hamiltonian of Ref.~\cite{Cano}, whose ground-state is exactly the RVB state. 
 
 
 
