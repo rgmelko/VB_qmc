@@ -230,66 +230,59 @@ of two-dimensional gapless systems discussed in \cite{Ju2011}. For Renyi index $
 
 In particular, we show that when a  torus is split into two cylinders labeled $A$ and $B$, the Renyi entropy describing the entanglement between the two cylinders can be rewritten in terms of conformal field theory partition functions ${\cal Z}$ as:
 \begin{equation}\label{eq:shape_general}
- s_{n>n_c}=\frac{n}{1-n}\ln \left(\frac{{\cal Z}_{A}{\cal Z}_B}{{\cal Z}_{\rm torus}[\tau]}\right),
+ s_{n>n_c}=\frac{n}{1-n}\ln \left(\frac{{\cal Z}_{A}{\cal Z}_B}{{\cal Z}_{\rm torus}}\right),
 \end{equation}
 Below we detail the precise definition of the CFT partition functions, but the important fact is that for the cases at hand, these are known. Thus this expression gives an explicit formula for this entropy, exact in the scaling limit. The value of $n_c$ depends on the specifics of the model, but $n_c<2$ in all the examples we will consider, so that Eq.~(\ref{eq:shape_general}) applies to the second Renyi entropy to be studied numerically in later sections.  Although our derivation applies only to the quantum Lifshitz ground state (i.e.\ RVB states that can be written in terms of a two-dimensional classical free boson), we believe it possible that an analogous formula will apply to any theory with an RK-type Hamiltonian.
 
-
-% utilized in \cite{Ju2012}, for RK-type states. The torus has dimensions $L_x$ and $L_y$, and is cut i%nto two cylinders of dimensions $L_x \times \ell_y$ and $ L_x \times (L_y-\ell_y)$
-% \begin{figure}[ht]
-%  \begin{center}
-%   \includegraphics[width=7cm,angle=-90]{./figures/16x8b.pdf}
-%   \end{center}
-%   \caption{Torus geometry studied in this paper, with $L_x=8$ and $L_y=16$. We mainly focus on entanglement aspects. The system is cut into two parts $A$ and $B$. Here subsystem $A$ is a cylinder of height $\ell_y=4$, and is drawn in bold blue. Subsystem $B$ is a cylinder of height $L_y-\ell_y=12$. We are particularly interested in the dependence of entanglement on the shape $\ell_y/L_y$, $L_x/L_y$ of the torus.}
-% \label{fig:torus}
-%  \end{figure}
-% Physical results are expected to only depend on the two possible dimensionless ratios $L_y/L_x$ and $\ell_y/L_y$. The first is encoded in the modulus $\tau$ of the torus:
-% \begin{equation}
-%  \tau=i\frac{L_y}{L_x}.
-% \end{equation}
-% The imaginary number is there for later convenience, as it allows to make contact with standard results from conformal field theory. Most of the numerical studies will be performed for the most natural $L_y=L_x$ case, but we expect our results to be valid for any aspect ratio. We call the other ratio
-% \begin{equation}
-%  y=\frac{\ell_y}{L_y}
-% \end{equation}
-% the ``subsystem ratio''. It plays the same role as the $x/L$ in 1d. We are interested in the scaling behavior of the entropy with $L$, while keeping both ratios $y$ and $\tau$ finite. 
-% \paragraph{}
-%  It is well known that the R\'enyi entanglement entropy of such quantum systems exhibits an area law\cite{ALreview}:
-%  \begin{equation}
-%  S_n(L,y,\tau)= a_{n} L+s_{n}(y,\tau)+\mathcal{O}(1/L)
-% \end{equation}
-% Since the boundary between $A$ and $B$ is smooth and assuming a Coulomb gas description, we expect no subleading logarithmic corrections\cite{Hsu2009}. The first subleading term should be a universal constant $s_n(y,\tau)$, which depends only on the two aspect ratios for a given universality class. At this stage it is important to notice that although $a_n$ is non-universal -- and therefore depends on the specifics of the lattice model -- this area law term should \emph{not} depend on the two aspect ratios. This simple fact has an important practical consequence: one can read off the $y$ (or $\tau$) dependence of $s_n(y,\tau)$ by just looking at the numerical data $S_n(L,y,\tau)$ for sufficiently large $L$. We will use this method\cite{Ju2012} throughout the paper, therefore sidestepping any  (possibly difficult in practice) fitting procedure.    
+We will now detail how to derive Eq.~(\ref{eq:shape_general}), in the simplest case of quantum dimers on the square lattice. This requires a slight generalization of two ingredients: the mapping to a classical Shannon entropy of Ref.~\cite{Shannonee} (see Sec.~\ref{sec:eeshannon}) and the boundary phase transition argument of Ref.~\cite{Stephan2011} (see Sec.~\ref{sec:bpt}). Although it is more complicated to generalize this argument to the $SU(N)$ RVB case, we will later explain why we think Eq.~(\ref{eq:shape_general}) should still apply.
 
 
-
-We will now detail how to derive Eq.~(\ref{eq:shape_general}), in the simplest case of quantum dimers on the square lattice. This requires a slight generalization of two ingredients: the mapping to a classical Shannon entropy of Ref.~\cite{Shannonee} (see Sec.~\ref{sec:eeshannon}) and the boundary phase transition argument of Ref.~\cite{Stephan2011} (see Sec.~\ref{sec:bpt}). Although it is more complicated to generalize this argument to the $SU(N)$ RVB case, we will later explain why  we think Eq.~(\ref{eq:shape_general}) should still apply.
 
 \subsection{Entanglement entropy as a Shannon entropy}
 \label{sec:eeshannon}
-The orthogonality of the dimer configuration in the quantum language allows for huge technical simplifications. As was shown in Ref.~\cite{Shannonee}, the entanglement entropy can be expressed as a classical Shannon entropy. We give here only a brief summary of the results, and refer to \cite{Shannonee} for the details.
-\paragraph{} Let us cut our torus in two subsystems $A$ and $B$, as is shown for example in Fig.~\ref{fig:bipartition}.
+The orthogonality of the different dimer configurations in the dimer RVB state allows for huge technical simplifications. As was shown in Ref.~\cite{Shannonee}, the entanglement entropy can be expressed as a classical Shannon entropy. We give here only a brief summary of the results, and refer to \cite{Shannonee} for the details.
+\paragraph{} Let us cut our torus in two subsystems $A$ and $B$, as is shown for example in Fig.~\ref{fig:bipartition}. We label the dimer configurations along the boundaries as $|\mu\rangle$ and $\sigma\rangle$; in the appendix we  
 \begin{figure}[ht]
 \begin{center}
 \includegraphics{./figures/bipartition.pdf}
 \end{center}
-\caption{Bipartition of the $8\times 8$ torus. Links in subsystem $A$ (resp. $B$) are shown in red (resp. blue). The two boundaries between $A$ and $B$ are emphasized by thick dashed lines. Links crossing the lower boundary are in $A$, whereas those crossing the upper boundary are in $B$. Sites closest to the boundary are called ``boundary sites''. We attach an $\uparrow$ (resp. $\downarrow$) virtual spin to a boundary site occupied by a dimer in $B$ (resp. $A$) and represent it by a black (resp. white) filled circle. Each boundary configuration has probability $p_{\sigma,\mu}$. \emph{Left}: Example of dimer configuration compatible with $|\sigma\rangle=|\!\uparrow\uparrow\downarrow\downarrow\uparrow\uparrow\uparrow\downarrow\rangle$ and $|\mu\rangle=|\!\downarrow\uparrow\downarrow\uparrow\downarrow\downarrow\uparrow\downarrow\rangle$. \emph{Right}: Example of dimer configuration compatible with the most likely boundary configuration $|\sigma\rangle=|\!\uparrow\uparrow\uparrow\uparrow\uparrow\uparrow
-\uparrow\uparrow\rangle$ and $|\mu\rangle=|\!\downarrow\downarrow\downarrow
-\downarrow\downarrow\downarrow\downarrow\downarrow\rangle$, where no dimers are crossing the boundary.}
+\caption{Bipartition of the $8\times 8$ torus. The two boundaries between $A$ and $B$ are emphasized by thick dashed lines. Links crossing the lower boundary are defined to be in $A$, whereas those crossing the upper boundary in $B$.}
 \label{fig:bipartition}
 \end{figure}
 The main difference with \cite{Shannonee} is that there are two boundaries here, but the the same arguments apply. The von Neumann entropy can be recast as a classical Shannon entropy
 \begin{equation}
  S=-\sum_{\sigma,\mu} p_{\sigma,\mu} \ln p_{\sigma,\mu}
 \end{equation}
-The $p_{\sigma,\mu}$ are the probabilities of a given boundary configuration $|\sigma\rangle$,$|\mu\rangle$ between $A$ and $B$, defined in Fig.~\ref{fig:bipartition}. They are given by
+where the $p_{\sigma,\mu}$ are the probabilities of a given boundary configuration $|\sigma\rangle$,$|\mu\rangle$ between $A$ and $B$. 
+\label{sec:lg.}
+% Sites closest to the boundary are called ``boundary sites''.
+%We attach an $\uparrow$ (resp. $\downarrow$) virtual spin to a boundary site occupied by a dimer in $B$ (resp. $A$) and represent it by a black (resp. white) filled circle. Each boundary configuration has probability $p_{\sigma,\mu}$. \emph{Left}: Example of dimer configuration compatible with $|\sigma\rangle=|\!\uparrow\uparrow\downarrow\downarrow\uparrow\uparrow\uparrow\downarrow\rangle$ and $|\mu\rangle=|\!\downarrow\uparrow\downarrow\uparrow\downarrow\downarrow\uparrow\downarrow\rangle$. \emph{Right}: Example of dimer configuration compatible with the most likely boundary configuration $|\sigma\rangle=|\!\uparrow\uparrow\uparrow\uparrow\uparrow\uparrow
+%\uparrow\uparrow\rangle$ and $|\mu\rangle=|\!\downarrow\downarrow\downarrow
+%\downarrow\downarrow\downarrow\downarrow\downarrow\rangle$, where no dimers are crossing the boundary.
+The probabilities are
 \begin{equation}
  \psm=\frac{Z_{\sigma,\mu}}{Z},
 \end{equation}
-where $Z_{\sigma,\mu}$ is the number of dimer configurations compatible with the boundary configuration $|\sigma\rangle,|\mu\rangle$. $Z$ is the number of dimer coverings on the whole torus. The $\psm$ are nothing but the eigenvalues of the reduced density matrix\footnote{Said differently, the Schmidt decomposition of the ground state reads $|\psi\rangle=\sum_{
+where $Z_{\sigma,\mu}$ is the number of dimer configurations compatible with the boundary configuration $|\sigma\rangle,|\mu\rangle$, while $Z$ is the number of dimer coverings on the whole torus. The $\psm$ are nothing but the eigenvalues of the reduced density matrix\footnote{Said differently, the Schmidt decomposition of the ground state reads $|\psi\rangle=\sum_{
 \sigma,\mu} \sqrt{p_{\sigma,\mu}}|\psi_{\sigma,\mu}^A\rangle |\psi_{\sigma,\mu}^B\rangle$, where $|\psi_{\sigma,\mu}^A\rangle$ is a superposition of all dimer states in $A$ compatible with the boundary conditions $\sigma$ and $\mu$, and the same goes for $B$. All these vectors are mutually orthogonal $\langle \psi_{\sigma,\mu}^\Omega|\psi_{\sigma^\prime,\mu^\prime}^{\Omega^\prime}\rangle=\delta_{\sigma \sigma^\prime}\delta_{\mu \mu^\prime}\delta_{\Omega \Omega^\prime}$.}, and the mapping therefore allows to calculate  any R\'enyi entanglement entropy as
 \begin{equation}
  S_n=\frac{1}{1-n}\ln \left(\sum_{\sigma,\mu}[\psm]^n\right).
 \end{equation}
-Using free fermions techniques (see \ref{sec:lgv}), each probability can be expressed as a product of 2 determinants of size $\sim L/2$, and computed numerically in a time of order $\approx L^3$. Using translationnal symmetry along the $x$ axis as well as the conservation of winding numbers, we are able to compute any R\'enyi entropy up to machine precision in a time of order $L^{3/2}\times 4^L$.
+Note that here $n$ need not be an integer.
+
+This expression makes it possible to use the computer to find very accurate values of the Renyi entropy for the dimer RVB state. Using free-fermion/Pfaffian techniques described in \ref{sec:lgv}, each probability can be expressed as a product of 2 determinants of size $\sim L/2$, and computed numerically in a time of order $\approx L^3$. Using translational symmetry along the $x$ axis as well as the conservation of winding numbers, we are able to compute any R\'enyi entropy up to machine precision in a time of order $L^{3/2}\times 4^L$.
+The results are summarized in Fig.~\ref{fig:ee_d_torus}. 
+\begin{figure}[ht]
+ \begin{center}
+ \includegraphics[width=10cm]{./figures/ee_d_torus.pdf}
+ \end{center}
+\caption{Two-cylinder R\'enyi entanglement entropy for quantum dimers on the square lattice in the torus geometry. Here $L_x=L_y=20$, and we present data for $S_{1/2}$, $S_1$, $S_2$ and $S_5$. }
+\label{fig:ee_d_torus}
+\end{figure}
+The figure makes it obvious that the Reyni entropy exhibits strikingly different behaviors depending on the value of $n$. In the ``replica phase'' $n \leq 1$, the curves are relatively flat. In the thermodynamic limit we expect them to go to universal functions, which in principle may be computed within boundary CFT, although we will not study this phase here. For $n$ large enough, we observe a striking even-odd effect like that observed for the $SU(2)$ RVB state in \cite{Ju2011}. We explain this effect, and derive universal functions for both the even and odd values, in the next subsection.
+
+
+
 \subsection{Boundary phase transition}
 \label{sec:bpt}
 We now discuss the behavior of the R\'enyi entropy as a function of $n$, and in particular the boundary phase transition emphasized in \cite{Stephan2011}. At long distance universal properties are described by the free compactified field with action
@@ -337,21 +330,47 @@ can be computed exactly on the lattice (see \ref{sec:dimers_exact}), as well as 
  \end{equation}
 where $|A\cup B\rangle$ is the ground-state wave function of the whole system. $|A\otimes B\rangle$ is the ground-state wave function where all interactions between $A$ and $B$ have been switched off, a tensor product of the two ground-state wave functions in $A$ and $B$. Furthermore, Eq.~(\ref{eq:lbf}) even becomes exact on the lattice when $n\to \infty$.
   \item The entanglement spectrum $\{E_{\sigma,\mu}\}=\{-\ln p_{\sigma,\mu}\}$ of such types of wave functions does not show any gapless excitations, compared to the more studied Quantum Hall case \cite{HaldaneLi}. We have therefore an example of a system that is \emph{gapless} in the bulk, but \emph{gapped} at the edge. 
+
+\item The even-odd effect is a signature of the ``locked phase'' for $n>1$. In this phase the even-odd effect is proportionnal to $n/(n-1)$, and therefore slightly diminishes with $n$. We compute it exactly in \ref{sec:universal_shape}
+
 \end{itemize}
+
+
+
+
+
 \section{Entanglement in the quantum dimer wave function}
 \label{sec:dimers_entanglement}
 This section is devoted to the exploration of the consequences of Eq.~(\ref{eq:shape_general}) for quantum dimers. We will calculate explicitely the subleading term, and also provide numerical checks. One advantage compared to RVB is that all R\'enyi values are accessible on relatively large systtem sizes.
-\subsection{Numerical results on the transition}
-We present here some numerical simulations to emphasize the influence of the phase transition we previously discussed. The results are summarized in Fig.~\ref{fig:ee_d_torus}. 
-\begin{figure}[ht]
- \begin{center}
- \includegraphics[width=10cm]{./figures/ee_d_torus.pdf}
- \end{center}
-\caption{R\'enyi entanglement entropy for quantum dimers on the square lattice in the torus geometry. Here $L_x=L_y=20$, and we present data for $S_{1/2}$, $S_1$, $S_2$ and $S_5$. The even-odd effect is a signature of the ``locked phase'' for $n>1$. In this phase the even-odd effect is proportionnal to $n/(n-1)$, and therefore slightly diminishes with $n$. We compute it exactly in \ref{sec:universal_shape}}
-\label{fig:ee_d_torus}
-\end{figure}
-The entropy exhibits strikingly different behaviors in the two regimes. In the ``replica phase'' $n \leq 1$, the curves are relatively flat. In the thermodynamic limit we expect them to go to universal functions, which may be computed within boundary CFT. As already stated, this however falls outside the scope of the present paper. In the locked phase we observe a strong even-odd effect similar to that of \cite{Ju2012}, which we explain in the next section. 
-\paragraph{}
+
+
+
+
+% utilized in \cite{Ju2012}, for RK-type states. The torus has dimensions $L_x$ and $L_y$, and is cut i%nto two cylinders of dimensions $L_x \times \ell_y$ and $ L_x \times (L_y-\ell_y)$
+% \begin{figure}[ht]
+%  \begin{center}
+%   \includegraphics[width=7cm,angle=-90]{./figures/16x8b.pdf}
+%   \end{center}
+%   \caption{Torus geometry studied in this paper, with $L_x=8$ and $L_y=16$. We mainly focus on entanglement aspects. The system is cut into two parts $A$ and $B$. Here subsystem $A$ is a cylinder of height $\ell_y=4$, and is drawn in bold blue. Subsystem $B$ is a cylinder of height $L_y-\ell_y=12$. We are particularly interested in the dependence of entanglement on the shape $\ell_y/L_y$, $L_x/L_y$ of the torus.}
+% \label{fig:torus}
+%  \end{figure}
+% Physical results are expected to only depend on the two possible dimensionless ratios $L_y/L_x$ and $\ell_y/L_y$. The first is encoded in the modulus $\tau$ of the torus:
+% \begin{equation}
+%  \tau=i\frac{L_y}{L_x}.
+% \end{equation}
+% The imaginary number is there for later convenience, as it allows to make contact with standard results from conformal field theory. Most of the numerical studies will be performed for the most natural $L_y=L_x$ case, but we expect our results to be valid for any aspect ratio. We call the other ratio
+% \begin{equation}
+%  y=\frac{\ell_y}{L_y}
+% \end{equation}
+% the ``subsystem ratio''. It plays the same role as the $x/L$ in 1d. We are interested in the scaling behavior of the entropy with $L$, while keeping both ratios $y$ and $\tau$ finite. 
+% \paragraph{}
+%  It is well known that the R\'enyi entanglement entropy of such quantum systems exhibits an area law\cite{ALreview}:
+%  \begin{equation}
+%  S_n(L,y,\tau)= a_{n} L+s_{n}(y,\tau)+\mathcal{O}(1/L)
+% \end{equation}
+% Since the boundary between $A$ and $B$ is smooth and assuming a Coulomb gas description, we expect no subleading logarithmic corrections\cite{Hsu2009}. The first subleading term should be a universal constant $s_n(y,\tau)$, which depends only on the two aspect ratios for a given universality class. At this stage it is important to notice that although $a_n$ is non-universal -- and therefore depends on the specifics of the lattice model -- this area law term should \emph{not} depend on the two aspect ratios. This simple fact has an important practical consequence: one can read off the $y$ (or $\tau$) dependence of $s_n(y,\tau)$ by just looking at the numerical data $S_n(L,y,\tau)$ for sufficiently large $L$. We will use this method\cite{Ju2012} throughout the paper, therefore sidestepping any  (possibly difficult in practice) fitting procedure.    
+
+
 
 
 It is also useful to remark that the von Neumann point ($n=1$), no such even-odd effect is possible. Indeed, the shape of the entanglement entropy has to be a concave-down function of $y$, as required by the strong subadditivity property\cite{Strongsubadditivity}. Other values of $n$ are not constrained by subadditivity, we will come back to this point later on. 
