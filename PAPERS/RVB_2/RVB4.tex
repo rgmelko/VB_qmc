@@ -224,15 +224,15 @@ It is therefore reasonable to hope that all the equal-time correlators in the $S
 
 \section{A simple result for the shape dependence}
 \label{sec:shape_general}
-\subsection{Statement of the result}
-The goal of this section is to show that for $n$ larger than a certain critical value $n_c$, the universal subleading constant to the REE is given by
+%\subsection{Statement of the result}
+In this section, we discuss the shape-dependent subleading contribution to the entanglement entropy 
+of two-dimensional gapless systems discussed in \cite{Ju2011}. For Renyi index $n$ larger than a certain critical value $n_c$, we derive it exactly for the scaling limit of the square-lattice dimer RVB state, and the entire quantum critical line of the quantum Lifshitz theory. Thus we expect it to apply to the scaling limit of the $SU(N)$ RVB state as well, with an appropriate parametrization of $\kappa$ in terms of $N$.
+
+In particular, we show that when a  torus is split into two cylinders labeled $A$ and $B$, the Renyi entropy describing the entanglement between the two cylinders can be rewritten in terms of conformal field theory partition functions ${\cal Z}$ as:
 \begin{equation}\label{eq:shape_general}
- s_{n>n_c}=\frac{n}{1-n}\ln \left(\frac{{\cal Z}_{\rm cyl}[y\tau]{\cal Z}_{\rm cyl}[(1-y)\tau]}{{\cal Z}_{\rm torus}[\tau]}\right),
+ s_{n>n_c}=\frac{n}{1-n}\ln \left(\frac{{\cal Z}_{A}{\cal Z}_B}{{\cal Z}_{\rm torus}[\tau]}\right),
 \end{equation}
-where the ${\cal Z}_{\rm cyl}$ are 2d CFT partition functions on cylinders with aspect ratios $\ell_y/L_x\sim y\tau$ and $(L_y-\ell_y)/L_x\sim (1-y)\tau$ respectively and. ${\cal Z}_{\rm torus}$ is a torus partition function with aspect ratio $L_y/L_x\sim \tau$. $n_c$ depends on the specifics of the model, but $n_c<2$ in all the examples we will consider, and Eq.~(\ref{eq:shape_general}) applies to $S_2$.
-
-
-
+Below we detail the precise definition of the CFT partition functions, but the important fact is that for the cases at hand, these are known. Thus this expression gives an explicit formula for this entropy, exact in the scaling limit. The value of $n_c$ depends on the specifics of the model, but $n_c<2$ in all the examples we will consider, so that Eq.~(\ref{eq:shape_general}) applies to the second Renyi entropy to be studied numerically in later sections.  Although our derivation applies only to the quantum Lifshitz ground state (i.e.\ RVB states that can be written in terms of a two-dimensional classical free boson), we believe it possible that an analogous formula will apply to any theory with an RK-type Hamiltonian.
 
 
 % utilized in \cite{Ju2012}, for RK-type states. The torus has dimensions $L_x$ and $L_y$, and is cut i%nto two cylinders of dimensions $L_x \times \ell_y$ and $ L_x \times (L_y-\ell_y)$
@@ -261,18 +261,8 @@ where the ${\cal Z}_{\rm cyl}$ are 2d CFT partition functions on cylinders with 
 
 
 
+We will now detail how to derive Eq.~(\ref{eq:shape_general}), in the simplest case of quantum dimers on the square lattice. This requires a slight generalization of two ingredients: the mapping to a classical Shannon entropy of Ref.~\cite{Shannonee} (see Sec.~\ref{sec:eeshannon}) and the boundary phase transition argument of Ref.~\cite{Stephan2011} (see Sec.~\ref{sec:bpt}). Although it is more complicated to generalize this argument to the $SU(N)$ RVB case, we will later explain why  we think Eq.~(\ref{eq:shape_general}) should still apply.
 
-
-
-
-\paragraph{}Before explaining how to get this result, let us make the following important remarks:
-\begin{itemize}
- \item We expect this formula to be valid for any critical Rokhsar-Kivelson wave function. 
- \item We assume Dirichlet boundary conditions for the cylinder partition functions. For a given CFT these partition function are well known\cite{BigYellowBook}. There may nevertheless be subtleties associated with the free boson case, as we will see in the following. 
- \item Since the problem has been reduced to a ratio of partition function, this result is different from the 1d critical case\cite{Cardy} $S\propto \ln \left|(L/\pi)\sin (\pi y/L)\right|$. Therefore, eventhough the 1d result can provide interesting physical intuition, it \emph{should not} apply in higher dimensions. This had already been noted in \cite{Ju2012} wave functions with different dynamical exponents: $\pi$-flux fermions on the square lattice.  
- \item It is in principle also possible to derive a similar result for $n<n_c$, but this would amount to solving a more complicated boundary CFT problem, in the spirit of Ref.~\cite{Oshikawa}. We will not discuss this in the present paper. 
-\end{itemize}
-We will now detail how to derive Eq.~(\ref{eq:shape_general}), in the simplest case of quantum dimers on the square lattice. This requires a slight generalization of two ingredients: The mapping to a classical Shannon entropy of Ref.~\cite{Shannonee} (see Sec.~\ref{sec:eeshannon}) and the boundary phase transition argument of Ref.~\cite{Stephan2011} (see Sec.~\ref{sec:bpt}). Although it is more complicated to generalize this argument to the RVB case, we will later explain why  we think Eq.~(\ref{eq:shape_general}) should still apply.
 \subsection{Entanglement entropy as a Shannon entropy}
 \label{sec:eeshannon}
 The orthogonality of the dimer configuration in the quantum language allows for huge technical simplifications. As was shown in Ref.~\cite{Shannonee}, the entanglement entropy can be expressed as a classical Shannon entropy. We give here only a brief summary of the results, and refer to \cite{Shannonee} for the details.
@@ -428,6 +418,27 @@ A comparison between the numerical and analytical results is performed in Fig.~\
 \caption{Comparison numerics/analytics in the exactly solvable case $S_\infty$. Black points are the numerical data for the all sector, and black crosses represents the numerical data in the $W=(0,0)$ sector. \emph{Left:} $L_x=16$, the data is compared with Eqs.~(\ref{eq:cft_prediction}), (\ref{eq:cft_prediction_odd}),  (\ref{eq:cft_w0}) and (\ref{eq:cft_w0_odd}) up to a single constant. The agreement is fair, but still far from converged. \emph{Right:} Same procedure for $L=704$. The agreement is close to perfect, as expected. }
 \label{fig:Sinfty}
 \end{figure}
+
+
+
+
+
+where $\tau=i\L_x/L_y$, the $i$ included to conform with standard CFT conventions.
+CFT partition functions on cylinders and tori depend on only the aspect ratio of the two lengths; the bulk term depending on the area is independent of the boundary conditions, and so can be factored out of the partition functions and cancels in our formula.
+\begin{equation}\label{eq:shape_general}
+ s_{n>n_c}=\frac{n}{1-n}\ln \left(\frac{{\cal Z}_{\rm cyl}[y\tau]{\cal Z}_{\rm cyl}[(1-y)\tau]}{{\cal Z}_{\rm torus}[\tau]}\right),
+\end{equation}
+
+
+\begin{itemize}
+ \item We assume Dirichlet boundary conditions for the cylinder partition functions. For a given CFT these partition function are well known\cite{BigYellowBook}. There may nevertheless be subtleties associated with the free boson case, as we will see in the following. 
+ \item Since the problem has been reduced to a ratio of partition function, this result is different from the 1d critical case\cite{Cardy} $S\propto \ln \left|(L/\pi)\sin (\pi y/L)\right|$. Therefore, eventhough the 1d result can provide interesting physical intuition, it \emph{should not} apply in higher dimensions. This had already been noted in \cite{Ju2012} wave functions with different dynamical exponents: $\pi$-flux fermions on the square lattice.  
+ \item It is in principle also possible to derive a similar result for $n<n_c$, but this would amount to solving a more complicated boundary CFT problem, in the spirit of Ref.~\cite{Oshikawa}. We will not discuss this in the present paper. 
+\end{itemize}
+
+
+
+
 \section{Correlations in the $SU(N)$ RVB wave function}
 \label{sec:correlations}
 In this section we take a small detour to study critical properties of the $SU(N)$-RVB wave function, before going to its entanglement properties (Sec.~\ref{sec:rvb_entanglement}). This section, which may be skipped at first reading, is organized as follows. In \ref{sec:basics} we recall some basic properties of the $SU(N)$-RVB wave function on the square lattice. We then explain (Sec.~\ref{sec:numerics}) how such system maybe be simulated using Quantum Monte Carlo techniques. Finally we study spin-spin correlations, as well as the more interesting dimer-dimer correlations. In particular, we find that dimer-dimer correlations decay algebraically, and that the exponent interpolates between $SU(2)$\cite{RVB1,RVB2} and the pure dimer exponent ($N\to \infty$), in agreement with a recent large $N$ calculation\cite{Damle}.
