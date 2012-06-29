@@ -104,7 +104,7 @@ Finally, Sec.~\ref{sec:rvb_entanglement} presents numerical simulations of entan
 \label{sec:RVB}
 
 
-A paradigm for a spin liquid is the two-dimensional resonating-valence-bond (RVB) state \cite{Anderson}. Much effort has gone into its study, since the classic work in the late '80s \cite{LDA,Sutherland,???}.  A valence bond is a spin singlet, and the RVB state is a sum over states where each of the spins is paired into a spln singlet with some other spin. Precisely,
+A paradigm for a spin liquid is the two-dimensional resonating-valence-bond (RVB) state \cite{Anderson}. Much effort has gone into its study, since the classic work in the late '80s \cite{LDA,Sutherland_loops,???}.  A valence bond is a spin singlet, and the RVB state is a sum over states where each of the spins is paired into a spln singlet with some other spin. Precisely,
 the nearest-neighbor $SU(2)$ RVB wavefunction is the equal-amplitude superposition of all nearest-neighbor valence-bond (or singlet) states of spin-1/2 particles fixed at the sites of some lattice. For the ${\cal N}$-site square lattice, the RVB state is
 \begin{equation}
 | \Psi \rangle = \sum_{\alpha} |V_{\alpha} \rangle
@@ -124,7 +124,7 @@ For the square lattice, extensive numerical analysis indicates that dimer-dimer 
 
 In this paper we do not address this question directly. Instead we focus on the gapless behavior of nearest-neighbor RVB states on the square lattice. One key tool is to study the {\em dimer RVB state}. Here one essentially forgets the underlying spins: the only degrees of freedom are the nearest-neighbor dimers. Each configuration of dimers is a linearly independent basis element of the Hilbert space of the quantum dimer model, and these dimer ``states'' span the Hilbert space. A dimer configuration $|D_\alpha\rangle$ has exactly one dimer touching each site of the lattice, i.e.\  the dimers are close packed and hard-core. The RVB state for dimers is then the equal-amplitude sum over all these states: \cite{RokhsarKivelson}.
 \begin{equation}
-| \Psi \rangle_D = \sum_{\alpha} |D_{\alpha} \rangle
+| \Psi_D\rangle= \sum_{\alpha} |D_{\alpha} \rangle
 \end{equation}
 Different dimer are defined to be orthogonal:
 \begin{equation}
@@ -132,9 +132,11 @@ Different dimer are defined to be orthogonal:
 \end{equation} 
 The ``RK'' Hamiltonian is a simple local Hamiltonian with this dimer RVB state as its ground state.
 
-One very convenient feature of the dimer RVB state is that any correlator diagonal in the dimer basis can be computed exactly, because they are exactly those of the two-dimensional classical dimer model. This follows immediately from the definitions of the state and the inner product. A classic result of classical statistical mechanics is that any correlator in the classical dimer model on the planar lattice can be expressed as the Pfaffian of a matrix \cite{Kasteleyn,Fisher}). This is equivalent to saying that model can be rewritten in terms of free fermions \cite{Samuel}. For the dimer-dimer correlation function, the asymptotic behavior can be easily be obtained. For the square lattice long ago this was shown to be algebraically decaying \cite{FisherStephenson}:
+One very convenient feature of the dimer RVB state is that any correlator diagonal in the dimer basis can be computed exactly, because they are exactly those of the two-dimensional classical dimer model. This follows immediately from the definitions of the state and the inner product. For example, the normalization of the dimer RVB state is the partition function of the classical dimer model, the number of distinct dimer configurations:
+$$\langle \Psi_D| \Psi_D\rangle = \sum_\alpha \ 1\ .$$
+ A classic result of classical statistical mechanics is that any correlator in the classical dimer model on the planar lattice can be expressed as the Pfaffian of a matrix \cite{Kasteleyn,Fisher}). This is equivalent to saying that model can be rewritten in terms of free fermions \cite{Samuel}. For the dimer-dimer correlation function, the asymptotic behavior can be easily be obtained. For the square lattice long ago this was shown to be algebraically decaying \cite{FisherStephenson}:
 \begin{equation}
-  C_{dd}(\vec{r}_1,\vec{r}_2) \sim \left|\vec{r}_1-\vec{r}_2\right|^{-\alpha} \.
+  C_{dd}(\vec{r}_1,\vec{r}_2) \sim \left|\vec{r}_1-\vec{r}_2\right |^{-\alpha} \ .
  \label{dimerdimer}
  \end{equation}
 When $\vec{r}_1$ and $\vec{r}_2$ are an even distance apart (i.e. any path along the links of the lattice has an even number of steps), the exponent $\alpha=2$\cite{FisherStephenson}. In fermionic language the dimer creation operator is a fermion bilinear, and so is of dimension 1. 
@@ -142,24 +144,27 @@ When $\vec{r}_1$ and $\vec{r}_2$ are an even distance apart (i.e. any path along
 Note that algebraic decay occurs because the square lattice being bipartite; for non-bipartite lattices, they are exponentially decaying, a fact crucial in showing that the triangular-lattice quantum dimer model is in a gapped RVB phase, i.e.\ has topological order \cite{Moessner}.
 
 The inner product is an important difference between the dimer and $SU(2)$ RVB states.
-In the RVB state (\ref{RVBdef1},\ref{RVBdef2}), the inner product is the usual one for spins: each different spin state in the $S^z$ diagonal basis is orthogonal to the others. As is easily shown \cite{Sutherland}, this means that different valence-bond states in the spin model are {\em not} orthogonal. There is a convenient loop-gas description to represent their inner product. One places the two dimer graphs on top of each other, obtaining the ``transition'' graph. Because of the requirement that there be exactly one dimer per site, this means that the transition graph is comprised of closed loops. The shortest loops are of length two, when both graphs have a dimer on the same link. Using the spin inner product then gives 
-$$\langle V_{\beta} | V_{\alpha} \rangle = 2^{n_l - N/2}\ ,$$ 
+In the RVB state (\ref{RVBdef1},\ref{RVBdef2}), the inner product is the usual one for spins: each different spin state in the $S^z$ diagonal basis is orthogonal to the others. As is easily shown \cite{Sutherland_loops}, this means that different valence-bond states in the spin model are {\em not} orthogonal. There is a convenient loop-gas description to represent their inner product. One places the two dimer graphs on top of each other, obtaining the ``transition'' graph. Because of the requirement that there be exactly one dimer per site, this means that the transition graph is comprised of closed loops. The shortest loops are of length two, when both graphs have a dimer on the same link. Using the spin inner product then gives 
+\begin{equation}
+\langle V_{\beta} | V_{\alpha} \rangle = 2^{n_l - {\cal N}/2}\ ,
+\label{RVBinner}
+\end{equation}
 where $n_l$ being the number of loops in the transition graph.
-Despite this making matter more complications, this overlap between dimer configurations is essential to the algorithm used for computing the second Renyi entropy using quantum Monte Carlo simulations.... >>>Roger, a comment???
+Despite this this overlap between dimer configurations making analytic computations much more difficult, its presence is essential to the algorithm used for computing the second Renyi entropy using quantum Monte Carlo simulations.... >>>Roger, a comment???
  
- Despite this important difference between the dimer and $SU(2)$ RVB states, their obvious similarity makes it plausible that the dimer-dimer correlator will behave similarly in the two cases. loops expon...
+Despite this important difference between the dimer and $SU(2)$ RVB states, their obvious similarity makes it plausible that the dimer-dimer correlator will behave similarly in the two cases. Further evidence for this fact is that rewritten in loop language, the spin-spin correlator corresponds to the probability that the two spins are on the same loop. This decays exponentially because classical loop models with weight per loop greater than 2 have exponentially decaying correlators \cite{Nienhuis} (the partition function is dominated by configurations with many short loops), and the inner product (\ref{RVBinner}) amounts to a weight per loop of 4 \cite{LDA}. Thus correlators in the $SU(2)$ RVB state are dominated by short-loop configurations, i.e.\ the dimers. Whereas the presence of longer loops can renormalize the exponent $\alpha$, it seems very likely that dimer-dimer correlators in the RVB state will decay algebraically like they do for the dimer RVB state.
  
- . This expectation is further supported by the fact that one can interpolate between the two wave functions, either by studying an $SU(N)$ version as described below, or by dressing the lattice itself \cite{RMS}, and there is no evidence for any phase transition. Such algebraic decay of   ``dimer-dimer'' correlations  in the RVB state was convincingly demonstrated numerically
-\cite{RVB1,RVB2} to be of the form (\ref{dimerdimer}) with
-exponent close to $\alpha \approx 1.2$. This is an even weaker falloff than in the dimer RVB state. By the theorem of \cite{Hastings_thm}, algebraic decay of local operators in a two-dimensional ground state requires that any local Hamiltonian with this ground state be gapless. Thus the QDM at its RK point is gapless, as is the Hamiltonian of Ref.~\cite{Cano}, whose ground-state is exactly the RVB state. 
+This expectation  was convincingly demonstrated numerically \cite{RVB1,RVB2}. The dimer-dimer correlator for dimers an even length apart was found to be of the form (\ref{dimerdimer}) with
+exponent close to $\alpha \approx 1.2$. This is an even weaker falloff than in the dimer RVB state, so the presence of the loops in the $SU(2)$ RVB state only makes this correlator longer-ranged. By the theorem of \cite{Hastings_thm}, algebraic decay of local operators in a two-dimensional ground state requires that any local Hamiltonian with this ground state be gapless. Thus not only is the quantum dimer model with RK Hamiltonian gapless,  the Hamiltonian of Ref.~\cite{Cano}, whose ground-state is exactly the RVB state, must be also.
+
+Iit is possible to interpolate between the dimer and $SU(2)$  RVB states, $SU(N)$ version as described below, or by dressing the lattice itself \cite{RMS}, and there is no evidence for any phase transition here either. >>>$SU(N)$ here???
 
 
+%\subsection{The RVB and Coulomb gas states}
+%\label{sec:cg}
 
-\subsection{The RVB and Coulomb gas states}
-\label{sec:cg}
-
-This wavefunction can also be written as a superposition of classical ``loop'' states, defined by the transition graph formed by superimposing one element of the sum over $\alpha$ with some reference state.\footnote{\textcolor{blue}{This can be seen by computing the norm $\langle \Psi|\Psi\rangle=\sum_{{\rm loops}}2^{{\cal N}+2{\cal L}}$, where the sum runs over all the possible loop configurations. ${\cal N}$ is the number of double-edges and ${\cal L}$ is the number of non trivial loops.}}
-Correlators in the RVB can be written in terms of the correlators of this 2D classical loop model, where loops longer than length two have a weight of $4$ per loop (\textcolor{red}{THE DEFINITION OF ``WEIGHT'' NEEDS EXPLAINING}). A spin-spin correlator corresponds to having a strand of loop end at the sites of the spins \cite{LDA}. Such a correlator is exponentially decaying  whenever the weight per loop is greater than 2 \cite{Nienhuis}.  Moreover, extensive numerics indicate \cite{RVB1,RVB2} have not found any  spin order. 
+%This wavefunction can also be written as a superposition of classical ``loop'' states, defined by the transition graph formed by superimposing one element of the sum over $\alpha$ with some reference state.\footnote{\textcolor{blue}{This can be seen by computing the norm $\langle \Psi|\Psi\rangle=\sum_{{\rm loops}}2^{{\cal N}+2{\cal L}}$, where the sum runs over all the possible loop configurations. ${\cal N}$ is the number of double-edges and ${\cal L}$ is the number of non trivial loops.}}
+%Correlators in the RVB can be written in terms of the correlators of this 2D classical loop model, where loops longer than length two have a weight of $4$ per loop (\textcolor{red}{THE DEFINITION OF ``WEIGHT'' NEEDS EXPLAINING}). A spin-spin correlator corresponds to having a strand of loop end at the sites of the spins \cite{LDA}. Such a correlator is exponentially decaying  whenever the weight per loop is greater than 2 \cite{Nienhuis}.  Moreover, extensive numerics indicate \cite{RVB1,RVB2} have not found any  spin order. 
 %In this sense, the spins are ``deconfined'' and this state perhaps represents a sort of spin liquid.
 
 
