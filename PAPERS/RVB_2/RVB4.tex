@@ -336,7 +336,7 @@ The analogous formula still holds if space is a cylinder instead of a a torus, s
 In the continuum, these partition functions become those of the free-boson conformal field theory with fixed Dirichlet boundary conditions at the ends of the cylinder, so we have now derived (\ref{eq:shape_general}) with boundary conditions now specified.
 
 
-For the dimer RVB state, the partition functions on the cylinder can be computed exactly both on the lattice and in the continuum. The lattice dimer result is detailed in  \ref{sec:dimers_exact} >>> any more comments to add about this???  The free-boson field theories these partition function are known explicitly \cite{BigYellowBook};  we will discuss their application to the two-cylinder Renyi entropy (and some important subtleties) in the next section \ref{sec:dimers_entanglement}. In particular, we will show how the even-odd effect is a signature of the ``locked phase'' for $n>1$. 
+For the dimer RVB state, the partition functions on the cylinder can be computed exactly both on the lattice and in the continuum. The lattice dimer result is detailed in  \ref{sec:dimers_exact} >>> any more comments to add about this???  For the free-boson field theory, these partition function are known explicitly \cite{BigYellowBook};  we will discuss their application to the two-cylinder Renyi entropy (and some important subtleties) in the next section \ref{sec:dimers_entanglement}. In particular, we will show how the even-odd effect is a signature of the ``locked phase'' for $n>1$. 
 %In this phase the even-odd effect is proportional to $n/(n-1)$, and therefore slightly diminishes with $n$. 
 
 Let us conclude this section by noting that
@@ -347,36 +347,6 @@ it should also be possible to extend these results
 \section{Entanglement in the quantum dimer wave function}
 \label{sec:dimers_entanglement}
 This section is devoted to the exploration of the consequences of Eq.~(\ref{eq:shape_general}) for quantum dimers. We will calculate explicitely the subleading term, and also provide numerical checks. One advantage compared to RVB is that all R\'enyi values are accessible on relatively large systtem sizes.
-
-
-
-
-% utilized in \cite{Ju2012}, for RK-type states. The torus has dimensions $L_x$ and $L_y$, and is cut i%nto two cylinders of dimensions $L_x \times \ell_y$ and $ L_x \times (L_y-\ell_y)$
-% \begin{figure}[ht]
-%  \begin{center}
-%   \includegraphics[width=7cm,angle=-90]{./figures/16x8b.pdf}
-%   \end{center}
-%   \caption{Torus geometry studied in this paper, with $L_x=8$ and $L_y=16$. We mainly focus on entanglement aspects. The system is cut into two parts $A$ and $B$. Here subsystem $A$ is a cylinder of height $\ell_y=4$, and is drawn in bold blue. Subsystem $B$ is a cylinder of height $L_y-\ell_y=12$. We are particularly interested in the dependence of entanglement on the shape $\ell_y/L_y$, $L_x/L_y$ of the torus.}
-% \label{fig:torus}
-%  \end{figure}
-% Physical results are expected to only depend on the two possible dimensionless ratios $L_y/L_x$ and $\ell_y/L_y$. The first is encoded in the modulus $\tau$ of the torus:
-% \begin{equation}
-%  \tau=i\frac{L_y}{L_x}.
-% \end{equation}
-% The imaginary number is there for later convenience, as it allows to make contact with standard results from conformal field theory. Most of the numerical studies will be performed for the most natural $L_y=L_x$ case, but we expect our results to be valid for any aspect ratio. We call the other ratio
-% \begin{equation}
-%  y=\frac{\ell_y}{L_y}
-% \end{equation}
-% the ``subsystem ratio''. It plays the same role as the $x/L$ in 1d. We are interested in the scaling behavior of the entropy with $L$, while keeping both ratios $y$ and $\tau$ finite. 
-% \paragraph{}
-%  It is well known that the R\'enyi entanglement entropy of such quantum systems exhibits an area law\cite{ALreview}:
-%  \begin{equation}
-%  S_n(L,y,\tau)= a_{n} L+s_{n}(y,\tau)+\mathcal{O}(1/L)
-% \end{equation}
-% Since the boundary between $A$ and $B$ is smooth and assuming a Coulomb gas description, we expect no subleading logarithmic corrections\cite{Hsu2009}. The first subleading term should be a universal constant $s_n(y,\tau)$, which depends only on the two aspect ratios for a given universality class. At this stage it is important to notice that although $a_n$ is non-universal -- and therefore depends on the specifics of the lattice model -- this area law term should \emph{not} depend on the two aspect ratios. This simple fact has an important practical consequence: one can read off the $y$ (or $\tau$) dependence of $s_n(y,\tau)$ by just looking at the numerical data $S_n(L,y,\tau)$ for sufficiently large $L$. We will use this method\cite{Ju2012} throughout the paper, therefore sidestepping any  (possibly difficult in practice) fitting procedure.    
-
-
-
 
 It is also useful to remark that the von Neumann point ($n=1$), no such even-odd effect is possible. Indeed, the shape of the entanglement entropy has to be a concave-down function of $y$, as required by the strong subadditivity property\cite{Strongsubadditivity}. Other values of $n$ are not constrained by subadditivity, we will come back to this point later on. 
 \subsection{Even-odd effect}
@@ -870,3 +840,32 @@ Eq.~(\ref{eq:nullwinding2}) follows from Eq.~(\ref{eq:nullwinding1}) by selectin
 
 
 \end{document}
+
+
+
+% utilized in \cite{Ju2012}, for RK-type states. The torus has dimensions $L_x$ and $L_y$, and is cut i%nto two cylinders of dimensions $L_x \times \ell_y$ and $ L_x \times (L_y-\ell_y)$
+% \begin{figure}[ht]
+%  \begin{center}
+%   \includegraphics[width=7cm,angle=-90]{./figures/16x8b.pdf}
+%   \end{center}
+%   \caption{Torus geometry studied in this paper, with $L_x=8$ and $L_y=16$. We mainly focus on entanglement aspects. The system is cut into two parts $A$ and $B$. Here subsystem $A$ is a cylinder of height $\ell_y=4$, and is drawn in bold blue. Subsystem $B$ is a cylinder of height $L_y-\ell_y=12$. We are particularly interested in the dependence of entanglement on the shape $\ell_y/L_y$, $L_x/L_y$ of the torus.}
+% \label{fig:torus}
+%  \end{figure}
+% Physical results are expected to only depend on the two possible dimensionless ratios $L_y/L_x$ and $\ell_y/L_y$. The first is encoded in the modulus $\tau$ of the torus:
+% \begin{equation}
+%  \tau=i\frac{L_y}{L_x}.
+% \end{equation}
+% The imaginary number is there for later convenience, as it allows to make contact with standard results from conformal field theory. Most of the numerical studies will be performed for the most natural $L_y=L_x$ case, but we expect our results to be valid for any aspect ratio. We call the other ratio
+% \begin{equation}
+%  y=\frac{\ell_y}{L_y}
+% \end{equation}
+% the ``subsystem ratio''. It plays the same role as the $x/L$ in 1d. We are interested in the scaling behavior of the entropy with $L$, while keeping both ratios $y$ and $\tau$ finite. 
+% \paragraph{}
+%  It is well known that the R\'enyi entanglement entropy of such quantum systems exhibits an area law\cite{ALreview}:
+%  \begin{equation}
+%  S_n(L,y,\tau)= a_{n} L+s_{n}(y,\tau)+\mathcal{O}(1/L)
+% \end{equation}
+% Since the boundary between $A$ and $B$ is smooth and assuming a Coulomb gas description, we expect no subleading logarithmic corrections\cite{Hsu2009}. The first subleading term should be a universal constant $s_n(y,\tau)$, which depends only on the two aspect ratios for a given universality class. At this stage it is important to notice that although $a_n$ is non-universal -- and therefore depends on the specifics of the lattice model -- this area law term should \emph{not} depend on the two aspect ratios. This simple fact has an important practical consequence: one can read off the $y$ (or $\tau$) dependence of $s_n(y,\tau)$ by just looking at the numerical data $S_n(L,y,\tau)$ for sufficiently large $L$. We will use this method\cite{Ju2012} throughout the paper, therefore sidestepping any  (possibly difficult in practice) fitting procedure.    
+
+
+
