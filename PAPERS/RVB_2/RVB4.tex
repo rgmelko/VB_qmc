@@ -285,7 +285,7 @@ The figure makes it obvious that the Reyni entropy exhibits strikingly different
 
 
 
-\subsection{The entropy for $n>n_c$}
+\subsection{The entropy in the locked phase $n>n_c$}
 \label{sec:bpt}
 Here we derive the relation of the two-cylinder entanglement entropy of the dimer RVB state to CFT partition functions in 
 (\ref{eq:shape_general}) for $n>n_c$. This follows fairly simply from the description of the long-distance behavior of classical dimers in terms of the free boson action (\label{eq:free_field_bis}).
@@ -319,14 +319,16 @@ where $d_{\min}$ is the smallest $d$ allowed by the lattice symmetries. For dime
 \end{equation}
 The two qualitatively different types of behavior seen in fig.\ \ref{fig:ee_d_torus} indeed occur on opposite sides of $n_c$. It is important to notice that even though $S_n$ should take an universal form in both phases, the value itself of the critical R\'enyi parameter depends on a degeneracy $d_{\rm min}$, which is non-universal. For example, $d_{\rm min}=2$ for the quantum six-vertex wave function, and $d_{\rm min}=3$ for quantum dimers on the hexagonal lattice. 
 
-This observation now allows us to derive the expression for $S_n$ valid for $n>n_c$. In this phase, the boundary operator is relevant. This means that here the boundary value of the field locks on to a minimum of $V_1$. This minimum must be fixed along the entire boundary; this is commonly known as Dirichlet boundary conditions on the boson. A constant value of the field along the boundary means that the action is at its minimum there, so this is the {\em maximum} value of the probability $p_{\rm max}$. 
+This observation now allows us to derive the expression for $S_n$ valid for $n>n_c$. In this phase, the boundary operator is relevant. This means that here the boundary value of the field locks on to a minimum of $V_1$. This minimum must be fixed along the entire boundary; this is commonly known as Dirichlet boundary conditions on the boson. We refer therefore to the phase with $n>n_c$ as the ``locked'' phase.
+
+A constant value of the field along the boundary means that the action is at its minimum there, so this is the {\em maximum} value of the probability $p_{\rm max}$. 
 Universal contributions to the R\'enyi entropy coming from the sum (\ref{Spsm})  are therefore dominated by the configuration:
 \begin{equation}\label{eq:aftert}
  S_{n>n_c}\sim \frac{n}{1-n}\ln (p_{\rm max})
 \end{equation}
-This result implies that there is an ``entanglement gap'' between $p_{max}$ and the other values. We have checked this assertion in the dimer RVB state directly by numerical evaluation of the probabilities as above. (This is distinct from the quantum Hall case \cite{HaldaneLi}, where there is no entanglement gap, in correspondence with the gapless edge excitations.)
+This result implies that in the scaling limit there is an ``entanglement gap'' between $p_{max}$ and the other values. We have confirmed directly the presence of the entanglement gap for the dimer RVB state by numerical evaluation of the probabilities using the free-fermion techniques detailed in \ref{sec:lgv}.  This is distinct from the quantum Hall case \cite{HaldaneLi}, where there is no entanglement gap, in correspondence with the gapless edge excitations there.
  
- In terms of dimers, the configuration with maximum probability corresponds to no dimers crossing the boundaries between $A$ and $B$ (see Fig.~\ref{fig:bipartition}). This is a huge technical simplification, since the probability of having no dimers across the cut factorizes into pieces coming from region $A$ and from region $B$. Namely, define $Z_{\rm cyl}(L_x, L_y)$ to be the partition function (the number of dimer configurations) for a cylindrical region of size $L_x$ in the periodic direction and $L_y$ in the other, with boundary conditions corresponding to no dimers leaving the region. Then it follows from (\ref{Zpsm}) that when an $L_x\times L_y$ torus is split into cylinders of lengths $y$ and $L_y-y$,
+ In terms of dimers, the configuration with maximum probability corresponds to no dimers crossing the boundaries between $A$ and $B$ (see Fig.~\ref{fig:bipartition}). This is a huge technical simplification, since the probability of having no dimers across the cut factorizes into pieces coming from region $A$ and from region $B$. Namely, define $Z_{\rm cyl}(L_x, L_y)$ to be the partition function (the number of dimer configurations) for a cylindrical region of size $L_x$ in the periodic direction and $L_y$ in the other, with boundary conditions corresponding to no dimers leaving the region. Likewise, $Z_{\rm torus}[L_x,L_y)$  is the number of dimer configurations with periodic boundary conditions. Then it follows from (\ref{Zpsm}) that when an $L_x\times L_y$ torus is split into cylinders of lengths $y$ and $L_y-y$,
 \begin{equation}\label{eq:pmax}
  p_{\rm max}=\frac{Z_{\rm cyl}(L_x,\ell_y)Z_{\rm cyl}(L_x,L_y-\ell_y)}{Z_{\rm torus}(L_x,L_y)} \ .
 \end{equation}
