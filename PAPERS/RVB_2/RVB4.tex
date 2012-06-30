@@ -1,4 +1,4 @@
-\documentclass[11pt]{iopart}
+\documentclass[10pt]{iopart}
 \usepackage{fullpage}
 
 \usepackage{iopams,graphicx,color}
@@ -445,7 +445,7 @@ CFT partition functions on cylinders and tori depend on only the aspect ratio of
 
 \section{Correlations in the $SU(N)$ RVB wave function}
 \label{sec:correlations}
-In this section we take a small detour to study critical properties of the $SU(N)$-RVB wave function, before going to its entanglement properties (Sec.~\ref{sec:rvb_entanglement}). This section, which may be skipped at first reading, is organized as follows. In \ref{sec:basics} we recall some basic properties of the $SU(N)$-RVB wave function on the square lattice. We then explain (Sec.~\ref{sec:numerics}) how such system maybe be simulated using Quantum Monte Carlo techniques. Finally we study spin-spin correlations, as well as the more interesting dimer-dimer correlations. In particular, we find that dimer-dimer correlations decay algebraically, and that the exponent interpolates between $SU(2)$\cite{RVB1,RVB2} and the pure dimer exponent ($N\to \infty$), in agreement with a recent large $N$ calculation\cite{Damle}.
+In this section we take a small detour to study more directly the critical properties of the $SU(N)$-RVB wave function, before going to its entanglement properties (Sec.~\ref{sec:rvb_entanglement}). This section, which may be skipped at first reading, is organized as follows. In Sec.~\ref{sec:numerics}, we explain how such systems , in particular their correlation functions, maybe be simulated using Quantum Monte Carlo techniques. We then study spin-spin correlations, as well as the more interesting dimer-dimer correlations. We find that dimer-dimer correlations decay algebraically, and that the exponent interpolates between $SU(2)$\cite{RVB1,RVB2} and the pure dimer exponent ($N\to \infty$), in agreement with a recent large $N$ calculation\cite{Damle}.
 
 \subsection{Numerical simulations}
 \label{sec:numerics}
@@ -474,7 +474,8 @@ and $0$ otherwise. Because we are measuring parallel dimer-dimer correlations, w
  \begin{center}
   \includegraphics{./figures/spin_corr.pdf}
  \end{center}
-\caption{Spin-spin correlation function on the torus. They decay exponentially, with an exponent that diminishes with $N$. We have $\xi(N=2)=1.30(5)$ (compatible with \cite{RVB1}) and the new $\xi(N=3)=0.68(5)$, $\xi(N=4)=0.56(3)$ and $\xi(N=5)=0.46(2)$.}
+\caption{Spin-spin correlation function on the torus. We look at two spin in the (?) direction, separated by a distance $
+ell_x$. They decay exponentially, with an exponent that diminishes with $N$. We have $\xi(N=2)=1.30(5)$ (compatible with \cite{RVB1}) and the new $\xi(N=3)=0.68(5)$, $\xi(N=4)=0.56(3)$ and $\xi(N=5)=0.46(2)$.}
 \label{fig:corrspin_su2}
 \end{figure}
 Let us first look at the spin correlations. As is shown in Fig.~\ref{fig:corrspin_su2}, they decay exponentially
@@ -485,16 +486,21 @@ with a finite correlation length $\xi$. This is well known\cite{LDA,RVB1} for th
 \subsection{Dimer-dimer correlations and the Coulomb-gas picture}
 \label{sec:dimerdimer}
 Let us now look at the more interesting dimer-dimer correlations. The connected dimer-dimer correlation function has been recently shown to decay algebraically in Refs.~\cite{RVB1} and \cite{RVB2} for $SU(2)$. One has to leading order
-%\textcolor{blue}{\bf [give more details]}
 \begin{equation}\label{eq:decay}
- D_{||}(\ell) \sim (\ell/L)^{-\alpha},
+ C_{dd}(\vec{r}_1,\vec{r}_2)\sim \frac{1}{\left|\vec{r}_1-\vec{r}_2\right|^\alpha}
 \end{equation}
-in the limit $1\ll \ell \ll L$.
-The exponent is approximately $\alpha_2\simeq 1.2$. We extend here these results to the $SU(N)$ case, focusing on longitudinal correlation with an odd distance between the two dimers\footnote{\textcolor{red}{\bf [give a few more details, and also maybe the even-distance correlation. Discuss subleading corrections.]}}, and in the $W=(0,0)$ sector. Since we have
+at distances large compared to the lattice spacing, but small compared to the torus size $L=L_x=L_y$. Using several different methods, the exponent was found to be approximately $\alpha \simeq 1.2$, and independent on the direction.
+%\begin{equation}\label{eq:decay}
+% D_{||}(\ell) \sim (\ell/L)^{-\alpha},
+%\end{equation}
+%in the limit $1\ll \ell \ll L$.
+We extend some of these results, on the $SU(N)$ case, mainly focusing on the correlations in the transverse (?) direction ($\vec{r}_1-\vec{r}_2=\ell_x \vec{u}_x$). 
+%The exponent is approximately $\alpha_2\simeq 1.2$. We extend here these results to the $SU(N)$ case, focusing on longitudinal correlation with an odd distance between the two dimers\footnote{\textcolor{red}{\bf [give a few more details, and also maybe the even-distance correlation. Discuss subleading corrections.]}}, and in the $W=(0,0)$ sector. Since we have
+Since $SU(N)$ dimer correlations reduce to pure dimer correlations in the limit $N\to\infty$, we have
 \begin{equation}
- \lim_{N \to \infty} \alpha_N=\alpha_{\rm dimers}=2,
+ \lim_{N \to \infty} \alpha_N=\alpha_{\rm D}=2,
 \end{equation}
-it is reasonable to expect that the exponent will interpolate smoothly between the two values. 
+ and it is reasonable to expect that the exponent will interpolate smoothly between the two values $\alpha_2$ and $\alpha_D$.
 \begin{figure}[ht]
  \begin{center}
   \includegraphics{./figures/corr_su2.pdf}
@@ -502,7 +508,8 @@ it is reasonable to expect that the exponent will interpolate smoothly between t
 \caption{Dimer-Dimer correlations on the $64 \times 64$ torus for $N=2,3,4,5$. Dashed blue lines is a linear fit to Eq.~(\ref{eq:decay}), in the ``linear regime'' $\ell_x \simeq 5,\ldots,15$. We also performed a fit to the conformal scaling (Eq.~(\ref{eq:cft_fit})) in the same region (red solid lines). Such a fit reproduces all the data quite well.}
 \label{fig:corr_su2_dimers}
 \end{figure}
-\paragraph{}Our numerical results are shown in Fig.~\ref{fig:corr_su2_dimers}. For each $N$ we extract the leading exponent by a fit (solid blue lines in Fig.~\ref{fig:corr_su2_dimers}) to Eq.~(\ref{eq:decay}) in the regime $1\ll \ell \ll L$. We find $\alpha_2=1.21(2)$, $\alpha_3=1.43(3)$, $\alpha_4=1.54(3)$, $\alpha_4=1.67(6)$. Notice that as $N$ gets larger, it becomes more and more difficult  to converge the Monte-Carlo data in a finite time, which implies a loss of precision on the corresponding exponent. 
+\paragraph{}Our numerical results are shown in Fig.~\ref{fig:corr_su2_dimers} for a $L\times L$ torus, with $L=64$. For each $N$ we extract the leading exponent by a fit (solid blue lines in Fig.~\ref{fig:corr_su2_dimers}) to Eq.~(\ref{eq:decay}) in the regime $1\ll \ell \ll L$ and for odd $\ell$. We find $\alpha_2=1.21(2)$, $\alpha_3=1.43(3)$, $\alpha_4=1.54(3)$, $\alpha_4=1.67(6)$. Notice that as $N$ gets larger, it becomes more and more difficult to converge the Monte-Carlo data in a finite time, which implies a loss of precision on the corresponding exponent. 
+\textcolor{blue}{[Discuss also the even-odd structure, and the presence of a subleading dipolar term.]}
 \paragraph{}This values turn out to be in good agreement with an alternative computation by Damle {\it et al}\,\cite{Damle} in the large $N$ limit. In this reference, the authors define a cluster expansion of the loop model corresponding to RVB in terms of a classical interacting dimer model. To first nontrivial order, this model is exactly the one studied by Alet {\it et al}\,\cite{Alet_dimers1,Alet_dimers2}, and this allows to use their Monte-Carlo results. In addition to the already reported $\alpha_2\simeq 1.22$, this approach yields\footnote{Notice that we determined these exponents just from looking at Fig.~26 in \cite{Alet_dimers2}. In their notations,  $X_2=\alpha/2$ and $W=1+1/N$.} $\alpha_3 \simeq 1.4$, $\alpha_4 \simeq 1.52$, and $\alpha_5\simeq 1.6$. Our numerical results therefore confirm that the higher order interacting terms only have a small influence on the critical exponent. 
 \paragraph{}
 Since we are performing simulations on a torus, it is tempting to relax the constraint $\ell \ll L$, and therefore to take into account its finiteness in the fit. While the two-point function on a torus cannot be determined from the sole requirement of conformal invariance, it is known for a $c=1$ Luttinger liquid CFT\cite{BigYellowBook}. Therefore, assuming the underlying height model, the Eq.~(\ref{eq:decay}) is modified in the following way:
