@@ -242,7 +242,7 @@ The dimers are viewed as elementary electric charges, i.e.\ are created by the f
  \alpha=\frac{1}{\kappa}\ .
 \end{equation}
 This yields the stiffness for the dimer model $\kappa_D=1/2$. Elementary magnetic charges can also identified with monomers, and the corresponding exponent describing their two-point function is given by $\beta=\kappa$, so $\beta_D=1/2$.
-Once the stiffness fixed to its right value, Eq.~(\ref{eq:free_field}) describes all the universal properties of the classical dimer model. By virtue of the correspondence between correlators in the classical model and those in the dimer RVB state, the same exponents apply to the correlators in the latter as well.
+Once the stiffness fixed to its right value, Eq.~(\ref{eq:free_field_bis}) describes all the universal properties of the classical dimer model. By virtue of the correspondence between correlators in the classical model and those in the dimer RVB state, the same exponents apply to the correlators in the latter as well.
 
 In this framework the quantum dimer model can also be written as in terms of a free scalar field in the 2+1 dimensional ``quantum Lifshitz'' model \cite{Henley}. This is a field theory version of an RK Hamiltonian \cite{QuantumLifshitz}, and so where the equal-time correlators of a 2d {\em quantum} model are those of a 2d conformal field theory. This model is critical but not Lorentz-invariant, with dynamical critical exponent $z=2$.
 
@@ -295,24 +295,22 @@ The main difference with \cite{Shannonee} is that there are two boundaries here,
 \end{equation}
 where the $p_{\sigma,\mu}$ are the probabilities of a given boundary configuration $|\sigma\rangle$,$|\mu\rangle$ between $A$ and $B$. 
 \label{sec:lg.}
-% Sites closest to the boundary are called ``boundary sites''.
-%We attach an $\uparrow$ (resp. $\downarrow$) virtual spin to a boundary site occupied by a dimer in $B$ (resp. $A$) and represent it by a black (resp. white) filled circle. Each boundary configuration has probability $p_{\sigma,\mu}$. \emph{Left}: Example of dimer configuration compatible with $|\sigma\rangle=|\!\uparrow\uparrow\downarrow\downarrow\uparrow\uparrow\uparrow\downarrow\rangle$ and $|\mu\rangle=|\!\downarrow\uparrow\downarrow\uparrow\downarrow\downarrow\uparrow\downarrow\rangle$. \emph{Right}: Example of dimer configuration compatible with the most likely boundary configuration $|\sigma\rangle=|\!\uparrow\uparrow\uparrow\uparrow\uparrow\uparrow
-%\uparrow\uparrow\rangle$ and $|\mu\rangle=|\!\downarrow\downarrow\downarrow
-%\downarrow\downarrow\downarrow\downarrow\downarrow\rangle$, where no dimers are crossing the boundary.
-The probabilities are
-\begin{equation}
- \psm=\frac{Z_{\sigma,\mu}}{Z},
- \label{Zpsm}
-\end{equation}
-where $Z_{\sigma,\mu}$ is the number of dimer configurations compatible with the boundary configuration $|\sigma\rangle,|\mu\rangle$, while $Z$ is the number of dimer coverings on the whole torus. The $\psm$ are nothing but the eigenvalues of the reduced density matrix\footnote{Said differently, the Schmidt decomposition of the ground state reads $|\psi\rangle=\sum_{
-\sigma,\mu} \sqrt{p_{\sigma,\mu}}|\psi_{\sigma,\mu}^A\rangle |\psi_{\sigma,\mu}^B\rangle$, where $|\psi_{\sigma,\mu}^A\rangle$ is a superposition of all dimer states in $A$ compatible with the boundary conditions $\sigma$ and $\mu$, and the same goes for $B$. All these vectors are mutually orthogonal $\langle \psi_{\sigma,\mu}^\Omega|\psi_{\sigma^\prime,\mu^\prime}^{\Omega^\prime}\rangle=\delta_{\sigma \sigma^\prime}\delta_{\mu \mu^\prime}\delta_{\Omega \Omega^\prime}$.}, and the mapping therefore allows to calculate  any R\'enyi entanglement entropy as
+The $\psm$ are precisely the eigenvalues of the reduced density matrix\footnote{Said differently, the Schmidt decomposition of the ground state reads $|\psi\rangle=\sum_{
+\sigma,\mu} \sqrt{p_{\sigma,\mu}}|\psi_{\sigma,\mu}^A\rangle |\psi_{\sigma,\mu}^B\rangle$, where $|\psi_{\sigma,\mu}^A\rangle$ is a superposition of all dimer states in $A$ compatible with the boundary conditions $\sigma$ and $\mu$, and the same goes for $B$. All these vectors are mutually orthogonal $\langle \psi_{\sigma,\mu}^\Omega|\psi_{\sigma^\prime,\mu^\prime}^{\Omega^\prime}\rangle=\delta_{\sigma \sigma^\prime}\delta_{\mu \mu^\prime}\delta_{\Omega \Omega^\prime}$.}
+This mapping therefore allows the R\'enyi entanglement entropy to be rewritten as
 \begin{equation}
  S_n=\frac{1}{1-n}\ln \left(\sum_{\sigma,\mu}[\psm]^n\right).
  \label{Spsm}
 \end{equation}
-Note that here $n$ need not be an integer.
+Note that here $n$ need not be an integer. The probabilities can be conveniently rewritten in terms of dimer partition functions as 
+\begin{equation}
+ \psm=\frac{Z_{\sigma,\mu}}{Z},
+ \label{Zpsm}
+\end{equation}
+where $Z_{\sigma,\mu}$ is the number of dimer configurations compatible with the boundary configuration $|\sigma\rangle,|\mu\rangle$, while $Z$ is the number of dimer coverings on the whole torus. 
 
-This expression makes it possible to use the computer to find very accurate values of the Renyi entropy for the dimer RVB state. Using free-fermion/Pfaffian techniques described in \ref{sec:lgv}, each probability can be expressed as a product of determinants of two matrices of size $\sim L/2$, and computed numerically in a time of order $\approx L^3$. Using translational symmetry along the $x$ axis as well as the conservation of winding numbers, we are able to compute any R\'enyi entropy up to machine precision in a time of order $L^{3/2}\times 4^L$.
+
+These expressions make it possible to use the computer to find very accurate values of the Renyi entropy for the dimer RVB state. Using free-fermion/Pfaffian techniques described in \ref{sec:lgv}, each probability can be expressed as a product of determinants of two matrices of size $\sim L/2$, and computed numerically in a time of order $\approx L^3$. Using translational symmetry along the $x$ axis as well as the conservation of winding numbers, we are able to compute any R\'enyi entropy up to machine precision in a time of order $L^{3/2}\times 4^L$.
 The results for a $20\times 20$ torus are summarized in Fig.~\ref{fig:ee_d_torus}, where the two cylinders are of length $y$ and $L_y-y$. 
 \begin{figure}[ht]
  \begin{center}
@@ -337,7 +335,7 @@ When one utilizes an effective field-theory action to describe the scaling limit
 \end{equation}
 with $d$ integer 
 are consistent with the compactification  of the boson $h\to h + 2\pi$.
-If such a term is relevant, then the action flows to a configuration where the height $h$ is locked to one if the minimal values $h=h_0$ mod $2\pi$. For dimers on the square lattice, it has long been known that any such term allowed are irrelevant in the bulk; this is why the action (\ref{eq:free_field_bis}) applies and the correlators are algebraically decaying. However, we showed in the preceding subsection \label{sec:eeshannon} that the probabilities used to compute the Renyi entropy depend on the boundary conditions. Thus the crucial observation of  \cite{Stephan2011,Moore} is that  one needs to include terms of the form (\ref{Vdef}) localized at the {\em boundary}.
+If such a term is relevant, then the action flows to a configuration where the height $h$ is locked to one if the minimal values $h=h_0$ mod $2\pi$. For dimers on the square lattice, it has long been known that any such term allowed are irrelevant in the bulk; this is why the action (\ref{eq:free_field_bis}) applies and the correlators are algebraically decaying. However, we showed in the preceding subsection \ref{sec:eeshannon} that the probabilities used to compute the Renyi entropy depend on the boundary conditions. Thus the crucial observation of  \cite{Stephan2011,Moore} is that  one needs to include terms of the form (\ref{Vdef}) localized at the {\em boundary}.
 
 To be precise, in the continuum limit the probabilities $p_{\sigma,\mu}$ depend now on the configurations of the field $p(\phi)$. The probability to observe of observing field configuration $\phi$ at the boundary is still gaussian
 \begin{equation}
@@ -372,12 +370,11 @@ This result implies that in the scaling limit there is an ``entanglement gap'' b
 \begin{equation}\label{eq:pmax}
  p_{\rm max}=\frac{Z_{\rm cyl}(L_x,\ell_y)Z_{\rm cyl}(L_x,L_y-\ell_y)}{Z_{\rm torus}(L_x,L_y)} \ .
 \end{equation}
-The analogous formula still holds if space is a cylinder instead of a a torus, simply by replacing the denominator with the appropriate cylinder partition function. 
-In the continuum, these partition functions become those of the free-boson conformal field theory, and so putting (\ref{eq:pmax}) together with (\ref{eq:aftert}) gives (\ref{eq:shape_general}). The boundary conditions at the ends of the cylinder are fixed, i.e.\ at each end the field is set to some value $h_0$. Finding precisely which values is an important subtlety we discuss in the next section \ref{sec:dimers_entanglement}.
+The analogous formula still holds if space is a cylinder instead of a a torus, simply by replacing the denominator with the appropriate cylinder partition function. Note that the non-universal bulk parts of the partition functions cancel in this expression, so that one can use the universal partition functions computed in the free-boson conformal field theory. Thus putting (\ref{eq:pmax}) together with (\ref{eq:aftert}) gives (\ref{eq:shape_general}). 
 
 
-For the dimer RVB state, the partition functions on the cylinder can be computed exactly both on the lattice and in the continuum. The lattice dimer result is detailed in  \ref{sec:dimers_exact} >>> any more comments to add about this, I assume you checked numerically that (\ref{eq:after}) holds???  For the free-boson field theory, these partition function are known explicitly \cite{BigYellowBook};  we will discuss their application to the two-cylinder Renyi entropy in the next section \ref{sec:dimers_entanglement}. In particular, we will show how the even-odd effect is a signature of this locked phase  $n>n_c$. 
-%In this phase the even-odd effect is proportional to $n/(n-1)$, and therefore slightly diminishes with $n$. 
+For the dimer RVB state, the partition functions on the cylinder can be computed exactly both on the lattice and in the continuum.  The lattice dimer result is detailed in  \ref{sec:dimers_exact} >>> any more comments to add about this, I assume you checked numerically that (\ref{eq:aftert}) holds???  For the free-boson field theory, these partition functions are known explicitly \cite{BigYellowBook};  we will discuss their application to the two-cylinder Renyi entropy in the next section \ref{sec:dimers_entanglement}. In particular, we will show how the even-odd effect is a signature of this locked phase  $n>n_c$, arising from the different boundary conditions necessary for the even and odd sectors.
+
 
 It should also be possible to extend these results to the region $n<n_c$, using boundary CFT methods \cite{Shannonee,Oshikawa,Zaletel,Stephan2011}. Here, however, the boundary conditions will presumably not allow the factorization of the probability into pieces coming from the two regions. Oshikawa\cite{Oshikawa} has already treated the $y=1/2$ case for the closely related cylinder geometry, using the replica approach $n\in \mathbb{N}$. There will possibly be subtleties involving analytic continuation in $n$, similar to the two-interval 1d calculation \cite{CCT1,CCT2}.
 
@@ -399,13 +396,14 @@ The computation of the free-boson partition function is completely standard; see
  \mathcal{Z}_{\rm cyl}^{DD^{(a)}}=\frac{1}{\eta(-1/2\tau)}\sum_{w \in \mathcal{Z}}\exp \left[-\kappa \pi\frac{L_x}{L_y} (w+a)^2\right].
 \end{equation}
 It is convenient to rewrite such sums in terms of the Jacobi theta and Dedekind eta functions defined in \ref{sec:CFT_Jacobi}, to take advantage of many elegant identities. 
-Setting  $\kappa=1/2$ to get dimers, the even case $a=0$ can be written as
-\begin{equation}\label{eq:cyl_dd}
+The even case $a=0$ can be written as
+\begin{equation}\label{eq:cylinder_dd}
  \mathcal{Z}_{\rm cyl}^{DD}(\tau)=\frac{\theta_3(2\tau)}{\eta(2\tau)}\ ,
 \end{equation}
 where we adopt the conventional variable  $\tau=i L_y/L_x$. 
 For the odd case $a=1/2$, we have
 \begin{equation}
+\label{eq:cylinder_ddprime}
  \mathcal{Z}_{\rm cyl}^{DD^\prime}(\tau)=\frac{\theta_4(2\tau)}{\eta(2\tau)}\ .
 \end{equation}
 
@@ -414,7 +412,7 @@ For the odd case $a=1/2$, we have
 
 
 
-Plugging these results in Eq.~(\ref{eq:shape_general}), and using the torus partition funtion\cite{Ginsparge,BigYellowBook} also given in the appendix, we get for the two-cylinder entanglement entropies
+Plugging these results into Eq.~(\ref{eq:shape_general}), and using the torus partition funtion\cite{Ginsparg,BigYellowBook} also given in the appendix, we get for the two-cylinder entanglement entropies
 \begin{eqnarray}\label{eq:cft_prediction}
  s_n^{\rm (even)}(y,\tau)&=&\frac{n}{1-n}\ln \left(\frac{\eta(\tau)^2}{\theta_3(2\tau)\theta_3(\tau/2)}\times\frac{\theta_3(2y \tau)\theta_3(2(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_prediction_odd}
  s_n^{\rm (odd)}(y,\tau)&=&\frac{n}{1-n}\ln \left(\frac{\eta(\tau)^2}{\theta_3(2\tau)\theta_3(\tau/2)}\times\frac{\theta_4(2y \tau)\theta_4(2(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)
@@ -425,37 +423,31 @@ Fig.~\ref{fig:dimers_shape} shows a numerical test of the universal shape Eq.~(\
  \includegraphics[width=8cm]{./figures/dimers_shape.pdf}
  \includegraphics[width=8cm]{./figures/dimers_shape2.pdf}
  \end{center}
- \caption{Numerical results for the second R\'enyi entropy $S_2$ as a function of the subsystem-ratio $y=\ell_y/L_y$ for $L_x=20$. The CFT predictions are given by Eq.~(\ref{eq:cft_prediction}) in the even case and Eq.~(\ref{eq:cft_prediction_odd}) in the odd case. \emph{Left:} Torus with aspect ratio $L_y/L_x=1$. Black dots are the data for quantum dimers on the square lattice. \emph{Right:} Torus with aspect ratio $L_y/L_x=2$. .}
+ \caption{Numerical results for the second R\'enyi entropy $S_2$ as a function of the subsystem-ratio $y=\ell_y/L_y$ for $L_x=20$. Black dots are the data for square-lattice dimer RVB state, while the CFT predictions are given by Eq.~(\ref{eq:cft_prediction}) in the even case and Eq.~(\ref{eq:cft_prediction_odd}) in the odd case. \emph{Left:} Torus with aspect ratio $L_y/L_x=1$. \emph{Right:} Torus with aspect ratio $L_y/L_x=2$.}
  \label{fig:dimers_shape}
 \end{figure}
-\paragraph{}
-The even-odd effect is much less pronouced in for larger $L_y/L_x$, compatible with our prediction that $S_2$ goes exponentially fast in $L_y/L_x$ to a single flat curve. The relatively large finite-size effects should disappear in the thermodynamic limit.
+Obviously, these $n>n_c$ results are quite different in the even and odd sectors; the difference proportional to $n/(n-1)$, and therefore slightly diminishes with increasing $n$, but does not go away. 
 
 
+This even/odd effect disappears as $L_y/L_x$ is increased; it follows from the CFT expressions that this occurs exponentially quickly.  It does not approach the celebrated 1d result $\propto \ln\sin (\pi y)$in the effective 1d limit $L_y/L_x\to\infty$, because the RK Hamiltonian becomes gapped with correlation length $\xi\propto L_x$ in this limit. Thus the standard 1d result 
+$s_n\propto \ln(\xi)$ \cite{Cardy} applies.
+>>> Is this right? Shouldn't the result be $\propto \ln(L_x)$ for fixed $L_y$???
 
-Several interesting observations can be made:
-\begin{itemize}
-\item 
- From the perspective of the quantum dimer model, the R\'enyi entanglement entropy can be rewritten as a simple fidelity\cite{Bipartite_fidelity}:
- \begin{equation}\label{eq:lbf}
-  S_{n>n_c}\sim \frac{n}{1-n} \ln \left|\langle A\cup B|A\otimes B\rangle\right|^2,
- \end{equation}
-where $|A\cup B\rangle$ is the ground-state wave function of the whole system. $|A\otimes B\rangle$ is the ground-state wave function where all interactions between $A$ and $B$ have been switched off, a tensor product of the two ground-state wave functions in $A$ and $B$. Furthermore, Eq.~(\ref{eq:lbf}) even becomes exact on the lattice when $n\to \infty$.
- \item The universal shape we obtain bears strong resemblance to the numerical results of Ref.~\cite{Ju2012}, strengthening a posteriori the author's claim at universality.  
- \item The curves get flatter and flatter when increasing $L_y/L_x$: one recovers this way the more studied infinite torus limit, where $s_n$ becomes independent on $y$. It could have been tempting to expect the result to be similar to the celebrated 1d quantum result\cite{Cardy} $S_n\propto \ln\sin (\pi y)$ in the infinite torus limit. This is clearly not the case, and one can easily check that the corresponding quasi-1d system would be gapped, and therefore cannot exhibit the conformal scaling. 
- \item The even-odd effect also disappears in this limit. Our finite-size geometry therefore exhibits a richer behavior than its infinite counterpart.
- \item Notice also that the agreement with the numerics, while fair, is not that impressive. We attribute this small mismatch to strong finite-size effects. We discuss them further in Sec.~\ref{sec:exact}.
-\end{itemize}
-\subsection{The exactly solvable $n=\infty$ limit}
-\label{sec:exact}
-To illustrate the slowness of the convergence, we also perform simulations in the exactly solvable case $S_\infty=-\ln p_{\rm max}$ (Eq.~(\ref{eq:pmax})), where the agreement between CFT and the lattice can be made rigorous. $s_{\infty}$ is obtained by taking the $n\to \infty$ limit in Eq.~(\ref{eq:cft_prediction}). 
-As an additional test one can also compute $s_\infty$ in the $W=(0,0)$ winding sector. The calculation is performed in the appendix. The result reads:
+
+%It could have been tempting to expect the result to be similar to the celebrated 1d quantum result$S_n\propto \ln\sin (\pi y)$ in the infinite torus limit. This is clearly not the case, and one can easily check that the corresponding quasi-1d system would be gapped, and therefore cannot exhibit the conformal scaling. 
+
+
+%The even-odd effect is much less pronouced in for larger $L_y/L_x$, compatible with our prediction that $S_2$ goes exponentially fast in $L_y/L_x$ to a single flat curve. 
+
+
+The relatively large finite-size effects apparent in the plots should disappear in the thermodynamic limit.  To illustrate the slowness of the convergence, we study the exactly solvable case $S_\infty=-\ln p_{\rm max}$ (Eq.~(\ref{eq:pmax})), where the agreement between CFT and the lattice can be made rigorous. 
+%$s_{\infty}$ is obtained by taking the $n\to \infty$ limit in Eq.~(\ref{eq:cft_prediction}). 
+We also compute $s_\infty$ in the $W=(0,0)$ winding sector directly for the dimer model, using the techniques described in the appendices, finding:
 \begin{eqnarray}\label{eq:cft_w0}
  s_\infty^{\rm (even)}&=&-\ln \left(\frac{\eta(\tau)^2\theta_3(2y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_w0_odd}
  s_\infty^{\rm (odd)}&=&-\ln \left(\frac{\eta(2\tau)^2\theta_4(2y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)
 \end{eqnarray}
-Notice that even in this sector there are still contributions coming from the compactified nature of the height field. This can be explained by the fact that while the total winding number has to be zero, there can still be winding fluctuations at the boundaries between $A$ and $B$. 
-\paragraph{}
+Even though the total winding number is zero, the result still depends on the compactification radius of the height field  because of winding fluctuations at the boundaries between $A$ and $B$. 
 A comparison between the numerical and analytical results is performed in Fig.~\ref{fig:Sinfty}, for the aspect ratio $L_y/L_x=1$ and the two system sizes $L_x=16$ and $L_x=704$. We observe strong finite-size effects for small system sizes, but the data converges in the end to the CFT result.
 \begin{figure}[ht]
  \begin{center}
@@ -470,10 +462,6 @@ A comparison between the numerical and analytical results is performed in Fig.~\
 
 Droping the non-universal bulk and boundary free energies in Eqs.~(\ref{eq:aftert}) and (\ref{eq:pmax}) allows to recover Eq.~(\ref{eq:shape_general}). 
 
-
-
-
-where $\tau=i\L_x/L_y$, the $i$ included to conform with standard CFT conventions.
 CFT partition functions on cylinders and tori depend on only the aspect ratio of the two lengths; the bulk term depending on the area is independent of the boundary conditions, and so can be factored out of the partition functions and cancels in our formula.
 \begin{equation}\label{eq:shape_general2}
  s_{n>n_c}=\frac{n}{1-n}\ln \left(\frac{{\cal Z}_{\rm cyl}[y\tau]{\cal Z}_{\rm cyl}[(1-y)\tau]}{{\cal Z}_{\rm torus}[\tau]}\right),
@@ -656,6 +644,18 @@ This allows in principle to determine the critical exponent from the entanglemen
  \item Hope this can help attack more complicated Quantum critical points.
 \end{itemize}
 }
+
+\begin{itemize}
+\item 
+ From the perspective of the quantum dimer model, the R\'enyi entanglement entropy can be rewritten as a simple fidelity\cite{Bipartite_fidelity}:
+ \begin{equation}\label{eq:lbf}
+  S_{n>n_c}\sim \frac{n}{1-n} \ln \left|\langle A\cup B|A\otimes B\rangle\right|^2,
+ \end{equation}
+where $|A\cup B\rangle$ is the ground-state wave function of the whole system. $|A\otimes B\rangle$ is the ground-state wave function where all interactions between $A$ and $B$ have been switched off, a tensor product of the two ground-state wave functions in $A$ and $B$. Furthermore, Eq.~(\ref{eq:lbf}) even becomes exact on the lattice when $n\to \infty$.
+ \item The universal shape we obtain bears strong resemblance to the numerical results of Ref.~\cite{Ju2012}, strengthening a posteriori the author's claim at universality.  
+  \end{itemize}
+
+
 \paragraph{Acknowledgments}
  We would like to thank Matthew Hastings for early collaboration on this project. We also thank Ann Kallin, Eduardo Fradkin, Gr\'egoire Misguich, Vincent Pasquier and \ldots for stimulating discussions. Grants acknowledgment. 
  \appendix
@@ -663,6 +663,12 @@ This allows in principle to determine the critical exponent from the entanglemen
 
 \section[\;\;\;\;\;\;\;\;\;\;\;\;\;\;R\'enyi-Shannon entropy on the torus]{R\'enyi-Shannon entropy on the torus}
 \label{sec:lgv}
+>>> The definition of the fermions needs a little more explanation???
+% Sites closest to the boundary are called ``boundary sites''.
+%We attach an $\uparrow$ (resp. $\downarrow$) virtual spin to a boundary site occupied by a dimer in $B$ (resp. $A$) and represent it by a black (resp. white) filled circle. Each boundary configuration has probability $p_{\sigma,\mu}$. \emph{Left}: Example of dimer configuration compatible with $|\sigma\rangle=|\!\uparrow\uparrow\downarrow\downarrow\uparrow\uparrow\uparrow\downarrow\rangle$ and $|\mu\rangle=|\!\downarrow\uparrow\downarrow\uparrow\downarrow\downarrow\uparrow\downarrow\rangle$. \emph{Right}: Example of dimer configuration compatible with the most likely boundary configuration $|\sigma\rangle=|\!\uparrow\uparrow\uparrow\uparrow\uparrow\uparrow
+%\uparrow\uparrow\rangle$ and $|\mu\rangle=|\!\downarrow\downarrow\downarrow
+%\downarrow\downarrow\downarrow\downarrow\downarrow\rangle$, where no dimers are crossing the boundary.
+
 We wish to compute the following classical entropy
 \begin{equation}
  S_n=\frac{1}{1-n} \ln \left(\sum_{\sigma,\mu} [p_{\sigma,\mu}]^n\right), 
@@ -710,12 +716,13 @@ By applying the Wick's theorem and using $\langle 0|c_x c_y^\dag|0\rangle=\delta
 This type of result is referred to as the Karlin-McGregor\cite{KarlinMcGregor} or Lindstr\"om-Gessel-Viennot\cite{Lindstrom1973,GesselViennot1989} lemna in the mathematical litterature. In the end, Eq.~(\ref{eq:tm}) reduces to a product of two determinants, which may be computed numerically.
 \section[\;\;\;\;\;\;\;\;\;\;\;\;\;\;CFT correlations and partition functions]{CFT correlations and partition functions}
 \label{sec:CFT_Jacobi}
-\subsection[\;\;\;\;\;\;\;\;\;\;\;\;\;\;Dedekind-eta and Jacobi-Theta functions]{Dedekind-eta and Jacobi-Theta functions}
-\label{sec:functions}
+%\subsection[\;\;\;\;\;\;\;\;\;\;\;\;\;\;Dedekind-eta and Jacobi-Theta functions]{Dedekind-eta and Jacobi-Theta functions}
+%\label{sec:functions}
 For a given modulus $\tau=i L_y/L_x$, we introduce the squared nome:
 \begin{equation}
  q=e^{2i\pi \tau}=e^{-2\pi L_y/L_x}
 \end{equation}
+>>> Don't we want to include $\kappa$ ???
 The Dedekind eta function is defined as 
 \begin{equation}
  \eta(\tau)=q^{1/ 24}\prod_{k=1}^{\infty}\left(1-q^k\right),
@@ -750,32 +757,32 @@ These functions obey the following nice ``modular'' transformation properties
  \theta_4(\tau)&=&(-i \tau )^{-1/2}\,\theta_2(-1/\tau)\\
  \eta(\tau)&=&(-i \tau )^{-1/2}\,\eta(-1/\tau)
 \end{eqnarray}
-\subsection[\;\;\;\;\;\;\;\;\;\;\;\;\;\;Partition functions in various geometries for the free boson]{Partition functions in various geometries for the free boson}
-\label{sec:free_boson}
-Here $\tau=iL_y/L_x$, for a cylinder of circumference $L_x$ and height $L_y$. The calculation of partition function in torus and cylinder with various boundary condition is standard, see for example\cite{EggertAffleck,FSW,BigYellowBook}. We list some of them below.
-\begin{itemize}
- \item Cylinder with Dirichlet boundary condition at both ends (even case in the text). 
- \begin{equation}\label{eq:cylinder_dd}
- \mathcal{Z}_{\rm cyl}^{DD}=g_{D}^2 \,\frac{\theta_3(\alpha \tau)}{\eta(2\tau)}
-\end{equation}
-\item Cylinder with the shifted Dirichlet boundary condition discussed in the text (winding quantized with half-integer values, corresponding to the odd case):
-\begin{equation}\label{eq:cylinder_ddprime}
- \mathcal{Z}_{\rm cyl}^{DD^\prime}=g_{D}^2 \,\frac{\theta_4(\alpha \tau)}{\eta(2\tau)}
-\end{equation}
-\item Cylinder with Neuman at one end, and Dirichlet at the other:
-\begin{equation}
- {\cal Z}_{\rm cyl}^{ND}=g_N g_D \, \frac{\theta_4(4\tau)}{\eta(2\tau)}
-\end{equation}
-\item Torus partition function
-\begin{equation}
- {\cal Z}_{\rm torus}=\frac{\theta_3(\alpha \tau)\theta_3(\tau /\alpha)}{\eta(\tau)^2}
-\end{equation}
-\end{itemize}
-$g_D$ and $g_N$ are the universal Affleck-Ludwig\cite{AffleckAndLudwig,FSW} g-factors, corresponding to the Dirichlet and Neuman boundary condition respectively.
-\begin{eqnarray}
- g_D&=& (\alpha/2)^{1/4}\\
- g_N&=& (2\alpha)^{-1/4}
-\end{eqnarray}
+%\subsection[\;\;\;\;\;\;\;\;\;\;\;\;\;\;Partition functions in various geometries for the free boson]{Partition functions in various geometries for the free boson}
+%\label{sec:free_boson}
+%Here $\tau=iL_y/L_x$, for a cylinder of circumference $L_x$ and height $L_y$. The calculation of partition function in torus and cylinder with various boundary condition is standard, see for example\cite{EggertAffleck,FSW,BigYellowBook}. We list some of them below.
+%\begin{itemize}
+% \item Cylinder with Dirichlet boundary condition at both ends (even case in the text). 
+% \begin{equation}\label{eq:cylinder_dd}
+% \mathcal{Z}_{\rm cyl}^{DD}=g_{D}^2 \,\frac{\theta_3(\alpha \tau)}{\eta(2\tau)}
+%\end{equation}
+%\item Cylinder with the shifted Dirichlet boundary condition discussed in the text (winding quantized with half-integer values, corresponding to the odd case):
+%\begin{equation}\label{eq:cylinder_ddprime}
+% \mathcal{Z}_{\rm cyl}^{DD^\prime}=g_{D}^2 \,\frac{\theta_4(\alpha \tau)}{\eta(2\tau)}
+%\end{equation}
+%\item Cylinder with Neuman at one end, and Dirichlet at the other:
+%\begin{equation}
+% {\cal Z}_{\rm cyl}^{ND}=g_N g_D \, \frac{\theta_4(4\tau)}{\eta(2\tau)}
+%\end{equation}
+%\item Torus partition function
+%\begin{equation}
+% {\cal Z}_{\rm torus}=\frac{\theta_3(\alpha \tau)\theta_3(\tau /\alpha)}{\eta(\tau)^2}
+%\end{equation}
+%\end{itemize}
+%$g_D$ and $g_N$ are the universal Affleck-Ludwig\cite{AffleckAndLudwig,FSW} g-factors, corresponding to the Dirichlet and Neuman boundary condition respectively.
+%\begin{eqnarray}
+% g_D&=& (\alpha/2)^{1/4}\\
+% g_N&=& (2\alpha)^{-1/4}
+%\end{eqnarray}
 
 
 \section[\;\;\;\;\;\;\;\;\;\;\;\;\;\;CFT partition functions from the lattice dimer model]{Derivation of CFT partition function from the lattice dimer model}
