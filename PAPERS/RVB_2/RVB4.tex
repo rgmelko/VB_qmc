@@ -568,40 +568,45 @@ We finally turn to the entanglement i of the $SU(N)$ RVB case, extending previou
 
 %\subsection{Numerical results for $SU(2)$}
 %\label{sec:su2_numerics}
-Let us first begin with the $SU(2)$ case, and present the computation of $S_2$, and also $S_2$ restricted to the $W=(0,0)$ winding sector. The quantum Monte Carlo data is shown in Fig.~\ref{fig:SU2_shape}, along with the Eqs.~(\ref{eq:cft_prediction_gen}) and (\ref{eq:cft_prediction_gen_odd})
-\begin{figure}[ht]
+Let us first begin with the $SU(2)$ case, and present the computation of $S_2$, and also $S_2$ restricted to the $W=(0,0)$ winding sector. The quantum Monte Carlo data is shown in Fig.~\ref{fig:SU2_shape}.\begin{figure}[ht]
  \begin{center}
   \includegraphics[width=10cm]{./figures/SU2_shape.pdf}
  \end{center}
 \caption{Numerical extraction of the universal shape of $S_2$ as a function of $y=\ell_y/L_y$ for the $SU(2)$ RVB wave function and $L=L_x=L_y=12,18,24$. Red and blue curves are the CFT prediction of Eqs.~(\ref{eq:cft_prediction_gen}) and (\ref{eq:cft_prediction_gen_odd}). }
 \label{fig:SU2_shape}
 \end{figure}
-We observe a striking similarity with the dimer data. In particular, the even-odd effect is bigger in the $W=(0,0)$ than in the ``all'' sector. Such a result is a strong qualitative evidence for Eq.~(\ref{eq:shape_general}), and it is tempting to conclude that $S_2$ for the $SU(2)$ RVB state lies in a locked phase, just as its dimer counterpart does. As in the dimer case, we observe strong finite-size effects, but as the system size 
+We observe a striking similarity with the dimer data. In particular, the even-odd effect is bigger in the $W=(0,0)$ than in the ``all'' sector. >>> Should we provide a plot, maybe next to the other one???
+This suggests $S_2$ for the $SU(2)$ RVB state lies in a locked phase, just as its dimer counterpart does. 
+This is also supported by exact diagonalizations on small systems, which show that the biggest eigenvalue of the reduced density matrix is non-degenerate:  $\Delta_{SU(2)}\equiv -\ln (p_1/p_{\rm max}) \approx 2.67$ for on a $4\times 4$ torus. (The exact value for dimers is  $\Delta_{\rm dimers}=2\ln \pi\simeq 2.29$ \cite{Stephan2012}.) This suggests both a large entanglement gap as well as $d_{\rm min}=1$.
 
-This is also supported by exact diagonalizations on small systems, which show that the biggest eigenvalues of the RDM is non-degenerate (suggesting $d_{\rm min}=1$) as well as a big entanglement gap\footnote{Defining $\Delta=-\ln (p_1/p_{\rm max})$, we have the exact\cite{Stephan2012,FisherStephenson} $\Delta_{\rm dimers}=2\ln \pi\simeq 2.29$ for dimers and $\Delta_{SU(2)}\approx 2.67$ for $SU(2)$ on a $4\times 4$ torus.}. 
-
-%\subsection{Why is RVB more complicated than dimers?}
-
-We have seen in the previous section (\ref{sec:su2_numerics}) that our main result seems to describe well, at least at the qualitative level, the entanglement data for $SU(2)$. There are two main reasons why such a result is non trivial
-\begin{itemize}
- \item First, the mapping of Ref.~\cite{Shannonee} to a classical R\'enyi-Shannon entropy is not valid anymore. Because of the non-orthogonality of different valence bond configurations, the Schmidt decomposition of the RVB state turns out to be much more difficult.  
- \item Even if such a mapping were still to hold in a renormalization group sense, exact diagonalization results on small system sizes clearly show that the biggest eigenvalue of the reduced density matrix is non degenerate, and therefore $d_{\rm min}=1$. This observation is also supported by the mapping to classical interacting dimers\cite{Damle}. Naively extending the result of \cite{Stephan2011} would then yield a critical value
- \begin{equation}
-n_c=2/\alpha\simeq 0.6  
- \end{equation}
-for $SU(2)$. This would imply an even-odd effect even for the von Neumann entropy, in violation with strong subadditivity\cite{Strongsubadditivity}.
-\end{itemize}
-From the above two points it seems that precisely extending the phase transition argument would require a more careful analysis, which would show in particular that the formula $n_c=2d^2/\alpha$ cannot hold in general, and that the transition still happens, but at another value of $1\leq n_c<2$ which would depend on the subtleties involved in the Schmidt decomposition. 
+All the  that the entanglement data for the $SU(2)$ RVB state in the scaling limits can be obtained from the free-boson using (\ref{eq:shape_general}) 
 
 
-Resolving this issue is certainly an interesting question for further studies. It would also certainly be useful to change $d_{\rm min}$ by studying the RVB wave function on other bipartite lattices. For example on the hexagonal lattice $d_{\rm min}=3$ (and therefore $n_c=3^2=9$) for dimers, and $S_2$ for RVB would likely lie in the replicated phase, not subject to the even-odd effect. 
-\subsection{Universal shape from CFT}
-\label{sec:universal_shape}
-In the locked phase, we expect Eq.~(\ref{eq:shape_general}) to still be valid, but with a different $\alpha$ exponent entering the partition functions. Under the assumption that the conformal boundary conditions don't change compared to the dimers, we get 
+Also plotted in fig.~\ref{fig:SU2_shape} are curves obtained from the free-boson theory and $\kappa=???$. 
+These are precisely
 \begin{eqnarray}\label{eq:cft_prediction_gen}
  s_n^{\rm (even)}(y,\tau)&=&\frac{n}{1-n}\ln \left(\frac{\alpha}{2}\times\frac{\eta(\tau)^2}{\theta_3(\alpha\tau)\theta_3(\tau/\alpha)}\times\frac{\theta_3(\alpha y \tau)\theta_3(\alpha(1-y)\tau)}{\eta(y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_prediction_gen_odd}
  s_n^{\rm (odd)}(y,\tau)&=&\frac{n}{1-n}\ln \left(\frac{\alpha}{2}\times\frac{\eta(\tau)^2}{\theta_3(\alpha\tau)\theta_3(\tau/\alpha)}\times\frac{\theta_4(2y \tau)\theta_4(2(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)
 \end{eqnarray}
+
+
+CFT results Eqs.~(\ref{eq:cft_prediction_gen}) and (\ref{eq:cft_prediction_gen_odd}) at 
+
+The trend in the data is clearly toward these curves, but as with the dimer case, the finite-size effects are very strong. Unfortunately, we cannot make a definitive conclusion, because the mapping of Ref.~\cite{Shannonee} to a classical R\'enyi-Shannon entropy is not valid for the $SU(N)$ RVB states: because of the non-orthogonality of different valence-bond configurations, the Schmidt decomposition of the RVB state is much more complicated.  Thus while we cannot make a definitive conclusion, this does provide qualitative evidence for Eq.~(\ref{eq:shape_general}) applying to the $SU(2)$ RVB state as well. 
+
+%\subsection{Why is RVB more complicated than dimers?}
+
+% Even if such a mapping were still to hold in a renormalization group sense, exact diagonalization results on small system sizes clearly show that the biggest eigenvalue of the reduced density matrix is non degenerate, and therefore $d_{\rm min}=1$. This observation is also supported by the mapping to classical interacting dimers\cite{Damle}. Naively extending the result of \cite{Stephan2011} would then yield a critical value
+% \begin{equation}
+%n_c=2/\alpha\simeq 0.6  
+% \end{equation}
+%for $SU(2)$. This would imply an even-odd effect even for the von Neumann entropy, in violation with strong subadditivity\cite{Strongsubadditivity}.
+%From the above 
+%two points it seems that precisely extending the phase transition argument would require a more careful analysis, which would show in particular that the formula $n_c=2d^2/\alpha$ cannot hold in general, and that the transition still happens, but at another value of $1\leq n_c<2$ which would depend on the subtleties involved in the Schmidt decomposition. 
+
+
+In the locked phase, we expect Eq.~(\ref{eq:shape_general}) to still be valid, but with a different $\alpha$ exponent entering the partition functions. Under the assumption that the conformal boundary conditions don't change compared to the dimers, we get 
+
 \begin{figure}[ht]
  \begin{center}
   \includegraphics[width=8cm]{./figures/SUN_CFT.pdf}
@@ -648,6 +653,12 @@ This allows in principle to determine the critical exponent from the entanglemen
 \end{figure}
 
 \section{Conclusion}
+
+We have seen in the previous section (\ref{sec:su2_numerics}) that our main result seems to describe well, at least at the qualitative level, the entanglement data for $SU(2)$. There are two main reasons why such a result is non trivial
+
+Resolving this issue is certainly an interesting question for further studies. It would also certainly be useful to change $d_{\rm min}$ by studying the RVB wave function on other bipartite lattices. For example on the hexagonal lattice $d_{\rm min}=3$ (and therefore $n_c=3^2=9$) for dimers, and $S_2$ for RVB would likely lie in the replicated phase, not subject to the even-odd effect. 
+
+
 \label{sec:conclusion}
 \textcolor{blue}{
 \begin{itemize}
