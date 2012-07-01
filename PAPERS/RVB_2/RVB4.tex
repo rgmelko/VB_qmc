@@ -1,4 +1,4 @@
-\documentclass[10pt]{iopart}
+\documentclass[11pt]{iopart}
 \usepackage{fullpage}
 
 \usepackage{iopams,graphicx,color}
@@ -201,8 +201,8 @@ We will present in this paper a variety of results for the $SU(N)$ case, and sho
 
 Given the changing exponents, the $SU(N)$ RVB states are obviously not identical to that for dimers, even in the scaling limit. In fact, we will present strong evidence that equal-time correlators for the dimer and $SU(N)$ RVB states can all be written in terms of a free boson, or Coulomb gas. 
 
-\subsection{The Coulomb-gas approach}
-
+\subsection{The Coulomb-gas approach to classical dimers}
+\label{sec:cg}
 
 A well established and very useful fact about the classical dimer model is that long-distance properties of the dimers are described by a free bosonic field theory, or Coulomb gas. This can be seen by either by taking the continuum limit of the sermonic description and then bosonizing the fermions, or by rewriting the dimers in terms of a discrete ``height'' degree of freedom \cite{Heights_1,Heights_2,Henley}. We follow the latter approach, because a careful treatment of the boundary conditions is necessary to obtain our results for the two-cylinder Renyi entropy.
 
@@ -215,10 +215,11 @@ The first step in the mapping of classical dimer on to the free boson Coulomb ga
 \label{fig:height_shift}
 \end{figure}
 These integers are defined by the following construction. Set value on one face (say the lower leftmost one) to be zero. Then, turning counterclockwise around a site of the even (resp.\ odd) sublattice represented by black squares (resp.\ white squares) the integer changes by $-3$ (resp.\ $+3$) if it crosses a dimer, $+1$ (resp.\ $-1$) otherwise. Since by construction these integers are different on adjacent sites, in the bulk one defines a smoother height variable $h(i,j)$ on the sites of the lattice, by averaging the values of the integers on four faces surrounding each point (and then for convenience's sake multiplying by $\pi/2$). Then the states where the dimers are arranged in columns corresponds to a constant value of the height.
+>>> We should include the last column of face variables in the figure??? 
 
-An important subtlety in this mapping is the boundary conditions. 
-With periodic boundary conditions and an even number of sites around this cycle (as in the left and right sides of the figure \ref{fig:height_shift}), note that means that heights can jump by $2\pi$ times an integer on from one side to the other. %This is the definition of the compactification $h\sim h + 2\pi$ in the field theory. >>> We should include the last column of face variables in the figure??? 
-With open boundary conditions, as we have at the ends of the cylinder (the top and bottom of the figure), the natural definition of the boundary height comes from averaging the heights along the boundary. For a cylinder of even $L_x$ circumference and height $L_y$, it is easy to check (see Fig.~\ref{fig:height_shift}) that the coarse-grained height difference between top and bottom satisfies \cite{Ferdinand}
+An important subtlety in this mapping is the boundary conditions, which will play a crucial role in understanding the even/odd effect in the two-cylinder Renyi entropy.
+With periodic boundary conditions and an even number of sites around this cycle (as in the left and right sides of the figure \ref{fig:height_shift}), note that means that heights can jump by $2\pi$ times an integer on from one side to the other. 
+With open boundary conditions, as we have at the ends of the cylinder (the top and bottom of the figure), the natural definition of the boundary height comes from averaging the integers along the boundary. For a cylinder of even $L_x$ circumference and length $L_y$, it is easy to check that the height difference between top and bottom satisfies \cite{Ferdinand}
 \begin{equation}
  \Delta h=h(x,L_y)-h(x,0)=\left\{
  \begin{array}{ccc}
@@ -227,13 +228,14 @@ With open boundary conditions, as we have at the ends of the cylinder (the top a
  \end{array}
  \right.
 \end{equation}
-This difference in behavior will result a striking even/odd effect in the two-cylinder entanglement entropy. 
+Even/odd effects have long been studied in the dimer model \cite{Ferdinand,Dimers_all,Ruelledimers}, but to our knowledge they have never been interpreted in the context of the height mapping. 
+
  
-The standard Coulomb-gas arguments \cite{Nienhuis} then imply upon coarse-graining the height variable $h(i,j)$ into a continuous field $h$, the scaling limit of the classical dimer model is a free scalar field $h(x,y)$ with euclidean action
+The standard Coulomb-gas arguments \cite{Nienhuis} then imply upon coarse-graining the height variable $h(i,j)$ into a continuous field, the scaling limit of the classical dimer model is described by a free scalar field $h(x,y)$ with euclidean action
  \begin{equation}\label{eq:free_field_bis}
-  S_\kappa[h]=\frac{\kappa}{4\pi}\int \left(\nabla h\right)^2 dx dy,
+  S_\kappa[h]=\frac{\kappa}{4\pi}\int \left(\nabla h\right)^2 dx dy\ .
  \end{equation}
-The coupling $\kappa$ is often known as the ``stiffness''. Such a field theory description is also known as a ``Coulomb Gas'' \cite{Nienhuis}, and is one of the simplest examples of a two-dimensional conformal field theory \cite{Ginsparg}. It is ubiquitous in two-dimensional statistical models, as well as in condensed matter, where it describes Luttinger liquids.  In order to be consistent with periodic boundary conditions, field values shifted by $2\pi$ must be identified; in conventional language it is said that the field $h$ is compactified on a circle of radius $1$: $h\sim h+2\pi$. 
+The coupling $\kappa$ is often known as the ``stiffness''; we show below that for the dimer case it is set to $\kappa_D=1/2$. This free-boson field theory is one of the simplest examples of a two-dimensional conformal field theory \cite{Ginsparg}. It is ubiquitous in two-dimensional statistical models, as well as in condensed matter, where it describes Luttinger liquids.  In order to be consistent with periodic boundary conditions, field values shifted by $2\pi$ must be identified; in conventional language it is said that the field $h$ is compactified on a circle of radius $1$: $h\sim h+2\pi$. 
 
 The dimers are viewed as elementary electric charges, i.e.\ are created by the field $\cos(h)$ (note that this is the simplest function of $h$ that satisfies the compactification $h\sim h+2\pi$. The standard computation \cite{Nienhuis} gives for the dimer-dimer correlator decay exponent:
 \begin{equation}
@@ -245,7 +247,8 @@ Once the stiffness fixed to its right value, Eq.~(\ref{eq:free_field}) describes
 In this framework the quantum dimer model can also be written as in terms of a free scalar field in the 2+1 dimensional ``quantum Lifshitz'' model \cite{Henley}. This is a field theory version of an RK Hamiltonian \cite{QuantumLifshitz}, and so where the equal-time correlators of a 2d {\em quantum} model are those of a 2d conformal field theory. This model is critical but not Lorentz-invariant, with dynamical critical exponent $z=2$.
 
 Because of the arguments above, it is reasonable to hope that all the equal-time correlators in the $SU(N)$ RVB state for any $N$ can be described by this Coulomb gas, albeit with stiffness depending on $N$. Substantial evidence for this was provided in the $SU(2)$ case in \cite{RVB2}, where several universal quantities, including the dimer-dimer and monomer-monomer decay exponents, were found numerically. With appropriate identification of the operators, each yields a independent value for the stiffness.  The numerics gave approximately the same value of the stiffness $\kappa_{2}\approx .83$ for each, providing strong evidence that the Coulomb gas description applies to correlators of {\em spin singlets} in the $SU(2)$ RVB wave function. 
->>> JM: A few words about the quantum 6v model, and/or interacting dimers???
+
+>>> JM: A few words somewhere about the quantum 6v model, and/or interacting dimers???
 
 >>> JM: also put in appropriate references to some/all of the appendices somewhere in this section???
 
@@ -259,7 +262,7 @@ Because of the arguments above, it is reasonable to hope that all the equal-time
 
 
 
-\section{Two-cylinder Renyi entropy from CFT partition functions}
+\section{Two-cylinder Renyi entropy from partition functions}
 \label{sec:shape_general}
 %\subsection{Statement of the result}
 In this section, we discuss the shape-dependent subleading contribution to the entanglement entropy 
@@ -325,16 +328,16 @@ The figure makes it obvious that the Reyni entropy exhibits strikingly different
 \subsection{The entropy in the locked phase $n>n_c$}
 \label{sec:bpt}
 Here we derive the relation of the two-cylinder entanglement entropy of the dimer RVB state to CFT partition functions in 
-(\ref{eq:shape_general}) for $n>n_c$. This follows fairly simply from the description of the long-distance behavior of classical dimers in terms of the free boson action (\label{eq:free_field_bis}).
+(\ref{eq:shape_general}) for $n>n_c$. This follows fairly simply from the description of the long-distance behavior of classical dimers in terms of the free boson action (\ref{eq:free_field_bis}).
 
 When one utilizes an effective field-theory action to describe the scaling limit of a lattice model, one must include all terms in the action consistent with the symmetries of the field theory. As is familiar from the derivation of the Kosterlitz-Thouless transition in field theory, operators of the form 
 \begin{equation}
- V_d=\cos \left(d \,(h-h_0)\right)
+ V_d=-\cos \left(d \,(h-h_0)\right)
  \label{Vdef}
 \end{equation}
 with $d$ integer 
 are consistent with the compactification  of the boson $h\to h + 2\pi$.
-If such a term is relevant, then the action flows to a configuration where the height $h$ is locked to the values $h=h_0$ mod $2\pi$. For dimers on the square lattice, it has long been known that any such term allowed are irrelevant in the bulk; this is why the action (\label{eq:free_field_bis}) applies and the correlators are algebraically decaying. However, we showed in the preceding subsection \label{sec:eeshannon} that the probabilities used to compute the Renyi entropy depend on the boundary conditions. Thus the crucial observation of  \cite{Stephan2011,Moore} is that  one needs to include terms of the form (\ref{Vdef}) localized at the {\em boundary}.
+If such a term is relevant, then the action flows to a configuration where the height $h$ is locked to one if the minimal values $h=h_0$ mod $2\pi$. For dimers on the square lattice, it has long been known that any such term allowed are irrelevant in the bulk; this is why the action (\ref{eq:free_field_bis}) applies and the correlators are algebraically decaying. However, we showed in the preceding subsection \label{sec:eeshannon} that the probabilities used to compute the Renyi entropy depend on the boundary conditions. Thus the crucial observation of  \cite{Stephan2011,Moore} is that  one needs to include terms of the form (\ref{Vdef}) localized at the {\em boundary}.
 
 To be precise, in the continuum limit the probabilities $p_{\sigma,\mu}$ depend now on the configurations of the field $p(\phi)$. The probability to observe of observing field configuration $\phi$ at the boundary is still gaussian
 \begin{equation}
@@ -354,9 +357,9 @@ where $d_{\min}$ is the smallest $d$ allowed by the lattice symmetries. For dime
 \begin{equation}
  n_c=1.
 \end{equation}
-The two qualitatively different types of behavior seen in fig.\ \ref{fig:ee_d_torus} indeed occur on opposite sides of $n_c$. It is important to notice that even though $S_n$ should take an universal form in both phases, the value itself of the critical R\'enyi parameter depends on a degeneracy $d_{\rm min}$, which is non-universal. For example, $d_{\rm min}=2$ for the quantum six-vertex wave function, and $d_{\rm min}=3$ for quantum dimers on the hexagonal lattice. 
+The two qualitatively different types of behavior seen in fig.\ \ref{fig:ee_d_torus} indeed occur on opposite sides of $n_c$. It is important to note that even though $S_n$ should take an universal form in both phases, the value itself of the critical R\'enyi parameter depends on a degeneracy $d_{\rm min}$, which is non-universal. For example, $d_{\rm min}=2$ for the quantum six-vertex wave function, and $d_{\rm min}=3$ for quantum dimers on the hexagonal lattice. 
 
-This observation now allows us to derive the expression for $S_n$ valid for $n>n_c$. In this phase, the boundary operator is relevant. This means that here the boundary value of the field locks on to a minimum of $V_1$. This minimum must be fixed along the entire boundary; this is commonly known as Dirichlet boundary conditions on the boson. We refer therefore to the phase with $n>n_c$ as the ``locked'' phase.
+This observation allows us to derive the expression for $S_n$ valid for $n>n_c$. In this phase, the boundary operator is relevant. This means that here the boundary value of the field locks on to a minimum of $V_1$. This minimum must be fixed along the entire boundary; this is commonly known as Dirichlet boundary conditions on the boson. We refer therefore to the phase with $n>n_c$ as the ``locked'' phase.
 
 A constant value of the field along the boundary means that the action is at its minimum there, so this is the {\em maximum} value of the probability $p_{\rm max}$. 
 Universal contributions to the R\'enyi entropy coming from the sum (\ref{Spsm})  are therefore dominated by the configuration:
@@ -370,10 +373,10 @@ This result implies that in the scaling limit there is an ``entanglement gap'' b
  p_{\rm max}=\frac{Z_{\rm cyl}(L_x,\ell_y)Z_{\rm cyl}(L_x,L_y-\ell_y)}{Z_{\rm torus}(L_x,L_y)} \ .
 \end{equation}
 The analogous formula still holds if space is a cylinder instead of a a torus, simply by replacing the denominator with the appropriate cylinder partition function. 
-In the continuum, these partition functions become those of the free-boson conformal field theory with fixed Dirichlet boundary conditions at the ends of the cylinder, so we have now derived (\ref{eq:shape_general}) with boundary conditions now specified.
+In the continuum, these partition functions become those of the free-boson conformal field theory, and so putting (\ref{eq:pmax}) together with (\ref{eq:aftert}) gives (\ref{eq:shape_general}). The boundary conditions at the ends of the cylinder are fixed, i.e.\ at each end the field is set to some value $h_0$. Finding precisely which values is an important subtlety we discuss in the next section \ref{sec:dimers_entanglement}.
 
 
-For the dimer RVB state, the partition functions on the cylinder can be computed exactly both on the lattice and in the continuum. The lattice dimer result is detailed in  \ref{sec:dimers_exact} >>> any more comments to add about this???  For the free-boson field theory, these partition function are known explicitly \cite{BigYellowBook};  we will discuss their application to the two-cylinder Renyi entropy (and some important subtleties) in the next section \ref{sec:dimers_entanglement}. In particular, we will show how the even-odd effect is a signature of the ``locked phase'' for $n>1$. 
+For the dimer RVB state, the partition functions on the cylinder can be computed exactly both on the lattice and in the continuum. The lattice dimer result is detailed in  \ref{sec:dimers_exact} >>> any more comments to add about this, I assume you checked numerically that (\ref{eq:after}) holds???  For the free-boson field theory, these partition function are known explicitly \cite{BigYellowBook};  we will discuss their application to the two-cylinder Renyi entropy in the next section \ref{sec:dimers_entanglement}. In particular, we will show how the even-odd effect is a signature of this locked phase  $n>n_c$. 
 %In this phase the even-odd effect is proportional to $n/(n-1)$, and therefore slightly diminishes with $n$. 
 
 It should also be possible to extend these results to the region $n<n_c$, using boundary CFT methods \cite{Shannonee,Oshikawa,Zaletel,Stephan2011}. Here, however, the boundary conditions will presumably not allow the factorization of the probability into pieces coming from the two regions. Oshikawa\cite{Oshikawa} has already treated the $y=1/2$ case for the closely related cylinder geometry, using the replica approach $n\in \mathbb{N}$. There will possibly be subtleties involving analytic continuation in $n$, similar to the two-interval 1d calculation \cite{CCT1,CCT2}.
@@ -383,50 +386,35 @@ It should also be possible to extend these results to the region $n<n_c$, using 
 \label{sec:dimers_entanglement}
 This section is devoted to the exploration of the consequences of Eq.~(\ref{eq:shape_general}) for the two-cylinder Renyi entropy of the dimer RVB state. We will calculate explicitly the partition functions, and so find results exact in the scaling limit. 
 
-The main subtlety in this computation is how to account in the field theory for the distinct results occurring when the cylinders are of even and of odd length, as apparent the numerical results in fig.\ \ref{fig:ee_d_torus} for the dimer RVB state and those in \cite{Ju2012} for the $SU(2)$ RVB state. The reason this is possible in the field theory is a ``fixed'' boundary condition is in fact a family of boundary conditions, corresponding to the specific value $h_0$ that the field takes at a boundary. This value can be always be shifted overall, since the bulk action used to compute the partition functions is independent of it. However, on a cylinder, there are two separate boundaries, and what cannot be shifted away is the {\em difference} of the values on the two ends.    
-
-%\subsection[\;\;\;\;\;\;\;\;\;\;\;\;\;\;Even-odd effect and quantization of windings]{Even-odd effect and quantization of windings}
-%\label{sec:evenodd_heights}
-
-
- 
-%More precisely, the coarse-grained height difference between top and bottom is given by
-%\begin{equation}
-% \Delta h =h_{\rm top}-h_{\rm bottom}=2\pi (w+a)\quad,\quad w \in \mathbb{Z},
-%\end{equation}
-%where $a=0$ for even $L_y$ and $a=1/2$ for odd $L_y$. 
-%Such a small shift has a tremendous impact in the continuum limit.
+The main subtlety in this computation is how to account in the field theory for the distinct results occurring when the cylinders are of even and of odd length, as apparent in the numerical results in fig.\ \ref{fig:ee_d_torus} for the dimer RVB state and those in \cite{Ju2012} for the $SU(2)$ RVB state. The reason this is possible in the field theory is that a fixed/Dirichlet boundary condition is in fact a family of boundary conditions, corresponding to the specific value $h_0$ that the field takes at a boundary. This value can be always be shifted overall, since the bulk action used to compute the partition functions is independent of it. However, on a cylinder, there are two separate boundaries, and what cannot be shifted away is the {\em difference} of the values on the two ends.    
+The general arguments given above in section (\ref{sec:bpt}) do not specify this difference; it follows rather from the particular microscopic model. For dimers, we showed in (\ref{sec:cg}) that 
+\begin{equation}
+ \Delta h =2\pi (w+a)\quad,\quad w \in \mathbb{Z},
+\end{equation}
+where $a=0$ for even $L_y$ and $a=1/2$ for odd $L_y$. 
 
 
-
-more words...
-
-
-
-
-
- The partition function may be computed using the standard decoupling of the action into an oscillator part, and a classical part, which is subject to compactification. See for example \cite{EggertAffleck,FSW,BigYellowBook} for more details. 
-The partition function for general $a$ is given by
+The computation of the free-boson partition function is completely standard; see e.g.\ \cite{EggertAffleck,FSW,BigYellowBook}. Since the action is quadratic in the bosonic field, it can be decoupled into an oscillator part and a classical part. Only the classical part affected by the compactification $h\sim h+2\pi$, and by the boundary conditions. The partition function for Dirichlet boundary conditions on both ends of the cylinder, with the height differing by $a$, is given by
 \begin{equation}
  \mathcal{Z}_{\rm cyl}^{DD^{(a)}}=\frac{1}{\eta(-1/2\tau)}\sum_{w \in \mathcal{Z}}\exp \left[-\kappa \pi\frac{L_x}{L_y} (w+a)^2\right].
 \end{equation}
-In the even case $a=0$, one recovers, upon setting $\kappa=1/2$ and after modular transformation (\ref{sec:modular}), the Eq.~(\ref{eq:cyl_dd}). For $a=1/2$, the odd partition function is given by 
-\begin{equation}
- \mathcal{Z}_{\rm cyl}^{DD^\prime}(\tau)=\frac{\theta_4(2\tau)}{\eta(2\tau)}.
-\end{equation}
-
- The boundary conditions at the top and bottom correspond to flat configurations for the microscopic heights, which are expected to renormalize to a Dirichlet boundary condition ($D$) for the height field $h$. Such a partition function is well known for a free boson CFT\cite{FSW,EggertAffleck}:
+It is convenient to rewrite such sums in terms of the Jacobi theta and Dedekind eta functions defined in \ref{sec:CFT_Jacobi}, to take advantage of many elegant identities. 
+Setting  $\kappa=1/2$ to get dimers, the even case $a=0$ can be written as
 \begin{equation}\label{eq:cyl_dd}
- \mathcal{Z}_{\rm cyl}^{DD}(\tau)=\frac{\theta_3(2\tau)}{\eta(2\tau)},
+ \mathcal{Z}_{\rm cyl}^{DD}(\tau)=\frac{\theta_3(2\tau)}{\eta(2\tau)}\ ,
 \end{equation}
-and can even be derived from the exact lattice partition function, see \ref{sec:dimers_exact}. The Jacobi theta and Dedekind eta functions are defined in \ref{sec:CFT_Jacobi}. It turns out this reasoning is only valid when the height of the cylinder is even. 
+where we adopt the conventional variable  $\tau=i L_y/L_x$. 
+For the odd case $a=1/2$, we have
+\begin{equation}
+ \mathcal{Z}_{\rm cyl}^{DD^\prime}(\tau)=\frac{\theta_4(2\tau)}{\eta(2\tau)}\ .
+\end{equation}
 
 
 
 
 
 
-We finally remark that such a strong even-odd effect has been subject to several studies in the dimer model\cite{Ferdinand,Dimers_all,Ruelledimers}, although it has to our knowledge never been interpreted in the context of the height mapping. Plugging these results in Eq.~(\ref{eq:shape_general}), and using the torus partition funtion\cite{BigYellowBook} also given in the appendix, one finally gets
+Plugging these results in Eq.~(\ref{eq:shape_general}), and using the torus partition funtion\cite{Ginsparge,BigYellowBook} also given in the appendix, we get for the two-cylinder entanglement entropies
 \begin{eqnarray}\label{eq:cft_prediction}
  s_n^{\rm (even)}(y,\tau)&=&\frac{n}{1-n}\ln \left(\frac{\eta(\tau)^2}{\theta_3(2\tau)\theta_3(\tau/2)}\times\frac{\theta_3(2y \tau)\theta_3(2(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_prediction_odd}
  s_n^{\rm (odd)}(y,\tau)&=&\frac{n}{1-n}\ln \left(\frac{\eta(\tau)^2}{\theta_3(2\tau)\theta_3(\tau/2)}\times\frac{\theta_4(2y \tau)\theta_4(2(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)
@@ -437,10 +425,14 @@ Fig.~\ref{fig:dimers_shape} shows a numerical test of the universal shape Eq.~(\
  \includegraphics[width=8cm]{./figures/dimers_shape.pdf}
  \includegraphics[width=8cm]{./figures/dimers_shape2.pdf}
  \end{center}
- \caption{Numerical results for the second R\'enyi entropy $S_2$ as a function of the subsystem-ratio $y=\ell_y/L_y$ for $L_x=20$. The CFT predictions are given by Eq.~(\ref{eq:cft_prediction}) in the even case and Eq.~(\ref{eq:cft_prediction_odd}) in the odd case. \emph{Left:} Torus with aspect ratio $L_y/L_x=1$. Black dots are the data for quantum dimers on the square lattice. \emph{Right:} Torus with aspect ratio $L_y/L_x=2$. The even-odd effect is much less promouced in this case, compatible with our prediction that $S_2$ goes exponentially fast in $L_y/L_x$ to a single flat curve. The relatively large finite-size effects should disappear in the thermodynamic limit.}
+ \caption{Numerical results for the second R\'enyi entropy $S_2$ as a function of the subsystem-ratio $y=\ell_y/L_y$ for $L_x=20$. The CFT predictions are given by Eq.~(\ref{eq:cft_prediction}) in the even case and Eq.~(\ref{eq:cft_prediction_odd}) in the odd case. \emph{Left:} Torus with aspect ratio $L_y/L_x=1$. Black dots are the data for quantum dimers on the square lattice. \emph{Right:} Torus with aspect ratio $L_y/L_x=2$. .}
  \label{fig:dimers_shape}
 \end{figure}
 \paragraph{}
+The even-odd effect is much less pronouced in for larger $L_y/L_x$, compatible with our prediction that $S_2$ goes exponentially fast in $L_y/L_x$ to a single flat curve. The relatively large finite-size effects should disappear in the thermodynamic limit.
+
+
+
 Several interesting observations can be made:
 \begin{itemize}
 \item 
@@ -483,7 +475,7 @@ Droping the non-universal bulk and boundary free energies in Eqs.~(\ref{eq:after
 
 where $\tau=i\L_x/L_y$, the $i$ included to conform with standard CFT conventions.
 CFT partition functions on cylinders and tori depend on only the aspect ratio of the two lengths; the bulk term depending on the area is independent of the boundary conditions, and so can be factored out of the partition functions and cancels in our formula.
-\begin{equation}\label{eq:shape_general}
+\begin{equation}\label{eq:shape_general2}
  s_{n>n_c}=\frac{n}{1-n}\ln \left(\frac{{\cal Z}_{\rm cyl}[y\tau]{\cal Z}_{\rm cyl}[(1-y)\tau]}{{\cal Z}_{\rm torus}[\tau]}\right),
 \end{equation}
 
@@ -749,9 +741,8 @@ To simplify the notations a bit, we also set
 \begin{equation}
  \theta_\nu(\tau)=\theta_\nu (0|\tau)\quad,\quad \nu=1,2,3,4
 \end{equation}
-\subsection[\;\;\;\;\;\;\;\;\;\;\;\;\;\;Modular transformations]{Modular transformations}
-\label{sec:modular}
-All these functions obey the following nice transformation properties. 
+
+These functions obey the following nice ``modular'' transformation properties
 \begin{eqnarray}
  \theta_1(\tau)&=&-i (-i \tau )^{-1/2}\,\theta_1(-1/\tau)\\
  \theta_2(\tau)&=&(-i \tau )^{-1/2}\,\theta_4(-1/\tau)\\
