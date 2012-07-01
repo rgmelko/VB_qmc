@@ -426,12 +426,12 @@ Fig.~\ref{fig:dimers_shape} shows a numerical test of the universal shape Eq.~(\
  \caption{Numerical results for the second R\'enyi entropy $S_2$ as a function of the subsystem-ratio $y=\ell_y/L_y$ for $L_x=20$. Black dots are the data for square-lattice dimer RVB state, while the CFT predictions are given by Eq.~(\ref{eq:cft_prediction}) in the even case and Eq.~(\ref{eq:cft_prediction_odd}) in the odd case. \emph{Left:} Torus with aspect ratio $L_y/L_x=1$. \emph{Right:} Torus with aspect ratio $L_y/L_x=2$.}
  \label{fig:dimers_shape}
 \end{figure}
-Obviously, these $n>n_c$ results are quite different in the even and odd sectors; the difference proportional to $n/(n-1)$, and therefore slightly diminishes with increasing $n$, but does not go away. 
+Obviously, these $n>n_c$ results are quite different in the even and odd sectors. The difference is proportional to $n/(n-1)$, and therefore slightly diminishes with increasing $n$, but does not go away. 
 
 
 This even/odd effect disappears as $L_y/L_x$ is increased; it follows from the CFT expressions that this occurs exponentially quickly.  It does not approach the celebrated 1d result $\propto \ln\sin (\pi y)$in the effective 1d limit $L_y/L_x\to\infty$, because the RK Hamiltonian becomes gapped with correlation length $\xi\propto L_x$ in this limit. Thus the standard 1d result 
 $s_n\propto \ln(\xi)$ \cite{Cardy} applies.
->>> Is this right? Shouldn't the result be $\propto \ln(L_x)$ for fixed $L_y$???
+>>> JM: Is the result $\propto \ln(L_x)$ for fixed $L_y$? Can you check???
 
 
 %It could have been tempting to expect the result to be similar to the celebrated 1d quantum result$S_n\propto \ln\sin (\pi y)$ in the infinite torus limit. This is clearly not the case, and one can easily check that the corresponding quasi-1d system would be gapped, and therefore cannot exhibit the conformal scaling. 
@@ -447,31 +447,26 @@ We also compute $s_\infty$ in the $W=(0,0)$ winding sector directly for the dime
  s_\infty^{\rm (even)}&=&-\ln \left(\frac{\eta(\tau)^2\theta_3(2y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_w0_odd}
  s_\infty^{\rm (odd)}&=&-\ln \left(\frac{\eta(2\tau)^2\theta_4(2y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)
 \end{eqnarray}
-Even though the total winding number is zero, the result still depends on the compactification radius of the height field  because of winding fluctuations at the boundaries between $A$ and $B$. 
+Even though the total winding number is zero, the result still depends on the compactification radius of the height field  because of winding fluctuations at the boundaries between regions $A$ and $B$. 
 A comparison between the numerical and analytical results is performed in Fig.~\ref{fig:Sinfty}, for the aspect ratio $L_y/L_x=1$ and the two system sizes $L_x=16$ and $L_x=704$. We observe strong finite-size effects for small system sizes, but the data converges in the end to the CFT result.
 \begin{figure}[ht]
  \begin{center}
   \includegraphics[width=8cm]{./figures/sinfty_16.pdf}
   \includegraphics[width=8cm]{./figures/sinfty_704.pdf}
  \end{center}
-\caption{Comparison numerics/analytics in the exactly solvable case $S_\infty$. Black points are the numerical data for the all sector, and black crosses represents the numerical data in the $W=(0,0)$ sector. \emph{Left:} $L_x=16$, the data is compared with Eqs.~(\ref{eq:cft_prediction}), (\ref{eq:cft_prediction_odd}),  (\ref{eq:cft_w0}) and (\ref{eq:cft_w0_odd}) up to a single constant. The agreement is fair, but still far from converged. \emph{Right:} Same procedure for $L=704$. The agreement is close to perfect, as expected. }
+\caption{Comparison numerics/analytics in the exactly solvable case $S_\infty$. Black points are the numerical data for all winding sectors, and black crosses represents the numerical data in the $W=(0,0)$ sector. \emph{Left:} $L_x=16$, the data is compared with Eqs.~(\ref{eq:cft_prediction}), (\ref{eq:cft_prediction_odd}),  (\ref{eq:cft_w0}) and (\ref{eq:cft_w0_odd}) up to a single constant. The agreement is fair, but still far from converged. \emph{Right:} Same procedure for $L=704$. The agreement is close to perfect, as expected. }
 \label{fig:Sinfty}
 \end{figure}
 
 
 
-Droping the non-universal bulk and boundary free energies in Eqs.~(\ref{eq:aftert}) and (\ref{eq:pmax}) allows to recover Eq.~(\ref{eq:shape_general}). 
 
-CFT partition functions on cylinders and tori depend on only the aspect ratio of the two lengths; the bulk term depending on the area is independent of the boundary conditions, and so can be factored out of the partition functions and cancels in our formula.
-\begin{equation}\label{eq:shape_general2}
- s_{n>n_c}=\frac{n}{1-n}\ln \left(\frac{{\cal Z}_{\rm cyl}[y\tau]{\cal Z}_{\rm cyl}[(1-y)\tau]}{{\cal Z}_{\rm torus}[\tau]}\right),
-\end{equation}
+%\begin{equation}\label{eq:shape_general2}
+% s_{n>n_c}=\frac{n}{1-n}\ln \left(\frac{{\cal Z}_{\rm cyl}[y\tau]{\cal Z}_{\rm cyl}[(1-y)\tau]}{{\cal Z}_{\rm torus}[\tau]}\right),
+%\end{equation}
 
+%  \item Since the problem has been reduced to a ratio of partition function, this result is different from the 1d critical case\cite{Cardy} $S\propto \ln \left|(L/\pi)\sin (\pi y/L)\right|$. Therefore, eventhough the 1d result can provide interesting physical intuition, it \emph{should not} apply in higher dimensions. This had already been noted in \cite{Ju2012} wave functions with different dynamical exponents: $\pi$-flux fermions on the square lattice.  
 
-\begin{itemize}
- \item We assume Dirichlet boundary conditions for the cylinder partition functions. \item Since the problem has been reduced to a ratio of partition function, this result is different from the 1d critical case\cite{Cardy} $S\propto \ln \left|(L/\pi)\sin (\pi y/L)\right|$. Therefore, eventhough the 1d result can provide interesting physical intuition, it \emph{should not} apply in higher dimensions. This had already been noted in \cite{Ju2012} wave functions with different dynamical exponents: $\pi$-flux fermions on the square lattice.  
- \item It is in principle also possible to derive a similar result for $n<n_c$, but this would amount to solving a more complicated boundary CFT problem, in the spirit of Ref.~\cite{Oshikawa}. We will not discuss this in the present paper. 
-\end{itemize}
 
 
 
@@ -480,7 +475,9 @@ CFT partition functions on cylinders and tori depend on only the aspect ratio of
 
 \section{Correlations in the $SU(N)$ RVB wave function}
 \label{sec:correlations}
-In this section we take a small detour to study more directly the critical properties of the $SU(N)$-RVB wave function, before going to its entanglement properties (Sec.~\ref{sec:rvb_entanglement}). This section, which may be skipped at first reading, is organized as follows. In Sec.~\ref{sec:numerics}, we explain how such systems , in particular their correlation functions, maybe be simulated using Quantum Monte Carlo techniques. We then study spin-spin correlations, as well as the more interesting dimer-dimer correlations. We find that dimer-dimer correlations decay algebraically, and that the exponent interpolates between $SU(2)$\cite{RVB1,RVB2} and the pure dimer exponent ($N\to \infty$), in agreement with a recent large $N$ calculation\cite{Damle}.
+We now start to explore the question of universality, with the motivation of understanding whether the results obtained for the dimer RVB state can be adapted to apply to the $SU(N)$ RVB states. In this section we describe use quantum Monte Carlo techniques to find the spin-spin and dimer-dimer correlators for $N=2,3,4,5$, generalizing some of the results of \cite{RVB1,RVB2}. This shows that there is no evidence for a transition as $N$ is varied, a strong piece of evidence universality. It also allows us to make contact with the expansion of \cite{Damle} around the dimer state.
+
+%$SU(N)$-RVB wave function, before going to its entanglement properties (Sec.~\ref{sec:rvb_entanglement}). This section, which may be skipped at first reading, is organized as follows. In Sec.~\ref{sec:numerics}, we explain how such systems , in particular their correlation functions, maybe be simulated using Quantum Monte Carlo techniques. We then study spin-spin correlations, as well as the more interesting dimer-dimer correlations. We find that dimer-dimer correlations decay algebraically, and that the exponent interpolates between $SU(2)$\cite{RVB1,RVB2} and the pure dimer exponent ($N\to \infty$), in agreement with a recent large $N$ calculation\cite{Damle}.
 
 \subsection{Numerical simulations}
 \label{sec:numerics}
