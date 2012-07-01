@@ -476,11 +476,11 @@ A comparison between the numerical and analytical results is performed in Fig.~\
 
 \section{Correlations in the $SU(N)$ RVB wave function}
 \label{sec:correlations}
-We now start to explore the question of universality, with the motivation of understanding whether the results obtained for the dimer RVB state can be adapted to apply to the $SU(N)$ RVB states. In this section we describe use quantum Monte Carlo techniques to find the spin-spin and dimer-dimer correlators for $N=2,3,4,5$, generalizing some of the results of \cite{RVB1,RVB2}. This shows that there is no evidence for a transition as $N$ is varied, a strong piece of evidence universality. It also allows us to make contact with the expansion of \cite{Damle} around the dimer state.
+We now start to explore the question of universality, with the motivation of understanding whether the results obtained for the dimer RVB state can be adapted to apply to the $SU(N)$ RVB states. In this section we describe use quantum Monte Carlo techniques to find the spin-spin and dimer-dimer correlators for $N=2,3,4,5$, generalizing some of the results of \cite{RVB1,RVB2}. This shows that there is no evidence for a transition as $N$ is varied, a strong piece of evidence universality. It also allows us to make contact with the results of \cite{Damle}, where an expansion around dimer RVB state is developed.
 
 %$SU(N)$-RVB wave function, before going to its entanglement properties (Sec.~\ref{sec:rvb_entanglement}). This section, which may be skipped at first reading, is organized as follows. In Sec.~\ref{sec:numerics}, we explain how such systems , in particular their correlation functions, maybe be simulated using Quantum Monte Carlo techniques. We then study spin-spin correlations, as well as the more interesting dimer-dimer correlations. We find that dimer-dimer correlations decay algebraically, and that the exponent interpolates between $SU(2)$\cite{RVB1,RVB2} and the pure dimer exponent ($N\to \infty$), in agreement with a recent large $N$ calculation\cite{Damle}.
 
-\subsection{Numerical simulations}
+\subsection{Numerical methods}
 \label{sec:numerics}
 In our Monte Carlo simulation, we employ a loop sampling algorithm that moves through the ensemble of states by creating a defect at some lattice site and propagating it through the system until the defect reaches its initial point and closes the loop~\cite{sandvik2010loop}. Our algorithm is very similar to the $SU(2)$ updates used in ~\cite{RVB2}; however, we need to generalize to account for $SU(N)$ RVB wavefunctions. At each Monte Carlo step, we form the transition graphs to compute Eq.(~\ref{eq:overlap}). Using this transition graph, we sample the value of $m \equiv S^z$ at each site. This gives us a larger set of constraints in that the loop can only update within a compatible $m$ as defined in Eq.(~\ref{eq:rvb}). Then, the case of $N=2$ is equivalent to having two independent subset that can only be updated within each subset. For a larger $N$, the number of updates that one can make becomes much smaller, and the error bars become much harder to converge, which can be cured by using a smarter update 
 that satisfies detailed balance to allow the simulation to make more updates.
@@ -501,42 +501,48 @@ We measure \textit{parallel} nearest neighbor dimer-dimer correlations, i.e.
 S^2 (S+1)^2 & (ij)_L (kl)_L \end{array}, \right.
 \] 
 and $0$ otherwise. Because we are measuring parallel dimer-dimer correlations, we take $j = i + \hat{e}_\alpha, \, l = k + \hat{e}_\alpha$ and $k = i + \hat{e}_\beta$, where $\alpha,\beta = x, y, \, \alpha \neq \beta$.
-\subsection{Spin-spin correlations}
-\label{sec:spinspin}
+
+\subsection{Equal-time correlators}
+\label{sec:dimerdimer}
+
+Let us first look at the spin correlations, which are known to decay exponentially in the $SU(2)$ case: 
+$
+ \langle S(0)S(\ell_x) \rangle \sim \exp \left(-{\ell_x}/{\xi}\right)
+$
+\cite{LDA,RVB1} .
+We find the same behavior in the $SU(N)$ case, with our results displayed in Fig.~\ref{fig:corrspin_su2}. We also observe that $\xi$ decreases with $N$, compatible with the intuition that the RVB state becomes more and more spin-disordered as $N$ increases, approaching zero correlation length in the dimer limit $N\to\infty$. Fitting the data gives  $\xi(N=2)=1.30(5)$ (compatible with \cite{RVB1}) and $\xi(N=3)=0.68(5)$, $\xi(N=4)=0.56(3)$ and $\xi(N=5)=0.46(2)$. This lack of N\'eel order is consistent with quantum spin-liquid  behavior. 
 \begin{figure}[ht]
  \begin{center}
-  \includegraphics{./figures/spin_corr.pdf}
+  \includegraphics[scale=0.8]{./figures/spin_corr.pdf}
  \end{center}
-\caption{Spin-spin correlation function on the torus. We look at two spin in the (?) direction, separated by a distance $
-ell_x$. They decay exponentially, with an exponent that diminishes with $N$. We have $\xi(N=2)=1.30(5)$ (compatible with \cite{RVB1}) and the new $\xi(N=3)=0.68(5)$, $\xi(N=4)=0.56(3)$ and $\xi(N=5)=0.46(2)$.}
+\caption{Spin-spin correlation function on the torus. We look at two spins in the (?) direction, separated by a distance $\ell_x$. }
 \label{fig:corrspin_su2}
 \end{figure}
-Let us first look at the spin correlations. As is shown in Fig.~\ref{fig:corrspin_su2}, they decay exponentially
-\begin{equation}
- \langle S(0)S(\ell_x) \rangle \sim \exp \left(-\frac{\ell_x}{\xi}\right)
-\end{equation}
-with a finite correlation length $\xi$. This is well known\cite{LDA,RVB1} for the $SU(2)$, and our data generalizes these previous results. This short-range N\'eel order supports a quantum spin-liquid  behavior. We also observe that $\xi$ decreases with $N$, compatible with the intuition that the RVB state becomes more and more spin-disordered as $N$ increases.
-\subsection{Dimer-dimer correlations and the Coulomb-gas picture}
-\label{sec:dimerdimer}
-Let us now look at the more interesting dimer-dimer correlations. The connected dimer-dimer correlation function has been recently shown to decay algebraically in Refs.~\cite{RVB1} and \cite{RVB2} for $SU(2)$. One has to leading order
+
+The connected dimer-dimer correlation function has been recently shown to decay algebraically in the $SU(2)$ case in Refs.~\cite{RVB1} and \cite{RVB2}:
 \begin{equation}\label{eq:decay}
  C_{dd}(\vec{r}_1,\vec{r}_2)\sim \frac{1}{\left|\vec{r}_1-\vec{r}_2\right|^\alpha}
 \end{equation}
-at distances large compared to the lattice spacing, but small compared to the torus size $L=L_x=L_y$. Using several different methods, the exponent was found to be approximately $\alpha \simeq 1.2$, and independent on the direction.
+at distances large compared to the lattice spacing, but small compared to the torus size $L=L_x=L_y$. Using several different methods, the exponent was found to be approximately $\alpha \simeq 1.2$, and independent of the direction.
 %\begin{equation}\label{eq:decay}
 % D_{||}(\ell) \sim (\ell/L)^{-\alpha},
 %\end{equation}
 %in the limit $1\ll \ell \ll L$.
+<<<<<<< .mine
+We extend some of these results to the $SU(N)$ case, mainly focusing on the correlations in the transverse (?) direction ($\vec{r}_1-\vec{r}_2=\ell_x \vec{u}_x$). 
+>>> say the dimers are parallel to each other and perpendicular to $r_1-r_2$ ???
+=======
 We extend some of these results, on the $SU(N)$ case, mainly focusing on the correlations for two parallel dimers in the direction ($\vec{r}_1-\vec{r}_2=\ell_x \vec{u}_x$). 
+>>>>>>> .r1484
 %The exponent is approximately $\alpha_2\simeq 1.2$. We extend here these results to the $SU(N)$ case, focusing on longitudinal correlation with an odd distance between the two dimers\footnote{\textcolor{red}{\bf [give a few more details, and also maybe the even-distance correlation. Discuss subleading corrections.]}}, and in the $W=(0,0)$ sector. Since we have
-Since $SU(N)$ dimer correlations reduce to pure dimer correlations in the limit $N\to\infty$, we have
-\begin{equation}
+Our data clearly indicate that the algebraic decay remains for $N=2,3,4,5$, with $\alpha$ increasing with $N$. 
+Since $SU(N)$ dimer correlations reduce to pure dimer correlations in the limit $N\to\infty$, we know that
+$
  \lim_{N \to \infty} \alpha_N=\alpha_{\rm D}=2,
-\end{equation}
- and it is reasonable to expect that the exponent will interpolate smoothly between the two values $\alpha_2$ and $\alpha_D$.
-\begin{figure}[ht]
+$
+ and our data is consistent with the smooth interpolation between $N=2$ and $\infty$. \begin{figure}[ht]
  \begin{center}
-  \includegraphics{./figures/corr_su2.pdf}
+  \includegraphics[scale=0.8]{./figures/corr_su2.pdf}
  \end{center}
 \caption{Dimer-Dimer correlations on the $64 \times 64$ torus for $N=2,3,4,5$. Dashed blue lines is a linear fit to Eq.~(\ref{eq:decay}), in the ``linear regime'' $\ell_x \simeq 5,\ldots,15$. We also performed a fit to the conformal scaling (Eq.~(\ref{eq:cft_fit})) in the same region (red solid lines). Such a fit reproduces all the data quite well.}
 \label{fig:corr_su2_dimers}
