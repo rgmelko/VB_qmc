@@ -133,7 +133,7 @@ For the square lattice, extensive numerical analysis indicates that dimer-dimer 
 | \Psi_D\rangle= \sum_{\cal C} |D_{\cal C} \rangle
 \end{equation}
 Different dimer configurations are defined to be orthogonal:
-\begin{equation}
+\begin{equation}\label{eq:ortho}
 \langle D_{\cal C} | D_{{\cal C}^\prime} \rangle = \delta_{{\cal C},{\cal C}^\prime}\ .
 \end{equation} 
 The ``RK'' Hamiltonian is a simple local Hamiltonian with this dimer RVB state as its ground state.
@@ -152,9 +152,11 @@ When $\vec{r}_1$ and $\vec{r}_2$ are an odd distance apart (i.e. any path along 
 %>>> For an odd distance, is $\alpha=4$ ???
 Note that algebraic decay occurs because the square lattice being bipartite; for non-bipartite lattices, they are exponentially decaying, a fact crucial in showing that the triangular-lattice quantum dimer model is in a gapped RVB phase, i.e.\ has topological order \cite{Moessner}.
 
+It is also possible to generalize this construction, with ``enforced'' orthogonality (\ref{eq:ortho}), to other models. For example starting from a classical six-vertex model, we get a quantum six-vertex wave function\cite{QuantumLifshitz}. This wave function also has algebraically decaying correlations, with a continuously varying exponent $\alpha$ as a function of the vertex weights on its critical line. The classical model, although in general more complicated than the dimer model, is nevertheless integrable. It is also constructed with a similar set of constraints, the fully-packed and hardcore constraints being replaced by the ice rule. As we shall see, all the analytical results we will obtain for the entropy of quantum dimers can be straightforwardly generalized to the quantum six-vertex case.
+
 The inner product is an important difference between the dimer and $SU(2)$ RVB states.
 In the RVB state (\ref{RVBdef1},\ref{RVBdef2}), the inner product is the usual one for spins: each different spin state in the $S^z$ diagonal basis is orthogonal to the others. As is easily shown \cite{Sutherland_loops}, this means that different valence-bond states in the spin model are {\em not} orthogonal. There is a convenient loop-gas description to represent their inner product. One places the two dimer graphs on top of each other, obtaining the ``transition'' graph. Because of the requirement that there be exactly one dimer per site, this means that the transition graph is comprised of closed loops. The shortest loops are of length two, when both graphs have a dimer on the same link. Using the spin inner product then gives 
-\begin{equation}
+\begin{equation}\label{eq:nonortho}
 \langle V_{\cal C} | V_{{\cal C}^\prime} \rangle = 2^{n_l - {\cal N}/2}\ ,
 \label{RVBinner}
 \end{equation}
@@ -205,7 +207,7 @@ Given the changing exponents, the $SU(N)$ RVB states are obviously not identical
 \subsection{The Coulomb-gas approach to classical dimers}
 \label{sec:cg}
 
-A well established and very useful fact about the classical dimer model is that long-distance properties of the dimers are described by a free bosonic field theory, or Coulomb gas. This can be seen either by taking the continuum limit of the sermonic description and then bosonizing the fermions, or by rewriting the dimers in terms of a discrete ``height'' degree of freedom \cite{Heights_1,Heights_2,Henley}. We follow the latter approach, because a careful treatment of the boundary conditions is necessary to obtain our results for the two-cylinder Renyi entropy.
+A well established and very useful fact about the classical dimer model is that long-distance properties of the dimers are described by a free bosonic field theory, or Coulomb gas. This can be seen either by taking the continuum limit of the sermonic description and then bosonizing the fermions, or by rewriting the dimers in terms of a discrete ``height'' degree of freedom \cite{Heights_1,Heights_2,Henley}. We follow the latter approach, because a careful treatment of the boundary conditions is necessary to obtain our results for the two-cylinder Renyi entropy. Before going any further, we also note that the same Coulomb-Gas techniques can be used on the six-vertex model. We will however explain this approach only on the dimer model. 
 
 The first step in the mapping of classical dimer on to the free boson Coulomb gas is to associate an integer with each face of the lattice, as illustrated in fig.\ \ref{fig:height_shift}.
 \begin{figure}[ht]
@@ -242,15 +244,11 @@ The dimers are viewed as elementary electric charges, i.e.\ are created by the f
  \alpha=\frac{1}{\kappa}\ .
 \end{equation}
 This yields the stiffness for the dimer model $\kappa_D=1/2$. Elementary magnetic charges can also identified with monomers, and the corresponding exponent describing their two-point function is given by $\beta=\kappa$, so $\beta_D=1/2$.
-Once the stiffness fixed to its right value, Eq.~(\ref{eq:free_field_bis}) describes all the universal properties of the classical dimer model. By virtue of the correspondence between correlators in the classical model and those in the dimer RVB state, the same exponents apply to the correlators in the latter as well.
+Once the stiffness fixed to its right value, Eq.~(\ref{eq:free_field_bis}) describes all the universal properties of the classical dimer model. By virtue of the correspondence between correlators in the classical model and those in the dimer RVB state, the same exponents apply to the correlators in the latter as well. 
 
-In this framework the quantum dimer model can also be written as in terms of a free scalar field in the 2+1 dimensional ``quantum Lifshitz'' model \cite{Henley}. This is a field theory version of an RK Hamiltonian \cite{QuantumLifshitz}, and so where the equal-time correlators of a 2d {\em quantum} model are those of a 2d conformal field theory. This model is critical but not Lorentz-invariant, with dynamical critical exponent $z=2$.
+In this framework the quantum dimer and quantum six vertex models can also be written as in terms of a free scalar field in the 2+1 dimensional ``quantum Lifshitz'' model \cite{Henley}. This is a field theory version of an RK Hamiltonian \cite{QuantumLifshitz}, and so where the equal-time correlators of a 2d {\em quantum} model are those of a 2d conformal field theory. This model is critical but not Lorentz-invariant, with dynamical critical exponent $z=2$.
 
 Because of the arguments above, it is reasonable to hope that all the equal-time correlators in the $SU(N)$ RVB state for any $N$ can be described by this Coulomb gas, albeit with stiffness depending on $N$. Substantial evidence for this was provided in the $SU(2)$ case in \cite{RVB2}, where several universal quantities, including the dimer-dimer and monomer-monomer decay exponents, were found numerically. With appropriate identification of the operators, each yields a independent value for the stiffness.  The numerics gave approximately the same value of the stiffness $\kappa_{2}\approx .83$ for each, providing strong evidence that the Coulomb gas description applies to correlators of {\em spin singlets} in the $SU(2)$ RVB wave function. 
-
->>> JM: A few words somewhere about the quantum 6v model, and/or interacting dimers???
-
->>> JM: also put in appropriate references to some/all of the appendices somewhere in this section???
 
 %\subsection{The RVB and Coulomb gas states}
 %\label{sec:cg}
@@ -266,13 +264,13 @@ Because of the arguments above, it is reasonable to hope that all the equal-time
 \label{sec:shape_general}
 %\subsection{Statement of the result}
 In this section, we discuss the shape-dependent subleading contribution to the entanglement entropy 
-of two-dimensional gapless systems discussed in \cite{Ju2012}. For Renyi index $n$ larger than a certain critical value $n_c$, we derive it exactly for the scaling limit of the square-lattice dimer RVB state, and the entire quantum critical line of the quantum Lifshitz theory. Thus we expect it to apply to the scaling limit of the $SU(N)$ RVB state as well, with an appropriate parametrization of $\kappa$ in terms of $N$.
+of two-dimensional gapless systems discussed in \cite{Ju2012}. For Renyi index $n$ larger than a certain critical value $n_c$, we derive it exactly for the scaling limit of the square-lattice dimer RVB state, the quantum six-vertex state, and the entire quantum critical line of the quantum Lifshitz theory. Thus we expect it to apply to the scaling limit of the $SU(N)$ RVB state as well, with an appropriate parametrization of $\kappa$ in terms of $N$.
 
 In particular, we show that when a  torus is split into two cylinders labeled $A$ and $B$, the Renyi entropy describing the entanglement between the two cylinders can be rewritten in terms of conformal field theory partition functions ${\cal Z}$ as:
 \begin{equation}\label{eq:shape_general}
  s_{n>n_c}=\frac{n}{1-n}\ln \left(\frac{{\cal Z}_{A}{\cal Z}_B}{{\cal Z}_{\rm torus}}\right),
 \end{equation}
-Below we detail the precise definition of the CFT partition functions, but the important fact is that for the cases at hand, these are known. Thus this expression gives an explicit formula for this entropy, exact in the scaling limit. The value of $n_c$ depends on the specifics of the model, but $n_c<2$ in all the examples we will consider, so that Eq.~(\ref{eq:shape_general}) applies to the second Renyi entropy to be studied numerically in later sections.  Although our derivation applies only to the quantum Lifshitz ground state (i.e.\ RVB states that can be written in terms of a two-dimensional classical free boson), we believe it possible that an analogous formula will apply to any theory with an RK-type Hamiltonian.
+Below we detail the precise definition of the CFT partition functions, but the important fact is that for the cases at hand, these are known. Thus this expression gives an explicit formula for this entropy, exact in the scaling limit. The value of $n_c$ depends on the specifics of the model, but $n_c<2$ in all the examples we will consider, so that Eq.~(\ref{eq:shape_general}) applies to the second Renyi entropy to be studied numerically in later sections.  Although our derivation applies only to the quantum Lifshitz ground state (i.e.\ RVB-type states that can be written in terms of a two-dimensional classical free boson), we believe it possible that an analogous formula will apply to any theory with an RK-type Hamiltonian.
 
 
 \subsection{Entanglement entropy as a Shannon entropy}
@@ -282,7 +280,7 @@ We will now detail how to derive Eq.~(\ref{eq:shape_general}), in the simplest c
 
 The orthogonality of the different dimer configurations in the dimer RVB state allows for huge technical simplifications. As was shown in Ref.~\cite{Shannonee}, the entanglement entropy can be expressed as a classical Shannon entropy. We give here only a brief summary of the results, and refer to \cite{Shannonee} for the details.
 
-Let us cut our torus in two subsystems $A$ and $B$, as is shown for example in Fig.~\ref{fig:bipartition}. We label the dimer configurations along the boundaries as $|\mu\rangle$ and $\sigma\rangle$.
+Let us cut our torus in two subsystems $A$ and $B$, as is shown for example in Fig.~\ref{fig:bipartition}. We label the dimer configurations along the boundaries as $|\sigma\rangle$ and $|\mu\rangle$.
 \begin{figure}[ht]
 \begin{center}
 \includegraphics[scale=0.8]{./figures/bipartition.pdf}
@@ -296,22 +294,35 @@ The main difference with \cite{Shannonee} is that there are two boundaries here,
 \end{equation}
 where the $p_{\sigma,\mu}$ are the probabilities of a given boundary configuration $|\sigma\rangle$,$|\mu\rangle$ between $A$ and $B$. 
 \label{sec:lg.}
-The $\psm$ are precisely the eigenvalues of the reduced density matrix\footnote{Said differently, the Schmidt decomposition of the ground state reads $|\psi\rangle=\sum_{
-\sigma,\mu} \sqrt{p_{\sigma,\mu}}|\psi_{\sigma,\mu}^A\rangle |\psi_{\sigma,\mu}^B\rangle$, where $|\psi_{\sigma,\mu}^A\rangle$ is a superposition of all dimer states in $A$ compatible with the boundary conditions $\sigma$ and $\mu$, and the same goes for $B$. All these vectors are mutually orthogonal $\langle \psi_{\sigma,\mu}^\Omega|\psi_{\sigma^\prime,\mu^\prime}^{\Omega^\prime}\rangle=\delta_{\sigma \sigma^\prime}\delta_{\mu \mu^\prime}\delta_{\Omega \Omega^\prime}$.}
-This mapping therefore allows the R\'enyi entanglement entropy to be rewritten as
+The $\psm$ are precisely the eigenvalues of the reduced density matrix. Said differently, the Schmidt decomposition of the ground state reads
+\begin{equation}\label{eq:schmidt}
+|\psi\rangle=\sum_{
+\sigma,\mu} \sqrt{p_{\sigma,\mu}}|\psi_{\sigma,\mu}^A\rangle |\psi_{\sigma,\mu}^B\rangle,
+\end{equation}
+where $|\psi_{\sigma,\mu}^A\rangle$ is a superposition of all dimer states in $A$ compatible with the boundary conditions $\sigma$ and $\mu$, and the same goes for $B$. All these vectors are mutually orthogonal
+\begin{equation}\label{eq:schmidt_orthogonality}
+\langle \psi_{\sigma,\mu}^\Omega|\psi_{\sigma^\prime,\mu^\prime}^{\Omega^\prime}\rangle=\delta_{\sigma \sigma^\prime}\delta_{\mu \mu^\prime}\delta_{\Omega \Omega^\prime},
+\end{equation}
+as should be. This mapping therefore allows the R\'enyi entanglement entropy to be rewritten as
 \begin{equation}
  S_n=\frac{1}{1-n}\ln \left(\sum_{\sigma,\mu}[\psm]^n\right).
  \label{Spsm}
 \end{equation}
-Note that here $n$ need not be an integer. The probabilities can be conveniently rewritten in terms of dimer partition functions as 
+We will name this quantity R\'enyi-Shannon entropy in the following. Note that here $n$ need not be an integer. The probabilities can be conveniently rewritten in terms of dimer partition functions as 
 \begin{equation}
  \psm=\frac{Z_{\sigma,\mu}}{Z},
  \label{Zpsm}
 \end{equation}
 where $Z_{\sigma,\mu}$ is the number of dimer configurations compatible with the boundary configuration $|\sigma\rangle,|\mu\rangle$, while $Z$ is the number of dimer coverings on the whole torus. 
 
+At this stage it is important to emphasize the main reasons why such a remarquable quantum-classical correspondance actually holds. While (\ref{eq:schmidt}) remains true for all the states we consider in this paper, the orthogonality (\ref{eq:schmidt_orthogonality}) is guarantied only if two other conditions are satisfied:
+\begin{enumerate}
+ \item The orthogonality of quantum states corresponding to different classical configurations. 
+ \item A certain type of local constraints\cite{Shannonee}, which one can summarize as follows on the square lattice. Formulating the model as Ising variables $\sigma$ sitting on the bonds of the square lattice (for dimers these are just the dimer occupancies) the following constraint is needed: around each site of the lattice, if three of them are specified, then the state of the last one is uniquely determined.  
+\end{enumerate}
+Quantum dimers obviously satisfy both these requirements. The same goes for the quantum six-vertex state, (ii) being guarantied by the ice rule. The $SU(N)$ RVB wave functions satisfies (ii) but not (i) (see (\ref{eq:nonortho})). As an example of Coulomb-gas wave functions that satisfy (i) but not (ii), one can consider the quantum dimer wave function built out of the interacting dimer studied in \cite{Alet_dimers1,Alet_dimers2}. 
 
-These expressions make it possible to use the computer to find very accurate values of the Renyi entropy for the dimer RVB state. Using free-fermion/Pfaffian techniques described in \ref{sec:lgv}, each probability can be expressed as a product of determinants of two matrices of size $\sim L/2$, and computed numerically in a time of order $\approx L^3$. Using translational symmetry along the $x$ axis as well as the conservation of winding numbers, we are able to compute any R\'enyi entropy up to machine precision in a time of order $L^{3/2}\times 4^L$.
+Returning to the dimer RVB state, these expressions make it possible to use the computer to find very accurate values for the Renyi entropy. Using free-fermion/Pfaffian techniques described in \ref{sec:lgv}, each probability can be expressed as a product of determinants of two matrices of size $\sim L/2$, and computed numerically in a time of order $\approx L^3$. Using translational symmetry along the $x$ axis as well as the conservation of winding numbers, we are able to compute any R\'enyi entropy up to machine precision in a time of order $L^{3/2}\times 4^L$.
 The results for a $20\times 20$ torus are summarized in Fig.~\ref{fig:ee_d_torus}, where the two cylinders are of length $\ell_y$ and $L_y-\ell_y$. 
 \begin{figure}[ht]
  \begin{center}
@@ -639,7 +650,7 @@ This allows in principle to determine the critical exponent from the entanglemen
 
 \section{Conclusion}
 
-We have seen in the previous section (\ref{sec:su2_numerics}) that our main result seems to describe well, at least at the qualitative level, the entanglement data for $SU(2)$. There are two main reasons why such a result is non trivial
+We have seen in the previous section (\ref{sec:rvb_entanglement}) that our main result seems to describe well, at least at the qualitative level, the entanglement data for $SU(2)$. There are two main reasons why such a result is non trivial
 
 Resolving this issue is certainly an interesting question for further studies. It would also certainly be useful to change $d_{\rm min}$ by studying the RVB wave function on other bipartite lattices. For example on the hexagonal lattice $d_{\rm min}=3$ (and therefore $n_c=3^2=9$) for dimers, and $S_2$ for RVB would likely lie in the replicated phase, not subject to the even-odd effect. 
 
@@ -649,7 +660,8 @@ Resolving this issue is certainly an interesting question for further studies. I
 \begin{itemize}
  \item Entanglement in finite $d>1$ critical systems. 
  \item Simple result for the shape dependence, as a ratio of known partition functions, not $\ln \sin$.
- \item Better understanding: change the lattice, Schmidt decomposition, \ldots.
+ \item Get a better understanding: change the lattice, Schmidt decomposition, \ldots.
+ \item Extension to other RK points described by another CFT, generalizing\cite{Stephan2010,Zaletel}
  \item Hope this can help attack more complicated Quantum critical points.
 \end{itemize}
 }
@@ -684,7 +696,7 @@ We wish to compute the following classical entropy
 \end{equation}
 for any real $n$. The probabilities $p_{\sigma,\mu}$ we are interested in are given by a ratio of partition functions, which can handily be expressed using a transfer matrix
 \begin{equation}\label{eq:tm}
- p(\sigma,\mu)=\frac{Z_{\sigma.\mu}^A Z_{\mu,\sigma}^B}{Z}=\frac{\langle  \sigma|T^{\,\ell_y}|\mu\rangle\langle \mu|T^{\,L_y-\ell_y}|\sigma\rangle}{{\rm Tr}\; T^{L_y}}
+ p_{\sigma,\mu}=\frac{Z_{\sigma,\mu}^A Z_{\mu,\sigma}^B}{Z}=\frac{\langle  \sigma|T^{\,\ell_y}|\mu\rangle\langle \mu|T^{\,L_y-\ell_y}|\sigma\rangle}{{\rm Tr}\; T^{L_y}}
 \end{equation}
 $T$ is the transfer matrix of the dimer model, and acts on the vector space generated by dimer occupancies on vertical edges along a horizontal line: $\langle a|T|b\rangle=1$ if configuration $|a\rangle$ and $|b\rangle$ are compatible, $0$ otherwise. The denominator is calculated in \ref{sec:dimers_exact}. Each factor on the numerator of Eq.~(\ref{eq:tm}) can be evaluated by a mapping onto free fermions\cite{Lieb1967,Alet_dimers2,Shannonee}, as explained in Fig.~\ref{fig:freefermions}.  
 \begin{figure}[ht]
