@@ -115,7 +115,7 @@ In this section we introduce and review some of the known properties of these st
 \end{equation}
 where
 \begin{equation}
- |V_{\cal C} \rangle = \frac{1}{2^{{\cal N}/4}} \prod_{i=1}^{{\cal N}/2} \big( | \uparrow_i \downarrow_{j_{\alpha}} \rangle  - | \downarrow_i \uparrow_{j_i} \rangle  \big)
+ |V_{\cal C} \rangle = \frac{1}{2^{{\cal N}/4}} \prod_{i=1}^{{\cal N}/2} \big( | \uparrow_i \downarrow_{j_{i}} \rangle  - | \downarrow_i \uparrow_{j_i} \rangle  \big)
 \label{RVBdef2}
 \end{equation}
 so each spin $i$ on one sublattice is in a singlet with one of its nearest neighbors $j_i$ on the other sublattice. A valence bond between neighbors $i$ and $j$ can be labeled by a dimer on this link between $i$ and $j$, and so each valence-bond state can be viewed as a dimer configuration ${\cal C}$ with exactly one dimer touching each site. Our computations probe a state directly and so do not require a Hamiltonian. However, it is worth noting that this $SU(2)$ RVB state is the exact ground state of a quantum spin Hamiltonian with local interactions \cite{Cano}.
@@ -189,9 +189,9 @@ The nearest-neighbor RVB wave function is then defined as an equally weighted su
 For $SU(N)$ valence-bond states, the orthogonality relation becomes
 \begin{equation}
 \label{eq:overlap}
- \langle V_{\cal C}|V_{{\cal C}^\prime}\rangle=\pm (2S+1)^{{\cal L}-{\cal N}}\ ,
+ \langle V_{\cal C}|V_{{\cal C}^\prime}\rangle=\pm (2S+1)^{n_{l}-{\cal N}/2}\ ,
 \end{equation}
-where ${\cal L}$ is the number of loops in the transition graph formed by superimposing the two dimer configurations ${\cal C}$ and ${\cal C}^\prime$. Notice that ${\cal L}$ can be at most $M$, and this happens only when all the loops are trivially flat, i.e when the two dimer configurations are identical. We have however
+where $n_l$ is again the number of loops in the transition graph formed by superimposing the two dimer configurations ${\cal C}$ and ${\cal C}^\prime$. Notice that $n_l$ can be at most ${\cal N}/2$, and this happens only when all the loops are trivially flat, i.e when the two dimer configurations are identical. We have however
 \begin{equation}
  \langle V_{\cal C}|V_{{\cal C}^\prime}\rangle=\delta_{{\cal C},{\cal C}^\prime}
  \end{equation}
@@ -211,11 +211,10 @@ The first step in the mapping of classical dimer on to the free boson Coulomb ga
  \begin{center}
  \includegraphics[scale=0.8]{./figures/shift.pdf}
  \end{center}
-\caption{Illustration of the height shift between the upper and lower boundaries in the odd case.  \emph{Left:} Even $L_y$ case. The coarse-grained heigth difference between top and bottom is $\Delta h=\langle h_{\rm top}\rangle-\langle h_{\rm bottom}\rangle=(\pi/2)(9/2-1/2)=2\pi$.  \emph{Right:} Odd $L_y$ case. We have $\Delta h=(\pi/2)(13/2-1/2)=3\pi$..}
+\caption{Illustration of the height shift between the upper and lower boundaries in the odd case.  \emph{Left:} Even $L_y$ case. The coarse-grained heigth difference between top and bottom is $\Delta h=\langle h_{\rm top}\rangle-\langle h_{\rm bottom}\rangle=(\pi/2)(9/2-1/2)=2\pi$.  \emph{Right:} Odd $L_y$ case. We have $\Delta h=(\pi/2)(13/2-1/2)=3\pi$.}
 \label{fig:height_shift}
 \end{figure}
 These integers are defined by the following construction. Set value on one face (say the lower leftmost one) to be zero. Then, turning counterclockwise around a site of the even (resp.\ odd) sublattice represented by black squares (resp.\ white squares) the integer changes by $-3$ (resp.\ $+3$) if it crosses a dimer, $+1$ (resp.\ $-1$) otherwise. Since by construction these integers are different on adjacent sites, in the bulk one defines a smoother height variable $h(i,j)$ on the sites of the lattice, by averaging the values of the integers on four faces surrounding each point (and then for convenience's sake multiplying by $\pi/2$). Then the states where the dimers are arranged in columns corresponds to a constant value of the height.
->>> We should include the last column of face variables in the figure??? 
 
 An important subtlety in this mapping is the boundary conditions, which will play a crucial role in understanding the even/odd effect in the two-cylinder Renyi entropy.
 With periodic boundary conditions and an even number of sites around this cycle (as in the left and right sides of the figure \ref{fig:height_shift}), note that means that heights can jump by $2\pi$ times an integer on from one side to the other. 
