@@ -577,32 +577,20 @@ Let us first begin with the $SU(2)$ case, and present the computation of $S_2$, 
 \end{figure}
 We observe a striking similarity with the dimer data. In particular, the even-odd effect is bigger in the $W=(0,0)$ than in the ``all'' sector. >>> Should we provide a plot, maybe next to the other one???
 This suggests $S_2$ for the $SU(2)$ RVB state lies in a locked phase, just as its dimer counterpart does. 
-This is also supported by exact diagonalizations on small systems, which show that the biggest eigenvalue of the reduced density matrix is non-degenerate:  $\Delta_{SU(2)}\equiv -\ln (p_1/p_{\rm max}) \approx 2.67$ for on a $4\times 4$ torus. (The exact value for dimers is  $\Delta_{\rm dimers}=2\ln \pi\simeq 2.29$ \cite{Stephan2012}.) This suggests both a large entanglement gap as well as $d_{\rm min}=1$.
+This is also supported by exact diagonalizations on small systems, which show that the biggest eigenvalue of the reduced density matrix is non-degenerate:  $\Delta_{SU(2)}\equiv -\ln (p_1/p_{\rm max}) \approx 2.67$ for on a $4\times 4$ torus. (The exact value for dimers is  $\Delta_{\rm dimers}=2\ln \pi\simeq 2.29$ \cite{Stephan2012}.) This suggests a large entanglement gap, along with $d_{\rm min}=1$.
 
-All the  that the entanglement data for the $SU(2)$ RVB state in the scaling limits can be obtained from the free-boson using (\ref{eq:shape_general}) 
-
-
-Also plotted in fig.~\ref{fig:SU2_shape} are curves obtained from the free-boson theory and $\kappa=???$. 
-These are precisely
+Throughout this paper we have emphasized the similarities between the $SU(N)$ and dimer RVB states. These make it plausible that the two-cylinder Renyi entropy entanglement data for the $SU(2)$ RVB state in the scaling limits can be obtained from the free-boson using (\ref{eq:shape_general}). If this is true, this is a much stronger statement than the results for the critical exponent $\alpha$ as a function of $N$ in the previous section. The reason is that even though correlators in the classical dimer model can be obtained by taking the $N\to\infty$ limit of the loop model defined by the $SU(N)$ RVB inner product, the Hilbert space of the two is completely different; the latter being much larger. Thus it is very unlikely that non-universal quantities will be the same in the two cases. However, all our results are consistent with the subleading part of the two-cylinder Renyi entropy being universal. Thus it is possible that that in the scaling limit, this piece could be the given by the conformal field theory result, with the identification of $\kappa$ coming from the correlation length results.
+The conformal results for general $\alpha=1/\kappa$ are
 \begin{eqnarray}\label{eq:cft_prediction_gen}
  s_n^{\rm (even)}(y,\tau)&=&\frac{n}{1-n}\ln \left(\frac{\alpha}{2}\times\frac{\eta(\tau)^2}{\theta_3(\alpha\tau)\theta_3(\tau/\alpha)}\times\frac{\theta_3(\alpha y \tau)\theta_3(\alpha(1-y)\tau)}{\eta(y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_prediction_gen_odd}
  s_n^{\rm (odd)}(y,\tau)&=&\frac{n}{1-n}\ln \left(\frac{\alpha}{2}\times\frac{\eta(\tau)^2}{\theta_3(\alpha\tau)\theta_3(\tau/\alpha)}\times\frac{\theta_4(2y \tau)\theta_4(2(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)
 \end{eqnarray}
 
 
-CFT results Eqs.~(\ref{eq:cft_prediction_gen}) and (\ref{eq:cft_prediction_gen_odd}) at 
-
+These are plotted  with $\alpha=???$ in fig.~\ref{fig:SU2_shape} along with the $SU(2)$ Monte Carlo data. 
+%CFT results Eqs.~(\ref{eq:cft_prediction_gen}) and (\ref{eq:cft_prediction_gen_odd}) at 
 The trend in the data is clearly toward these curves, but as with the dimer case, the finite-size effects are very strong. Unfortunately, we cannot make a definitive conclusion, because the mapping of Ref.~\cite{Shannonee} to a classical R\'enyi-Shannon entropy is not valid for the $SU(N)$ RVB states: because of the non-orthogonality of different valence-bond configurations, the Schmidt decomposition of the RVB state is much more complicated.  Thus while we cannot make a definitive conclusion, this does provide qualitative evidence for Eq.~(\ref{eq:shape_general}) applying to the $SU(2)$ RVB state as well. 
 
-%\subsection{Why is RVB more complicated than dimers?}
-
-% Even if such a mapping were still to hold in a renormalization group sense, exact diagonalization results on small system sizes clearly show that the biggest eigenvalue of the reduced density matrix is non degenerate, and therefore $d_{\rm min}=1$. This observation is also supported by the mapping to classical interacting dimers\cite{Damle}. Naively extending the result of \cite{Stephan2011} would then yield a critical value
-% \begin{equation}
-%n_c=2/\alpha\simeq 0.6  
-% \end{equation}
-%for $SU(2)$. This would imply an even-odd effect even for the von Neumann entropy, in violation with strong subadditivity\cite{Strongsubadditivity}.
-%From the above 
-%two points it seems that precisely extending the phase transition argument would require a more careful analysis, which would show in particular that the formula $n_c=2d^2/\alpha$ cannot hold in general, and that the transition still happens, but at another value of $1\leq n_c<2$ which would depend on the subtleties involved in the Schmidt decomposition. 
 
 
 In the locked phase, we expect Eq.~(\ref{eq:shape_general}) to still be valid, but with a different $\alpha$ exponent entering the partition functions. Under the assumption that the conformal boundary conditions don't change compared to the dimers, we get 
@@ -621,6 +609,17 @@ Notice that also the prediction Eq.~(\ref{eq:cft_w0}) for the $W=(0,0)$ can simp
  s_\infty^{\rm (even)}&=&-\ln \left(\frac{\alpha}{2}\frac{\eta(\tau)^2\theta_3(\alpha y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_w0_gen2}
  s_\infty^{\rm (odd )}&=&-\ln \left(\frac{\alpha}{2}\frac{\eta(\tau)^2\theta_4(\alpha y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)
 \end{eqnarray}
+
+
+% Even if such a mapping were still to hold in a renormalization group sense, exact diagonalization results on small system sizes clearly show that the biggest eigenvalue of the reduced density matrix is non degenerate, and therefore $d_{\rm min}=1$. This observation is also supported by the mapping to classical interacting dimers\cite{Damle}. Naively extending the result of \cite{Stephan2011} would then yield a critical value
+% \begin{equation}
+%n_c=2/\alpha\simeq 0.6  
+% \end{equation}
+%for $SU(2)$. This would imply an even-odd effect even for the von Neumann entropy, in violation with strong subadditivity\cite{Strongsubadditivity}.
+%From the above 
+%two points it seems that precisely extending the phase transition argument would require a more careful analysis, which would show in particular that the formula $n_c=2d^2/\alpha$ cannot hold in general, and that the transition still happens, but at another value of $1\leq n_c<2$ which would depend on the subtleties involved in the Schmidt decomposition. 
+
+
 
 \subsection{Numerical results for $SU(N)$}
 \label{sec:sun_numerics}
