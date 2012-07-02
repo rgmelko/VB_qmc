@@ -398,15 +398,15 @@ The computation of the free-boson partition function is completely standard; see
 %{L_y}}\right)^{-1}\sum_{w=-\infty}^{+\infty}e^{-\kappa \pi\frac{L_x}{L_y} (w+a)^2}.
 %\end{equation}
 \begin{equation}
- \mathcal{Z}_{\rm cyl}^{DD^{(a)}}=q^{-1/24}\prod_{w=1}^{\infty}\left(1-q^w\right)^{-1}\sum_{w=-\infty}^{+\infty}q^{\kappa (w+a)^2}\quad,\quad q=e^{-\pi L_x/L_y}
+ \mathcal{Z}_{\rm cyl}^{DD^{(a)}}=q^{-1/24}\prod_{w=1}^{\infty}\left(1-q^w\right)^{-1}\sum_{w=-\infty}^{+\infty}q^{\,\kappa (w+a)^2}\quad,\quad q=e^{-\pi L_x/L_y}
 \end{equation}
 It is convenient to rewrite such sums in terms of the Jacobi theta and Dedekind eta functions defined in \ref{sec:CFT_Jacobi}, to take advantage of many elegant identities. 
-The even case $a=0$ can be written, using (\ref{eq:modtheta3},\ref{eq:modeta}) as
+The even case $a=0$ can be written, using (\ref{eq:eta_def},\ref{eq:theta3_def},\ref{eq:thetas},\ref{eq:modtheta3},\ref{eq:modeta}), as
 \begin{equation}\label{eq:cylinder_dd}
  \mathcal{Z}_{\rm cyl}^{DD}(\tau)=\frac{\theta_3(2\tau)}{\eta(2\tau)}\ ,
 \end{equation}
 where we adopt the conventional variable  $\tau=i L_y/L_x$, and have set $\kappa=1/2$, the dimer value.
-For the odd case $a=1/2$, we have, using this time (\ref{eq:modtheta4},\ref{eq:modeta}):
+For the odd case $a=1/2$, we have, using this time (\ref{eq:eta_def},\ref{eq:theta2_def},\ref{eq:thetas},\ref{eq:modtheta4},\ref{eq:modeta}):
 \begin{equation}
 \label{eq:cylinder_ddprime}
  \mathcal{Z}_{\rm cyl}^{DD^\prime}(\tau)=\frac{\theta_4(2\tau)}{\eta(2\tau)}\ .
@@ -515,7 +515,7 @@ $
 \caption{Dimer-Dimer correlations on the $64 \times 64$ torus for $N=2,3,4,5$. Dashed blue lines is a linear fit to Eq.~(\ref{eq:decay}), in the ``linear regime'' $\ell_x \simeq 5,\ldots,15$, while the red solid lines are a fit to the conformal scaling (Eq.~(\ref{eq:cft_fit})) in the same region.}
 \label{fig:corr_su2_dimers}
 \end{figure}
-For each $N$ we extract the leading exponent by a fit (solid blue lines in Fig.~\ref{fig:corr_su2_dimers}) to Eq.~(\ref{eq:decay}) in the regime $1\ll \ell \ll L$ and for odd $\ell$. We find $\alpha_2=1.21(2)$, $\alpha_3=1.43(3)$, $\alpha_4=1.54(3)$, $\alpha_4=1.67(6)$. Notice that as $N$ gets larger, it becomes more and more difficult to converge the Monte-Carlo data in a finite time, resulting in a loss of precision on the corresponding exponent. 
+For each $N$ we extract the leading exponent by a fit (solid blue lines in Fig.~\ref{fig:corr_su2_dimers}) to Eq.~(\ref{eq:decay}) in the regime $1\ll \ell_x \ll L_x$ and for odd $\ell_x$. We find $\alpha_2=1.21(2)$, $\alpha_3=1.43(3)$, $\alpha_4=1.54(3)$, $\alpha_4=1.67(6)$. Notice that as $N$ gets larger, it becomes more and more difficult to converge the Monte-Carlo data in a finite time, resulting in a loss of precision on the corresponding exponent. 
 
 We also observe the presence of a dipolar term which behaves as $(-1)^{\ell_x} \ell_x^{-2}$ for all $N$. It is well known in the dimer model\cite{Alet_dimers2}, and also appears for the $SU(2)$ RVB state\cite{RVB2}. In the dimer case, it exactly cancels the universal term (\ref{eq:decay}) at even distances, so that the dimer-dimer correlation now behaves as\cite{FisherStephenson} $\ell_x^{-4}$. In the $SU(N)$ RVB case the exponent $\alpha$ is different and this does not happen. The dipolar is then a subleading term, which introduces finite-size effect when trying to extract the exponent. For example we get $\alpha_2\simeq 1.13$ at even distances, which is slightly smaller than the established value on larger system sizes\cite{RVB1,RVB2} for $SU(2)$, and probably less raliable. 
 
@@ -532,14 +532,14 @@ with $\ell_x \gg 1$. $f$ is a universal function of the two dimensionless ratios
 \begin{equation}
  f(\ell_x/L_x,\tau)=\sum_{n=0}^{\infty}(-1)^n \sin \left[(2n+1)\pi \ell_x/L_x\right]e^{-\pi n(n+1)(L_y/L_x)}
 \end{equation}
-Notice that while this function reduces to $f(x,\tau)=\sin(\pi \ell/L_x)$ in the limit of a thin torus ($L_y/L_x \gg 1$), the latter is still an almost perfect approximation for $L_y/L_x=1$. Performing the fits to Eq.~(\ref{eq:cft_fit}) in the same region $1\ll \ell_x \ll L_x$ as before (red solid curve in Fig.~\ref{fig:corr_su2_dimers}), we observe that the data reproduces very well the CFT prediction, even the upturn when $\ell_x$ is of order $L_x$. This is additional evidence for the underlying height model. However, the exponents determined this way are slightly larger; for example we find $\alpha_2\simeq 1.26$.
+Notice that while this function reduces to $f(\ell_x/L_x,\tau)=\sin(\pi \ell_x/L_x)$ in the limit of a thin torus ($L_y/L_x \gg 1$), the latter is still an almost perfect approximation for $L_y/L_x=1$. Performing the fits to Eq.~(\ref{eq:cft_fit}) in the same region $1\ll \ell_x \ll L_x$ as before (red solid curve in Fig.~\ref{fig:corr_su2_dimers}), we observe that the data reproduces very well the CFT prediction, even the upturn when $\ell_x$ is of order $L_x$. This is additional evidence for the underlying height model. However, the exponents determined this way are slightly larger; for example we find $\alpha_2\simeq 1.26$.
 %This small discrepancy with the previous $SU(2)$ results\cite{RVB1,RVB2} could possibly be resolved studying larger systems, but could also be an indication that previously claimed error bars were slightly underestimated.  
 
 \begin{figure}[ht]
  \begin{center}
   \includegraphics[scale=0.8]{./figures/spin_corr.pdf}
  \end{center}
-\caption{Spin-spin correlation function on the torus. We look at two spins in the (?) direction, separated by a distance $\ell_x$. }
+\caption{Spin-spin correlation function on a $64\times 64$ torus. We look at spins separated by a distance $\ell_x$ along the $x-$ direction:  $\vec{r}_1-\vec{r}_2=\ell_x \vec{u}_x$. }
 \label{fig:corrspin_su2}
 \end{figure}
 We also studied spin correlations, which as discussed in section \ref{sec:RVB} are known to decay exponentially in the $SU(2)$ case: 
@@ -598,7 +598,7 @@ An additional interesting feature becomes apparent by plotting the CFT curves
  \begin{center}
   \includegraphics[width=8cm]{./figures/SUN_CFT.pdf}
  \end{center}
-\caption{CFT prediction for the universal shape of $S_2$, as a function of $y=\ell_y/L_y$. Red solid lines correspond to the dimer RVB state with $\alpha=2$, while the blue dashed lines are the $SU(2)$ RVB case, with $\alpha\sim 1.2$.}
+\caption{CFT prediction for the universal shape of $S_2$, as a function of $y=\ell_y/L_y$. Red solid lines correspond to the dimer RVB state with $\alpha=2$, while the blue dashed lines are the $SU(2)$ RVB case, with $\alpha= 1.2$.}
 \label{fig:SUN_CFT}
 \end{figure}
 As is apparent from fig.~\ref{fig:SUN_CFT}, the curve for the even branch is essentially independent of the $\alpha$ over a large range. The shape of the odd curve only weakly depends on $\alpha$, but the curve does appreciably shift in this range.
@@ -727,34 +727,33 @@ This type of result is referred to as the Karlin-McGregor\cite{KarlinMcGregor} o
 \label{sec:CFT_Jacobi}
 %\subsection[\;\;\;\;\;\;\;\;\;\;\;\;\;\;Dedekind-eta and Jacobi-Theta functions]{Dedekind-eta and Jacobi-Theta functions}
 %\label{sec:functions}
-For a given modulus $\tau=i L_y/L_x$, we introduce the squared nome:
+For a given modulus $\tau$, we introduce the squared nome:
 \begin{equation}
- q=e^{2i\pi \tau}=e^{-2\pi L_y/L_x}
+ q=e^{2i\pi \tau}
 \end{equation}
->>> Don't we want to include $\kappa$ ???
 The Dedekind eta function is defined as 
-\begin{equation}
+\begin{equation}\label{eq:eta_def}
  \eta(\tau)=q^{1/ 24}\prod_{k=1}^{\infty}\left(1-q^k\right),
 \end{equation}
 and the four Jacobi Theta functions are given by
-\begin{eqnarray}
+\begin{eqnarray}\label{eq:theta1_def}
  \theta_1(z|\tau)&=&\sum_{n \in \mathbb{Z}}(-1)^{n-1/2}q^{\frac{1}{2}(n+1/2)^2}e^{(2n+1)iz}\\
  &=&2\eta(\tau)q^{1/6} \sin z\prod_{n=1}^{\infty} \left[1-2 \cos(2z) q^{n}+q^{2n}\right]
 \end{eqnarray}
-\begin{eqnarray}
+\begin{eqnarray}\label{eq:theta2_def}
  \theta_2(z|\tau)&=&\sum_{n \in \mathbb{Z}}q^{\frac{1}{2}(n+1/2)^2}e^{(2n+1)iz}\\
  &=&2\eta(\tau)q^{1/6} \cos z\prod_{n=1}^{\infty} \left[1+2 \cos(2z) q^{n}+q^{2n}\right]
 \end{eqnarray}
-\begin{eqnarray}
+\begin{eqnarray}\label{eq:theta3_def}
  \theta_3(z|\tau)&=&\sum_{n \in \mathbb{Z}}q^{\frac{1}{2}n^2}e^{2niz}\\
  &=&\eta(\tau)q^{-1/12}\prod_{n=1}^{\infty} \left[1+2 \cos(2z) q^{n-1/2}+q^{2n-1}\right]
 \end{eqnarray}
-\begin{eqnarray}
+\begin{eqnarray}\label{eq:theta4_def}
  \theta_4(z|\tau)&=&\sum_{n \in \mathbb{Z}}(-1)^{n}q^{\frac{1}{2}n^2}e^{2niz}\\
  &=&\eta(\tau)q^{-1/12}\prod_{n=1}^{\infty} \left[1-2 \cos(2z) q^{n-1/2}+q^{2n-1}\right]
 \end{eqnarray}
 To simplify the notations a bit, we also set
-\begin{equation}
+\begin{equation}\label{eq:thetas}
  \theta_\nu(\tau)=\theta_\nu (0|\tau)\quad,\quad \nu=1,2,3,4
 \end{equation}
 
