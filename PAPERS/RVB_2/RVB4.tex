@@ -76,8 +76,9 @@ the $SU(2)$-invariant RVB state was not a finite-size effect; it also occurs for
 
 
 One lesson from our results is that universal entanglement properties can be qualitatively different for values of the Renyi index $n$. For $n>n_c$, the two-cylinder entanglement entropy depends strongly on whether the cylinders are of odd or even length. This is not shocking from the point of view of the quantum dimer state, because the correlators exhibit similar behavior. However, at the von Neumann point ($n\to 1$), no such even-odd effect is possible. Indeed, the shape of the entanglement entropy has to be a concave-down function of $y$, as required by the strong subadditivity property \cite{Strongsubadditivity}. Other values of $n$ are not constrained by subadditivity, and we will derive this even/odd effect explicitly for the dimer RVB state. 
-Thus only for $n>n_c$ is the Renyi entropy sensitive enough to include this effect. This is reminiscent of... >>> Roger ???
-
+Thus only for $n>n_c$ is the Renyi entropy sensitive enough to include this effect. 
+\textcolor{red}{
+This effect, whereby a Renyi entropies may exhibit qualitatively different behavior for some higher $n$, is reminiscent of the manifestation of finite-temperature criticality in Renyi entropies for $n>1$, but not $n=1$} \cite{RenyiXing}. 
 
 It is possible to interpolate between the $SU(2)$-invariant RVB state and the quantum dimer state by considering $SU(N)$-invariant generalizations of the former; many aspects of the quantum dimer state then can be extracted from the $N\to\infty$ limit. Such a correspondence can be pushed further: Ref.~\cite{Damle} defined a cluster expansion of the RVB ``loop gas''\cite{Sutherland_loops} in terms of interacting dimers in the large $N$ limit. One recovers to first non-trivial order the interacting generalization of the quantum dimer model studied in  \cite{Alet_dimers1,Alet_dimers2}. Most strikingly, the critical exponent $\alpha$ extrapolated to $N=2$ turned out to be in good agreement with the previous numerical studies \cite{RVB1,RVB2}.
 
@@ -155,14 +156,17 @@ Note that algebraic decay occurs because the square lattice being bipartite; for
 It is also possible to generalize this construction, with ``enforced'' orthogonality (\ref{eq:ortho}), to other models. For example starting from a classical six-vertex model, we get a quantum six-vertex wave function\cite{QuantumLifshitz}. This wave function also has algebraically decaying correlations, with a continuously varying exponent $\alpha$ as a function of the vertex weights on its critical line. The classical model, although in general more complicated than the dimer model, is nevertheless integrable. It is also constructed with a similar set of constraints, the fully-packed and hardcore constraints being replaced by the ice rule. As we shall see, all the analytical results we will obtain for the entropy of quantum dimers can be straightforwardly generalized to the quantum six-vertex case.
 
 The inner product is an important difference between the dimer and $SU(2)$ RVB states.
-In the RVB state (\ref{RVBdef1},\ref{RVBdef2}), the inner product is the usual one for spins: each different spin state in the $S^z$ diagonal basis is orthogonal to the others. As is easily shown \cite{Sutherland_loops}, this means that different valence-bond states in the spin model are {\em not} orthogonal. There is a convenient loop-gas description to represent their inner product. One places the two dimer graphs on top of each other, obtaining the ``transition'' graph. Because of the requirement that there be exactly one dimer per site, this means that the transition graph is comprised of closed loops. The shortest loops are of length two, when both graphs have a dimer on the same link. Using the spin inner product then gives 
+In the RVB state (\ref{RVBdef1},\ref{RVBdef2}), the inner product is the usual one for spins: each different spin state in the $S^z$ diagonal basis is orthogonal to the others. As is easily shown \cite{Sutherland_loops}, this means that different valence-bond states in the spin model are {\em not} orthogonal. There is a convenient loop-gas description to represent their inner product. One places the two dimer graphs on top of each other, obtaining the ``transition'' graph. Because of the requirement that there be exactly one dimer per site, this means that the transition graph is comprised of closed loops. The shortest loops are of length two, when both graphs have a dimer on the same link. Using the spin inner product then gives \cite{AWSVBSQMC},
 \begin{equation}\label{eq:nonortho}
 \langle V_{\cal C} | V_{{\cal C}^\prime} \rangle = 2^{n_l - {\cal N}/2}\ ,
 \label{RVBinner}
 \end{equation}
 where $n_l$ being the number of loops in the transition graph.
-Despite this overlap between dimer configurations making analytic computations much more difficult, its presence is essential to the algorithm used for computing the second Renyi entropy using quantum Monte Carlo simulations.... >>>Roger, a comment???
- 
+Despite this overlap between dimer configurations making analytic computations much more difficult, its presence is convenient in the algorithm used for computing the second Renyi entropy using quantum Monte Carlo simulations \cite{swap},
+\textcolor{red}{
+since ``swapped'' basis configurations (described in Section~\ref{sec:numerics}) will always contribute a non-zero expectation value, even with a naive QMC updating algorithm.
+}
+
 Despite this important difference between the dimer and $SU(2)$ RVB states, their obvious similarity makes it plausible that the dimer-dimer correlator will behave similarly in the two cases. Further evidence for this fact is that rewritten in loop language, the spin-spin correlator corresponds to the probability that the two spins are on the same loop. This decays exponentially because classical loop models with weight per loop greater than 2 have exponentially decaying correlators \cite{Nienhuis} (the partition function is dominated by configurations with many short loops), and the inner product (\ref{RVBinner}) amounts to a weight per loop of 4 \cite{LDA}. Thus correlators in the $SU(2)$ RVB state are dominated by short-loop configurations, i.e.\ the dimers. Whereas the presence of longer loops can renormalize the exponent $\alpha$, it seems very likely that dimer-dimer correlators in the RVB state will decay algebraically like they do for the dimer RVB state.
  
 This expectation was convincingly confirmed numerically \cite{RVB1,RVB2}. The dimer-dimer correlator for dimers an even distance apart was found to be of the form (\ref{dimerdimer}) with
@@ -484,10 +488,14 @@ We now start to explore the question of universality, with the motivation of und
 
 \subsection{Numerical methods}
 \label{sec:numerics}
-In our Monte Carlo simulation, we employ a loop sampling algorithm that moves through the ensemble of states by creating a defect at some lattice site and propagating it through the system until the defect reaches its initial point and closes the loop~\cite{sandvik2010loop}. Our algorithm is very similar to the $SU(2)$ updates used in ~\cite{RVB2}; however, we need to generalize to account for $SU(N)$ RVB wavefunctions. At each Monte Carlo step, we form the transition graphs to compute Eq.(~\ref{eq:overlap}). Using this transition graph, we sample the value of $m \equiv S^z$ at each site. This gives us a larger set of constraints in that the loop can only update within a compatible $m$ as defined in Eq.(~\ref{eq:rvb}). Then, the case of $N=2$ is equivalent to having two independent subset that can only be updated within each subset. For a larger $N$, the number of updates that one can make becomes much smaller, and the error bars become much harder to converge, which can be cured by using a smarter update 
-that satisfies detailed balance to allow the simulation to make more updates.
 
-In our valence bond basis Monte Carlo simulation, we compute various correlation functions, namely the spin-spin and the dimer-dimer correlations. The matrix elements, first derived in~\cite{beach2006some} and generalized in~\cite{beach2009n} for $SU(N)$ spins, are shown below, using the notation $(ij)_L$ for two sites $i,j$ in the same loop in the transition graph and $(i)_L(j)_L$ for sites not in the same loop~\cite{RVB2}.
+To study $SU(N)$-RVB wavefunctions, we use an unbiased Monte Carlo technique that calculates expectation values in the equal-amplitude superposition of states using an importance sampling scheme in the valence-bond (VB) basis.  Like employed previously for the $SU(2)$ case \cite{Ju2012}, one must use a non-local
+loop updating scheme in order to efficiently (and ergodically) sample all possible RVB states \cite{sandvik2010loop}.
+This loop update moves through the ensemble of states by creating a defect at some lattice site and propagating it through the system until the defect reaches its initial point, thus closing the loop.  Unlike the $SU(2)$ updates used in Ref.~\cite{RVB2}, one must generalize such loop updates to account for $SU(N)$ RVB wavefunctions.  To do so, one first forms the transition graphs to compute Eq.~(\ref{eq:overlap}) at every Monte Carlo step. Using this transition graph, one samples the value of $m \equiv S^z$ at each site. This gives a larger set of constraints in that the loop can only update within a compatible $m$ as defined in Eq.~(\ref{eq:rvb}). Then, the case of $N=2$ is equivalent to having two independent subsets; configurations can only be updated by loops that move within each subset. For a larger $N$, the number of updates that one can successfully make becomes much smaller, making the error bars much slower to converge.
+%This can be cured by using a smarter update that satisfies detailed balance to allow the simulation to make more updates.
+As described below, for $N \ge 4$ some estimators show signs of ergodicity loss; this might be cured by a more sophisticated sampling scheme in the future.
+
+In our VB basis Monte Carlo simulations, we begin by computing the spin-spin and the dimer-dimer correlations. The expectation values were first derived in~\cite{beach2006some} and generalized in~\cite{beach2009n} for $SU(N)$ spins.  Using the notation $(ij)_L$ for two sites $i,j$ in the same loop in the transition graph and $(i)_L(j)_L$ for sites not in the same loop~\cite{RVB2},
 \[ 
 \displaystyle
 \frac{\langle V_\mathcal{C} | \mathbf{S}_i \cdot \mathbf{S}_j | V_{\mathcal{C}'} \rangle}{\langle V_\mathcal{C} | V_{\mathcal{C}'} \rangle} = \left\{ \begin{array}{ccc}
@@ -495,7 +503,7 @@ In our valence bond basis Monte Carlo simulation, we compute various correlation
 \epsilon_{ij} \, S (S+1) & (ij)_L   \end{array}. \right.
 \] 
 Here, $\epsilon_{ij} = 1$ if $(i,j)$ are on the same sublattice and $\epsilon_{ij} = -1$ if they are on different sublattices.
-We measure \textit{parallel} nearest neighbor dimer-dimer correlations, i.e.
+We also measure \textit{parallel} nearest neighbor dimer-dimer correlations, i.e.
 \[ 
 \displaystyle
 \frac{\langle V_\mathcal{C} | \left( \mathbf{S}_i \cdot \mathbf{S}_j \right) \left( \mathbf{S}_k \cdot \mathbf{S}_l  \right) | V_{\mathcal{C}'} \rangle}{\langle V_\mathcal{C} | V_{\mathcal{C}'} \rangle} = \left\{ \begin{array}{ccc}
@@ -512,7 +520,7 @@ The connected dimer-dimer correlation function has been recently shown to decay 
 \begin{equation}\label{eq:decay}
  C_{dd}(\vec{r}_1,\vec{r}_2)\sim \frac{1}{\left|\vec{r}_1-\vec{r}_2\right|^\alpha}
 \end{equation}
-at distances large compared to the lattice spacing, but small compared to the torus size $L=L_x=L_y$. Using several different methods, the exponent was found to be approximately $\alpha \simeq 1.2$, and independent of the direction.
+at distances large compared to the lattice spacing, but small compared to the torus size $L=L_x=L_y$. Using several different methods, the exponent was found to be approximately $\alpha \simeq 1.2$, independent of the direction.
 We extend some of these results, on the $SU(N)$ case, mainly focusing on the correlations for two parallel dimers in the direction ($\vec{r}_1-\vec{r}_2=\ell_x \vec{u}_x$). 
 Our quantum Monte Carlo results are shown in Fig.~\ref{fig:corr_su2_dimers} for a $L\times L$ torus, with $L=64$. The data clearly indicate that the algebraic decay remains for $N=2,3,4,5$, with $\alpha$ increasing with $N$. 
 Since $SU(N)$ dimer correlations reduce to pure dimer correlations in the limit $N\to\infty$, we know that
