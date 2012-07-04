@@ -486,7 +486,7 @@ We now start to explore the question of universality, with the motivation of und
 
 %$SU(N)$-RVB wave function, before going to its entanglement properties (Sec.~\ref{sec:rvb_entanglement}). This section, which may be skipped at first reading, is organized as follows. In Sec.~\ref{sec:numerics}, we explain how such systems , in particular their correlation functions, maybe be simulated using Quantum Monte Carlo techniques. We then study spin-spin correlations, as well as the more interesting dimer-dimer correlations. We find that dimer-dimer correlations decay algebraically, and that the exponent interpolates between $SU(2)$\cite{RVB1,RVB2} and the pure dimer exponent ($N\to \infty$), in agreement with a recent large $N$ calculation\cite{Damle}.
 
-\subsection{Numerical methods}
+\subsection{Monte Carlo methods}
 \label{sec:numerics}
 
 To study $SU(N)$-RVB wavefunctions, we use an unbiased Monte Carlo technique that calculates expectation values in the equal-amplitude superposition of states using an importance sampling scheme in the valence-bond (VB) basis.  Like employed previously for the $SU(2)$ case \cite{Ju2012}, one has the choice of ``local'' or ``non-local''
@@ -497,20 +497,20 @@ In contrast, a non-local loop update moves through the ensemble of states by cre
 As described below, for $N \ge 4$ some estimators show signs of ergodicity loss; this might be cured by a more sophisticated sampling scheme in the future.
 
 In our VB basis Monte Carlo simulations, we begin by computing the spin-spin and the dimer-dimer correlations. The expectation values were first derived in~\cite{beach2006some} and generalized in~\cite{beach2009n} for $SU(N)$ spins.  Using the notation $(ij)_L$ for two sites $i,j$ in the same loop in the transition graph and $(i)_L(j)_L$ for sites not in the same loop~\cite{RVB2},
-\[ 
-\displaystyle
-\frac{\langle V_\mathcal{C} | \mathbf{S}_i \cdot \mathbf{S}_j | V_{\mathcal{C}'} \rangle}{\langle V_\mathcal{C} | V_{\mathcal{C}'} \rangle} = \left\{ \begin{array}{ccc}
+\begin{equation}
+C_{\rm spin}({\bf r}_i, {\bf r}_j) = \frac{\langle V_\mathcal{C} | \mathbf{S}_i \cdot \mathbf{S}_j | V_{\mathcal{C}'} \rangle}{\langle V_\mathcal{C} | V_{\mathcal{C}'} \rangle} = \left\{ \begin{array}{ccc}
 0 & (i)_L (j)_L\\
 \epsilon_{ij} \, S (S+1) & (ij)_L   \end{array}. \right.
-\] 
+\end{equation}
+\textcolor{red}{HYEJIN, check this definition and cross-reference with Figure 7.}
 Here, $\epsilon_{ij} = 1$ if $(i,j)$ are on the same sublattice and $\epsilon_{ij} = -1$ if they are on different sublattices.
 We also measure \textit{parallel} nearest neighbor dimer-dimer correlations, i.e.
-\[ 
-\displaystyle
-\frac{\langle V_\mathcal{C} | \left( \mathbf{S}_i \cdot \mathbf{S}_j \right) \left( \mathbf{S}_k \cdot \mathbf{S}_l  \right) | V_{\mathcal{C}'} \rangle}{\langle V_\mathcal{C} | V_{\mathcal{C}'} \rangle} = \left\{ \begin{array}{ccc}
+\begin{equation}
+C_{dd}({\bf r}_i, {\bf r}_j)  = \frac{\langle V_\mathcal{C} | \left( \mathbf{S}_i \cdot \mathbf{S}_j \right) \left( \mathbf{S}_k \cdot \mathbf{S}_l  \right) | V_{\mathcal{C}'} \rangle}{\langle V_\mathcal{C} | V_{\mathcal{C}'} \rangle} = \left\{ \begin{array}{ccc}
 \frac{1}{3} S^2 (S+1)^2 & (ik)_L (jl)_L, \,(il)_L (jk)_L\\
 S^2 (S+1)^2 & (ij)_L (kl)_L \end{array}, \right.
-\] 
+\end{equation}
+\textcolor{red}{HYEJIN, check and cross reference with Figure 6}.
 and $0$ otherwise. Because we are measuring parallel dimer-dimer correlations, we take $j = i + \hat{e}_\alpha, \, l = k + \hat{e}_\alpha$ and $k = i + \hat{e}_\beta$, where $\alpha,\beta = x, y, \, \alpha \neq \beta$.
 
 \textcolor{red}{Shouldn't we discuss some technicalities regarding the SWAP operator somewhere?}
