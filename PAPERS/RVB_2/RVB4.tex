@@ -64,7 +64,7 @@ However, many experimental systems currently identified as good candidates for s
 
 We study a particular family of states, resonating-valence-bond (RVB) states on the square lattice, that are gapless and exhibit spin-liquid-type behavior \cite{RokhsarKivelson,RVB1,RVB2}. Our main (but not only) tool is to analyze a subleading term in the Renyi entropy particularly useful for characterizing gapless systems \cite{Ju2012}. The Renyi entropies $S_n$ are defined for $n\neq 1$
 \begin{equation}
-S_n=\frac{1}{1-n} \ln {\rm Tr}\, \rho_A^n\ ,
+S_n=\frac{1}{1-n} \ln {\rm Tr}\, \rho_A^n\ , \label{RenyiEq}
 \end{equation}
 where $\rho_A$ is the reduced density matrix for a region $A$. The term we analyze describes 
 the entanglement between two regions formed by cutting a torus into two cylinders. This geometry is useful for studying gapless systems because the length of the boundaries separating the cylinders is independent of the area of the cylinders. Because of the long-range correlations, the entanglement entropy of gapless systems will be sensitive to varying the size of the cylinders. This dependence was studied for three completely different gapless systems in \cite{Ju2012}, and argued to have universal behavior. One of the results of this paper is to provide additional evidence in support of this assertion.
@@ -513,8 +513,9 @@ S^2 (S+1)^2 & (ij)_L (kl)_L \end{array}, \right.
 \textcolor{red}{HYEJIN, check and cross reference with Figure 6}.
 and $0$ otherwise. Because we are measuring parallel dimer-dimer correlations, we take $j = i + \hat{e}_\alpha, \, l = k + \hat{e}_\alpha$ and $k = i + \hat{e}_\beta$, where $\alpha,\beta = x, y, \, \alpha \neq \beta$.
 
-\textcolor{red}{Shouldn't we discuss some technicalities regarding the SWAP operator somewhere?}
-
+\textcolor{red}{
+In the next section we present data on these correlation functions for $SU(2)$ and $S(N)$, and attempt to calculate  universal exponents associated with their decay, which for large $N$ should connect to the dimer RVB state.
+}
 
 \subsection{Equal-time correlators}
 \label{sec:dimerdimer}
@@ -576,10 +577,21 @@ We find the same behavior in the $SU(N)$ case, with our results displayed in Fig
 \section{Entanglement in the $SU(N)$ RVB wave function}
 \label{sec:rvb_entanglement}
 
-We finally turn to the entanglement in the $SU(N)$ RVB case, extending previous numerical results \cite{Ju2012} for $SU(2)$, and providing evidence that Eq.~(\ref{eq:shape_general}) still holds.
+Finally, we turn to the entanglement in the $SU(N)$ RVB case, extending previous numerical results \cite{Ju2012} for $SU(2)$, and providing evidence that Eq.~(\ref{eq:shape_general}) still holds.
 
 %\subsection{Numerical results for $SU(2)$}
-%\label{sec:su2_numerics}
+\subsection{Monte Carlo evaluation of the Renyi entropies}
+\label{sec:su2_numerics}
+
+\textcolor{red}{HYEJIN you should check this section over}
+
+In order to calculate the Renyi entropies, the Monte Carlo sampling procedure of Section \ref{sec:numerics} must be modified to incorporate
+a {\it replica trick} procedure, first described in Ref.~\cite{swap}.  Namely, in order to calculate the $n$-th order Renyi entropy Eq.~\ref{RenyiEq}, one measures the expectation value of a $Swap_A$ (or permutation) operator acting between $n$ copies of the system.  For the $SU(N)$ wavefunctions studied here, we restrict ourselves to $n=2$.  
+
+when sampling the 2D RVB wavefunction, one must 
+
+\subsection{Comparison of numerical results and CFT}
+
 Let us first begin with the $SU(2)$ case, and present the computation of $S_2$, and also $S_2$ restricted to the $W=(0,0)$ winding sector. The quantum Monte Carlo data is shown in Fig.~\ref{fig:SU2_shape}.\begin{figure}[ht]
  \begin{center}
   \includegraphics[width=10cm]{./figures/SU2_shape.pdf}
