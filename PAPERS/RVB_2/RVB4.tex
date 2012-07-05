@@ -461,13 +461,13 @@ We also compute $s_\infty$ in the $W=(0,0)$ winding sector directly for the dime
  s_\infty^{\rm (odd)}&=&-\ln \left(\frac{\eta(2\tau)^2\theta_4(2y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)
 \end{eqnarray}
 Even though the total winding number is zero, the result still depends on the compactification radius of the height field  because of winding fluctuations at the boundaries between regions $A$ and $B$. 
-A comparison between the numerical and analytical results is performed in Fig.~\ref{fig:Sinfty}, for the aspect ratio $L_y/L_x=1$ and the two system sizes $L_x=16$ and $L_x=704$. We observe strong finite-size effects for small system sizes, but the data converges in the end to the CFT result.
+A comparison between the numerical and analytical results is performed in Fig.~\ref{fig:Sinfty}, for the aspect ratio $L_y/L_x=1$ and the two system sizes $L_x=16$ and $L_x=96$. We observe strong finite-size effects for small system sizes, but the data converges in the end to the CFT result.
 \begin{figure}[ht]
  \begin{center}
   \includegraphics[width=8cm]{./figures/sinfty_16.pdf}
-  \includegraphics[width=8cm]{./figures/sinfty_704.pdf}
+  \includegraphics[width=8cm]{./figures/sinfty_96.pdf}
  \end{center}
-\caption{Comparison numerics/analytics in the exactly solvable case $S_\infty$. Black points are the numerical data for all winding sectors, and black crosses represents the numerical data in the $W=(0,0)$ sector. \emph{Left:} $L_x=16$, the data is compared with Eqs.~(\ref{eq:cft_prediction}), (\ref{eq:cft_prediction_odd}),  (\ref{eq:cft_w0}) and (\ref{eq:cft_w0_odd}) up to a single constant. The agreement is fair, but still far from converged. \emph{Right:} Same procedure for $L=704$. The agreement is close to perfect, as expected. }
+\caption{Comparison numerics/analytics in the exactly solvable case $S_\infty$. Black points are the numerical data for all winding sectors, and black crosses represents the numerical data in the $W=(0,0)$ sector. \emph{Left:} $L_x=16$, the data is compared with Eqs.~(\ref{eq:cft_prediction}), (\ref{eq:cft_prediction_odd}),  (\ref{eq:cft_w0}) and (\ref{eq:cft_w0_odd}) up to a single constant. The agreement is fair, but still far from converged. \emph{Right:} Same procedure for $L=96$. The agreement is much better, as expected. }
 \label{fig:Sinfty}
 \end{figure}
 
@@ -619,10 +619,6 @@ The prediction Eq.~(\ref{eq:cft_w0}) for the $W=(0,0)$ winding sector can simply
 \end{eqnarray}
 We have made the assumption that the boundary conditions are the same as those for dimers (i.e.\ $a=0,1/2$ for even and odd respectively for all $\alpha$).
 
-
-
-
-
 The curves (\ref{eq:cft_prediction_gen}) and (\ref{eq:cft_prediction_gen_odd}) 
  with $\alpha=1.2$ are plotted in fig.~\ref{fig:SU2_shape} along with the $SU(2)$ Monte Carlo data.  The trend in the data is clearly toward these curves, but as with the dimer case, the finite-size effects are very strong. 
 An additional interesting feature becomes apparent by plotting the CFT curves
@@ -636,7 +632,8 @@ An additional interesting feature becomes apparent by plotting the CFT curves
 \end{figure}
 As is apparent from fig.~\ref{fig:SUN_CFT}, the curve for the even branch is essentially independent of the $\alpha$ over a large range. The shape of the odd curve only weakly depends on $\alpha$, but the curve does appreciably shift in this range.
 
-Unfortunately, we do not know how to derive these results as we did for the dimers. The mapping of Ref.~\cite{Shannonee} to a classical R\'enyi-Shannon entropy is not valid for the $SU(N)$ RVB states: because of the non-orthogonality of different valence-bond configurations, the Schmidt decomposition of the RVB state is much more complicated.  Moreover, a naive extension of the result of \cite{Stephan2011} would then yield a critical value $ n_c=\alpha/2\simeq 0.6$  for $SU(2)$. This would imply an even-odd effect even for the von Neumann entropy, in violation with strong subadditivity\cite{Strongsubadditivity}. The formula $n_c=d_{\rm min }^2/(2\kappa)=d_{\rm min}^2\alpha/2$ therefore cannot hold in general for model which cannot be mapped onto a classical R\'enyi-Shannon entropy\footnote{The fact that it does apply to quantum six vertex states \emph{does not} contradict strong subadditivity, because in this case $d_{\rm min}=2$ and since $\alpha \geq 1$, we have $n_c\geq 1$. Notice that naively applying $n_c=d_{\rm min}^2 \alpha/2$ to an RK wave function built out of interacting dimers\cite{Alet_dimers1,Alet_dimers2} would also, just as $SU(N)$ RVB, violate strongsubadditivity.}.
+Unfortunately, we do not know how to derive these results as we did for the dimers. The mapping of Ref.~\cite{Shannonee} to a classical R\'enyi-Shannon entropy is not valid for the $SU(N)$ RVB states: because of the non-orthogonality of different valence-bond configurations, the Schmidt decomposition of the RVB state is much more complicated.  Moreover, a naive extension of the result of \cite{Stephan2011} would then yield a critical value $ n_c=\alpha/2\simeq 0.6$  for $SU(2)$. This would imply an even-odd effect even for the von Neumann entropy, in violation with strong subadditivity\cite{Strongsubadditivity}. The formula $n_c=d_{\rm min }^2/(2\kappa)=d_{\rm min}^2\alpha/2$ therefore cannot hold in general for model which cannot be mapped onto a classical R\'enyi-Shannon entropy\footnote{The fact that it does apply to quantum six vertex states \emph{does not} contradict strong subadditivity, because in this case $d_{\rm min}=2$ and since $\alpha \geq 1$, we have $n_c\geq 1$. Notice that naively applying $n_
+c=d_{\rm min}^2 \alpha/2$ to an RK wave function built out of interacting dimers\cite{Alet_dimers1,Alet_dimers2} would also, just as $SU(N)$ RVB, violate strongsubadditivity.}.
 
 Thus while we cannot make a definitive conclusion, our results provide qualitative evidence for Eq.~(\ref{eq:shape_general}) applying to the $SU(2)$ RVB state. They also support the convention of \cite{Ju2012} that the subleading piece of the two-cylinder Renyi entropy is universal.
 
