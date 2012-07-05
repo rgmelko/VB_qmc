@@ -146,10 +146,10 @@ One very convenient feature of the dimer RVB state is that any correlator diagon
 which behaves asymptotically as $\sim (1.79162\ldots)^{\cal N}$ \cite{Kasteleyn}.
  A classic result of classical statistical mechanics is that any correlator in the classical dimer model on any planar lattice can be expressed as a Pfaffian \cite{Kasteleyn,Fisher}). This is equivalent to saying that model can be rewritten in terms of free fermions \cite{Samuel}. For the dimer-dimer correlation function, the asymptotic behavior can be easily be obtained using this expression. For the square lattice long ago this was shown to be algebraically decaying \cite{FisherStephenson}:
 \begin{equation}
-  C_{dd}(\vec{r}_1,\vec{r}_2) \sim \left|\vec{r}_1-\vec{r}_2\right |^{-\alpha} \ .
+  C_{dd}(\mathbf{r}_1,\mathbf{r}_2) \sim \left|\mathbf{r}_1-\mathbf{r}_2\right |^{-\alpha} \ .
  \label{dimerdimer}
  \end{equation}
-When $\vec{r}_1$ and $\vec{r}_2$ are an odd distance apart (i.e. any path along the links of the lattice has an odd number of steps), the exponent $\alpha=2$\,\cite{FisherStephenson}. In fermionic language, the dimer creation operator is a fermion bilinear, and so is of dimension 1. 
+When $\mathbf{r}_1$ and $\mathbf{r}_2$ are an odd distance apart (i.e. any path along the links of the lattice has an odd number of steps), the exponent $\alpha=2$\,\cite{FisherStephenson}. In fermionic language, the dimer creation operator is a fermion bilinear, and so is of dimension 1. 
 %>>> For an odd distance, is $\alpha=4$ ???
 Note that algebraic decay occurs because the square lattice being bipartite; for non-bipartite lattices, they are exponentially decaying, a fact crucial in showing that the triangular-lattice quantum dimer model is in a gapped RVB phase, i.e.\ has topological order \cite{Moessner}.
 
@@ -474,7 +474,7 @@ Interestingly, the even-odd effect is enhanced in the $W=(0,0)$ winding sector, 
 \begin{equation}
  s_{\infty}^{\rm (odd)}(y=1/2)-s_{\infty,0}^{\rm (odd)}(y=1/2)=2q^2+\mathcal{O}(q^4) \quad,\quad q=e^{-\pi}
 \end{equation}
-Notice also that this coincidence seems to be a peculiarity of the free fermion point ($\alpha=2$)\footnote{with a general exponent $\alpha\leq 2$, we would have the much more complicated\\ $s_{\infty}^{\rm (odd)}(y=1/2)-s_{\infty,0}^{\rm (odd)}(y=1/2)=2(q^{1/\alpha}-q^{\alpha/4})-2(q^{2/\alpha}-q^{\alpha/2})+(8/3)(q^{3/\alpha}-q^{3\alpha/4})+\mathcal{O}(q^{\alpha})$. All these terms cancel each other for $\alpha=2$.}. 
+Notice also that this coincidence seems to be a peculiarity of the free fermion point ($\alpha=2$)\footnote{with a general exponent $\alpha\leq 2$, we would have the  more complicated\\ $s_{\infty}^{\rm (odd)}(y=1/2)-s_{\infty,0}^{\rm (odd)}(y=1/2)=2(q^{1/\alpha}-q^{\alpha/4})-2(q^{2/\alpha}-q^{\alpha/2})+(8/3)(q^{3/\alpha}-q^{3\alpha/4})+\mathcal{O}(q^{\alpha})$. All these terms cancel each other for $\alpha=2$.}. 
 
 
 \section{Correlations in the $SU(N)$ RVB wave function}
@@ -520,10 +520,10 @@ In the next section we present data on these correlation functions for $SU(2)$ a
 
 The connected dimer-dimer correlation function has been recently shown to decay algebraically in the $SU(2)$ case in Refs.~\cite{RVB1} and \cite{RVB2}:
 \begin{equation}\label{eq:decay}
- C_{dd}(\vec{r}_1,\vec{r}_2)\sim \frac{1}{\left|\vec{r}_1-\vec{r}_2\right|^\alpha}
+ C_{dd}(\mathbf{r}_1,\mathbf{r}_2)\sim \frac{1}{\left|\mathbf{r}_1-\mathbf{r}_2\right|^\alpha}
 \end{equation}
 at distances large compared to the lattice spacing, but small compared to the torus size $L=L_x=L_y$. Using several different methods, the exponent was found to be approximately $\alpha \simeq 1.2$, independent of the direction.
-We extend some of these results, on the $SU(N)$ case, mainly focusing on the correlations for two parallel dimers in the direction ($\vec{r}_1-\vec{r}_2=\ell_x \vec{u}_x$). 
+We extend some of these results, on the $SU(N)$ case, mainly focusing on the correlations for two parallel dimers in the direction ($\mathbf{r}_1-\mathbf{r}_2=\ell_x \mathbf{e}_x$). 
 Our quantum Monte Carlo results are shown in Fig.~\ref{fig:corr_su2_dimers} for a $L\times L$ torus, with $L=64$. The data clearly indicate that the algebraic decay remains for $N=2,3,4,5$, with $\alpha$ increasing with $N$. 
 Since $SU(N)$ dimer correlations reduce to pure dimer correlations in the limit $N\to\infty$, we know that
 $
@@ -559,7 +559,7 @@ Notice that while this function reduces to $f(\ell_x/L_x,\tau)=\sin(\pi \ell_x/L
  \begin{center}
   \includegraphics[scale=0.8]{./figures/spin_corr.pdf}
  \end{center}
-\caption{Spin-spin correlation function on a $64\times 64$ torus. We look at spins separated by a distance $\ell_x$ along the $x-$ direction:  $\vec{r}_1-\vec{r}_2=\ell_x \vec{u}_x$. }
+\caption{Spin-spin correlation function on a $64\times 64$ torus. We look at spins separated by a distance $\ell_x$ along the $x-$ direction:  $\mathbf{r}_1-\mathbf{r}_2=\ell_x \mathbf{e}_x$. }
 \label{fig:corrspin_su2}
 \end{figure}
 We also studied spin correlations, which as discussed in section \ref{sec:RVB} are known to decay exponentially in the $SU(2)$ case: 
@@ -593,12 +593,12 @@ Let us first begin with the $SU(2)$ case, and present the computation of $S_2$, 
  \begin{center}
   \includegraphics[width=10cm]{./figures/SU2_shape.pdf}
  \end{center}
-\caption{Numerical extraction of the universal shape of $S_2$ as a function of $y=\ell_y/L_y$ for the $SU(2)$ RVB wave function and $L=L_x=L_y=12,18,24$. Red and blue curves are the CFT prediction of Eqs.~(\ref{eq:cft_prediction_gen}) and (\ref{eq:cft_prediction_gen_odd}). }
+\caption{Numerical extraction of the universal shape of $S_2$ as a function of $y=\ell_y/L_y$ for the $SU(2)$ RVB wave function and $L=L_x=L_y=12,18,24$. Red and blue curves are the CFT prediction of Eqs.~(\ref{eq:cft_prediction_gen}) and (\ref{eq:cft_prediction_gen_odd}). \textcolor{blue}{Another plot right next to this one for the $SU(2)$ $W=(0,0)$ sector.}}
 \label{fig:SU2_shape}
 \end{figure}
-We observe a striking similarity with the dimer data. In particular, the even-odd effect is bigger in the $W=(0,0)$ than in the ``all'' sector. >>> Should we provide a plot, maybe next to the other one???
+We observe a striking similarity with the dimer data. In particular, a strong even-odd effect which becomes even bigger in the $W=(0,0)$ sector.
 This suggests $S_2$ for the $SU(2)$ RVB state lies in a locked phase, just as its dimer counterpart does. 
-This is also supported by exact diagonalizations on small systems, which show that the biggest eigenvalue of the reduced density matrix is non-degenerate:  $\Delta_{SU(2)}\equiv -\ln (p_1/p_{\rm max}) \approx 2.67$ for on a $4\times 4$ torus. (The exact value for dimers is  $\Delta_{\rm dimers}=2\ln \pi\simeq 2.29$ \cite{Stephan2012}.) This suggests a large entanglement gap, along with $d_{\rm min}=1$.
+This scenario is also supported by exact diagonalizations on small systems, which show that the biggest eigenvalue of the reduced density matrix is non-degenerate:  $\Delta_{SU(2)}\equiv -\ln (p_1/p_{\rm max}) \approx 2.67$ for a $4\times 4$ torus cut in two halves. (The exact value for dimers is $\Delta_{\rm dimers}=2\ln \pi\simeq 2.29$ in the scaling limit\cite{Stephan2012}) This suggests a large entanglement gap, along with $d_{\rm min}=1$.
 
 Throughout this paper we have emphasized the similarities between the $SU(N)$ and dimer RVB states. These make it plausible that the two-cylinder Renyi entropy entanglement data for the $SU(2)$ RVB state in the scaling limits can be obtained from the free-boson using (\ref{eq:shape_general}). If this is true, this is a much stronger statement than the results for the critical exponent $\alpha$ as a function of $N$ in the previous section. The reason is that even though correlators in the classical dimer model can be obtained by taking the $N\to\infty$ limit of the loop model defined by the $SU(N)$ RVB inner product, the Hilbert space of the two is completely different; the latter being much larger. Thus a dimer crossing the boundary would carry much more entropy. Moreover, the reduced density matrix for $SU(N)$ has blocks with non-zero total spin, while these are by construction forbidden in the quantum dimer model. Thus it is very unlikely that non-universal quantities will be the same in the two cases. 
 
@@ -606,13 +606,13 @@ Throughout this paper we have emphasized the similarities between the $SU(N)$ an
 However, all our results are consistent with the subleading part of the two-cylinder Renyi entropy being universal. Thus it is possible that that in the scaling limit, this piece still could be given by the conformal field theory result, with the identification of $\kappa$ coming from the correlation length results.
 The conformal results for general $\alpha=1/\kappa$ without restrictions on the winding numbers are
 \begin{eqnarray}\label{eq:cft_prediction_gen}
- s_n^{\rm (even)}(y,\tau)&=&\frac{n}{1-n}\ln \left(\frac{\alpha}{2}\times\frac{\eta(\tau)^2}{\theta_3(\alpha\tau)\theta_3(\tau/\alpha)}\times\frac{\theta_3(\alpha y \tau)\theta_3(\alpha(1-y)\tau)}{\eta(y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_prediction_gen_odd}
+ s_n^{\rm (even)}(y,\tau)&=&\frac{n}{1-n}\ln \left(\frac{\alpha}{2}\times\frac{\eta(\tau)^2}{\theta_3(\alpha\tau)\theta_3(\tau/\alpha)}\times\frac{\theta_3(\alpha y \tau)\theta_3(\alpha(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_prediction_gen_odd}
  s_n^{\rm (odd)}(y,\tau)&=&\frac{n}{1-n}\ln \left(\frac{\alpha}{2}\times\frac{\eta(\tau)^2}{\theta_3(\alpha\tau)\theta_3(\tau/\alpha)}\times\frac{\theta_4(2y \tau)\theta_4(2(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)
 \end{eqnarray}
 The prediction Eq.~(\ref{eq:cft_w0}) for the $W=(0,0)$ winding sector can simply be generalized to:
 \begin{eqnarray}\label{eq:cft_w0_gen}
- s_\infty^{\rm (even)}&=&-\ln \left(\frac{\alpha}{2}\frac{\eta(\tau)^2\theta_3(\alpha y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_w0_gen2}
- s_\infty^{\rm (odd )}&=&-\ln \left(\frac{\alpha}{2}\frac{\eta(\tau)^2\theta_4(\alpha y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)
+ s_{\infty,0}^{\rm (even)}&=&-\ln \left(\frac{\alpha}{2}\frac{\eta(\tau)^2\theta_3(\alpha y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_w0_gen2}
+ s_{\infty,0}^{\rm (odd )}&=&-\ln \left(\frac{\alpha}{2}\frac{\eta(\tau)^2\theta_4(\alpha y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)
 \end{eqnarray}
 We have made the assumption that the boundary conditions are the same as those for dimers (i.e.\ $a=0,1/2$ for even and odd respectively for all $\alpha$).
 
@@ -635,9 +635,6 @@ c=d_{\rm min}^2 \alpha/2$ to an RK wave function built out of interacting dimers
 Thus while we cannot make a definitive conclusion, our results provide qualitative evidence for Eq.~(\ref{eq:shape_general}) applying to the $SU(2)$ RVB state. They also support the convention of \cite{Ju2012} that the subleading piece of the two-cylinder Renyi entropy is universal.
 
 
-% Even if such a mapping were still to hold in a renormalization group sense, exact diagonalization results on small system sizes clearly show that the biggest eigenvalue of the reduced density matrix is non degenerate, and therefore $d_{\rm min}=1$. This observation is also supported by the mapping to classical interacting dimers\cite{Damle}.
-
-
 The same picture still seems to hold for the $SU(N)$ RVB state. We plot $S_2$ data for $L=16$ and $SU(2,3,4)$ is shown in Fig.~\ref{fig:SUN_shape}. As can be seen, the error bars get bigger and bigger for larger $N$, but we still observe a clear even-odd effect. This strongly suggest that we are still in a locked phase, and that Eq.~(\ref{eq:cft_prediction_gen}) applies in the thermodynamic limit. 
 \begin{figure}[ht]
  \begin{center}
@@ -648,21 +645,21 @@ The same picture still seems to hold for the $SU(N)$ RVB state. We plot $S_2$ da
 \end{figure}
 
 
->>> Maybe we should kill this bit, it isn't very convincing !!!
-Extracting an accurate exponent $\alpha_N$ from the $S_2$ data is difficult, due to the combined finite-size effects and statistical errors. The most accurate way we found is to look at the even-odd difference for $y=1/2$. On the lattice it is defined as $\delta_n(L_x,L_y)=\left|S_n(L_y/2+1)-S_n(L_y/2)\right|$ for even $L_y$. This difference should go to a positive constant in the thermodynamic limit. From Eq.~(\ref{eq:cft_prediction_gen}) we predict
+Extracting an accurate exponent $\alpha_N$ from the $S_2$ data is difficult, due to the combined finite-size effects and statistical errors. A possible try would be to  look at the even-odd difference for $y=1/2$. On the lattice it is defined as $\delta_n(L_x,L_y)=\left|S_n(L_y/2+1)-S_n(L_y/2)\right|$ for even $L_y$. This difference should go to a positive constant in the thermodynamic limit. From Eq.~(\ref{eq:cft_prediction_gen}) we predict
 \begin{equation}\label{eq:even_odd}
  \delta_n(\tau,\alpha)=\frac{2n}{1-n}\ln \left(\frac{\theta_4(\alpha\tau/2)}{\theta_3(\alpha \tau/2)}\right)
 \end{equation}
-This allows in principle to determine the critical exponent from the entanglement data. Such an analysis is performed for quantum dimers as well as the $SU(2)$ RVB in Fig.~\ref{fig:evenodd}. As can be seen, finite-size effect again turn out to be very strong, even for quantum dimers. We observe the same kind of sublinear scaling for this quantity on small system sizes\cite{Ju2012}. However, as the $S_\infty$ data for quantum dimer can be rigorously shown to converge, it is reasonable to expect that the same happens for $S_2$.
-\begin{figure}[ht]
-\begin{center}
- \includegraphics[width=8.1cm]{./figures/evenodd.pdf}
+This allows in principle to determine the critical exponent. Solving our biggest system size even-odd data to (\ref{eq:even_odd}) yields $\alpha \approx 2.27$ for dimers and $\alpha \approx 1.57$ for $SU(2)$ RVB. The respective relative errors are very big ($14\%$ and $28\%$ respectively), due to the strong finite-size effects, but should give accurate estimates in the scaling limit.
+%Such an analysis is performed for quantum dimers as well as the $SU(2)$ RVB in Fig.~\ref{fig:evenodd}. As can be seen, finite-size effect again turn out to be very strong, even for quantum dimers. We observe the same kind of sublinear scaling for this quantity on small system sizes\cite{Ju2012}. However, as the $S_\infty$ data for quantum dimer can be rigorously shown to converge, it is reasonable to expect that the same happens for $S_2$.
+%\begin{figure}[ht]
+%\begin{center}
+% \includegraphics[width=8.1cm]{./figures/evenodd.pdf}
  %\hfill
- \includegraphics[width=8.1cm]{./figures/evenodd_alpha.pdf}
- \end{center}
- \caption{Even odd difference $\delta_n(L_x,L_y)=|S_n(L_x/2)-S_n(L_x/2-1)|$. \emph{Left Panel:} Convergence of $\delta_n(L)$ to the expected value from Eq.~(\ref{eq:even_odd}). \emph{Right Panel:} Finite-size extraction of $\alpha$ by solving $\delta_n(L_x,L_y)$ to Eq.~(\ref{eq:even_odd}). For quantum dimers as well as $SU(2)$, we observe an apparent sublinear scaling on small system sizes, which can be shown to go away for quantum dimers $S_\infty$.}
- \label{fig:evenodd}
-\end{figure}
+% \includegraphics[width=8.1cm]{./figures/evenodd_alpha.pdf}
+% \end{center}
+% \caption{Even odd difference $\delta_n(L_x,L_y)=|S_n(L_x/2)-S_n(L_x/2-1)|$. \emph{Left Panel:} Convergence of $\delta_n(L)$ to the expected value from Eq.~(\ref{eq:even_odd}). \emph{Right Panel:} Finite-size extraction of $\alpha$ by solving $\delta_n(L_x,L_y)$ to Eq.~(\ref{eq:even_odd}). For quantum dimers as well as $SU(2)$, we observe an apparent sublinear scaling on small system sizes, which can be shown to go away for quantum dimers $S_\infty$.}
+% \label{fig:evenodd}
+%\end{figure}
 
 \section{Conclusion}
 
