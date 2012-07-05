@@ -66,11 +66,11 @@ integral or other mappings to an effective statistical-mechanics problem is not 
 weights as a probability distribution for importance sampling. The approach we advocate and review here is to construct particular 
 ``designer Hamiltonians'', which host interesting ground states and quantum phase transitions but still are amenable to 
 large-scale QMC studies without sign problems (i.e., they are designed and ``de-signed'' to be practically useful). 
-{\color{red} In Fig.~\ref{synergy} we illustrate the synergistic role of such studies in combination with experiments and field-theory 
-approaches to uncover universal physics in condensed-matter systems}.
+In Fig.~\ref{synergy} we illustrate the synergistic role of such studies in combination with experiments and field-theory 
+approaches to uncover universal physics in condensed-matter systems.
 
 \begin{figure*}
-\includegraphics[width=11cm, trim=120 60 50 0,clip=true,angle=-90]{synergy.eps}
+\includegraphics[width=11cm, trim=120 60 50 0,clip=true,angle=-90]{fig01.eps}
 %\centerline{\psfig{figure=synergy.pdf,height=4.5cm}}
 \caption{(Color online) Illustration of synergies between unbiased numerical (here QMC) studies of lattice Hamiltonians, field-theories for
 describing asymptotic low-energy physics, and experiments on real materials. By combining all three approaches a complete picture of universality 
@@ -79,24 +79,24 @@ in strongly-correlated and entangled quantum systems can emerge.}
 \end{figure*}
 
 A common misconception is that interesting designer Hamiltonians should not exist---if a model is sign-problem free it must be trivial or uninteresting. 
-In this article, we will review some recent counter-examples to this pessimistic view, from the area of quantum magnetism. {\color{red} In Fig.~\ref{rfig} 
+In this article, we will review some recent counter-examples to this pessimistic view, from the area of quantum magnetism. In Fig.~\ref{rfig} 
 we illustrate some of the quantum states that can be accessed with designer quantum spin Hamiltonians. Of particular interest here are states that have 
 no natural classical analouges, e.g., spin liquids, which can host topological order \cite{Wen03}, and valence-bond-solids (VBSs), where crystalline order 
 is formed not among the original degrees of freedom appearing in the Hamiltonian, but among emergent objects---localized singlets of two (or more) spins.
 
 An important aspect of research on designer hamiltonians is significant advances in QMC methods \cite{Sandvik91,Evertz93,Beard96,WormA,Sandvik99,Sandvik10a}, 
-which have made it possible} to truly approach the low-energy limit of many important models without any approximations (beyond controllable statistical errors),
+which have made it possible to truly approach the low-energy limit of many important models without any approximations (beyond controllable statistical errors),
 and to compute quantities of current interest in condensed matter physics and quantum information theory, e.g., the fidelity 
 \cite{Schwandt09}, the geometric tensor \cite{Degrandi11}, and the entanglement entropy \cite{Hastings10, Melko10}. We will 
 briefly address some of these technical developments as well. We first make some further remarks on field theory and the philosophy 
 of the synergistic use of designer Hamiltonians, and then outline the topics covered in this Review.
 
 \begin{figure}
-\includegraphics[width=8.4cm, clip]{rfig.eps}
+\includegraphics[width=8.4cm, clip]{fig02.eps}
 %\centerline{\psfig{figure=synergy.pdf,height=4.5cm}}
-\caption{(Color online) Ground states of quantum spins on the square lattice. The left panel shows antiferromagnetic order---a state which is a direct 
-generalization of classical N\'eel order, essentially adding quantum fluctuations to a classical magnetic state. The middle and right panels illustrate 
-manifestly non-classical non-magnetic states, which have a natural description in terms of singlets (the ovals). In a spin liquid (middle), the singlets 
+\caption{(Color online) Ground states of quantum spins on the square lattice. The left panel shows an antiferromagnetically ordered (N\'eel) state, which is 
+a direct generalization of a classical state (with quantum fluctuations added to a fully ordered state). The middle and right panels illustrate manifestly 
+non-classical states with no magnetic order. These states have a natural description in terms of singlets (the ovals). In a spin liquid (middle), the singlets 
 fluctuate and there are no broken symmetries, while in the valence-bond-solid there are residual interactions between the singlets, leading to crystalline 
 order.}
 \label{rfig}
@@ -320,7 +320,7 @@ valence bonds in the trial state), this kind of projector method is in practice 
 models \cite{Sandvik10b}.
 
 \begin{figure}
-\includegraphics[width=7.0cm, clip]{fig01.eps}
+\includegraphics[width=7.0cm, clip]{fig03.eps}
 %\centerline{\psfig{figure=fig01.eps,height=4.5cm}}
 \caption{A configuration in a valence-bond projector simulation of a 4-site Heisenberg chain; here with a small projection power, 
 $m=2$ \cite{Sandvik10a}. The vertical bars indicate singlet-projectors operators, while the arcs on the left (bra) and right (ket) represent 
@@ -437,7 +437,7 @@ can be viewed on a similar footing when considered in the context of SW loop or 
 above in Sec.~\ref{ss:method}. In some cases, the implementation for these two different techniques can be made to be practically identical.  
 
 \begin{figure}
-\includegraphics[width=7.0cm, clip]{fig02.eps}
+\includegraphics[width=7.0cm, clip]{fig04.eps}
 %\centerline{\psfig{figure=fig02.eps,height=9cm}}
 \caption{The {\rm SWAP}$_A$ operator for calculating the Renyi entropy $S_2$, where subsystem $A$ consists of the two top sites. The simulated system is 
 composed of two non-interacting replicas, top (compare to Fig.~\ref{loops}), and bottom, which are sampled independently. Just to the right of the mid-point 
@@ -543,7 +543,7 @@ the continuous transitions are into VBSs where such fluctuations exist. Alternat
 topological defects in the VBS \cite{levin2004:vbs,Banerjee11}.
 
 \begin{figure}
-\includegraphics[width=6cm, clip]{fig03.eps}
+\includegraphics[width=6cm, clip]{fig05.eps}
 %\centerline{\psfig{figure=fig03.eps,height=4.5cm}}
 \caption{$Q_2$ and $Q_3$ interactions on the square lattice. The bars indicate the locations of singlet projectors 
 $C_{ij}$ on site pairs $ij$. The $Q_2$ and $Q_3$ arrangements in the left and center panels lead to columnar VBS states,
@@ -563,7 +563,7 @@ Such curves should cross at the critical point. In practice, crossing points oft
 corrections \cite{Sandvik10c}. Results for the $J$-$Q_2$ model are graphed in Fig.~\ref{jqrhos} and discussed next.
 
 \begin{figure}
-\includegraphics[width=8cm, clip]{fig04.eps}
+\includegraphics[width=8cm, clip]{fig06.eps}
 %\centerline{\psfig{figure=fig04.eps,height=9cm}}
 \caption{Finite-size scaling of the spin stiffness of the $J$-$Q_2$ model in the vicinity of its quantum-critical point; from Ref.~\cite{Sandvik10c}. The 
 calculations were done at inverse temperature $\beta=L$. The standard critical scaling form $L\rho_s \sim {\rm constant}$ has been modified by a log-correction 
@@ -654,7 +654,7 @@ $a \approx 0.2$
 
 
 \begin{figure}
-\includegraphics[width=7.5cm, clip]{fig05.eps}
+\includegraphics[width=7.5cm, clip]{fig07.eps}
 %\centerline{\psfig{figure=fig05.eps,height=6cm}}
 \caption{Probability distribution $P(D_x,D_y)$ of the VBS order parameter of the $J$-$Q_3$ model on a $32\times 32$
 lattice at $J/Q_3 = 0.575$ in (a) and $0.1765$ in (b). The critical ratio is $(J/Q_3)_c \approx 0.67$. Brighter colors
@@ -749,7 +749,7 @@ We here discuss some aspects of the critical behavior for $N \in \{2,3,\ldots,12
 large-$N$ expansions within the DQC theory.
 
 \begin{figure}
-\includegraphics[width=9cm, clip]{fig06.eps}
+\includegraphics[width=9cm, clip]{fig08.eps}
 %\centerline{\psfig{figure=fig06.eps,height=11cm}}
   \caption{ \label{fig:pdj1j2q} Phase Diagram of the SU($N$) symmetric sign-problem free
     $J_1$-$J_2$-$Q$ model as a function of $N$. Each of the couplings has been introduced
@@ -785,7 +785,7 @@ $\eta$-exponents are small. For reference, in the O($N$) model $\eta\rightarrow0
 for the O($N=3$) model~\cite{campostrini2002:o3}.
 
 \begin{figure}
-\includegraphics[width=8.4cm, clip]{fig07.eps}
+\includegraphics[width=8.4cm, clip]{fig09.eps}
 %\centerline{\psfig{figure=fig07.eps,height=9cm}}
  \caption{ \label{fig:exp} Anomalous dimensions of the N\'eel (left) and VBS (right)
   order parameters as a function of $N$. The main panels show $\eta_N$ and $\eta_V$ versus $1/N$. For $N=2,3$ and $4$, the data are 
@@ -816,7 +816,7 @@ higher precision as well. Another study of a classical model argued to realize t
 transition \cite{Kuklov08}.
 
 \begin{figure}
-\includegraphics[width=8.4cm, clip]{fig08.eps}
+\includegraphics[width=8.4cm, clip]{fig10.eps}
 %\centerline{\psfig{figure=fig08.eps,height=9cm}}
   \caption{ \label{fig:pd_bil}  Physics of the SU($N$) bilayer model.  (a) Lattice and couplings. White sites form the A sublattice with 
   SU($N$) spins that transform in the fundamental representation. Black sites on the B sublattice transform as the conjugate to this representation. (b) Phase diagram of the
@@ -890,7 +890,7 @@ the state to fluctuate, while keeping the constraint satisfied. QDM Hamiltonians
 symmetry---being a type of QSL (or resonating valence bond) phase, that has an emergent gauge symmetry and related topological order \cite{Misguich1}.
 
 \begin{figure}
-\includegraphics[width=8cm, clip]{fig09.eps}
+\includegraphics[width=8cm, clip]{fig11.eps}
 %\centerline{\includegraphics[width=4.5in]{fig09.eps}}
 \caption{ (a) Spins (black dots are $S^z = 1/2$, empty sites $S^z = -1/2$) in a groundstate configuration satisfying $H_0$, Eq.~(\ref{H0}), on the kagome lattice.  
 The degenerate manifold of such configurations maps onto a triangular-lattice (dashed) classical three-dimer configuration, where each spin-up corresponds to a dimer 
@@ -976,7 +976,7 @@ $G(x)\equiv G(\tau=0,r) = \langle b^\dagger(0) b(r) \rangle$ \cite{WormA,gfsse},
 as it traverses the $(d+1)$-dimensional space-time QMC simulation cell.  At the critical point, $G(r)$ should decay as $1/r^{1+\eta}$, and finite size effects can be minimized, e.g., by measuring $G(L/6)$, which decays as $1/L^{1+\eta}$, as a function of $L$.  Fig.~\ref{QSLfig} show an algebraic decay with $\eta=1.493(10)$; a value consistent with $\eta$ for the composite operator in the 3D XY field theory mentioned above.  The excellent agreement between the QMC simulation results and the composite-boson field theory is a remarkable confirmation of fractionalized universality in this model; synergetic work between QMC and quantum field theory is uniquely capable of positive identification of the exotic quantum phase transitions in this model.
 
 \begin{figure}
-\includegraphics[width=8cm, clip]{fig10.eps}
+\includegraphics[width=8cm, clip]{fig12.eps}
 %\centerline{\includegraphics[width=4.5in]{fig10.eps}}
 \caption{Main graph: Temperature dependence of the topological entanglement entropy in the $Z_2$ QSL phase ($V/t_1 = 8$) of the Hamiltonian $H_0 + H_1$ 
 for three different $L \times L \times 3$ kagome lattices \cite{TopoEE}.  The quantization of the plateau at $\ln(2)$ (dashed line) identifies the emergent 
@@ -1034,12 +1034,12 @@ are not directly associated with the well known difficulties of simulating class
 landscapes. Whether or not the sign problem can be circumvented (at least for representative designer Hamiltonians) for translationally invariant 
 systems such as fermionic Hubbard models without particle-hole symmetry and SU($2$) frustrated quantum spins models remains an important open question.
 
-{\color{red} Some non-trivial solutions of sign problems are worth mentioning.
+Some non-trivial solutions of sign problems are worth mentioning.
 In some cases, local basis transformations can be used to render all off diagonal matrix elements non-positive \cite{Nakamura97}.
 One can some times apply more sophisticated ways to circumvent 
 the problem, e.g., with the Meron algorithm \cite{Chandrasekharan99} or the newly discovered fermion bag approach~\cite{chandrasekharan2010:fbag}. 
 While some interesting applications of these methods have appeared~\cite{chandra2012:thirring}, it remains to be seen whether these exciting developments 
-can be applied to a wider range of fermionic and frustrated designer Hamiltonians.}
+can be applied to a wider range of fermionic and frustrated designer Hamiltonians.
 
 \subsection{Other systems and future prospects}
 
@@ -1061,7 +1061,6 @@ the values of the exponents without possible remaining effects of scaling correc
 results for the correlation functions on large lattices. It will also be very interesting to use the methods discussed in Sec.~\ref{ss:renyi} to quantify 
 the degree of entanglement in the SU($2$) and SU($N$) models.
 
-
 \subsubsection{Fermions}
 
 Another very interesting aspect of the designer Hamiltonians we have discussed here is that they can also be doped with fermions. While this 
@@ -1070,11 +1069,11 @@ sign problem only depends on the number of fermions. This low-density limit of t
 with large-$N$ theories of ``holonic'' or ``strange'' metallic states, that have been predicted to arise out of the DQC system upon 
 doping \cite{kaul2008:u1}.
 
-{ \color{red} Recently, two Monte Carlo studies of sign problem free fermionic models with interesting ground states phases and quantum critial points have appeared. A spin 
+Recently, two Monte Carlo studies of sign problem free fermionic models with interesting ground states phases and quantum critial points have appeared. A spin 
 liquid state in the honeycomb-lattice Hubbard model between the semi-metal at weak coupling and the N\'eel state at strong coupling has been detected \cite{Meng10}, but an 
 accepted theory for this spin liquid is currently unavailable \cite{clark2011:honey,lu2011:honey,wang2010:honey}. Most recently \cite{berg2012:mqcp}, a sign problem free 
 quantum action has been identified in which a bosonic order parmater condenses in the background of a Fermi surface. This opens up the exciting possibility of unbiased 
-studies of magnetic critical points in a metal, a topic of long-standing interest in condensed matter physics \cite{vojta2007:rmp}.}
+studies of magnetic critical points in a metal, a topic of long-standing interest in condensed matter physics \cite{vojta2007:rmp}.
 
 An interesting conceptual question is whether one can study bosonic systems in which fermions are emergent particles.
 A positive answer may be suggested by the demonstrated existence of the $Z_2$ fractional phase in a purely bosonic model, as we
@@ -1113,12 +1112,13 @@ and QMC studies of designer Hamiltonians will be needed to make progress here.
 
 \subsubsection{Non-equilibrium dynamic scaling}
 
-A recent development on the methods front is the adaptation of QMC algorithms such as those discussed in Sec.~\ref{sec:methods} to non-equilibrium 
+A recent development on the methods front is the adaptation of QMC algorithms such as those discussed in Sec.~\ref{sec:methods} to {\it non-equilibrium} 
 setups \cite{Degrandi11}. By studying time evolution out of a non-equilibrium state in imaginary time, standard sign-problem free systems
 can be analyzed in novel ways. For instance, it was found in Ref.~\cite{Degrandi11} that the dynamic scaling properties when quenching to
 a quantum-critical point is the same in real and imaginary time, and that such protocols are useful for extracting the dynamic critical
-exponent. Moreover, the fidelity and full geometric tensor, which characterize the geometrical properties of the state space, can be
-accessed this way. One can anticipate many fruitful applications of this unconventional QMC approach, e.g., in studies of disordered systems.
+exponent. Moreover, the fidelity and full geometric tensor, which characterize the geometrical properties of the state space, can be accessed 
+this way. One can anticipate many fruitful applications of this unconventional QMC approach, which gives access to dynamics beyond the commonly 
+used numerical analytic continuation of QMC-computed equilibrium imaginary-time correlation functions \cite{Syljuasen08}.
 
 \section*{Acknowledgments}
 
