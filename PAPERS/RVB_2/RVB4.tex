@@ -508,7 +508,7 @@ C_{dd}({\bf r}_i, {\bf r}_j)  = \frac{\langle V_\mathcal{C} | \left( \mathbf{S}_
 S^2 (S+1)^2 & (ij)_L (kl)_L \end{array}, \right.
 \end{equation}
 \textcolor{red}{HYEJIN, check and cross reference with Figure 6}.
-and $0$ otherwise. Because we are measuring parallel dimer-dimer correlations, we take $j = i + \hat{e}_\alpha, \, l = k + \hat{e}_\alpha$ and $k = i + \hat{e}_\beta$, where $\alpha,\beta = x, y, \, \alpha \neq \beta$.
+and $0$ otherwise. Because we are measuring parallel dimer-dimer correlations, we take $j = i + \mathbf{e}_\alpha, \, l = k + \mathbf{e}_\alpha$ and $k = i + \mathbf{e}_\beta$, where $\alpha,\beta = x, y, \, \alpha \neq \beta$.
 
 \textcolor{red}{
 In the next section we present data on these correlation functions for $SU(2)$ and $S(N)$, and attempt to calculate  universal exponents associated with their decay, which for large $N$ should connect to the dimer RVB state.
@@ -593,7 +593,7 @@ Let us first begin with the $SU(2)$ case, and present the computation of $S_2$, 
  \begin{center}
   \includegraphics[width=10cm]{./figures/SU2_shape.pdf}
  \end{center}
-\caption{Numerical extraction of the universal shape of $S_2$ as a function of $y=\ell_y/L_y$ for the $SU(2)$ RVB wave function and $L=L_x=L_y=12,18,24$. Red and blue curves are the CFT prediction of Eqs.~(\ref{eq:cft_prediction_gen}) and (\ref{eq:cft_prediction_gen_odd}). \textcolor{blue}{Another plot right next to this one for the $SU(2)$ $W=(0,0)$ sector.}}
+\caption{Numerical extraction of the universal shape of $S_2$ as a function of $y=\ell_y/L_y$ for the $SU(2)$ RVB wave function and $L=L_x=L_y=12,18,24$. Red and blue curves are the CFT prediction, slightly anticipating on Eqs.~(\ref{eq:cft_prediction_gen}) and (\ref{eq:cft_prediction_gen_odd}). \textcolor{blue}{Another plot right next to this one for the $SU(2)$ $W=(0,0)$ sector.}}
 \label{fig:SU2_shape}
 \end{figure}
 We observe a striking similarity with the dimer data. In particular, a strong even-odd effect which becomes even bigger in the $W=(0,0)$ sector.
@@ -618,19 +618,20 @@ We have made the assumption that the boundary conditions are the same as those f
 
 The curves (\ref{eq:cft_prediction_gen}) and (\ref{eq:cft_prediction_gen_odd}) 
  with $\alpha=1.2$ are plotted in fig.~\ref{fig:SU2_shape} along with the $SU(2)$ Monte Carlo data.  The trend in the data is clearly toward these curves, but as with the dimer case, the finite-size effects are very strong. 
-An additional interesting feature becomes apparent by plotting the CFT curves
+Several additional interesting features become apparent by plotting the CFT curves
 (\ref{eq:cft_prediction_gen}) and (\ref{eq:cft_prediction_gen_odd}) at $\alpha=2$ and $\alpha=1.2$, corresponding to the dimer and $SU(2)$ RVB exponents respectively.
 \begin{figure}[ht]
  \begin{center}
   \includegraphics[width=8cm]{./figures/SUN_CFT.pdf}
+    \includegraphics[width=8cm]{./figures/SUN_CFT_w.pdf}
  \end{center}
-\caption{CFT prediction for the universal shape of $S_2$, as a function of $y=\ell_y/L_y$. Red solid lines correspond to the dimer RVB state with $\alpha=2$, while the blue dashed lines are the $SU(2)$ RVB case, with $\alpha= 1.2$.}
+\caption{CFT predictions for the universal shape of $S_2$, as a function of $y=\ell_y/L_y$.\emph{Left:} Red solid lines correspond to the dimer RVB state with $\alpha=2$, while the blue dashed lines are the $SU(2)$ RVB case, with $\alpha= 1.2$. We also plot in black the usual $1d$ result $a+b\ln \sin \pi y$ with appropriate $a$ and $b$ for comparison. \emph{Right: }Prediction for $\alpha=1.2$. Blue dashed lines is the $W=(0,0)$ sector, while red solid lines show the prediction with no restriction on winding numbers.}
 \label{fig:SUN_CFT}
 \end{figure}
-As is apparent from fig.~\ref{fig:SUN_CFT}, the curve for the even branch is essentially independent of the $\alpha$ over a large range. The shape of the odd curve only weakly depends on $\alpha$, but the curve does appreciably shift in this range.
+As is apparent from fig.~\ref{fig:SUN_CFT}(left), the curve for the even branch is essentially independent of the $\alpha$ over a large range, and ressembles very much the $1d$ result $S_2\propto\ln \sin (\pi y)$. The shape of the odd curve only weakly depends on $\alpha$, but the curve does appreciably shift in this range. We also observe --fig.~\ref{fig:SUN_CFT}(right)-- that contrary to the dimer case ($\alpha=2$), the two odd curves corresponding to $\alpha=1.2$ are not nearly identical in the $W=(0,0)$ and $W=all$ sectors. This feature is also in good qualitative agreement with the data shown in fig.~\ref{fig:SU2_shape}.
 
 Unfortunately, we do not know how to derive these results as we did for the dimers. The mapping of Ref.~\cite{Shannonee} to a classical R\'enyi-Shannon entropy is not valid for the $SU(N)$ RVB states: because of the non-orthogonality of different valence-bond configurations, the Schmidt decomposition of the RVB state is much more complicated.  Moreover, a naive extension of the result of \cite{Stephan2011} would then yield a critical value $ n_c=\alpha/2\simeq 0.6$  for $SU(2)$. This would imply an even-odd effect even for the von Neumann entropy, in violation with strong subadditivity\cite{Strongsubadditivity}. The formula $n_c=d_{\rm min }^2/(2\kappa)=d_{\rm min}^2\alpha/2$ therefore cannot hold in general for model which cannot be mapped onto a classical R\'enyi-Shannon entropy\footnote{The fact that it does apply to quantum six vertex states \emph{does not} contradict strong subadditivity, because in this case $d_{\rm min}=2$ and since $\alpha \geq 1$, we have $n_c\geq 1$. Notice that naively applying $n_
-c=d_{\rm min}^2 \alpha/2$ to an RK wave function built out of interacting dimers\cite{Alet_dimers1,Alet_dimers2} would also, just as $SU(N)$ RVB, violate strongsubadditivity.}.
+c=d_{\rm min}^2 \alpha/2$ to an RK wave function built out of interacting dimers\cite{Alet_dimers1,Alet_dimers2} would also, just as $SU(N)$ RVB, violate strong subadditivity.}.
 
 Thus while we cannot make a definitive conclusion, our results provide qualitative evidence for Eq.~(\ref{eq:shape_general}) applying to the $SU(2)$ RVB state. They also support the convention of \cite{Ju2012} that the subleading piece of the two-cylinder Renyi entropy is universal.
 
@@ -650,16 +651,6 @@ Extracting an accurate exponent $\alpha_N$ from the $S_2$ data is difficult, due
  \delta_n(\tau,\alpha)=\frac{2n}{1-n}\ln \left(\frac{\theta_4(\alpha\tau/2)}{\theta_3(\alpha \tau/2)}\right)
 \end{equation}
 This allows in principle to determine the critical exponent. Solving our biggest system size even-odd data to (\ref{eq:even_odd}) yields $\alpha \approx 2.27$ for dimers and $\alpha \approx 1.57$ for $SU(2)$ RVB. The respective relative errors are very big ($14\%$ and $28\%$ respectively), due to the strong finite-size effects, but should give accurate estimates in the scaling limit.
-%Such an analysis is performed for quantum dimers as well as the $SU(2)$ RVB in Fig.~\ref{fig:evenodd}. As can be seen, finite-size effect again turn out to be very strong, even for quantum dimers. We observe the same kind of sublinear scaling for this quantity on small system sizes\cite{Ju2012}. However, as the $S_\infty$ data for quantum dimer can be rigorously shown to converge, it is reasonable to expect that the same happens for $S_2$.
-%\begin{figure}[ht]
-%\begin{center}
-% \includegraphics[width=8.1cm]{./figures/evenodd.pdf}
- %\hfill
-% \includegraphics[width=8.1cm]{./figures/evenodd_alpha.pdf}
-% \end{center}
-% \caption{Even odd difference $\delta_n(L_x,L_y)=|S_n(L_x/2)-S_n(L_x/2-1)|$. \emph{Left Panel:} Convergence of $\delta_n(L)$ to the expected value from Eq.~(\ref{eq:even_odd}). \emph{Right Panel:} Finite-size extraction of $\alpha$ by solving $\delta_n(L_x,L_y)$ to Eq.~(\ref{eq:even_odd}). For quantum dimers as well as $SU(2)$, we observe an apparent sublinear scaling on small system sizes, which can be shown to go away for quantum dimers $S_\infty$.}
-% \label{fig:evenodd}
-%\end{figure}
 
 \section{Conclusion}
 
@@ -686,6 +677,7 @@ Resolving this issue is certainly an interesting question for further studies. I
   S_{n>n_c}\sim \frac{n}{1-n} \ln \left|\langle A\cup B|A\otimes B\rangle\right|^2,
  \end{equation}
 where $|A\cup B\rangle$ is the ground-state wave function of the whole system. $|A\otimes B\rangle$ is the ground-state wave function where all interactions between $A$ and $B$ have been switched off, a tensor product of the two ground-state wave functions in $A$ and $B$. Furthermore, Eq.~(\ref{eq:lbf}) even becomes exact on the lattice when $n\to \infty$.
+\item Recall some cool strong subadditivity interpretation.
  \item The universal shape we obtain bears strong resemblance to the numerical results of Ref.~\cite{Ju2012}, strengthening a posteriori the author's claim at universality.  
   \end{itemize}
 
