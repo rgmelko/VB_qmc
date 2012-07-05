@@ -57,7 +57,7 @@ It is widely believed that many properties of a gapped phase are robust under (s
 
 The behavior of quantities such as the Renyi entropy thus can be used to characterize spin-liquid states, without requiring knowledge of any specific Hamiltonian. The quantum spin liquids best characterized theoretically are {\it gapped}, where a gauge symmetry typically emerges.
  % is protected by an energy gap from excitations, which typically take the form of exotic fractionalized quasiparticles.
-An important and useful concept applicable here is topological order, which relates the emergent gauge symmetry to a topological degeneracy, and the related concept of {\it long-range entanglement}\cite{Topoentanglement,HIZ,KP,LW} \textcolor{blue}{[JM: but ok, I always thought long-range entanglement is a bit of a vague concept.]}.  
+An important and useful concept applicable here is topological order, which relates the emergent gauge symmetry to a topological degeneracy, and the related concept of {\it topological entropy}\cite{HIZ,KP,LW}. 
 %Such properties emerge from a perspective which views the spin liquid wavefunction in the language of a fluctuating ``loop gas''.
 %A vast literature of phenomenological theories of gapped spin liquid states connects with a growing body of simulation work on microscopic models which harbour them; a theoretical field which seemed distastefully exotic less than a decade ago is now teeming with synergy as more examples of models with gapped spin liquids seem to appear daily.
 However, many experimental systems currently identified as good candidates for spin liquids appear to be {\it gapless}.  Compared to their gapped counterparts, these phases are less amenable to simple unifying attributes such as topological order.  Although it is likely that other quantities, related perhaps to correlations or manifestations of long-range entanglement, can be used to characterize gapless phases, in this case the community suffers the difficulty that few viable examples of {\it models} -- particularly those tractable by large-scale numerical simulation -- are known to contain gapless spin liquids.
@@ -457,8 +457,8 @@ The relatively large finite-size effects apparent in the plots should disappear 
 %$s_{\infty}$ is obtained by taking the $n\to \infty$ limit in Eq.~(\ref{eq:cft_prediction}). 
 We also compute $s_\infty$ in the $W=(0,0)$ winding sector directly for the dimer model, using the techniques described in the appendices, finding:
 \begin{eqnarray}\label{eq:cft_w0}
- s_\infty^{\rm (even)}&=&-\ln \left(\frac{\eta(\tau)^2\theta_3(2y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_w0_odd}
- s_\infty^{\rm (odd)}&=&-\ln \left(\frac{\eta(2\tau)^2\theta_4(2y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)
+ s_{\infty,0}^{\rm (even)}&=&-\ln \left(\frac{\eta(\tau)^2\theta_3(2y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_w0_odd}
+ s_{\infty,0}^{\rm (odd)}&=&-\ln \left(\frac{\eta(2\tau)^2\theta_4(2y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)
 \end{eqnarray}
 Even though the total winding number is zero, the result still depends on the compactification radius of the height field  because of winding fluctuations at the boundaries between regions $A$ and $B$. 
 A comparison between the numerical and analytical results is performed in Fig.~\ref{fig:Sinfty}, for the aspect ratio $L_y/L_x=1$ and the two system sizes $L_x=16$ and $L_x=96$. We observe strong finite-size effects for small system sizes, but the data converges in the end to the CFT result.
@@ -467,17 +467,14 @@ A comparison between the numerical and analytical results is performed in Fig.~\
   \includegraphics[width=8cm]{./figures/sinfty_16.pdf}
   \includegraphics[width=8cm]{./figures/sinfty_96.pdf}
  \end{center}
-\caption{Comparison numerics/analytics in the exactly solvable case $S_\infty$. Black points are the numerical data for all winding sectors, and black crosses represents the numerical data in the $W=(0,0)$ sector. \emph{Left:} $L_x=16$, the data is compared with Eqs.~(\ref{eq:cft_prediction}), (\ref{eq:cft_prediction_odd}),  (\ref{eq:cft_w0}) and (\ref{eq:cft_w0_odd}) up to a single constant. The agreement is fair, but still far from converged. \emph{Right:} Same procedure for $L=96$. The agreement is much better, as expected. }
+\caption{Comparison numerics/analytics in the exactly solvable case $S_\infty$. Black points are the numerical data for all winding sectors, and black crosses represents the numerical data in the $W=(0,0)$ sector. \emph{Left:} $L_x=16$, the data is compared with Eqs.~(\ref{eq:cft_prediction}), (\ref{eq:cft_prediction_odd}),  (\ref{eq:cft_w0}) and (\ref{eq:cft_w0_odd}) up to a single constant. The agreement is fair, but still far from converged. \emph{Right:} Same procedure for $L_x=96$. The agreement is much better, as expected. We also pushed the simulations up to size $L_x=704$, to make sure that our result becomes exact in the scaling limit (not shown).}
 \label{fig:Sinfty}
 \end{figure}
-
-%\begin{equation}\label{eq:shape_general2}
-% s_{n>n_c}=\frac{n}{1-n}\ln \left(\frac{{\cal Z}_{\rm cyl}[y\tau]{\cal Z}_{\rm cyl}[(1-y)\tau]}{{\cal Z}_{\rm torus}[\tau]}\right),
-%\end{equation}
-
-%  \item Since the problem has been reduced to a ratio of partition function, this result is different from the 1d critical case\cite{Cardy} $S\propto \ln \left|(L/\pi)\sin (\pi y/L)\right|$. Therefore, eventhough the 1d result can provide interesting physical intuition, it \emph{should not} apply in higher dimensions. This had already been noted in \cite{Ju2012} wave functions with different dynamical exponents: $\pi$-flux fermions on the square lattice.  
-
-
+Interestingly, the even-odd effect is enhanced in the $W=(0,0)$ winding sector, in agreement with CFT. We also observe that the odd curves in both sectors almost coincide on the lattice, as well as in the scaling limit. This coincidence can be explained from the CFT prediction at $y=\ell_y/L_y=1/2$:
+\begin{equation}
+ s_{\infty}^{\rm (odd)}(y=1/2)-s_{\infty,0}^{\rm (odd)}(y=1/2)=2q^2+\mathcal{O}(q^4) \quad,\quad q=e^{-\pi}
+\end{equation}
+Notice also that this coincidence seems to be a peculiarity of the free fermion point ($\alpha=2$)\footnote{with a general exponent $\alpha\leq 2$, we would have the much more complicated\\ $s_{\infty}^{\rm (odd)}(y=1/2)-s_{\infty,0}^{\rm (odd)}(y=1/2)=2(q^{1/\alpha}-q^{\alpha/4})-2(q^{2/\alpha}-q^{\alpha/2})+(8/3)(q^{3/\alpha}-q^{3\alpha/4})+\mathcal{O}(q^{\alpha})$. All these terms cancel each other for $\alpha=2$.}. 
 
 
 \section{Correlations in the $SU(N)$ RVB wave function}
