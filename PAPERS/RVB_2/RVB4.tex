@@ -29,8 +29,8 @@
 \submitto{NJP}
 \begin{abstract}
 
-We study resonating-valence-bond (RVB) states on the square lattice of both $SU(2)$ and dimer type,  as well as $SU(N)$-invariant states that interpolate between the two. These states have algebraically decaying correlators of local quantities, and so describe gapless theories, although the $SU(2)$ RVB state is also believed to be a gapped liquid in its spinful sector. By studying a particular subleading term in the Renyi entropy, we show that the gapless behavior in these states is qualitatively similar. We compute this term exactly for the dimer RVB models, showing it behaves similarly to the familiar one-dimensional $\ln L$ term, although not identically. We extend the exact computation to an effective theory believed to interpolate among these states. By numerical calculations for the $SU(2)$-invariant RVB state and its $SU(N)$-invariant generalizations, we provide further support for this belief. We also show how the entanglement entropy behaves qualitatively differently for different values of the 
-Renyi index $n$, with large values of $n$ proving a more sensitive probe here, by virtue of exhibiting a striking even/odd effect.
+We study resonating-valence-bond (RVB) states on the square lattice of both $SU(2)$ and dimer type,  as well as $SU(N)$-invariant states that interpolate between the two. These states have algebraically decaying correlators of local quantities, and so describe gapless theories, although the $SU(2)$ RVB state is also believed to be a gapped liquid in its spinful sector. By studying a particular subleading term in the R\'enyi entropy, we show that the gapless behavior in these states is qualitatively similar. We compute this term exactly for the dimer RVB models, showing it behaves similarly to the familiar one-dimensional $\ln L$ term, although not identically. We extend the exact computation to an effective theory believed to interpolate among these states. By numerical calculations for the $SU(2)$-invariant RVB state and its $SU(N)$-invariant generalizations, we provide further support for this belief. We also show how the entanglement entropy behaves qualitatively differently for different values of the 
+R\'enyi index $n$, with large values of $n$ proving a more sensitive probe here, by virtue of exhibiting a striking even/odd effect.
 
 
 \end{abstract}
@@ -55,30 +55,30 @@ It is widely believed that many properties of a gapped phase are robust under (s
 
 
 
-The behavior of quantities such as the Renyi entropy thus can be used to characterize spin-liquid states, without requiring knowledge of any specific Hamiltonian. The quantum spin liquids best characterized theoretically are {\it gapped}, where a gauge symmetry typically emerges.
+The behavior of quantities such as the R\'enyi entropy thus can be used to characterize spin-liquid states, without requiring knowledge of any specific Hamiltonian. The quantum spin liquids best characterized theoretically are {\it gapped}, where a gauge symmetry typically emerges.
  % is protected by an energy gap from excitations, which typically take the form of exotic fractionalized quasiparticles.
 An important and useful concept applicable here is topological order, which relates the emergent gauge symmetry to a topological degeneracy, and the related concept of {\it topological entropy}\cite{HIZ,KP,LW}. 
 %Such properties emerge from a perspective which views the spin liquid wavefunction in the language of a fluctuating ``loop gas''.
 %A vast literature of phenomenological theories of gapped spin liquid states connects with a growing body of simulation work on microscopic models which harbour them; a theoretical field which seemed distastefully exotic less than a decade ago is now teeming with synergy as more examples of models with gapped spin liquids seem to appear daily.
 However, many experimental systems currently identified as good candidates for spin liquids appear to be {\it gapless}.  Compared to their gapped counterparts, these phases are less amenable to simple unifying attributes such as topological order.  Although it is likely that other quantities, related perhaps to correlations or manifestations of long-range entanglement, can be used to characterize gapless phases, in this case the community suffers the difficulty that few viable examples of {\it models} -- particularly those tractable by large-scale numerical simulation -- are known to contain gapless spin liquids.
 
-We study a particular family of states, resonating-valence-bond (RVB) states on the square lattice, that are gapless and exhibit spin-liquid-type behavior \cite{RokhsarKivelson,RVB1,RVB2}. Our main (but not only) tool is to analyze a subleading term in the Renyi entropy particularly useful for characterizing gapless systems \cite{Ju2012}. The Renyi entropies $S_n$ are defined for $n\neq 1$
+We study a particular family of states, resonating-valence-bond (RVB) states on the square lattice, that are gapless and exhibit spin-liquid-type behavior \cite{RokhsarKivelson,RVB1,RVB2}. Our main (but not only) tool is to analyze a subleading term in the R\'enyi entropy particularly useful for characterizing gapless systems \cite{Ju2012}. The R\'enyi entropies $S_n$ are defined for $n\neq 1$
 \begin{equation}
 S_n=\frac{1}{1-n} \ln {\rm Tr}\, \rho_A^n\ , \label{RenyiEq}
 \end{equation}
 where $\rho_A$ is the reduced density matrix for a region $A$. The term we analyze describes 
 the entanglement between two regions formed by cutting a torus into two cylinders. This geometry is useful for studying gapless systems because the length of the boundaries separating the cylinders is independent of the area of the cylinders. Because of the long-range correlations, the entanglement entropy of gapless systems will be sensitive to varying the size of the cylinders. This dependence was studied for three completely different gapless systems in \cite{Ju2012}, and argued to have universal behavior. One of the results of this paper is to provide additional evidence in support of this assertion.
 
-One model with a gapless RVB ground state, the square-lattice quantum dimer model, is quite amenable to an analytic treatment. For example, long ago it was shown that all equal-time correlators diagonal in the dimer basis are those of a classical dimer model \cite{RokhsarKivelson}. These can be computed exactly directly in the dimer model by using Pfaffian techniques \cite{Kasteleyn,Fisher,FisherStephenson}, or in the continuum limit by utilizing a two-dimensional classical free-boson field theory \cite{Fradkinbook,Henley}. Such exact computations have been done for entanglement quantities as well\cite{FradkinMoore,Hsu2009,Shannonee,Oshikawa,Zaletel,Stephan2011}. In this paper we extend these methods to compute the two-cylinder entanglement entropy for the quantum dimer model exactly in the scaling limit. For Renyi index $n$ greater than a specific (non-universal) value $n_c$, it is simply given by a ratio of cylindrical partition functions. From this we find for example that the striking even-odd effect 
+One model with a gapless RVB ground state, the square-lattice quantum dimer model, is quite amenable to an analytic treatment. For example, long ago it was shown that all equal-time correlators diagonal in the dimer basis are those of a classical dimer model \cite{RokhsarKivelson}. These can be computed exactly directly in the dimer model by using Pfaffian techniques \cite{Kasteleyn,Fisher,FisherStephenson}, or in the continuum limit by utilizing a two-dimensional classical free-boson field theory \cite{Fradkinbook,Henley}. Such exact computations have been done for entanglement quantities as well\cite{FradkinMoore,Hsu2009,Shannonee,Oshikawa,Zaletel,Stephan2011}. In this paper we extend these methods to compute the two-cylinder entanglement entropy for the quantum dimer model exactly in the scaling limit. For R\'enyi index $n$ greater than a specific (non-universal) value $n_c$, it is simply given by a ratio of cylindrical partition functions. From this we find for example that the striking even-odd effect 
 observed numerically in \cite{Ju2012} for 
 the $SU(2)$-invariant RVB state was not a finite-size effect; it also occurs for the quantum dimer model, and our computation illuminates its origin.
 
 
 
-One lesson from our results is that universal entanglement properties can be qualitatively different for values of the Renyi index $n$. For $n>n_c$, the two-cylinder entanglement entropy depends strongly on whether the cylinders are of odd or even length. This is not shocking from the point of view of the quantum dimer state, because the correlators exhibit similar behavior. However, at the von Neumann point ($n\to 1$), no such even-odd effect is possible. Indeed, the shape of the entanglement entropy has to be a concave-down function of $y$, as required by the strong subadditivity property \cite{Strongsubadditivity}. Other values of $n$ are not constrained by subadditivity, and we will derive this even/odd effect explicitly for the dimer RVB state. 
-Thus only for $n>n_c$ is the Renyi entropy sensitive enough to include this effect. 
+One lesson from our results is that universal entanglement properties can be qualitatively different for values of the R\'enyi index $n$. For $n>n_c$, the two-cylinder entanglement entropy depends strongly on whether the cylinders are of odd or even length. This is not shocking from the point of view of the quantum dimer state, because the correlators exhibit similar behavior. However, at the von Neumann point ($n\to 1$), no such even-odd effect is possible. Indeed, the shape of the entanglement entropy has to be a concave-down function of $y$, as required by the strong subadditivity property \cite{Strongsubadditivity}. Other values of $n$ are not constrained by subadditivity, and we will derive this even/odd effect explicitly for the dimer RVB state. 
+Thus only for $n>n_c$ is the R\'enyi entropy sensitive enough to include this effect. 
 \textcolor{red}{
-This effect, whereby a Renyi entropies may exhibit qualitatively different behavior for some higher $n$, is reminiscent of the manifestation of finite-temperature criticality in Renyi entropies for $n>1$, but not $n=1$} \cite{RenyiXing}. 
+This effect, whereby a R\'enyi entropies may exhibit qualitatively different behavior for some higher $n$, is reminiscent of the manifestation of finite-temperature criticality in R\'enyi entropies for $n>1$, but not $n=1$} \cite{RenyiXing}. 
 
 It is possible to interpolate between the $SU(2)$-invariant RVB state and the quantum dimer state by considering $SU(N)$-invariant generalizations of the former; many aspects of the quantum dimer state then can be extracted from the $N\to\infty$ limit. Such a correspondence can be pushed further: Ref.~\cite{Damle} defined a cluster expansion of the RVB ``loop gas''\cite{Sutherland_loops} in terms of interacting dimers in the large $N$ limit. One recovers to first non-trivial order the interacting generalization of the quantum dimer model studied in  \cite{Alet_dimers1,Alet_dimers2}. Most strikingly, the critical exponent $\alpha$ extrapolated to $N=2$ turned out to be in good agreement with the previous numerical studies \cite{RVB1,RVB2}.
 
@@ -86,7 +86,7 @@ Whereas one cannot do exact computations directly in these models outside of the
 
 
 The paper is organized as follows:
-In sec.\ \ref{sec:RVB}, we review the definition and important properties of the RVB states. Sec.~\ref{sec:shape_general} stresses our general result for the R\'enyi entanglement entropy of many critical Rokhsar-Kivelson type states including the quantum dimer state;  for $n>n_c$ the Renyi entropy is given by a simple ratio of 2d classical partition functions.   Sec.~\ref{sec:dimers_entanglement} explores the consequences of this result in the simplest case of the square lattice quantum dimer state. We also discuss the emergence of a strong even-odd effect, similar to that first observed in \cite{Ju2012}. We then turn our attention in Sec.~\ref{sec:correlations} to the RVB $SU(N)$ state.  By quantum Monte Carlo simulations, we show that while the spin-spin correlations decay exponentially, the dimer-dimer correlations are critical. The exponent approaches the dimer exponent ($\alpha_D=2$) as $N$ increases, and agrees well with a previous large $N$ computation \cite{Damle} and earlier numerical results at 
+In sec.\ \ref{sec:RVB}, we review the definition and important properties of the RVB states. Sec.~\ref{sec:shape_general} stresses our general result for the R\'enyi entanglement entropy of many critical Rokhsar-Kivelson type states including the quantum dimer state;  for $n>n_c$ the R\'enyi entropy is given by a simple ratio of 2d classical partition functions.   Sec.~\ref{sec:dimers_entanglement} explores the consequences of this result in the simplest case of the square lattice quantum dimer state. We also discuss the emergence of a strong even-odd effect, similar to that first observed in \cite{Ju2012}. We then turn our attention in Sec.~\ref{sec:correlations} to the RVB $SU(N)$ state.  By quantum Monte Carlo simulations, we show that while the spin-spin correlations decay exponentially, the dimer-dimer correlations are critical. The exponent approaches the dimer exponent ($\alpha_D=2$) as $N$ increases, and agrees well with a previous large $N$ computation \cite{Damle} and earlier numerical results at 
 $N=2$ \cite{RVB1,RVB2}. We also present further evidence of the underlying Coulomb-gas structure for all $N$.
 Finally, Sec.~\ref{sec:rvb_entanglement} presents numerical simulations of entanglement for the $SU(N)$ RVB wave function, and tries to provide physical intuition, as well as a field-theoretical description of the results. In particular, we find striking similarities with the QDM behavior, and therefore strong evidence of universal behavior, in agreement with our main result of Sec.~\ref{sec:shape_general}. 
 
@@ -161,7 +161,7 @@ In the RVB state (\ref{RVBdef1},\ref{RVBdef2}), the inner product is the usual o
 \label{RVBinner}
 \end{equation}
 where $n_l$ being the number of loops in the transition graph.
-Despite this overlap between dimer configurations making analytic computations much more difficult, its presence is convenient in the algorithm used for computing the second Renyi entropy using quantum Monte Carlo simulations \cite{swap},
+Despite this overlap between dimer configurations making analytic computations much more difficult, its presence is convenient in the algorithm used for computing the second R\'enyi entropy using quantum Monte Carlo simulations \cite{swap},
 \textcolor{red}{
 since ``swapped'' basis configurations (described in Section~\ref{sec:numerics}) will always contribute a non-zero expectation value, even with a naive QMC updating algorithm.
 }
@@ -210,9 +210,9 @@ Given the changing exponents, the $SU(N)$ RVB states are obviously not identical
 \subsection{The Coulomb-gas approach to classical dimers}
 \label{sec:cg}
 
-A well established and very useful fact about the classical dimer model is that long-distance properties of the dimers are described by a free bosonic field theory, or Coulomb gas. This can be seen either by taking the continuum limit of the sermonic description and then bosonizing the fermions, or by rewriting the dimers in terms of a discrete ``height'' degree of freedom \cite{Heights_1,Heights_2,Henley}. We follow the latter approach, because a careful treatment of the boundary conditions is necessary to obtain our results for the two-cylinder Renyi entropy. Before going any further, we also note that the same Coulomb-Gas techniques can be used on the six-vertex model. We will however explain this approach only on the dimer model. 
+A well established and very useful fact about the classical dimer model is that long-distance properties of the dimers are described by a free bosonic field theory, or Coulomb gas. This can be seen either by taking the continuum limit of the sermonic description and then bosonizing the fermions, or by rewriting the dimers in terms of a discrete ``height'' degree of freedom \cite{Heights_1,Heights_2,Henley}. We follow the latter approach, because a careful treatment of the boundary conditions is necessary to obtain our results for the two-cylinder R\'enyi entropy. Before going any further, we also note that the same Coulomb-Gas techniques can be used on the six-vertex model. We will however explain this approach only on the dimer model. 
 
-The first step in the mapping of classical dimer on to the free boson Coulomb gas is to associate an integer with each face of the lattice, as illustrated in fig.\ \ref{fig:height_shift}.
+The first step in the mapping of classical dimer on to the free boson Coulomb gas is to associate an integer with each face of the lattice, as illustrated in fig.~\ref{fig:height_shift}.
 \begin{figure}[ht]
  \begin{center}
  \includegraphics[scale=0.8]{./figures/shift.pdf}
@@ -222,9 +222,9 @@ The first step in the mapping of classical dimer on to the free boson Coulomb ga
 \end{figure}
 These integers are defined by the following construction. Set value on one face (say the lower leftmost one) to be zero. Then, turning counterclockwise around a site of the even (resp.\ odd) sublattice represented by black squares (resp.\ white squares) the integer changes by $-3$ (resp.\ $+3$) if it crosses a dimer, $+1$ (resp.\ $-1$) otherwise. Since by construction these integers are different on adjacent sites, in the bulk one defines a smoother height variable $h(i,j)$ on the sites of the lattice, by averaging the values of the integers on four faces surrounding each point (and then for convenience's sake multiplying by $\pi/2$). Then the states where the dimers are arranged in columns correspond to a constant value of the height.
 
-An important subtlety in this mapping is the boundary conditions, which will play a crucial role in understanding the even/odd effect in the two-cylinder Renyi entropy.
+An important subtlety in this mapping is the boundary conditions, which will play a crucial role in understanding the even/odd effect in the two-cylinder R\'enyi entropy.
 With periodic boundary conditions and an even number of sites around this cycle (as in the left and right sides of the figure \ref{fig:height_shift}), note that means that heights can jump by $2\pi$ times an integer on from one side to the other. 
-With open boundary conditions, as we have at the ends of the cylinder (the top and bottom of the figure), the natural definition of the boundary height comes from averaging the integers along the boundary. For a cylinder of even $L_x$ circumference and length $L_y$, it is easy to check that the height difference between top and bottom satisfies \cite{Ferdinand}
+With open boundary conditions, as we have at the ends of the cylinder (the top and bottom of the figure), the natural definition of the boundary height comes from averaging the integers along the boundary. For a cylinder of even $L_x$ circumference and length $L_y$, it is easy to check that the height difference between top and bottom satisfies
 \begin{equation}
  \Delta h=h(x,L_y)-h(x,0)=\left\{
  \begin{array}{ccc}
@@ -234,7 +234,6 @@ With open boundary conditions, as we have at the ends of the cylinder (the top a
  \right.
 \end{equation}
 Even/odd effects have long been studied in the dimer model \cite{Ferdinand,Dimers_all,Ruelledimers}, but to our knowledge they have never been interpreted in the context of the height mapping. 
-
  
 The standard Coulomb-gas arguments \cite{Nienhuis} then imply upon coarse-graining the height variable $h(i,j)$ into a continuous field, the scaling limit of the classical dimer model is described by a free scalar field $h(x,y)$ with euclidean action
  \begin{equation}\label{eq:free_field_bis}
@@ -263,17 +262,17 @@ Because of the arguments above, it is reasonable to hope that all the equal-time
 
 
 
-\section{Two-cylinder Renyi entropy from partition functions}
+\section{Two-cylinder R\'enyi entropy from partition functions}
 \label{sec:shape_general}
 %\subsection{Statement of the result}
 In this section, we discuss the shape-dependent subleading contribution to the entanglement entropy 
-of two-dimensional gapless systems discussed in \cite{Ju2012}. For Renyi index $n$ larger than a certain critical value $n_c$, we derive it exactly for the scaling limit of the square-lattice dimer RVB state, the quantum six-vertex state, and the entire quantum critical line of the quantum Lifshitz theory. Thus we expect it to apply to the scaling limit of the $SU(N)$ RVB state as well, with an appropriate parametrization of $\kappa$ in terms of $N$.
+of two-dimensional gapless systems discussed in \cite{Ju2012}. For R\'enyi index $n$ larger than a certain critical value $n_c$, we derive it exactly for the scaling limit of the square-lattice dimer RVB state, the quantum six-vertex state, and the entire quantum critical line of the quantum Lifshitz theory. Thus we expect it to apply to the scaling limit of the $SU(N)$ RVB state as well, with an appropriate parametrization of $\kappa$ in terms of $N$.
 
-In particular, we show that when a  torus is split into two cylinders labeled $A$ and $B$, the Renyi entropy describing the entanglement between the two cylinders can be rewritten in terms of conformal field theory partition functions ${\cal Z}$ as:
+In particular, we show that when a  torus is split into two cylinders labeled $A$ and $B$, the R\'enyi entropy describing the entanglement between the two cylinders can be rewritten in terms of conformal field theory partition functions ${\cal Z}$ as:
 \begin{equation}\label{eq:shape_general}
  s_{n>n_c}=\frac{n}{1-n}\ln \left(\frac{{\cal Z}_{A}{\cal Z}_B}{{\cal Z}_{\rm torus}}\right),
 \end{equation}
-Below we detail the precise definition of the CFT partition functions, but the important fact is that for the cases at hand, these are known. Thus this expression gives an explicit formula for this entropy, exact in the scaling limit. The value of $n_c$ depends on the specifics of the model, but $n_c<2$ in all the examples we will consider, so that Eq.~(\ref{eq:shape_general}) applies to the second Renyi entropy to be studied numerically in later sections.  Although our derivation applies only to the quantum Lifshitz ground state (i.e.\ RVB-type states that can be written in terms of a two-dimensional classical free boson), we believe it possible that an analogous formula will apply to any theory with an RK-type Hamiltonian.
+Below we detail the precise definition of the CFT partition functions, but the important fact is that for the cases at hand, these are known. Thus this expression gives an explicit formula for this entropy, exact in the scaling limit. The value of $n_c$ depends on the specifics of the model, but $n_c<2$ in all the examples we will consider, so that Eq.~(\ref{eq:shape_general}) applies to the second R\'enyi entropy to be studied numerically in later sections.  Although our derivation applies only to the quantum Lifshitz ground state (i.e.\ RVB-type states that can be written in terms of a two-dimensional classical free boson), we believe it possible that an analogous formula will apply to any theory with an RK-type Hamiltonian.
 
 
 \subsection{Entanglement entropy as a Shannon entropy}
@@ -325,7 +324,7 @@ At this stage it is important to emphasize the main reasons why such a remarkabl
 \end{enumerate}
 Quantum dimers obviously satisfy both these requirements. The same goes for the quantum six-vertex state, (ii) being guaranteed by the ice rule. The $SU(N)$ RVB wave functions satisfies (ii) but not (i) (see (\ref{eq:nonortho})). As an example of Coulomb-gas wave functions that satisfy (i) but not (ii), one can consider the quantum dimer wave function built out of the interacting dimer studied in \cite{Alet_dimers1,Alet_dimers2}. 
 
-Returning to the dimer RVB state, these expressions make it possible to use the computer to find very accurate values for the Renyi entropy. Using free-fermion/Pfaffian techniques described in \ref{sec:lgv}, each probability can be expressed as a product of determinants of two matrices of size $\sim L/2$, and computed numerically in a time of order $\approx L^3$. Using translational symmetry along the $x$ axis as well as the conservation of winding numbers, we are able to compute any R\'enyi entropy up to machine precision in a time of order $L^{3/2}\times 4^L$.
+Returning to the dimer RVB state, these expressions make it possible to use the computer to find very accurate values for the R\'enyi entropy. Using free-fermion/Pfaffian techniques described in \ref{sec:lgv}, each probability can be expressed as a product of determinants of two matrices of size $\sim L/2$, and computed numerically in a time of order $\approx L^3$. Using translational symmetry along the $x$ axis as well as the conservation of winding numbers, we are able to compute any R\'enyi entropy up to machine precision in a time of order $L^{3/2}\times 4^L$.
 The results for a $20\times 20$ torus are summarized in Fig.~\ref{fig:ee_d_torus}, where the two cylinders are of length $\ell_y$ and $L_y-\ell_y$. 
 \begin{figure}[ht]
  \begin{center}
@@ -350,7 +349,7 @@ When one utilizes an effective field-theory action to describe the scaling limit
 \end{equation}
 with $d$ integer 
 are consistent with the compactification  of the boson $h\to h + 2\pi$.
-If such a term is relevant, then the action flows to a configuration where the height $h$ is locked to one if the minimal values $h=h_0$ mod $2\pi$. For dimers on the square lattice, it has long been known that any such term allowed are irrelevant in the bulk; this is why the action (\ref{eq:free_field_bis}) applies and the correlators are algebraically decaying. However, we showed in the preceding subsection \ref{sec:eeshannon} that the probabilities used to compute the Renyi entropy depend on the boundary conditions. Thus the crucial observation of \cite{Stephan2011} (see also \cite{Shannonee}) is that one needs to include terms of the form (\ref{Vdef}) localized at the {\em boundary}.
+If such a term is relevant, then the action flows to a configuration where the height $h$ is locked to one if the minimal values $h=h_0$ mod $2\pi$. For dimers on the square lattice, it has long been known that any such term allowed are irrelevant in the bulk; this is why the action (\ref{eq:free_field_bis}) applies and the correlators are algebraically decaying. However, we showed in the preceding subsection \ref{sec:eeshannon} that the probabilities used to compute the R\'enyi entropy depend on the boundary conditions. Thus the crucial observation of \cite{Stephan2011} (see also \cite{Shannonee}) is that one needs to include terms of the form (\ref{Vdef}) localized at the {\em boundary}.
 
 To be precise, in the continuum limit the probabilities $p_{\sigma,\mu}$ depend now on the configurations of the field $p(\phi)$. The probability of observing field configuration $\phi$ at the boundary is still gaussian
 \begin{equation}
@@ -388,7 +387,7 @@ This result implies that in the scaling limit there is an ``entanglement gap'' b
 The analogous formula still holds if space is a cylinder instead of a a torus, simply by replacing the denominator with the appropriate cylinder partition function. Note that the non-universal bulk parts of the partition functions cancel in this expression, so that one can use the universal partition functions computed in the free-boson conformal field theory. Thus putting (\ref{eq:pmax}) together with (\ref{eq:aftert}) gives (\ref{eq:shape_general}). 
 
 
-For the dimer RVB state, the partition functions on the cylinder can be computed exactly both on the lattice and in the continuum.  The lattice dimer result is detailed in \ref{sec:dimers_exact}. For the free-boson field theory, these partition functions are known explicitly \cite{BigYellowBook};  we will discuss their application to the two-cylinder Renyi entropy in the next section \ref{sec:dimers_entanglement}. In particular, we will show how the even-odd effect is a signature of this locked phase  $n>n_c$, arising from the different boundary conditions necessary for the even and odd sectors.
+For the dimer RVB state, the partition functions on the cylinder can be computed exactly both on the lattice and in the continuum.  The lattice dimer result is detailed in \ref{sec:dimers_exact}. For the free-boson field theory, these partition functions are known explicitly \cite{BigYellowBook};  we will discuss their application to the two-cylinder R\'enyi entropy in the next section \ref{sec:dimers_entanglement}. In particular, we will show how the even-odd effect is a signature of this locked phase  $n>n_c$, arising from the different boundary conditions necessary for the even and odd sectors.
 
 
 It should also be possible to extend these results to the region $n<n_c$, using boundary CFT methods \cite{Shannonee,Oshikawa,Zaletel,Stephan2011}. Here, however, the boundary conditions will presumably not allow the factorization of the probability into pieces coming from the two regions. Oshikawa\cite{Oshikawa} has already treated the $y=1/2$ case for the closely related cylinder geometry, using the replica approach $n\in \mathbb{N}$. There will possibly be subtleties involving analytic continuation in $n$, similar to the two-interval 1d calculation \cite{CCT1,CCT2}.
@@ -397,9 +396,9 @@ It should also be possible to extend these results to the region $n<n_c$, using 
 \section{Entanglement in the dimer RVB state}
 \label{sec:dimers_entanglement}
 
-This section is devoted to the exploration of the consequences of Eq.~(\ref{eq:shape_general}) for the two-cylinder Renyi entropy of the dimer RVB state. We will calculate explicitly the partition functions, and so find results exact in the scaling limit. 
+This section is devoted to the exploration of the consequences of Eq.~(\ref{eq:shape_general}) for the two-cylinder R\'enyi entropy of the dimer RVB state. We will calculate explicitly the partition functions, and so find results exact in the scaling limit. 
 
-The main subtlety in this computation is how to account in the field theory for the distinct results occurring when the cylinders are of even and of odd length, as apparent in the numerical results in fig.\ \ref{fig:ee_d_torus} for the dimer RVB state and those in \cite{Ju2012} for the $SU(2)$ RVB state. The reason this is possible in the field theory is that a fixed/Dirichlet boundary condition is in fact a family of boundary conditions, corresponding to the specific value $h_0$ that the field takes at a boundary. This value can be always be shifted overall, since the bulk action used to compute the partition functions is independent of it. However, on a cylinder, there are two separate boundaries, and what cannot be shifted away is the {\em difference} of the values on the two ends.    
+The main subtlety in this computation is how to account in the field theory for the distinct results occurring when the cylinders are of even and of odd length, as apparent in the numerical results in fig.\ \ref{fig:ee_d_torus} for the dimer RVB state and those in \cite{Ju2012} for the $SU(2)$ RVB state. The reason this is possible in the field theory is that a fixed/Dirichlet boundary condition is in fact a family of boundary conditions, corresponding to the specific value $h_0$ that the field takes at a boundary. This value can be always be shifted overall, since the bulk action used to compute the partition functions is independent of it. However, on a cylinder, there are two separate boundaries, and what cannot be shifted away is the {\em difference} of the values on the two ends\cite{OshikawaAffleck1,OshikawaAffleck2}.    
 The general arguments given above in section (\ref{sec:bpt}) do not specify this difference; it follows rather from the particular microscopic model. For dimers, we showed in section \ref{sec:cg} that 
 \begin{equation}
  \Delta h =2\pi (w+a)\quad,\quad w \in \mathbb{Z},
@@ -576,13 +575,13 @@ We find the same behavior in the $SU(N)$ case, with our results displayed in Fig
 Finally, we turn to the entanglement in the $SU(N)$ RVB case, extending previous numerical results \cite{Ju2012} for $SU(2)$, and providing evidence that Eq.~(\ref{eq:shape_general}) still holds.
 
 %\subsection{Numerical results for $SU(2)$}
-\subsection{Monte Carlo evaluation of the Renyi entropies}
+\subsection{Monte Carlo evaluation of the R\'enyi entropies}
 \label{sec:su2_numerics}
 
 \textcolor{red}{HYEJIN you should check this section over}
 
-In order to calculate the Renyi entropies, the Monte Carlo sampling procedure of Section \ref{sec:numerics} must be modified to incorporate
-a {\it replica trick} procedure, first described in Ref.~\cite{swap}.  Namely, in order to calculate the $n$-th order Renyi entropy Eq.~\ref{RenyiEq}, one measures the expectation value of a $Swap_A$ (or permutation) operator acting between $n$ copies of the system.  For the $SU(N)$ wavefunctions studied here, we restrict ourselves to $n=2$.  
+In order to calculate the R\'enyi entropies, the Monte Carlo sampling procedure of Section \ref{sec:numerics} must be modified to incorporate
+a {\it replica trick} procedure, first described in Ref.~\cite{swap}.  Namely, in order to calculate the $n$-th order R\'enyi entropy Eq.~\ref{RenyiEq}, one measures the expectation value of a $Swap_A$ (or permutation) operator acting between $n$ copies of the system.  For the $SU(N)$ wavefunctions studied here, we restrict ourselves to $n=2$.  
 
 when sampling the 2D RVB wavefunction, one must 
 
@@ -599,10 +598,10 @@ We observe a striking similarity with the dimer data. In particular, a strong ev
 This suggests $S_2$ for the $SU(2)$ RVB state lies in a locked phase, just as its dimer counterpart does. 
 This scenario is also supported by exact diagonalizations on small systems, which show that the biggest eigenvalue of the reduced density matrix is non-degenerate:  $\Delta_{SU(2)}\equiv -\ln (p_1/p_{\rm max}) \approx 2.67$ for a $4\times 4$ torus cut in two halves. (The exact value for dimers is $\Delta_{\rm dimers}=2\ln \pi\simeq 2.29$ in the scaling limit\cite{Stephan2012}) This suggests a large entanglement gap, along with $d_{\rm min}=1$.
 
-Throughout this paper we have emphasized the similarities between the $SU(N)$ and dimer RVB states. These make it plausible that the two-cylinder Renyi entropy entanglement data for the $SU(2)$ RVB state in the scaling limits can be obtained from the free-boson using (\ref{eq:shape_general}). If this is true, this is a much stronger statement than the results for the critical exponent $\alpha$ as a function of $N$ in the previous section. The reason is that even though correlators in the classical dimer model can be obtained by taking the $N\to\infty$ limit of the loop model defined by the $SU(N)$ RVB inner product, the Hilbert space of the two is completely different; the latter being much larger. Thus a dimer crossing the boundary would carry much more entropy. Moreover, the reduced density matrix for $SU(N)$ has blocks with non-zero total spin, while these are by construction forbidden in the quantum dimer model. Thus it is very unlikely that non-universal quantities will be the same in the two cases. 
+Throughout this paper we have emphasized the similarities between the $SU(N)$ and dimer RVB states. These make it plausible that the two-cylinder R\'enyi entropy entanglement data for the $SU(2)$ RVB state in the scaling limits can be obtained from the free-boson using (\ref{eq:shape_general}). If this is true, this is a much stronger statement than the results for the critical exponent $\alpha$ as a function of $N$ in the previous section. The reason is that even though correlators in the classical dimer model can be obtained by taking the $N\to\infty$ limit of the loop model defined by the $SU(N)$ RVB inner product, the Hilbert space of the two is completely different; the latter being much larger. Thus a dimer crossing the boundary would carry much more entropy. Moreover, the reduced density matrix for $SU(N)$ has blocks with non-zero total spin, while these are by construction forbidden in the quantum dimer model. Thus it is very unlikely that non-universal quantities will be the same in the two cases. 
 
 
-However, all our results are consistent with the subleading part of the two-cylinder Renyi entropy being universal. Thus it is possible that that in the scaling limit, this piece still could be given by the conformal field theory result, with the identification of $\kappa$ coming from the correlation length results.
+However, all our results are consistent with the subleading part of the two-cylinder R\'enyi entropy being universal. Thus it is possible that that in the scaling limit, this piece still could be given by the conformal field theory result, with the identification of $\kappa$ coming from the correlation length results.
 The conformal results for general $\alpha=1/\kappa$ without restrictions on the winding numbers are
 \begin{eqnarray}\label{eq:cft_prediction_gen}
  s_n^{\rm (even)}(y,\tau)&=&\frac{n}{1-n}\ln \left(\frac{\alpha}{2}\times\frac{\eta(\tau)^2}{\theta_3(\alpha\tau)\theta_3(\tau/\alpha)}\times\frac{\theta_3(\alpha y \tau)\theta_3(\alpha(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_prediction_gen_odd}
@@ -632,7 +631,7 @@ As is apparent from fig.~\ref{fig:SUN_CFT}(left), the curve for the even branch 
 Unfortunately, we do not know how to derive these results as we did for the dimers. The mapping of Ref.~\cite{Shannonee} to a classical R\'enyi-Shannon entropy is not valid for the $SU(N)$ RVB states: because of the non-orthogonality of different valence-bond configurations, the Schmidt decomposition of the RVB state is much more complicated.  Moreover, a naive extension of the result of \cite{Stephan2011} would then yield a critical value $ n_c=\alpha/2\simeq 0.6$  for $SU(2)$. This would imply an even-odd effect even for the von Neumann entropy, in violation with strong subadditivity\cite{Strongsubadditivity}. The formula $n_c=d_{\rm min }^2/(2\kappa)=d_{\rm min}^2\alpha/2$ therefore cannot hold in general for model which cannot be mapped onto a classical R\'enyi-Shannon entropy\footnote{The fact that it does apply to quantum six vertex states \emph{does not} contradict strong subadditivity, because in this case $d_{\rm min}=2$ and since $\alpha \geq 1$, we have $n_c\geq 1$. Notice that naively applying $n_
 c=d_{\rm min}^2 \alpha/2$ to an RK wave function built out of interacting dimers\cite{Alet_dimers1,Alet_dimers2} would also, just as $SU(N)$ RVB, violate strong subadditivity.}.
 
-Thus while we cannot make a definitive conclusion, our results provide qualitative evidence for Eq.~(\ref{eq:shape_general}) applying to the $SU(2)$ RVB state. They also support the convention of \cite{Ju2012} that the subleading piece of the two-cylinder Renyi entropy is universal.
+Thus while we cannot make a definitive conclusion, our results provide qualitative evidence for Eq.~(\ref{eq:shape_general}) applying to the $SU(2)$ RVB state. They also support the convention of \cite{Ju2012} that the subleading piece of the two-cylinder R\'enyi entropy is universal.
 
 
 The same picture still seems to hold for the $SU(N)$ RVB state. We plot $S_2$ data for $L=16$ and $SU(2,3,4)$ is shown in Fig.~\ref{fig:SUN_shape}. As can be seen, the error bars get bigger and bigger for larger $N$, but we still observe a clear even-odd effect. This strongly suggest that we are still in a locked phase, and that Eq.~(\ref{eq:cft_prediction_gen}) applies in the thermodynamic limit. 
@@ -688,12 +687,6 @@ where $|A\cup B\rangle$ is the ground-state wave function of the whole system. $
 
 \section[\;\;\;\;\;\;\;\;\;\;\;\;\;\;R\'enyi-Shannon entropy on the torus]{R\'enyi-Shannon entropy on the torus}
 \label{sec:lgv}
->>> The definition of the fermions needs a little more explanation???
-% Sites closest to the boundary are called ``boundary sites''.
-%We attach an $\uparrow$ (resp. $\downarrow$) virtual spin to a boundary site occupied by a dimer in $B$ (resp. $A$) and represent it by a black (resp. white) filled circle. Each boundary configuration has probability $p_{\sigma,\mu}$. \emph{Left}: Example of dimer configuration compatible with $|\sigma\rangle=|\!\uparrow\uparrow\downarrow\downarrow\uparrow\uparrow\uparrow\downarrow\rangle$ and $|\mu\rangle=|\!\downarrow\uparrow\downarrow\uparrow\downarrow\downarrow\uparrow\downarrow\rangle$. \emph{Right}: Example of dimer configuration compatible with the most likely boundary configuration $|\sigma\rangle=|\!\uparrow\uparrow\uparrow\uparrow\uparrow\uparrow
-%\uparrow\uparrow\rangle$ and $|\mu\rangle=|\!\downarrow\downarrow\downarrow
-%\downarrow\downarrow\downarrow\downarrow\downarrow\rangle$, where no dimers are crossing the boundary.
-
 We wish to compute the following classical entropy
 \begin{equation}
  S_n=\frac{1}{1-n} \ln \left(\sum_{\sigma,\mu} [p_{\sigma,\mu}]^n\right), 
@@ -702,26 +695,26 @@ for any real $n$. The probabilities $p_{\sigma,\mu}$ we are interested in are gi
 \begin{equation}\label{eq:tm}
  p_{\sigma,\mu}=\frac{Z_{\sigma,\mu}^A Z_{\mu,\sigma}^B}{Z}=\frac{\langle  \sigma|T^{\,\ell_y}|\mu\rangle\langle \mu|T^{\,L_y-\ell_y}|\sigma\rangle}{{\rm Tr}\; T^{L_y}}
 \end{equation}
-$T$ is the transfer matrix of the dimer model, and acts on the vector space generated by dimer occupancies on vertical edges along a horizontal line: $\langle a|T|b\rangle=1$ if configuration $|a\rangle$ and $|b\rangle$ are compatible, $0$ otherwise. The denominator is calculated in \ref{sec:dimers_exact}. Each factor on the numerator of Eq.~(\ref{eq:tm}) can be evaluated by a mapping onto free fermions\cite{Lieb1967,Alet_dimers2,Shannonee}, as explained in Fig.~\ref{fig:freefermions}.  
+$T$ is the transfer matrix of the dimer model, and acts on the vector space generated by dimer occupancies on vertical edges along a horizontal line: $\langle a|T|b\rangle=1$ if configuration $|a\rangle$ and $|b\rangle$ are compatible, $0$ otherwise. The denominator is calculated in \ref{sec:dimers_exact}. Each factor on the numerator of Eq.~(\ref{eq:tm}) can be evaluated using free fermions techniques\cite{Lieb1967,Alet_dimers2,Shannonee}. The mapping goes as follows. Let us first consider a particular configuration with staggered dimers, which we call reference configuration (see fig.~\ref{fig:freefermions} on the left). Superimposing the reference on any other dimer configuration generates a collection of non-intersecting lattice paths, represented by black lines in fig.~\ref{fig:freefermions}(right). There is a one to one correspondence between the dimer configurations and the lattice paths obeying certain rules. 
 \begin{figure}[ht]
 \begin{center}
 \includegraphics{./figures/free_fermions.pdf}
   \end{center}
-  \caption{Illustration of the mapping onto free fermions. \emph{Left:} reference configuration with staggered dimers. \emph{Right:} transition graph generated by superimposing the reference configuration on the actual dimer configuration (in blue). This generates a collection of non-intersecting lattice paths, which can handily be expressed in terms of fermions. }
+  \caption{Illustration of the mapping onto free fermions for open boundary conditions. \emph{Left:} reference configuration with staggered dimers. \emph{Right:} transition graph generated by superimposing the reference configuration on a given dimer configuration (in blue). This generates a collection of $4$ non-intersecting lattice paths going upwards, which may be expressed in terms of fermions (black zigag lines). Here $|\sigma\rangle=|\mu\rangle=c_1^\dag c_3^\dag c_5^\dag c_7^\dag|0\rangle$.}
   \label{fig:freefermions}
   \end{figure}
-A fermion is defined as an even vertical link occupied by a dimer, or an odd vertical empty link. $|\sigma\rangle$ and $|\mu\rangle$ can be rewritten in the antisymmetric fermionic basis
+ To clarify these rules, it is most convenient to reformulate everything in terms of fermions occupancies. Define a fermion as an even vertical link occupied by a reference (blue) dimer only, or an odd vertical link occupied by a real (red) dimer only. These are the black zigzag lines in fig.~\ref{fig:freefermions}. $|\sigma\rangle$ and $|\mu\rangle$ can be rewritten in the antisymmetric fermionic basis
 \begin{eqnarray}
 |\sigma \rangle&=&|x_1,x_2,\ldots,x_N\rangle=c_{x_1}^\dag c_{x_2}^\dag \ldots c_{x_N}^\dag |0\rangle \\
 |\mu \rangle&=&|y_1,y_2,\ldots,y_N\rangle=c_{y_1}^\dag c_{y_2}^\dag \ldots c_{y_N}^\dag |0\rangle
 \end{eqnarray}
 where the $x_i$ and $y_j$ label the ordered positions of the fermions. Introducing of shift of $+1$ lattice spacing from one row to the other, it is easy to check from Fig.~\ref{fig:freefermions} that the transfer matrix satisfies
-\begin{eqnarray}
-T|0\rangle&=&|0\rangle\\
-T c_{2j}^\dag T^{-1}&=&c_{2j}^\dag+c_{2j+1}^\dag +c_{2j+2}^\dag\\
+\begin{eqnarray}\label{eq:tm1}
+T|0\rangle&=&|0\rangle\\\label{eq:tm2}
+T c_{2j}^\dag T^{-1}&=&c_{2j}^\dag+c_{2j+1}^\dag +c_{2j+2}^\dag\\\label{eq:tm3}
 T c_{2j+1}^\dag T^{-1}&=&c_{2j+2}^\dag
 \end{eqnarray}
-Periodic boundary condition implies $c_{L_x}^\dag=(-1)^{N+1}c_0^\dag$. Writing this in matrix form using Einstein's summation convention
+Eqs.~(\ref{eq:tm1},\ref{eq:tm2},\ref{eq:tm3}) conserve the number of fermions, and encode the dimer fully-packed and harcore constraints on the square lattice. To account for periodic boundary conditions  we also have to impose $c_{L_x}^\dag=(-1)^{N+1}c_0^\dag$. Rewriting this in matrix form using Einstein's summation convention
 \begin{equation}
  T c_i^\dag T^{-1}=M_{ij} c_j^\dag,
 \end{equation}
@@ -837,11 +830,18 @@ the $\lambda_k$ are then the eigenvalues of $M$. Using this, the transfer matrix
  T=\prod_k \left(1+[\lambda_k -1]d_k^\dag d_k \right)
 \end{equation}
 Plugging this expression in Eq.~(\ref{eq:Z_tm}) we get\footnote{One can check easily that expanding simultaneously the first two product in Eq.~(\ref{eq:dimers_torus}) generates all the eigenvalues of the transfer matrix in the even fermion sector. The same goes for the last two products and the odd-fermions sector. }
-\begin{eqnarray}\nonumber
- Z(u_x,u_y)&=&\prod_{k\in \Omega_{1}}\left[e^{\pi x /2}+e^{-\pi x/2}\lambda_k^{L_y}\right]+\prod_{k\in \Omega_{1}}\left[e^{\pi x/2}-e^{-\pi x/2}\lambda_k^{L_y}\right]\\\label{eq:dimers_torus}
- &+&\prod_{k\in \Omega_{0}}\left[e^{\pi x /2}+e^{-\pi x/2}\lambda_k^{L_y}\right]-\prod_{k\in \Omega_{0}}\left[e^{\pi x /2}-e^{-\pi x/2}\lambda_k^{L_y}\right]
-\end{eqnarray}
+%\begin{eqnarray}\nonumber
+% 2Z(u_x,u_y)&=&\prod_{k\in \Omega_{1}}\left[e^{\pi x /2}+e^{-\pi x/2}\lambda_k^{L_y}\right]+\prod_{k\in \Omega_{1}}\left[e^{\pi x/2}-e^{-\pi x/2}\lambda_k^{L_y}\right]\\\label{eq:dimers_torus}
+% &+&\prod_{k\in \Omega_{0}}\left[e^{\pi x /2}+e^{-\pi x/2}\lambda_k^{L_y}\right]-\prod_{k\in \Omega_{0}}\left[e^{\pi x /2}-e^{-\pi x/2}\lambda_k^{L_y}\right]
+%\end{eqnarray}
+\begin{equation}\label{eq:dimers_torus}
+ Z(u_x,u_y)=\frac{1}{2}\left(Z_1^{(+)}+Z_1^{(-)}\right)+\frac{1}{2}\left(Z_0^{(+)}-Z_0^{(-)}\right)
+\end{equation}
 with
+\begin{equation}
+ Z_\nu^{(\pm)}=\prod_{k\in \Omega_{\nu}}\left[e^{\pi x /2}\pm e^{-\pi x/2}\lambda_k^{L_y}\right]
+\end{equation}
+and
 \begin{eqnarray}
  \lambda_k&=&\cos k +\sqrt{1+\cos^2 k}\\
 \Omega_{\nu}&=&\left\{\frac{(2m+\nu+i u_y) \pi}{L_x}\quad,\quad m=-L_x/2,\ldots,L_x/2-1\right\} 
@@ -849,11 +849,11 @@ with
 Of course, $Z(u_x=0,u_y=0)$ reduces to the well known torus partition function obtained by Kasteleyn and Fisher. 
 \paragraph{}We now wish to extract the universal CFT partition function $\mathcal{Z}$, i.e the constant term in the asymptotic expansion of $Z$:
 \begin{equation}
- Z(u_x,u_y)\sim A^{L_x L_y} B^{L_x} C^{L_y}\mathcal{Z}(u_x,u_y)
+ Z(u_x,u_y)\sim A^{L_x L_y} B^{L_x} C^{L_y}\mathcal{Z}_{\rm torus}(u_x,u_y)
 \end{equation}
 A possible way to do so would be to combine Euler-Maclaurin expansions and majoration techniques, as has already been done for the honeycomb lattice\cite{Boutillier}. Here we obtain $\mathcal{Z}$ in a more heuristic (and non rigorous) manner, noticing that universal properties have to come from low energy excitation near the Fermi momenta $k_F=\pm \pi/2$. Linearizing $\ln(\lambda_k)$ around the two $k_F$ and extending the products in \ref{eq:dimers_torus} over all integers, allows to go get after a long calculation, very similar to that in \cite{Boutillier}:
 \begin{equation}
- \mathcal{Z}(u_x,u_y)=\frac{\displaystyle{\theta_3(i\pi u_x/2|\tilde{\tau}/2)\,\theta_3(i\pi u_y/2|\tau/2)}}{\displaystyle{(2 \Im{\rm m}\, \tau)^{1/2}\,\eta(\tau)^2}}
+ \mathcal{Z}_{\rm torus}(u_x,u_y)=\frac{\displaystyle{\theta_3(i\pi u_x/2|\tilde{\tau}/2)\,\theta_3(i\pi u_y/2|\tau/2)}}{\displaystyle{(2 \Im{\rm m}\, \tau)^{1/2}\,\eta(\tau)^2}}
 \end{equation}
 where $\tau=i L_y/L_x$ and $\tilde{\tau}=-1/\tau=iL_x/L_y$. 
 \subsection[\;\;\;\;\;\;\;\;\;\;\;\;\;\; Cylinder]{Cylinder}
@@ -863,42 +863,42 @@ The cylinder geometry is slightly simpler than its torus counterpart, because on
  \mu_m&=&\cos \left(\frac{m \pi}{L_y+1}\right)+\sqrt{1+\cos^2\left(\frac{m \pi}{L_y+1}\right)}
 \end{eqnarray}
 Here the Fermi momentum is $k_F=\pi/2$, and the CFT partition function can be accessed using the linearization trick. We, however have to distinguish between the even and odd $L_y$ cases.
-\paragraph{Even case}
+\paragraph{Even case:}
 It is most convenient to rewrite $Z$ as
 \begin{equation}
 Z(u_y)=\prod_{m=1}^{L_y/2} \lambda_m^{L_x}\times \left[\prod_{m=1}^{L_y/2} 1+2\cosh (\pi u_y)\mu_m^{-L_x}+\mu_m^{-2L_x}\right] 
 \end{equation}
 Combining the Euler-Maclaurin formula on the first product, and using the linearization procedure around $m=L_y/2$, we get
 \begin{equation}
- \mathcal{Z}= e^{\frac{\pi L_x}{24 L_y}}\prod_{p=1}^{\infty}\left[1+2 \cosh (\pi u_y)e^{-\frac{\pi L_x}{L_y}(p-1/2)}+e^{-2\frac{\pi L_x}{L_y}(p-1/2)}\right]
+ \mathcal{Z}_{\rm cyl}= e^{\frac{\pi L_x}{24 L_y}}\prod_{p=1}^{\infty}\left[1+2 \cosh (\pi u_y)e^{-\frac{\pi L_x}{L_y}(p-1/2)}+e^{-2\frac{\pi L_x}{L_y}(p-1/2)}\right]
 \end{equation}
 which gives, using the infinite product representation of the Jacobi Theta function,
 \begin{equation}
- \mathcal{Z}=\frac{\theta_3(i \pi u_y/2|\tilde{\tau}/2)}{\eta(\tilde{\tau}/2)}
+ \mathcal{Z}_{\rm cyl}=\frac{\theta_3(i \pi u_y/2|\tilde{\tau}/2)}{\eta(\tilde{\tau}/2)}
 \end{equation}
 We recover the CFT result (\ref{eq:cylinder_dd}), upon setting $u_y=0$ and performing a modular transformation. 
-\paragraph{Odd case}
+\paragraph{Odd case:}
 We use the same method, but care must be taken because of the presence of a zero-mode for $m=(L_y+1)/2$ We have
 \begin{equation}
 Z(u_y)=2\cosh(\pi u_y/2)\prod_{m=1}^{(L_y-1)/2} \lambda_m^{L_x}\times \left[\prod_{m=1}^{(L_y-1)/2} 1+2\cosh (\pi u_y)\mu_m^{L_x}+\mu_m^{2L_x}\right] 
 \end{equation}
 which yields after linearization
 \begin{equation}
- \mathcal{Z}= 2 e^{-\frac{\pi L_x}{12 L_y}}\cosh(\pi u_y/2)\prod_{p=1}^{\infty}\left[1+2 \cosh (\pi u_y)e^{-\frac{\pi L_x}{L_y}p}+e^{-2\frac{\pi L_x}{L_y}p}\right]
+ \mathcal{Z}_{\rm cyl}= 2 e^{-\frac{\pi L_x}{12 L_y}}\cosh(\pi u_y/2)\prod_{p=1}^{\infty}\left[1+2 \cosh (\pi u_y)e^{-\frac{\pi L_x}{L_y}p}+e^{-2\frac{\pi L_x}{L_y}p}\right]
 \end{equation}
 In the end we obtain:
 \begin{equation}
- \mathcal{Z}=\frac{\theta_2(i \pi u_y/2|\tilde{\tau}/2)}{\eta(\tilde{\tau}/2)}
+ \mathcal{Z}_{\rm cyl}=\frac{\theta_2(i \pi u_y/2|\tilde{\tau}/2)}{\eta(\tilde{\tau}/2)}
 \end{equation}
 and once again recover the CFT result (\ref{eq:cylinder_ddprime}) after setting $u_y=0$ and modular transformation. 
 \subsection[\;\;\;\;\;\;\;\;\;\;\;\;\;\; Zero-winding sectors]{Zero-winding sectors}
 With the winding generating function at hand, the calculation of $s_n(y,\tau)$ in the $W=(0,0)$ winding sector becomes straightforward. For example we have (recall $\tau=iL_y/L_x$ and $\tilde{\tau}=-1/\tau$)
-\begin{eqnarray}\label{eq:nullwinding1}
+\begin{eqnarray}\label{eq:nullwinding1}\fl
 \underbrace{\mathcal{Z}_{\rm cyl}^{DD^\prime}(y\tau)\mathcal{Z}_{\rm cyl}^{DD^\prime}((1-y)\tau)}_{W=(0,0)}&=&\frac{1}{\eta(\frac{\tilde{\tau}}{2y})\eta(\frac{\tilde{\tau}}{2(1-y)})} 
 \underbrace{\theta_2\left(\frac{i \pi u_y}{2}\right.\left|\frac{\tilde{\tau}}{2y}\right)\theta_2\left(\frac{i \pi u_y}{2}\right.\left|\frac{\tilde{\tau}}{2(1-y)}\right)}_{W=(0,0)}\\\label{eq:nullwinding2}
-&=&\frac{\theta_2\Big(0\left|\frac{\tilde{\tau}}{2y(1-y)}\right)}{\eta(\frac{\tilde{\tau}}{2y})\eta(\frac{\tilde{\tau}}{2(1-y)})}
+\fl&=&\frac{\theta_2\Big(0\left|\frac{\tilde{\tau}}{2y(1-y)}\right)}{\eta(\frac{\tilde{\tau}}{2y})\eta(\frac{\tilde{\tau}}{2(1-y)})}
 \end{eqnarray}
-Eq.~(\ref{eq:nullwinding2}) follows from Eq.~(\ref{eq:nullwinding1}) by selecting the term in $(u_y)^0$ in the product of theta functions. This allows to recover Eq.~(\ref{eq:cft_w0_gen}) and Eq.~(\ref{eq:cft_w0_gen2}) after once again a modular transformation. 
+This allows to recover Eq.~(\ref{eq:cft_w0_gen}) and Eq.~(\ref{eq:cft_w0_gen2}) after once again performing a modular transformation. 
  \section*{References}
 \bibliography{rvb4_bib.bib}{}
 \bibliographystyle{unsrt}
