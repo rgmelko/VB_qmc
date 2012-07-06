@@ -94,7 +94,7 @@ of the synergistic use of designer Hamiltonians, and then outline the topics cov
 \caption{(Color online) Ground states of quantum spins on the square lattice. The left panel shows an antiferromagnetically ordered (N\'eel) state, which is
 a direct generalization of a classical state (with quantum fluctuations added to a fully ordered state). The middle and right panels illustrate manifestly
 non-classical states with no magnetic order. These states have a natural description in terms of singlets (the ovals). In a spin liquid (middle), the singlets
-fluctuate and there are no broken symmetries, while in the valence-bond-solid there are residual interactions between the singlets, leading to crystalline
+fluctuate and there are no broken symmetries, while in the VBS there are residual interactions between the singlets, leading to crystalline
 order.}
 \label{rfig}
 \end{figure}
@@ -116,7 +116,7 @@ expansions are feasible in practice---or worse still, the expansion may not conv
 One example of the above approach of deriving effective field theories from microscopic Hamiltonians by a limiting expansion is the $(d+1)$-dimensional
 nonlinear $\sigma$-model description of interacting quantum spins in $d$ dimensions, which was derived by Haldane in 
 the semi-classical limit of large spin $S$ \cite{Haldane83,Chakravarty89,Auerbach94}.  Another example---central to this review article---is the 
-non-compact CP$^{N-1}$ description of the intriguing  N\'eel to valence-bond solid (VBS) ``deconfined'' quantum-critical point in 2D 
+non-compact CP$^{N-1}$ description of the intriguing  N\'eel to VBS ``deconfined'' quantum-critical point in 2D 
 SU($N$) quantum magnets, which can be justified in the large-$N$ limit \cite{Senthil04a,Sachdev08}. Whether or not the theory remains correct down to 
 small $N$, in particular $N=2$, remains a challenging question.
 
@@ -240,7 +240,7 @@ evolution operator $P(\beta)={\rm e}^{-\beta H}$ or a high power of the Hamilton
 convergence for the two choices of projectors for a given system size $N$. This follows from a Taylor expansion of the time evolution operator, which for large 
 $\beta$ is dominated by powers of the order $n=\beta |E_0|$, where $E_0$ is the ground state energy.
 
-\subsection{Path integrals and stochastic series expansions}
+\subsection{Path integrals and stochastic series expansion}
 
 The task is now to rewrite $Z$ in Eqs.~(\ref{za1}) or (\ref{za2}) in the form (\ref{eq:wc}), and expectation values as Eq.~(\ref{expvalue}), with classical variables 
 without diagonalizing $H$. In practice, $T=0$ and $T>0$ schemes for a given model are often very similar. In both cases, the exponential 
@@ -310,7 +310,7 @@ P_{ij}=\hbox{$\frac{1}{4}$}-{\bf S}_i\cdot {\bf S}_j = |s_{ij}\rangle\langle s_{
 \end{equation}
 where $s_{ij}$ denotes the singlet state of spins $i$ and $j$. A power of the Hamiltonian $H^m$, for fixed $m$ or in a series expansion, Eq.~(\ref{series}),
 is expanded into all possible products of these projectors, which act on the ket trial state in (\ref{za2}). In early versions of this scheme, the resulting 
-paths of valence bond states were sampled directly \cite{Liang90,Santoro99,Sandvik05}, while in more recent formulations the diagonal and off-diagonal parts of the 
+paths of valence-bond states were sampled directly \cite{Liang90,Santoro99,Sandvik05}, while in more recent formulations the diagonal and off-diagonal parts of the 
 projectors are also sampled, along with spin configurations compatible with the valence-bond configurations of the trial state (which are also sampled) 
 \cite{Sandvik10a}. An example of a configuration in such a simulation is shown in Fig.~\ref{loops}. This configuration space is amenable to the very efficient 
 loop updates discussed above \cite{Sandvik10a}. Apart from the boundary conditions in the ``propagation'' direction (and the associated sampling of the
@@ -423,7 +423,6 @@ entropy (for example) is given by the  mid-point evaluation of a SWAP$_A$ operat
 where the expectation value is calculated at the mid-point of the configuration, and expressed using the loops of the transition graph  $\mathcal{L}$ formed when 
 superimposing the projected bra and ket states; Eq.~(\ref{vboverlap}).  Namely,
 \begin{equation}
-%\langle {\rm SWAP}_A \rangle = 2^{N_{\rm swap} - N_\circ } ,
 \frac{\langle V_l| {\rm SWAP}_A | V_r\rangle}{\langle V_l| V_r\rangle} = 2^{N_{\rm swap} - N_\circ } ,
 \end{equation} 
 where $N_{\rm swap}$ is the number of transition-graph loops of the swapped configuration, while $N_\circ$ is for the configuration before the swap 
@@ -1073,7 +1072,6 @@ discussed here in Sec.~\ref{topoEEsec}.
 The finite-temperature structure of the topological entanglement entropy identifies that both a $Z_2$ charge (a spinon) and a $Z_2$ flux (a vison) are realized as excitations in this model \cite{TopoEE}.
 This raises the possibility that, with a suitable ``binding'' potential \cite{FermionBind} coupling these two, an extension of 
 the model with an emergent fermionic excitation might be created \cite{Wenbook}.  
-%Future QMC simulations will be required to address question of whether fermions can be observed emerging as collective excitations of a purely bosonic designer Hamiltonian without the sign problem.
 The ability for QMC to measure the entanglement entropy in a state with an emergent fermion
 could also have wide implications for the purported application of tensor network algorithms as a ``solution'' to the sign problem, 
 if such a state were found to violate the boundary law, Eq.~(\ref{arealaw}). 
