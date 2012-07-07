@@ -82,13 +82,13 @@ This effect, whereby a R\'enyi entropies may exhibit qualitatively different beh
 
 It is possible to interpolate between the $SU(2)$-invariant RVB state and the quantum dimer state by considering $SU(N)$-invariant generalizations of the former; many aspects of the quantum dimer state then can be extracted from the $N\to\infty$ limit. Such a correspondence can be pushed further: Ref.~\cite{Damle} defined a cluster expansion of the RVB ``loop gas''\cite{Sutherland_loops} in terms of interacting dimers in the large $N$ limit. One recovers to first non-trivial order the interacting generalization of the quantum dimer model studied in  \cite{Alet_dimers1,Alet_dimers2}. Most strikingly, the critical exponent $\alpha$ extrapolated to $N=2$ turned out to be in good agreement with the previous numerical studies \cite{RVB1,RVB2}.
 
-Whereas one cannot do exact computations directly in these models outside of the dimer case, the field theory computation can be extended to a full line of critical points by varying the stiffness of the classical boson. This line of critical points likely describes the scaling limit of the interacting quantum dimer model\cite{Alet_dimers1,Alet_dimers2,Damle}.  We expect that the $SU(N)$ version studied here also will have the same universal behavior, and by comparing our quantum Monte Carlo results to the expansion developed in \cite{Damle}, we provide strong evidence that that the scaling limit of the $N=2,3,4,5$ theories indeed are points on this line. Moreover, we provide consistency checks that the two-cylinder entanglement entropy also behaves universally for $N=2,3,4$. Our results therefore strongly imply that at least the gapless part of the square-lattice RVB state behaves qualitatively similar to the quantum dimer model; there is no phase transition as $N$ is varied.
+Whereas one cannot do exact computations directly in these models outside of the dimer case, the field theory computation can be extended to a full line of critical points by varying the stiffness of the classical boson. This line of critical points likely describes the scaling limit of the interacting quantum dimer model\cite{Alet_dimers1,Alet_dimers2,Damle}.  We expect that the $SU(N)$ version studied here also will have the same universal behavior, and by comparing our quantum Monte Carlo results to the expansion developed in \cite{Damle}, we provide strong evidence that the scaling limit of the $N=2,3,4,5$ theories indeed are points on this line. Moreover, we provide consistency checks that the two-cylinder entanglement entropy also behaves universally for $N=2,3,4$. Our results therefore strongly imply that at least the gapless part of the square-lattice RVB state behaves qualitatively similar to the quantum dimer model; there is no phase transition as $N$ is varied.
 
 
 The paper is organized as follows:
 In sec.\ \ref{sec:RVB}, we review the definition and important properties of the RVB states. Sec.~\ref{sec:shape_general} stresses our general result for the R\'enyi entanglement entropy of many critical Rokhsar-Kivelson type states including the quantum dimer state;  for $n>n_c$ the R\'enyi entropy is given by a simple ratio of 2d classical partition functions.   Sec.~\ref{sec:dimers_entanglement} explores the consequences of this result in the simplest case of the square lattice quantum dimer state. We also discuss the emergence of a strong even-odd effect, similar to that first observed in \cite{Ju2012}. We then turn our attention in Sec.~\ref{sec:correlations} to the RVB $SU(N)$ state.  By quantum Monte Carlo simulations, we show that while the spin-spin correlations decay exponentially, the dimer-dimer correlations are critical. The exponent approaches the dimer exponent ($\alpha_D=2$) as $N$ increases, and agrees well with a previous large $N$ computation \cite{Damle} and earlier numerical results at 
 $N=2$ \cite{RVB1,RVB2}. We also present further evidence of the underlying Coulomb-gas structure for all $N$.
-Finally, Sec.~\ref{sec:rvb_entanglement} presents numerical simulations of entanglement for the $SU(N)$ RVB wave function, and tries to provide physical intuition, as well as a field-theoretical description of the results. In particular, we find striking similarities with the QDM behavior, and therefore strong evidence of universal behavior, in agreement with our main result of Sec.~\ref{sec:shape_general}. 
+Finally, sec.~\ref{sec:rvb_entanglement} presents numerical simulations of entanglement for the $SU(N)$ RVB wave function, and tries to provide physical intuition, as well as a field-theoretical description of the results. In particular, we find striking similarities with the QDM behavior, and therefore strong evidence of universal behavior, in agreement with our main result of Sec.~\ref{sec:shape_general}. 
 
 
 %\textcolor{blue}{
@@ -117,7 +117,7 @@ In this section we introduce and review some of the known properties of these st
 \end{equation}
 where
 \begin{equation}
- |V_{\cal C} \rangle = \frac{1}{2^{{\cal N}/4}} \prod_{i=1}^{{\cal N}/2} \big( | \uparrow_i \downarrow_{j_{i}} \rangle  - | \downarrow_i \uparrow_{j_i} \rangle  \big)
+ |V_{\cal C} \rangle = \frac{1}{2^{{\cal N}/4}} \prod_{i=1}^{{\cal N}/2} \big( | \!\uparrow_i \downarrow_{j_{i}} \rangle  - | \!\downarrow_i \uparrow_{j_i} \rangle  \big)
 \label{RVBdef2}
 \end{equation}
 so each spin $i$ on one sublattice is in a singlet with one of its nearest neighbors $j_i$ on the other sublattice. A valence bond between neighbors $i$ and $j$ can be labeled by a dimer on this link between $i$ and $j$, and so each valence-bond state can be viewed as a dimer configuration ${\cal C}$ with exactly one dimer touching each site. Our computations probe a state directly and so do not require a Hamiltonian. However, it is worth noting that this $SU(2)$ RVB state is the exact ground state of a quantum spin Hamiltonian with local interactions \cite{Cano}.
@@ -125,7 +125,7 @@ so each spin $i$ on one sublattice is in a singlet with one of its nearest neigh
 This RVB state breaks no symmetry, and so it is a natural candidate for a state exhibiting spin-liquid behavior.  For example, if the two-dimensional square lattice is periodic and has an even number of sites in both directions (i.e.\ is a torus), there is a winding number for each direction. These are defined simply by counting the dimers around a closed path going straight around a cycle, weighting each dimer by $+1$ for an even number of steps along the path, $-1$ for an odd number of steps, with no contribution from empty links. An RVB state can be defined for each value of the winding numbers, and 
 each will be the ground state of any local Hamiltonian. The number of ground states will then depend on the number of non-trivial cycles, a basic characteristic of topological order. 
 
-For the square lattice, extensive numerical analysis indicates that dimer-dimer correlators in the RVB state decay algebraically \cite{RVB1,RVB2}. A theorem of Hastings guarantees that when any local operators have an algebraically decaying correlator, any local Hamiltonian with this as a ground state must be gapless \cite{Hastings_thm}. Thus the square-lattice RVB state could only describe a gapless system. However, it has long been known, both from numerics and strong analytic arguments, that spin-spin correlators are exponentially decaying \cite{LDA}. Coupled with the fact that no local order parameter has been found \cite{RVB1,RVB2}, it seems very possible that there is a spin gap, and that the state is effectively behaves as a spin liquid. In this paper we do not address this question directly. Instead we focus on the gapless behavior of nearest-neighbor RVB states on the square lattice.
+For the square lattice, extensive numerical analysis indicates that dimer-dimer correlators in the RVB state decay algebraically \cite{RVB1,RVB2}. A theorem of Hastings guarantees that when any local operators have an algebraically decaying correlator, any local Hamiltonian with this as a ground state must be gapless \cite{Hastings_thm}. Thus the square-lattice RVB state could only describe a gapless system. However, it has long been known, both from numerics and strong analytic arguments, that spin-spin correlators are exponentially decaying \cite{LDA}. Coupled with the fact that no local order parameter has been found \cite{RVB1,RVB2}, it seems very possible that there is a spin gap, and that the state effectively behaves as a spin liquid. In this paper we do not address this question directly. Instead we focus on the gapless behavior of nearest-neighbor RVB states on the square lattice.
 
 \subsection{The dimer RVB state}
 
@@ -144,12 +144,12 @@ One very convenient feature of the dimer RVB state is that any correlator diagon
 \langle \Psi_D| \Psi_D\rangle = \sum_{\cal C} \ 1\ ,
 \end{equation}
 which behaves asymptotically as $\sim (1.79162\ldots)^{\cal N}$ \cite{Kasteleyn}.
- A classic result of classical statistical mechanics is that any correlator in the classical dimer model on any planar lattice can be expressed as a Pfaffian \cite{Kasteleyn,Fisher}). This is equivalent to saying that model can be rewritten in terms of free fermions \cite{Samuel}. For the dimer-dimer correlation function, the asymptotic behavior can be easily be obtained using this expression. For the square lattice long ago this was shown to be algebraically decaying \cite{FisherStephenson}:
+ A classic result of classical statistical mechanics is that any correlator in the classical dimer model on any planar lattice can be expressed as a Pfaffian \cite{Kasteleyn,Fisher}. This is equivalent to saying that model can be rewritten in terms of free fermions \cite{Samuel}. For the dimer-dimer correlation function, the asymptotic behavior can easily be obtained using this expression. For the square lattice long ago this was shown to be algebraically decaying \cite{FisherStephenson}:
 \begin{equation}
   C_{dd}(\mathbf{r}_1,\mathbf{r}_2) \sim \left|\mathbf{r}_1-\mathbf{r}_2\right |^{-\alpha} \ .
  \label{dimerdimer}
  \end{equation}
-When $\mathbf{r}_1$ and $\mathbf{r}_2$ are an odd distance apart (i.e. any path along the links of the lattice has an odd number of steps), the exponent $\alpha=2$\,\cite{FisherStephenson}. In fermionic language, the dimer creation operator is a fermion bilinear, and so is of dimension 1. 
+When $\mathbf{r}_1$ and $\mathbf{r}_2$ are an odd distance apart (i.e. any path along the links of the lattice has an odd number of steps), the exponent is $\alpha=2$\,\cite{FisherStephenson}. In fermionic language, the dimer creation operator is a fermion bilinear, and so is of dimension 1. 
 Note that algebraic decay occurs only for bipartite lattices; for non-bipartite lattices, they are exponentially decaying, a fact crucial in showing that the triangular-lattice quantum dimer model is in a gapped RVB phase, i.e.\ has topological order \cite{Moessner}.
 
 It is also possible to generalize this construction, with ``enforced'' orthogonality (\ref{eq:ortho}), to other models. For example starting from a classical six-vertex model, we get a quantum six-vertex wave function\cite{QuantumLifshitz}. This wave function also has algebraically decaying correlations, with a continuously varying exponent $\alpha$ as a function of the vertex weights on its critical line. The classical model, although in general more complicated than the dimer model, is nevertheless integrable. It is also constructed with a similar set of constraints, the fully-packed and hardcore constraints being replaced by the ice rule. As we shall see, all the analytical results we will obtain for the entropy of quantum dimers can be straightforwardly generalized to the quantum six-vertex case.
@@ -160,7 +160,7 @@ In the RVB state (\ref{RVBdef1},\ref{RVBdef2}), the inner product is the usual o
 \langle V_{\cal C} | V_{{\cal C}^\prime} \rangle = 2^{n_l - {\cal N}/2}\ ,
 \label{RVBinner}
 \end{equation}
-where $n_l$ being the number of loops in the transition graph.
+$n_l$ being the number of loops in the transition graph.
 Despite this overlap between dimer configurations making analytic computations much more difficult, its presence is convenient in the algorithm used for computing the second R\'enyi entropy using quantum Monte Carlo simulations \cite{swap},
 \textcolor{red}{
 since ``swapped'' basis configurations (described in Section~\ref{sec:numerics}) will always contribute a non-zero expectation value, even with a naive QMC updating algorithm.
@@ -169,11 +169,11 @@ since ``swapped'' basis configurations (described in Section~\ref{sec:numerics})
 Despite this important difference between the dimer and $SU(2)$ RVB states, their obvious similarity makes it plausible that the dimer-dimer correlator will behave similarly in the two cases. Further evidence for this fact is that rewritten in loop language, the spin-spin correlator corresponds to the probability that the two spins are on the same loop. This decays exponentially because classical loop models with weight per loop greater than 2 have exponentially decaying correlators \cite{Nienhuis} (the partition function is dominated by configurations with many short loops), and the inner product (\ref{RVBinner}) amounts to a weight per loop of 4 \cite{LDA}. Thus correlators in the $SU(2)$ RVB state are dominated by short-loop configurations, i.e.\ the dimers. Whereas the presence of longer loops can renormalize the exponent $\alpha$, it seems very likely that dimer-dimer correlators in the RVB state will decay algebraically like they do for the dimer RVB state.
  
 This expectation was convincingly confirmed numerically \cite{RVB1,RVB2}. The dimer-dimer correlator for dimers an even distance apart was found to be of the form (\ref{dimerdimer}) with
-exponent close to $\alpha \approx 1.2$. This is an even weaker falloff than in the dimer RVB state, so the presence of the loops in the $SU(2)$ RVB state only makes this correlator longer-ranged. By the theorem of \cite{Hastings_thm}, algebraic decay of local operators in a two-dimensional ground state requires that any local Hamiltonian with this ground state be gapless. Thus not only is the quantum dimer model with RK Hamiltonian gapless,  the spin Hamiltonian of Ref.~\cite{Cano}, whose exact ground state is the $SU(2)$ RVB state, must be as well.
+exponent close to $\alpha \approx 1.2$. This is an even weaker falloff than in the dimer RVB state, so the presence of the loops in the $SU(2)$ RVB state only makes this correlator longer-ranged. By the theorem of \cite{Hastings_thm}, algebraic decay of local operators in a two-dimensional ground state requires that any local Hamiltonian with this ground state be gapless. Thus not only is the quantum dimer model with RK Hamiltonian gapless,  the spin Hamiltonian of Ref.~\cite{Cano}, whose exact ground state is the $SU(2)$ RVB state, must be as well. \textcolor{blue}{[JM: is it so sure? cf end of 2.1]}
 
 \subsection{The $SU(N)$ RVB state}
 
-Iit is possible to interpolate between the dimer and $SU(2)$  RVB states, either by dressing the lattice itself \cite{RMS}, or by modifying the $SU(2)$ symmetry to $SU(N)$. In the $SU(N)$ RVB state, the ``spins'' have $N=2S+1$ components, and an $SU(N)$ singlet between sites $i$ and $j$ is given by
+It is possible to interpolate between the dimer and $SU(2)$  RVB states, either by dressing the lattice itself \cite{RMS}, or by modifying the $SU(2)$ symmetry to $SU(N)$. In the $SU(N)$ RVB state, the ``spins'' have $N=2S+1$ components, and an $SU(N)$ singlet between sites $i$ and $j$ is given by
 \begin{equation}
 \label{eq:rvb}
   [i,j]=\frac{1}{\sqrt{2S+1}}\sum_{m\in \{-S,-S+1,\ldots,S\}}^{}(-1)^{m-S}\,|m\rangle_i \otimes |-m\rangle_j\ .
@@ -210,7 +210,7 @@ Given the changing exponents, the $SU(N)$ RVB states are obviously not identical
 \subsection{The Coulomb-gas approach to classical dimers}
 \label{sec:cg}
 
-A well established and very useful fact about the classical dimer model is that long-distance properties of the dimers are described by a free bosonic field theory, or Coulomb gas. This can be seen either by taking the continuum limit of the sermonic description and then bosonizing the fermions, or by rewriting the dimers in terms of a discrete ``height'' degree of freedom \cite{Heights_1,Heights_2,Henley}. We follow the latter approach, because a careful treatment of the boundary conditions is necessary to obtain our results for the two-cylinder R\'enyi entropy. Before going any further, we also note that the same Coulomb-Gas techniques can be used on the six-vertex model. We will however explain this approach only on the dimer model. 
+A well established and very useful fact about the classical dimer model is that long-distance properties of the dimers are described by a free bosonic field theory, or Coulomb gas. This can be seen either by taking the continuum limit of the fermonic description and then bosonizing the fermions, or by rewriting the dimers in terms of a discrete ``height'' degree of freedom \cite{Heights_1,Heights_2,Henley}. We follow the latter approach, because a careful treatment of the boundary conditions is necessary to obtain our results for the two-cylinder R\'enyi entropy. Before going any further, we also note that the same Coulomb-Gas techniques can be used on the six-vertex model. We will however explain this approach only on the dimer model. 
 
 The first step in the mapping of classical dimer on to the free boson Coulomb gas is to associate an integer with each face of the lattice, as illustrated in fig.~\ref{fig:height_shift}.
 \begin{figure}[ht]
@@ -278,9 +278,9 @@ Below we detail the precise definition of the CFT partition functions, but the i
 \subsection{Entanglement entropy as a Shannon entropy}
 \label{sec:eeshannon}
 
-We will now detail how to derive Eq.~(\ref{eq:shape_general}), in the simplest case of quantum dimers on the square lattice. This requires a slight generalization of two ingredients: the mapping to a classical Shannon entropy of Ref.~\cite{Shannonee} (see Sec.~\ref{sec:eeshannon}) and the boundary phase transition argument of Ref.~\cite{Stephan2011} (see Sec.~\ref{sec:bpt}). Although this derivation does not apply to the $SU(N)$ RVB case, we will later explain why we think Eq.~(\ref{eq:shape_general}) should still apply.
+We will now detail how to derive Eq.~(\ref{eq:shape_general}), in the simplest case of quantum dimers on the square lattice. This requires a slight generalization of two ingredients: the mapping to a classical Shannon entropy of Ref.~\cite{Shannonee} (see also \cite{FurukawaMisguich}) and the boundary phase transition argument of Ref.~\cite{Stephan2011} (see Sec.~\ref{sec:bpt}). Although this derivation does not apply to the $SU(N)$ RVB case, we will later explain why we think Eq.~(\ref{eq:shape_general}) should still apply.
 
-The orthogonality of the different dimer configurations in the dimer RVB state allows for huge technical simplifications. As was shown in Ref.~\cite{Shannonee}, the entanglement entropy can be expressed as a classical Shannon entropy. We give here only a brief summary of the results, and refer to \cite{Shannonee} for the details.
+The orthogonality of the different dimer configurations in the dimer RVB state allows for huge technical simplifications. As was shown in Ref.~\cite{Shannonee}, the entanglement entropy can be expressed as a classical Shannon entropy. We give here only a brief summary of the results, and refer to \cite{Shannonee} for more details.
 
 Let us cut our torus in two subsystems $A$ and $B$, as is shown for example in Fig.~\ref{fig:bipartition}. We label the dimer configurations along the boundaries as $|\sigma\rangle$ and $|\mu\rangle$.
 \begin{figure}[ht]
@@ -298,12 +298,12 @@ where the $p_{\sigma,\mu}$ are the probabilities of a given boundary configurati
 \label{sec:lg.}
 The $\psm$ are precisely the eigenvalues of the reduced density matrix. Said differently, the Schmidt decomposition of the ground state reads
 \begin{equation}\label{eq:schmidt}
-|\psi\rangle=\sum_{
+|\Psi_D\rangle=\sum_{
 \sigma,\mu} \sqrt{p_{\sigma,\mu}}|\psi_{\sigma,\mu}^A\rangle |\psi_{\sigma,\mu}^B\rangle,
 \end{equation}
 where $|\psi_{\sigma,\mu}^A\rangle$ is a superposition of all dimer states in $A$ compatible with the boundary conditions $\sigma$ and $\mu$, and the same goes for $B$. All these vectors are mutually orthogonal
 \begin{equation}\label{eq:schmidt_orthogonality}
-\langle \psi_{\sigma,\mu}^\Omega|\psi_{\sigma^\prime,\mu^\prime}^{\Omega^\prime}\rangle=\delta_{\sigma \sigma^\prime}\delta_{\mu \mu^\prime}\delta_{\Omega \Omega^\prime} \ 
+\langle \psi_{\sigma,\mu}^\Omega|\psi_{\sigma^\prime,\mu^\prime}^{\Omega^\prime}\rangle=\delta_{\sigma \sigma^\prime}\delta_{\mu \mu^\prime}\delta_{\Omega \Omega^\prime}.
 \end{equation}
 This mapping therefore allows the R\'enyi entanglement entropy to be rewritten as
 \begin{equation}
@@ -324,7 +324,7 @@ At this stage it is important to emphasize the main reasons why such a remarkabl
 \end{enumerate}
 Quantum dimers obviously satisfy both these requirements. The same goes for the quantum six-vertex state, (ii) being guaranteed by the ice rule. The $SU(N)$ RVB wave functions satisfies (ii) but not (i) (see (\ref{eq:nonortho})). As an example of Coulomb-gas wave functions that satisfy (i) but not (ii), one can consider the quantum dimer wave function built out of the interacting dimer studied in \cite{Alet_dimers1,Alet_dimers2}. 
 
-Returning to the dimer RVB state, these expressions make it possible to use the computer to find very accurate values for the R\'enyi entropy. Using free-fermion/Pfaffian techniques described in \ref{sec:lgv}, each probability can be expressed as a product of determinants of two matrices of size $\sim L/2$, and computed numerically in a time of order $\approx L^3$. Using translational symmetry along the $x$ axis as well as the conservation of winding numbers, we are able to compute any R\'enyi entropy up to machine precision in a time of order $L^{3/2}\times 4^L$.
+Returning to the dimer RVB state, these expressions make it possible to use the computer to find very accurate values for the R\'enyi entropy. Using free fermion techniques described in \ref{sec:lgv}, each probability can be expressed as a product of determinants of two matrices of size $\sim L/2$, and computed numerically in a time of order $\approx L^3$. Using translational symmetry along the $x$ axis as well as the conservation of winding numbers, we are able to compute any R\'enyi entropy up to machine precision in a time of order $L^{3/2}\times 4^L$.
 The results for a $20\times 20$ torus are summarized in Fig.~\ref{fig:ee_d_torus}, where the two cylinders are of length $\ell_y$ and $L_y-\ell_y$. 
 \begin{figure}[ht]
  \begin{center}
@@ -333,7 +333,7 @@ The results for a $20\times 20$ torus are summarized in Fig.~\ref{fig:ee_d_torus
 \caption{Two-cylinder R\'enyi entanglement entropies $S_{1/2}$, $S_1$, $S_2$ and $S_5$ for the dimer RVB state on the square lattice in the torus geometry. Here $L_x=L_y=20$.}
 \label{fig:ee_d_torus}
 \end{figure}
-The figure makes it obvious that the Reyni entropy exhibits strikingly different behavior for different values of $n$. In the ``replica'' phase $n \leq 1$, the curves are relatively flat. In the thermodynamic limit we expect them to go to universal functions, which in principle may be computed within boundary CFT, although we will not study this phase here. For $n$ large enough, we observe a striking even-odd effect like that observed for the $SU(2)$ RVB state in \cite{Ju2012}. We explain the origin of this transition in dimer RVB state in the next subsection.
+The figure makes it obvious that the R\'enyi entropy exhibits strikingly different behavior for different values of $n$. In the ``replica'' phase $n \leq 1$, the curves are relatively flat. In the thermodynamic limit we expect them to go to universal functions, which in principle may be computed within boundary CFT, although we will not study this phase here. For $n$ large enough, we observe a striking even-odd effect like that observed for the $SU(2)$ RVB state in \cite{Ju2012}. We explain the origin of this transition in dimer RVB state in the next subsection.
 
 
 
@@ -349,7 +349,7 @@ When one utilizes an effective field-theory action to describe the scaling limit
 \end{equation}
 with $d$ integer 
 are consistent with the compactification  of the boson $h\to h + 2\pi$.
-If such a term is relevant, then the action flows to a configuration where the height $h$ is locked to one if the minimal values $h=h_0$ mod $2\pi$. For dimers on the square lattice, it has long been known that any such term allowed are irrelevant in the bulk; this is why the action (\ref{eq:free_field_bis}) applies and the correlators are algebraically decaying. However, we showed in the preceding subsection \ref{sec:eeshannon} that the probabilities used to compute the R\'enyi entropy depend on the boundary conditions. Thus the crucial observation of \cite{Stephan2011} (see also \cite{Shannonee}) is that one needs to include terms of the form (\ref{Vdef}) localized at the {\em boundary}.
+If such a term is relevant, then the action flows to a configuration where the height $h$ is locked to one of the minimal values $h=h_0$ mod $2\pi/d$. For dimers on the square lattice, it has long been known that any such term allowed are irrelevant in the bulk; this is why the action (\ref{eq:free_field_bis}) applies and the correlators are algebraically decaying. However, we showed in the preceding subsection \ref{sec:eeshannon} that the probabilities used to compute the R\'enyi entropy depend on the boundary conditions. Thus the crucial observation of \cite{Stephan2011} (see also \cite{Shannonee}) is that one needs to include terms of the form (\ref{Vdef}) localized at the {\em boundary}.
 
 To be precise, in the continuum limit the probabilities $p_{\sigma,\mu}$ depend now on the configurations of the field $p(\phi)$. The probability of observing field configuration $\phi$ at the boundary is still gaussian
 \begin{equation}
@@ -360,7 +360,7 @@ and raising this probability to the $n-$th power yields
  [p(\phi)]^n=\exp(-n S_{\kappa}[\phi])=\exp(-S_{n\kappa}[\phi]).
 \end{equation}
 Therefore, the system near the boundary effectively feels a stiffness $\kappa^\prime=n\kappa$. 
-Standard Coulomb gas/field theory then computations (see e.g.\ \cite{Nienhuis}) give the boundary scaling dimension of (\ref{Vdef}) to be $d^2/(2n\kappa)$. 
+Standard Coulomb gas/field theorycomputations (see e.g.\ \cite{Nienhuis}) then give the boundary scaling dimension of (\ref{Vdef}) to be $d^2/(2n\kappa)$. 
 As a consequence, $V_d$ is irrelevant as long as $d^2>2n\kappa$. Thinking of $n$ as a continuous parameter, this defines two regions, separated by a (boundary) Kosterlitz-Thouless phase transition. The critical value of $n$ in the computation of  $S_n$  is therefore
 \begin{equation}
  n_c=\frac{d_{\rm min}^2}{2\kappa},
@@ -390,7 +390,7 @@ The analogous formula still holds if space is a cylinder instead of a a torus, s
 For the dimer RVB state, the partition functions on the cylinder can be computed exactly both on the lattice and in the continuum.  The lattice dimer result is detailed in \ref{sec:dimers_exact}. For the free-boson field theory, these partition functions are known explicitly \cite{BigYellowBook};  we will discuss their application to the two-cylinder R\'enyi entropy in the next section \ref{sec:dimers_entanglement}. In particular, we will show how the even-odd effect is a signature of this locked phase  $n>n_c$, arising from the different boundary conditions necessary for the even and odd sectors.
 
 
-It should also be possible to extend these results to the region $n<n_c$, using boundary CFT methods \cite{Shannonee,Oshikawa,Zaletel,Stephan2011}. Here, however, the boundary conditions will presumably not allow the factorization of the probability into pieces coming from the two regions. Oshikawa\cite{Oshikawa} has already treated the $y=1/2$ case for the closely related cylinder geometry, using the replica approach $n\in \mathbb{N}$. There will possibly be subtleties involving analytic continuation in $n$, similar to the two-interval 1d calculation \cite{CCT1,CCT2}.
+It should also be possible to extend these results to the region $n<n_c$, using boundary CFT methods \cite{Shannonee,Oshikawa,Zaletel,Stephan2011}. Here, however, the boundary conditions will not allow the factorization of the probability into pieces coming from the two regions. Oshikawa\cite{Oshikawa} has already treated the $y=1/2$ case for the closely related cylinder geometry, using the replica approach $n\in \mathbb{N}$. There will possibly be subtleties involving analytic continuation in $n$, similar to the two-interval 1d calculation \cite{CCT1,CCT2}. The study of the ``marginal'' case $n=n_c$ would presumably be even more challenging\cite{Stephan2010,Stephan2011}.
 
 
 \section{Entanglement in the dimer RVB state}
@@ -406,7 +406,7 @@ The general arguments given above in section (\ref{sec:bpt}) do not specify this
 where $a=0$ for even $L_y$ and $a=1/2$ for odd $L_y$. 
 
 
-The computation of the free-boson partition function is completely standard; see e.g.\ \cite{EggertAffleck,FSW,BigYellowBook}. Since the action is quadratic in the bosonic field, it can be decoupled into an oscillator part and a classical part. Only the classical part affected by the compactification $h\sim h+2\pi$, and by the boundary conditions. The partition function for Dirichlet boundary conditions on both ends of the cylinder, with the height differing by $a$, is given by
+The computation of the free-boson partition function is completely standard; see e.g.\ \cite{EggertAffleck,FSW,BigYellowBook}. Since the action is quadratic in the bosonic field, it can be decoupled into an oscillator part and a classical part. Only the classical part affected by the compactification $h\sim h+2\pi$, and by the boundary conditions. The partition function for Dirichlet boundary conditions on both ends of the cylinder, with the height differing by $2\pi a$, is given by
 %\begin{equation} \mathcal{Z}_{\rm cyl}^{DD^{(a)}}=e^{\frac{\pi}{24}\frac{L_x}{L_y}}\prod_{w=1}^{\infty}\left(1-e^{-\pi w\frac{L_x}
 %{L_y}}\right)^{-1}\sum_{w=-\infty}^{+\infty}e^{-\kappa \pi\frac{L_x}{L_y} (w+a)^2}.
 %\end{equation}
@@ -453,10 +453,10 @@ This even/odd effect disappears as $L_y/L_x$ is increased; it follows from the C
 
 The relatively large finite-size effects apparent in the plots should disappear in the thermodynamic limit.  To illustrate the slowness of the convergence, we study the exactly solvable case $S_\infty=-\ln p_{\rm max}$ (Eq.~(\ref{eq:pmax})), where the agreement between CFT and the lattice can be made rigorous. 
 %$s_{\infty}$ is obtained by taking the $n\to \infty$ limit in Eq.~(\ref{eq:cft_prediction}). 
-We also compute $s_\infty$ in the $W=(0,0)$ winding sector directly for the dimer model, using the techniques described in the appendices, finding:
+We also compute $s_\infty$ in the $W=(0,0)$ winding sector directly for the dimer model, using the techniques described in the appendices, finding
 \begin{eqnarray}\label{eq:cft_w0}
- s_{\infty,0}^{\rm (even)}&=&-\ln \left(\frac{\eta(\tau)^2\theta_3(2y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_w0_odd}
- s_{\infty,0}^{\rm (odd)}&=&-\ln \left(\frac{\eta(2\tau)^2\theta_4(2y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)
+ s_{\infty,0}^{\rm (even)}&=&-\ln \left(\frac{\eta(\tau)^2\theta_3(2y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right);\\\label{eq:cft_w0_odd}
+ s_{\infty,0}^{\rm (odd)}&=&-\ln \left(\frac{\eta(2\tau)^2\theta_4(2y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right).
 \end{eqnarray}
 Even though the total winding number is zero, the result still depends on the compactification radius of the height field  because of winding fluctuations at the boundaries between regions $A$ and $B$. 
 A comparison between the numerical and analytical results is performed in Fig.~\ref{fig:Sinfty}, for the aspect ratio $L_y/L_x=1$ and the two system sizes $L_x=16$ and $L_x=96$. We observe strong finite-size effects for small system sizes, but the data converges in the end to the CFT result.
@@ -470,7 +470,7 @@ A comparison between the numerical and analytical results is performed in Fig.~\
 \end{figure}
 Interestingly, the even-odd effect is enhanced in the $W=(0,0)$ winding sector, in agreement with CFT. We also observe that the odd curves in both sectors almost coincide on the lattice, as well as in the scaling limit. This coincidence can be explained from the CFT prediction at $y=\ell_y/L_y=1/2$:
 \begin{equation}
- s_{\infty}^{\rm (odd)}(y=1/2)-s_{\infty,0}^{\rm (odd)}(y=1/2)=2q^2+\mathcal{O}(q^4) \quad,\quad q=e^{-\pi}
+ s_{\infty}^{\rm (odd)}(y=1/2)-s_{\infty,0}^{\rm (odd)}(y=1/2)=2q^2+\mathcal{O}(q^4) \quad,\quad q=e^{-\pi}.
 \end{equation}
 Notice also that this coincidence seems to be a peculiarity of the free fermion point ($\alpha=2$)\footnote{with a general exponent $\alpha\leq 2$, we would have the  more complicated\\ $s_{\infty}^{\rm (odd)}(y=1/2)-s_{\infty,0}^{\rm (odd)}(y=1/2)=2(q^{1/\alpha}-q^{\alpha/4})-2(q^{2/\alpha}-q^{\alpha/2})+(8/3)(q^{3/\alpha}-q^{3\alpha/4})+\mathcal{O}(q^{\alpha})$. All these terms cancel each other for $\alpha=2$.}. 
 
@@ -604,7 +604,7 @@ This scenario is also supported by exact diagonalizations on small systems, whic
 Throughout this paper we have emphasized the similarities between the $SU(N)$ and dimer RVB states. These make it plausible that the two-cylinder R\'enyi entropy entanglement data for the $SU(2)$ RVB state in the scaling limits can be obtained from the free-boson using (\ref{eq:shape_general}). If this is true, this is a much stronger statement than the results for the critical exponent $\alpha$ as a function of $N$ in the previous section. The reason is that even though correlators in the classical dimer model can be obtained by taking the $N\to\infty$ limit of the loop model defined by the $SU(N)$ RVB inner product, the Hilbert space of the two is completely different; the latter being much larger. Thus a dimer crossing the boundary would carry much more entropy. Moreover, the reduced density matrix for $SU(N)$ has blocks with non-zero total spin, while these are by construction forbidden in the quantum dimer model. Thus it is very unlikely that non-universal quantities will be the same in the two cases. 
 
 
-However, all our results are consistent with the subleading part of the two-cylinder R\'enyi entropy being universal. Thus it is possible that that in the scaling limit, this piece still could be given by the conformal field theory result, with the identification of $\kappa$ coming from the correlation length results.
+However, all our results are consistent with the subleading part of the two-cylinder R\'enyi entropy being universal. Thus it is possible that in the scaling limit, this piece still could be given by the conformal field theory result, with the identification of $\kappa$ coming from the correlation length results.
 The conformal results for general $\alpha=1/\kappa$ without restrictions on the winding numbers are
 \begin{eqnarray}\label{eq:cft_prediction_gen}
  s_n^{\rm (even)}(y,\tau)&=&\frac{n}{1-n}\ln \left(\frac{\alpha}{2}\times\frac{\eta(\tau)^2}{\theta_3(\alpha\tau)\theta_3(\tau/\alpha)}\times\frac{\theta_3(\alpha y \tau)\theta_3(\alpha(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_prediction_gen_odd}
@@ -698,7 +698,9 @@ for any real $n$. The probabilities $p_{\sigma,\mu}$ we are interested in are gi
 \begin{equation}\label{eq:tm}
  p_{\sigma,\mu}=\frac{Z_{\sigma,\mu}^A Z_{\mu,\sigma}^B}{Z}=\frac{\langle  \sigma|T^{\,\ell_y}|\mu\rangle\langle \mu|T^{\,L_y-\ell_y}|\sigma\rangle}{{\rm Tr}\; T^{L_y}}
 \end{equation}
-$T$ is the transfer matrix of the dimer model, and acts on the vector space generated by dimer occupancies on vertical edges along a horizontal line: $\langle a|T|b\rangle=1$ if configuration $|a\rangle$ and $|b\rangle$ are compatible, $0$ otherwise. The denominator is calculated in \ref{sec:dimers_exact}. Each factor on the numerator of Eq.~(\ref{eq:tm}) can be evaluated using free fermions techniques\cite{Lieb1967,Alet_dimers2,Shannonee}. The mapping goes as follows. Let us first consider a particular configuration with staggered dimers, which we call reference configuration (see fig.~\ref{fig:freefermions} on the left). Superimposing the reference on any other dimer configuration generates a collection of non-intersecting lattice paths, represented by black lines in fig.~\ref{fig:freefermions}(right). 
+$T$ is the transfer matrix of the dimer model, and acts on the vector space generated by dimer occupancies on vertical edges along a horizontal line: $\langle a|T|b\rangle=1$ if configuration $|a\rangle$ and $|b\rangle$ are compatible, $0$ otherwise. The denominator is calculated in \ref{sec:dimers_exact}. Each factor on the numerator of Eq.~(\ref{eq:tm}) can be evaluated using free fermions techniques\cite{Lieb1967,Alet_dimers2,Shannonee}. 
+
+The mapping goes as follows. Let us first consider a particular configuration with staggered dimers, which we call reference configuration (see fig.~\ref{fig:freefermions} on the left). Superimposing the reference on any other dimer configuration generates a collection of non-intersecting lattice paths, represented by black lines in fig.~\ref{fig:freefermions}(right). 
 \begin{figure}[ht]
 \begin{center}
 \includegraphics{./figures/free_fermions.pdf}
@@ -706,8 +708,9 @@ $T$ is the transfer matrix of the dimer model, and acts on the vector space gene
   \caption{Illustration of the mapping onto free fermions for open boundary conditions. \emph{Left:} reference configuration with staggered dimers. \emph{Right:} transition graph generated by superimposing the reference configuration on a given dimer configuration (in thick blue). This generates a collection of $4$ non-intersecting lattice paths going upwards, which may be expressed in terms of fermions (black zigag lines). Here $|\sigma\rangle=c_1^\dag c_3^\dag c_5^\dag c_7^\dag|0\rangle$.}
   \label{fig:freefermions}
   \end{figure}
-There is a one to one correspondence between the dimer configurations and the lattice paths provided the latter obey a certain set of rules. To clarify them, it is most convenient to reformulate everything in terms of fermions, because their statistics will naturally encode the non-intersection constraint. 
-Define a fermion as a vertical link occupied by a reference (red) dimer only, or a real (blue) dimer only. These are the black zigzag lines in fig.~\ref{fig:freefermions}. $|\sigma\rangle$ and $|\mu\rangle$ can be rewritten using fermion creation operators as
+
+There is a one to one correspondence between the dimer configurations and the lattice paths, provided the latter obey a certain set of rules. To clarify them, it is most convenient to reformulate everything in terms of fermions, because their statistics will naturally encode the non-intersection constraint. 
+Define a fermion as a vertical link occupied by a reference (red) dimer only, or a real (blue) dimer only. These are represented by black zigzag lines in fig.~\ref{fig:freefermions}. $|\sigma\rangle$ and $|\mu\rangle$ can be rewritten using fermion creation operators as
 \begin{eqnarray}
 |\sigma \rangle&=&|x_1,x_2,\ldots,x_N\rangle=c_{x_1}^\dag c_{x_2}^\dag \ldots c_{x_N}^\dag |0\rangle \\
 |\mu \rangle&=&|y_1,y_2,\ldots,y_N\rangle=c_{y_1}^\dag c_{y_2}^\dag \ldots c_{y_N}^\dag |0\rangle
@@ -718,7 +721,7 @@ T|0\rangle&=&|0\rangle\\\label{eq:tm2}
 T c_{2j}^\dag T^{-1}&=&c_{2j}^\dag+c_{2j+1}^\dag +c_{2j+2}^\dag\\\label{eq:tm3}
 T c_{2j+1}^\dag T^{-1}&=&c_{2j+2}^\dag
 \end{eqnarray}
-Eqs.~(\ref{eq:tm1},\ref{eq:tm2},\ref{eq:tm3}) conserve the number of fermions, and encode the dimer fully-packed and harcore constraints on the square lattice. To account for periodic boundary conditions  we also have to impose $c_{L_x}^\dag=(-1)^{N+1}c_0^\dag$. Rewriting this in matrix form using Einstein's summation convention
+Eqs.~(\ref{eq:tm1},\ref{eq:tm2},\ref{eq:tm3}) conserve the number of fermions, and encode the dimer fully-packed and hard-core constraints on the square lattice. To account for periodic boundary conditions  we also have to impose $c_{L_x}^\dag=(-1)^{N+1}c_0^\dag$. Rewriting this in matrix form using Einstein's summation convention
 \begin{equation}
  T c_i^\dag T^{-1}=M_{ij} c_j^\dag,
 \end{equation}
@@ -770,7 +773,6 @@ To simplify the notations a bit, we also set
 \begin{equation}\label{eq:thetas}
  \theta_\nu(\tau)=\theta_\nu (0|\tau)\quad,\quad \nu=1,2,3,4
 \end{equation}
-
 These functions obey the following nice ``modular'' transformation properties
 \begin{eqnarray}
  \theta_1(\tau)&=&-i (-i \tau )^{-1/2}\,\theta_1(-1/\tau)\\
@@ -823,7 +825,7 @@ Defining as before $T c_i^\dag T^{-1}=M_{ij} c_j^\dag$, diagonalizing $T$ amount
 \end{equation}
 We write the number of dimer coverings in the $(W_x,W_y)$ sector as $Z_{W_x,W_y}$. Setting $b=e^{-\pi u_x/L_x}$, the winding generating function is given by
 \begin{eqnarray}
- Z(u_x,u_y)&=&\sum_{W_x,W_y} Z_{W_x,W_y}e^{-\pi (W_x u_x+W_y u_y)}\\\label{eq:Z_tm}
+ Z_{\rm torus}(u_x,u_y)&=&\sum_{W_x,W_y} Z_{W_x,W_y}e^{-\pi (W_x u_x+W_y u_y)}\\\label{eq:Z_tm}
  &=&{\rm Tr}\left[\displaystyle{e^{-\pi u_y(\hat{N}-L_x/2)/2}T^{L_y}}\right]
 \end{eqnarray}
 If we now denote by $d_k^\dag$ the set of fermionic operators that diagonalize the one-particle transfer matrix
@@ -834,13 +836,9 @@ the $\lambda_k$ are then the eigenvalues of $M$. Using this, the transfer matrix
 \begin{equation}
  T=\prod_k \left(1+[\lambda_k -1]d_k^\dag d_k \right)
 \end{equation}
-Plugging this expression in Eq.~(\ref{eq:Z_tm}) we get\footnote{One can check easily that expanding simultaneously the first two product in Eq.~(\ref{eq:dimers_torus}) generates all the eigenvalues of the transfer matrix in the even fermion sector. The same goes for the last two products and the odd-fermions sector. }
-%\begin{eqnarray}\nonumber
-% 2Z(u_x,u_y)&=&\prod_{k\in \Omega_{1}}\left[e^{\pi x /2}+e^{-\pi x/2}\lambda_k^{L_y}\right]+\prod_{k\in \Omega_{1}}\left[e^{\pi x/2}-e^{-\pi x/2}\lambda_k^{L_y}\right]\\\label{eq:dimers_torus}
-% &+&\prod_{k\in \Omega_{0}}\left[e^{\pi x /2}+e^{-\pi x/2}\lambda_k^{L_y}\right]-\prod_{k\in \Omega_{0}}\left[e^{\pi x /2}-e^{-\pi x/2}\lambda_k^{L_y}\right]
-%\end{eqnarray}
+Plugging this expression in Eq.~(\ref{eq:Z_tm}) we get\footnote{One can check easily that expanding simultaneously the first two terms in Eq.~(\ref{eq:dimers_torus}) generates all the eigenvalues of the transfer matrix in the even fermion sector. The same goes for the last two terms and the odd-fermions sector. }
 \begin{equation}\label{eq:dimers_torus}
- Z(u_x,u_y)=\frac{1}{2}\left(Z_1^{(+)}+Z_1^{(-)}\right)+\frac{1}{2}\left(Z_0^{(+)}-Z_0^{(-)}\right)
+ Z_{\rm torus}(u_x,u_y)=\frac{1}{2}\left(Z_1^{(+)}+Z_1^{(-)}\right)+\frac{1}{2}\left(Z_0^{(+)}-Z_0^{(-)}\right)
 \end{equation}
 with
 \begin{equation}
@@ -851,10 +849,10 @@ and
  \lambda_k&=&\cos k +\sqrt{1+\cos^2 k}\\
 \Omega_{\nu}&=&\left\{\frac{(2m+\nu+i u_y) \pi}{L_x}\quad,\quad m=-L_x/2,\ldots,L_x/2-1\right\} 
 \end{eqnarray}
-Of course, $Z(u_x=0,u_y=0)$ reduces to the well known torus partition function obtained by Kasteleyn and Fisher. 
+Of course, $Z_{\rm torus}(u_x=0,u_y=0)$ reduces to the well known torus partition function obtained by Kasteleyn and Fisher. 
 \paragraph{}We now wish to extract the universal CFT partition function $\mathcal{Z}$, i.e the constant term in the asymptotic expansion of $Z$:
 \begin{equation}
- Z(u_x,u_y)\sim A^{L_x L_y} B^{L_x} C^{L_y}\mathcal{Z}_{\rm torus}(u_x,u_y)
+ Z_{\rm torus}(u_x,u_y)\sim A^{L_x L_y} B^{L_x} C^{L_y}\mathcal{Z}_{\rm torus}(u_x,u_y)
 \end{equation}
 A possible way to do so would be to combine Euler-Maclaurin expansions and majoration techniques, as has already been done for the honeycomb lattice\cite{Boutillier}. Here we obtain $\mathcal{Z}$ in a more heuristic (and non rigorous) manner, noticing that universal properties have to come from low energy excitation near the Fermi momenta $k_F=\pm \pi/2$. Linearizing $\ln(\lambda_k)$ around the two $k_F$ and extending the products in \ref{eq:dimers_torus} over all integers, allows to go get after a long calculation, very similar to that in \cite{Boutillier}:
 \begin{equation}
@@ -864,14 +862,14 @@ where $\tau=i L_y/L_x$ and $\tilde{\tau}=-1/\tau=iL_x/L_y$.
 \subsection[\;\;\;\;\;\;\;\;\;\;\;\;\;\; Cylinder]{Cylinder}
 The cylinder geometry is slightly simpler than its torus counterpart, because only the windings along $y$ are allowed. To still express the partition function as a trace, we look at the transfer matrix $\tilde{T}$ acting on the configuration of rows of length $L_y$ with \emph{open} boundary conditions. This way, the number of fermions keeps track of the winding number $W_y$. The winding generating function can be expressed, after some algebra, as
 \begin{eqnarray}
- Z(u_y)&=&e^{-\pi (L_y/2)u_y}\prod_{m=1}^{L_y} \left(1+e^{\pi u_y}\mu_m^{L_x}\right)\\
+ Z_{\rm cyl}(u_y)&=&e^{-\pi (L_y/2)u_y}\prod_{m=1}^{L_y} \left(1+e^{\pi u_y}\mu_m^{L_x}\right)\\
  \mu_m&=&\cos \left(\frac{m \pi}{L_y+1}\right)+\sqrt{1+\cos^2\left(\frac{m \pi}{L_y+1}\right)}
 \end{eqnarray}
 Here the Fermi momentum is $k_F=\pi/2$, and the CFT partition function can be accessed using the linearization trick. We, however have to distinguish between the even and odd $L_y$ cases.
 \paragraph{Even case:}
 It is most convenient to rewrite $Z$ as
 \begin{equation}
-Z(u_y)=\prod_{m=1}^{L_y/2} \lambda_m^{L_x}\times \left[\prod_{m=1}^{L_y/2} 1+2\cosh (\pi u_y)\mu_m^{-L_x}+\mu_m^{-2L_x}\right] 
+Z_{\rm cyl}(u_y)=\prod_{m=1}^{L_y/2} \lambda_m^{L_x}\times \left[\prod_{m=1}^{L_y/2} 1+2\cosh (\pi u_y)\mu_m^{-L_x}+\mu_m^{-2L_x}\right] 
 \end{equation}
 Combining the Euler-Maclaurin formula on the first product, and using the linearization procedure around $m=L_y/2$, we get
 \begin{equation}
@@ -885,7 +883,7 @@ We recover the Eq.~(\ref{eq:cylinder_dd}), upon setting $u_y=0$ and performing a
 \paragraph{Odd case:}
 We use the same method, but care must be taken because of the presence of a zero-mode for $m=(L_y+1)/2$ We have
 \begin{equation}
-Z(u_y)=2\cosh(\pi u_y/2)\prod_{m=1}^{(L_y-1)/2} \lambda_m^{L_x}\times \left[\prod_{m=1}^{(L_y-1)/2} 1+2\cosh (\pi u_y)\mu_m^{L_x}+\mu_m^{2L_x}\right] 
+Z_{\rm cyl}(u_y)=2\cosh(\pi u_y/2)\prod_{m=1}^{(L_y-1)/2} \lambda_m^{L_x}\times \left[\prod_{m=1}^{(L_y-1)/2} 1+2\cosh (\pi u_y)\mu_m^{L_x}+\mu_m^{2L_x}\right] 
 \end{equation}
 which yields after linearization
 \begin{equation}
