@@ -531,7 +531,15 @@ There are \textit{two} types of loops: one with $\uparrow$ (loop 1) and one with
 Once the spin basis is chosen in the transition graphs, the VB configurations in the bra and ket are independently updated as prescribed above according to the same spin basis.
 Updates, however, are only possible between loops of the same type (1 or 2).
 Therefore, instead of keeping track of the spins on each site, it suffices to keep track of the loop labels at each site.
-
+%
+\begin{figure}[t]
+ \begin{center}
+    \scalebox{.7}{\includegraphics[width=\columnwidth]{./figures/su2su3graphs.pdf}}
+ \end{center}
+ \caption{Transition graphs....}
+ \label{fig:su2su3graphs}
+ \end{figure}
+%
 Then, generalizing this a little further, consider Fig[SU(3)].
 One can easily see that there are three loop types: $\uparrow$, $\downarrow$, and 0 on sublattice A.
 So, for an $SU(N)$ system, there are $N$ different loop types, and we quickly run into ergodicity issues as updates are rarely accepted.
