@@ -514,19 +514,29 @@ Further details are provided in Section....
 
 
 
-We now discuss the methods we have used to generalized the $SU(2)$ updates used in Ref.~\cite{RVB2} to account for the complexities introduced by the $SU(N)$ RVB wavefunctions.
+We now discuss the methods we have used to generalized the $SU(2)$ updates used in Ref.~\cite{RVB2,Ju2012} to account for the complexities introduced by the $SU(N)$ RVB wavefunctions.
+We do this by considering the similarities and the differences between the $SU(2)$ and $SU(3)$ wavefunctions.
+Given Eq.[9], the singlets on a pair of sites $[i,j]$ can be written as
 %
-To do so, one first forms the transition graphs to compute Eq.~(\ref{eq:overlap}) at every Monte Carlo step. 
+\begin{eqnarray}
+\left[i.j\right]_{N=2} &=& \frac{1}{\sqrt{2}} \big[ | \uparrow \rangle_i | \downarrow \rangle_j - | \downarrow \rangle_i | \uparrow \rangle_j \big] , \quad \uparrow,\downarrow = \pm \frac{1}{2}\\
+\left[i.j\right]_{N=3} &=& \frac{1}{\sqrt{3}} \big[ | \uparrow \rangle_i | \downarrow \rangle_j - | \downarrow \rangle_i | \uparrow \rangle_j - |0\rangle_i |0\rangle_j \big] , \quad \uparrow,\downarrow = \pm 1.
+\label{eq:su2su3}
+\end{eqnarray}
 %
-Using this transition graph, one samples the value of $m \equiv S^z$ at each site. 
-%
-This gives a larger set of constraints in that the loop can only update within a compatible $m$ as defined in Eq.~(\ref{eq:rvb}). 
-%
-Then, the case of $N=2$ is equivalent to having two independent subsets; configurations can only be updated by loops that move within each subset. 
-%
-For a larger $N$, the number of updates that one can successfully make becomes much smaller, making the error bars much slower to converge.
-%
-As described below, for $N \ge 4$ some estimators show signs of ergodicity loss; this might be cured by a more sophisticated sampling scheme in the future.
+While sampling the spins, there are $N$ choices to choose for a site on sublattice A.
+Once this spin is chosen, all other spins in the same loop are determined by Eq.~\ref{eq:su2su3}.
+For instance, consider the $SU(2)$ wavefunction in Fig. blah.
+There are \textit{two} types of loops: one with $\uparrow$ (loop 1) and one with $\downarrow$ (loop 2) on sublattice A.
+Once the spin basis is chosen in the transition graphs, the VB configurations in the bra and ket are independently updated as prescribed above according to the same spin basis.
+Updates, however, are only possible between loops of the same type (1 or 2).
+Therefore, instead of keeping track of the spins on each site, it suffices to keep track of the loop labels at each site.
+
+Then, generalizing this a little further, consider Fig[SU(3)].
+One can easily see that there are three loop types: $\uparrow$, $\downarrow$, and 0 on sublattice A.
+So, by induction, for an $SU(N)$ system, there are $N$ different loop types, and now, we run into ergodicity issues as updates are rarely accepted.
+We find that as $N>4$, the number of updates that one can successfully make becomes much smaller, making the error bars much slower to converge.
+As show by our data, in this regime, some estimators show signs of ergodicity loss; this might be cured by a more sophisticated sampling scheme in the future.
 
 
 
