@@ -484,32 +484,77 @@ We now start to explore the question of universality, with the motivation of und
 \subsection{Monte Carlo methods}
 \label{sec:numerics}
 
-To study $SU(N)$-RVB wavefunctions, we use an unbiased Monte Carlo technique that calculates expectation values in the equal-amplitude superposition of states using an importance sampling scheme in the valence-bond (VB) basis.  Like employed previously for the $SU(2)$ case \cite{Ju2012}, one has the choice of ``local'' or ``non-local''
-updating schemes to sample all possible RVB states \cite{sandvik2010loop}.
-In employing local updates, the simulation chooses two parallel valence bonds on a square plaquette and moves each to the empty bond, subject to the condition that the spin-basis is compatible with this new configuration.  This move, while simple to perform, is not ergodic in the winding number sector.
-In contrast, a non-local loop update moves through the ensemble of states by creating a defect at some lattice site and propagating it through the system until the defect reaches its initial point, thus closing the loop.  Unlike the $SU(2)$ updates used in Ref.~\cite{RVB2}, one must generalize such loop updates to account for $SU(N)$ RVB wavefunctions.  To do so, one first forms the transition graphs to compute Eq.~(\ref{eq:overlap}) at every Monte Carlo step. Using this transition graph, one samples the value of $m \equiv S^z$ at each site. This gives a larger set of constraints in that the loop can only update within a compatible $m$ as defined in Eq.~(\ref{eq:rvb}). Then, the case of $N=2$ is equivalent to having two independent subsets; configurations can only be updated by loops that move within each subset. For a larger $N$, the number of updates that one can successfully make becomes much smaller, making the error bars much slower to converge.
-%This can be cured by using a smarter update that satisfies detailed balance to allow the simulation to make more updates.
-As described below, for $N \ge 4$ some estimators show signs of ergodicity loss; this might be cured by a more sophisticated sampling scheme in the future.
 
+To study $SU(N)$-RVB wavefunctions, we use an unbiased Monte Carlo technique that calculates expectation values in the equal-amplitude superposition of states using an importance sampling scheme in the valence-bond (VB) basis.  
+%
+Like employed previously for the $SU(2)$ case \cite{Ju2012}, one has the choice of ``local'' or ``non-local'' updating schemes to sample all possible RVB states \cite{sandvik2010loop}.
+%
+\begin{figure}[t]
+ \begin{center}
+    \scalebox{.3}{\includegraphics[width=\columnwidth]{./figures/updates.pdf}}
+ \end{center}
+ \caption{Possible local updates in a simulation....}
+ \label{fig:updates}
+ \end{figure}
+%
+In a local update, the simulation chooses two parallel valence bonds on a square plaquette and moves each to the empty bond, subject to the condition that the spin-basis is compatible with this new configuration, c.f. Fig.~\ref{fig:updates}(a).
+%
+However, if the spin-basis is not compatible with this proposed change as in Fig.~\ref{fig:updates}(b-c), where the right pointing arrow is a different flavor spin for an $SU(N>2)$ system, the move is rejected, and a new ``plaquette flip" is proposed by the simulation.
+%
+While simple to perform, this move is not ergodic in that it cannot change the winding number of the system.
+%
+Therefore, this move is only useful if one wants to fix the winding number to do measurements (e.g. for the correlation measurements, we fix $W=(0,0)$).
+%
+In contrast, a non-local loop update moves through the ensemble of states by creating a defect at some lattice site and propagating it through the system until the defect reaches its initial point, thus closing the loop.
+%
+These local/loop updates only change the valence bond configurations of the system.
+To finish the Monte Carlo step, however, one must sample the spin configurations of the RVB wavefunction.
+There are some complications that arise while measuring the entanglement entropy and using the ratio trick.
+Further details are provided in Section....
+
+
+
+We now discuss the methods we have used to generalized the $SU(2)$ updates used in Ref.~\cite{RVB2} to account for the complexities introduced by the $SU(N)$ RVB wavefunctions.
+%
+To do so, one first forms the transition graphs to compute Eq.~(\ref{eq:overlap}) at every Monte Carlo step. 
+%
+Using this transition graph, one samples the value of $m \equiv S^z$ at each site. 
+%
+This gives a larger set of constraints in that the loop can only update within a compatible $m$ as defined in Eq.~(\ref{eq:rvb}). 
+%
+Then, the case of $N=2$ is equivalent to having two independent subsets; configurations can only be updated by loops that move within each subset. 
+%
+For a larger $N$, the number of updates that one can successfully make becomes much smaller, making the error bars much slower to converge.
+%
+As described below, for $N \ge 4$ some estimators show signs of ergodicity loss; this might be cured by a more sophisticated sampling scheme in the future.
+%
 In our VB basis Monte Carlo simulations, we begin by computing the spin-spin and the dimer-dimer correlations. The expectation values were first derived in~\cite{beach2006some} and generalized in~\cite{beach2009n} for $SU(N)$ spins.  Using the notation $(ij)_L$ for two sites $i,j$ in the same loop in the transition graph and $(i)_L(j)_L$ for sites not in the same loop~\cite{RVB2},
+%
 \begin{equation}
-C_{\rm spin}({\bf r}_i, {\bf r}_j) = \frac{\langle V_\mathcal{C} | \mathbf{S}_i \cdot \mathbf{S}_j | V_{\mathcal{C}'} \rangle}{\langle V_\mathcal{C} | V_{\mathcal{C}'} \rangle} = \left\{ \begin{array}{ccc}
-0 & (i)_L (j)_L\\
-\epsilon_{ij} \, S (S+1) & (ij)_L   \end{array}. \right.
+	C_{\rm spin}({\bf r}_i, {\bf r}_j) 
+		= \frac{\langle V_\mathcal{C} | \mathbf{S}_i \cdot \mathbf{S}_j | V_{\mathcal{C}'} \rangle}
+			{\langle V_\mathcal{C} | V_{\mathcal{C}'} \rangle}
+		 = \left\{ \begin{array}{ccc}
+			0 & (i)_L (j)_L\\
+			\epsilon_{ij} \, S (S+1) & (ij)_L   \end{array}. \right.
 \end{equation}
-\textcolor{red}{HYEJIN, check this definition and cross-reference with Figure 7.}
+%
 Here, $\epsilon_{ij} = 1$ if $(i,j)$ are on the same sublattice and $\epsilon_{ij} = -1$ if they are on different sublattices.
+%
 We also measure \textit{parallel} nearest neighbor dimer-dimer correlations, where four sites $i,j,k,l$ are related by $j = i + \mathbf{e}_\alpha, \, l = k + \mathbf{e}_\alpha$ and $k = i + m \mathbf{e}_\beta$, where $\alpha,\beta = x, y, \, \alpha \neq \beta$, and $m \in \{0,1,...\}$.
+%
 This simplifies the estimator, which is as follows
 %
-\begin{equation}
-C_{dd}({\bf r}_i, {\bf r}_j)  = \frac{\langle V_\mathcal{C} | \left( \mathbf{S}_i \cdot \mathbf{S}_j \right) \left( \mathbf{S}_k \cdot \mathbf{S}_l  \right) | V_{\mathcal{C}'} \rangle}{\langle V_\mathcal{C} | V_{\mathcal{C}'} \rangle} = \left\{ \begin{array}{ccc}
-\frac{1}{3} S^2 (S+1)^2 & (ik)_L (jl)_L, \,(il)_L (jk)_L\\
-S^2 (S+1)^2 & (ij)_L (kl)_L \end{array}, \right.
-\end{equation}
+\begin{eqnarray}
+	C_{dd}({\bf r}_i, {\bf r}_j)  = 
+			\frac{\langle V_\mathcal{C} | \left( \mathbf{S}_i \cdot \mathbf{S}_{i+\mathbf{e}_\alpha} \right) \left( \mathbf{S}_j \cdot \mathbf{S}_{j+\mathbf{e}_\alpha}  \right) 
+					| V_{\mathcal{C}'} \rangle}{\langle V_\mathcal{C} | V_{\mathcal{C}'} \rangle} \\
+					 = \left\{ \begin{array}{ccc}
+				\frac{1}{3} S^2 (S+1)^2 & (ij)_L ((i+\mathbf{e}_\alpha)(j+\mathbf{e}_\alpha))_L, \,(i(j+\mathbf{e}_\alpha))_L ((i+\mathbf{e}_\alpha)k)_L\\
+		S^2 (S+1)^2 & (i(i+\mathbf{e}_\alpha))_L (j(j+\mathbf{e}_\alpha))_L \end{array}, \right.
+\end{eqnarray}
 %
 and $0$ otherwise.
-\textcolor{red}{HYEJIN, check and cross reference with Figure 6}.
 
 \textcolor{red}{
 In the next section we present data on these correlation functions for $SU(2)$ and $S(N)$, and attempt to calculate  universal exponents associated with their decay, which for large $N$ should connect to the dimer RVB state.
