@@ -647,18 +647,18 @@ Finally, we turn to the entanglement in the $SU(N)$ RVB case, extending previous
 In order to calculate the R\'enyi entropies, the Monte Carlo sampling algorithm of Section \ref{sec:numerics} must be modified to incorporate
 a {\it replica trick} procedure, first described in Ref.~\cite{swap}.  Namely, in order to calculate the $n$-th order R\'enyi entropy Eq.~\ref{RenyiEq}, one measures the expectation value of a $Swap_A$ (or permutation) operator acting between $n$ copies of the system.  For the $SU(N)$ wavefunctions studied here, we restrict ourselves to $n=2$.  
 
-A naive sampling of the $Swap_A$ operator is straightforward.  Once simply identifies the spatial region $A$ and its complement $B$, then applies the operator to a sampled RVB state, $Swap_A |V_{\mathcal C} \rangle =  |V_{\mathcal C^{\star}} \rangle$.  The second Renyi entropy can be calculated from \cite{swap}
+A naive sampling of the $Swap_A$ operator is straightforward.  One simply identifies the spatial region $A$ and its complement $B$, then applies the operator to a sampled RVB state, $Swap_A |V_{\mathcal C} \rangle =  |V_{\mathcal C^{\star}} \rangle$ (where each state $|V_{\mathcal C} \rangle$ contains $n=2$ replicas).  The second Renyi entropy can be calculated from \cite{swap}
 \begin{equation}
 	\rho_A^2
 		= \frac{\langle V_{\mathcal{L}} | V_{\mathcal{R}^{\star}} \rangle}
 			{\langle V_{\mathcal{L}} | V_{\mathcal{R}} \rangle} 
 			 = 2^{n_{\rm swap} - n_l}\ ,
 \end{equation}
-where $n_l$ is the number of loops in the transition graph of the two un-swapped RVB states (denominator), and $n_{\rm swap}$ is the number of loops in the transition graph using one swapped state.  
+where $n_l$ is the number of loops in the transition graph of the two un-swapped RVB states (the denominator), and $n_{\rm swap}$ is the number of loops in the transition graph using one swapped state.  
 Thus, the reconfiguration of the valence-bond endpoints is the important ingredient of the $Swap_A$ operator for this measurement.  Note, 
-since the $Swap_A$ operator servers to swap {\it all} basis states in the spatial region $A$, spin states $|Z_{\mathcal C} \rangle$ can effectively be ignored when performing this measurement; they are only used as a condition to {\it sample} the original un-swapped VB configurations.
+since the $Swap_A$ operator serves to swap {\it all} basis states in the spatial region $A$, spin states $|Z_{\mathcal C} \rangle$ can effectively be ignored when performing this measurement; they are only used as a condition to {\it sample} the original un-swapped VB configurations.
 
-However, as one discovers quickly as the lattice size (and particularly the size of region $A$) grows, sampling statistics become exponentially poor when using the naive $Swap_A$ operator to calculate $S_2$.  One must therefore employ some variant of the {\it ratio} trick described in  Ref.~\cite{swap}.  As discussed in detail in that reference, this involves sampling 
+However, one discovers quickly as the lattice size (and particularly the size of region $A$) grows, sampling statistics become exponentially poor when using the naive $Swap_A$ operator to calculate $S_2$.  One must therefore employ some variant of the {\it ratio} trick described in  Ref.~\cite{swap}.  As discussed in detail in that reference, this involves sampling 
 \begin{equation}
  \frac{\langle V_{\mathcal{L}} | Swap_A | V_{\mathcal{R}} \rangle}
 			{\langle V_{\mathcal{L}} | Swap_X | V_{\mathcal{R}} \rangle},
@@ -669,7 +669,7 @@ The essential point of the ratio trick then is that simulations must be run with
 two states, $|V_{\mathcal L} \rangle = |D_{\mathcal L} Z_{\mathcal L} \rangle$ and $|V_{\mathcal R'} \rangle = |D_{\mathcal R'} Z_{\mathcal R'} \rangle$.  However, the simulation is performed with ${\langle V_{\mathcal{L}} | Swap_X | V_{\mathcal{R}} \rangle}$ in the weight, 
 meaning that $ |D_{\mathcal R'} Z_{\mathcal R'} \rangle = Swap_X |D_{\mathcal R} Z_{\mathcal R} \rangle  $.  Therefore, it is important to sample spin states such that the overlap $\langle Z_{\mathcal L} | Z_{\mathcal R '} \rangle$ is nonzero.  
 
-Note that, when performing the second type of update on the valence-bond state $| D_{\mathcal{R} '} \rangle$, one does not have to consider the overlap of $\langle V_{\mathcal{L}} | V_{\mathcal{R}'} \rangle$ since the overcompleteness condition ensures that new valence-bond configurations (with the same spin configuration) are always non-zero.  Hence, it maybe convenient to consider the ``un-swapped'' state $|V_{\mathcal R} \rangle$, where one can perform local (plaquette-flip) or non-local (loop) updates on the VB state as described in 
+Note that, when performing the Monte Carl update on the valence-bond state $| D_{\mathcal{R} '} \rangle$, one does not have to consider the overlap of $\langle V_{\mathcal{L}} | V_{\mathcal{R}'} \rangle$ since the overcompleteness condition ensures that the inner product of new valence-bond configurations (with the same spin configuration) are always non-zero.  Hence, it maybe convenient to consider the ``un-swapped'' state $|V_{\mathcal R} \rangle$ for the purposes of sampling the VB configuration, where one can straightforwardly perform local (plaquette-flip) or non-local (loop) updates on the VB state as described in 
 Section \ref{sec:numerics}.
 
 We employ ratio-trick evaluations of the $Swap_A$ operator to calculate the scaling of the second Renyi entropy in the $SU(N)$ RVB wavefucntion.  In the next section, we compare our results from these Monte Carlo simulations to results obtained from conformal field theory.
