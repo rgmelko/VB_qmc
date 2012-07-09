@@ -169,7 +169,7 @@ since ``swapped'' basis configurations (described in Section~\ref{sec:numerics})
 Despite this important difference between the dimer and $SU(2)$ RVB states, their obvious similarity makes it plausible that the dimer-dimer correlator will behave similarly in the two cases. Further evidence for this fact is that rewritten in loop language, the spin-spin correlator corresponds to the probability that the two spins are on the same loop. This decays exponentially because classical loop models with weight per loop greater than 2 have exponentially decaying correlators \cite{Nienhuis} (the partition function is dominated by configurations with many short loops), and the inner product (\ref{RVBinner}) amounts to a weight per loop of 4 \cite{LDA}. Thus correlators in the $SU(2)$ RVB state are dominated by short-loop configurations, i.e.\ the dimers. Whereas the presence of longer loops can renormalize the exponent $\alpha$, it seems very likely that dimer-dimer correlators in the RVB state will decay algebraically like they do for the dimer RVB state.
  
 This expectation was convincingly confirmed numerically \cite{RVB1,RVB2}. The dimer-dimer correlator for dimers an even distance apart was found to be of the form (\ref{dimerdimer}) with
-exponent close to $\alpha \approx 1.2$. This is an even weaker falloff than in the dimer RVB state, so the presence of the loops in the $SU(2)$ RVB state only makes this correlator longer-ranged. By the theorem of \cite{Hastings_thm}, algebraic decay of local operators in a two-dimensional ground state requires that any local Hamiltonian with this ground state be gapless. Thus not only is the quantum dimer model with RK Hamiltonian gapless,  the spin Hamiltonian of Ref.~\cite{Cano}, whose exact ground state is the $SU(2)$ RVB state, must be as well. \textcolor{blue}{[JM: is it so sure? cf end of 2.1]}
+exponent close to $\alpha \approx 1.2$. This is an even weaker falloff than in the dimer RVB state, so the presence of the loops in the $SU(2)$ RVB state only makes this correlator longer-ranged. By the theorem of \cite{Hastings_thm}, algebraic decay of local operators in a two-dimensional ground state requires that any local Hamiltonian with this ground state be gapless. Thus not only is the quantum dimer model with RK Hamiltonian gapless,  the spin Hamiltonian of Ref.~\cite{Cano}, whose exact ground state is the $SU(2)$ RVB state, must be as well.
 
 \subsection{The $SU(N)$ RVB state}
 
@@ -827,7 +827,7 @@ By applying the Wick's theorem and using $\langle 0|c_x c_y^\dag|0\rangle=\delta
 \end{equation}
 This type of result is referred to as the Karlin-McGregor\cite{KarlinMcGregor} or Lindstr\"om-Gessel-Viennot\cite{Lindstrom1973,GesselViennot1989} lemma in the mathematical literature. In the end, Eq.~(\ref{eq:tm}) reduces to a product of two determinants, which may be computed numerically.
 \clearpage
-\section[\;\;\;\;\;\;\;\;\;\;\;\;\;\;CFT correlations and partition functions]{CFT correlations and partition functions}
+\section[\;\;\;\;\;\;\;\;\;\;\;\;\;\;Dedekind-eta and Jacobi-Theta functions]{Dedekind-eta and Jacobi-Theta functions}
 \label{sec:CFT_Jacobi}
 %\subsection[\;\;\;\;\;\;\;\;\;\;\;\;\;\;Dedekind-eta and Jacobi-Theta functions]{Dedekind-eta and Jacobi-Theta functions}
 %\label{sec:functions}
@@ -928,16 +928,22 @@ Plugging this expression in Eq.~(\ref{eq:Z_tm}) we get\footnote{One can check ea
  Z_{\rm torus}(u_x,u_y)=\frac{1}{2}\left(Z_1^{(+)}+Z_1^{(-)}\right)+\frac{1}{2}\left(Z_0^{(+)}-Z_0^{(-)}\right)
 \end{equation}
 with
-\begin{equation}
- Z_\nu^{(\pm)}=\prod_{k\in \Omega_{\nu}}\left[e^{\pi x /2}\pm e^{-\pi x/2}\lambda_k^{L_y}\right]
+\begin{equation}\label{eq:torus01}
+ Z_\nu^{(\pm)}=\prod_{k\in \Omega_{\nu}}\left[e^{\pi u_x /2}\pm e^{-\pi u_x/2}\lambda_k^{L_y}\right]
 \end{equation}
 and
-\begin{eqnarray}
+\begin{eqnarray}\label{eq:lambda}
  \lambda_k&=&\cos k +\sqrt{1+\cos^2 k}\\
 \Omega_{\nu}&=&\left\{\frac{(2m+\nu+i u_y) \pi}{L_x}\quad,\quad m=-L_x/2,\ldots,L_x/2-1\right\} 
 \end{eqnarray}
-Of course, $Z_{\rm torus}(u_x=0,u_y=0)$ reduces to the well known torus partition function obtained by Kasteleyn and Fisher. 
-\paragraph{}We now wish to extract the universal CFT partition function $\mathcal{Z}$, i.e the constant term in the asymptotic expansion of $Z$:
+%Of course, $Z_{\rm torus}(u_x=0,u_y=0)$ reduces to the well known torus partition function obtained by Kasteleyn and Fisher. 
+It is also possible to rewritte $Z_\nu^\pm$ as 
+\begin{equation}\label{eq:torus_cheb}
+ Z_\nu^\pm=(-1)^{(\nu+1)L_y/2}\prod_{m=0}^{L_x/2-1}\left[e^{\pi u_x}+e^{-\pi u_x}\pm 2 T_{L_y}\left(i\cos \frac{(2m+\nu+iu_y)\pi}{L_x}\right)\right],
+\end{equation}
+where $T_m(x)=\cos(m\arccos x)$ is the $m-$th Chebyshev polynomial of the first kind. This expression allows for convenient numerical evaluations on large system sizes.
+
+We now wish to extract the universal CFT partition function $\mathcal{Z}$, i.e the constant term in the asymptotic expansion of $Z$:
 \begin{equation}
  Z_{\rm torus}(u_x,u_y)\sim A^{L_x L_y} B^{L_x} C^{L_y}\mathcal{Z}_{\rm torus}(u_x,u_y)
 \end{equation}
@@ -952,7 +958,7 @@ The cylinder geometry is slightly simpler than its torus counterpart, because on
  Z_{\rm cyl}(u_y)&=&e^{-\pi (L_y/2)u_y}\prod_{m=1}^{L_y} \left(1+e^{\pi u_y}\mu_m^{L_x}\right)\\
  \mu_m&=&\cos \left(\frac{m \pi}{L_y+1}\right)+\sqrt{1+\cos^2\left(\frac{m \pi}{L_y+1}\right)}
 \end{eqnarray}
-Here the Fermi momentum is $k_F=\pi/2$, and the CFT partition function can be accessed using the linearization trick. We, however have to distinguish between the even and odd $L_y$ cases.
+Here the Fermi momentum is $k_F=\pi/2$, and the CFT partition function can be accessed using the linearization trick. We however have to distinguish between the even and odd $L_y$.
 \paragraph{Even case:}
 It is most convenient to rewrite $Z$ as
 \begin{equation}
@@ -982,12 +988,16 @@ In the end we obtain:
 \end{equation}
 and once again recover the CFT result (\ref{eq:cylinder_ddprime}) after setting $u_y=0$ and modular transformation. 
 \subsection[\;\;\;\;\;\;\;\;\;\;\;\;\;\; Zero-winding sectors]{Zero-winding sectors}
-With the winding generating function at hand, the calculation of $s_n(y,\tau)$ in the $W=(0,0)$ winding sector becomes straightforward. For example we have (recall $\tau=iL_y/L_x$ and $\tilde{\tau}=-1/\tau$)
-\begin{eqnarray}\label{eq:nullwinding1}\fl
-\underbrace{\mathcal{Z}_{\rm cyl}^{DD^\prime}(y\tau)\mathcal{Z}_{\rm cyl}^{DD^\prime}((1-y)\tau)}_{W=(0,0)}&=&\frac{1}{\eta(\frac{\tilde{\tau}}{2y})\eta(\frac{\tilde{\tau}}{2(1-y)})} 
-\underbrace{\theta_2\left(\frac{i \pi u_y}{2}\right.\left|\frac{\tilde{\tau}}{2y}\right)\theta_2\left(\frac{i \pi u_y}{2}\right.\left|\frac{\tilde{\tau}}{2(1-y)}\right)}_{W=(0,0)}\\\label{eq:nullwinding2}
-\fl&=&\frac{\theta_2\Big(0\left|\frac{\tilde{\tau}}{2y(1-y)}\right)}{\eta(\frac{\tilde{\tau}}{2y})\eta(\frac{\tilde{\tau}}{2(1-y)})}
-\end{eqnarray}
+With the winding generating functions at hand, the calculation of $s_n(y,\tau)$ in the $W=(0,0)$ winding sector becomes straightforward. For example we have in the odd case (recall $\tau=iL_y/L_x$ and $\tilde{\tau}=-1/\tau$)
+%\begin{eqnarray}\label{eq:nullwinding1}\fl
+%\underbrace{\mathcal{Z}_{\rm cyl}^{DD^\prime}(y\tau)\mathcal{Z}_{\rm cyl}^{DD^\prime}((1-y)\tau)}_{W=(0,0)}&=&\frac{1}{\eta(\frac{\tilde{\tau}}{2y})\eta(\frac{\tilde{\tau}}{2(1-y)})} 
+%\underbrace{\theta_2\left(\frac{i \pi u_y}{2}\right.\left|\frac{\tilde{\tau}}{2y}\right)\theta_2\left(\frac{i \pi u_y}{2}\right.\left|\frac{\tilde{\tau}}{2(1-y)}\right)}_{W=(0,0)}\\\label{eq:nullwinding2}
+%\fl&=&\frac{\theta_2\Big(0\left|\frac{\tilde{\tau}}{2y(1-y)}\right)}{\eta(\frac{\tilde{\tau}}{2y})\eta(\frac{\tilde{\tau}}{2(1-y)})}
+%\end{eqnarray}
+\begin{equation}
+ \underbrace{\mathcal{Z}_{\rm cyl}^{DD^\prime}(y\tau)\mathcal{Z}_{\rm cyl}^{DD^\prime}((1-y)\tau)}_{W=(0,0)}=\frac{\theta_2\Big(0\left|\frac{\tilde{\tau}}{2y(1-y)}\right)}{\eta(\frac{\tilde{\tau}}{2y})\eta(\frac{\tilde{\tau}}{2(1-y)})},
+\end{equation}
+where we have selected the constant term in the product of the two theta functions.  
 This allows to recover Eq.~(\ref{eq:cft_w0_gen}) and Eq.~(\ref{eq:cft_w0_gen2}) after once again performing a modular transformation. 
  \section*{References}
 \bibliography{rvb4_bib.bib}{}
