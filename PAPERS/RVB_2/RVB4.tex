@@ -679,9 +679,10 @@ We employ ratio-trick evaluations of the $Swap_A$ operator to calculate the scal
 
 Let us first begin with the $SU(2)$ case, and present the computation of $S_2$, and also $S_2$ restricted to the $W=(0,0)$ winding sector. The quantum Monte Carlo data is shown in Fig.~\ref{fig:SU2_shape}.\begin{figure}[ht]
  \begin{center}
-  \includegraphics[width=10cm]{./figures/SU2_shape.pdf}
+  \includegraphics[width=8cm]{./figures/SU2_shape.pdf}
+  \includegraphics[width=8cm]{./figures/SU2_shape_w0.pdf}
  \end{center}
-\caption{Numerical extraction of the universal shape of $S_2$ as a function of $y=\ell_y/L_y$ for the $SU(2)$ RVB wave function and $L=L_x=L_y=12,18,24$. Red and blue curves are the CFT prediction, slightly anticipating on Eqs.~(\ref{eq:cft_prediction_gen}) and (\ref{eq:cft_prediction_gen_odd}). \textcolor{blue}{Another plot right next to this one for the $SU(2)$ $W=(0,0)$ sector.}}
+\caption{Numerical extraction of the universal shape of $S_2$ as a function of $y=\ell_y/L_y$ for the $SU(2)$ RVB wave function and $L=L_x=L_y=12,18,24$. Red and blue curves are the CFT prediction, slightly anticipating on the CFT prediction of Eqs.~(\ref{eq:cft_prediction_gen},\ref{eq:cft_prediction_gen_odd},\ref{eq:cft_w0_gen},\ref{eq:cft_w0_gen2}). \emph{Left:} $W=all$ sector.  \emph{Right:} $W=(0,0)$ sector. We observe in this case a stronger even-odd effect on the lattice, consistent with the expected result in the scaling limit.}
 \label{fig:SU2_shape}
 \end{figure}
 We observe a striking similarity with the dimer data. In particular, a strong even-odd effect which becomes even bigger in the $W=(0,0)$ sector.
@@ -699,8 +700,8 @@ The conformal results for general $\alpha=1/\kappa$ without restrictions on the 
 \end{eqnarray}
 The prediction Eq.~(\ref{eq:cft_w0}) for the $W=(0,0)$ winding sector can simply be generalized to:
 \begin{eqnarray}\label{eq:cft_w0_gen}
- s_{\infty,0}^{\rm (even)}&=&-\ln \left(\frac{\alpha}{2}\frac{\eta(\tau)^2\theta_3(\alpha y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_w0_gen2}
- s_{\infty,0}^{\rm (odd )}&=&-\ln \left(\frac{\alpha}{2}\frac{\eta(\tau)^2\theta_4(\alpha y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)
+ s_{n,0}^{\rm (even)}&=&\frac{n}{1-n}\ln \left(\frac{\alpha}{2}\frac{\eta(\tau)^2\theta_3(\alpha y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\\\label{eq:cft_w0_gen2}
+ s_{n,0}^{\rm (odd )}&=&\frac{n}{1-n}\ln \left(\frac{\alpha}{2}\frac{\eta(\tau)^2\theta_4(\alpha y(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)
 \end{eqnarray}
 We have made the assumption that the boundary conditions are the same as those for dimers (i.e.\ $a=0,1/2$ for even and odd respectively for all $\alpha$).
 
