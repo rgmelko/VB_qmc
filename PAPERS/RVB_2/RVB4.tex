@@ -486,11 +486,11 @@ We now start to explore the question of universality, with the motivation of und
 \label{sec:numerics}
 
 
-To study $SU(N)$-RVB wavefunctions, we use an unbiased Monte Carlo technique that calculates expectation values in the equal-amplitude superposition of states using a Metropolis importance sampling scheme.  The RVB wavefunction is represented in a combined VB-spin basis, $|V_{\mathcal C} \rangle = |D \rangle |Z \rangle$, where $| D \rangle$ is a list of site pairs representing the end of the valence bonds, and $|Z \rangle$ is the spin state on each site on the lattice.
+To study $SU(N)$-RVB wavefunctions, we use an unbiased Monte Carlo technique that calculates expectation values in the equal-amplitude superposition of states via a Metropolis importance sampling scheme.  The RVB wavefunction is represented in a combined VB-spin basis, $|V_{\mathcal C} \rangle = |D_{\mathcal C}  \rangle |Z_{\mathcal C}  \rangle$, where $| D_{\mathcal C}  \rangle$ is a list of site pairs representing the ends of valence bonds, and $|Z_{\mathcal C} \rangle$ is the spin state on each site on the lattice.
 
-In order to calculate expectation values (as described below), two RVB wavefunctions are sampled simultaneously, $\langle V_{\mathcal C} |$ and $| V_{\mathcal C'} \rangle$.  The two VB states $\langle D |$ and $| D' \rangle$ can initially be chosen at random, then spin state compatible with a non-zero overlap $\langle V_{\mathcal C} | V_{\mathcal C'} \rangle$ is constructed.  Since the spin basis is orthogonal, $|Z \rangle = | Z' \rangle$.  Then, Monte Carlo sampling scheme proceeds in two distinct steps.   
+In order to calculate expectation values (as described below), two RVB wavefunctions are sampled simultaneously, $\langle V_{\mathcal C} |$ and $| V_{\mathcal C'} \rangle$.  The two VB states $\langle D_{\mathcal C}  |$ and $| D_{\mathcal C} ' \rangle$ can initially be chosen at random, then a spin state compatible with a non-zero overlap $\langle V_{\mathcal C} | V_{\mathcal C'} \rangle$ is constructed.  Since the spin basis is orthogonal, $|Z_{\mathcal C}  \rangle = | Z_{\mathcal C} ' \rangle$.  Then, Monte Carlo sampling scheme proceeds in two distinct steps.   
 
-After initializing the wavefunction in one configuration $|V \rangle | Z \rangle$, the first step is to sample a new spin state $|Z  \rangle = |Z' \rangle$.  This is done at random, subject to the condition that the overlap $\langle V_{\mathcal C} | V_{\mathcal C'} \rangle$ remains non-zero.  The second step is to sample the VB states $|D \rangle$ and $|D' \rangle$.  This must be done subject to the constraint imposed by the spin states.
+After initializing the wavefunction in one configuration $|D_{\mathcal C}  \rangle | Z_{\mathcal C}  \rangle$, the first step is to sample a new spin state $|Z_{\mathcal C}   \rangle = |Z_{\mathcal C} ' \rangle$.  This is done at random, subject to the condition that the overlap $\langle V_{\mathcal C} | V_{\mathcal C'} \rangle$ remains non-zero.  The second step is to sample the VB states $|D_{\mathcal C}  \rangle$ and $|D_{\mathcal C} ' \rangle$.  This must be done subject to the constraint imposed by the spin states.
 Like employed previously for the $SU(2)$ case \cite{Ju2012}, one has the choice of ``local'' or ``non-local'' updating schemes to sample all possible VB states \cite{sandvik2010loop}.
 \begin{figure}[t]
  \begin{center}
@@ -511,7 +511,7 @@ Therefore, this move is most useful if one wants to fix the winding number to do
 In contrast, a non-local loop update moves through the ensemble of states by creating a defect at some lattice site and propagating it through the system until the defect reaches its initial point, thus closing the loop \cite{sandvik2010loop}.
 %
 
-The important point to note is the the Monte Carlo update for the RVB wavefunction proceeds in two steps: sampling the spin state $|Z \rangle$, and sampling the VB states $|D \rangle$.  Each basis configuration is constrained by the other such that the valence-bond remains a quantum $SU(N)$ singlet.  In contrast, for the classical dimer RVB wavefunction, no spin state exists, and dimer wavefunctions are orthogonal.
+The important point to note is the the Monte Carlo update for the RVB wavefunction proceeds in two steps: sampling the spin state $|Z_{\mathcal C} \rangle$, and sampling the VB states $|D_{\mathcal C} \rangle$.  Each basis configuration is constrained by the other such that the valence-bond remains a quantum $SU(N)$ singlet.  In contrast, for the classical dimer RVB wavefunction, no spin state exists, and dimer wavefunctions are orthogonal.
 
 We now discuss the methods we have used to generalized the $SU(2)$ updates used in Ref.~\cite{RVB2,Ju2012} to account for the complexities introduced by the $SU(N)$ RVB wavefunctions.
 We do this by considering the similarities and the differences between the $SU(2)$ and $SU(3)$ wavefunctions.
@@ -525,7 +525,7 @@ Given Eq.[9], the singlets on a pair of sites $[i,j]$ can be written as
 %
 While sampling the spins, there are $N$ choices to choose for a site on sublattice A.
 Once this spin is chosen, all other spins in the same loop are determined by Eq.~\ref{eq:su2su3}.
-For instance, consider the $SU(2)$ wavefunction in Fig. blah.
+For instance, consider the $SU(2)$ wavefunction in Fig. ~\ref{fig:su2su3graphs}(a).
 There are \textit{two} types of loops: one with $\uparrow$ (loop 1) and one with $\downarrow$ (loop 2) on sublattice A.
 Once the spin basis is chosen in the transition graphs, the VB configurations in the bra and ket are independently updated as prescribed above according to the same spin basis.
 Updates, however, are only possible between loops of the same type (1 or 2).
@@ -539,7 +539,7 @@ Therefore, instead of keeping track of the spins on each site, it suffices to ke
  \label{fig:su2su3graphs}
  \end{figure}
 %
-Then, generalizing this a little further, consider Fig[SU(3)].
+Then, generalizing this a little further, consider Fig.~\ref{fig:su2su3graphs}(b).
 One can easily see that there are three loop types: $\uparrow$, $\downarrow$, and 0 on sublattice A.
 So, for an $SU(N)$ system, there are $N$ different loop types, and we quickly run into ergodicity issues as updates are rarely accepted.
 We find that as $N>4$, the number of updates that one can successfully make becomes much smaller, making the error bars much slower to converge.
@@ -575,9 +575,8 @@ This simplifies the estimator, which is as follows
 %
 and $0$ otherwise.
 
-\textcolor{red}{
 In the next section we present data on these correlation functions for $SU(2)$ and $S(N)$, and attempt to calculate  universal exponents associated with their decay, which for large $N$ should connect to the dimer RVB state.
-}
+
 
 \subsection{Equal-time correlators}
 \label{sec:dimerdimer}
