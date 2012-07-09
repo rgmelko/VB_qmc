@@ -496,7 +496,7 @@ Like employed previously for the $SU(2)$ case \cite{Ju2012}, one has the choice 
  \begin{center}
     \scalebox{.3}{\includegraphics[width=\columnwidth]{./figures/updates.pdf}}
  \end{center}
- \caption{Possible local updates in a simulation....}
+ \caption{Possible local updates of the valence-bond (VB) configuration $|D_{\mathcal{C}} \rangle$ in a Monte Carlo simulation, where thick (green) lines are the VB states.  Figures a) and b) show cases for $SU(2)$, where in a) the underlying spin configuration ($m_i = \pm \frac{1}{2}$) allows the update shown, while in b) it is precluded.  In c), an $SU(3)$ case is shown with an additional spin state $m_i = 0$ (bottom two sites), which precludes the update shown.}
  \label{fig:updates}
  \end{figure}
 %
@@ -506,7 +506,7 @@ However, if the spin-basis is not compatible with this proposed change, as in Fi
 %
 While simple to perform, this move is not ergodic in that it cannot change the winding number of the system.
 %
-Therefore, this move is most useful if one wants to fix the winding number to do measurements (e.g. for the correlation measurements below, we fix $W=(0,0)$).
+Therefore, this move is most useful if one wants to fix the winding number to do measurements (e.g. for the correlation measurements below, we use the winding number $W=(0,0)$).
 %
 In contrast, a non-local loop update moves through the ensemble of states by creating a defect at some lattice site and propagating it through the system until the defect reaches its initial point, thus closing the loop \cite{sandvik2010loop}.
 %
@@ -535,8 +535,8 @@ Therefore, instead of keeping track of the spins on each site, it suffices to ke
  \begin{center}
     \scalebox{.7}{\includegraphics[width=\columnwidth]{./figures/su2su3graphs.pdf}}
  \end{center}
- \caption{Transition graphs....}
- \label{fig:su2su3graphs}
+ \caption{Simple transition graphs for RVB wavefunctions.  In a), an $SU(2)$ state illustrates two different types of transition graph, with ``loops'' labelled 1 and 2, based on whether a spin $m_i$ is $+\frac{1}{2}$ or $-\frac{1}{2}$ on sublattice A.  VB updates must occur between loops of the same type (as in Fig.~\ref{fig:updates}a)).  In b), an $SU(3)$ state has three loop types, depending on whether $m_i$ is +1, -1 or 0 on sublattice A.
+ \label{fig:su2su3graphs} }
  \end{figure}
 %
 Then, generalizing this a little further, consider Fig.~\ref{fig:su2su3graphs}(b).
