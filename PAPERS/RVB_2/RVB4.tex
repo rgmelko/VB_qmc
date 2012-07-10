@@ -761,46 +761,58 @@ Using our biggest system-size even-odd data in (\ref{eq:even_odd}) yields $\alph
 In this paper we have studied variations of the archetypical family of resonating-valence-bond (RVB) states on the square lattice, which are the simplest wavefunctions exhibiting gapless spin-liquid-type behavior. %, using analytical and numerical techniques.
 We consider $SU(2)$ RVB states, where the wavefunction is an equal-amplitude superposition of nearest-neighbor singlets, amenable to sampling with advanced quantum Monte Carlo techniques; as well as orthogonal dimer-RVB wavefunctions, for which exact calculations of correlation functions can be performed.  
 
-Crucially, it is possible to interpolate between the $SU(2)$ and dimer wavefunctions by generalizing the former case to $SU(N)$ symmetry, for which the two are equal when $N \rightarrow \infty$.  Monte Carlo simulations are able to reach $N=$ with only moderate computational effort. This interpolation can be demonstrated by calculating dimer-dimer correlation functions.  Previous studies demonstrated that the $SU(2)$ RVB state exhibited algebraic decay with an exponent $\alpha_2 \approx 1.2$, while the dimer RVB has $\alpha_{\infty} = 2$.  We showed here that this exponent evolves smoothly,  $\alpha_3=1.43(7)$, $\alpha_4=1.54(8)$, $\alpha_5=1.67(9)$, 
-with no evidence for a transition as $N$ is varied.  This is strong evidence of universality, allowing us to link some physical aspects of the $SU(2)$ case with exact results on the dimer RVB.
+Crucially, it is possible to interpolate between the $SU(2)$ and dimer wavefunctions by generalizing the former case to $SU(N)$ symmetry, for which the two are equal when $N \rightarrow \infty$.  Monte Carlo simulations are able to reach $N=5$ with only moderate computational effort. This interpolation can be demonstrated by calculating dimer-dimer correlation functions.  Previous studies demonstrated that the $SU(2)$ RVB state exhibited algebraic decay with an exponent $\alpha_2 \approx 1.2$, while the dimer RVB has $\alpha_{\infty} = 2$.  We showed in this work that this exponent evolves smoothly,  $\alpha_3=1.43(7)$, $\alpha_4=1.54(8)$, $\alpha_5=1.67(9)$, 
+with no evidence for a transition as $N$ is varied.  This is strong evidence of universality, allowing us to link various physical aspects of the $SU(2)$ case with exact results on the dimer RVB.
 
 Some of the most striking behavior of the RVB wavefunctions are manifest in their quantum entanglement properties.  
-By measuring the Monte Carlo expectation value of a ``swap'' operator on a replicated lattice, we calculate the second Renyi entropy, which quantifies the entanglement between two subregions of the system.  
-In this way, we confirm the previous observation that $S_2$ for the $SU(2)$ RVB exhibits a remarkable two-branch structure when the length of the entangled region varies between and even and odd number of lattice sites.  We are also able to calculate general order Renyi entropies, $S_n$, numerically in the dimer RVB wavefunction, and demonstrate that the two-branch structure exists for $n \ge 2$ (but not for $n<2$).  It would be interesting to examine this on future Monte Carlo calculations of the $SU(2)$ RVB state, where replica-trick calculations of Renyi entropies for $n >2$ are also possible.
+By measuring the Monte Carlo expectation value of a ``swap'' operator on a replicated lattice, we calculate the second Renyi entropy, $S_2$, which quantifies the entanglement between two subregions of the system.  
+In this way, we confirm the previous observation that $S_2$ for the $SU(2)$ RVB exhibits a remarkable two-branch structure when the length of the entangled region varies between and even an odd number of lattice sites.  We are also able to calculate general-order Renyi entropies, $S_n$, numerically in the dimer RVB wavefunction, and demonstrate that the two-branch structure exists for $n \ge 2$ (but not for $n<2$).  It would be interesting to examine this with future Monte Carlo calculations of the $SU(2)$ RVB state, where replica-trick calculations of Renyi entropies for $n >2$ are also possible.
 
-Remarkably, the two-branch shape of the Renyi entropies has an important consequence: namely, strong-subadditivity is violated for the ``upper'' branch, which is a concave-up function of the linear size of the entangled region.  We demonstrate that this is far from a numerical artefact by calculating the shape of these branches ....
+Remarkably, the two-branch shape of the Renyi entropies has an important consequence: namely, strong-subadditivity is violated for the ``upper'' branch, which is a concave-up function of the linear size of the entangled region.  We demonstrate that this is far from a numerical artefact by calculating the shape of these branches in an effective conformal field theory.  This effective theory involves partition functions that can be evaluated exactly in the continuum, thus allowing access to the Renyi entropy, which exhibits the same remarkable two-branch structure observed in lattice calculations.  This emphasizes the universality of the result and confirms that the two-branch Renyi entropies are not the result of finite-size lattice effects.  From this analysis, we have elucidated two important points regarding the shape of the Renyi entropy as a function of linear size of the entangled region.  
+
+First, the two-branch structure does not occur for every Renyi index $n$.  Rather, it emerges for some critical $n_c$, which must be greater than unity since the von Neumann entropy $S_1$ is strictly constrained by strong-subadditivity (while the $n>1$ Renyi entropies are not).  We believe that in the square lattice RVB, the $1<n_c<2$; thus, Monte Carlo simulations (which only access $n>1$) will always see a two-branch structure as observed here.  
+%Resolving this issue is certainly an interesting question for further studies. 
+It would be useful to change $d_{\rm min}$ by studying the RVB wave function on other bipartite lattices. For example on the honecomb lattice $d_{\rm min}=3$ (and therefore $n_c=3^2=9$) for dimers, and $S_2$ for RVB would likely lie in the replicated phase, not subject to the even-odd effect. 
+This prediction should be tested by future Monte Carlo studies.
+
+Second, we have elucidated an exact expression for the shape of the Renyi entropy curves in a geometry where a linear size of the entangled regions grows as $L$.  As observed in previous studies of gapless systems \cite{Ju2012}, this was well approximated by the celebrated one-dimensional result $ln(L)$; however, deviations were observed in the numerical data.  Using our effective field theory we have obtained an exact expression, which is demonstrated to be consistent with our numerical data for the $SU(2)$ and dimer RVB wavefunctions, commensurate with the notion that it is universal.  This conjecture should be tested on future gapless wavefunctions.  \textcolor{red}{note: I have data for the 2D TFIM critical point... will this work there?}
+%It could also be extended to other RK points described by other CFTs, generalizing the results of\cite{Stephan2010,Zaletel}
+
+In summary, we have used analytical and numerical techniques to study entanglement and correlations in $SU(N)$ and dimer RVB wavefuctions --  the simplest wavefunctions exhibiting features of gapless spin-liquid behavior.  Since gapless spin liquids are long-range entangled states {\it not} amenable to  classification by simple quantities such as the Topological Entanglement Entropy, we believe that some of the universal scaling properties uncovered here will be of use in future efforts to classify and characterize them in theory, numerics, and experiment.
+
+ 
 %XXX
 
 
-We have seen in the previous section (\ref{sec:rvb_entanglement}) that our main result seems to describe well, at least at the qualitative level, the entanglement data for $SU(2)$. There are two main reasons why such a result is non trivial
-
-Resolving this issue is certainly an interesting question for further studies. It would also certainly be useful to change $d_{\rm min}$ by studying the RVB wave function on other bipartite lattices. For example on the hexagonal lattice $d_{\rm min}=3$ (and therefore $n_c=3^2=9$) for dimers, and $S_2$ for RVB would likely lie in the replicated phase, not subject to the even-odd effect. 
+%We have seen in the previous section (\ref{sec:rvb_entanglement}) that our main result seems to describe well, at least at the qualitative level, the entanglement data for $SU(2)$. There are two main reasons why such a result is non trivial
 
 
-\textcolor{blue}{
-\begin{itemize}
- \item Entanglement in finite $d>1$ critical systems. 
- \item Simple result for the shape dependence, as a ratio of known partition functions, not $\ln \sin$.
- \item Get a better understanding: change the lattice, Schmidt decomposition, \ldots.
- \item Extension to other RK points described by another CFT, generalizing\cite{Stephan2010,Zaletel}
- \item Hope this can help attack more complicated Quantum critical points.
-\end{itemize}
-}
 
-\begin{itemize}
-\item 
- From the perspective of the quantum dimer model, the R\'enyi entanglement entropy can be rewritten as a simple fidelity\cite{Bipartite_fidelity}:
- \begin{equation}\label{eq:lbf}
-  S_{n>n_c}\sim \frac{n}{1-n} \ln \left|\langle A\cup B|A\otimes B\rangle\right|^2,
- \end{equation}
-where $|A\cup B\rangle$ is the ground-state wave function of the whole system. $|A\otimes B\rangle$ is the ground-state wave function where all interactions between $A$ and $B$ have been switched off, a tensor product of the two ground-state wave functions in $A$ and $B$. Furthermore, Eq.~(\ref{eq:lbf}) even becomes exact on the lattice when $n\to \infty$.
-\item Recall some cool strong subadditivity interpretation.
- \item The universal shape we obtain bears strong resemblance to the numerical results of Ref.~\cite{Ju2012}, strengthening a posteriori the author's claim at universality.  
-  \end{itemize}
 
+%\textcolor{blue}{
+%\begin{itemize}
+% \item Entanglement in finite $d>1$ critical systems. 
+% \item Simple result for the shape dependence, as a ratio of known partition functions, not $\ln \sin$.
+% \item Get a better understanding: change the lattice, Schmidt decomposition, \ldots.
+% \item Extension to other RK points described by another CFT, generalizing\cite{Stephan2010,Zaletel}
+% \item Hope this can help attack more complicated Quantum critical points.
+%\end{itemize}
+%}
+%
+%\begin{itemize}
+%\item 
+% From the perspective of the quantum dimer model, the R\'enyi entanglement entropy can be rewritten as a simple fidelity\cite{Bipartite_fidelity}:
+% \begin{equation}\label{eq:lbf}
+%  S_{n>n_c}\sim \frac{n}{1-n} \ln \left|\langle A\cup B|A\otimes B\rangle\right|^2,
+% \end{equation}
+%where $|A\cup B\rangle$ is the ground-state wave function of the whole system. $|A\otimes B\rangle$ is the ground-state wave function where all interactions between $A$ and $B$ have been switched off, a tensor product of the two ground-state wave functions in $A$ and $B$. Furthermore, Eq.~(\ref{eq:lbf}) even becomes exact on the lattice when $n\to \infty$.
+%\item Recall some cool strong subadditivity interpretation.
+% \item The universal shape we obtain bears strong resemblance to the numerical results of Ref.~\cite{Ju2012}, strengthening a posteriori the author's claim at universality.  
+%  \end{itemize}
+%
 
 \paragraph{Acknowledgments}
- We would like to thank Matthew Hastings for early collaboration on this project. We also thank Ann Kallin, Eduardo Fradkin, Gr\'egoire Misguich, Vincent Pasquier and \ldots for stimulating discussions. This work has been supported by the Natural Sciences and Engineering
+ We would like to thank Matthew Hastings for early collaboration on this project. We also thank Ann Kallin, Eduardo Fradkin, Gr\'egoire Misguich, Vincent Pasquier, H. Casini, and \ldots for stimulating discussions. This work has been supported by the Natural Sciences and Engineering
 Research Council of Canada (NSERC), and by the US NSF via grants DMR/MPS-0704666 and DMR/MPS1006549.   Simulations were performed on the computing facilities of SHARCNET.
 
  \appendix
