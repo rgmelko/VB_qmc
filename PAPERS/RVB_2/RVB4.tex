@@ -486,15 +486,15 @@ We now start to explore the question of universality, with the motivation of und
 \label{sec:numerics}
 
 
-To study $SU(N)$-RVB wavefunctions, we use an unbiased Monte Carlo technique that calculates expectation values in the equal-amplitude superposition of states via a Metropolis importance sampling scheme.  The RVB wavefunction is represented in a combined VB-spin basis, $|V_{\mathcal C} \rangle = |D_{\mathcal C}  \rangle |Z_{\mathcal C}  \rangle$, where $| D_{\mathcal C}  \rangle$ is a list of site pairs representing the ends of valence bonds, and $|Z_{\mathcal C} \rangle$ is the spin state on each site on the lattice.
+To study $SU(N)$-RVB wavefunctions, we use an unbiased Monte Carlo technique that calculates expectation values in the equal-amplitude superposition of states using a Metropolis importance sampling scheme.  The RVB wavefunction is represented in a combined VB-spin basis, $|V_{\mathcal C} \rangle = |D \rangle |Z \rangle$, where $| D \rangle$ is a list of site-pairs, $[i,j]$, specifying the ends of the valence bonds, and $|Z \rangle$ is the spin state on each site on the lattice.
 
-In order to calculate expectation values (as described below), two RVB wavefunctions are sampled simultaneously, $\langle V_{\mathcal C} |$ and $| V_{\mathcal C'} \rangle$.  The two VB states $\langle D_{\mathcal C}  |$ and $| D_{\mathcal C} ' \rangle$ can initially be chosen at random, then a spin state compatible with a non-zero overlap $\langle V_{\mathcal C} | V_{\mathcal C'} \rangle$ is constructed.  Since the spin basis is orthogonal, $|Z_{\mathcal C}  \rangle = | Z_{\mathcal C} ' \rangle$.  Then, Monte Carlo sampling scheme proceeds in two distinct steps.   
+In order to compute expectation values (as described below), two RVB wavefunctions are sampled simultaneously, $\langle V_{\mathcal C} |$ and $| V_{\mathcal C'} \rangle$.  The two VB states $\langle D |$ and $| D' \rangle$ can initially be chosen at random; spin states compatible with a non-zero overlap $\langle V_{\mathcal C} | V_{\mathcal C'} \rangle$ are then constructed.  Since the spin basis is orthogonal, $|Z \rangle = | Z' \rangle$.  Then, Monte Carlo sampling scheme proceeds in two distinct steps.   
 
 After initializing the wavefunction in one configuration $|D_{\mathcal C}  \rangle | Z_{\mathcal C}  \rangle$, the first step is to sample a new spin state $|Z_{\mathcal C}   \rangle = |Z_{\mathcal C} ' \rangle$.  This is done at random, subject to the condition that the overlap $\langle V_{\mathcal C} | V_{\mathcal C'} \rangle$ remains non-zero.  The second step is to sample the VB states $|D_{\mathcal C}  \rangle$ and $|D_{\mathcal C} ' \rangle$.  This must be done subject to the constraint imposed by the spin states.
 Like employed previously for the $SU(2)$ case \cite{Ju2012}, one has the choice of ``local'' or ``non-local'' updating schemes to sample all possible VB states \cite{sandvik2010loop}.
 \begin{figure}[t]
  \begin{center}
-    \scalebox{.3}{\includegraphics[width=\columnwidth]{./figures/updates.pdf}}
+    \scalebox{.35}{\includegraphics[width=\columnwidth]{./figures/updates.pdf}}
  \end{center}
  \caption{Possible local updates of the valence-bond (VB) configuration $|D_{\mathcal{C}} \rangle$ in a Monte Carlo simulation, where thick (green) lines are the VB states.  Figures a) and b) show cases for $SU(2)$, where in a) the underlying spin configuration ($m_i = \pm \frac{1}{2}$) allows the update shown, while in b) it is precluded.  In c), an $SU(3)$ case is shown with an additional spin state $m_i = 0$ (bottom two sites), which precludes the update shown.}
  \label{fig:updates}
@@ -519,7 +519,7 @@ Given Eq.[9], the singlets on a pair of sites $[i,j]$ can be written as
 %
 \begin{eqnarray}
 \left[i.j\right]_{N=2} &=& \frac{1}{\sqrt{2}} \big[ | \uparrow \rangle_i | \downarrow \rangle_j - | \downarrow \rangle_i | \uparrow \rangle_j \big] , \quad \uparrow,\downarrow = \pm \frac{1}{2}\\
-\left[i.j\right]_{N=3} &=& \frac{1}{\sqrt{3}} \big[ | \uparrow \rangle_i | \downarrow \rangle_j - | \downarrow \rangle_i | \uparrow \rangle_j - |0\rangle_i |0\rangle_j \big] , \quad \uparrow,\downarrow = \pm 1.
+\left[i.j\right]_{N=3} &=& \frac{1}{\sqrt{3}} \big[ | \uparrow \rangle_i | \downarrow \rangle_j + | \downarrow \rangle_i | \uparrow \rangle_j - |0\rangle_i |0\rangle_j \big] , \quad \uparrow,\downarrow = \pm 1.
 \label{eq:su2su3}
 \end{eqnarray}
 %
