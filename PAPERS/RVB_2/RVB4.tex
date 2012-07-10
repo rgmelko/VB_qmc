@@ -600,7 +600,7 @@ $
 \caption{Dimer-Dimer correlations on the $64 \times 64$ torus for $N=2,3,4,5$. Dashed blue lines is a linear fit to Eq.~(\ref{eq:decay}), in the ``linear regime'' $\ell_x \simeq 5,\ldots,15$, while the red solid lines are a fit to the conformal scaling (Eq.~(\ref{eq:cft_fit})) in the same region.}
 \label{fig:corr_su2_dimers}
 \end{figure}
-For each $N$ we extract the leading exponent by a fit (solid blue lines in Fig.~\ref{fig:corr_su2_dimers}) to Eq.~(\ref{eq:decay}) in the regime $1\ll \ell_x \ll L_x$ and for odd $\ell_x$. We find $\alpha_2=1.21(7)$, $\alpha_3=1.43(7)$, $\alpha_4=1.54(8)$, $\alpha_4=1.67(9)$. Notice that as $N$ gets larger, it becomes more and more difficult to converge the Monte-Carlo data in a finite time, resulting in a loss of precision on the corresponding exponent. 
+For each $N$ we extract the leading exponent by a fit (solid blue lines in Fig.~\ref{fig:corr_su2_dimers}) to Eq.~(\ref{eq:decay}) in the regime $1\ll \ell_x \ll L_x$ and for odd $\ell_x$. We find $\alpha_2=1.21(7)$, $\alpha_3=1.43(7)$, $\alpha_4=1.54(8)$, $\alpha_5=1.67(9)$. Notice that as $N$ gets larger, it becomes more and more difficult to converge the Monte-Carlo data in a finite time, resulting in a loss of precision on the corresponding exponent. 
 
 We also observe the presence of a dipolar term which behaves as $(-1)^{\ell_x} \ell_x^{-2}$ for all $N$. It is well known in the dimer model\cite{Alet_dimers2}, and also appears for the $SU(2)$ RVB state\cite{RVB2}. In the dimer case, it exactly cancels the universal term (\ref{eq:decay}) at even distances, so that the dimer-dimer correlation now behaves as\cite{FisherStephenson} $\ell_x^{-4}$. In the $SU(N)$ RVB case the exponent $\alpha$ is different and this does not happen. The dipolar is then a subleading term, which introduces finite-size effect when trying to extract the exponent. For example we get $\alpha_2\simeq 1.14$ at even distances, which is slightly smaller than the established value on larger system sizes\cite{RVB1,RVB2} for $SU(2)$, which are expected to be more reliable. 
 
@@ -740,14 +740,30 @@ Extracting an accurate exponent $\alpha_N$ from the $S_2$ data is difficult, due
  \delta_n(\tau,\alpha)=\frac{2n}{1-n}\ln \left(\frac{\theta_4(\alpha\tau/2)}{\theta_3(\alpha \tau/2)}\right)
 \end{equation}
 Using our biggest system-size even-odd data in (\ref{eq:even_odd}) yields $\alpha \approx 2.27$ for dimers and $\alpha \approx 1.57$ for $SU(2)$ RVB. These numbers can be improved by extrapolation, but the strong finite-size effects described above prevent an accurate estimate of these numbers. However, 
-\section{Conclusion}
+\section{Conclusion} 
+\label{sec:conclusion}
+
+%XXX
+
+In this paper we have studied variations of the archetypical family of resonating-valence-bond (RVB) states on the square lattice, which are the simplest wavefunctions exhibiting gapless spin-liquid-type behavior. %, using analytical and numerical techniques.
+We consider $SU(2)$ RVB states, where the wavefunction is an equal-amplitude superposition of nearest-neighbor singlets, amenable to sampling with advanced quantum Monte Carlo techniques; as well as orthogonal dimer-RVB wavefunctions, for which exact calculations of correlation functions can be performed.  
+
+Crucially, it is possible to interpolate between the $SU(2)$ and dimer wavefunctions by generalizing the former case to $SU(N)$ symmetry, for which the two are equal when $N \rightarrow \infty$.  Monte Carlo simulations are able to reach $N=$ with only moderate computational effort. This interpolation can be demonstrated by calculating dimer-dimer correlation functions.  Previous studies demonstrated that the $SU(2)$ RVB state exhibited algebraic decay with an exponent $\alpha_2 \approx 1.2$, while the dimer RVB has $\alpha_{\infty} = 2$.  We showed here that this exponent evolves smoothly,  $\alpha_3=1.43(7)$, $\alpha_4=1.54(8)$, $\alpha_5=1.67(9)$, 
+with no evidence for a transition as $N$ is varied.  This is strong evidence of universality, allowing us to link some physical aspects of the $SU(2)$ case with exact results on the dimer RVB.
+
+Some of the most striking behavior of the RVB wavefunctions are manifest in their quantum entanglement properties.  
+By measuring the Monte Carlo expectation value of a ``swap'' operator on a replicated lattice, we calculate the second Renyi entropy, which quantifies the entanglement between two subregions of the system.  
+In this way, we confirm the previous observation that $S_2$ for the $SU(2)$ RVB exhibits a remarkable two-branch structure when the length of the entangled region varies between and even and odd number of lattice sites.  We are also able to calculate general order Renyi entropies, $S_n$, numerically in the dimer RVB wavefunction, and demonstrate that the two-branch structure exists for $n \ge 2$ (but not for $n<2$).  It would be interesting to examine this on future Monte Carlo calculations of the $SU(2)$ RVB state, where replica-trick calculations of Renyi entropies for $n >2$ are also possible.
+
+Remarkably, the two-branch shape of the Renyi entropies has an important consequence: namely, strong-subadditivity is violated for the ``upper'' branch, which is a concave-up function of the linear size of the entangled region.  We demonstrate that this is far from a numerical artefact by calculating the shape of these branches ....
+%XXX
+
 
 We have seen in the previous section (\ref{sec:rvb_entanglement}) that our main result seems to describe well, at least at the qualitative level, the entanglement data for $SU(2)$. There are two main reasons why such a result is non trivial
 
 Resolving this issue is certainly an interesting question for further studies. It would also certainly be useful to change $d_{\rm min}$ by studying the RVB wave function on other bipartite lattices. For example on the hexagonal lattice $d_{\rm min}=3$ (and therefore $n_c=3^2=9$) for dimers, and $S_2$ for RVB would likely lie in the replicated phase, not subject to the even-odd effect. 
 
 
-\label{sec:conclusion}
 \textcolor{blue}{
 \begin{itemize}
  \item Entanglement in finite $d>1$ critical systems. 
