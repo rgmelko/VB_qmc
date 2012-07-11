@@ -42,11 +42,8 @@ R\'enyi index $n$, with large values of $n$ proving a more sensitive probe here,
 
 \section{Introduction}
 \label{sec:introduction}
-%\subsection{Entanglement for critical 2d quantum wave functions}
-%\subsection{Gapless spin liquids, critical 2D wavefunctions, and entanglement}
 
 
-%In the world of condensed matter physics, no state of matter is more elusive, exotic, or intriguing as the coveted quantum spin liquid.  A sanctuary for some of the most pivotal ideas relating to emergence, such as topological order and fractionalization, spin liquids are sought after in theory, simulation, and experiment alike.
 
 A vast amount of recent theoretical and experimental effort has been devoted to the study of and search for spin liquids. A spin-liquid phase typically exhibits exotic behavior such as quasiparticles 
 with fractionalized quantum numbers, or spin-charge separation. Such behavior is manifestly non-perturbative, and so requires advanced theoretical tools to analyze. 
@@ -58,10 +55,7 @@ It is widely believed that many properties of a gapped phase are robust under (s
 
 
 The behavior of quantities such as the R\'enyi entropy thus can be used to explore spin-liquid states directly. The quantum spin liquids best characterized theoretically are { gapped}, where a gauge symmetry typically emerges.
- % is protected by an energy gap from excitations, which typically take the form of exotic fractionalized quasiparticles.
 An important and useful concept applicable here is topological order, which relates the emergent gauge symmetry to a topological degeneracy, and the related concept of { topological entropy} \cite{HIZ,KP,LW}. 
-%Such properties emerge from a perspective which views the spin liquid wavefunction in the language of a fluctuating ``loop gas''.
-%A vast literature of phenomenological theories of gapped spin liquid states connects with a growing body of simulation work on microscopic models which harbour them; a theoretical field which seemed distastefully exotic less than a decade ago is now teeming with synergy as more examples of models with gapped spin liquids seem to appear daily.
 However, many experimental systems currently identified as good candidates for spin liquids appear to be {\it gapless}.  Compared to their gapped counterparts, these phases are less amenable to simple unifying attributes such as topological order.  Although it is likely that other quantities, related perhaps to correlations or manifestations of long-range entanglement, can be used to characterize gapless phases, few viable examples of {\it models} -- particularly those tractable by large-scale numerical simulation -- are known to contain gapless spin liquids.
 
 We study a particular family of states, resonating-valence-bond (RVB) states on the square lattice, that are gapless and exhibit spin-liquid-type behavior \cite{RokhsarKivelson,RVB1,RVB2}. Our main (but not only) tool is to analyze a subleading term in the R\'enyi entropy particularly useful for characterizing gapless systems \cite{Ju2012}. The R\'enyi entanglement entropies $S_n$ are defined as
@@ -95,15 +89,6 @@ earlier numerical results at
 $N=2$ \cite{RVB1,RVB2}. We also present further evidence of the underlying Coulomb-gas structure for all $N$.
 Finally, in section \ref{sec:rvb_entanglement} we present numerical simulations of entanglement for the $SU(N)$ RVB wave function. The behavior qualitatively resembles that of the dimer RVB state, and therefore provides strong evidence of universal behavior, in agreement with our main result of sec.~\ref{sec:shape_general}. 
 
-
-%\textcolor{blue}{
-%\begin{itemize}
-% \item Study of entanglement for a finite critical system in $d>1$, trying to generalize the celebrated $\frac{c}{3}\ln\left| (L/\pi)\sin (\pi x /L)\right|$.
-%  Idea: entanglement sensible to the full geometry, because of long range correlations. 
-% \item Relation with topological stuff (Kitaev \& Preskill\cite{KP} and also Levin \& Wen\cite{LW})
-% \item Entanglement entropy is very difficult to calculate numerically, \emph{but} we have access to $S_2$ in QMC\cite{swap}.
-% \end{itemize}
-%}
 
 
 
@@ -182,13 +167,6 @@ It is possible to interpolate between the dimer and $SU(2)$  RVB states, either 
   [i,j]=\frac{1}{\sqrt{2S+1}}\sum_{m\in \{-S,-S+1,\ldots,S\}}^{}(-1)^{m-S}\,|m\rangle_i \otimes |-m\rangle_j\ .
  \end{equation}
 When $i$ and $j$ are nearest neighbors, such a singlet can be viewed as a dimer occupying the link between $i$ and $j$,  as in the $SU(2)$ case.
-%\begin{equation}
- %L_x L_y=2M\quad,\quad M \in \mathbb{N}.
-%\end{equation}
-%Just as in the classical dimer model, one can define a dimer configuration ${\cal C}$, which is a covering of the lattice by dimers $(i_\alpha,j_\alpha)$ such that each site be occupied by one dimer and one dimer only: ${\cal C}=\{(i_1,j_1),(i_2,j_2),\ldots ,(i_{M},j_{M})\}$. 
-%a valence-bond state is a 
-%\begin{equation}
-%
 The nearest-neighbor RVB wave function is then defined as an equally weighted superposition of these valence-bond states (\ref{RVBdef1}) as before, with 
  \begin{equation}
  |V_{\cal C} \rangle = \frac{1}{2^{{\cal N}/4}} \prod_{i=1}^{{\cal N}/2} 
@@ -213,14 +191,14 @@ Given the changing exponents, the $SU(N)$ RVB states are obviously not identical
 \subsection{The Coulomb-gas approach to classical dimers}
 \label{sec:cg}
 
-A well established and very useful fact about the classical dimer model is that long-distance properties of the dimers are described by a free bosonic field theory, or Coulomb gas. This can be seen either by taking the continuum limit of the fermonic description (see e.g.\ \cite{FMS}) and then bosonizing the fermions, or by rewriting the dimers in terms of a discrete ``height'' degree of freedom \cite{Heights_1,Heights_2,Henley}. We follow the latter approach, because a careful treatment of the boundary conditions is necessary to obtain our results for the two-cylinder R\'enyi entropy. 
+A well established and very useful fact about the classical dimer model is that long-distance properties of the dimers are described by a free bosonic field theory, or Coulomb gas. This can be seen either by taking the continuum limit of the fermionic description (see e.g.\ \cite{FMS}) and then bosonizing the fermions, or by rewriting the dimers in terms of a discrete ``height'' degree of freedom \cite{Heights_1,Heights_2,Henley}. We follow the latter approach, because a careful treatment of the boundary conditions is necessary to obtain our results for the two-cylinder R\'enyi entropy. 
 
 The first step in the mapping of classical dimers on to the Coulomb gas is to associate an integer with each face of the lattice, as illustrated in fig.~\ref{fig:height_shift}.
 \begin{figure}[ht]
  \begin{center}
  \includegraphics[scale=0.8]{./figures/shift.pdf}
  \end{center}
-\caption{Illustration of the height shift between the upper and lower boundaries in the odd case.  \emph{Left:} Even $L_y$ case. The coarse-grained heigth difference between top and bottom is $\Delta h=\langle h_{\rm top}\rangle-\langle h_{\rm bottom}\rangle=(\pi/2)(9/2-1/2)=2\pi$.  \emph{Right:} Odd $L_y$ case. We have $\Delta h=(\pi/2)(13/2-1/2)=3\pi$.}
+\caption{Illustration of the height shift between the upper and lower boundaries in the odd case.  \emph{Left:} Even $L_y$ case. The coarse-grained height difference between top and bottom is $\Delta h=\langle h_{\rm top}\rangle-\langle h_{\rm bottom}\rangle=(\pi/2)(9/2-1/2)=2\pi$.  \emph{Right:} Odd $L_y$ case. We have $\Delta h=(\pi/2)(13/2-1/2)=3\pi$.}
 \label{fig:height_shift}
 \end{figure}
 These integers are defined by the following construction. Set value on one face (say the lower leftmost one) to be zero. Then, turning counterclockwise around a site of the even (resp.\ odd) sublattice represented by black squares (resp.\ white squares) the integer changes by $-3$ (resp.\ $+3$) if it crosses a dimer, $+1$ (resp.\ $-1$) otherwise. Since by construction these integers are different on adjacent sites, in the bulk one defines a smoother height variable $h(i,j)$ on the sites of the lattice, by averaging the values of the integers on four faces surrounding each point (and then for convenience's sake multiplying by $\pi/2$). Then the states where the dimers are arranged in columns correspond to a constant value of the height.
@@ -258,12 +236,7 @@ In this framework the quantum dimer and quantum six-vertex models can also be wr
 
 Because of the arguments above, it is reasonable to hope that all the equal-time correlators in the $SU(N)$ RVB state for any $N$ can be described by this Coulomb gas, albeit with stiffness depending on $N$. Substantial evidence for this was provided in the $SU(2)$ case in \cite{RVB2}, where several universal quantities, including the dimer-dimer and monomer-monomer decay exponents, were found numerically. With appropriate identification of the operators, each yields a independent value for the stiffness.  The numerics gave approximately the same value of the stiffness $\kappa_{2}\approx .83$ for each, providing strong evidence that the Coulomb gas description applies to correlators of {\em spin singlets} in the $SU(2)$ RVB wave function. 
 
-%\subsection{The RVB and Coulomb gas states}
-%\label{sec:cg}
 
-%This wavefunction can also be written as a superposition of classical ``loop'' states, defined by the transition graph formed by superimposing one element of the sum over $\alpha$ with some reference state.\footnote{\textcolor{blue}{This can be seen by computing the norm $\langle \Psi|\Psi\rangle=\sum_{{\rm loops}}2^{{\cal N}+2{\cal L}}$, where the sum runs over all the possible loop configurations. ${\cal N}$ is the number of double-edges and ${\cal L}$ is the number of non trivial loops.}}
-%Correlators in the RVB can be written in terms of the correlators of this 2D classical loop model, where loops longer than length two have a weight of $4$ per loop (\textcolor{red}{THE DEFINITION OF ``WEIGHT'' NEEDS EXPLAINING}). A spin-spin correlator corresponds to having a strand of loop end at the sites of the spins \cite{LDA}. Such a correlator is exponentially decaying  whenever the weight per loop is greater than 2 \cite{Nienhuis}.  Moreover, extensive numerics indicate \cite{RVB1,RVB2} have not found any  spin order. 
-%In this sense, the spins are ``deconfined'' and this state perhaps represents a sort of spin liquid.
 
 
 
@@ -390,7 +363,7 @@ This result implies that in the scaling limit there is an ``entanglement gap'' b
 \begin{equation}\label{eq:pmax}
  p_{\rm max}=\frac{Z_{\rm cyl}(L_x,\ell_y)Z_{\rm cyl}(L_x,L_y-\ell_y)}{Z_{\rm torus}(L_x,L_y)} \ .
 \end{equation}
-The analogous formula still holds if space is a cylinder instead of a a torus, simply by replacing the denominator with the appropriate cylinder partition function. %Note that the non-universal bulk parts of the partition functions cancel in this expression, so that one can use the universal partition functions computed in the free-boson conformal field theory. 
+The analogous formula still holds if space is a cylinder instead of a a torus, simply by replacing the denominator with the appropriate cylinder partition function. 
 Note that the non-universal bulk parts of the partition functions cancel in this expression. The non-universal boundary parts do not, and contribute to the area law in (\ref{eq:aftert}). Thus putting (\ref{eq:pmax}) together with (\ref{eq:aftert}) and filtering out the area law term gives (\ref{eq:shape_general}).
 
 
@@ -414,9 +387,6 @@ where $a=0$ for even $L_y$ and $a=1/2$ for odd $L_y$.
 
 
 The computation of the free-boson partition function is completely standard; see e.g.\ \cite{EggertAffleck,FSW,BigYellowBook}. Since the action is quadratic in the bosonic field, it can be decoupled into an oscillator part and a classical part. Only the classical part affected by the compactification $h\sim h+2\pi$, and by the boundary conditions. The partition function for Dirichlet boundary conditions on both ends of the cylinder, with the height differing by $2\pi a$, is given by
-%\begin{equation} \mathcal{Z}_{\rm cyl}^{DD^{(a)}}=e^{\frac{\pi}{24}\frac{L_x}{L_y}}\prod_{w=1}^{\infty}\left(1-e^{-\pi w\frac{L_x}
-%{L_y}}\right)^{-1}\sum_{w=-\infty}^{+\infty}e^{-\kappa \pi\frac{L_x}{L_y} (w+a)^2}.
-%\end{equation}
 \begin{equation}
  \mathcal{Z}_{\rm cyl}^{DD^{(a)}}=q^{-1/24}\prod_{w=1}^{\infty}\left(1-q^w\right)^{-1}\sum_{w=-\infty}^{+\infty}q^{\,\kappa (w+a)^2}\quad,\quad q=e^{-\pi L_x/L_y}
 \end{equation}
@@ -452,10 +422,7 @@ Obviously, these $n>n_c$ results are quite different in the even and odd sectors
 
 This even/odd effect disappears as $L_y/L_x$ is increased; it follows from the CFT expressions that this occurs exponentially quickly.  It does not approach the celebrated 1d result\cite{Cardy} $\propto \ln\sin (\pi y)$ in the effective 1d limit $L_y/L_x\to\infty$, because the RK Hamiltonian becomes gapped with correlation length $\xi\propto L_x$ in this limit. 
 
-%It could have been tempting to expect the result to be similar to the celebrated 1d quantum result$S_n\propto \ln\sin (\pi y)$ in the infinite torus limit. This is clearly not the case, and one can easily check that the corresponding quasi-1d system would be gapped, and therefore cannot exhibit the conformal scaling. 
 
-
-%The even-odd effect is much less pronouced in for larger $L_y/L_x$, compatible with our prediction that $S_2$ goes exponentially fast in $L_y/L_x$ to a single flat curve. 
 
 
 The relatively large finite-size effects apparent in the plots should disappear in the thermodynamic limit.  To illustrate the slowness of the convergence, we study the exactly solvable case $S_\infty=-\ln p_{\rm max}$ (Eq.~(\ref{eq:pmax})), where the agreement between CFT and the lattice can be made rigorous. 
@@ -487,7 +454,6 @@ Notice also that this coincidence seems to be a peculiarity of the free fermion 
 \label{sec:correlations}
 We now start to explore the question of universality, with the motivation of understanding whether the results obtained for the dimer RVB state can be adapted to describe the $SU(N)$ RVB states. In this section we use quantum Monte Carlo techniques to find the spin-spin and dimer-dimer correlators for $N=2,3,4,5$, generalizing some of the results of \cite{RVB1,RVB2}. This shows that there is no evidence for a transition as $N$ is varied, a strong piece of evidence for universality. It also allows us to make contact with the results of \cite{Damle}, where an expansion around the dimer RVB state is developed.
 
-%$SU(N)$-RVB wave function, before going to its entanglement properties (Sec.~\ref{sec:rvb_entanglement}). This section, which may be skipped at first reading, is organized as follows. In Sec.~\ref{sec:numerics}, we explain how such systems , in particular their correlation functions, maybe be simulated using Quantum Monte Carlo techniques. We then study spin-spin correlations, as well as the more interesting dimer-dimer correlations. We find that dimer-dimer correlations decay algebraically, and that the exponent interpolates between $SU(2)$\cite{RVB1,RVB2} and the pure dimer exponent ($N\to \infty$), in agreement with a recent large $N$ calculation\cite{Damle}.
 
 \subsection{Monte Carlo methods}
 \label{sec:numerics}
@@ -542,7 +508,7 @@ Therefore, instead of keeping track of the spins on each site, it suffices to ke
  \begin{center}
     \scalebox{.65}{\includegraphics[width=\columnwidth]{./figures/su2su3graphs.pdf}}
  \end{center}
- \caption{Simple transition graphs for RVB wavefunctions.  In a), an $SU(2)$ state illustrates two different types of transition graph, with ``loops'' labelled 1 and 2, based on whether a spin $m_i$ is $+\frac{1}{2}$ or $-\frac{1}{2}$ on sublattice A.  VB updates must occur between loops of the same type (as in Fig.~\ref{fig:updates}a)).  In b), an $SU(3)$ state has three loop types, depending on whether $m_i$ is +1, -1 or 0 on sublattice A.
+ \caption{Simple transition graphs for RVB wavefunctions.  In a), an $SU(2)$ state illustrates two different types of transition graph, with ``loops'' labeled 1 and 2, based on whether a spin $m_i$ is $+\frac{1}{2}$ or $-\frac{1}{2}$ on sublattice A.  VB updates must occur between loops of the same type (as in Fig.~\ref{fig:updates}a)).  In b), an $SU(3)$ state has three loop types, depending on whether $m_i$ is +1, -1 or 0 on sublattice A.
  \label{fig:su2su3graphs} }
  \end{figure}
 %
@@ -645,14 +611,14 @@ We find the same behavior in the $SU(N)$ case, with our results displayed in Fig
 
 Finally, we turn to the entanglement in the $SU(N)$ RVB case, extending previous numerical results \cite{Ju2012} for $SU(2)$, and providing evidence that Eq.~(\ref{eq:shape_general}) still holds.
 
-%\subsection{Numerical results for $SU(2)$}
+
 \subsection{Monte Carlo evaluation of the R\'enyi entropies}
 \label{sec:su2_numerics}
 
 In order to calculate the R\'enyi entropies, the Monte Carlo sampling algorithm of Section \ref{sec:numerics} must be modified to incorporate
 a {\it replica trick} procedure, first described in Ref.~\cite{swap}.  Namely, in order to calculate the $n$-th order R\'enyi entropy Eq.~\ref{RenyiEq}, one measures the expectation value of a $Swap_A$ (or permutation) operator acting between $n$ copies of the system.  For the $SU(N)$ wavefunctions studied here, we restrict ourselves to $n=2$.  
 
-A naive sampling of the $Swap_A$ operator is straightforward.  One simply identifies the spatial region $A$ and its complement $B$, then applies the operator to a sampled RVB state, $Swap_A |V_{\mathcal C} \rangle =  |V_{\mathcal C^{\star}} \rangle$ (where each state $|V_{\mathcal C} \rangle$ contains $n=2$ replicas).  The second Renyi entropy can be calculated from \cite{swap}
+A naive sampling of the $Swap_A$ operator is straightforward.  One simply identifies the spatial region $A$ and its complement $B$, then applies the operator to a sampled RVB state, $Swap_A |V_{\mathcal C} \rangle =  |V_{\mathcal C^{\star}} \rangle$ (where each state $|V_{\mathcal C} \rangle$ contains $n=2$ replicas).  The second Rényi entropy can be calculated from \cite{swap}
 \begin{equation}
 	\rho_A^2
 		= \frac{\langle V_{\mathcal{L}} | V_{\mathcal{R}^{\star}} \rangle}
@@ -677,7 +643,7 @@ meaning that $ |D_{\mathcal R'} \rangle | Z_{\mathcal R'} \rangle = Swap_X |D_{\
 Note that, when performing the Monte Carlo update on the valence-bond state $| D_{\mathcal{R} '} \rangle$, one does not have to consider the overlap of $\langle V_{\mathcal{L}} | V_{\mathcal{R}'} \rangle$ since the overcompleteness condition ensures that the inner product of new valence-bond configurations (with the same spin configuration) are always non-zero.  Hence, it may be convenient to consider the ``un-swapped'' state $|V_{\mathcal R} \rangle$ for the purposes of sampling the VB configuration, where one can straightforwardly perform local (plaquette-flip) or non-local (loop) updates on the VB state as described in 
 Section \ref{sec:numerics}.
 
-We employ ratio-trick evaluations of the $Swap_A$ operator to calculate the scaling of the second Renyi entropy in the $SU(N)$ RVB wavefucntion.  In the next subsection, we compare our results from these Monte Carlo simulations to those obtained from conformal field theory.
+We employ ratio-trick evaluations of the $Swap_A$ operator to calculate the scaling of the second Rényi entropy in the $SU(N)$ RVB wavefunction.  In the next subsection, we compare our results from these Monte Carlo simulations to those obtained from conformal field theory.
 
 
 \subsection{Comparison of numerical results and CFT}
@@ -730,7 +696,7 @@ Unfortunately, we do not know how to derive these results as we did for the dime
 applying $n_
 c=d_{\rm min}^2 \alpha/2$ to an RK wave function built out of interacting dimers \cite{Alet_dimers1,Alet_dimers2} would also, just as $SU(N)$ RVB, violate strong subadditivity.}. 
 
-\textcolor{blue}{A possible way to test our CFT results while sidesteping this difficulty would be to look at another quantity, defined as follows. Let us consider another $SU(2)$ RVB wave function $|\Psi^\prime\rangle$ living on the torus, but where all valence bond states $|V_{\cal C}\rangle$ with singlets crossing the boundaries between $A$ and $B$ have been removed. Such a wave function can be rewritten as
+\textcolor{blue}{A possible way to test our CFT results while sidestepping this difficulty would be to look at another quantity, defined as follows. Let us consider another $SU(2)$ RVB wave function $|\Psi^\prime\rangle$ living on the torus, but where all valence bond states $|V_{\cal C}\rangle$ with singlets crossing the boundaries between $A$ and $B$ have been removed. Such a wave function can be rewritten as
 \begin{equation}
  |\Psi^\prime\rangle =|\Psi(A)\rangle \otimes |\Psi(B)\rangle,
 \end{equation}
@@ -771,65 +737,36 @@ Using our biggest system-size even-odd data in (\ref{eq:even_odd}) yields $\alph
 
 %XXX
 
-In this paper we studied a family of resonating-valence-bond states on the square lattice, focusing in particular on the Renyi entropy $S_n$ for splitting a torus into two cylinders. This provides an elegant probe into the physics of such gapless states. We found several interesting characteristics of their quantum entanglement, by deriving exact results for the dimer RVB state, and by numerical work on the $SU(2)$ and the $SU(N)$ RVB states \textcolor{blue}{on the square lattice}. 
+In this paper we studied a family of resonating-valence-bond states on the square lattice, focusing in particular on the Rényi entropy $S_n$ for splitting a torus into two cylinders. This provides an elegant probe into the physics of such gapless states. We found several interesting characteristics of their quantum entanglement, by deriving exact results for the dimer RVB state, and by numerical work on the $SU(2)$ and the $SU(N)$ RVB states \textcolor{blue}{on the square lattice}. 
 
-One of our main results is confirmation that the Renyi entropy for RVB states exhibits a two-branch structure, when the length of the entangled region varies between an even and odd number of lattice sites. We computed this exactly for the dimer RVB functions by mapping the R\'enyi entanglement entropy to a classically-computable R\'enyi-Shannon entropy, and demonstrated that the two-branch structure exists for \textcolor{blue}{$n>1$ (but not for $n\leq 1$)}.
+One of our main results is confirmation that the Rényi entropy for RVB states exhibits a two-branch structure, when the length of the entangled region varies between an even and odd number of lattice sites. We computed this exactly for the dimer RVB functions by mapping the R\'enyi entanglement entropy to a classically-computable R\'enyi-Shannon entropy, and demonstrated that the two-branch structure exists for \textcolor{blue}{$n>1$ (but not for $n\leq 1$)}.
 By measuring the Monte Carlo expectation value of a ``swap'' operator on a replicated lattice, we find $S_2$ for the $SU(N)$ RVB state for $N=2,3,4$, and find the same two-branch structure. It would be interesting to extend the Monte Carlo calculations to higher $n$, where the replica trick can still be used, \textcolor{blue}{or even to study the fidelity of Ref.~\cite{Bipartite_fidelity} in this context.} 
 
-The two-branch shape of the Renyi entropies has an interesting consequence:  strong subadditivity is violated for the ``odd'' branch, which is a concave-up function of the linear size of the entangled region.  We demonstrate that this is far from a numerical artefact even away from the dimer case, by calculating the shape of these branches in an effective conformal field theory.  This effective theory involves partition functions that can be evaluated exactly in the continuum, and exhibit the same two-branch structure observed in lattice calculations.  This emphasizes the universality of the result and confirms that the two-branch Renyi entropies are not the result of finite-size lattice effects, \textcolor{blue}{contrary to what generically happens in one-dimensional systems\cite{Corrections_scaling1,Corrections_scaling2}.} 
+The two-branch shape of the Rényi entropies has an interesting consequence:  strong subadditivity is violated for the ``odd'' branch, which is a concave-up function of the linear size of the entangled region.  We demonstrate that this is far from a numerical artifact even away from the dimer case, by calculating the shape of these branches in an effective conformal field theory.  This effective theory involves partition functions that can be evaluated exactly in the continuum, and exhibit the same two-branch structure observed in lattice calculations.  This emphasizes the universality of the result and confirms that the two-branch Rényi entropies are not the result of finite-size lattice effects, \textcolor{blue}{contrary to what generically happens in one-dimensional systems\cite{Corrections_scaling1,Corrections_scaling2}.} 
 
-From this analysis, we have elucidated two important points regarding the shape of the Renyi entropy as a function of linear size of the entangled region.  
-First, the two-branch structure does not occur for every Renyi index $n$, but only for values \textcolor{blue}{strictly} larger than some (non-universal) $n_c$, which must be greater than unity since the von Neumann entropy $S_1$ is strictly constrained by strong-subadditivity (while the $n>1$ Renyi entropies are not).  We believe that in the square-lattice RVB, \textcolor{blue}{$1\leq n_c<2$}; since our Monte Carlo methods require $n\ge 2$, they will always find a two-branch structure as observed here.  
+From this analysis, we have elucidated two important points regarding the shape of the Rényi entropy as a function of linear size of the entangled region.  
+First, the two-branch structure does not occur for every Rényi index $n$, but only for values \textcolor{blue}{strictly} larger than some (non-universal) $n_c$, which must be greater than unity since the von Neumann entropy $S_1$ is strictly constrained by strong-subadditivity (while the $n>1$ Rényi entropies are not).  We believe that in the square-lattice RVB, \textcolor{blue}{$1\leq n_c<2$}; since our Monte Carlo methods require $n\ge 2$, they will always find a two-branch structure as observed here.  
 %Resolving this issue is certainly an interesting question for further studies. 
-It would be useful to change $d_{\rm min}$ by studying the RVB wave function on other bipartite lattices. For example on the honecomb lattice $d_{\rm min}=3$ (and therefore $n_c=3^2=9$) for dimers, and $S_2$ for RVB would likely lie in the replica phase, \textcolor{blue}{and therefore cannot be suject to a possible even-odd effect.} 
+It would be useful to change $d_{\rm min}$ by studying the RVB wave function on other bipartite lattices. For example on the honeycomb lattice $d_{\rm min}=3$ (and therefore $n_c=3^2=9$) for dimers, and $S_2$ for RVB would likely lie in the replica phase, \textcolor{blue}{and therefore cannot be subject to a possible even-odd effect.} 
 This prediction should be tested by future Monte Carlo studies.
 
-Second, we have found an exact expression for the shape of the Renyi entropy curves in a geometry where a linear size of the entangled regions grows as \textcolor{blue}{$\ell$}.  As observed in previous studies of gapless systems \cite{Ju2012}, this is well approximated by the celebrated universal one-dimensional result \textcolor{blue}{$\ln(\sin(\pi \ell /L))$}; however, deviations were observed in the numerical data.  \textcolor{blue}{Our exact 2d results from effective field theory indeed show that the 1d result is only approximate}. However, the fact that it is consistent with our numerical data for the $SU(2)$ and dimer RVB wavefunctions is a strong indication that  it is universal. We see no particular reason why this universality should be a characteristic only of RVB wave functions, so this conjecture should be tested on future gapless wavefunctions.  Indeed, DMRG results for the 2d transverse-field Ising model critical point have already exhibited the same type of behavior \cite{Konik}, and quantum 
-Monte Carlo simulations in progress show the same \cite{RogTFIM}. \textcolor{blue}{[JM:? I don't understand.]}
+Second, we have found an exact expression for the shape of the Rényi entropy curves in a geometry where a linear size of the entangled regions grows as \textcolor{blue}{$\ell$}.  As observed in previous studies of gapless systems \cite{Ju2012}, this is well approximated by the celebrated universal one-dimensional result \textcolor{blue}{$\ln(\sin(\pi \ell /L))$}; however, deviations were observed in the numerical data.  \textcolor{blue}{Our exact 2d results from effective field theory indeed show that the 1d result is only approximate}. However, the fact that it is consistent with our numerical data for the $SU(2)$ and dimer RVB wavefunctions is a strong indication that  it is universal. We see no particular reason why this universality should be a characteristic only of RVB wave functions, so this conjecture should be tested on future gapless wavefunctions.  Indeed, DMRG results for the 2d transverse-field Ising model critical point have already exhibited the same type of behavior \cite{Konik}, and quantum 
+Monte Carlo simulations in progress show the same \cite{RogTFIM}.
 
-%www.ggi.fi.infn.it/index.php?p=schedule.inc&idev=106}
-%It could also be extended to other RK points described by other CFTs, generalizing the results of\cite{Stephan2010,Zaletel}
 
 
 
 We have also explored the crossover between the $SU(2)$ and dimer RVB states by studying the $SU(N)$ states. For equal-time correlators, it is possible to interpolate between the $SU(2)$ and dimer states by taking $N \rightarrow \infty$, but there is no guarantee that there is no transition at some value of $N$.  Previous studies demonstrated that the $SU(2)$ RVB state exhibited algebraic decay with an exponent $\alpha_2 \approx 1.2$, while the dimer RVB has $\alpha_{\infty} = 2$.  We showed in this work that this exponent evolves smoothly as $N$ is varied, with no evidence for a transition.  
 %Monte Carlo simulations are able to reach $N=5$ with only moderate computational effort. 
-This is strong evidence of universality, allowing us to link various physical aspects of the $SU(2)$ case with exact results on the dimer RVB. Perhaps even more importantly, we also showed that this correspondence at least qualitatively holds for the putatively universal part of the two-cylinder Renyi entropy as well. This to us is strong evidence both for the universality and the effectiveness of using dimer models to probe at least some \textcolor{blue}{highly non trivial} aspects of the $SU(2)$ RVB state.
+This is strong evidence of universality, allowing us to link various physical aspects of the $SU(2)$ case with exact results on the dimer RVB. Perhaps even more importantly, we also showed that this correspondence at least qualitatively holds for the putatively universal part of the two-cylinder Rényi entropy as well. This to us is strong evidence both for the universality and the effectiveness of using dimer models to probe at least some \textcolor{blue}{highly non trivial} aspects of the $SU(2)$ RVB state.
 
 
 
 In summary, we have used analytical and numerical techniques to study entanglement and correlations in $SU(N)$ and dimer RVB states --  the simplest wavefunctions exhibiting features of gapless spin-liquid behavior. Since gapless spin liquids are long-range entangled states {\it not} amenable to  classification by simple quantities such as the topological entanglement entropy, we believe that some of the universal scaling properties uncovered here will be of use in future efforts to classify and characterize them in theory, numerics, and experiment.
 
- 
-%XXX
-
-
-%We have seen in the previous section (\ref{sec:rvb_entanglement}) that our main result seems to describe well, at least at the qualitative level, the entanglement data for $SU(2)$. There are two main reasons why such a result is non trivial
 
 
 
-
-%\textcolor{blue}{
-%\begin{itemize}
-% \item Entanglement in finite $d>1$ critical systems. 
-% \item Simple result for the shape dependence, as a ratio of known partition functions, not $\ln \sin$.
-% \item Get a better understanding: change the lattice, Schmidt decomposition, \ldots.
-% \item Extension to other RK points described by another CFT, generalizing\cite{Stephan2010,Zaletel}
-% \item Hope this can help attack more complicated Quantum critical points.
-%\end{itemize}
-%}
-%
-%\begin{itemize}
-%\item 
-% From the perspective of the quantum dimer model, the R\'enyi entanglement entropy can be rewritten as a simple fidelity\cite{Bipartite_fidelity}:
-% \begin{equation}\label{eq:lbf}
-%  S_{n>n_c}\sim \frac{n}{1-n} \ln \left|\langle A\cup B|A\otimes B\rangle\right|^2,
-% \end{equation}
-%where $|A\cup B\rangle$ is the ground-state wave function of the whole system. $|A\otimes B\rangle$ is the ground-state wave function where all interactions between $A$ and $B$ have been switched off, a tensor product of the two ground-state wave functions in $A$ and $B$. Furthermore, Eq.~(\ref{eq:lbf}) even becomes exact on the lattice when $n\to \infty$.
-%\item Recall some cool strong subadditivity interpretation.
-% \item The universal shape we obtain bears strong resemblance to the numerical results of Ref.~\cite{Ju2012}, strengthening a posteriori the author's claim at universality.  
-%  \end{itemize}
-%
 
 \paragraph{Acknowledgments}
  We would like to thank Matthew Hastings for early collaboration on this project. We also thank Ann Kallin, Eduardo Fradkin, Gr\'egoire Misguich, Vincent Pasquier, H. Casini, and \ldots for stimulating discussions. This work has been supported by the Natural Sciences and Engineering
@@ -855,7 +792,7 @@ The mapping goes as follows. Let us first consider a particular configuration wi
 \begin{center}
 \includegraphics{./figures/free_fermions.pdf}
   \end{center}
-  \caption{Illustration of the mapping onto free fermions for open boundary conditions. \emph{Left:} reference configuration with staggered dimers. \emph{Right:} transition graph generated by superimposing the reference configuration on a given dimer configuration (in thick blue). This generates a collection of $4$ non-intersecting lattice paths going upwards, which may be expressed in terms of fermions (black zigag lines). Here $|\sigma\rangle=c_2^\dag c_4^\dag c_6^\dag c_8^\dag|0\rangle$.}
+  \caption{Illustration of the mapping onto free fermions for open boundary conditions. \emph{Left:} reference configuration with staggered dimers. \emph{Right:} transition graph generated by superimposing the reference configuration on a given dimer configuration (in thick blue). This generates a collection of $4$ non-intersecting lattice paths going upwards, which may be expressed in terms of fermions (black zigzag lines). Here $|\sigma\rangle=c_2^\dag c_4^\dag c_6^\dag c_8^\dag|0\rangle$.}
   \label{fig:freefermions}
   \end{figure}
 
@@ -892,8 +829,7 @@ This type of result is referred to as the Karlin-McGregor\cite{KarlinMcGregor} o
 \clearpage
 \section[\;\;\;\;\;\;\;\;\;\;\;\;\;\;Dedekind-eta and Jacobi-Theta functions]{Dedekind-eta and Jacobi-Theta functions}
 \label{sec:CFT_Jacobi}
-%\subsection[\;\;\;\;\;\;\;\;\;\;\;\;\;\;Dedekind-eta and Jacobi-Theta functions]{Dedekind-eta and Jacobi-Theta functions}
-%\label{sec:functions}
+
 For a given modulus $\tau$, we introduce the squared nome:
 \begin{equation}
  q=e^{2i\pi \tau}
@@ -931,32 +867,7 @@ These functions obey the following nice ``modular'' transformation properties
  \theta_4(\tau)&=&(-i \tau )^{-1/2}\,\theta_2(-1/\tau)\\\label{eq:modeta}
  \eta(\tau)&=&(-i \tau )^{-1/2}\,\eta(-1/\tau)
 \end{eqnarray}
-%\subsection[\;\;\;\;\;\;\;\;\;\;\;\;\;\;Partition functions in various geometries for the free boson]{Partition functions in various geometries for the free boson}
-%\label{sec:free_boson}
-%Here $\tau=iL_y/L_x$, for a cylinder of circumference $L_x$ and height $L_y$. The calculation of partition function in torus and cylinder with various boundary condition is standard, see for example\cite{EggertAffleck,FSW,BigYellowBook}. We list some of them below.
-%\begin{itemize}
-% \item Cylinder with Dirichlet boundary condition at both ends (even case in the text). 
-% \begin{equation}\label{eq:cylinder_dd}
-% \mathcal{Z}_{\rm cyl}^{DD}=g_{D}^2 \,\frac{\theta_3(\alpha \tau)}{\eta(2\tau)}
-%\end{equation}
-%\item Cylinder with the shifted Dirichlet boundary condition discussed in the text (winding quantized with half-integer values, corresponding to the odd case):
-%\begin{equation}\label{eq:cylinder_ddprime}
-% \mathcal{Z}_{\rm cyl}^{DD^\prime}=g_{D}^2 \,\frac{\theta_4(\alpha \tau)}{\eta(2\tau)}
-%\end{equation}
-%\item Cylinder with Neuman at one end, and Dirichlet at the other:
-%\begin{equation}
-% {\cal Z}_{\rm cyl}^{ND}=g_N g_D \, \frac{\theta_4(4\tau)}{\eta(2\tau)}
-%\end{equation}
-%\item Torus partition function
-%\begin{equation}
-% {\cal Z}_{\rm torus}=\frac{\theta_3(\alpha \tau)\theta_3(\tau /\alpha)}{\eta(\tau)^2}
-%\end{equation}
-%\end{itemize}
-%$g_D$ and $g_N$ are the universal Affleck-Ludwig\cite{AffleckAndLudwig,FSW} g-factors, corresponding to the Dirichlet and Neuman boundary condition respectively.
-%\begin{eqnarray}
-% g_D&=& (\alpha/2)^{1/4}\\
-% g_N&=& (2\alpha)^{-1/4}
-%\end{eqnarray}
+
 
 
 \section[\;\;\;\;\;\;\;\;\;\;\;\;\;\;CFT partition functions from the lattice dimer model]{Derivation of CFT partition function from the lattice dimer model}
@@ -999,7 +910,7 @@ and
  \lambda_k&=&\cos k +\sqrt{1+\cos^2 k}\\
 \Omega_{\nu}&=&\left\{\frac{(2m+\nu+i u_y) \pi}{L_x}\quad,\quad m=-L_x/2,\ldots,L_x/2-1\right\} 
 \end{eqnarray}
-It is also possible to rewritte $Z_\nu^\pm$ as 
+It is also possible to rewrite $Z_\nu^\pm$ as 
 \begin{equation}\label{eq:torus_cheb}
  Z_\nu^\pm=(-1)^{(\nu+1)L_y/2}\prod_{m=0}^{L_x/2-1}\left[e^{\pi u_x}+e^{-\pi u_x}\pm 2 T_{L_y}\left(i\cos \frac{(2m+\nu+iu_y)\pi}{L_x}\right)\right],
 \end{equation}
@@ -1062,32 +973,5 @@ This allows to recover Eq.~(\ref{eq:cft_w0_gen}) and Eq.~(\ref{eq:cft_w0_gen2}) 
 
 
 \end{document}
-
-
-
-% utilized in \cite{Ju2012}, for RK-type states. The torus has dimensions $L_x$ and $L_y$, and is cut i%nto two cylinders of dimensions $L_x \times \ell_y$ and $ L_x \times (L_y-\ell_y)$
-% \begin{figure}[ht]
-%  \begin{center}
-%   \includegraphics[width=7cm,angle=-90]{./figures/16x8b.pdf}
-%   \end{center}
-%   \caption{Torus geometry studied in this paper, with $L_x=8$ and $L_y=16$. We mainly focus on entanglement aspects. The system is cut into two parts $A$ and $B$. Here subsystem $A$ is a cylinder of height $\ell_y=4$, and is drawn in bold blue. Subsystem $B$ is a cylinder of height $L_y-\ell_y=12$. We are particularly interested in the dependence of entanglement on the shape $\ell_y/L_y$, $L_x/L_y$ of the torus.}
-% \label{fig:torus}
-%  \end{figure}
-% Physical results are expected to only depend on the two possible dimensionless ratios $L_y/L_x$ and $\ell_y/L_y$. The first is encoded in the modulus $\tau$ of the torus:
-% \begin{equation}
-%  \tau=i\frac{L_y}{L_x}.
-% \end{equation}
-% The imaginary number is there for later convenience, as it allows to make contact with standard results from conformal field theory. Most of the numerical studies will be performed for the most natural $L_y=L_x$ case, but we expect our results to be valid for any aspect ratio. We call the other ratio
-% \begin{equation}
-%  y=\frac{\ell_y}{L_y}
-% \end{equation}
-% the ``subsystem ratio''. It plays the same role as the $x/L$ in 1d. We are interested in the scaling behavior of the entropy with $L$, while keeping both ratios $y$ and $\tau$ finite. 
-% \paragraph{}
-%  It is well known that the R\'enyi entanglement entropy of such quantum systems exhibits an area law\cite{ALreview}:
-%  \begin{equation}
-%  S_n(L,y,\tau)= a_{n} L+s_{n}(y,\tau)+\mathcal{O}(1/L)
-% \end{equation}
-% Since the boundary between $A$ and $B$ is smooth and assuming a Coulomb gas description, we expect no subleading logarithmic corrections\cite{Hsu2009}. The first subleading term should be a universal constant $s_n(y,\tau)$, which depends only on the two aspect ratios for a given universality class. At this stage it is important to notice that although $a_n$ is non-universal -- and therefore depends on the specifics of the lattice model -- this area law term should \emph{not} depend on the two aspect ratios. This simple fact has an important practical consequence: one can read off the $y$ (or $\tau$) dependence of $s_n(y,\tau)$ by just looking at the numerical data $S_n(L,y,\tau)$ for sufficiently large $L$. We will use this method\cite{Ju2012} throughout the paper, therefore sidestepping any  (possibly difficult in practice) fitting procedure.    
-
 
 
