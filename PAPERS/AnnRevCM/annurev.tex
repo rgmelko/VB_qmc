@@ -1024,12 +1024,14 @@ are not directly associated with the well known difficulties of simulating class
 landscapes. Whether or not the sign problem can be circumvented (at least for representative designer Hamiltonians) for translationally invariant
 systems such as fermionic Hubbard models without particle-hole symmetry and SU($2$) frustrated quantum spins models remains an important open question.
 
-Some non-trivial solutions of sign problems are worth mentioning.
-In some cases, local basis transformations can be used to render all off diagonal matrix elements non-positive \cite{Nakamura97}.
-One can some times apply more sophisticated ways to circumvent
-the problem, e.g., with the Meron algorithm \cite{Chandrasekharan99} or the newly discovered fermion bag approach~\cite{chandrasekharan2010:fbag}.
-While some interesting applications of these methods have appeared~\cite{chandra2012:thirring}, it remains to be seen whether these exciting developments
-can be applied to a wider range of fermionic and frustrated designer Hamiltonians.
+Some non-trivial solutions of sign problems are worth mentioning. In some cases, local basis transformations can be used to render all off diagonal matrix 
+elements non-positive \cite{Nakamura97}. One can some times apply more sophisticated ways to circumvent the problem, e.g., with the Meron algorithm 
+\cite{Chandrasekharan99} or the newly discovered fermion bag approach~\cite{chandrasekharan2010:fbag}. While some interesting applications of these methods 
+have appeared~\cite{chandra2012:thirring}, it remains to be seen whether these exciting developments can be applied to a wider range of fermionic and 
+frustrated designer Hamiltonians. {\color{red} Fermion QMC methods have also been developed where the signs are completely removed, but after initial optimism 
+about these ``Gaussian QMC'' methods \cite{Corney04}, it appears that the exponentially increasing computational effort is transferred in a non-trivial way 
+to the sampling space, with broad tails appearing in the probability distribution that destroy the normal favorable scaling properties of importance 
+sampling \cite{Corboz08}.}
 
 \subsection{Other systems and future prospects}
 
@@ -1051,7 +1053,6 @@ the values of the exponents without possible remaining effects of scaling correc
 results for the correlation functions on large lattices. It will also be very interesting to use the methods discussed in Sec.~\ref{ss:renyi} to quantify 
 the degree of entanglement in the SU($2$) and SU($N$) models.
 
-
 \subsubsection{Fermions}
 
 Another very interesting aspect of the designer Hamiltonians we have discussed here is that they can also be doped with fermions. While this 
@@ -1060,11 +1061,18 @@ sign problem only depends on the number of fermions. This low-density limit of t
 with large-$N$ theories of ``holonic'' or ``strange'' metallic states, that have been predicted to arise out of the DQC system upon 
 doping \cite{kaul2008:u1}.
 
-Recently, two Monte Carlo studies of sign problem free fermionic models with interesting ground states phases and quantum critial points have appeared. A spin
-liquid state in the honeycomb-lattice Hubbard model between the semi-metal at weak coupling and the N\'eel state at strong coupling has been detected \cite{Meng10}, but an
-accepted theory for this spin liquid is currently unavailable \cite{clark2011:honey,lu2011:honey,wang2010:honey}. Most recently \cite{berg2012:mqcp}, a sign problem free
-quantum action has been identified in which a bosonic order parmater condenses in the background of a Fermi surface. This opens up the exciting possibility of unbiased
-studies of magnetic critical points in a metal, a topic of long-standing interest in condensed matter physics \cite{vojta2007:rmp}.
+{\color{red} Large-scale QMC studies of some sign-problem free fermionic models with interesting ground states phases and quantum critial points are possible.
+Hubbard models have no sign problems within determinant-based methods in particle-hole symmetric cases---on bipartite lattices at 
+half-filling \cite{hirsch85,Assaad07}---and also in the presence of field-terms causing a transition between a Mott insulator and a d-wave superconductor 
+\cite{assaad96}. SU($N$) generalizations with even $N$ are also free from sign problems and have been studied \cite{Assaad05}. While the standard Hubbard 
+model on the square lattice is always Mott-insulating, due to nesting \cite{hirsch85}, in the the bipartite honeycomb-lattice Hubbard model a critical value 
+of the on-site interaction $U$ is required for driving a transition from a semi-metal to the antiferromagnetic Mott insulator. This quantum phase transition 
+has also been studied with  QMC \cite{Sorella92,Paiva05}. Interestingly, a recent study found evidence for a gapped spin liquid between the semi-metal and the
+N\'eel state  \cite{Meng10}, and this spurred intense activities to deduce the exact nature of this state \cite{clark2011:honey,lu2011:honey,wang2010:honey,Ran11}. 
+However, A subsequent QMC study on larger lattices \cite{Sorella12} has cast doubt on the extrapolations on which the existence of the spin liquid had 
+been claimed, arguing instead that a system satisfying Marshall's sign rule should never host such a state. Very recently \cite{berg2012:mqcp}, a sign problem 
+free quantum action has been identified in which a bosonic order parmater condenses in the background of a Fermi surface. This opens up the exciting possibility 
+of unbiased studies of magnetic critical points in a metal, a topic of long-standing interest in condensed matter physics \cite{vojta2007:rmp}.}
 
 An interesting conceptual question is whether one can study bosonic systems in which fermions are emergent particles.
 A positive answer may be suggested by the demonstrated existence of the $Z_2$ fractional phase in a purely bosonic model, as we
