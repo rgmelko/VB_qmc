@@ -26,7 +26,7 @@
 \eads{\mailto{jean-marie.stephan@virginia.edu}, \mailto{ju@physics.ucsb.edu}, \mailto{fendley@virginia.edu}, \mailto{rgmelko@uwaterloo.ca}}
 
 \date{\today}
-\submitto{NJP}
+%\submitto{NJP}
 \begin{abstract}
 
 We study resonating-valence-bond (RVB) states on the square lattice of both $SU(2)$ and dimer type,  as well as $SU(N)$-invariant states that interpolate between the two. These states have algebraically decaying correlators of local quantities, and so describe gapless theories, although the $SU(2)$ RVB state is also believed to be a gapped liquid in its spinful sector. By studying a particular subleading term in the R\'enyi entropy, we show that the gapless behavior in these states is qualitatively similar. We compute this term exactly for the dimer RVB models, showing it behaves similarly to the familiar one-dimensional $\ln L$ term, although not identically. We extend the exact computation to an effective theory believed to interpolate among these states. By numerical calculations for the $SU(2)$-invariant RVB state and its $SU(N)$-invariant generalizations, we provide further support for this belief. We also show how the entanglement entropy behaves qualitatively differently for different values of the 
@@ -78,7 +78,7 @@ One lesson from our results is that universal entanglement properties can be qua
 Thus only for $n>n_c$ is the R\'enyi entropy sensitive enough to include this effect. 
 This effect, whereby a R\'enyi entropy may exhibit qualitatively different behavior for some higher $n$, is reminiscent of the manifestation of finite-temperature criticality in R\'enyi entropies for $n>1$, but not $n=1$\cite{RenyiXing}. 
 
-It is possible to interpolate between the $SU(2)$-invariant RVB state and the quantum dimer state by considering $SU(N)$-invariant generalizations of the former; many aspects of the quantum dimer state then can be extracted from the $N\to\infty$ limit. Such a correspondence can be pushed further: Ref.~\cite{Damle} defined a cluster expansion of the RVB ``loop gas''\cite{Sutherland_loops} in terms of interacting dimers in the large $N$ limit. One recovers to first non-trivial order the interacting generalization of the quantum dimer model studied in \cite{Alet_dimers1,Alet_dimers2}. Most strikingly, the critical exponent $\alpha$ extrapolated to $N=2$ turned out to be in good agreement with the previous numerical studies \cite{RVB1,RVB2}. \textcolor{blue}{This expansion also provides some insight in the study of analogous RVB states in three-dimension \cite{AAM,AMPMJ}}. 
+It is possible to interpolate between the $SU(2)$-invariant RVB state and the quantum dimer state by considering $SU(N)$-invariant generalizations of the former; many aspects of the quantum dimer state then can be extracted from the $N\to\infty$ limit. Such a correspondence can be pushed further: Ref.~\cite{Damle} defined a cluster expansion of the RVB ``loop gas''\cite{Sutherland_loops} in terms of interacting dimers in the large $N$ limit. One recovers to first non-trivial order the interacting generalization of the quantum dimer model studied in \cite{Alet_dimers1,Alet_dimers2}. Most strikingly, the critical exponent $\alpha$ extrapolated to $N=2$ turned out to be in good agreement with the previous numerical studies \cite{RVB1,RVB2}. This expansion also provides some insight in the study of analogous RVB states in three-dimension \cite{AAM,AMPMJ}.
 
 %\footnote{\textcolor{red}{[Comment to be removed]. It does provide insight, because in 3d RVB dimer-dimer correlation decay in $1/r^3$ (Coulomb phase), and if you do the expansion, you fall to the interacting 3d classical dimers which are also in this phase. But it does not explain everything, as they (I guess Fabien) comment on this in\cite{AAM}.}} 
 
@@ -461,17 +461,17 @@ We now start to explore the question of universality, with the motivation of und
 \label{sec:numerics}
 
 
-To study $SU(N)$-RVB wavefunctions, we use an unbiased Monte Carlo technique that computes expectation values in an equal-amplitude superposition of states using a Metropolis importance sampling scheme.  The RVB wavefunction is represented in a combined VB-spin basis, $|V_{\mathcal C} \rangle = |D \rangle |Z \rangle$, where $| D \rangle$ is a list of site-pairs, $[i,j]$, specifying the ends of the valence bonds, and $|Z \rangle$ is the spin state on each site on the lattice.
+To study $SU(N)$-RVB wavefunctions, we use an unbiased Monte Carlo technique that computes expectation values in an equal-amplitude superposition of states using a Metropolis importance sampling scheme \cite{RVB2}.  Numerically, the RVB wavefunction is represented in a combined VB-spin basis, $|V_{\mathcal C} \rangle = |D_{\mathcal C} \rangle |Z_{\mathcal C} \rangle$, where $| D_{\mathcal C} \rangle$ is a list of site-pairs, $[i,j]$, specifying the ends of the valence bonds, and $|Z_{\mathcal C} \rangle$ is the spin state for each site on the lattice.
 
-In order to obtain expectation values (as described below), two RVB wavefunctions are sampled simultaneously, $\langle V_{\mathcal C} |$ and $| V_{\mathcal C'} \rangle$.  The two VB states $\langle D |$ and $| D' \rangle$ can initially be chosen at random; spin states compatible with a non-zero overlap $\langle V_{\mathcal C} | V_{\mathcal C'} \rangle$ are then constructed.  Since the spin basis is orthogonal, we set $|Z \rangle = | Z' \rangle$ to ensure a non-zero overlap.  Then, the Monte Carlo sampling scheme proceeds in two distinct steps.   
+In order to obtain expectation values (as described below), two RVB wavefunctions are sampled simultaneously, $\langle V_{\mathcal C} |$ and $| V_{\mathcal C'} \rangle$.  The two VB states $\langle D_{\mathcal C} |$ and $| D_{\mathcal C}' \rangle$ can initially be chosen at random; spin states compatible with a non-zero overlap $\langle V_{\mathcal C} | V_{\mathcal C'} \rangle$ are then constructed.  Since the spin basis is orthogonal, we set $|Z_{\mathcal C} \rangle = | Z_{\mathcal C}' \rangle$ to ensure a non-zero overlap.  Then, the Monte Carlo sampling scheme proceeds in two distinct steps.   
 
 After initializing the wavefunction in one configuration $|D_{\mathcal C}  \rangle | Z_{\mathcal C}  \rangle$, the first step is to sample a new spin state $|Z_{\mathcal C}   \rangle = |Z_{\mathcal C} ' \rangle$.  This is done at random, subject to the condition that the overlap $\langle V_{\mathcal C} | V_{\mathcal C'} \rangle$ remains non-zero.  The second step is to sample the VB states $|D_{\mathcal C}  \rangle$ and $|D_{\mathcal C} ' \rangle$.  This must be done subject to the constraint imposed by the spin states.
-As in the $SU(2)$ case \cite{Ju2012}, one has the choice of ``local'' or ``non-local'' updating schemes to sample all possible VB states \cite{sandvik2010loop}.
+As in the $SU(2)$ case \cite{RVB2,Ju2012}, one has the choice of ``local'' or ``non-local'' updating schemes to sample all possible VB states \cite{sandvik2010loop}.
 \begin{figure}[t]
  \begin{center}
     \scalebox{.35}{\includegraphics[width=\columnwidth]{./figures/updates.pdf}}
  \end{center}
- \caption{Possible local updates of the valence-bond (VB) configuration $|D_{\mathcal{C}} \rangle$ in a Monte Carlo simulation, where thick (green) lines are the VB states.  Figures a) and b) show cases for $SU(2)$, where in a) the underlying spin configuration ($m_i = \pm \frac{1}{2}$) allows the update shown, while in b) it is precluded.  In c), an $SU(3)$ case is shown with an additional spin state $m_i = 0$ (top two sites), which precludes the update shown.}
+ \caption{Possible local updates of the valence-bond (VB) configuration $|D_{\mathcal{C}} \rangle$ in a Monte Carlo simulation, where thick lines are the VB states.  Figures a) and b) show cases for $SU(2)$, where in a) the underlying spin configuration ($m_i = \pm \frac{1}{2}$) allows the update shown, while in b) it is precluded.  In c), an $SU(3)$ case is shown with an additional spin state $m_i = 0$ (top two sites), which precludes the update shown.}
  \label{fig:updates}
  \end{figure}
 %
@@ -483,7 +483,7 @@ While simple to perform, this move is not ergodic in that it cannot change the w
 %
 Therefore, this move is most useful if one wants to fix the winding number to do measurements (e.g.\ for the correlation measurements below, we use the winding number $W=(0,0)$).
 %
-In contrast, a non-local loop update moves through the ensemble of states by creating a defect at some lattice site and propagating it through the system until the defect reaches its initial point, thus closing the loop \cite{sandvik2010loop}.
+In contrast, a non-local loop update moves through the ensemble of states by creating a defect at some lattice site and propagating it through the system (subject to the spin constraints) until the defect reaches its initial point, thus closing the loop \cite{sandvik2010loop}.
 %
 
 The important point to note is the the Monte Carlo update for the RVB wavefunction proceeds in two steps: sampling the spin state $|Z_{\mathcal C} \rangle$, and sampling the VB states $|D_{\mathcal C} \rangle$.  Each basis configuration is constrained by the other such that the valence-bond remains a quantum $SU(N)$ singlet.  In contrast, for the classical dimer model, no spin state exists, and dimer wavefunctions are orthogonal.
@@ -500,11 +500,11 @@ Given Eq.\ (\ref{eq:rvb}), the singlets on a pair of sites $[i,j]$ can be writte
 %
 While sampling the spins, there are $N$ different spin flavors to choose for a site on sublattice A.
 Once this spin is chosen, all other spins in the same loop are determined by Eq.~\ref{eq:su2su3}.
-For instance, consider the $SU(2)$ wavefunction in Fig. ~\ref{fig:su2su3graphs}(a).
+For instance, consider the $SU(2)$ wavefunction in Fig.~\ref{fig:su2su3graphs}(a).
 There are \textit{two} types of loops: one with $\uparrow$ (loop 1) and another with $\downarrow$ (loop 2) on sublattice A.
 Once the spin basis is chosen in the transition graphs, the VB configurations in the bra and ket are independently updated as prescribed above according to the same spin basis.
 Updates, however, are only possible between loops of the same type (1 or 2).
-Therefore, instead of keeping track of the spins on each site, it suffices to keep track of the loop labels at each site.(
+Therefore, instead of keeping track of the spins on each site, it suffices to keep track of the loop labels at each site.
 %
 \begin{figure}[t]
  \begin{center}
@@ -514,10 +514,11 @@ Therefore, instead of keeping track of the spins on each site, it suffices to ke
  \label{fig:su2su3graphs} }
  \end{figure}
 %
+
 Then, generalizing this a little further, consider Fig.~\ref{fig:su2su3graphs}(b).
 One can easily see that there are three loop types: $\uparrow$, $\downarrow$, and 0 on sublattice A.
 So, for an $SU(N)$ system, there are $N$ different loop types, and we quickly run into ergodicity issues as updates are more readily rejected.
-We find that as $N>4$, the number of updates that one can successfully make becomes much smaller, making the error bars much slower to converge.
+We find that as $N>4$, the number of updates that one can successfully make becomes much smaller, making the statistical error bars much slower to converge in Monte Carlo.
 As shown by our data, some estimators for this large $N$ show signs of ergodicity loss; this might be cured by a more sophisticated sampling scheme.
 
 
@@ -550,7 +551,7 @@ This simplifies the estimator, which is as follows
 %
 and $0$ otherwise.
 
-In the next section we present data for these correlation functions for $SU(N)$ with $N=2,3,4,5$,  and fit the presumably-universal exponents associated with their decay.
+In the next section we present data for these correlation functions for $SU(N)$ with $N=2,3,4,5$,  and fit the putative universal exponents associated with their decay.
 
 \subsection{Equal-time correlators}
 \label{sec:dimerdimer}
@@ -774,7 +775,7 @@ In summary, we have used analytical and numerical techniques to study entangleme
 
 
 \paragraph{Acknowledgments}
- We would like to thank Matthew Hastings for early collaboration on this project. We also thank Ann Kallin, Eduardo Fradkin, Gr\'egoire Misguich, Vincent Pasquier, H. Casini, and \ldots for stimulating discussions. This work has been supported by the Natural Sciences and Engineering
+ We would like to thank Matthew Hastings for early collaboration on this project. We also thank Ann Kallin, Eduardo Fradkin, Gr\'egoire Misguich, Vincent Pasquier, H. Casini, A. Sandvik and X-G. Wen for stimulating discussions. This work has been supported by the Natural Sciences and Engineering
 Research Council of Canada (NSERC), and by the US NSF via grants DMR/MPS-0704666 and DMR/MPS1006549.   Simulations were performed on the computing facilities of SHARCNET.
 
  \appendix
