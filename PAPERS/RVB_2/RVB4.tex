@@ -10,7 +10,7 @@
 
 \begin{document}
  
-\title[Entanglement in RVB and quantum dimer states]{Entanglement in the gapless resonating valence bond and quantum dimer states}
+\title[Entanglement in RVB and quantum dimer states]{Entanglement in gapless resonating valence bond states}
  
 \author{Jean-Marie St\'ephan$^1$, Hyejin Ju$^2$, Paul Fendley$^1$ and Roger G. Melko$^{3,4}$}
 
@@ -612,8 +612,10 @@ We find the same behavior in the $SU(N)$ case, with our results displayed in Fig
 \section{Entanglement in the $SU(N)$ RVB wave function}
 \label{sec:rvb_entanglement}
 
-Finally, we turn to the entanglement in the $SU(N)$ RVB case, extending previous numerical results \cite{Ju2012} for $SU(2)$, and providing evidence that Eq.~(\ref{eq:shape_general}) still holds.
+Throughout this paper we have emphasized the similarities between the $SU(N)$ and dimer RVB states. These make it plausible that the two-cylinder R\'enyi entropy for the $SU(2)$ RVB state in the scaling limit can be obtained from the free-boson result (\ref{eq:shape_general}). If this is true, this is a much stronger statement than the results for the critical exponent $\alpha$ as a function of $N$ in the previous section. The reason is that even though correlators in the classical dimer model can be obtained by taking the $N\to\infty$ limit of the loop model defined by the $SU(N)$ RVB inner product, the Hilbert space of the two is completely different; the latter being much larger. Thus a dimer crossing the boundary would carry much more entropy. Moreover, the reduced density matrix for $SU(N)$ has blocks with non-zero total spin, while these are by construction forbidden in the quantum dimer model. Thus it is very unlikely that non-universal quantities will be the same in the two cases. 
 
+
+However, all our results are consistent with the subleading part of the two-cylinder R\'enyi entropy being universal. Thus it is possible that in the scaling limit, this piece still could be given by the conformal field theory result, with the identification of $\kappa$ coming from the correlation length results. In this section we provide evidence for such universality. We extend previous numerical results \cite{Ju2012} for $SU(2)$ to the $SU(N)$ case.
 
 \subsection{Monte Carlo evaluation of the R\'enyi entropies}
 \label{sec:su2_numerics}
@@ -663,10 +665,7 @@ We observe a striking similarity with the dimer data. In particular, there is a 
 This suggests $S_2$ for the $SU(2)$ RVB state lies in a locked phase, just as its dimer counterpart does. 
 This scenario is also supported by exact diagonalizations on small systems, which show that the biggest eigenvalue of the reduced density matrix is non-degenerate:  $\Delta_{SU(2)}\equiv -\ln (p_1/p_{\rm max}) \approx 2.67$ for a $4\times 4$ torus cut in two halves, and therefore $d_{\rm min}=1$. (The exact value for dimers is $\Delta_{\rm dimers}=2\ln \pi\simeq 2.29$ in the scaling limit \cite{Stephan2012}.) Such a large entanglement gap has also been observed recently for the $SU(2)$ RVB state, in the closely related infinite-cylinder geometry\cite{Poilblanc}.
 
-Throughout this paper we have emphasized the similarities between the $SU(N)$ and dimer RVB states. These make it plausible that the two-cylinder R\'enyi entropy for the $SU(2)$ RVB state in the scaling limit can be obtained from the free-boson result (\ref{eq:shape_general}). If this is true, this is a much stronger statement than the results for the critical exponent $\alpha$ as a function of $N$ in the previous section. The reason is that even though correlators in the classical dimer model can be obtained by taking the $N\to\infty$ limit of the loop model defined by the $SU(N)$ RVB inner product, the Hilbert space of the two is completely different; the latter being much larger. Thus a dimer crossing the boundary would carry much more entropy. Moreover, the reduced density matrix for $SU(N)$ has blocks with non-zero total spin, while these are by construction forbidden in the quantum dimer model. Thus it is very unlikely that non-universal quantities will be the same in the two cases. 
-
-
-However, all our results are consistent with the subleading part of the two-cylinder R\'enyi entropy being universal. Thus it is possible that in the scaling limit, this piece still could be given by the conformal field theory result, with the identification of $\kappa$ coming from the correlation length results.
+Using Eq.~(\ref{eq:shape_general}) with partition functions coming from conformal field theory gives more general curves.
 The conformal results for general $\alpha=1/\kappa$ without restrictions on the winding numbers are
 \begin{eqnarray}\label{eq:cft_prediction_gen}
  s_n^{\rm (even)}(y,\tau)&=&\frac{n}{1-n}\ln \left(\frac{\alpha}{2}\times\frac{\eta(\tau)^2}{\theta_3(\alpha\tau)\theta_3(\tau/\alpha)}\times\frac{\theta_3(\alpha y \tau)\theta_3(\alpha(1-y)\tau)}{\eta(2y\tau)\eta(2(1-y)\tau)}\right)\ ,\\ 
