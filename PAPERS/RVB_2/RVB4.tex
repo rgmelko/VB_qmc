@@ -159,7 +159,7 @@ In the RVB state (\ref{RVBdef1},\ref{RVBdef2}), the inner product is the usual o
 \end{equation}
 $n_l$ being the number of loops in the transition graph.
 Despite this overlap between dimer configurations making analytic computations much more difficult, its presence is convenient in the algorithm used for computing the second R\'enyi entropy using quantum Monte Carlo simulations \cite{swap},
-since ``swapped'' basis configurations (described in Section~\ref{sec:numerics}) will always contribute a non-zero expectation value, even with a naive QMC updating algorithm.
+since ``swapped'' basis configurations (described in Section~\ref{sec:su2_numerics}) will always contribute a non-zero expectation value, even with a naive QMC updating algorithm.
 
 
 Despite this important difference between the dimer and $SU(2)$ RVB states, their obvious similarity makes it plausible that the dimer-dimer correlator will behave similarly in the two cases. Further evidence for this fact is that rewritten in loop language, the spin-spin correlator corresponds to the probability that the two spins are on the same loop. This decays exponentially for loop models with weight per loop greater than two \cite{Nienhuis}, and the inner product (\ref{RVBinner}) amounts to a weight per loop of 4 \cite{LDA}.  This exponential decay arises because the classical partition function is dominated by configurations with many short loops. Thus correlators in the $SU(2)$ RVB state are dominated by short-loop configurations, i.e.\ the dimers. Whereas the presence of longer loops renormalizes the exponent $\alpha$, it seems very likely that dimer-dimer correlators in the RVB state will decay algebraically like they do for the dimer RVB state.
@@ -487,7 +487,7 @@ However, if the spin-basis is not compatible with this proposed change, as in Fi
 %
 While simple to perform, this move is not ergodic in that it cannot change the winding number of the system.
 %
-Therefore, this move is most useful if one wants to fix the winding number to do measurements (e.g.\ for the correlation measurements below, we use the winding number $W=(0,0)$).
+Therefore, this update is most useful if one wants to fix the winding number to do measurements (e.g.\ for the correlation measurements below, we use the winding number $W=(0,0)$).
 %
 In contrast, a non-local loop update moves through the ensemble of states by creating a defect at some lattice site and propagating it through the system (subject to the spin constraints) until the defect reaches its initial point, thus closing the loop \cite{sandvik2010loop}.
 %
@@ -529,7 +529,7 @@ As shown by our data, some estimators for this large $N$ show signs of ergodicit
 
 
 
-In our VB basis Monte Carlo simulations, we begin by computing the spin-spin and the dimer-dimer correlations. While the two-point spin correlation is well-known~\cite{sutherland1988monte,liang1988some}, the four-point spin interaction was recently derived in~\cite{beach2006some}. The expectation values were then generalized in ~\cite{beach2009n} for $SU(N)$ spins. Using the notation $(ij)_L$ for two sites $i,j$ in the same loop in the transition graph and $(i)_L(j)_L$ for sites not in the same loop~\cite{RVB2},
+In our VB basis Monte Carlo simulations, we begin by computing the spin-spin and the dimer-dimer correlations. While the two-point spin correlation is well-known~\cite{sutherland1988monte,liang1988some}, the four-point spin interaction was recently derived in~\cite{beach2006some}. The expectation values were then generalized in~\cite{beach2009n} for $SU(N)$ spins. Using the notation $(ij)_L$ for two sites $i,j$ in the same loop in the transition graph and $(i)_L(j)_L$ for sites not in the same loop~\cite{RVB2},
 %
 \begin{equation}
 	C_{\rm spin}({\bf r}_i, {\bf r}_j) 
