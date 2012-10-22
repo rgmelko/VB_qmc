@@ -623,13 +623,21 @@ Throughout this paper we have emphasized the similarities between the $SU(N)$ an
 
 All our results are consistent with the subleading part of the two-cylinder R\'enyi entropy being universal. Thus it is possible that in the scaling limit, this piece still could be given by the conformal field theory result, with the identification of $\kappa$ coming from the correlation length results. In this section we provide evidence for such universality by finding the curves for arbitrary $\alpha$, and extending previous numerical results \cite{Ju2012} for $SU(2)$ to the $SU(N)$ case.
 
+\begin{figure}[t]
+ \begin{center}
+  \includegraphics[scale=0.4]{./figures/swapA.pdf}
+ \end{center}
+\caption{$Swap_A$ operator. In (a), we show the original state, $|V_{\mathcal C} \rangle$, while in (b), we show the resultant of the $Swap_A$ operator, $Swap_A |V_{\mathcal C} \rangle =  |V_{\mathcal C^{\star}} \rangle$. As mentioned in the text, each state $|V_{\mathcal C} \rangle$ contains two replicas, which we call ``real" and ``ancillary" here. When acting the operator on this state, it is important to note that {\it both} the spins and bond bases in region A get swapped.}
+\label{fig:swap}
+\end{figure}
+
 \subsection{Monte Carlo evaluation of the R\'enyi entropies}
 \label{sec:su2_numerics}
 
 In order to calculate the R\'enyi entropies, the Monte Carlo sampling algorithm of Section \ref{sec:numerics} must be modified to incorporate
 a {\it replica trick} procedure, first described in Ref.~\cite{swap}.  Namely, in order to calculate the $n$-th order R\'enyi entropy Eq.~\ref{RenyiEq}, one measures the expectation value of a $Swap_A$ (or permutation) operator acting between $n$ copies of the system.  For the $SU(N)$ wavefunctions studied here, we restrict ourselves to $n=2$.  
 
-A naive sampling of the $Swap_A$ operator is straightforward.  One simply identifies the spatial region $A$ and its complement $B$, then applies the operator to a sampled RVB state, $Swap_A |V_{\mathcal C} \rangle =  |V_{\mathcal C^{\star}} \rangle$ (where each state $|V_{\mathcal C} \rangle$ contains $n=2$ replicas).  The second R\'enyi entropy can be calculated from \cite{swap}
+A naive sampling of the $Swap_A$ operator, shown graphically in Fig.~\ref{fig:swap}, is straightforward.  One simply identifies the spatial region $A$ and its complement $B$, then applies the operator to a sampled RVB state, $Swap_A |V_{\mathcal C} \rangle =  |V_{\mathcal C^{\star}} \rangle$ (where each state $|V_{\mathcal C} \rangle$ contains $n=2$ replicas).  The second R\'enyi entropy can be calculated from \cite{swap}
 \begin{equation}
 	\rho_A^2
 		= \frac{\langle V_{\mathcal{L}} | V_{\mathcal{R}^{\star}} \rangle}
