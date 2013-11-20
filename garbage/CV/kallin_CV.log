@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2011.10.31)  10 OCT 2013 19:00
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2011.10.31)  20 NOV 2013 09:41
 entering extended mode
  file:line:error style messages enabled.
 **kallin_CV.tex
@@ -100,18 +100,7 @@ Package: geometry 2002/07/08 v3.2 Page Geometry
 \Gm@dimlist=\toks20
 
 (/usr/local/gwTeX/texmf.texlive/tex/xelatex/xetexconfig/geometry.cfg))
-(/usr/local/gwTeX/texmf.texlive/tex/latex/base/fontenc.sty
-Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
-
-(/usr/local/gwTeX/texmf.texlive/tex/latex/base/t1enc.def
-File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
-LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
-))
-(/usr/local/gwTeX/texmf.texlive/tex/latex/psnfss/mathpazo.sty
-Package: mathpazo 2005/04/12 PSNFSS-v9.2a Palatino w/ Pazo Math (D.Puga, WaS) 
-\symupright=\mathgroup4
-)
-Package hyperref Info: Option `colorlinks' set `true' on input line 39.
+Package hyperref Info: Option `colorlinks' set `true' on input line 40.
 
 (/usr/local/gwTeX/texmf.texlive/tex/latex/sectsty/sectsty.sty
 Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading sty
@@ -119,25 +108,21 @@ les
 ) (./kallin_CV.aux)
 \openout1 = `kallin_CV.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Try loading font information for T1+pplj on input line 76.
- (/usr/local/gwTeX/texmf.texlive/tex/latex/psnfss/t1pplj.fd
-File: t1pplj.fd 2004/09/06 font definitions for T1/pplj.
-)
-(/usr/local/gwTeX/texmf.texlive/tex/latex/graphics/color.sty
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+ (/usr/local/gwTeX/texmf.texlive/tex/latex/graphics/color.sty
 Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
 
 (/usr/local/gwTeX/texmf.texlive/tex/latex/config/color.cfg
@@ -151,7 +136,7 @@ File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 (/usr/local/gwTeX/texmf.texlive/tex/latex/graphics/dvipsnam.def
 File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 ))
-Package hyperref Info: Link coloring ON on input line 76.
+Package hyperref Info: Link coloring ON on input line 77.
 
 (/usr/local/gwTeX/texmf.texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2006/12/27 v2.28 Cross-referencing by name of section
@@ -161,8 +146,8 @@ Package: refcount 2006/02/20 v3.0 Data extraction from references (HO)
 )
 \c@section@level=\count97
 )
-LaTeX Info: Redefining \ref on input line 76.
-LaTeX Info: Redefining \pageref on input line 76.
+LaTeX Info: Redefining \ref on input line 77.
+LaTeX Info: Redefining \pageref on input line 77.
 
 (./kallin_CV.out) (./kallin_CV.out)
 \@outlinefile=\write3
@@ -175,7 +160,7 @@ twocolumn: --
 twoside: --
 asymmetric: --
 h-parts: 72.26999pt, 469.75499pt, 72.27002pt
-v-parts: 90.3375pt, 614.295pt, 90.3375pt
+v-parts: 72.26999pt, 614.295pt, 108.405pt
 hmarginratio: --
 vmarginratio: --
 lines: --
@@ -193,7 +178,7 @@ driver:
 \textheight 614.295pt
 \oddsidemargin  0.0pt
 \evensidemargin 0.0pt
-\topmargin  -18.9325pt
+\topmargin  -37.0pt
 \headheight 12.0pt
 \headsep    25.0pt
 \footskip   30.0pt
@@ -207,60 +192,25 @@ driver:
 
 (1in=72.27pt, 1cm=28.45pt)
 -----------------------
-\big@size=\dimen110
-LaTeX Font Info:    Try loading font information for OT1+pplx on input line 90.
-
-
-(/usr/local/gwTeX/texmf.texlive/tex/latex/psnfss/ot1pplx.fd
-File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
-)
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 90.
-
-
-(/usr/local/gwTeX/texmf.texlive/tex/latex/psnfss/omlzplm.fd
-File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
-)
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 90.
-
-
-(/usr/local/gwTeX/texmf.texlive/tex/latex/psnfss/omszplm.fd
-File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
-)
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 90.
-
-
-(/usr/local/gwTeX/texmf.texlive/tex/latex/psnfss/omxzplm.fd
-File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
-)
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 90.
-
-
-(/usr/local/gwTeX/texmf.texlive/tex/latex/psnfss/ot1zplm.fd
-File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
-)
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 95.
-
-(/usr/local/gwTeX/texmf.texlive/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `T1/pplj/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/pplj/b/n' tried instead on input line 103.
-LaTeX Font Info:    Font shape `T1/pplj/bx/n' in size <10> not available
-(Font)              Font shape `T1/pplj/b/n' tried instead on input line 146.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 91.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 91.
  [1
 
-]
-LaTeX Font Info:    Font shape `T1/pplj/m/sl' in size <10> not available
-(Font)              Font shape `T1/pplj/m/it' tried instead on input line 202.
- [2] [3] [4]
-(./kallin_CV.aux) ) 
-Here is how much of TeX's memory you used:
- 3273 strings out of 94074
- 46515 string characters out of 1163527
- 2097950 words of memory out of 4549091
- 6544 multiletter control sequences out of 10000+50000
- 21675 words of font info for 38 fonts, out of 2000000 for 2000
- 645 hyphenation exceptions out of 5000
- 25i,9n,28p,217b,432s stack positions out of 5000i,500n,6000p,200000b,50000s
+] [2] [3]
+Overfull \hbox (2.2222pt too wide) in paragraph at lines 254--267
+[][] [] 
+ []
 
-Output written on kallin_CV.dvi (4 pages, 19396 bytes).
+[4] (./kallin_CV.aux) ) 
+Here is how much of TeX's memory you used:
+ 2875 strings out of 94074
+ 41650 string characters out of 1163527
+ 2096883 words of memory out of 4548024
+ 6178 multiletter control sequences out of 10000+50000
+ 6018 words of font info for 22 fonts, out of 2000000 for 2000
+ 645 hyphenation exceptions out of 5000
+ 25i,9n,28p,200b,425s stack positions out of 5000i,500n,6000p,200000b,50000s
+
+Output written on kallin_CV.dvi (4 pages, 20792 bytes).
